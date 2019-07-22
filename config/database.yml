@@ -1,0 +1,13 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: webmstk
+
+development:
+  <<: *default
+  database: hexlet-cv_development
+
+test:
+  <<: *default
+  database: hexlet-cv_test
