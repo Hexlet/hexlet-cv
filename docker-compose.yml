@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  webpacker:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    command: ./bin/webpack-dev-server --inline true
+    volumes:
+      - ./services/app:/usr/src/app:cached
+
+  app:
+    stdin_open: true
+    tty: true
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    command: sh -c "rm -f tmp/pids/server.pid && bin/rails s -b 0.0.0.0"
+    volumes:
+      - "~/.bash_history:/root/.bash_history"
+      - "./services/app:/usr/src/app"
+      - "/tmp:/tmp"
+    depends_on:
+      - db
+      - webpacker
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
