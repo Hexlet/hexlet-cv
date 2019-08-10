@@ -60,3 +60,5 @@ gem 'slim-rails', '~> 3.2'
 gem 'aasm', '~> 5.0'
 
 gem 'clearance', '~> 1.17'
+
+gem "pg", "~> 1.1"
