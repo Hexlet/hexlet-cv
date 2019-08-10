@@ -1,0 +1,31 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= yield :title
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_pack_tag "application"
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand HexletCv
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav
+          li.nav-item.active= link_to "Link 1", "/path1", class: 'nav-link'
+          li.nav-item= link_to "Link 2", "/path2", class: 'nav-link'
+          li.nav-item= link_to "Link 3", "/path3", class: 'nav-link'
+
+    .container
+      .row
+        .col-lg-9
+          = yield
+
+      footer
+        p &copy; Hexlet

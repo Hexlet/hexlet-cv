@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: $LABEL@email.com
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  first_name: MyString
+  last_name: MyString
+
+two:
+  email: $LABEL@email.com
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  first_name: MyString
+  last_name: MyString
