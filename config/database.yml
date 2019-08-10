@@ -21,6 +21,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: pg
+  adapter: postgresql
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
