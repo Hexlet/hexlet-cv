@@ -3,11 +3,11 @@
 one:
   email: $LABEL@email.com
   password_digest: <%= BCrypt::Password.create('secret') %>
-  first_name: MyString
-  last_name: MyString
+  first_name: $LABEL
+  last_name: Last
 
 two:
   email: $LABEL@email.com
   password_digest: <%= BCrypt::Password.create('secret') %>
-  first_name: MyString
-  last_name: MyString
+  first_name: $LABEL
+  last_name: Last

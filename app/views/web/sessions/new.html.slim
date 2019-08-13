@@ -1,0 +1,5 @@
+.container
+  = simple_form_for User.new, url: session_path do |f|
+    = f.input :email
+    = f.input :password
+    = f.submit class: 'btn btn-primary'

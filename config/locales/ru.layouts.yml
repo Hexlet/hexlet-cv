@@ -1,0 +1,6 @@
+ru:
+  layouts:
+    application:
+      add_resume: Добавить резюме
+      sign_out: Выйти
+      sign_in: Войти

@@ -62,3 +62,8 @@ gem 'aasm', '~> 5.0'
 gem 'clearance', '~> 1.17'
 
 gem "pg", "~> 1.1"
+
+gem "kaminari", "~> 1.1"
+
+gem "i18n-debug", "~> 1.2"
+gem "rails-i18n", "~> 5.1"
