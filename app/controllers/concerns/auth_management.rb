@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AuthManagment
+module AuthManagement
   def sign_in(user)
     session[:user_id] = user.id
   end
