@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class Web::ResumesControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get web_resumes_show_url
+  test '#show' do
+    resume = resumes(:one)
+    get resume_path(resume)
     assert_response :success
   end
 

@@ -6,3 +6,5 @@ test:
 
 server:
 	bin/rails s
+
+.PHONY: test
