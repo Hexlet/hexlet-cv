@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  namespace :web do
-    namespace :account do
-      get 'resumes/index'
-      get 'resumes/new'
-      get 'resumes/create'
-      get 'resumes/destroy'
-    end
-  end
-  namespace :web do
-    get 'sessions/new'
-  end
   scope module: :web do
     root 'home#index'
     resource :session
