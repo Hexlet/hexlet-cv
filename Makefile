@@ -7,4 +7,7 @@ test:
 server:
 	bin/rails s
 
+deploy:
+	git push heroku master
+
 .PHONY: test
