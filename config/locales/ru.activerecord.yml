@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    models:
+      resume: Резюме
+      user: Пользователь
+    attributes:
+      resume:
+        link: Ссылка
