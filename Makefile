@@ -5,7 +5,7 @@ setup:
 test:
 	bin/rails test
 
-server:
+start:
 	bin/rails s
 
 deploy:
