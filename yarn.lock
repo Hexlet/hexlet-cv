@@ -680,22 +680,22 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@rails/actioncable@^6.0.0-alpha":
-  version "6.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.0-alpha.tgz#84be50626a43fe431789243c6b13c14f922bf048"
-  integrity sha512-hBaruc8FMus0EuLL2LzPHHZpQUHzNrvDzmy9EN03P5K4DQR43FTdksCu77kbx2TrKlrvjnJ1PBbcx87jGotykw==
+"@rails/actioncable@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.0.tgz#8bff9c902be1531ef7a9e191562e9771efcfdfe1"
+  integrity sha512-DieouotYHpI6k2EGTCnh1eMvD3W8p3zqjWXEYj4z0khJ+A0qQ5tHxihjTEkio54MVwqHt1DcpUm2woh2n/alCA==
 
-"@rails/activestorage@^6.0.0-alpha":
-  version "6.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.0-alpha.tgz#6eb6c0f49bcaa4ad68fcd13a750b9a17f76f086f"
-  integrity sha512-ZQneYyDWrazLFZgyfZ3G4h9Q+TxvSQE5BEenBhvusyAeYMVaYxrZU/PWFcbeyiQe5xz1SeN3g/UejU3ytCYJwQ==
+"@rails/activestorage@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.0.tgz#6d9cc98f3dcf195c38ca65e80acd2e759336dd7a"
+  integrity sha512-RZqTVlUYSWcI88pSJ7ImuTtDYQvqVc2PNuOo+5R3hcVupD+d2TO8xmluqQ5TvByjPqKX4acEK0mjEIK5ip9kCg==
   dependencies:
     spark-md5 "^3.0.0"
 
-"@rails/ujs@^6.0.0-alpha":
-  version "6.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.0.0-alpha.tgz#d5761d93e19215f5f342229f934d5ca8f6dd22a5"
-  integrity sha512-6AZcab77PeJQv8RdfryDYh6tAGcndcRnqYaciLiFclADBPFE9Ip978pGCPiKcKGgCg8S1P1nZII+1GNIrUrx+g==
+"@rails/ujs@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.0.0.tgz#6c1957870ba075f7e82fdf875f5ed2181ff9355e"
+  integrity sha512-0oh/MnpZzluItU/vgaxZv+JtMXxOtA0HPK6ZiMoPd2sLH06q58QdCKPVlC36YMnP4451rcrvxO6xns3w97C1og==
 
 "@rails/webpacker@^4.0.7":
   version "4.0.7"
