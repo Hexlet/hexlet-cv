@@ -11,3 +11,9 @@ two:
   password_digest: <%= BCrypt::Password.create('secret') %>
   first_name: $LABEL
   last_name: Last
+
+full:
+  email: $LABEL@email.com
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  first_name: $LABEL
+  last_name: Last

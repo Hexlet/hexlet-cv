@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 2019_08_13_193918) do
 
   create_table "resumes", force: :cascade do |t|
     t.string "link"
+    t.string "state"
+    t.text "resume"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
