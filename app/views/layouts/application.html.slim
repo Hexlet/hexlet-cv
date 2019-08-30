@@ -1,15 +1,15 @@
 doctype html
-html lang="en"
+html.h-100 lang="en"
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     title= yield :title
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", media: "all"
     = javascript_pack_tag "application"
-  body
+  body.d-flex.flex-column.h-100
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
       a.navbar-brand(href="/") HexletCv
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,8 +24,9 @@ html lang="en"
           - else
             li.nav-item.active= link_to t('.sign_in'), new_session_path, class: 'nav-link'
 
-    = yield
+    main.flex-shrink-0
+      = yield
 
-    .container
-      footer
+    footer.footer.mt-auto
+      .container
         p &copy; Hexlet
