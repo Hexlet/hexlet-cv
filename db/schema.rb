@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_193918) do
+ActiveRecord::Schema.define(version: 2019_08_30_215535) do
+
+  create_table "resume_versions", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.integer "user_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_id"], name: "index_resume_versions_on_resume_id"
+    t.index ["user_id"], name: "index_resume_versions_on_user_id"
+  end
 
   create_table "resumes", force: :cascade do |t|
-    t.string "link"
     t.string "state"
-    t.text "resume"
+    t.string "name"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,5 +41,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_193918) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "resume_versions", "resumes"
+  add_foreign_key "resume_versions", "users"
   add_foreign_key "resumes", "users"
 end

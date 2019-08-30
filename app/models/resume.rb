@@ -1,9 +1,12 @@
 class Resume < ApplicationRecord
-  validates :link, presence: true
+  validates :name, presence: true
+
   belongs_to :user
-  serialize :resume
+  has_many :versions, inverse_of: :resume
+
+  accepts_nested_attributes_for :versions
 
   def to_s
-    link
+    name
   end
 end

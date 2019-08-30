@@ -1,0 +1,29 @@
+---
+
+basics:
+  # Full Name
+  name:
+  # Who are you?
+  summary:
+  location:
+    city:
+    countryCode: ru
+education:
+  - endDate:
+    startDate:
+    area:
+    studyType:
+    institution:
+skills:
+  - name:
+    keywords:
+      # List of skills
+    level:
+work:
+  - summary:
+    website:
+    company:
+    position:
+    startDate:
+    highlights:
+      # List of technologies

@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Resume Name $LABLE
+  resume: one
   user: one
+  content: MyText
 
 two:
-  name: Resume Name $LABLE
+  resume: two
   user: two
+  content: MyText

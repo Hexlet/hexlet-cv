@@ -1,4 +1,7 @@
 .container
   = simple_form_for [:account, @resume] do |f|
-    = f.input :link
+    = f.input :name
+    = f.simple_fields_for :versions do |v|
+      = v.input :content, as: :text, input_html: { rows: 20 }
+
     = f.submit class: 'btn btn-primary'
