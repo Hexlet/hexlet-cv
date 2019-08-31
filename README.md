@@ -8,17 +8,25 @@
 
 * Обсуждение в канале #ruby слака http://slack-ru.hexlet.io
 
-### Required
+### Requirements
 
-* Ruby
+* Mac / Linux
+* Docker
+* Docker Compose
 
-### Setup
+### Install
 
 ```sh
-$ make setup
-$ make test # run tests
-$ make start # run server
+$ make compose-setup
 ```
+
+### Run
+
+```sh
+$ make compose
+```
+
+Go to http://localhost:8080/
 
 ##
 [![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=exercises-javascript)

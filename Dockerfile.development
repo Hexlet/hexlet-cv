@@ -1,0 +1,23 @@
+FROM ruby:2.6
+
+ENV PROJECT_ROOT /usr/src/app
+WORKDIR $PROJECT_ROOT
+
+RUN apt-get update
+
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update -qq \
+  && apt-get install -y --no-install-recommends \
+  build-essential \
+  libpq-dev \
+  imagemagick \
+  yarn \
+  nodejs \
+  && rm -rf /var/lib/apt/lists/*t
+
+ENV BUNDLE_PATH $PROJECT_ROOT/vendor/bundle
+ENV GEM_HOME $PROJECT_ROOT/vendor/bundle
