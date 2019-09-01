@@ -313,6 +313,7 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
+  yard
 
 RUBY VERSION
    ruby 2.6.3p62
