@@ -71,7 +71,4 @@ gem 'pg'
 
 gem 'kaminari'
 
-gem 'i18n-debug'
 gem 'rails-i18n'
-
-gem 'octokit', '~> 4.14'
