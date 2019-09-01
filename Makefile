@@ -8,6 +8,9 @@ test:
 start:
 	bin/rails s
 
+lint:
+	bundle exec rubocop
+
 deploy:
 	git push heroku master
 

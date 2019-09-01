@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Web::SessionsControllerTest < ActionDispatch::IntegrationTest
@@ -21,6 +23,6 @@ class Web::SessionsControllerTest < ActionDispatch::IntegrationTest
     user_session.delete session_path
     user_session.assert_response :redirect
 
-    assert !user_session.signed_in?
+    assert_not user_session.signed_in?
   end
 end

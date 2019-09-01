@@ -1,0 +1,18 @@
+---
+
+cache:
+  bundler: true
+  directories:
+    - node_modules
+  yarn: true
+
+install:
+  - bundle install --jobs 3 --retry 3
+  - nvm install 11
+  - node -v
+  - npm i -g yarn
+  - yarn
+
+script:
+  - bundle exec rubocop
+  - bundle test

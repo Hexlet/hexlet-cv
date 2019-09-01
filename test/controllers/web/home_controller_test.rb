@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Web::HomeControllerTest < ActionDispatch::IntegrationTest
@@ -5,5 +7,4 @@ class Web::HomeControllerTest < ActionDispatch::IntegrationTest
     get root_url
     assert_response :success
   end
-
 end

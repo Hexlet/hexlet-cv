@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Web::ResumesControllerTest < ActionDispatch::IntegrationTest
@@ -6,5 +8,4 @@ class Web::ResumesControllerTest < ActionDispatch::IntegrationTest
     get resume_path(resume)
     assert_response :success
   end
-
 end

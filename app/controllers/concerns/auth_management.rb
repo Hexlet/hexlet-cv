@@ -15,6 +15,6 @@ module AuthManagement
   end
 
   def current_user
-    @_current_user ||= User.find_by(id: session[:user_id]) || Guest.new
+    @current_user ||= User.find_by(id: session[:user_id]) || Guest.new
   end
 end

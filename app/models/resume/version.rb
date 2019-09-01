@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Resume::Version < ApplicationRecord
   belongs_to :resume
   belongs_to :user
