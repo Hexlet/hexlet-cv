@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Resume Name $LABLE
+  name: Resume Name $LABEL
   user: one
 
 two:
-  name: Resume Name $LABLE
+  name: Resume Name $LABEL
   user: two
