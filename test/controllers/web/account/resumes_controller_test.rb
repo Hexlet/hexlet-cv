@@ -20,12 +20,15 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
   test '#create' do
     attrs = {
-      link: 'some link'
+      name: 'some name',
+      versions_attributes: [{
+        content: '{}'
+      }]
     }
     @session.post account_resumes_path, params: { resume: attrs }
     @session.assert_response :redirect
 
-    resume = Resume.find_by! link: attrs[:link]
+    resume = Resume.find_by! name: attrs[:name]
     assert resume
   end
 end

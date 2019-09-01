@@ -6,4 +6,8 @@ class Resume::Version < ApplicationRecord
 
   validates :content, presence: true
   serialize :content
+
+  before_validation do
+    self.user = resume.user
+  end
 end
