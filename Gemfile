@@ -68,7 +68,9 @@ gem 'aasm'
 
 gem 'clearance'
 
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 gem 'kaminari'
 
