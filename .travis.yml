@@ -14,5 +14,5 @@ install:
   - yarn
 
 script:
-  - bundle exec rubocop
-  - bundle test
+  - make lint
+  - make test
