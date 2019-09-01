@@ -1,5 +1,7 @@
 setup:
 	bin/setup
+	bundle exec yard gems
+	bundle exec solargraph bundle
 	bin/rails db:fixtures:load
 
 test:
