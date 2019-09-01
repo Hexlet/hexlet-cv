@@ -11,6 +11,9 @@ start:
 lint:
 	bundle exec rubocop
 
+fix:
+	bundle exec rubocop --auto-correct
+
 deploy:
 	git push heroku master
 

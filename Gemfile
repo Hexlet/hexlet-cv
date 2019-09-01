@@ -74,4 +74,4 @@ gem 'kaminari'
 
 gem 'rails-i18n'
 
-gem "paper_trail", "~> 10.3"
+gem 'paper_trail', '~> 10.3'

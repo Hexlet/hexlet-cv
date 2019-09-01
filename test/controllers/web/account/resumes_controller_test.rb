@@ -39,7 +39,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     @session.assert_response :redirect
 
     resume.reload
-    # TODO switch to power-assert
+    # TODO: switch to power-assert
     assert resume.name == attrs[:name]
   end
 end
