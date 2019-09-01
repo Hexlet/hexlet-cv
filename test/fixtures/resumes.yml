@@ -3,7 +3,9 @@
 one:
   name: Resume Name $LABEL
   user: one
+  content: '{}'
 
 two:
   name: Resume Name $LABEL
   user: two
+  content: '{}'

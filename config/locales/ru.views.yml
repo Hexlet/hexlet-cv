@@ -1,2 +1,7 @@
 ru:
+  web:
+    account:
+      resumes:
+        index:
+          header: Мои резюме
 

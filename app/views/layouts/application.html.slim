@@ -20,11 +20,15 @@ html.h-100 lang="en"
         ul.navbar-nav.ml-auto
           - if signed_in?
             li.nav-item.active= link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
+            li.nav-item.active= link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
             li.nav-item.active= link_to t('.sign_out'), session_path, class: 'nav-link', method: :delete
           - else
             li.nav-item.active= link_to t('.sign_in'), new_session_path, class: 'nav-link'
 
-    main.flex-shrink-0
+    main.flex-shrink-0.mb-5
+      - if content_for?(:header)
+        .container.mb-3
+          h1.h2= yield :header
       = yield
 
     footer.footer.mt-auto

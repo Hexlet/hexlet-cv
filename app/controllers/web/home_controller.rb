@@ -2,6 +2,6 @@
 
 class Web::HomeController < ApplicationController
   def index
-    @resumes = Resume.page(params[:page])
+    @resumes = Resume.order(id: :desc).page(params[:page])
   end
 end

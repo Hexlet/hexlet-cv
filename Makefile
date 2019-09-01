@@ -1,7 +1,5 @@
 setup:
 	bin/setup
-	bundle exec yard gems
-	bundle exec solargraph bundle
 	bin/rails db:fixtures:load
 
 test:
@@ -15,5 +13,9 @@ lint:
 
 deploy:
 	git push heroku master
+
+lsp-configure:
+	bundle exec yard gems
+	bundle exec solargraph bundle
 
 .PHONY: test

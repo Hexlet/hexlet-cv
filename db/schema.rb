@@ -10,21 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_30_215535) do
-
-  create_table "resume_versions", force: :cascade do |t|
-    t.integer "resume_id", null: false
-    t.integer "user_id", null: false
-    t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["resume_id"], name: "index_resume_versions_on_resume_id"
-    t.index ["user_id"], name: "index_resume_versions_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2019_09_01_030540) do
 
   create_table "resumes", force: :cascade do |t|
     t.string "state"
     t.string "name"
+    t.string "content"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -41,7 +32,15 @@ ActiveRecord::Schema.define(version: 2019_08_30_215535) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "resume_versions", "resumes"
-  add_foreign_key "resume_versions", "users"
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", limit: 8, null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object", limit: 1073741823
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   add_foreign_key "resumes", "users"
 end

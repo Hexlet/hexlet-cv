@@ -21,14 +21,25 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   test '#create' do
     attrs = {
       name: 'some name',
-      versions_attributes: [{
-        content: '{}'
-      }]
+      content: '{}'
     }
     @session.post account_resumes_path, params: { resume: attrs }
     @session.assert_response :redirect
 
     resume = Resume.find_by! name: attrs[:name]
     assert resume
+  end
+
+  test '#update' do
+    resume = resumes(:one)
+    attrs = {
+      name: 'another name'
+    }
+    @session.patch account_resume_path(resume), params: { resume: attrs }
+    @session.assert_response :redirect
+
+    resume.reload
+    # TODO switch to power-assert
+    assert resume.name == attrs[:name]
   end
 end

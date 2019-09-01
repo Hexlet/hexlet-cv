@@ -1,9 +1,14 @@
+- content_for :header do
+  = t('.header')
+
 .container
-  .row
-    .col-lg-9
+  .row.d-flex
+    .col-lg-9.mx-auto
       - @resumes.each do |resume|
         .card.mb-3
           .card-body
             h5.card-title
-              = link_to resume.user, resume_path(resume), class: 'stretched-link'
-            .card-text= resume
+              = link_to resume, resume_path(resume)
+              span.ml-3
+                = link_to 'edit', edit_account_resume_path(resume)
+            / .card-text= resume.current_version.content

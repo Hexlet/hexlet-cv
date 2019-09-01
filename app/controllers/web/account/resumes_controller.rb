@@ -7,19 +7,31 @@ class Web::Account::ResumesController < ApplicationController
 
   def new
     template = File.read(Rails.root.join('config', 'resume-template.yml'))
-    @resume = Resume.new
-    @resume.versions.build content: template
+    @resume = Resume.new content: template
   end
 
   def create
-    resume_params = params.require(:resume).permit(:name, versions_attributes: [:content])
+    resume_params = params.require(:resume).permit(:name, :content)
     @resume = current_user.resumes.build resume_params
-    @resume.versions.build if @resume.versions.empty?
     if @resume.save
       redirect_to action: :index
     else
       render :new
     end
+  end
+
+  def update
+    resume_params = params.require(:resume).permit(:name, :content)
+    @resume = current_user.resumes.find params[:id]
+    if @resume.update(resume_params)
+      redirect_to action: :index
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @resume = current_user.resumes.find params[:id]
   end
 
   def destroy; end

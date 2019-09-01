@@ -51,6 +51,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
+  gem 'minitest-power_assert'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -72,3 +73,5 @@ gem 'pg'
 gem 'kaminari'
 
 gem 'rails-i18n'
+
+gem "paper_trail", "~> 10.3"
