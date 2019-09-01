@@ -6,12 +6,10 @@ class Web::Account::ResumesController < ApplicationController
   end
 
   def new
-    template = File.read(Rails.root.join('config', 'resume-template.yml'))
-    @resume = Resume.new content: template
+    @resume = Resume.new
   end
 
   def create
-    resume_params = params.require(:resume).permit(:name, :content)
     @resume = current_user.resumes.build resume_params
     if @resume.save
       redirect_to action: :index
@@ -21,7 +19,6 @@ class Web::Account::ResumesController < ApplicationController
   end
 
   def update
-    resume_params = params.require(:resume).permit(:name, :content)
     @resume = current_user.resumes.find params[:id]
     if @resume.update(resume_params)
       redirect_to action: :index
@@ -35,4 +32,10 @@ class Web::Account::ResumesController < ApplicationController
   end
 
   def destroy; end
+
+  private
+
+  def resume_params
+    params.require(:resume).permit(:name, :github_url, :summary, :skills_description, :awards_description)
+  end
 end

@@ -1,12 +1,21 @@
-setup:
-	bin/setup
-	bin/rails db:fixtures:load
-
 test:
 	bin/rails test
 
+setup: clean
+	bin/setup
+	bin/rails db:fixtures:load
+
+clean:
+	bin/rails db:drop
+
+db-reset:
+	bin/rails db:drop
+	bin/rails db:create
+	bin/rails db:migrate
+	bin/rails db:fixtures:load
+
 start:
-	bin/rails s
+	bundle exec heroku local
 
 lint:
 	bundle exec rubocop

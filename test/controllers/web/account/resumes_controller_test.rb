@@ -21,7 +21,10 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   test '#create' do
     attrs = {
       name: 'some name',
-      content: '{}'
+      summary: Faker::Lorem.paragraph_by_chars(number: 300),
+      skills_description: 'skills',
+      github_url: 'github',
+      awards_description: 'awards'
     }
     @session.post account_resumes_path, params: { resume: attrs }
     @session.assert_response :redirect

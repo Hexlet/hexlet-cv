@@ -2,5 +2,6 @@ ru:
   layouts:
     application:
       add_resume: Добавить резюме
+      my_resumes: Мои резюме
       sign_out: Выйти
       sign_in: Войти

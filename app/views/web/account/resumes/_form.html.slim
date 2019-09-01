@@ -1,5 +1,8 @@
 .container
   = simple_form_for [:account, @resume] do |f|
     = f.input :name
-    = f.input :content, as: :text, input_html: { rows: 20 }
+    = f.input :github_url
+    = f.input :summary
+    = f.input :skills_description
+    = f.input :awards_description
     = f.submit class: 'btn btn-primary'

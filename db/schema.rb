@@ -10,15 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_030540) do
+ActiveRecord::Schema.define(version: 2019_09_01_205415) do
+
+  create_table "resume_answers", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.integer "user_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
+    t.index ["user_id"], name: "index_resume_answers_on_user_id"
+  end
 
   create_table "resumes", force: :cascade do |t|
     t.string "state"
     t.string "name"
-    t.string "content"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "url"
+    t.text "summary"
+    t.text "skills_description"
+    t.string "github_url"
+    t.text "awards_description"
+    t.string "english_fluency"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
@@ -42,5 +57,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_030540) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "resume_answers", "resumes"
+  add_foreign_key "resume_answers", "users"
   add_foreign_key "resumes", "users"
 end

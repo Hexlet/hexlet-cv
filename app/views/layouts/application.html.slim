@@ -9,6 +9,7 @@ html.h-100 lang="en"
     = csp_meta_tag
     = stylesheet_link_tag "application", media: "all"
     = javascript_pack_tag "application"
+    = include_gon
   body.d-flex.flex-column.h-100
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
       a.navbar-brand(href="/") HexletCv
@@ -19,7 +20,8 @@ html.h-100 lang="en"
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
           - if signed_in?
-            li.nav-item.active= link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
+            li.nav-item.active= link_to new_account_resume_path, class: 'nav-link' do
+              i.fas.fa-plus
             li.nav-item.active= link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
             li.nav-item.active= link_to t('.sign_out'), session_path, class: 'nav-link', method: :delete
           - else
@@ -34,3 +36,5 @@ html.h-100 lang="en"
     footer.footer.mt-auto
       .container
         p &copy; Hexlet
+
+    = content_for :js

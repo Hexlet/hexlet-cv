@@ -1,5 +1,9 @@
 ru:
   web:
+    home:
+      index:
+        answers: Ответов
+        likes: Нравится
     account:
       resumes:
         index:

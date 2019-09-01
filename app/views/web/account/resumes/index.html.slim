@@ -10,5 +10,6 @@
             h5.card-title
               = link_to resume, resume_path(resume)
               span.ml-3
-                = link_to 'edit', edit_account_resume_path(resume)
-            / .card-text= resume.current_version.content
+                = link_to edit_account_resume_path(resume) do
+                  i.far.fa-edit.text-muted
+            .card-text= resume.summary

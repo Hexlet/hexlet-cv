@@ -5,4 +5,8 @@ ru:
       user: Пользователь
     attributes:
       resume:
-        link: Ссылка
+        name: Название
+        summary: Описание
+        github_url: Github
+        skills_description: Навыки
+        awards_description: Награды, Сертификаты
