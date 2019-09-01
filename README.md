@@ -11,6 +11,9 @@
 ### Required
 
 * Ruby
+* Node
+* Yarn
+* sqlite3
 
 ### Setup
 

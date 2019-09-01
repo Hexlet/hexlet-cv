@@ -1,7 +1,5 @@
 setup:
-	yarn install
-	bundle install --without production
-	bin/rails db:create db:migrate
+	bin/setup
 	bin/rails db:fixtures:load
 
 test:
