@@ -14,6 +14,7 @@
 * Node
 * Yarn
 * sqlite3
+* [heroku cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
 ### Setup
 

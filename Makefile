@@ -1,7 +1,7 @@
 test:
 	bin/rails test
 
-setup:
+setup: clean
 	bin/setup
 	bin/rails db:fixtures:load
 
@@ -15,9 +15,6 @@ db-reset:
 	bin/rails db:fixtures:load
 
 start:
-	bin/rails server
-
-start-heroku:
 	bundle exec heroku local
 
 lint:
