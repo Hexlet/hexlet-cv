@@ -1,7 +1,7 @@
 test:
 	bin/rails test
 
-setup: clean
+setup:
 	bin/setup
 	bin/rails db:fixtures:load
 
