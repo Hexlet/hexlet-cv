@@ -1,5 +1,34 @@
 .container
-  h1= @resume
-  p= @resume
-
-  = render 'web/shared/answer_form'
+  .row.d-flex
+    .col-lg-9.mx-auto
+      .d-flex.mb-3
+        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .mr-2= t('.published')
+          .font-weight-lighter
+            = distance_of_time_in_words_to_now @resume.created_at
+        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .mr-2= t('.views')
+          .font-weight-lighter= 3
+        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .mr-2= t('.answers')
+          .font-weight-lighter= 3
+        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .mr-2= t('.likes')
+          .font-weight-lighter= 3
+      h1= @resume.name
+      h2= t('.summary')
+      p= @resume.summary
+      h2= t('.skills')
+      p= @resume.skills_description
+      h2= t('.awards')
+      p= @resume.awards_description
+      h2= t('.english')
+      p= @resume.english_fluency
+      h2= t('.links')
+      p
+        = link_to @resume.github_url, @resume.github_url
+      .card.my-5.bg-light
+        .card-body
+          .card-title= @resume.user
+          .card-text= mail_to @resume.user.email
+      = render 'web/shared/answer_form'
