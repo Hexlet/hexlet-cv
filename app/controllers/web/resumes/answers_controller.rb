@@ -1,7 +1,6 @@
-class Web::Resumes::AnswersController < ApplicationController
-  def new
-  end
+# frozen_string_literal: true
 
+class Web::Resumes::AnswersController < ApplicationController
   def create
     resume = Resume.find params[:resume_id]
     @answer = resume.answers.build resume_answer_params
