@@ -12,11 +12,11 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "@fortawesome/fontawesome-free": "^5.10.2",
     "react-jsonschema-form": "^1.8.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.10.2",
     "webpack-dev-server": "^3.8.0"
   }
 }
