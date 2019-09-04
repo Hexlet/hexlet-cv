@@ -1,20 +1,20 @@
 .container
-  .row.d-flex
+  .row
     .col-lg-9.mx-auto
-      .d-flex.mb-3
-        .d-flex.flex-row.align-items-center.text-muted.mr-4
+      .d-flex.mb-3.text-muted
+        .d-flex.mr-4
           .mr-2= t('.published')
-          .font-weight-lighter
+          .font-weight-light
             = distance_of_time_in_words_to_now @resume.created_at
-        .d-flex.flex-row.align-items-center.text-muted.mr-4
+        .d-flex.mr-4
           .mr-2= t('.views')
-          .font-weight-lighter= 3
-        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .font-weight-light= 3
+        .d-flex.mr-4
           .mr-2= t('.answers')
-          .font-weight-lighter= 3
-        .d-flex.flex-row.align-items-center.text-muted.mr-4
+          .font-weight-light= 3
+        .d-flex.mr-4
           .mr-2= t('.likes')
-          .font-weight-lighter= 3
+          .font-weight-light= 3
       h1= @resume.name
       h2= t('.summary')
       p= @resume.summary
@@ -24,7 +24,7 @@
       p= @resume.awards_description
       h2= t('.english')
       p= @resume.english_fluency
-      h2= t('.links')
+      h2= t('.github')
       p
         = link_to @resume.github_url, @resume.github_url
       .card.my-5.bg-light
