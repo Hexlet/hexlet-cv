@@ -114,7 +114,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   ActionMailer::Base.smtp_settings = {
     user_name: 'SMTP_Injection',
-    password: Rails.application.credentials.sparkpost_api,
+    password: Rails.application.credentials.sparkpost_key,
     address: 'smtp.sparkpostmail.com',
     port: 587,
     enable_starttls_auto: true,
