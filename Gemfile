@@ -65,8 +65,6 @@ gem 'slim-rails'
 
 gem 'aasm'
 
-gem 'clearance'
-
 group :production do
   gem 'pg'
 end
@@ -79,4 +77,12 @@ gem 'paper_trail', '~> 10.3'
 
 gem 'gon', '~> 6.2'
 
-gem "enumerize", "~> 2.3"
+gem 'enumerize', '~> 2.3'
+
+gem 'devise', '~> 4.7'
+
+gem 'devise-i18n', '~> 1.8'
+
+gem 'flash_rails_messages', '~> 2.1'
+
+gem 'devise-bootstrap-views', '~> 1.1'

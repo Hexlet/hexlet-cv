@@ -1,7 +1,10 @@
 ru:
   layouts:
+    shared:
+      nav:
+        add_resume: Добавить резюме
+        my_resumes: Мои резюме
+        sign_out: Выйти
+        sign_in: Войти
+        register: Регистрация
     application:
-      add_resume: Добавить резюме
-      my_resumes: Мои резюме
-      sign_out: Выйти
-      sign_in: Войти

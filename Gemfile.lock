@@ -78,23 +78,25 @@ GEM
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
-    clearance (1.17.0)
-      actionmailer (>= 3.1)
-      activemodel (>= 3.1)
-      activerecord (>= 3.1)
-      bcrypt
-      email_validator (~> 1.4)
-      railties (>= 3.1)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
-    email_validator (1.6.0)
-      activemodel
+    devise (4.7.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-bootstrap-views (1.1.0)
+    devise-i18n (1.8.1)
+      devise (>= 4.6)
     enumerize (2.3.1)
       activesupport (>= 3.2)
     erubi (1.8.0)
     faker (2.2.1)
       i18n (>= 0.8)
     ffi (1.11.1)
+    flash_rails_messages (2.1.0)
+      rails (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gon (6.2.1)
@@ -145,6 +147,7 @@ GEM
     nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    orm_adapter (0.5.0)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
@@ -198,6 +201,9 @@ GEM
     regexp_parser (1.6.0)
     request_store (1.4.1)
       rack (>= 1.4)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     reverse_markdown (1.2.0)
       nokogiri
     rubocop (0.74.0)
@@ -269,6 +275,8 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -295,12 +303,16 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara
-  clearance
+  devise (~> 4.7)
+  devise-bootstrap-views (~> 1.1)
+  devise-i18n (~> 1.8)
   enumerize (~> 2.3)
   faker
+  flash_rails_messages (~> 2.1)
   gon (~> 6.2)
   i18n-debug
   jbuilder

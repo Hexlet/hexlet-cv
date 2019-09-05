@@ -5,10 +5,8 @@ html.h-100 lang="en"
   body.d-flex.flex-column.h-100
     = render 'layouts/shared/nav'
     main.flex-shrink-0.my-5
-      - if content_for?(:header)
-        .container.mb-3
-          h1.h2= yield :header
-      = yield
-
+      .container
+        .row.d-flex
+          .col-lg-5.col-md-8.mx-auto
+            = yield
     = render 'layouts/shared/footer'
-    = content_for :js

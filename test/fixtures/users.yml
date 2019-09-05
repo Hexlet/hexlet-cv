@@ -3,18 +3,19 @@
 DEFAULTS: &DEFAULTS
   first_name: $LABEL
   last_name: Last
+  confirmed_at: <%= Time.current %>
 
 one:
   <<: *DEFAULTS
   email: $LABEL@email.com
-  password_digest: <%= BCrypt::Password.create('secret') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 two:
   <<: *DEFAULTS
   email: $LABEL@email.com
-  password_digest: <%= BCrypt::Password.create('secret') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 full:
   <<: *DEFAULTS
   email: $LABEL@email.com
-  password_digest: <%= BCrypt::Password.create('secret') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

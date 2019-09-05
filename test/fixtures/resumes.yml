@@ -1,5 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 DEFAULTS: &DEFAULTS
   github_url: https://github.com/$LABEL
 
@@ -7,6 +5,7 @@ one:
   <<: *DEFAULTS
   name: Resume Name $LABEL
   user: one
+  english_fluency: read
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
@@ -15,6 +14,7 @@ two:
   <<: *DEFAULTS
   name: Resume Name $LABEL
   user: two
+  english_fluency: fluence
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>

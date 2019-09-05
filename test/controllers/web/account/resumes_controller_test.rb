@@ -5,17 +5,18 @@ require 'test_helper'
 class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    @session = login(@user)
+    # = login(@user)
+    sign_in(@user)
   end
 
   test '#index' do
-    @session.get account_resumes_path
-    @session.assert_response :success
+    get account_resumes_path
+    assert_response :success
   end
 
   test '#new' do
-    @session.get new_account_resume_path
-    @session.assert_response :success
+    get new_account_resume_path
+    assert_response :success
   end
 
   test '#create' do
@@ -24,10 +25,11 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
       summary: Faker::Lorem.paragraph_by_chars(number: 300),
       skills_description: 'skills',
       github_url: 'github',
-      awards_description: 'awards'
+      awards_description: 'awards',
+      english_fluency: 'dont_know'
     }
-    @session.post account_resumes_path, params: { resume: attrs }
-    @session.assert_response :redirect
+    post account_resumes_path, params: { resume: attrs }
+    assert_response :redirect
 
     resume = Resume.find_by! name: attrs[:name]
     assert resume
@@ -38,8 +40,8 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     attrs = {
       name: 'another name'
     }
-    @session.patch account_resume_path(resume), params: { resume: attrs }
-    @session.assert_response :redirect
+    patch account_resume_path(resume), params: { resume: attrs }
+    assert_response :redirect
 
     resume.reload
     # TODO: switch to power-assert

@@ -5,7 +5,7 @@ require 'test_helper'
 class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    @session = login(@user)
+    sign_in(@user)
   end
 
   test '#create' do
@@ -13,8 +13,8 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     attrs = {
       content: 'some name'
     }
-    @session.post resume_answers_path(resume), params: { resume_answer: attrs }
-    @session.assert_response :redirect
+    post resume_answers_path(resume), params: { resume_answer: attrs }
+    assert_response :redirect
 
     answer = resume.answers.find_by! attrs
     assert answer

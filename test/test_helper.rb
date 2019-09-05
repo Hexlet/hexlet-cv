@@ -5,7 +5,6 @@ require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  include AuthManagement
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
@@ -13,16 +12,21 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
 
-  def login(user)
-    params = {
-      user: {
-        email: user.email,
-        password: 'password'
-      }
-    }
-    open_session do |s|
-      s.post s.session_url, params: params
-    end
-  end
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  # def login(user)
+  #   params = {
+  #     new_user: {
+  #       email: user.email,
+  #       password: 'password',
+  #       password_confirmation: 'password'
+  #     }
+  #   }
+  #   open_session do |s|
+  #     s.post s.user_session_url, params: params
+  #   end
+  # end
 end
