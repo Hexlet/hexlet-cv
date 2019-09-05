@@ -89,6 +89,8 @@ GEM
     crass (1.0.4)
     email_validator (1.6.0)
       activemodel
+    enumerize (2.3.1)
+      activesupport (>= 3.2)
     erubi (1.8.0)
     faker (2.2.1)
       i18n (>= 0.8)
@@ -297,6 +299,7 @@ DEPENDENCIES
   byebug
   capybara
   clearance
+  enumerize (~> 2.3)
   faker
   gon (~> 6.2)
   i18n-debug
@@ -325,9 +328,6 @@ DEPENDENCIES
   webdrivers
   webpacker
   yard
-
-RUBY VERSION
-   ruby 2.6.3p62
 
 BUNDLED WITH
    1.17.2

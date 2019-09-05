@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Resume < ApplicationRecord
+  extend Enumerize
   has_paper_trail
 
+  enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
+
   validates :name, presence: true
+  validates :english_fluency, presence: true
   validates :github_url, presence: true
   validates :summary, presence: true, length: { minimum: 200, maximum: 500 }
   validates :skills_description, presence: true

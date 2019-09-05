@@ -12,6 +12,9 @@ ru:
     hints:
       resume:
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
+        name: PHP-программист, Android-разработчик, ...
+        skills_description: Знаю PHP, пользуюсь VIM, Работал с AWS
+        awards_description: Участие в олимпиадах, хакатонах, других профильных меропритиях. Курсы.
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

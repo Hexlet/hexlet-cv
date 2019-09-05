@@ -78,3 +78,5 @@ gem 'rails-i18n'
 gem 'paper_trail', '~> 10.3'
 
 gem 'gon', '~> 6.2'
+
+gem "enumerize", "~> 2.3"

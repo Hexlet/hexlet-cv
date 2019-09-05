@@ -1,32 +1,53 @@
+= content_for :header do
+  = @resume
+
 .container
   .row
     .col-lg-9.mx-auto
-      .d-flex.mb-3.text-muted
-        .d-flex.mr-4
-          .mr-2= t('.published')
-          .font-weight-light
-            = distance_of_time_in_words_to_now @resume.created_at
-        .d-flex.mr-4
-          .mr-2= t('.views')
-          .font-weight-light= 3
-        .d-flex.mr-4
-          .mr-2= t('.answers')
-          .font-weight-light= 3
-        .d-flex.mr-4
-          .mr-2= t('.likes')
-          .font-weight-light= 3
-      h1= @resume.name
-      h2= t('.summary')
-      p= @resume.summary
-      h2= t('.skills')
-      p= @resume.skills_description
-      h2= t('.awards')
-      p= @resume.awards_description
-      h2= t('.english')
-      p= @resume.english_fluency
-      h2= t('.github')
-      p
-        = link_to @resume.github_url, @resume.github_url
+      / .d-flex.mb-3.text-muted
+      /   .d-flex.mr-4
+      /     .mr-2= t('.published')
+      /     .font-weight-light
+      /       = distance_of_time_in_words_to_now @resume.created_at
+      /   .d-flex.mr-4
+      /     .mr-2= t('.views')
+      /     .font-weight-light= 3
+      /   .d-flex.mr-4
+      /     .mr-2= t('.answers')
+      /     .font-weight-light= 3
+      /   .d-flex.mr-4
+      /     .mr-2= t('.likes')
+      /     .font-weight-light= 3
+      .row
+        .col-3
+          = t('.name')
+        .col-9
+          = @resume.user
+      .row.mt-3
+        .col-3
+          = t('.summary')
+        .col-9
+          = simple_format @resume.summary
+      .row.mt-3
+        .col-3
+          = t('.skills')
+        .col-9
+          = @resume.skills_description
+      .row.mt-3
+        .col-3
+          = t('.awards')
+        .col-9
+          = @resume.awards_description
+      .row.mt-3
+        .col-3
+          = t('.english')
+        .col-9
+          = @resume.english_fluency
+      .row.mt-3
+        .col-3
+          = t('.github')
+        .col-9
+          = link_to @resume.github_url, @resume.github_url
       .card.my-5.bg-light
         .card-body
           .card-title= @resume.user

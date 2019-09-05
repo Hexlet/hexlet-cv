@@ -1,0 +1,8 @@
+ru:
+  enumerize:
+    english_fluency:
+      dont_know: Не знаю
+      basic: Начальные знания
+      read: Читаю профессиональную литературу
+      pass_interview: Могу проходить интервью
+      fluent: Свободно владею

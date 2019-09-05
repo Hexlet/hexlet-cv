@@ -6,6 +6,10 @@ ru:
         likes: Нравится
     account:
       resumes:
+        new:
+          header: Новое резюме
+        edit:
+          header: Редактирование резюме
         index:
           header: Мои резюме
 

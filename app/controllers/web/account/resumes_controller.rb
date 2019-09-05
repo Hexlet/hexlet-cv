@@ -36,6 +36,7 @@ class Web::Account::ResumesController < ApplicationController
   private
 
   def resume_params
-    params.require(:resume).permit(:name, :github_url, :summary, :skills_description, :awards_description)
+    attrs = %i[name github_url summary skills_description awards_description english_fluency]
+    params.require(:resume).permit(*attrs)
   end
 end
