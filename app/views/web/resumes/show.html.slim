@@ -31,4 +31,14 @@
         .card-body
           .card-title= @resume.user
           .card-text= mail_to @resume.user.email
+      h3.mb-3
+        span.mr-2= @resume.answers.length
+        span Answers
+      - @resume.answers.each do |answer|
+        div
+          div
+            span.font-weight-bold= answer.user
+            span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
+          div= answer.content
+          hr
       = render 'web/shared/answer_form'
