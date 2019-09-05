@@ -17,4 +17,9 @@ class User < ApplicationRecord
   def to_s
     "#{first_name} #{last_name}"
   end
+
+  # NOTE: https://github.com/plataformatec/devise#activejob-integration
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
