@@ -206,6 +206,7 @@ GEM
       railties (>= 5.0)
     reverse_markdown (1.2.0)
       nokogiri
+    rollbar (2.22.1)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -323,6 +324,7 @@ DEPENDENCIES
   puma
   rails
   rails-i18n
+  rollbar (~> 2.22)
   rubocop
   rubocop-performance
   rubocop-rails

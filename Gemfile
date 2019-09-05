@@ -86,3 +86,5 @@ gem 'devise-i18n', '~> 1.8'
 gem 'flash_rails_messages', '~> 2.1'
 
 gem 'devise-bootstrap-views', '~> 1.1'
+
+gem "rollbar", "~> 2.22"
