@@ -89,6 +89,10 @@ GEM
     devise-bootstrap-views (1.1.0)
     devise-i18n (1.8.1)
       devise (>= 4.6)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     enumerize (2.3.1)
       activesupport (>= 3.2)
     erubi (1.8.0)
@@ -310,6 +314,7 @@ DEPENDENCIES
   devise (~> 4.7)
   devise-bootstrap-views (~> 1.1)
   devise-i18n (~> 1.8)
+  dotenv-rails
   enumerize (~> 2.3)
   faker
   flash_rails_messages (~> 2.1)

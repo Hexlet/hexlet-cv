@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'sqlite3'
+  gem 'dotenv-rails'
 end
 
 group :development do
