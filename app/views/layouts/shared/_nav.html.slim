@@ -7,8 +7,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       - if user_signed_in?
-        li.nav-item.active= link_to new_account_resume_path, class: 'nav-link' do
-          i.fas.fa-plus
+        li.nav-item.active= link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
         li.nav-item.active= link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
         li.nav-item.active= link_to t('.sign_out'), destroy_user_session_path, class: 'nav-link', method: :delete
       - else
