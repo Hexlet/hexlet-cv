@@ -7,14 +7,14 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    answer = resume_answers(:one)
+    answer = resume_answers(:without_likes)
     post answer_likes_path(answer)
     assert_response :redirect
   end
 
   test '#destroy' do
     like = resume_answer_likes(:one)
-    post answer_likes_path(like.answer, like)
+    delete answer_like_path(like.answer, like)
     assert_response :redirect
   end
 end

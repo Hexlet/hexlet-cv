@@ -9,3 +9,8 @@ two:
   resume: two
   user: two
   content: MyText
+
+without_likes:
+  resume: two
+  user: two
+  content: MyText

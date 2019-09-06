@@ -6,7 +6,7 @@ class Resume::Answer < ApplicationRecord
 
   belongs_to :resume
   belongs_to :user
-  has_many :likes, foreign_key: 'resume_answer_id'
+  has_many :likes, foreign_key: 'resume_answer_id', dependent: :delete_all, inverse_of: :answer
 
   validates :content, presence: true
 end
