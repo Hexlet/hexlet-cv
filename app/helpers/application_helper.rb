@@ -2,4 +2,7 @@
 
 module ApplicationHelper
   # include AuthManagement
+  # def t_attribute(attribute)
+  #   Model.human_attribute_name(attribute)
+  # end
 end
