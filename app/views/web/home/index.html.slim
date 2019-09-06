@@ -7,11 +7,11 @@
             .d-flex
               .d-flex.flex-column.mr-4
                 .text-muted.text-center.mb-3
-                  .h2.mb-0.font-weight-lighter= 3
+                  .h2.mb-0.font-weight-lighter= resume.answers.size
                   .small= t('.answers')
-                .text-muted.text-center
-                  .h2.mb-0.font-weight-lighter= 12
-                  .small= t('.likes')
+                / .text-muted.text-center
+                /   .h2.mb-0.font-weight-lighter= 12
+                /   .small= t('.likes')
               div
                 h5.card-title= link_to resume, resume_path(resume)
                 .card-text= resume.summary

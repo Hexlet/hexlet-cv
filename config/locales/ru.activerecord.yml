@@ -3,6 +3,7 @@ ru:
     models:
       resume: Резюме
       user: Пользователь
+      resume/answer: Рекомендация
     attributes:
       resume:
         name: Название

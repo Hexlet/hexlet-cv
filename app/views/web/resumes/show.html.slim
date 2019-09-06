@@ -18,48 +18,56 @@
       /   .d-flex.mr-4
       /     .mr-2= t('.likes')
       /     .font-weight-light= 3
-      .row
-        .col-3
-          = t('.name')
-        .col-9
-          = @resume.user
-      .row.mt-3
-        .col-3
-          = t('.summary')
-        .col-9
-          = simple_format @resume.summary
-      .row.mt-3
-        .col-3
-          = t('.skills')
-        .col-9
-          = @resume.skills_description
-      .row.mt-3
-        .col-3
-          = t('.awards')
-        .col-9
-          = @resume.awards_description
-      .row.mt-3
-        .col-3
-          = t('.english')
-        .col-9
-          = @resume.english_fluency
-      .row.mt-3
-        .col-3
-          = t('.github')
-        .col-9
-          = link_to @resume.github_url, @resume.github_url
-      .card.my-5.bg-light
-        .card-body
-          .card-title= @resume.user
-          .card-text= mail_to @resume.user.email
-      h3.mb-3
-        span.mr-2= @resume.answers.length
-        span Answers
+      .mb-5
+        .row
+          .col-3
+            = han('resume', 'name')
+          .col-9
+            = @resume.user
+        .row.mt-3
+          .col-3
+            = han('resume', 'summary')
+          .col-9
+            = simple_format @resume.summary
+        .row.mt-3
+          .col-3
+            = han('resume', 'skills_description')
+          .col-9
+            = @resume.skills_description
+        .row.mt-3
+          .col-3
+            = han('resume', 'awards_description')
+          .col-9
+            = @resume.awards_description
+        .row.mt-3
+          .col-3
+            = han('resume', 'english_fluency')
+          .col-9
+            = @resume.english_fluency
+        .row.mt-3
+          .col-3
+            = han('resume', 'github')
+          .col-9
+            = link_to @resume.github_url, @resume.github_url, target: '_blank'
+
+      .lead.mb-3= t('.recomendation')
+
       - @resume.answers.each do |answer|
-        div
-          div
-            span.font-weight-bold= answer.user
-            span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
-          div= answer.content
-          hr
-      = render 'web/shared/answer_form'
+        .card.mb-4
+          .card-header.small.mb-2.d-flex
+            .mr-auto
+              span.font-weight-bold= answer.user
+              span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
+            div
+              span.mr-2
+                = link_to t('.edit'), edit_resume_answer_path(@resume, answer)
+              = link_to t('.remove'), resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirmation') }
+          .card-body
+            == markdown2html answer.content
+            .text-right
+              = link_to_if current_user, t('.likes', count: answer.likes.count), answer_likes_path(answer), method: 'post'
+
+      - if @current_user_answer
+        .text-center.lead= t('.answer_exists')
+      - else
+        = render 'web/shared/answer_form'

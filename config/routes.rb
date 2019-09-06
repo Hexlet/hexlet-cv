@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :answers, only: [] do
       scope module: :answers do
         resources :comments
+        resources :likes, only: [:create, :destroy]
       end
     end
 

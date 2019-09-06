@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_182154) do
+ActiveRecord::Schema.define(version: 2019_09_06_025707) do
+
+  create_table "resume_answer_likes", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.integer "resume_answer_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_answer_id"], name: "index_resume_answer_likes_on_resume_answer_id"
+    t.index ["resume_id"], name: "index_resume_answer_likes_on_resume_id"
+    t.index ["user_id"], name: "index_resume_answer_likes_on_user_id"
+  end
 
   create_table "resume_answers", force: :cascade do |t|
     t.integer "resume_id", null: false
@@ -75,6 +86,9 @@ ActiveRecord::Schema.define(version: 2019_09_05_182154) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "resume_answer_likes", "resume_answers"
+  add_foreign_key "resume_answer_likes", "resumes"
+  add_foreign_key "resume_answer_likes", "users"
   add_foreign_key "resume_answers", "resumes"
   add_foreign_key "resume_answers", "users"
   add_foreign_key "resumes", "users"

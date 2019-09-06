@@ -78,6 +78,7 @@ GEM
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
+    cocoon (1.2.14)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.7.0)
@@ -202,6 +203,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redcarpet (3.5.0)
     regexp_parser (1.6.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -311,6 +313,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara
+  cocoon (~> 1.2)
   devise (~> 4.7)
   devise-bootstrap-views (~> 1.1)
   devise-i18n (~> 1.8)
@@ -329,6 +332,7 @@ DEPENDENCIES
   puma
   rails
   rails-i18n
+  redcarpet (~> 3.5)
   rollbar (~> 2.22)
   rubocop
   rubocop-performance

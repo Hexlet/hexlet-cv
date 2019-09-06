@@ -9,7 +9,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    resume = resumes(:one)
+    resume = resumes(:without_answers)
     attrs = {
       content: 'some name'
     }
@@ -18,5 +18,13 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
 
     answer = resume.answers.find_by! attrs
     assert answer
+  end
+
+  test '#delete' do
+    resume_answer = resume_answers(:one)
+    delete resume_answer_path(resume_answer.resume, resume_answer)
+    assert_response :redirect
+
+    assert_not Resume::Answer.exists?(resume_answer.id)
   end
 end

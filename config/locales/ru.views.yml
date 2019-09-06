@@ -4,6 +4,11 @@ ru:
       index:
         answers: Ответов
         likes: Нравится
+    resumes:
+      show:
+        answer_exists: Вы уже оставили рекомендацию
+        likes: |
+          Понравилось: %{count}
     account:
       resumes:
         new:

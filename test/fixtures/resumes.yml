@@ -1,9 +1,13 @@
 DEFAULTS: &DEFAULTS
   github_url: https://github.com/$LABEL
+  name: Resume Name $LABEL
+  english_fluency: fluence
+  skills_description: <%= Faker::Lorem.paragraph %>
+  awards_description: <%= Faker::Lorem.paragraph %>
+  summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
 
 one:
   <<: *DEFAULTS
-  name: Resume Name $LABEL
   user: one
   english_fluency: read
   skills_description: <%= Faker::Lorem.paragraph %>
@@ -12,9 +16,12 @@ one:
 
 two:
   <<: *DEFAULTS
-  name: Resume Name $LABEL
   user: two
   english_fluency: fluence
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
+
+without_answers:
+  <<: *DEFAULTS
+  user: full

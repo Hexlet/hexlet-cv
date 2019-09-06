@@ -5,7 +5,6 @@ require 'test_helper'
 class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    # = login(@user)
     sign_in(@user)
   end
 
