@@ -2,6 +2,7 @@ test:
 	bin/rails test
 
 setup:
+	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
 
