@@ -15,6 +15,11 @@ class Resume < ApplicationRecord
 
   belongs_to :user
   has_many :answers, dependent: :destroy
+  has_many :educations, inverse_of: :resume
+  has_many :works, inverse_of: :resume
+
+  accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :works, allow_destroy: true
 
   def to_s
     name
