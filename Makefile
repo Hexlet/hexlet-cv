@@ -6,6 +6,9 @@ setup:
 	bin/setup
 	bin/rails db:fixtures:load
 
+fixtures-load:
+	bin/rails db:fixtures:load
+
 clean:
 	bin/rails db:drop
 
@@ -21,7 +24,7 @@ start:
 lint:
 	bundle exec rubocop
 
-fix:
+linter-fix:
 	bundle exec rubocop --auto-correct
 
 deploy:
