@@ -14,3 +14,10 @@ ru:
         english_fluency: Владение английским
         skills_description: Навыки
         awards_description: Награды, Сертификаты
+      resume/answer:
+        content: Ответ
+      resume/job:
+        content: Описание
+      resume/education:
+        institution: Учебное заведение
+
