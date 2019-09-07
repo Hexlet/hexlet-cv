@@ -31,4 +31,7 @@ lsp-configure:
 	bundle exec yard gems
 	bundle exec solargraph bundle
 
+heroku-console:
+	heroku run rails console
+
 .PHONY: test
