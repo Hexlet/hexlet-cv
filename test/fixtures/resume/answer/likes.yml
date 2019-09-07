@@ -9,3 +9,13 @@ two:
   resume: two
   answer: two
   user: two
+
+full_one_two:
+  resume: full
+  answer: two
+  user: one
+
+full_one_full:
+  resume: full
+  answer: two
+  user: full

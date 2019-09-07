@@ -10,8 +10,12 @@ one:
 
 two:
   resume: two
-  company: MyString
-  position: MyString
+
+full_1:
+  resume: full
+  company: Abby
+  position: CTO
   begin_date: 2018-09-07
   end_date: 2019-09-07
-  description: MyString
+  description: |
+    Sed sint labore. Velit nihil provident. Minus provident vel. Aut minima quas. A voluptates optio. Et vel tempore. Dolorum eius distinctio. Similique suscipit debitis. Deserunt dolor.

@@ -1,7 +1,7 @@
 DEFAULTS: &DEFAULTS
   github_url: https://github.com/$LABEL
   name: Resume Name $LABEL
-  english_fluency: fluence
+  english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
@@ -17,11 +17,14 @@ one:
 two:
   <<: *DEFAULTS
   user: two
-  english_fluency: fluence
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
 
 without_answers:
+  <<: *DEFAULTS
+  user: full
+
+full:
   <<: *DEFAULTS
   user: full
