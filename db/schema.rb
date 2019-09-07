@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_211027) do
+ActiveRecord::Schema.define(version: 2019_09_07_190345) do
 
   create_table "resume_answer_likes", force: :cascade do |t|
     t.integer "resume_id", null: false
@@ -36,9 +36,8 @@ ActiveRecord::Schema.define(version: 2019_09_06_211027) do
   create_table "resume_educations", force: :cascade do |t|
     t.integer "resume_id", null: false
     t.string "institution"
-    t.string "degree"
     t.string "faculty"
-    t.date "start_date"
+    t.date "begin_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_211027) do
     t.integer "resume_id", null: false
     t.string "company"
     t.string "position"
-    t.date "start_date"
+    t.date "begin_date"
     t.date "end_date"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
