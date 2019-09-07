@@ -18,5 +18,5 @@
                 .text-right.small
                   span.mr-3.text-muted
                     = distance_of_time_in_words_to_now resume.created_at
-                  = resume.user
+                  = link_to resume.user, user_path(resume.user)
       = paginate @resumes

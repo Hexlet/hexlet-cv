@@ -9,6 +9,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       - if user_signed_in?
         li.nav-item.active= link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
         li.nav-item.active= link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
+        li.nav-item.active= link_to t('.my_profile'), user_path(current_user), class: 'nav-link'
         li.nav-item.active= link_to t('.sign_out'), destroy_user_session_path, class: 'nav-link', method: :delete
       - else
         li.nav-item.active= link_to t('.sign_in'), new_user_session_path, class: 'nav-link'

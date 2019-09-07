@@ -23,7 +23,7 @@
           .col-3
             = han('user', 'name')
           .col-9
-            = @resume.user
+            = link_to @resume.user, user_path(@resume.user)
         .row.mt-3
           .col-3
             = han('resume', 'summary')
@@ -56,7 +56,7 @@
         .card.mb-4
           .card-header.small.mb-2.d-flex
             .mr-auto
-              span.font-weight-bold= answer.user
+              span.font-weight-bold= link_to answer.user, user_path(answer.user)
               span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
             div
               span.mr-2
