@@ -1,5 +1,9 @@
 ru:
   simple_form:
+    placeholders:
+      resume_answer:
+        show:
+          content: Оставьте ваши рекомендации по улучшению резюме. Редактор поддерживает маркдаун.
     # Examples
     # labels:
     #   defaults:
