@@ -10,10 +10,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         = navbar_menu_item t('.add_resume'), new_account_resume_path
         = navbar_menu_item t('.my_resumes'), account_resumes_path
         = navbar_menu_item t('.my_profile'), user_path(current_user)
-        = navbar_menu_item t('.sign_out'), user_path(destroy_user_session_path)
-        li.nav-item= link_to t('.sign_out'), destroy_user_session_path, class: 'nav-link', method: :delete
+        = navbar_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
       - else
-        = navbar_menu_item t('.sign_in'), user_path(new_user_session_path)
-        = navbar_menu_item t('.register'), user_path(new_user_registration_path)
+        = navbar_menu_item t('.sign_in'), new_user_session_path
+        = navbar_menu_item t('.register'), new_user_registration_path
 
 = render_flash_messages
