@@ -28,14 +28,25 @@
             .mr-auto
               span.font-weight-bold= link_to answer.user, user_path(answer.user)
               span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
-            div
-              span.mr-2
-                = link_to t('.edit'), edit_resume_answer_path(@resume, answer)
-              = link_to t('.remove'), resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirmation') }
-          .card-body
+            - if current_user == answer.user
+              div
+                span.mr-2
+                  = link_to t('.edit'), edit_resume_answer_path(@resume, answer)
+                = link_to t('.remove'), resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirmation') }
+          .card-body.hexlet-cv-content
             == markdown2html answer.content
-            .text-right
-              = link_to_if current_user, t('.likes', count: answer.likes.count), answer_likes_path(answer), method: 'post'
+            .text-right.small
+              - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
+                - if like
+                  = link_to answer_like_path(answer, like), method: 'delete', class: 'text-decoration-none' do
+                    i.fas.fa-thumbs-up
+                    | &nbsp;
+                    = answer.likes.count
+                - else
+                  = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
+                    i.far.fa-thumbs-up
+                    | &nbsp;
+                    = answer.likes.count
 
       - if @current_user_answer
         .text-center.lead= t('.answer_exists')

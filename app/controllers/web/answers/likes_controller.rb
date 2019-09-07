@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Answers::LikesController < ApplicationController
+class Web::Answers::LikesController < Web::Answers::ApplicationController
   def create
     answer = Resume::Answer.find(params[:answer_id])
     like = answer.likes.build

@@ -2,6 +2,9 @@
 
 module ApplicationHelper
   # include AuthManagement
+  def let(value)
+    yield value
+  end
 
   def han(model_name, attribute_name)
     model_name.classify.constantize.human_attribute_name(attribute_name)
