@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_025707) do
+ActiveRecord::Schema.define(version: 2019_09_06_211027) do
 
   create_table "resume_answer_likes", force: :cascade do |t|
     t.integer "resume_id", null: false
@@ -31,6 +31,30 @@ ActiveRecord::Schema.define(version: 2019_09_06_025707) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
     t.index ["user_id"], name: "index_resume_answers_on_user_id"
+  end
+
+  create_table "resume_educations", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.string "institution"
+    t.string "degree"
+    t.string "faculty"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_id"], name: "index_resume_educations_on_resume_id"
+  end
+
+  create_table "resume_works", force: :cascade do |t|
+    t.integer "resume_id", null: false
+    t.string "company"
+    t.string "position"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_id"], name: "index_resume_works_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
@@ -91,5 +115,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_025707) do
   add_foreign_key "resume_answer_likes", "users"
   add_foreign_key "resume_answers", "resumes"
   add_foreign_key "resume_answers", "users"
+  add_foreign_key "resume_educations", "resumes"
+  add_foreign_key "resume_works", "resumes"
   add_foreign_key "resumes", "users"
 end
