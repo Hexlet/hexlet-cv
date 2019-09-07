@@ -39,7 +39,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   def resume_params
     attrs = %i[name github_url summary skills_description awards_description english_fluency]
-    params.require(:resume).permit(*attrs, educations_attributes: %i[institution degree faculty start_date end_date],
-                                           works_attributes: %i[company position description start_date end_date])
+    params.require(:resume).permit(*attrs, educations_attributes: %i[institution faculty begin_date end_date],
+                                           works_attributes: %i[company position description begin_date end_date])
   end
 end
