@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       scope module: :answers do
         resources :comments
         resources :likes, only: %i[create destroy]
+        resources :comments, only: %i[create update destroy]
       end
     end
 

@@ -10,6 +10,7 @@ ru:
         work: Работа
         education: Образование
       show:
+        add_a_comment: Добавить комментарий
         recomendations: Рекомендации
         answer_exists: Вы уже оставили рекомендацию
         likes: |

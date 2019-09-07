@@ -33,20 +33,40 @@
                 span.mr-2
                   = link_to t('.edit'), edit_resume_answer_path(@resume, answer)
                 = link_to t('.remove'), resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirmation') }
-          .card-body.hexlet-cv-content
-            == markdown2html answer.content
-            .text-right.small
+          .card-body.d-flex
+            .mr-3.h4
               - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
+                .text-center.text-muted.mb-2.mt-1.font-weight-light
+                  = answer.likes.count
                 - if like
                   = link_to answer_like_path(answer, like), method: 'delete', class: 'text-decoration-none' do
-                    i.fas.fa-thumbs-up
-                    | &nbsp;
-                    = answer.likes.count
+                    i.fas.fa-thumbs-up.text-secondary
                 - else
                   = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
-                    i.far.fa-thumbs-up
-                    | &nbsp;
-                    = answer.likes.count
+                    i.far.fa-thumbs-up.text-secondary
+            .d-flex.flex-column
+              .hexlet-cv-content
+                == markdown2html answer.content
+              .mt-n2
+                - if answer.comments.any?
+                  .small
+                    - answer.comments.each do |comment|
+                      hr.my-2
+                      span.mr-2
+                        = comment
+                      span.text-muted
+                        = l comment.created_at, format: :short
+                hr.my-2
+                a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
+                  = t('.add_a_comment')
+                .collapse(id="answer-#{answer.id}")
+                  = simple_form_for answer.comments.build, url: answer_comments_path(answer), wrapper: 'inline_form' do |f|
+                    .row
+                      .col-9
+                        = f.input :content, as: :text, input_html: { class: 'form-control-sm' }
+                      .col-3
+                        = f.submit class: 'btn btn-sm btn-outline-primary'
+
 
       - if @current_user_answer
         .text-center.lead= t('.answer_exists')
