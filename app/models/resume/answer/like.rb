@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Resume::Answer::Like < ApplicationRecord
   validates :resume, uniqueness: { scope: %i[answer user] }
 
