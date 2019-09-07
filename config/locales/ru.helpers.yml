@@ -1,0 +1,5 @@
+ru:
+  helpers:
+    submit:
+      resume_answer:
+        create: Отправить
