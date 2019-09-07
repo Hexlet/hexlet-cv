@@ -15,6 +15,8 @@ ru:
         name: PHP-программист, Android-разработчик, ...
         skills_description: Знаю PHP, пользуюсь VIM, Работал с AWS
         awards_description: Участие в олимпиадах, хакатонах, других профильных меропритиях. Курсы.
+        works:
+          description: Обязанности, достижения
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

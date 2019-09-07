@@ -19,39 +19,8 @@
       /     .mr-2= t('.likes')
       /     .font-weight-light= 3
       .mb-5
-        - if @resume.user.first_name?
-          .row.mb-3
-            .col-3
-              = han('user', 'name')
-            .col-9
-              = link_to @resume.user, user_path(@resume.user)
-        .row
-          .col-3
-            = han('resume', 'summary')
-          .col-9
-            == markdown2html @resume.summary
-        .row
-          .col-3
-            = han('resume', 'skills_description')
-          .col-9
-            == markdown2html @resume.skills_description
-        .row
-          .col-3
-            = han('resume', 'awards_description')
-          .col-9
-            == markdown2html @resume.awards_description
-        .row
-          .col-3
-            = han('resume', 'english_fluency')
-          .col-9
-            = @resume.english_fluency.text
-        .row.mt-3
-          .col-3
-            = han('resume', 'github')
-          .col-9
-            = link_to @resume.github_url, @resume.github_url, target: '_blank'
-
-      .lead.mb-3= t('.recomendation')
+        = render 'information'
+      .lead.mb-3= t('.recomendations')
 
       - @resume.answers.each do |answer|
         .card.mb-4

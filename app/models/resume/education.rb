@@ -5,5 +5,9 @@ class Resume::Education < ApplicationRecord
 
   validates :institution, presence: true
   validates :degree, presence: true
-  validates :start_date, presence: true
+  validates :begin_date, presence: true
+
+  def to_s
+    institution
+  end
 end

@@ -5,7 +5,12 @@ ru:
         answers: Ответов
         likes: Нравится
     resumes:
+      information:
+        basic: Основное
+        work: Работа
+        education: Образование
       show:
+        recomendations: Рекомендации
         answer_exists: Вы уже оставили рекомендацию
         likes: |
           Понравилось: %{count}

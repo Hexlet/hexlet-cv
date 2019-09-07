@@ -5,6 +5,10 @@ class Resume::Work < ApplicationRecord
 
   validates :compnay, presence: true
   validates :position, presence: true
-  validates :start_date, presence: true
+  validates :begin_date, presence: true
   validates :description, presence: true
+
+  def to_s
+    position
+  end
 end
