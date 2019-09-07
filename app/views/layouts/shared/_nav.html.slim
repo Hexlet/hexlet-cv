@@ -7,12 +7,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       - if user_signed_in?
-        li.nav-item.active= link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
-        li.nav-item.active= link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
-        li.nav-item.active= link_to t('.my_profile'), user_path(current_user), class: 'nav-link'
-        li.nav-item.active= link_to t('.sign_out'), destroy_user_session_path, class: 'nav-link', method: :delete
+        li.nav-item class=(current_page?(new_account_resume_path) && 'active') = link_to t('.add_resume'), new_account_resume_path, class: 'nav-link'
+        li.nav-item class=(current_page?(account_resumes_path) && 'active') = link_to t('.my_resumes'), account_resumes_path, class: 'nav-link'
+        li.nav-item class=(current_page?(user_path(current_user)) && 'active') = link_to t('.my_profile'), user_path(current_user), class: 'nav-link'
+        li.nav-item= link_to t('.sign_out'), destroy_user_session_path, class: 'nav-link', method: :delete
       - else
-        li.nav-item.active= link_to t('.sign_in'), new_user_session_path, class: 'nav-link'
-        li.nav-item.active= link_to t('.register'), new_user_registration_path, class: 'nav-link'
+        li.nav-item class=(current_page?(new_user_session_path) && 'active') = link_to t('.sign_in'), new_user_session_path, class: 'nav-link'
+        li.nav-item class=(current_page?(new_user_registration_path) && 'active') = link_to t('.register'), new_user_registration_path, class: 'nav-link'
 
 = render_flash_messages
