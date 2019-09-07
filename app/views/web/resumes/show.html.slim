@@ -19,31 +19,32 @@
       /     .mr-2= t('.likes')
       /     .font-weight-light= 3
       .mb-5
+        - if @resume.user.first_name?
+          .row.mb-3
+            .col-3
+              = han('user', 'name')
+            .col-9
+              = link_to @resume.user, user_path(@resume.user)
         .row
-          .col-3
-            = han('user', 'name')
-          .col-9
-            = link_to @resume.user, user_path(@resume.user)
-        .row.mt-3
           .col-3
             = han('resume', 'summary')
           .col-9
-            = simple_format @resume.summary
-        .row.mt-3
+            == markdown2html @resume.summary
+        .row
           .col-3
             = han('resume', 'skills_description')
           .col-9
-            = @resume.skills_description
-        .row.mt-3
+            == markdown2html @resume.skills_description
+        .row
           .col-3
             = han('resume', 'awards_description')
           .col-9
-            = @resume.awards_description
-        .row.mt-3
+            == markdown2html @resume.awards_description
+        .row
           .col-3
             = han('resume', 'english_fluency')
           .col-9
-            = @resume.english_fluency
+            = @resume.english_fluency.text
         .row.mt-3
           .col-3
             = han('resume', 'github')
