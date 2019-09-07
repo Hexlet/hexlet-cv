@@ -5,6 +5,8 @@ ru:
       user: Пользователь
       resume/answer: Рекомендация
     attributes:
+      user:
+        name: Имя
       resume:
         name: Название
         summary: Описание
