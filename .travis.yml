@@ -7,6 +7,7 @@ cache:
   yarn: true
 
 install:
+  - cp .env.example .env
   - bundle install --jobs 3 --retry 3
   - nvm install 11
   - node -v
