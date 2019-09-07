@@ -1,0 +1,12 @@
+= content_for :header do
+  = @user
+
+.container
+  .row
+    .col-lg-9.mx-auto
+      .mb-5
+        .row.mt-3
+          .col-3
+            = han('user', 'email')
+          .col-9
+            = @user.email

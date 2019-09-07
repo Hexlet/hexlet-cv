@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     namespace :account do
       resources :resumes
     end
+
+    resources :users
   end
 end
