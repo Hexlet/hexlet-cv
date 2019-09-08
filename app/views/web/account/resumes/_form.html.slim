@@ -19,9 +19,5 @@
             = render 'education_fields', f: education
           = link_to_add_association 'Add education', f, :educations
         .d-flex.mt-5
-          - if @resume.published?
-            .mr-3= f.submit 'Save', class: 'btn btn-primary'
-          - else
-            .mr-3= f.submit 'Save as draft', class: 'btn btn-primary'
-          - if @resume.draft? && !current_page?(new_account_resume_path)
-            = link_to t('.publish'), account_resume_publish_path(@resume), method: :patch, class: 'btn btn-success'
+          .mr-3= f.submit 'Save', class: 'btn btn-primary'
+          .mr-3= f.submit 'Publish', class: 'btn btn-success', name: 'publish'
