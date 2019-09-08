@@ -1,0 +1,8 @@
+.container
+  .row.d-flex
+    .col-lg-8.mx-auto
+      = simple_form_for current_user, url: account_profile_path(current_user) do |f|
+        = f.input :first_name
+        = f.input :last_name
+        = f.submit class: 'btn btn-primary'
+     

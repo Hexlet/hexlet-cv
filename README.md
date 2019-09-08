@@ -4,9 +4,9 @@
 
 # hexlet-cv
 
-### Participation
+### Участие
 
-* Discussion in the channel #hexlet-volunteers slack: http://slack-ru.hexlet.io
+* Обсуждение в канале #ruby слака http://slack-ru.hexlet.io
 
 ### Required
 
@@ -16,24 +16,12 @@
 * sqlite3
 * [heroku cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-### Getting started
+### Setup
 
-To get started with the app, clone the repo and build docker container:
-
-```
-$ make docker-setup
-```
-
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ make test-ruby
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ make server
+```sh
+$ make setup
+$ make test # run tests
+$ make start # run server
 ```
 
 ##
