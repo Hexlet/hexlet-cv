@@ -11,7 +11,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
   test '#create' do
     resume = resumes(:without_answers)
     attrs = {
-      content: 'some name'
+      content: 'some name' * 40
     }
     post resume_answers_path(resume), params: { resume_answer: attrs }
     assert_response :redirect

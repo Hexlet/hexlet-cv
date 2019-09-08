@@ -19,7 +19,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   end
 
   def destroy
-    comment = resource_answer.comments.find_by user: current_user
+    comment = resource_answer.comments.find_by user: current_user, id: params[:id]
     comment&.destroy!
     flash[:success] = t('flash.web.answers.comments.destroy.success')
 
