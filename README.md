@@ -4,9 +4,9 @@
 
 # hexlet-cv
 
-### Участие
+### Participation
 
-* Обсуждение в канале #ruby слака http://slack-ru.hexlet.io
+* Discussion in the channel #hexlet-volunteers slack: http://slack-ru.hexlet.io
 
 ### Required
 
