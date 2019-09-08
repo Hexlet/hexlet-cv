@@ -10,7 +10,6 @@ RUN mkdir -p /hexlet-cv
 WORKDIR /hexlet-cv
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 3
-RUN yarn install --jobs 3
 
 COPY . /hexlet-cv
 
