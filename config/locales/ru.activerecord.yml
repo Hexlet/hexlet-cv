@@ -14,6 +14,9 @@ ru:
         english_fluency: Владение английским
         skills_description: Навыки
         awards_description: Награды, Сертификаты
+        state: Статус
+        state/draft: Черновик
+        state/published: Опубликовано
       resume/answer:
         content: Ответ
       resume/job:

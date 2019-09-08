@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Resume < ApplicationRecord
+  include AASM
   extend Enumerize
   has_paper_trail
 
@@ -21,6 +22,15 @@ class Resume < ApplicationRecord
 
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
+
+  aasm column: :state do
+    state :draft, initial: true
+    state :published
+
+    event :publish do
+      transitions from: :draft, to: :published
+    end
+  end
 
   def to_s
     name
