@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::Answers::LikesController < ApplicationController
   def create
     answer = Resume::Answer.find(params[:answer_id])
