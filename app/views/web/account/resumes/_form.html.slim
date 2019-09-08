@@ -19,5 +19,5 @@
             = render 'education_fields', f: education
           = link_to_add_association 'Add education', f, :educations
         .d-flex.mt-5
-          .mr-3= f.submit 'Save', class: 'btn btn-primary'
-          .mr-3= f.submit 'Publish', class: 'btn btn-success', name: 'publish'
+          .mr-3= f.submit class: 'btn btn-primary'
+          .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
