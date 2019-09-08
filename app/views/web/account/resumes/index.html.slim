@@ -6,6 +6,7 @@
     .col-lg-9.mx-auto
       - @resumes.each do |resume|
         .card.mb-3
+          .card-header= t(".#{resume.state}")
           .card-body
             h5.card-title
               = link_to resume, resume_path(resume)

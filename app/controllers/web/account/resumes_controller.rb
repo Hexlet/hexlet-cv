@@ -36,6 +36,13 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   def destroy; end
 
+  def publish
+    @resume = current_user.resumes.find params[:resume_id]
+    @resume.publish!
+    flash[:success] = t('flash.web.account.resumes.publish.success')
+    redirect_to action: :index
+  end
+
   private
 
   def resume_params

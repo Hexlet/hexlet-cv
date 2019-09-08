@@ -23,4 +23,6 @@ ru:
           header: Редактирование резюме
         index:
           header: Мои резюме
+          draft: Черновик
+          published: Опубликовано
 

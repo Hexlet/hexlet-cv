@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     end
 
     namespace :account do
-      resources :resumes
+      resources :resumes do
+        patch :publish
+      end
     end
 
     resources :users
