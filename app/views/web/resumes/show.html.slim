@@ -22,7 +22,7 @@
         = render 'information'
       .lead.mb-3= t('.recomendations')
 
-      - @resume.answers.each do |answer|
+      - @resume_answers.each do |answer|
         .card.mb-4
           .card-header.small.mb-2.d-flex
             .mr-auto
@@ -52,10 +52,13 @@
                   .small
                     - answer.comments.each do |comment|
                       hr.my-2
-                      span.mr-2
-                        = comment
-                      span.text-muted
-                        = l comment.created_at, format: :short
+                      .d-flex
+                        .mr-auto
+                          span.mr-2
+                            = comment
+                          span.text-muted
+                            = l comment.created_at, format: :short
+                        = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
                 hr.my-2
                 a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                   = t('.add_a_comment')

@@ -7,4 +7,3 @@ class Web::Answers::ApplicationController < ApplicationController
     @resource_answer ||= Resume::Answer.find(params[:answer_id])
   end
 end
-

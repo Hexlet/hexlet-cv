@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Resume::Answer::Comment < ApplicationRecord
   validates :content, presence: true
 
