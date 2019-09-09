@@ -6,7 +6,7 @@
 
 ### Участие
 
-* Обсуждение в канале #ruby слака http://slack-ru.hexlet.io
+* Обсуждение в канале #hexlet-volunteers слака http://slack-ru.hexlet.io
 
 ### Required
 
@@ -22,6 +22,8 @@
 $ make setup
 $ make test # run tests
 $ make start # run server
+
+$ make fixtures-load # sometimes, when fixtures were changed
 ```
 
 ##
