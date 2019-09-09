@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory 'resume/work' do
     company
@@ -6,4 +8,3 @@ FactoryBot.define do
     description
   end
 end
-

@@ -21,7 +21,7 @@ Metrics/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
-Metrics/MethodLines:
+Metrics/MethodLength:
   Enabled: false
 
 Style/Documentation:

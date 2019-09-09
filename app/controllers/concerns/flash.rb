@@ -7,7 +7,8 @@ module Flash
     values = options[:values] || {}
     errors = options[:errors]
 
-    msg = translate(key, scope, controller, params[:action], values, errors)
+    keys = build_path(key, controller, params[:action])
+    msg = I18n.t(keys.shift, scope: scope, default: keys, **values, errors: errors)
 
     Rails.logger.debug(Paint["flash: #{msg}", :green])
     type = options[:type] || key
@@ -20,7 +21,7 @@ module Flash
 
   private
 
-  def translate(key, scope, controller, action, values, errors = nil)
+  def build_path(type, controller, action)
     keys = []
     lookup_controller = controller
     lookup_action = action
@@ -29,7 +30,7 @@ module Flash
       lookup_key = []
       lookup_key << lookup_controller.controller_path.tr('/', '.')
       lookup_key << lookup_action
-      lookup_key << key
+      lookup_key << type
 
       keys << lookup_key.join('.').to_sym
 
@@ -37,6 +38,6 @@ module Flash
       lookup_action = :base
     end
 
-    I18n.t(keys.shift, scope: scope, default: keys, **values, errors: errors)
+    keys
   end
 end

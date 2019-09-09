@@ -25,7 +25,7 @@ FactoryBot.define do
     Time.current
   end
 
-  sequence :description, aliases: [:skills_description, :awards_description] do |_n|
+  sequence :description, aliases: %i[skills_description awards_description] do |_n|
     Faker::Lorem.paragraph_by_chars(number: 300)
   end
 
