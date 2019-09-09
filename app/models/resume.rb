@@ -3,6 +3,7 @@
 class Resume < ApplicationRecord
   include AASM
   extend Enumerize
+  include ResumeRepository
   has_paper_trail
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]

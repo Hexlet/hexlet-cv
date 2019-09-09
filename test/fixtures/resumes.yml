@@ -5,6 +5,7 @@ DEFAULTS: &DEFAULTS
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
+  state: published
 
 one:
   <<: *DEFAULTS
