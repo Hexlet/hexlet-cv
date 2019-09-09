@@ -8,7 +8,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
     comment.resume = resource_resume
     comment.user = current_user
     comment.save!
-    flash[:success] = t('flash.web.resumes.comments.create.success')
+    f(:success)
 
     redirect_to resume_path(resource_resume)
   end
@@ -16,7 +16,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   def destroy
     comment = resource_resume.comments.find_by user: current_user, id: params[:id]
     comment&.destroy!
-    flash[:success] = t('flash.web.resume.comments.destroy.success')
+    f(:success)
 
     redirect_to resume_path(resource_resume)
   end
