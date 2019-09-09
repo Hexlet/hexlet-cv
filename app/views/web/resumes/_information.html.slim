@@ -39,26 +39,26 @@
   hr.my-auto.w-100
 
 - @resume_works.each do |work|
-  .mb-2
+  .mb-4
     b= work
     | ,&nbsp;
     = work.company
-    .small.text-muted
+    .small.text-muted.mt-1.mb-2
       = l work.begin_date
       | &nbsp;-&nbsp;
       = l work.end_date
-  = work.description
+    = work.description
 
 .d-flex
   h4.my-4.mr-3= t('.education')
   hr.my-auto.w-100
 
 - @resume_educations.each do |education|
-  .mb-2
+  .mb-4
     b= education.faculty
     | ,&nbsp;
     = education.institution
-    .small.text-muted
+    .small.text-muted.mt-1.mb-2
       = l education.begin_date
       | &nbsp;-&nbsp;
       = l education.end_date
