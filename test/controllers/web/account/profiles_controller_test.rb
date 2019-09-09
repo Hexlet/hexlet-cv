@@ -14,13 +14,13 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#update' do
-    args = FactoryBot.attributes_for :user
-    patch account_profile_path(@user), params: { user: args }
+    attrs = FactoryBot.attributes_for :user
+    patch account_profile_path(@user), params: { user: attrs }
     assert_response :redirect
 
     @user.reload
 
-    assert_equal @user.first_name, args[:first_name]
-    assert_equal @user.last_name, args[:last_name]
+    assert_equal @user.first_name, attrs[:first_name]
+    assert_equal @user.last_name, attrs[:last_name]
   end
 end
