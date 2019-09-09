@@ -8,6 +8,7 @@ ru:
       user:
         first_name: Имя
         last_name: Фамилия
+        name: Имя
       resume:
         name: Название
         summary: Описание

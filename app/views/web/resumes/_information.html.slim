@@ -1,44 +1,44 @@
 .d-flex
-  h4.my-3.mr-3= t('.basic')
+  h4.my-4.mr-3= t('.basic')
   hr.my-auto.w-100
 
 - if @resume.user.first_name?
   .row.mb-3
-    .col-3
-      = han('user', 'name')
-    .col-9
+    .col-sm-3
+      b= han('user', 'name')
+    .col-sm-9
       = link_to @resume.user, user_path(@resume.user)
 .row
-  .col-3
-    = han('resume', 'summary')
-  .col-9
+  .col-sm-3
+    b= han('resume', 'summary')
+  .col-sm-9
     == markdown2html @resume.summary
 .row
-  .col-3
-    = han('resume', 'skills_description')
-  .col-9
+  .col-sm-3
+   b= han('resume', 'skills_description')
+  .col-sm-9
     == markdown2html @resume.skills_description
 .row
-  .col-3
-    = han('resume', 'awards_description')
-  .col-9
+  .col-sm-3
+   b= han('resume', 'awards_description')
+  .col-sm-9
     == markdown2html @resume.awards_description
 .row
-  .col-3
-    = han('resume', 'english_fluency')
-  .col-9
+  .col-sm-3
+   b= han('resume', 'english_fluency')
+  .col-sm-9
     = @resume.english_fluency.text
 .row.mt-3
-  .col-3
-    = han('resume', 'github')
-  .col-9
+  .col-sm-3
+   b= han('resume', 'github')
+  .col-sm-9
     = link_to @resume.github_url, @resume.github_url, target: '_blank'
 
 .d-flex
-  h4.my-3.mr-3= t('.work')
+  h4.my-4.mr-3= t('.work')
   hr.my-auto.w-100
 
-- @resume.works.each do |work|
+- @resume_works.each do |work|
   .mb-2
     b= work
     | ,&nbsp;
@@ -50,10 +50,10 @@
   = work.description
 
 .d-flex
-  h4.my-3.mr-3= t('.education')
+  h4.my-4.mr-3= t('.education')
   hr.my-auto.w-100
 
-- @resume.educations.each do |education|
+- @resume_educations.each do |education|
   .mb-2
     b= education.faculty
     | ,&nbsp;

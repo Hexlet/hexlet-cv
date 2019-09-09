@@ -13,9 +13,27 @@ two:
 
 full_1:
   resume: full
-  company: Abby
-  position: CTO
-  begin_date: 2018-09-07
+  company: Hexlet
+  position: Junior Software Engineer
+  begin_date: 2015-09-07
   end_date: 2019-09-07
   description: |
-    Sed sint labore. Velit nihil provident. Minus provident vel. Aut minima quas. A voluptates optio. Et vel tempore. Dolorum eius distinctio. Similique suscipit debitis. Deserunt dolor.
+    Разработка и поддержка образовательной онлайн платформы Hexlet
+
+full_2:
+  resume: full
+  company: Paygety
+  position: Software Engineer
+  begin_date: 2019-09-03
+  end_date: 2019-09-07
+  description: |
+    Разработка и поддержка сервиса по обмену криптовалюты Paygety
+
+full_3:
+  resume: full
+  company: datarockets
+  position: Software Engineer
+  begin_date: 2018-02-07
+  end_date: 2019-09-07
+  description: |
+    Разработка веб-приложений разной сложности под ключ, в основном работаю на стеке Ruby/Rails
