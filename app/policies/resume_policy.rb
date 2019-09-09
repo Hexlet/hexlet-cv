@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResumePolicy < ApplicationPolicy
   def show?
     @record.published? || @record.user == @user
