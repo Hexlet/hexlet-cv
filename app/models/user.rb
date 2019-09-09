@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :resumes, dependent: :destroy
   has_many :resume_answers, class_name: 'Resume::Answer', dependent: :destroy
+  has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
 
   # def guest?
   #   false

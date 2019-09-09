@@ -1,6 +1,7 @@
 = content_for :header do
   = @resume
 
+
 .container
   .row
     .col-lg-9.mx-auto
@@ -18,8 +19,33 @@
       /   .d-flex.mr-4
       /     .mr-2= t('.likes')
       /     .font-weight-light= 3
+
       .mb-5
         = render 'information'
+
+        .mt-5
+          - if @resume.comments.any?
+            .small
+              - @resume.comments.each do |comment|
+                hr.my-2
+                .d-flex
+                  .mr-auto
+                    span.mr-2
+                      = comment
+                    span.text-muted
+                      = l comment.created_at, format: :short
+                  = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
+          hr.my-2
+          a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
+            = t('.add_a_comment')
+          .collapse(id="resume-#{@resume.id}")
+            = simple_form_for @resume.comments.build, url: resume_comments_path(@resume), wrapper: 'inline_form' do |f|
+              .row
+                .col-9
+                  = f.input :content, as: :text, input_html: { class: 'form-control-sm' }
+                .col-1
+                  = f.submit class: 'btn btn-sm btn-outline-primary'
+
       .lead.mb-3= t('.recomendations')
 
       - @resume_answers.each do |answer|
