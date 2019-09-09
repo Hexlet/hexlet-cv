@@ -42,9 +42,9 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def resume_params
     attrs = %i[name github_url summary skills_description awards_description english_fluency]
     nested_attrs = {
-      educations_attributes: %i[institution faculty begin_date end_date],
-      works_attributes: %i[company position description begin_date end_date]
+      educations_attributes: %i[institution faculty begin_date end_date _destroy id],
+      works_attributes: %i[company position description begin_date end_date _destroy id]
     }
-    params.require(:resume).permit(*attrs, *nested_attrs)
+    params.require(:resume).permit(*attrs, **nested_attrs)
   end
 end
