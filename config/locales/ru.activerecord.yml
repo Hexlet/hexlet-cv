@@ -22,6 +22,15 @@ ru:
         content: Ответ
       resume/job:
         content: Описание
+      resume/work:
+        company: Компания
+        position: Должность
+        begin_date: Дата начала
+        end_date: Дата конца
+        description: Описание
       resume/education:
         institution: Учебное заведение
+        faculty: Факультет
+        begin_date: Дата начала
+        end_date: Дата конца
 

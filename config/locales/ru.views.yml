@@ -24,7 +24,15 @@ ru:
         index:
           header: Мои резюме
         form:
+          work: Опыт работы
+          education: Образование
+          add_work: Добавить опыт работы
+          add_education: Добавить образование
           publish: Опубликовать
+        work_fields:
+          remove_work: Удалить опыт работы
+        education_fields:
+          remove_education: Удалить образование
     profiles:
         show: 
           header: Мой профиль
