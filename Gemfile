@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'sqlite3'
+  gem 'factory_bot_rails'
 end
 
 group :development do
