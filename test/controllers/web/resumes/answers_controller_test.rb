@@ -9,7 +9,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    resume = resumes(:without_answers)
+    resume = resumes(:full_without_answers)
     attrs = {
       content: 'some name' * 40
     }

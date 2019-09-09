@@ -170,6 +170,8 @@ GEM
     public_suffix (3.1.1)
     puma (4.1.0)
       nio4r (~> 2.0)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -338,6 +340,7 @@ DEPENDENCIES
   paper_trail (~> 10.3)
   pg
   puma
+  pundit (~> 2.1)
   rails
   rails-i18n
   redcarpet (~> 3.5)

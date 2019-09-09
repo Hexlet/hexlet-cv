@@ -3,6 +3,8 @@
 class Web::ResumesController < ApplicationController
   def show
     @resume = Resume.find(params[:id])
+    authorize @resume
+
     @resume_answers = @resume.answers.includes(:comments).order(likes_count: :desc)
     @answer = Resume::Answer.new resume: @resume
     @current_user_answer = @resume.answers.find_by(user: current_user)

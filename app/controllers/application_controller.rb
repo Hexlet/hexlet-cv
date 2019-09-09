@@ -2,4 +2,5 @@
 
 class ApplicationController < ActionController::Base
   include Flash
+  include Pundit
 end

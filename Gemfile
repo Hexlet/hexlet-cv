@@ -96,3 +96,5 @@ gem 'redcarpet', '~> 3.5'
 gem 'cocoon', '~> 1.2'
 
 gem 'paint', '~> 2.1'
+
+gem "pundit", "~> 2.1"

@@ -22,8 +22,13 @@ two:
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
 
-without_answers:
+full_without_answers:
   <<: *DEFAULTS
+  user: full
+
+full_draft:
+  <<: *DEFAULTS
+  state: draft
   user: full
 
 full:
