@@ -8,8 +8,8 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
   end
 
-  test '#show' do
-    get account_profile_path
+  test '#edit' do
+    get edit_account_profile_path
     assert_response :success
   end
 

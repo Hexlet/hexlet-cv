@@ -11,7 +11,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')= current_user.email
           .dropdown-menu
-            = link_to t('.my_profile'), account_profile_path, class: 'dropdown-item'
+            = link_to t('.my_profile'), edit_account_profile_path, class: 'dropdown-item'
             = link_to t('.my_resumes'), account_resumes_path(current_user), class: 'dropdown-item'
         = navbar_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
       - else
