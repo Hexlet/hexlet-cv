@@ -36,14 +36,24 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
   test '#update' do
     resume = resumes(:one)
+    work = resume_works(:one)
+
+    new_work_company = 'another name'
+    new_resume_name = 'another name'
+
     attrs = {
-      name: 'another name'
+      name: new_resume_name,
+      works_attributes: {
+        work.id => work.attributes.merge(company: new_work_company)
+      }
     }
     patch account_resume_path(resume), params: { resume: attrs }
     assert_response :redirect
 
     resume.reload
+    work.reload
     # TODO: switch to power-assert
-    assert resume.name == attrs[:name]
+    assert resume.name == new_resume_name
+    assert work.company == new_work_company
   end
 end
