@@ -2,7 +2,10 @@ ru:
   web:
     home:
       index:
-        answers: Ответов
+        answers:
+          one: Ответ
+          few: Ответа
+          many: Ответов
         likes: Нравится
     resumes:
       information:
