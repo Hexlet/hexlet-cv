@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_231747) do
+ActiveRecord::Schema.define(version: 2019_09_08_172707) do
 
   create_table "resume_answer_comments", force: :cascade do |t|
     t.integer "resume_id", null: false
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 2019_09_07_231747) do
     t.integer "likes_count"
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
     t.index ["user_id"], name: "index_resume_answers_on_user_id"
+  end
+
+  create_table "resume_comments", force: :cascade do |t|
+    t.integer "resume_id"
+    t.integer "user_id"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resume_id"], name: "index_resume_comments_on_resume_id"
+    t.index ["user_id"], name: "index_resume_comments_on_user_id"
   end
 
   create_table "resume_educations", force: :cascade do |t|
