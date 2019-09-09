@@ -20,5 +20,4 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
 
     redirect_to resume_path(resource_resume)
   end
-
 end
