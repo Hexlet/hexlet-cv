@@ -25,4 +25,7 @@ ru:
           header: Мои резюме
         form:
           publish: Опубликовать
+    profiles:
+        show: 
+          header: Мой профиль
 
