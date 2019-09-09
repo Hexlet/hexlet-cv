@@ -19,14 +19,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    attrs = {
-      name: 'some name',
-      summary: Faker::Lorem.paragraph_by_chars(number: 300),
-      skills_description: 'skills',
-      github_url: 'github',
-      awards_description: 'awards',
-      english_fluency: 'dont_know'
-    }
+    attrs = FactoryBot.attributes_for :resume
     post account_resumes_path, params: { resume: attrs }
     assert_response :redirect
 
