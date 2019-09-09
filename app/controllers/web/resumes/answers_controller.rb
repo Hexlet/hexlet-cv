@@ -8,7 +8,7 @@ class Web::Resumes::AnswersController < ApplicationController
     @answer = @resume.answers.build resume_answer_params
     @answer.user = current_user
     if @answer.save
-      flash[:success] = t('flash.web.resumes.create.success')
+      f(:success)
       redirect_to resume_path(@resume)
     else
       render action: 'new'
@@ -21,8 +21,7 @@ class Web::Resumes::AnswersController < ApplicationController
     answer = current_user.resume_answers.find(params[:id])
     answer.destroy
 
-    # TODO: make an abstraction
-    flash[:success] = t('flash.web.resumes.answers.delete.success')
+    f(:success)
     redirect_to resume_path(resume)
   end
 
