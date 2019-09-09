@@ -1,28 +1,24 @@
 # frozen_string_literal: true
 
-class Web::Resumes::CommentsController < ApplicationController
+class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   before_action :authenticate_user!
 
   def create
-    @resume = Resume.find params[:resume_id]
-    @comment = @resume.comments.build content: params[:resume_comment][:content]
-    @comment.user = current_user
-    @comment.save!
-    flash[:success] = t('flash.web.resumes.create.success')
+    comment = resource_resume.comments.build content: params[:resume_comment][:content]
+    comment.resume = resource_resume
+    comment.user = current_user
+    comment.save!
+    flash[:success] = t('flash.web.resumes.comments.create.success')
 
-    redirect_to resume_path(@resume)
+    redirect_to resume_path(resource_resume)
   end
 
   def destroy
-    resume = Resume.find(params[:resume_id])
-    comment = resume.comments.find_by user: current_user, id: params[:id]
+    comment = resource_resume.comments.find_by user: current_user, id: params[:id]
     comment&.destroy!
     flash[:success] = t('flash.web.resume.comments.destroy.success')
 
-    redirect_to resume_path(resume)
+    redirect_to resume_path(resource_resume)
   end
 
-  def resume_comment_params
-    params.require(:resume_comment).permit(:content)
-  end
 end
