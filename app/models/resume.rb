@@ -18,7 +18,7 @@ class Resume < ApplicationRecord
   has_many :answer_likes, through: :answers, source: :likes
   has_many :educations, inverse_of: :resume, dependent: :destroy
   has_many :works, inverse_of: :resume, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :comments, inverse_of: :resume, dependent: :destroy
 
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
