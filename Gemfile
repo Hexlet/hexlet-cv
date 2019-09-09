@@ -30,6 +30,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker'
   # Use sqlite3 as the database for Active Record
+  gem 'factory_bot_rails'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'sqlite3'

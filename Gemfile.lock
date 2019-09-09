@@ -97,6 +97,11 @@ GEM
     enumerize (2.3.1)
       activesupport (>= 3.2)
     erubi (1.8.0)
+    factory_bot (5.0.2)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.0.2)
+      factory_bot (~> 5.0.2)
+      railties (>= 4.2.0)
     faker (2.2.1)
       i18n (>= 0.8)
     ffi (1.11.1)
@@ -320,6 +325,7 @@ DEPENDENCIES
   devise-i18n (~> 1.8)
   dotenv-rails
   enumerize (~> 2.3)
+  factory_bot_rails
   faker
   flash_rails_messages (~> 2.1)
   gon (~> 6.2)
