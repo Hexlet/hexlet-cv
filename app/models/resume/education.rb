@@ -4,7 +4,6 @@ class Resume::Education < ApplicationRecord
   belongs_to :resume, dependent: :destroy
 
   validates :institution, presence: true
-  validates :degree, presence: true
   validates :begin_date, presence: true
 
   def to_s
