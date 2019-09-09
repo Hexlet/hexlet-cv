@@ -3,7 +3,7 @@
 class Resume::Work < ApplicationRecord
   belongs_to :resume, dependent: :destroy
 
-  validates :compnay, presence: true
+  validates :company, presence: true
   validates :position, presence: true
   validates :begin_date, presence: true
   validates :description, presence: true
