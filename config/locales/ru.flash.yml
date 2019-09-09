@@ -1,0 +1,7 @@
+ru:
+  flash:
+    web:
+      account:
+        resumes:
+          update:
+            success: Резюме обновлено

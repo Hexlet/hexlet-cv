@@ -153,6 +153,7 @@ GEM
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    paint (2.1.1)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
@@ -327,6 +328,7 @@ DEPENDENCIES
   kaminari
   listen
   minitest-power_assert
+  paint (~> 2.1)
   paper_trail (~> 10.3)
   pg
   puma
