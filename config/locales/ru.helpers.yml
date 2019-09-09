@@ -1,5 +1,7 @@
 ru:
   helpers:
     submit:
-      create: Черновик
+      create: Создать
       update: Изменить
+      resume:
+        update: В черновик
