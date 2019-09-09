@@ -8,3 +8,28 @@ ru:
         resumes:
           update:
             success: Резюме обновлено
+          create:
+            success: Резюме добавлено
+      resumes:
+        answers:
+          update:
+            success: Рекомендация обновлена
+          create:
+            success: Рекомендация добавлена
+          destroy:
+            success: Рекомендация удалена
+        comments:
+          update:
+            success: Комментарий к резюме добавлен
+          create:
+            success: Комментарий к резюме создан
+          destroy:
+            success: Комментарий к резюме удален
+      answers:
+        comments:
+          update:
+            success: Комментарий к рекомендации добавлен
+          create:
+            success: Комментарий к рекомендации создан
+          destroy:
+            success: Комментарий к рекомендации удален
