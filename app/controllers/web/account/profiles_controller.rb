@@ -5,7 +5,8 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
 
   def update
     if current_user.update(profile_params)
-      redirect_to account_profile_path(current_user)
+      redirect_to edit_account_profile_path
+      f(:success)
     else
       render :show
     end

@@ -2,6 +2,9 @@ ru:
   flash:
     web:
       account:
+        profiles:
+          update:
+            success: Данные обновлены
         resumes:
           update:
             success: Резюме обновлено
