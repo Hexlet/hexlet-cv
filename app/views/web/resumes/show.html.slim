@@ -30,8 +30,11 @@
                 hr.my-2
                 .d-flex
                   .mr-auto
-                    span.mr-2
+                    span.mr-1
                       = comment
+                    - if comment.user
+                      span.mr-1
+                        = link_to comment.user, user_path(comment.user)
                     span.text-muted
                       = l comment.created_at, format: :short
                   = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
@@ -82,6 +85,9 @@
                         .mr-auto
                           span.mr-2
                             = comment
+                          - if comment.user
+                            span.mr-1
+                              = link_to comment.user, user_path(comment.user)
                           span.text-muted
                             = l comment.created_at, format: :short
                         = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
