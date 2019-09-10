@@ -10,9 +10,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test '#create' do
     resume = resumes(:one)
-    attrs = {
-      content: 'content'
-    }
+    attrs = FactoryBot.attributes_for('resume/comment')
     post resume_comments_path(resume), params: { resume_comment: attrs }
     assert_response :redirect
 
