@@ -25,3 +25,9 @@
             div Лайков
           .col-9
             = @user_likes
+        .row.mt-3
+          .col-3
+            div Резюме
+          .col-9
+            - @user_resumes.each do |resume|
+              = link_to resume, resume_path(resume)
