@@ -37,3 +37,7 @@ yarn-debug.log*
 .yardoc
 doc
 .env
+
+# Ignore docker and docker-compose files
+Dockerfile
+docker-compose.yml

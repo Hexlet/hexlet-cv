@@ -8,11 +8,31 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
   end
 
+  test '#edit' do
+    resume_answer = resume_answers(:one)
+    resume = resume_answer.resume
+
+    get edit_resume_answer_path(resume_answer, resume)
+    assert_response :success
+  end
+
+  test '#update' do
+    old_answer = resume_answers(:one)
+    resume = old_answer.resume
+    attrs = FactoryBot.attributes_for 'resume/answer'
+
+    patch resume_answer_path(old_answer, resume), params: { resume_answer: attrs }
+    assert_response :redirect
+
+    new_answer = resume.answers.find_by! attrs
+    assert_equal new_answer.content, attrs[:content]
+    assert_not_equal new_answer.content, old_answer.content
+  end
+
   test '#create' do
     resume = resumes(:full_without_answers)
-    attrs = {
-      content: 'some name' * 40
-    }
+    attrs = FactoryBot.attributes_for 'resume/answer'
+
     post resume_answers_path(resume), params: { resume_answer: attrs }
     assert_response :redirect
 
@@ -22,6 +42,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
 
   test '#delete' do
     resume_answer = resume_answers(:one)
+
     delete resume_answer_path(resume_answer.resume, resume_answer)
     assert_response :redirect
 

@@ -25,6 +25,10 @@ FactoryBot.define do
     Time.current
   end
 
+  sequence :content do |_n|
+    Faker::Lorem.paragraph_by_chars(number: 200)
+  end
+
   sequence :description, aliases: %i[skills_description awards_description] do |_n|
     Faker::Lorem.paragraph_by_chars(number: 300)
   end
@@ -35,9 +39,5 @@ FactoryBot.define do
 
   sequence :github_url do |n|
     "https://github.com/user#{n}"
-  end
-
-  sequence :content do |_n|
-    Faker::Lorem.paragraph_by_chars(number: 200)
   end
 end
