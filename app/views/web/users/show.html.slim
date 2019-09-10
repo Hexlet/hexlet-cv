@@ -30,4 +30,5 @@
             = t('.resumes')
           .col-9
             - @user_resumes.each do |resume|
-              = link_to resume, resume_path(resume)
+              div
+                = link_to resume, resume_path(resume)
