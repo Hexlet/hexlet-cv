@@ -3,5 +3,7 @@
 class Web::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @user_answers = Resume::Answer.where(user: @user)
+    @user_likes = @user_answers.reduce(0) { |sum, answer| sum + answer.likes.count }
   end
 end

@@ -39,4 +39,7 @@ ru:
     profiles:
         show: 
           header: Мой профиль
+    users:
+      show:
+        header: Профиль
 
