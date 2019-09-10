@@ -42,4 +42,7 @@ ru:
     users:
       show:
         header: Профиль
+        answers: Ответов
+        likes: Лайков
+        resumes: Резюме
 
