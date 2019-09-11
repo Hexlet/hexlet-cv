@@ -37,4 +37,7 @@ lsp-configure:
 heroku-console:
 	heroku run rails console
 
+heroku-logs:
+	heroku logs --tail
+
 .PHONY: test
