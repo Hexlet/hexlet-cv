@@ -39,4 +39,10 @@ ru:
     profiles:
         show: 
           header: Мой профиль
+    users:
+      show:
+        header: Профиль
+        answers: Ответов
+        likes: Лайков
+        resumes: Резюме
 

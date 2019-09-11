@@ -1,23 +1,34 @@
 = content_for :header do
   = t('.header')
 
-/ TODO: show public data
-/ .container
-/   .row
-/     .col-lg-9.mx-auto
-/       .mb-5
-/         .row.mt-3
-/           .col-3
-/             = han('user', 'email')
-/           .col-9
-/             = @user.email
-/         .row.mt-3
-/           .col-3
-/             = han('user', 'first_name')
-/           .col-9
-/             = @user.first_name
-/         .row.mt-3
-/           .col-3
-/             = han('user', 'last_name')
-/           .col-9
-/             = @user.last_name
+.container
+  .row
+    .col-lg-9.mx-auto
+      .mb-5
+        .row.mt-3
+          .col-3
+            = han('user', 'first_name')
+          .col-9
+            = @user.first_name
+        .row.mt-3
+          .col-3
+            = han('user', 'last_name')
+          .col-9
+            = @user.last_name
+        .row.mt-3
+          .col-3
+            = t('.answers')
+          .col-9
+            = @user_answers.count
+        .row.mt-3
+          .col-3
+            = t('.likes')
+          .col-9
+            = @user_likes
+        .row.mt-3
+          .col-3
+            = t('.resumes')
+          .col-9
+            - @user_resumes.each do |resume|
+              div
+                = link_to resume, resume_path(resume)
