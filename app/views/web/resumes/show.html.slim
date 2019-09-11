@@ -37,7 +37,8 @@
                         = link_to comment.user, user_path(comment.user)
                     span.text-muted
                       = l comment.created_at, format: :short
-                  = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
+                  - if comment.user == current_user    
+                    = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
           hr.my-2
           a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
             = t('.add_a_comment')
@@ -90,7 +91,8 @@
                               = link_to comment.user, user_path(comment.user)
                           span.text-muted
                             = l comment.created_at, format: :short
-                        = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
+                        - if comment.user == current_user    
+                          = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
                 hr.my-2
                 a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                   = t('.add_a_comment')
