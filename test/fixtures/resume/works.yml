@@ -10,6 +10,12 @@ one:
 
 two:
   resume: two
+  company: Unemployed
+  position: Software Engineer
+  begin_date: 2015-09-07
+  end_date: 2019-09-07
+  description: |
+    Разработка и поддержка HexletCV
 
 full_1:
   resume: full
