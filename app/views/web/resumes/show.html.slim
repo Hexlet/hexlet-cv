@@ -74,25 +74,24 @@
                 - else
                   = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
                     i.far.fa-thumbs-up.text-secondary
-            .d-flex.flex-column
+            .w-100
               .hexlet-cv-content.mb-3
                 == markdown2html answer.content
-              .mt-n2
-                - if answer.comments.any?
-                  .small
-                    - answer.comments.each do |comment|
-                      hr.my-2
-                      .d-flex
-                        .mr-auto
-                          span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
-                            == markdown2html comment.content
-                          - if comment.user
-                            span.mr-1
-                              = link_to comment.user, user_path(comment.user)
-                          span.text-muted
-                            = l comment.created_at, format: :short
-                        - if comment.user == current_user
-                          = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
+              - if answer.comments.any?
+                .small
+                  - answer.comments.each do |comment|
+                    hr.my-2
+                    .d-flex
+                      .mr-auto
+                        span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
+                          == markdown2html comment.content
+                        - if comment.user
+                          span.mr-1
+                            = link_to comment.user, user_path(comment.user)
+                        span.text-muted
+                          = l comment.created_at, format: :short
+                      - if comment.user == current_user
+                        = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
                 hr.my-2
                 a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                   = t('.add_a_comment')
