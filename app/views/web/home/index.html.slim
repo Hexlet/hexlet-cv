@@ -14,8 +14,8 @@
                 /   .small= t('.likes')
               div
                 h5.card-title= link_to resume, resume_path(resume)
-                .card-text= resume.summary
-                .text-right.small.mt-2
+                .card-text== markdown2html resume.summary
+                .text-right.small
                   span.mr-3.text-muted
                     = distance_of_time_in_words_to_now resume.created_at
                   = link_to resume.user, user_path(resume.user)
