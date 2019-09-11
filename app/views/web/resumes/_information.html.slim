@@ -45,8 +45,9 @@
     = work.company
     .small.text-muted.mt-1.mb-2
       = l work.begin_date
-      | &nbsp;-&nbsp;
-      = l work.end_date
+      - if work.end_date
+        | &nbsp;-&nbsp;
+        = l work.end_date
     = work.description
 
 .d-flex
