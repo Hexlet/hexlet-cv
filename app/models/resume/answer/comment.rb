@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Resume::Answer::Comment < ApplicationRecord
-  validates :content, presence: true
+  validates :content, presence: true, length: { minimum: 10, maximum: 200 }
 
   belongs_to :resume
   belongs_to :answer, inverse_of: :comments
