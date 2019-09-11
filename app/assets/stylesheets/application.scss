@@ -20,6 +20,12 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/solid';
 @import 'bootstrap/scss/bootstrap';
 
+.hexlet-cv-inline-paragraph {
+  p {
+    @extend .d-inline
+  }
+}
+
 .hexlet-cv-content {
   blockquote {
     border-left: 2px solid $gray-400;

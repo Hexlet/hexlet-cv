@@ -8,27 +8,27 @@
       b= han('user', 'name')
     .col-sm-9
       = link_to @resume.user, user_path(@resume.user)
-.row
+.row.mb-3
   .col-sm-3
     b= han('resume', 'summary')
-  .col-sm-9
+  .col-sm-9.hexlet-cv-content
     == markdown2html @resume.summary
-.row
+.row.mb-3
   .col-sm-3
    b= han('resume', 'skills_description')
-  .col-sm-9
+  .col-sm-9.hexlet-cv-content
     == markdown2html @resume.skills_description
-.row
+.row.mb-3
   .col-sm-3
    b= han('resume', 'awards_description')
-  .col-sm-9
+  .col-sm-9.hexlet-cv-content
     == markdown2html @resume.awards_description
 .row
   .col-sm-3
    b= han('resume', 'english_fluency')
   .col-sm-9
     = @resume.english_fluency.text
-.row.mt-3
+.row.mt-3.mb-4
   .col-sm-3
    b= han('resume', 'github')
   .col-sm-9
@@ -38,28 +38,31 @@
   h4.my-4.mr-3= t('.work')
   hr.my-auto.w-100
 
-- @resume_works.each do |work|
-  .mb-4
-    b= work
-    | ,&nbsp;
-    = work.company
-    .small.text-muted.mt-1.mb-2
-      = l work.begin_date
-      - if work.end_date
-        | &nbsp;-&nbsp;
-        = l work.end_date
-    = work.description
+- if @resume_works.any?
+  - @resume_works.each do |work|
+    .mb-4
+      b= work
+      | ,&nbsp;
+      = work.company
+      .small.text-muted.mt-1.mb-2
+        = l work.begin_date
+        - if work.end_date
+          | &nbsp;-&nbsp;
+          = l work.end_date
+      = work.description
 
-.d-flex
-  h4.my-4.mr-3= t('.education')
-  hr.my-auto.w-100
+- if @resume_educations.any?
+  .d-flex
+    h4.my-4.mr-3= t('.education')
+    hr.my-auto.w-100
 
-- @resume_educations.each do |education|
-  .mb-4
-    b= education.faculty
-    | ,&nbsp;
-    = education.institution
-    .small.text-muted.mt-1.mb-2
-      = l education.begin_date
-      | &nbsp;-&nbsp;
-      = l education.end_date
+  - @resume_educations.each do |education|
+    .mb-4
+      b= education.faculty
+      | ,&nbsp;
+      = education.institution
+      .small.text-muted.mt-1.mb-2
+        = l education.begin_date
+        - if education.end_date
+          | &nbsp;-&nbsp;
+          = l education.end_date

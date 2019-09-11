@@ -23,21 +23,21 @@
       .mb-5
         = render 'information'
 
-        .mt-5
+        .mt-3
           - if @resume.comments.any?
             .small
               - @resume.comments.each do |comment|
                 hr.my-2
                 .d-flex
                   .mr-auto
-                    span.mr-1
+                    span.mr-1.hexlet-cv-content.hexlet-cv-inline-paragraph
                       == markdown2html comment.content
                     - if comment.user
                       span.mr-1
                         = link_to comment.user, user_path(comment.user)
                     span.text-muted
                       = l comment.created_at, format: :short
-                  - if comment.user == current_user    
+                  - if comment.user == current_user
                     = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
           hr.my-2
           a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
@@ -75,7 +75,7 @@
                   = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
                     i.far.fa-thumbs-up.text-secondary
             .d-flex.flex-column
-              .hexlet-cv-content
+              .hexlet-cv-content.mb-3
                 == markdown2html answer.content
               .mt-n2
                 - if answer.comments.any?
@@ -84,14 +84,14 @@
                       hr.my-2
                       .d-flex
                         .mr-auto
-                          span.mr-2
-                            == markdown2html comment.content
+                          span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
+                            = markdown2html comment.content
                           - if comment.user
                             span.mr-1
                               = link_to comment.user, user_path(comment.user)
                           span.text-muted
                             = l comment.created_at, format: :short
-                        - if comment.user == current_user    
+                        - if comment.user == current_user
                           = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
                 hr.my-2
                 a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
