@@ -38,6 +38,6 @@ FactoryBot.define do
   end
 
   sequence :content do |_n|
-    Faker::Lorem.paragraph_by_chars(number: 300)
+    Faker::Lorem.paragraph_by_chars(number: 200)
   end
 end

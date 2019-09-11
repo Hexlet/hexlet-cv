@@ -1,15 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+DEFAULTS: &DEFAULTS
+  content: |
+    Voluptatem aspernatur sed. Et sunt perspiciatis. Voluptatem at sunt. Et ullam aut. Et dolor quia. Velit iusto pariatur. Esse facilis enim.
+
 one:
+  <<: *DEFAULTS
   resume: one
   answer: one
   user: one
   answer_user: one
-  content: MyString
 
 two:
+  <<: *DEFAULTS
   resume: two
   answer: two
   user: two
   answer_user: two
-  content: MyString

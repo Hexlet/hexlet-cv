@@ -1,22 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  resume: one
-  user: one
-  content: MyText
-
-two:
-  resume: two
-  user: two
-  content: MyText
-
-without_likes:
-  resume: two
-  user: two
-  content: MyText
-
-full_one:
-  resume: full
-  user: one
+DEFAULTS: &DEFAULTS
   content: |
     Voluptatem aspernatur sed. Et sunt perspiciatis. Voluptatem at sunt. Et ullam aut. Et dolor quia. Velit iusto pariatur. Esse facilis enim. Distinctio est ad. Qui maiores eos. Dicta ea qui. Similique totam soluta. Et sunt non. Sapiente delectus perferendis. Et voluptates quos. Ab totam atque. Possimus maxime corporis. Quis assumenda mollitia. Sed non omnis. Aut quibusdam odit. Expedita repudiandae.
+
+one:
+  <<: *DEFAULTS
+  resume: one
+  user: one
+
+two:
+  <<: *DEFAULTS
+  resume: two
+  user: two
+
+without_likes:
+  <<: *DEFAULTS
+  resume: two
+  user: two
+
+full_one:
+  <<: *DEFAULTS
+  resume: full
+  user: one

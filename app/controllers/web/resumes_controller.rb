@@ -12,5 +12,7 @@ class Web::ResumesController < ApplicationController
     @current_user_likes_by_answer_id = current_user_likes.collect { |item| [item.answer_id, item] }.to_h
     @resume_educations = @resume.educations.order(begin_date: :desc)
     @resume_works = @resume.works.order(begin_date: :desc)
+
+    title @resume
   end
 end
