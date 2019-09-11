@@ -85,7 +85,7 @@
                       .d-flex
                         .mr-auto
                           span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
-                            = markdown2html comment.content
+                            == markdown2html comment.content
                           - if comment.user
                             span.mr-1
                               = link_to comment.user, user_path(comment.user)
