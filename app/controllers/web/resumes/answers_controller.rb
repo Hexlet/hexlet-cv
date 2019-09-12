@@ -2,28 +2,25 @@
 
 class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   def edit
-    @resume = resource_resume
-    @answer = @resume.answers.find params[:id]
+    @answer = resource_resume.answers.find params[:id]
   end
 
   def update
-    @resume = resource_resume
-    @answer = @resume.answers.find params[:id]
+    @answer = resource_resume.answers.find params[:id]
     if @answer.update(resume_answer_params)
       f(:success)
-      redirect_to resume_path(@resume)
+      redirect_to resume_path(resource_resume)
     else
       render :edit
     end
   end
 
   def create
-    @resume = resource_resume
-    answer = @resume.answers.build resume_answer_params
+    answer = resource_resume.answers.build resume_answer_params
     answer.user = current_user
     if answer.save
       f(:success)
-      redirect_to resume_path(@resume)
+      redirect_to resume_path(resource_resume)
     else
       render :new
     end

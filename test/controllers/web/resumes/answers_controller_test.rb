@@ -26,13 +26,11 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
 
     new_answer = resume.answers.find_by! attrs
     assert_equal new_answer.content, attrs[:content]
-    assert_not_equal new_answer.content, old_answer.content
   end
 
   test '#create' do
     resume = resumes(:full_without_answers)
     attrs = FactoryBot.attributes_for 'resume/answer'
-
     post resume_answers_path(resume), params: { resume_answer: attrs }
     assert_response :redirect
 
