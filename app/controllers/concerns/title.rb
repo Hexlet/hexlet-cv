@@ -16,9 +16,9 @@ module Title
 
     @parts << if part.instance_of? Symbol
                 translate_title(part, options)
-    else
-      part
-    end
+              else
+                part
+              end
   end
 
   def translate_title(key, options = {})
