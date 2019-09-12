@@ -49,7 +49,7 @@
         - if work.end_date
           | &nbsp;-&nbsp;
           = l work.end_date
-      = work.description
+      == markdown2html work.description
 
 - if @resume_educations.any?
   .d-flex
