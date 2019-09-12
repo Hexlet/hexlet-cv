@@ -45,10 +45,10 @@
       | ,&nbsp;
       = work.company
       .small.text-muted.mt-1.mb-2
-        = l work.begin_date
-        - if work.end_date
+        = work.begin_date_full
+        - if work.end_date_full
           | &nbsp;-&nbsp;
-          = l work.end_date
+          = work.end_date_full
       = work.description
 
 - if @resume_educations.any?
@@ -62,7 +62,7 @@
       | ,&nbsp;
       = education.institution
       .small.text-muted.mt-1.mb-2
-        = l education.begin_date
-        - if education.end_date
+        = education.begin_date_full
+        - if education.end_date_full
           | &nbsp;-&nbsp;
-          = l education.end_date
+          = education.end_date_full

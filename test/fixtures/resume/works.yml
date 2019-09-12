@@ -4,16 +4,20 @@ one:
   resume: one
   company: MyString
   position: MyString
-  begin_date: 2015-09-07
-  end_date: 2019-09-07
+  begin_date_month: 9
+  begin_date_year: 2010
+  end_date_month: 9
+  end_date_year: 2015
   description: MyString
 
 two:
   resume: two
   company: Unemployed
   position: Software Engineer
-  begin_date: 2015-09-07
-  end_date: 2019-09-07
+  begin_date_month: 7
+  begin_date_year: 2014
+  end_date_month: 9
+  end_date_year: 2018
   description: |
     Разработка и поддержка HexletCV
 
@@ -21,8 +25,10 @@ full_1:
   resume: full
   company: Hexlet
   position: Junior Software Engineer
-  begin_date: 2015-09-07
-  end_date: 2019-09-07
+  begin_date_month: 9
+  begin_date_year: 2014
+  end_date_month: 7
+  end_date_year: 2018
   description: |
     Разработка и поддержка образовательной онлайн платформы Hexlet
 
@@ -30,8 +36,10 @@ full_2:
   resume: full
   company: Paygety
   position: Software Engineer
-  begin_date: 2019-09-03
-  end_date: 2019-09-07
+  begin_date_month: 9
+  begin_date_year: 2014
+  end_date_month: 7
+  end_date_year: 2018
   description: |
     Разработка и поддержка сервиса по обмену криптовалюты Paygety
 
@@ -39,7 +47,9 @@ full_3:
   resume: full
   company: datarockets
   position: Software Engineer
-  begin_date: 2018-02-07
-  end_date: 2019-09-07
+  begin_date_month: 9
+  begin_date_year: 2014
+  end_date_month: 7
+  end_date_year: 2018
   description: |
     Разработка веб-приложений разной сложности под ключ, в основном работаю на стеке Ruby/Rails

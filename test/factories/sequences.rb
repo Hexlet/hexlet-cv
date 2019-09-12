@@ -21,9 +21,21 @@ FactoryBot.define do
     Faker::Job.position
   end
 
-  sequence :begin_date do |_n|
-    Time.current
+  sequence :begin_date_year do |_n|
+    Time.current.year
   end
+
+  sequence :begin_date_month do |_n|
+    Time.current.month
+  end
+
+  # sequence :end_date_year do |_n|
+  #   Time.current.year
+  # end
+
+  # sequence :end_date_month do |_n|
+  #   Time.current.month
+  # end
 
   sequence :description, aliases: %i[skills_description awards_description] do |_n|
     Faker::Lorem.paragraph_by_chars(number: 300)

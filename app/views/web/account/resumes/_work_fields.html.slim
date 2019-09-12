@@ -1,7 +1,9 @@
 .nested-fields
   = f.input :company
   = f.input :position
-  = f.input :begin_date, as: :date, html5: true
-  = f.input :end_date, as: :date, html5: true
+  = f.input :begin_date_month, as: :integer
+  = f.input :begin_date_year, as: :integer
+  = f.input :end_date_month, as: :integer
+  = f.input :end_date_year, as: :integer
   = f.input :description, as: :text
   = link_to_remove_association t('.remove_work'), f

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_08_172707) do
+ActiveRecord::Schema.define(version: 2019_09_12_130213) do
 
   create_table "resume_answer_comments", force: :cascade do |t|
     t.integer "resume_id", null: false
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 2019_09_08_172707) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "begin_date_month"
+    t.integer "begin_date_year"
+    t.integer "end_date_month"
+    t.integer "end_date_year"
     t.index ["resume_id"], name: "index_resume_educations_on_resume_id"
   end
 
@@ -78,6 +82,10 @@ ActiveRecord::Schema.define(version: 2019_09_08_172707) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "begin_date_month"
+    t.integer "begin_date_year"
+    t.integer "end_date_month"
+    t.integer "end_date_year"
     t.index ["resume_id"], name: "index_resume_works_on_resume_id"
   end
 
