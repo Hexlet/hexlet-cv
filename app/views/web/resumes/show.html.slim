@@ -1,6 +1,7 @@
 = content_for :header do
   = @resume
-
+script type="application/ld+json"
+  == render partial: 'schemas/resume.json'
 
 .container
   .row
