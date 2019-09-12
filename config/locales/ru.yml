@@ -1,2 +1,5 @@
 ru:
   confirm: Вы уверены?
+  date:
+    formats:
+      discard_day: '%b %Y'
