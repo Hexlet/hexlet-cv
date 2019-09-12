@@ -40,4 +40,8 @@ module Title
 
     # msg
   end
+
+  def meta_tag_title(entity)
+    [entity, t('titles.web.base')].join(' - ')
+  end
 end

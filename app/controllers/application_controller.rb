@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include Title
 
   helper_method :title
+  helper_method :meta_tag_title
 
   before_action do
     title :base, scope: 'web'
