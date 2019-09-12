@@ -1,0 +1,9 @@
+- content_for :header do
+  = t('.header')
+.container
+  .row.my-4
+    .col-12.col-md-9.my-4.d-flex.flex-column
+      ul.nav.nav-tabs
+        = navbar_menu_item  t('.my_profile'), edit_account_profile_path, class: 'active'
+        = navbar_menu_item  t('.my_comments'), new_account_resume_path
+        = navbar_menu_item  t('.my_answers'), new_account_resume_path
