@@ -5,6 +5,7 @@ ru:
         profiles:
           update:
             success: Данные обновлены
+            error: Не удалось обновить данные
         resumes:
           update:
             success: Резюме обновлено
