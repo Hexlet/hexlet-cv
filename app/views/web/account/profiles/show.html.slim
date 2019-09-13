@@ -2,8 +2,18 @@
   = t('.header')
 .container
   .row.my-4
-    .col-12.col-md-9.my-4.d-flex.flex-column
-      ul.nav.nav-tabs
-        = navbar_menu_item  t('.my_profile'), edit_account_profile_path, class: 'active'
-        = navbar_menu_item  t('.my_comments'), new_account_resume_path
-        = navbar_menu_item  t('.my_answers'), new_account_resume_path
+    .col-12.my-4.d-flex.flex-column
+      ul.nav.nav-tabs.justify-content-center role="tablist"
+        li.nav-item
+          a.nav-link.px-3.active href="#profile" =t('.edit_profile')
+        li.nav-item
+          a.nav-link.px-3 href="#comments" =t('.my_comments')
+        li.nav-item
+          a.nav-link.px-3 href="#answers" =t('.my_answers')
+      div.tab-content.py-3
+        div.tab-pane.active id="profile"
+          = render 'form'
+        div.tab-pane id="comments"
+          p Heee
+        div.tab-pane id="answers"
+          p HAHHAHA
