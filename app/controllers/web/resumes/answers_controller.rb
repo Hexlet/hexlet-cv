@@ -1,17 +1,28 @@
 # frozen_string_literal: true
 
-class Web::Resumes::AnswersController < ApplicationController
-  before_action :authenticate_user!
+class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
+  def edit
+    @answer = resource_resume.answers.find params[:id]
+  end
+
+  def update
+    @answer = resource_resume.answers.find params[:id]
+    if @answer.update(resume_answer_params)
+      f(:success)
+      redirect_to resume_path(resource_resume)
+    else
+      render :edit
+    end
+  end
 
   def create
-    @resume = Resume.find params[:resume_id]
-    @answer = @resume.answers.build resume_answer_params
-    @answer.user = current_user
-    if @answer.save
+    answer = resource_resume.answers.build resume_answer_params
+    answer.user = current_user
+    if answer.save
       f(:success)
-      redirect_to resume_path(@resume)
+      redirect_to resume_path(resource_resume)
     else
-      render action: 'new'
+      render :new
     end
   end
 

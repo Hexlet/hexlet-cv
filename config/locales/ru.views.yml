@@ -8,6 +8,9 @@ ru:
           many: Ответов
         likes: Нравится
     resumes:
+      answers:
+        edit:
+          header: Редактирование рекомендации
       information:
         basic: Основное
         work: Работа
