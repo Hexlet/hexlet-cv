@@ -16,9 +16,9 @@ module Title
 
     @parts << if part.instance_of? Symbol
                 translate_title(part, options)
-    else
-      part
-    end
+              else
+                part
+              end
   end
 
   def translate_title(key, options = {})
@@ -39,5 +39,9 @@ module Title
     I18n.t(key, scope: scope)
 
     # msg
+  end
+
+  def meta_tag_title(entity)
+    [entity, t('titles.web.base')].join(' - ')
   end
 end

@@ -45,10 +45,10 @@
       | ,&nbsp;
       = work.company
       .small.text-muted.mt-1.mb-2
-        = l work.begin_date
+        = l work.begin_date, format: :discard_day
         - if work.end_date
           | &nbsp;-&nbsp;
-          = l work.end_date
+          = l work.end_date, format: :discard_day
       == markdown2html work.description
 
 - if @resume_educations.any?
@@ -62,7 +62,7 @@
       | ,&nbsp;
       = education.institution
       .small.text-muted.mt-1.mb-2
-        = l education.begin_date
+        = l education.begin_date, format: :discard_day
         - if education.end_date
           | &nbsp;-&nbsp;
-          = l education.end_date
+          = l education.end_date, format: :discard_day
