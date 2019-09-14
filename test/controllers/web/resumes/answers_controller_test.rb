@@ -25,7 +25,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     new_answer = resume.answers.find_by! attrs
-    assert_equal new_answer.content, attrs[:content]
+    assert { new_answer.content == attrs[:content] }
   end
 
   test '#create' do
@@ -35,7 +35,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     answer = resume.answers.find_by! attrs
-    assert answer
+    assert { answer }
   end
 
   test '#delete' do
@@ -44,6 +44,6 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     delete resume_answer_path(resume_answer.resume, resume_answer)
     assert_response :redirect
 
-    assert_not Resume::Answer.exists?(resume_answer.id)
+    assert { !Resume::Answer.exists?(resume_answer.id) }
   end
 end

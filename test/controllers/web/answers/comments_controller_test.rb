@@ -14,7 +14,7 @@ class Web::Answers::CommentsControllerTest < ActionDispatch::IntegrationTest
     post answer_comments_path(answer), params: { resume_answer_comment: attrs }
     assert_response :redirect
 
-    assert answer.comments.exists?(attrs)
+    assert { answer.comments.exists?(attrs) }
   end
 
   test '#destroy' do
