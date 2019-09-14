@@ -49,4 +49,17 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { resume.name == new_resume_name }
     assert { work.company == new_work_company }
   end
+
+  test 'should publish published resume' do
+    resume = resumes(:one)
+    attrs = FactoryBot.attributes_for :resume
+
+    params = {
+      publish: true,
+      resume: { name: attrs[:name] }
+    }
+
+    patch account_resume_path(resume), params: params
+    assert_response :redirect
+  end
 end
