@@ -24,7 +24,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume = Resume.find_by! name: attrs[:name]
-    assert resume
+    assert { resume }
   end
 
   test '#update' do
@@ -46,7 +46,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume.reload
     work.reload
     # TODO: switch to power-assert
-    assert resume.name == new_resume_name
-    assert work.company == new_work_company
+    assert { resume.name == new_resume_name }
+    assert { work.company == new_work_company }
   end
 end

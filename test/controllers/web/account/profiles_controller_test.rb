@@ -20,7 +20,7 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
     @user.reload
 
-    assert_equal @user.first_name, attrs[:first_name]
-    assert_equal @user.last_name, attrs[:last_name]
+    assert { @user.first_name == attrs[:first_name] }
+    assert { @user.last_name == attrs[:last_name] }
   end
 end
