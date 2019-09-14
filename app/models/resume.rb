@@ -30,7 +30,7 @@ class Resume < ApplicationRecord
     state :published
 
     event :publish do
-      transitions from: :draft, to: :published
+      transitions from: %i[draft published], to: :published
     end
   end
 
