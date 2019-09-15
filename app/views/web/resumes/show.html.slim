@@ -1,6 +1,7 @@
 = content_for :header do
   = @resume
-
+script type="application/ld+json"
+  == sanitize render partial: 'schemas/resume.json', locals: { resume: @resume, educations: @resume_educations, works: @resume_works }
 
 .container
   .row
