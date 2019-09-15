@@ -1,0 +1,31 @@
+@import '@fortawesome/fontawesome-free/scss/variables';
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/solid';
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: $fa-font-display;
+  src: asset-url('#{$fa-font-path}/fa-regular-400.eot');
+  src: asset-url('#{$fa-font-path}/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+      asset-url('#{$fa-font-path}/fa-regular-400.woff2') format('woff2'),
+      asset-url('#{$fa-font-path}/fa-regular-400.woff') format('woff'),
+      asset-url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype'),
+      asset-url('#{$fa-font-path}/fa-regular-400.svg#fontawesome') format('svg');
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: $fa-font-display;
+  src: asset-url('#{$fa-font-path}/fa-solid-900.eot');
+  src: asset-url('#{$fa-font-path}/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+      asset-url('#{$fa-font-path}/fa-solid-900.woff2') format('woff2'),
+      asset-url('#{$fa-font-path}/fa-solid-900.woff') format('woff'),
+      asset-url('#{$fa-font-path}/fa-solid-900.ttf') format('truetype'),
+      asset-url('#{$fa-font-path}/fa-solid-900.svg#fontawesome') format('svg');
+}
