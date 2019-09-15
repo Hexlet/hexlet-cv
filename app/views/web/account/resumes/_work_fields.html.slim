@@ -2,6 +2,6 @@
   = f.input :company
   = f.input :position
   = f.input :begin_date, as: :date, discard_day: true, start_year: 1970
-  = f.input :begin_date, as: :date, discard_day: true, start_year: 1970
+  = f.input :end_date, as: :date, discard_day: true, start_year: 1970
   = f.input :description, as: :text
   = link_to_remove_association t('.remove_work'), f
