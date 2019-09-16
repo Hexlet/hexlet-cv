@@ -24,8 +24,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     patch resume_answer_path(old_answer, resume), params: { resume_answer: attrs }
     assert_response :redirect
 
-    new_answer = resume.answers.find_by! attrs
-    assert { new_answer.content == attrs[:content] }
+    assert { resume.answers.find_by! attrs }
   end
 
   test '#create' do
