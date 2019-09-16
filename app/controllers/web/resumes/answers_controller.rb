@@ -16,9 +16,9 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   end
 
   def create
-    answer = resource_resume.answers.build resume_answer_params
-    answer.user = current_user
-    if answer.save
+    @answer = resource_resume.answers.build resume_answer_params
+    @answer.user = current_user
+    if @answer.save
       f(:success)
       redirect_to resume_path(resource_resume)
     else

@@ -38,6 +38,13 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert { answer }
   end
 
+  test '#create (validaton errors)' do
+    resume = resumes(:full_without_answers)
+    attrs = FactoryBot.attributes_for 'resume/answer', content: 'short'
+    post resume_answers_path(resume), params: { resume_answer: attrs }
+    assert_response :success
+  end
+
   test '#delete' do
     resume_answer = resume_answers(:one)
 

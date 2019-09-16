@@ -108,4 +108,4 @@ script type="application/ld+json"
       - if @current_user_answer
         .text-center.lead= t('.answer_exists')
       - else
-        = render 'web/shared/answer_form'
+        = render partial: 'web/shared/answer_form', locals: { answer: @answer }

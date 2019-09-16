@@ -1,3 +1,3 @@
-= simple_form_for @answer, url: resume_answers_path(@resume) do |f|
+= simple_form_for answer, url: resume_answers_path(answer.resume) do |f|
   = f.input :content, label: false, input_html: { rows: 5 }
   = f.submit class: 'btn btn-primary'

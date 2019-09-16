@@ -1,2 +1,5 @@
+- content_for :header do
+  = t('.header')
+
 .container
-  = render 'web/shared/answer_form'
+  = render partial: 'web/shared/answer_form', locals: { answer: @answer }
