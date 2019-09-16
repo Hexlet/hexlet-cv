@@ -5,6 +5,7 @@ class Resume < ApplicationRecord
   extend Enumerize
   include ResumeRepository
   has_paper_trail
+  is_impressionable counter_cache: true
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
 

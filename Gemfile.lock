@@ -118,6 +118,8 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
       i18n (< 2)
+    impressionist (1.6.1)
+      nokogiri (~> 1)
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   flash_rails_messages (~> 2.1)
   gon (~> 6.2)
   i18n-debug
+  impressionist (~> 1.6)
   jbuilder
   kaminari
   listen

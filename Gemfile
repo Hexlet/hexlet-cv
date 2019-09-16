@@ -100,3 +100,5 @@ gem 'paint', '~> 2.1'
 gem 'pundit', '~> 2.1'
 
 gem 'meta-tags', '~> 2.12'
+
+gem 'impressionist', '~> 1.6'

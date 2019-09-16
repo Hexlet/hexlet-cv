@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::ResumesController < ApplicationController
+  impressionist actions: [:show]
+
   def show
     @resume = Resume.find(params[:id])
     authorize @resume
