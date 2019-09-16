@@ -2,4 +2,4 @@
   = t('.header')
 
 .container
-  = render partial: 'web/shared/answer_form', locals: { answer: @answer }
+  = render partial: 'web/shared/answer_form', locals: { answer: @answer, url: resume_answers_path(resource_resume) }
