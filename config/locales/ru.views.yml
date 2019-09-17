@@ -13,6 +13,8 @@ ru:
         likes: Нравится
     resumes:
       answers:
+        new:
+          header: Создание рекомендации
         edit:
           header: Редактирование рекомендации
       information:
@@ -43,6 +45,9 @@ ru:
           remove_work: Удалить опыт работы
         education_fields:
           remove_education: Удалить образование
+      profiles:
+        edit: 
+          header: Мой профиль
     profiles:
         show: 
           header: Мой профиль

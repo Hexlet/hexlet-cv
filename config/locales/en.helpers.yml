@@ -1,0 +1,8 @@
+en:
+  helpers:
+    submit:
+      create: Create
+      update: Update
+      resume:
+        update: Draft
+        create: Draft

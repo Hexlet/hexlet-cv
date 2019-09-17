@@ -1,0 +1,43 @@
+en:
+  web:
+    home:
+      index:
+    resumes:
+      answers:
+        new:
+          header: New recomendation
+        edit:
+          header: Edit recomendation
+      information:
+        basic: Basic
+        work: Work
+        education: Education
+      show:
+        add_a_comment: Add a comment
+        recomendations: Recomendations
+        answer_exists: You've already left a recommendation
+        likes: |
+          Likes: %{count}
+    account:
+      resumes:
+        new:
+          header: New resume
+        edit:
+          header: Edit resume
+        index:
+          header: My resumes
+        form:
+          publish: Publish
+      profiles:
+        edit: 
+          header: My profile
+    profiles:
+        show: 
+          header: My profile
+    users:
+      show:
+        header: Profile
+        answers: Answers
+        likes: Likes
+        resumes: Resume
+
