@@ -1,0 +1,41 @@
+en:
+  flash:
+    web:
+      account:
+        profiles:
+          update:
+            success: Data updated
+        resumes:
+          update:
+            success: Resume updated
+          create:
+            success: Resume added
+      resumes:
+        answers:
+          update:
+            success: Recommendation updated
+          create:
+            success: Recommendation added
+          destroy:
+            success: Recommendation deleted
+        comments:
+          update:
+            success: Commentary to the resume updated
+          create:
+            success: Commentary to the resume added
+          destroy:
+            success: Commentary to the resume deleted
+      answers:
+        comments:
+          update:
+            success: Commentary to the recommendation updated
+          create:
+            success: Commentary to the recommendation added
+          destroy:
+            success: Commentary to the recommendation deleted
+        likes:
+          create:
+            success: You put a "Like" mark on it
+          destroy:
+            success: You deleted the "Like" mark
+
