@@ -6,6 +6,10 @@ ru:
           one: Ответ
           few: Ответа
           many: Ответов
+        views:
+          one: Просмотр
+          few: Просмотра
+          many: Просмотров
         likes: Нравится
     resumes:
       answers:

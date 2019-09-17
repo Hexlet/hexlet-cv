@@ -9,6 +9,9 @@
                 .text-muted.text-center.mb-3
                   .h2.mb-0.font-weight-lighter= resume.answers.size
                   .small= t('.answers', count: resume.answers.size)
+                .text-muted.text-center.mb-3
+                  .h2.mb-0.font-weight-lighter= resume.impressions_count
+                  .small= t('.views', count: resume.impressions_count)
                 / .text-muted.text-center
                 /   .h2.mb-0.font-weight-lighter= 12
                 /   .small= t('.likes')
