@@ -14,9 +14,10 @@ require('bootstrap');
 require('./cocoon');
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
-import { fonts } from './fontAwesome'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
-library.add(...fonts)
+library.add(fas, far)
 
 dom.watch()
 
