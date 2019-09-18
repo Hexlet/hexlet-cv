@@ -12,9 +12,11 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
     comment.resume = resource_answer.resume
     comment.user = current_user
     comment.answer_user = resource_answer.user
-    comment.save!
-    f(:success)
-
+    if comment.save
+      f(:success)
+    else
+      f(:error, errors: comment.errors.full_messages.join(', '))
+    end
     redirect_to resume_path(resource_answer.resume)
   end
 

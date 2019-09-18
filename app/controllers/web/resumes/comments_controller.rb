@@ -5,9 +5,11 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
     comment = resource_resume.comments.build content: params[:resume_comment][:content]
     comment.resume = resource_resume
     comment.user = current_user
-    comment.save!
-    f(:success)
-
+    if comment.save
+      f(:success)
+    else
+      f(:error, errors: comment.errors.full_messages.join(', '))
+    end
     redirect_to resume_path(resource_resume)
   end
 
