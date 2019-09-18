@@ -1,0 +1,20 @@
+en:
+  layouts:
+    shared:
+      nav:
+        add_resume: Add resume
+        my_resumes: My resume
+        my_profile: My profile
+        sign_out: Sign out
+        sign_in: Sign in
+        register: Sign up
+      footer:
+        about: About
+        source_code: Source code
+        other_os_projects: Other open-source projects
+        help: Help
+        knowledge: Knowledge
+        blog: Blog
+        recommended_books: Recommended books
+        additionally: Additionally
+    application:
