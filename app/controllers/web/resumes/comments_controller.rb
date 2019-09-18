@@ -2,15 +2,15 @@
 
 class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   def create
-    comment = resource_resume.comments.build content: params[:resume_comment][:content]
-    comment.resume = resource_resume
-    comment.user = current_user
-    if comment.save
+    @comment = resource_resume.comments.build content: params[:resume_comment][:content]
+    @comment.resume = resource_resume
+    @comment.user = current_user
+    if @comment.save
       f(:success)
+      redirect_to resume_path(resource_resume)
     else
-      f(:error, errors: comment.errors.full_messages.join(', '))
+      render :new
     end
-    redirect_to resume_path(resource_resume)
   end
 
   def destroy

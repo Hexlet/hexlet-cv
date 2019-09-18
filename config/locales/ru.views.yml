@@ -21,6 +21,9 @@ ru:
         answer_exists: Вы уже оставили рекомендацию
         likes: |
           Понравилось: %{count}
+      comments:
+        new:
+          header: Создание комментария
     account:
       resumes:
         new:
@@ -48,4 +51,7 @@ ru:
         answers: Ответов
         likes: Лайков
         resumes: Резюме
-
+    answers:
+      comments:
+        new:
+          header: Создание комментария

@@ -1,2 +1,5 @@
-h1 Web::Answers::Comments#new
-p Find me in app/views/web/answers/comments/new.html.slim
+- content_for :header do
+  = t('.header')
+
+.container
+  = render 'web/shared/comment_form', comment: @comment, url: answer_comments_path(resource_answer)

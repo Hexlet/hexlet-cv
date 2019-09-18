@@ -17,6 +17,13 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert { resume.comments.exists?(attrs) }
   end
 
+  test '#create (invalid comment)' do
+    resume = resumes(:one)
+    attrs = FactoryBot.attributes_for('resume/comment', content: 'short')
+    post resume_comments_path(resume), params: { resume_comment: attrs }
+    assert_response :success
+  end
+
   test '#destroy' do
     comment = resume_comments(:two)
     delete resume_comment_path(comment.resume, comment)

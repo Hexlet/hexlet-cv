@@ -39,17 +39,13 @@ script type="application/ld+json"
                     span.text-muted
                       = l comment.created_at, format: :short
                   - if comment.user == current_user
-                    = link_to 'x', resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') }
+                    = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
+                      i.fas.fa-times.text-secondary
           hr.my-2
           a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
             = t('.add_a_comment')
           .collapse(id="resume-#{@resume.id}")
-            = simple_form_for @resume.comments.build, url: resume_comments_path(@resume), wrapper: 'inline_form' do |f|
-              .row
-                .col-9
-                  = f.input :content, as: :text, input_html: { class: 'form-control-sm' }
-                .col-1
-                  = f.submit class: 'btn btn-sm btn-outline-primary'
+            = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
 
       .lead.mb-3= t('.recomendations')
 
@@ -92,18 +88,13 @@ script type="application/ld+json"
                         span.text-muted
                           = l comment.created_at, format: :short
                       - if comment.user == current_user
-                        = link_to 'x', answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') }
+                        = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
+                          i.fas.fa-times.text-secondary
                 hr.my-2
                 a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                   = t('.add_a_comment')
                 .collapse(id="answer-#{answer.id}")
-                  = simple_form_for answer.comments.build, url: answer_comments_path(answer), wrapper: 'inline_form' do |f|
-                    .row
-                      .col-9
-                        = f.input :content, as: :text, input_html: { class: 'form-control-sm' }
-                      .col-3
-                        = f.submit class: 'btn btn-sm btn-outline-primary'
-
+                  = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
 
       - if @current_user_answer
         .text-center.lead= t('.answer_exists')
