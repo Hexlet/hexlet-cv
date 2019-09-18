@@ -1,0 +1,6 @@
+= simple_form_for comment, url: url, wrapper: 'inline_form' do |f|
+  .row
+    .col-9
+      = f.input :content, as: :text, input_html: { class: 'form-control-sm' }
+    .col-3
+      = f.submit class: 'btn btn-sm btn-outline-primary'

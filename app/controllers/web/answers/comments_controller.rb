@@ -8,14 +8,16 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   # end
 
   def create
-    comment = resource_answer.comments.build content: params[:resume_answer_comment][:content]
-    comment.resume = resource_answer.resume
-    comment.user = current_user
-    comment.answer_user = resource_answer.user
-    comment.save!
-    f(:success)
-
-    redirect_to resume_path(resource_answer.resume)
+    @comment = resource_answer.comments.build content: params[:resume_answer_comment][:content]
+    @comment.resume = resource_answer.resume
+    @comment.user = current_user
+    @comment.answer_user = resource_answer.user
+    if @comment.save
+      f(:success)
+      redirect_to resume_path(resource_answer.resume)
+    else
+      render :new
+    end
   end
 
   def destroy

@@ -4,6 +4,8 @@ ru:
       resume: Резюме
       user: Пользователь
       resume/answer: Рекомендация
+      resume/comment: Комментарий
+      answer/comment: Комментарий
     attributes:
       user:
         first_name: Имя
@@ -34,4 +36,7 @@ ru:
         faculty: Факультет
         begin_date: Дата начала
         end_date: Дата конца
-
+      resume/comment:
+        content: Комментарий
+      answer/comment:
+        content: Комментарий
