@@ -53,7 +53,7 @@ ru:
           header: Мой профиль
         show: 
           header: Мой профиль
-          my_profile: Мой профиль
+          edit_profile:  Редактировать профиль
           my_comments: Мои коментарии
           my_answers: Мои рекомендации
     users:
