@@ -51,9 +51,11 @@ ru:
       profiles:
         edit: 
           header: Мой профиль
-    profiles:
         show: 
           header: Мой профиль
+          edit_profile:  Редактировать профиль
+          my_comments: Мои коментарии
+          my_answers: Мои рекомендации
     users:
       show:
         header: Профиль

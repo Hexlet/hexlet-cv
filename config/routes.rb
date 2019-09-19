@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     namespace :account do
       resources :resumes
-      resource :profile, only: %i[edit update]
+      resource :profile, only: %i[edit update show]
     end
 
     resources :users
