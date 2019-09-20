@@ -8,7 +8,7 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
   def update
     if current_user.update(profile_params)
       f(:success)
-      render :show
+      redirect_to account_profile_path
     else
       f(:error)
       render :edit
