@@ -85,6 +85,8 @@ gem 'devise', '~> 4.7'
 
 gem 'devise-i18n', '~> 1.8'
 
+gem 'omniauth-github'
+
 gem 'flash_rails_messages', '~> 2.1'
 
 gem 'devise-bootstrap-views', '~> 1.1'
