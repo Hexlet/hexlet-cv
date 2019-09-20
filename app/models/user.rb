@@ -13,13 +13,16 @@ class User < ApplicationRecord
   has_many :resume_answers, class_name: 'Resume::Answer', dependent: :destroy
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
 
-  def from_omniauth(auth)
-    users = where('email = ? OR (provider = ? AND uid = ?)',
-                  auth.info.email,
-                  auth.provider,
-                  auth.uid)
-
-    users.first_or_initialize.tap { |user| user.from_provider(auth) }
+  def self.from_omniauth(auth)
+    where(email: auth.info.email).or(where(provider: auth.provider, uid: auth.uid)).first_or_create do |user|
+      user.email = auth.info.email
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name, user.last_name = auth.info.name.split(' ') 
+      user.skip_confirmation!
+    end
+    
   end
 
   # def guest?

@@ -3,6 +3,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require_relative './helpers/omni_auth_helper.rb'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -17,6 +18,7 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include OmniAuthHelper
 
   # def login(user)
   #   params = {
