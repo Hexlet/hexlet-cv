@@ -19,3 +19,8 @@ full:
   <<: *DEFAULTS
   email: $LABEL@email.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+with_github:
+  <<: *DEFAULTS
+  email: github@github.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
