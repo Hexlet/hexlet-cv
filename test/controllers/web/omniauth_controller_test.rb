@@ -10,8 +10,9 @@ class Web::OmniauthControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#github (exist user)' do
-    user = users(:with_github)
+    users(:with_github)
     sign_with_github
     assert_response :redirect
+    assert { User.exists?(email: 'github@github.com', uid: '12345', provider: 'github') }
   end
 end

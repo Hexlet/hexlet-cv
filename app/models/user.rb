@@ -14,13 +14,20 @@ class User < ApplicationRecord
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
 
   def self.from_omniauth(auth)
-    where(email: auth.info.email).or(where(provider: auth.provider, uid: auth.uid)).first_or_create do |user|
-      user.email = auth.info.email
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.password = Devise.friendly_token[0, 20]
-      user.first_name, user.last_name = auth.info.name.split(' ')
-      user.skip_confirmation!
+    if (exist_user = User.find_by(email: auth.info.email))
+      exist_user.provider = auth.provider
+      exist_user.uid = auth.uid
+      exist_user.save
+      exist_user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.password = Devise.friendly_token[0, 20]
+        user.first_name, user.last_name = auth.info.name.split(' ')
+        user.skip_confirmation!
+      end
     end
   end
 
