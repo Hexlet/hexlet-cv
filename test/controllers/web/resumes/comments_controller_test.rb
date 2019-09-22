@@ -24,7 +24,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     patch resume_comment_path(old_comment, resume), params: { resume_comment: attrs }
     assert_response :redirect
 
-    assert { resume.comment.find_by! attrs }
+    assert { resume.comments.find_by! attrs }
   end
 
   test '#create' do

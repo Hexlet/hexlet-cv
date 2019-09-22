@@ -40,7 +40,7 @@ script type="application/ld+json"
                       = l comment.created_at, format: :short
                   - if comment.user == current_user
                     div
-                      span.mr-2 (data-toggle="collapse")
+                      span.mr-2
                         = link_to edit_resume_comment_path(@resume, comment)
                           i.fas.fa-pen.text-secondary
                           
@@ -93,8 +93,12 @@ script type="application/ld+json"
                         span.text-muted
                           = l comment.created_at, format: :short
                       - if comment.user == current_user
-                        = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
-                          i.fas.fa-times.text-secondary
+                        div
+                          span.mr-2
+                            = link_to edit_answer_comment_path(answer, comment)
+                              i.fas.fa-pen.text-secondary
+                          = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
+                            i.fas.fa-times.text-secondary
               hr.my-2
               a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                 = t('.add_a_comment')
