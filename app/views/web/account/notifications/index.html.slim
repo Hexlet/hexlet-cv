@@ -1,0 +1,10 @@
+- content_for :header do
+  = t('.header')
+
+.container
+  =link_to t('.mark_all_as_read'), read_all_account_notifications_path, method: :post, class: 'btn btn-success'
+  - @notifications.each do |n|
+    p= n.decorate.message
+    p= n.state
+    hr
+

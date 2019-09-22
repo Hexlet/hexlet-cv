@@ -6,6 +6,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         = navbar_menu_item t('.add_resume'), new_account_resume_path
+        li.nav-item
+          = link_to account_notifications_path, class: 'nav-link' do
+            i.far.fa-bell
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')
             i.fas.fa-user
