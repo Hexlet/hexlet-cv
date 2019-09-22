@@ -18,6 +18,9 @@ en:
         answer_exists: You've already left a recommendation
         likes: |
           Likes: %{count}
+      comments:
+        edit:
+          header: Edit comment
     account:
       resumes:
         new:
@@ -40,4 +43,7 @@ en:
         answers: Answers
         likes: Likes
         resumes: Resume
-
+    answers:
+      comments:
+        edit: 
+          header: Edit comment

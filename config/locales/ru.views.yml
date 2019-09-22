@@ -30,6 +30,8 @@ ru:
       comments:
         new:
           header: Создание комментария
+        edit:
+          header: Редактирование комментария
     account:
       resumes:
         new:
@@ -66,3 +68,5 @@ ru:
       comments:
         new:
           header: Создание комментария
+        edit:
+          header: Редактирование комментария
