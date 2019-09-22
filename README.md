@@ -16,6 +16,9 @@
 * sqlite3
 * [heroku cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
+### Requred (for ubuntu like linux)
+* sudo apt install libpq-dev
+
 ### Setup
 
 ```sh
