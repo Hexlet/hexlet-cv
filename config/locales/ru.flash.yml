@@ -11,6 +11,9 @@ ru:
             success: Резюме обновлено
           create:
             success: Резюме добавлено
+        notifications:
+          read_all:
+            success: Все уведомления помечены прочитанными
       resumes:
         answers:
           update:

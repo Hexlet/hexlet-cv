@@ -1,4 +1,7 @@
 ru:
+  notifications:
+    new_answer: Пользователь %{user} оставил новую рекомендацию
+    new_comment: Пользователь %{user} оставил новый комментарий
   confirm: Вы уверены?
   date:
     formats:
