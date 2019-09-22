@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :resumes do
       scope module: :resumes do
         resources :answers
-        resources :comments, only: %i[create update destroy]
+        resources :comments
       end
     end
     resources :answers, only: [] do

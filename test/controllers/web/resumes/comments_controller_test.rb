@@ -8,6 +8,25 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
   end
 
+  test '#edit' do
+    resume_comment = resume_comments(:one)
+    resume = resume_comment.resume
+
+    get edit_resume_comment_path(resume_comment, resume)
+    assert_response :success
+  end
+
+  test '#update' do
+    old_comment = resume_comments(:one)
+    resume = old_comment.resume
+    attrs = FactoryBot.attributes_for 'resume/comment'
+
+    patch resume_comment_path(old_comment, resume), params: { resume_comment: attrs }
+    assert_response :redirect
+
+    assert { resume.comments.find_by! attrs }
+  end
+
   test '#create' do
     resume = resumes(:one)
     attrs = FactoryBot.attributes_for('resume/comment')
