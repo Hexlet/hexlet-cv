@@ -39,6 +39,11 @@ script type="application/ld+json"
                     span.text-muted
                       = l comment.created_at, format: :short
                   - if comment.user == current_user
+                    div
+                      span.mr-2 (data-toggle="collapse")
+                        = link_to edit_resume_comment_path(@resume, comment)
+                          i.fas.fa-pen.text-secondary
+                          
                     = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
                       i.fas.fa-times.text-secondary
           hr.my-2

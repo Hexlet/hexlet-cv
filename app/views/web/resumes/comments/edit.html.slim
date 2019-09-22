@@ -1,2 +1,1 @@
-h1 Web::Recumes::Comments#edit
-p Find me in app/views/web/resumes/comments/edit.html.slim
+= render partial: 'web/shared/comment_form', locals: { comment: @comment, url: resume_comment_path(resource_resume, @comment) }
