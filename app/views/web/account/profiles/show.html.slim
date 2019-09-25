@@ -1,22 +1,23 @@
 - content_for :header do
   = t('.header')
 .container
-  .row.my-4
-    .col-12.my-4
-      ul.nav.nav-tabs.justify-content-center role="navigation"
-        li.nav-item
-          a.nav-link.px-3.active data-toggle="tab" href="#edit_profile" =t('.edit_profile')
-        li.nav-item
-          a.nav-link.px-3 data-toggle="tab" href="#comments" =t('.my_comments')
-        li.nav-itemЗ
-          a.nav-link.px-3 data-toggle="tab" href="#answers" =t('.my_answers')
-      div.tab-content.py-3
-        div.tab-pane.fade.show.active id="edit_profile"
-          div.row
-            = render 'form'
-        div.tab-pane.fade id="comments"
-          div.row 
-            = render 'comments'
-        div.tab-pane.fade id="answers"
-          div.row
-            = render 'answers'
+  ul.nav.nav-tabs.justify-content-center role="navigation"
+    li.nav-item
+      a.nav-link.px-3.active data-toggle="tab" href="#edit_profile" =t('.edit_profile')
+    li.nav-item
+      a.nav-link.px-3 data-toggle="tab" href="#comments" =t('.my_comments')
+    li.nav-itemЗ
+      a.nav-link.px-3 data-toggle="tab" href="#answers" =t('.my_answers')
+  .tab-content.py-3
+    .tab-pane.fade.show.active id="edit_profile"
+      .row
+        .col-lg-8.mx-auto
+          = render 'form'
+    .tab-pane.fade id="comments"
+      .row
+        .col-lg-8.mx-auto
+          = render 'comments'
+    .tab-pane.fade id="answers"
+      .row
+        .col-lg-8.mx-auto
+          = render 'answers'
