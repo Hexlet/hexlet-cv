@@ -1,23 +1,7 @@
 - content_for :header do
   = t('.header')
+
 .container
-  ul.nav.nav-tabs.justify-content-center role="navigation"
-    li.nav-item
-      a.nav-link.px-3.active data-toggle="tab" href="#edit_profile" =t('.edit_profile')
-    li.nav-item
-      a.nav-link.px-3 data-toggle="tab" href="#comments" =t('.my_comments')
-    li.nav-itemЗ
-      a.nav-link.px-3 data-toggle="tab" href="#answers" =t('.my_answers')
-  .tab-content.py-3
-    .tab-pane.fade.show.active id="edit_profile"
-      .row
-        .col-lg-8.mx-auto
-          = render 'form'
-    .tab-pane.fade id="comments"
-      .row
-        .col-lg-8.mx-auto
-          = render 'comments'
-    .tab-pane.fade id="answers"
-      .row
-        .col-lg-8.mx-auto
-          = render 'answers'
+  .row
+    .col-lg-8.mx-auto
+      = render 'form'
