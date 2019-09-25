@@ -50,7 +50,10 @@ script type="application/ld+json"
           a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
             = t('.add_a_comment')
           .collapse(id="resume-#{@resume.id}")
-            = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
+            - if user_signed_in?
+              = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
+            - else
+              = render 'comment_requires'
 
       .lead.mb-3= t('.recomendations')
 
@@ -103,9 +106,14 @@ script type="application/ld+json"
               a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
                 = t('.add_a_comment')
               .collapse(id="answer-#{answer.id}")
-                = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
-
-      - if @current_user_answer
-        .text-center.lead= t('.answer_exists')
+                - if user_signed_in?
+                  = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
+                - else
+                  = render 'comment_requires'
+      - if user_signed_in?
+        - if @current_user_answer
+          .text-center.lead= t('.answer_exists')
+        - else
+          = render partial: 'web/shared/answer_form', locals: { answer: @answer, url: resume_answers_path(@resume) }
       - else
-        = render partial: 'web/shared/answer_form', locals: { answer: @answer, url: resume_answers_path(@resume) }
+        = render 'answer_requires'
