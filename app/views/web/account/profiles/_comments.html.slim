@@ -1,6 +1,5 @@
-.col-lg-9.mx-auto
-  - current_user.resume_comments.each do |comment|
-    .card.mb-3
-      .card-header = comment.resume.name
-      .card-body
-        .card-text= simple_format comment.content
+- current_user.resume_comments.each do |comment|
+  .card.mb-3
+    .card-header = comment.resume.name
+    .card-body
+      .card-text= simple_format comment.content

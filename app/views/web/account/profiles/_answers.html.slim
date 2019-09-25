@@ -1,6 +1,5 @@
-.col-lg-9.mx-auto
-  - current_user.resume_answers.each do |answer|
-    .card.mb-3
-      .card-header = answer.resume.name
-      .card-body
-        .card-text= simple_format answer.content
+- current_user.resume_answers.each do |answer|
+  .card.mb-3
+    .card-header = answer.resume.name
+    .card-body
+      .card-text= simple_format answer.content
