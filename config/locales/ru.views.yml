@@ -59,18 +59,26 @@ ru:
           remove_education: Удалить образование
       profiles:
         edit: 
-          header: Мой профиль
+          header: Настройки
         show: 
-          header: Мой профиль
-          edit_profile:  Редактировать профиль
-          my_comments: Мои коментарии
-          my_answers: Мои рекомендации
+          header: Настройки
     users:
       show:
         header: Профиль
         answers: Ответов
         likes: Лайков
-        resumes: Резюме
+        tab_resumes: Резюме
+        tab_answers: Ответы
+        tab_comments: Комментарии
+      resumes:
+        answers:
+          one: Ответ
+          few: Ответа
+          many: Ответов
+        views:
+          one: Просмотр
+          few: Просмотра
+          many: Просмотров
     answers:
       comments:
         new:
