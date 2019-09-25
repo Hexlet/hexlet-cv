@@ -7,11 +7,15 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       - if user_signed_in?
         = navbar_menu_item t('.add_resume'), new_account_resume_path
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')= current_user.email
-          .dropdown-menu
-            = link_to t('.my_profile'), account_profile_path, class: 'dropdown-item'
+          a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')
+            i.fas.fa-user
+          .dropdown-menu.dropdown-menu-right
+            = link_to t('.my_profile'), user_path(current_user), class: 'dropdown-item'
             = link_to t('.my_resumes'), account_resumes_path, class: 'dropdown-item'
-        = navbar_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
+            <div class="dropdown-divider"></div>
+            = link_to t('.settings'), account_profile_path, class: 'dropdown-item'
+            <div class="dropdown-divider"></div>
+            = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
       - else
         = navbar_menu_item t('.sign_in'), new_user_session_path
         = navbar_menu_item t('.register'), new_user_registration_path
