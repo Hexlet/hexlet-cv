@@ -1,0 +1,24 @@
+- resumes.each do |resume|
+  .card.mb-3
+    - if is_owner
+      .card-header
+        = resume.aasm.human_state
+        span.ml-3
+          = link_to edit_account_resume_path(resume) do
+            i.far.fa-edit.text-muted
+    .card-body
+      .d-flex.flex-column.flex-sm-row
+        .d-flex.flex-column.mr-4
+          .text-muted.text-center.mb-3
+            .h2.mb-0.font-weight-lighter= resume.answers.size
+            .small= t('.answers', count: resume.answers.size)
+          .text-muted.text-center.mb-3
+            .h2.mb-0.font-weight-lighter= resume.impressions_count
+            .small= t('.views', count: resume.impressions_count)
+        div
+          h5.card-title
+            = link_to resume, resume_path(resume)
+          .card-text== markdown2html resume.summary
+          .text-right.small
+            span.mr-3.text-muted
+              = distance_of_time_in_words_to_now resume.created_at
