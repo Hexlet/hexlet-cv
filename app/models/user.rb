@@ -36,7 +36,8 @@ class User < ApplicationRecord
   # end
 
   def to_s
-    "#{first_name} #{last_name}"
+    name = "#{first_name} #{last_name}"
+    name.strip.empty? ? 'Anonymous' : name
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
