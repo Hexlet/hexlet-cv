@@ -1,11 +1,12 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
   a.navbar-brand(href="/") HexletCV
   button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       - if user_signed_in?
-        = navbar_menu_item t('.add_resume'), new_account_resume_path
+        li.nav-item
+          = navbar_menu_item t('.add_resume'), new_account_resume_path
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')
             i.fas.fa-user
@@ -16,7 +17,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             <div class="dropdown-divider"></div>
             = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
       - else
-        = navbar_menu_item t('.sign_in'), new_user_session_path
-        = navbar_menu_item t('.register'), new_user_registration_path
+        li.nav-item
+          = navbar_menu_item t('.sign_in'), new_user_session_path
+        li.nav-item
+          = navbar_menu_item t('.register'), new_user_registration_path
 
 = render_flash_messages
