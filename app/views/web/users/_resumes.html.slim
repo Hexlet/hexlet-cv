@@ -1,6 +1,6 @@
 - resumes.each do |resume|
   .card.mb-3
-    - if is_owner
+    - if policy(resume).update?
       .card-header
         = resume.aasm.human_state
         span.ml-3
