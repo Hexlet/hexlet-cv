@@ -1,6 +1,6 @@
 - comments.each do |comment|
   .card.mb-3
     .card-header
-      = link_to comment.resume.name, resume_path(comment.resume)
+      = link_to comment.resume, resume_path(comment.resume)
     .card-body
-      .card-text== markdown2html comment.content
+      .card-text== markdown2html comment.to_s
