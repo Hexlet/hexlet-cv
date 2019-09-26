@@ -2,6 +2,7 @@ en:
   web:
     home:
       index:
+        last_answers: Last answers
     resumes:
       answers:
         new:

@@ -2,6 +2,7 @@ ru:
   web:
     home:
       index:
+        last_answers: Последние ответы
         answers:
           one: Ответ
           few: Ответа
