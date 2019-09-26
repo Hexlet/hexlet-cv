@@ -35,16 +35,16 @@
       .tab-content.py-3
         .tab-pane.fade.show.active id="resume"
           - if current_user == @user
-            = render 'resumes', resumes: current_user.resumes, is_owner: true
+            = render 'resumes', resumes: current_user.resumes
           - else
-            = render 'resumes', resumes: @user_resumes, is_owner: false
+            = render 'resumes', resumes: @user_resumes
         .tab-pane.fade id="answers"
           - if current_user == @user
-            = render 'answers', answers: current_user.resume_answers, is_owner: true
+            = render 'answers', answers: current_user.resume_answers
           - else
-            = render 'answers', answers: @user.resume_answers, is_owner: false
+            = render 'answers', answers: @user.resume_answers
         .tab-pane.fade id="comments"
           - if current_user == @user
-            = render 'comments', comments: current_user.resume_comments, is_owner: true
+            = render 'comments', comments: current_user.resume_comments
           - else
-            = render 'comments', comments: @user.resume_comments, is_owner: false
+            = render 'comments', comments: @user.resume_comments
