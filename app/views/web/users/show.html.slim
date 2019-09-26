@@ -3,32 +3,48 @@
 
 .container
   .row
-    .col-lg-9.mx-auto
-      .mb-5
-        .row.mt-3
-          .col-3
-            = han('user', 'first_name')
-          .col-9
-            = @user.first_name
-        .row.mt-3
-          .col-3
-            = han('user', 'last_name')
-          .col-9
-            = @user.last_name
-        .row.mt-3
-          .col-3
-            = t('.answers')
-          .col-9
-            = @user_answers.count
-        .row.mt-3
-          .col-3
-            = t('.likes')
-          .col-9
-            = @user_likes
-        .row.mt-3
-          .col-3
-            = t('.resumes')
-          .col-9
-            - @user_resumes.each do |resume|
-              div
-                = link_to resume, resume_path(resume)
+    .col-12.col-md-3.mb-3
+      .row.mt-3
+        .col-6
+          = han('user', 'first_name')
+        .col-6
+          = @user.first_name
+      .row.mt-3
+        .col-6
+          = han('user', 'last_name')
+        .col-6
+          = @user.last_name
+      .row.mt-3
+        .col-6
+          = t('.answers')
+        .col-6
+          = @user_answers.count
+      .row.mt-3
+        .col-6
+          = t('.likes')
+        .col-6
+          = @user_likes
+    .col-12.col-md-9
+      ul.nav.nav-tabs role="navigation"
+        li.nav-item
+          a.nav-link.px-3.active data-toggle="tab" href="#resume"= t('.tab_resumes')
+        li.nav-item
+          a.nav-link.px-3 data-toggle="tab" href="#answers"= t('.tab_answers')
+        li.nav-itemЗ
+          a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
+      .tab-content.py-3
+        .tab-pane.fade.show.active id="resume"
+          - if current_user == @user
+            = render 'resumes', resumes: current_user.resumes, is_owner: true
+          - else
+            = render 'resumes', resumes: @user_resumes, is_owner: false
+        .tab-pane.fade id="answers"
+          - if current_user == @user
+            = render 'answers', answers: current_user.resume_answers, is_owner: true
+          - else
+            = render 'answers', answers: @user.resume_answers, is_owner: false
+        .tab-pane.fade id="comments"
+          - if current_user == @user
+            = render 'comments', comments: current_user.resume_comments, is_owner: true
+          - else
+            = render 'comments', comments: @user.resume_comments, is_owner: false

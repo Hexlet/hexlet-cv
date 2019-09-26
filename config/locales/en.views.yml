@@ -42,21 +42,18 @@ en:
           publish: Publish
       profiles:
         edit: 
-          header: My profile
+          header: Settings
         show: 
-          header: My profile
-          edit_profile:  Edit profile
-          my_comments: My comments
-          my_answers: My recommendations
-    profiles:
-        show: 
-          header: My profile
+          header: Settings
     users:
       show:
         header: Profile
         answers: Answers
         likes: Likes
         resumes: Resume
+        tab_resumes: Resume
+        tab_answers: Answers
+        tab_comments: Comments
     answers:
       comments:
         edit: 

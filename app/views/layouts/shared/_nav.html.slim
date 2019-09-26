@@ -11,7 +11,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             i.fas.fa-user
           .dropdown-menu.dropdown-menu-right
             = link_to t('.my_profile'), user_path(current_user), class: 'dropdown-item'
-            = link_to t('.my_resumes'), account_resumes_path, class: 'dropdown-item'
             <div class="dropdown-divider"></div>
             = link_to t('.settings'), account_profile_path, class: 'dropdown-item'
             <div class="dropdown-divider"></div>
