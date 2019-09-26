@@ -1,7 +1,7 @@
 - answers.each do |answer|
   .card.mb-3
     .card-header
-      = link_to answer.resume.name, resume_path(answer.resume)
+      = link_to answer.resume, resume_path(answer.resume)
       - if is_owner
         span.ml-3
           = link_to edit_resume_answer_path(answer.resume, answer) do
