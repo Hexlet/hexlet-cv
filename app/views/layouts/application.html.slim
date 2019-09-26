@@ -2,13 +2,14 @@ doctype html
 html.h-100 lang="en"
   head
     = render 'layouts/shared/head'
-  body.d-flex.flex-column
-    = render 'layouts/shared/nav'
-    main.flex-shrink-0.my-5
-      - if content_for?(:header)
-        .container.mb-3
-          h1.h2= yield :header
-      = yield
+  body.h-100
+    .d-flex.flex-column.min-vh-100
+      = render 'layouts/shared/nav'
+      main.flex-shrink-0.my-5
+        - if content_for?(:header)
+          .container.mb-3
+            h1.h2= yield :header
+        = yield
 
-    = render 'layouts/shared/footer'
+      = render 'layouts/shared/footer'
     = content_for :js
