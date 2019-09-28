@@ -29,15 +29,3 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
-    placeholders:
-      resume_answer:
-        show:
-          content: Leave your recommendations on how to improve your resume. Editor supports markdown.
-    hints:
-      resume:
-        github_url: 'Link to profile: https://github.com/mokevnin'
-        name: PHP-developer, Android-developer, ...
-        skills_description: I know PHP, I use VIM, I worked with AWS
-        awards_description: Participation in Olympiads, hackathons, other specialized events. Courses.
-        works:
-          description: Commitments, achievements
