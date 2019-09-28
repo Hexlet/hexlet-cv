@@ -34,6 +34,9 @@ class Web::Answers::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     assert { answer.comments.exists?(attrs) }
+
+    answer_owner = answer.user
+    assert { Notification.exists?(user: answer_owner, kind: :new_answer_comment) }
   end
 
   test '#create (invalid comment)' do

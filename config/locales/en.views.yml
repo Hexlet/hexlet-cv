@@ -42,10 +42,13 @@ en:
         form:
           publish: Publish
       profiles:
-        edit: 
+        edit:
           header: Settings
-        show: 
+        show:
           header: Settings
+      notifications:
+        index:
+          header: Notifications
     users:
       show:
         header: Profile
@@ -57,5 +60,5 @@ en:
         tab_comments: Comments
     answers:
       comments:
-        edit: 
+        edit:
           header: Edit comment

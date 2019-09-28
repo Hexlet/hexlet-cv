@@ -34,6 +34,9 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     assert { resume.comments.exists?(attrs) }
+
+    resume_owner = resume.user
+    assert { Notification.exists?(user: resume_owner, kind: :new_comment) }
   end
 
   test '#create (invalid comment)' do

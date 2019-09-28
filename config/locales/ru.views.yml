@@ -59,10 +59,16 @@ ru:
         education_fields:
           remove_education: Удалить образование
       profiles:
-        edit: 
+        edit:
           header: Настройки
-        show: 
-          header: Настройки
+        show:
+          header: Мой профиль
+          edit_profile:  Редактировать профиль
+          my_comments: Мои коментарии
+          my_answers: Мои рекомендации
+      notifications:
+        index:
+          header: Уведомления
     users:
       show:
         header: Профиль

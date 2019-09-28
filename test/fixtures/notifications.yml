@@ -1,0 +1,11 @@
+answer_one:
+  user: one
+  resource: one (Resume::Answer)
+  state: read
+  kind: new_answer
+
+comment_one:
+  user: one
+  resource: one (Resume::Comment)
+  state: unread
+  kind: new_comment
