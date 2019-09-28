@@ -17,3 +17,10 @@ two:
   answer: two
   user: two
   answer_user: two
+
+two_one_full:
+  <<: *DEFAULTS
+  resume: two
+  answer: one
+  user: full
+  answer_user: one

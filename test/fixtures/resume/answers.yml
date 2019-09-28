@@ -23,3 +23,13 @@ full_one:
   <<: *DEFAULTS
   resume: full
   user: one
+
+one_full:
+  <<: *DEFAULTS
+  resume: one
+  user: full
+
+two_full:
+  <<: *DEFAULTS
+  resume: two
+  user: full
