@@ -7,4 +7,5 @@ class Resume::Answer::Like < ApplicationRecord
   belongs_to :resume
   belongs_to :answer, inverse_of: :likes, counter_cache: true
   belongs_to :user
+  has_many :notifications, as: :resource, dependent: :destroy
 end
