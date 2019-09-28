@@ -5,11 +5,11 @@
         .card.mb-3
           .card-body
             .d-flex.flex-column.flex-sm-row
-              .d-flex.flex-column.mr-4
-                .text-muted.text-center.mb-3
+              .d-flex.flex-sm-column.mr-4.text-center.mx-auto
+                .text-muted.mb-3.mr-3
                   .h2.mb-0.font-weight-lighter= resume.answers.size
                   .small= t('.answers', count: resume.answers.size)
-                .text-muted.text-center.mb-3
+                .text-muted.mb-3.mr-3
                   .h2.mb-0.font-weight-lighter= resume.impressions_count
                   .small= t('.views', count: resume.impressions_count)
                 / .text-muted.text-center
@@ -30,6 +30,7 @@
         div
           = link_to answer.resume, resume_path(answer.resume)
           .text-muted.small
+            div= truncate(answer.content, length: 80)
             span.mr-1= answer.resume.answers.size
             span= t('.answers', count: answer.resume.answers.size)
           hr
