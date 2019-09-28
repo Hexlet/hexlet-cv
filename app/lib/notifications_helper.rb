@@ -22,7 +22,7 @@ class NotificationsHelper
     {
       user: resource.user,
       user_path: user_path(resource.user),
-      answer_path: resume_path(resource.resume, anchor: "answer#{resource.id}")
+      answer_path: resume_path(resource.resume, anchor: "answer-#{resource.id}")
     }
   end
 
@@ -30,7 +30,7 @@ class NotificationsHelper
     {
       user: resource.user,
       user_path: user_path(resource.user),
-      comment_path: resume_path(resource.resume, anchor: "comment#{resource.id}")
+      comment_path: resume_path(resource.resume, anchor: "comment-#{resource.id}")
     }
   end
 
@@ -38,7 +38,7 @@ class NotificationsHelper
     {
       user: resource.user,
       user_path: user_path(resource.user),
-      answer_comment_path: resume_path(resource.resume, anchor: "answer_comment#{resource.id}")
+      answer_comment_path: resume_path(resource.resume, anchor: "answer_comment-#{resource.id}")
     }
   end
 
@@ -46,7 +46,7 @@ class NotificationsHelper
     {
       user: resource.user,
       user_path: user_path(resource.user),
-      answer_path: resume_path(resource.resume, anchor: "answer#{resource.answer.id}")
+      answer_path: resume_path(resource.resume, anchor: "answer-#{resource.answer.id}")
     }
   end
 end

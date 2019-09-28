@@ -29,7 +29,7 @@ script type="application/ld+json"
             .small
               - @resume.comments.each do |comment|
                 hr.my-2
-                .d-flex(id="comment#{comment.id}")
+                .d-flex(id="comment-#{comment.id}")
                   .mr-auto
                     span.mr-1.hexlet-cv-content.hexlet-cv-inline-paragraph
                       == markdown2html comment.content
@@ -59,11 +59,12 @@ script type="application/ld+json"
         .lead.mb-3= t('.recomendations')
 
         - @resume_answers.each do |answer|
-          .card.mb-4(id="answer#{answer.id}")
+          .card.mb-4(id="answer-#{answer.id}")
             .card-header.small.mb-2.d-flex
               .mr-auto
                 span.font-weight-bold= link_to answer.user, user_path(answer.user)
-                span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
+                span.ml-2.font-weight-light
+                  = link_to distance_of_time_in_words_to_now(answer.created_at), url_for(anchor: "answer-#{answer.id}"), class: 'text-muted'
               - if current_user == answer.user
                 div
                   span.mr-2
@@ -89,7 +90,7 @@ script type="application/ld+json"
                   .small
                     - answer.comments.each do |comment|
                       hr.my-2
-                      .d-flex(id="answer_comment#{comment.id}")
+                      .d-flex(id="answer_comment-#{comment.id}")
                         .mr-auto
                           span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
                             == markdown2html comment.content

@@ -18,12 +18,12 @@
         .col-6
           = t('.answers')
         .col-6
-          = @user_answers.count
+          = @user_resume_answers.count
       .row.mt-3
         .col-6
           = t('.likes')
         .col-6
-          = @user_likes
+          = @user_resume_answers_likes_count
     .col-12.col-md-9
       ul.nav.nav-tabs role="navigation"
         li.nav-item
@@ -34,17 +34,8 @@
           a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
       .tab-content.py-3
         .tab-pane.fade.show.active id="resume"
-          - if current_user == @user
-            = render 'resumes', resumes: current_user.resumes
-          - else
             = render 'resumes', resumes: @user_resumes
         .tab-pane.fade id="answers"
-          - if current_user == @user
-            = render 'answers', answers: current_user.resume_answers
-          - else
-            = render 'answers', answers: @user.resume_answers
+            = render 'answers', answers: @user_resume_answers
         .tab-pane.fade id="comments"
-          - if current_user == @user
-            = render 'comments', comments: current_user.resume_comments
-          - else
-            = render 'comments', comments: @user.resume_comments
+            = render 'comments', comments: @user_resume_comments
