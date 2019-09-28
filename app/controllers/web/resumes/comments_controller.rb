@@ -20,6 +20,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
     @comment.resume = resource_resume
     @comment.user = current_user
     if @comment.save
+      resource_resume.user.notifications.create!(kind: :new_comment, resource: @comment)
       f(:success)
       redirect_to resume_path(resource_resume)
     else
