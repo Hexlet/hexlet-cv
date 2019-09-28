@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_171224) do
+ActiveRecord::Schema.define(version: 2019_09_28_195336) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2019_09_28_171224) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "likes_count"
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
+    t.index ["user_id", "resume_id"], name: "index_resume_answers_on_user_id_and_resume_id", unique: true
     t.index ["user_id"], name: "index_resume_answers_on_user_id"
   end
 

@@ -17,7 +17,7 @@ two:
 without_likes:
   <<: *DEFAULTS
   resume: two
-  user: two
+  user: with_github
 
 full_one:
   <<: *DEFAULTS
