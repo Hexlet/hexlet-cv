@@ -29,7 +29,7 @@ script type="application/ld+json"
             .small
               - @resume.comments.each do |comment|
                 hr.my-2
-                .d-flex
+                .d-flex(id="comment#{comment.id}")
                   .mr-auto
                     span.mr-1.hexlet-cv-content.hexlet-cv-inline-paragraph
                       == markdown2html comment.content
@@ -43,7 +43,7 @@ script type="application/ld+json"
                       span.mr-2
                         = link_to edit_resume_comment_path(@resume, comment)
                           i.fas.fa-pen.text-secondary
-                          
+
                     = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
                       i.fas.fa-times.text-secondary
           hr.my-2
@@ -58,7 +58,7 @@ script type="application/ld+json"
       .lead.mb-3= t('.recomendations')
 
       - @resume_answers.each do |answer|
-        .card.mb-4
+        .card.mb-4(id="answer#{answer.id}")
           .card-header.small.mb-2.d-flex
             .mr-auto
               span.font-weight-bold= link_to answer.user, user_path(answer.user)
@@ -86,7 +86,7 @@ script type="application/ld+json"
                 .small
                   - answer.comments.each do |comment|
                     hr.my-2
-                    .d-flex
+                    .d-flex(id="answer_comment#{comment.id}")
                       .mr-auto
                         span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
                           == markdown2html comment.content
