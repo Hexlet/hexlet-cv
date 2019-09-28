@@ -38,4 +38,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def message_for_notification(notification)
+    ::NotificationsHelper.new(notification).message
+  end
 end
