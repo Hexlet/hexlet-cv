@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_22_153508) do
+ActiveRecord::Schema.define(version: 2019_09_28_171224) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
