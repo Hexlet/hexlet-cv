@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
   include AASM
 
   belongs_to :user
-  belongs_to :resourceable, polymorphic: true
+  belongs_to :resource, polymorphic: true
 
   aasm column: :state do
     state :unread, initial: true

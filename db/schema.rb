@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(version: 2019_09_22_153508) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "resourceable_type", null: false
-    t.integer "resourceable_id", null: false
+    t.string "resource_type", null: false
+    t.integer "resource_id", null: false
     t.string "state"
     t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["resourceable_type", "resourceable_id"], name: "index_notifications_on_resourceable_type_and_resourceable_id"
+    t.index ["resource_type", "resource_id"], name: "index_notifications_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 

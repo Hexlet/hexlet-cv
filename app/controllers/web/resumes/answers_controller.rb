@@ -19,7 +19,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
     @answer = resource_resume.answers.build resume_answer_params
     @answer.user = current_user
     if @answer.save
-      Notification.create!(kind: :new_answer, user: resource_resume.user, resourceable: @answer)
+      resource_resume.user.notifications.create!(kind: :new_answer, resource: @answer)
       f(:success)
       redirect_to resume_path(resource_resume)
     else
