@@ -66,8 +66,10 @@ script type="application/ld+json"
             - if current_user == answer.user
               div
                 span.mr-2
-                  = link_to t('.edit'), edit_resume_answer_path(@resume, answer)
-                = link_to t('.remove'), resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') }
+                  = link_to edit_resume_answer_path(@resume, answer) do
+                    i.fas.fa-pen.text-secondary
+                = link_to resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') } do
+                  i.fas.fa-times.text-secondary
           .card-body.d-flex
             .mr-3.h4
               - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
