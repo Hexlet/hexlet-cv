@@ -16,10 +16,8 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   end
 
   def create
-    @answer = resource_resume.answers.build resume_answer_params
-    @answer.user = current_user
-    if @answer.save
-      resource_resume.user.notifications.create!(kind: :new_answer, resource: @answer)
+    @answer = ResumeAnswerMutator.create(resource_resume, resume_answer_params, current_user)
+    if @answer.persisted?
       f(:success)
       redirect_to resume_path(resource_resume)
     else

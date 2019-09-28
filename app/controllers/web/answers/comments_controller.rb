@@ -16,6 +16,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   end
 
   def create
+    # TODO: move to mutator
     @comment = resource_answer.comments.build content: params[:resume_answer_comment][:content]
     @comment.resume = resource_answer.resume
     @comment.user = current_user
