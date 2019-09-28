@@ -12,6 +12,9 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
     answer = resume_answers(:without_likes)
     post answer_likes_path(answer)
     assert_response :redirect
+
+    answer_owner = answer.user
+    assert { Notification.exists?(user: answer_owner, kind: :new_answer_like) }
   end
 
   test '#destroy' do
