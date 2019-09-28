@@ -47,9 +47,9 @@ script type="application/ld+json"
                     = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
                       i.fas.fa-times.text-secondary
           hr.my-2
-          a.d-block.small.text-muted(href="#resume-#{@resume.id}" data-toggle="collapse")
+          a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-toggle="collapse")
             = t('.add_a_comment')
-          .collapse(id="resume-#{@resume.id}")
+          .collapse(id="new_resume_comment-#{@resume.id}")
             - if user_signed_in?
               = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
             - else
@@ -107,9 +107,9 @@ script type="application/ld+json"
                             = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
                               i.fas.fa-times.text-secondary
                 hr.my-2
-                a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
+                a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-toggle="collapse")
                   = t('.add_a_comment')
-                .collapse(id="answer-#{answer.id}")
+                .collapse(id="new_answer_comment-#{answer.id}")
                   - if user_signed_in?
                     = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
                   - else
