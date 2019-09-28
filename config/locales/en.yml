@@ -1,9 +1,9 @@
 en:
   notifications:
-    new_answer: User %{user} left a new answer for your resume
-    new_comment: User %{user} left a new comment for your resume
-    new_answer_comment: User %{user} left a new comment for your answer
-    new_answer_like: User %{user} likes your answer
+    new_answer_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{answer_path}">new answer</a> for your resume
+    new_comment_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{comment_path}">new comment</a> for your resume
+    new_answer_comment_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{answer_comment_path}">new comment</a> for your answer
+    new_answer_like_html: User <a href="%{user_path}">%{user}</a> likes <a href="%{answer_path}">your answer</a>
   confirm: Are you sure?
   date:
     formats:
