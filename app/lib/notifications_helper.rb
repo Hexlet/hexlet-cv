@@ -23,4 +23,12 @@ class NotificationsHelper
   def new_comment_params
     { user: resource.user }
   end
+
+  def new_answer_comment_params
+    { user: resource.user }
+  end
+
+  def new_answer_like_params
+    { user: resource.user }
+  end
 end
