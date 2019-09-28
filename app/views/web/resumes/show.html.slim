@@ -55,63 +55,65 @@ script type="application/ld+json"
             - else
               = render 'comment_requires'
 
-      .lead.mb-3= t('.recomendations')
+      - if @resume_answers.any?
+        .lead.mb-3= t('.recomendations')
 
-      - @resume_answers.each do |answer|
-        .card.mb-4(id="answer#{answer.id}")
-          .card-header.small.mb-2.d-flex
-            .mr-auto
-              span.font-weight-bold= link_to answer.user, user_path(answer.user)
-              span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
-            - if current_user == answer.user
-              div
-                span.mr-2
-                  = link_to edit_resume_answer_path(@resume, answer) do
-                    i.fas.fa-pen.text-secondary
-                = link_to resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') } do
-                  i.fas.fa-times.text-secondary
-          .card-body.d-flex
-            .mr-3.h4
-              - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
-                .text-center.text-muted.mb-2.mt-1.font-weight-light
-                  = answer.likes.count
-                - if like
-                  = link_to answer_like_path(answer, like), method: 'delete', class: 'text-decoration-none' do
-                    i.fas.fa-thumbs-up.text-secondary
-                - else
-                  = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
-                    i.far.fa-thumbs-up.text-secondary
-            .w-100
-              .hexlet-cv-content.mb-3
-                == markdown2html answer.content
-              - if answer.comments.any?
-                .small
-                  - answer.comments.each do |comment|
-                    hr.my-2
-                    .d-flex(id="answer_comment#{comment.id}")
-                      .mr-auto
-                        span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
-                          == markdown2html comment.content
-                        - if comment.user
-                          span.mr-1
-                            = link_to comment.user, user_path(comment.user)
-                        span.text-muted
-                          = l comment.created_at, format: :short
-                      - if comment.user == current_user
-                        div
-                          span.mr-2
-                            = link_to edit_answer_comment_path(answer, comment)
-                              i.fas.fa-pen.text-secondary
-                          = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
-                            i.fas.fa-times.text-secondary
-              hr.my-2
-              a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
-                = t('.add_a_comment')
-              .collapse(id="answer-#{answer.id}")
-                - if user_signed_in?
-                  = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
-                - else
-                  = render 'comment_requires'
+        - @resume_answers.each do |answer|
+          .card.mb-4(id="answer#{answer.id}")
+            .card-header.small.mb-2.d-flex
+              .mr-auto
+                span.font-weight-bold= link_to answer.user, user_path(answer.user)
+                span.ml-2.font-weight-light= distance_of_time_in_words_to_now answer.created_at
+              - if current_user == answer.user
+                div
+                  span.mr-2
+                    = link_to edit_resume_answer_path(@resume, answer) do
+                      i.fas.fa-pen.text-secondary
+                  = link_to resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') } do
+                    i.fas.fa-times.text-secondary
+            .card-body.d-flex
+              .mr-3.h4
+                - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
+                  .text-center.text-muted.mb-2.mt-1.font-weight-light
+                    = answer.likes.count
+                  - if like
+                    = link_to answer_like_path(answer, like), method: 'delete', class: 'text-decoration-none' do
+                      i.fas.fa-thumbs-up.text-secondary
+                  - else
+                    = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
+                      i.far.fa-thumbs-up.text-secondary
+              .w-100
+                .hexlet-cv-content.mb-3
+                  == markdown2html answer.content
+                - if answer.comments.any?
+                  .small
+                    - answer.comments.each do |comment|
+                      hr.my-2
+                      .d-flex(id="answer_comment#{comment.id}")
+                        .mr-auto
+                          span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
+                            == markdown2html comment.content
+                          - if comment.user
+                            span.mr-1
+                              = link_to comment.user, user_path(comment.user)
+                          span.text-muted
+                            = l comment.created_at, format: :short
+                        - if comment.user == current_user
+                          div
+                            span.mr-2
+                              = link_to edit_answer_comment_path(answer, comment)
+                                i.fas.fa-pen.text-secondary
+                            = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
+                              i.fas.fa-times.text-secondary
+                hr.my-2
+                a.d-block.small.text-muted(href="#answer-#{answer.id}" data-toggle="collapse")
+                  = t('.add_a_comment')
+                .collapse(id="answer-#{answer.id}")
+                  - if user_signed_in?
+                    = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
+                  - else
+                    = render 'comment_requires'
+
       - if user_signed_in?
         - if @current_user_answer
           .text-center.lead= t('.answer_exists')

@@ -34,11 +34,11 @@
   .col-sm-9
     = link_to @resume.github_url, @resume.github_url, target: '_blank'
 
-.d-flex
-  h4.my-4.mr-3= t('.work')
-  hr.my-auto.w-100
-
 - if @resume_works.any?
+  .d-flex
+    h4.my-4.mr-3= t('.work')
+    hr.my-auto.w-100
+
   - @resume_works.each do |work|
     .mb-4
       b= work
