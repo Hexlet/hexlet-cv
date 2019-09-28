@@ -54,5 +54,6 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     assert { !Resume::Answer.exists?(resume_answer.id) }
+    assert { !Notification.exists?(resource: resume_answer) }
   end
 end

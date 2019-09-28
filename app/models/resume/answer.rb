@@ -9,6 +9,7 @@ class Resume::Answer < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Like'
   has_many :comments, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
+  has_many :notifications, as: :resource, dependent: :destroy
 
   def to_s
     content

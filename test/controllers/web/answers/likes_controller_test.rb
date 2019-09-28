@@ -21,5 +21,6 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
     like = resume_answer_likes(:one)
     delete answer_like_path(like.answer, like)
     assert_response :redirect
+    assert { !Notification.exists?(resource: like) }
   end
 end

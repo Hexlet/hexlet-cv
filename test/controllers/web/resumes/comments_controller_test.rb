@@ -50,5 +50,6 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     comment = resume_comments(:two)
     delete resume_comment_path(comment.resume, comment)
     assert_response :redirect
+    assert { !Notification.exists?(resource: comment) }
   end
 end

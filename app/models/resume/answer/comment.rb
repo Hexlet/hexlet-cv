@@ -7,6 +7,7 @@ class Resume::Answer::Comment < ApplicationRecord
   belongs_to :answer, inverse_of: :comments
   belongs_to :user
   belongs_to :answer_user, class_name: 'User'
+  has_many :notifications, as: :resource, dependent: :destroy
 
   def to_s
     content
