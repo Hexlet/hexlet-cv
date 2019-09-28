@@ -13,7 +13,7 @@ class NotificationsHelper
 
   def message
     params = send("#{kind}_params")
-    I18n.t("#{kind}_html", scope: [:notifications], **params).html_safe
+    I18n.t("#{kind}_html", scope: [:notifications], **params)
   end
 
   private
