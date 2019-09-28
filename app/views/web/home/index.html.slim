@@ -28,7 +28,7 @@
       hr
       - @answers.each do |answer|
         div
-          = link_to answer.resume, resume_path(answer.resume)
+          = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
           .text-muted.small
             div= truncate(answer.content, length: 80)
             span.mr-1= answer.resume.answers.size
