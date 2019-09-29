@@ -12,7 +12,7 @@ class Resume < ApplicationRecord
   validates :name, presence: true
   validates :english_fluency, presence: true
   validates :github_url, presence: true
-  validates :summary, presence: true, length: { minimum: 200, maximum: 500 }
+  validates :summary, presence: true, length: { minimum: 200 }
   validates :skills_description, presence: true
   validates :awards_description, presence: true
 
