@@ -40,7 +40,7 @@ module ApplicationHelper
   end
 
   def message_for_notification(notification)
-    ::NotificationsHelper.new(notification).message
+    ::NotificationsHelper.message(notification)
   end
 
   def icon_class_for_notification(notification)
