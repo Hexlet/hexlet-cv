@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   before_action :last_notifications
 
   def last_notifications
-    @last_notifications ||= current_user.notifications.limit(5)
+    @last_notifications ||= current_user.notifications.limit(5) if current_user
   end
 end
