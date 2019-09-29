@@ -1,0 +1,11 @@
+.nav.nav-pills.flex-column
+  = navbar_menu_item t('.all_resumes'), root_path
+  = navbar_menu_item t('.my_profile'), user_path(current_user)
+  = navbar_menu_item t('.settings'), account_profile_path
+  = navbar_menu_item t('.notifications'), account_notifications_path
+hr
+- @last_notifications.each do |notification|
+  .d-flex
+    i.mt-1.far class=icon_class_for_notification(notification)
+    .text-muted.small.ml-2
+      p== message_for_notification(notification)

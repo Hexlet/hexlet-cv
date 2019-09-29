@@ -8,16 +8,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         = navbar_menu_item t('.add_resume'), new_account_resume_path
-        li.nav-item
-          = link_to account_notifications_path, class: 'nav-link' do
-            i.far.fa-bell
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(data-toggle="dropdown" href='#')
-            i.fas.fa-user
-          .dropdown-menu.dropdown-menu-right
-            = link_to t('.my_profile'), user_path(current_user), class: 'dropdown-item'
-            = link_to t('.settings'), account_profile_path, class: 'dropdown-item'
-            = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        = navbar_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
       - else
         = navbar_menu_item t('.sign_in'), new_user_session_path
         = navbar_menu_item t('.register'), new_user_registration_path
