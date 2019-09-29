@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
   before_action do
     title :base, scope: 'web'
   end
+
+  before_action :last_notifications
+
+  def last_notifications
+    @last_notifications ||= current_user.notifications.limit(5)
+  end
 end

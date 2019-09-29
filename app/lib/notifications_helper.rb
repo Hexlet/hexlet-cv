@@ -5,6 +5,17 @@ class NotificationsHelper
 
   attr_reader :notification
 
+  def self.notification_icon(notification)
+    notification_icon_map = {
+      new_answer: 'fa-file-alt',
+      new_comment: 'fa-comment',
+      new_answer_comment: 'fa-comment',
+      new_answer_like: 'fa-heart'
+    }
+
+    notification_icon_map[notification.kind.to_sym]
+  end
+
   def initialize(notification)
     @notification = notification
   end

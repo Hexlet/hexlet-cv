@@ -42,4 +42,8 @@ module ApplicationHelper
   def message_for_notification(notification)
     ::NotificationsHelper.new(notification).message
   end
+
+  def icon_class_for_notification(notification)
+    ::NotificationsHelper.notification_icon(notification)
+  end
 end
