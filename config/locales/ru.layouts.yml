@@ -1,13 +1,18 @@
 ru:
   layouts:
     shared:
+      sidebar:
+        all_resumes: Все резюме
+        my_profile: Мой профиль
+        settings: Настройки
+        notifications: Уведомления
       nav:
         add_resume: Добавить резюме
         how_to_create_resume: Как составлять резюме
         my_profile: Мой профиль
         settings: Настройки
-        sign_out: Выйти
         sign_in: Войти
+        sign_out: Выйти
         register: Регистрация
       footer:
         about: О проекте

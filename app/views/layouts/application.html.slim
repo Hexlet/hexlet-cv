@@ -4,11 +4,15 @@ html.h-100 lang="en"
     = render 'layouts/shared/head'
   body.d-flex.flex-column.h-100
     = render 'layouts/shared/nav'
-    main.my-5
-      - if content_for?(:header)
-        .container.mb-3
-          h1.h2= yield :header
-      = yield
+    .container.my-4
+      main
+        .row
+          .col-lg-3.col-xl-2
+            = render 'layouts/shared/sidebar'
+          .col-lg-9.col-xl-10
+              - if content_for?(:header)
+                h1.h2= yield :header
+              = yield
 
     = render 'layouts/shared/footer'
     = content_for :js

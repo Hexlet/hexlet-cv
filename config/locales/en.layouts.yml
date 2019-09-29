@@ -1,8 +1,14 @@
 en:
   layouts:
     shared:
+      sidebar:
+        all_resumes: All resumes
+        my_profile: My profile
+        settings: Settings
+        notifications: Notifications
       nav:
         add_resume: Add resume
+        how_to_create_resume: How to create resume
         my_profile: My profile
         settings: Settings
         sign_out: Sign out
