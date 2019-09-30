@@ -1,41 +1,40 @@
 = content_for :header do
   = t('.header')
 
-.container
-  .row
-    .col-12.col-md-3.mb-3
-      .row.mt-3
-        .col-6
-          = han('user', 'first_name')
-        .col-6
-          = @user.first_name
-      .row.mt-3
-        .col-6
-          = han('user', 'last_name')
-        .col-6
-          = @user.last_name
-      .row.mt-3
-        .col-6
-          = t('.answers')
-        .col-6
-          = @user_resume_answers.count
-      .row.mt-3
-        .col-6
-          = t('.likes')
-        .col-6
-          = @user_resume_answers_likes_count
-    .col-12.col-md-9
-      ul.nav.nav-tabs role="navigation"
-        li.nav-item
-          a.nav-link.px-3.active data-toggle="tab" href="#resume"= t('.tab_resumes')
-        li.nav-item
-          a.nav-link.px-3 data-toggle="tab" href="#answers"= t('.tab_answers')
-        li.nav-itemЗ
-          a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
-      .tab-content.py-3
-        .tab-pane.fade.show.active id="resume"
-            = render 'resumes', resumes: @user_resumes
-        .tab-pane.fade id="answers"
-            = render 'answers', answers: @user_resume_answers
-        .tab-pane.fade id="comments"
-            = render 'comments', comments: @user_resume_comments
+.row
+  .col-12.col-md-3.mb-3
+    .row.mt-3
+      .col-6
+        = han('user', 'first_name')
+      .col-6
+        = @user.first_name
+    .row.mt-3
+      .col-6
+        = han('user', 'last_name')
+      .col-6
+        = @user.last_name
+    .row.mt-3
+      .col-6
+        = t('.answers')
+      .col-6
+        = @user_resume_answers.count
+    .row.mt-3
+      .col-6
+        = t('.likes')
+      .col-6
+        = @user_resume_answers_likes_count
+  .col-12.col-md-9
+    ul.nav.nav-tabs role="navigation"
+      li.nav-item
+        a.nav-link.px-3.active data-toggle="tab" href="#resume"= t('.tab_resumes')
+      li.nav-item
+        a.nav-link.px-3 data-toggle="tab" href="#answers"= t('.tab_answers')
+      li.nav-itemЗ
+        a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
+    .tab-content.py-3
+      .tab-pane.fade.show.active id="resume"
+          = render 'resumes', resumes: @user_resumes
+      .tab-pane.fade id="answers"
+          = render 'answers', answers: @user_resume_answers
+      .tab-pane.fade id="comments"
+          = render 'comments', comments: @user_resume_comments
