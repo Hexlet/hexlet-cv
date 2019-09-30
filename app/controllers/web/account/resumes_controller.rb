@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Web::Account::ResumesController < Web::Account::ApplicationController
-  def index
-    @resumes = current_user.resumes
-  end
+  def index; end
 
   def new
     @resume = Resume.new

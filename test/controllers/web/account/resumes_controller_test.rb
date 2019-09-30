@@ -8,11 +8,6 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
   end
 
-  test '#index' do
-    get account_resumes_path
-    assert_response :success
-  end
-
   test '#new' do
     get new_account_resume_path
     assert_response :success
