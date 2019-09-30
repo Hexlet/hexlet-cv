@@ -23,13 +23,4 @@
                 = link_to resume.user, user_path(resume.user)
     = paginate @resumes
   .col-lg-3
-    h4.text-muted= t('.last_answers')
-    hr
-    - @answers.each do |answer|
-      div
-        = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
-        .text-muted.small
-          div= truncate(answer.content, length: 80)
-          span.mr-1= answer.resume.answers.size
-          span= t('.answers', count: answer.resume.answers.size)
-        hr
+    = render 'layouts/shared/sidebar_right'
