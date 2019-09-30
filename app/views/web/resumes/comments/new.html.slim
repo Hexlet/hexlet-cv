@@ -1,5 +1,4 @@
 - content_for :header do
   = t('.header')
 
-.container
-  = render 'web/shared/comment_form', comment: @comment, url: resume_comments_path(resource_resume)
+= render 'web/shared/comment_form', comment: @comment, url: resume_comments_path(resource_resume)
