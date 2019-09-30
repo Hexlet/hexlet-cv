@@ -1,26 +1,22 @@
-.row
-  .col-lg-9
-    - @resumes.each do |resume|
-      .card.mb-3
-        .card-body
-          .d-flex.flex-column.flex-sm-row
-            .d-flex.flex-sm-column.mr-4.text-center.mx-auto
-              .text-muted.mb-3.mr-3
-                .h2.mb-0.font-weight-lighter= resume.answers.size
-                .small= t('.answers', count: resume.answers.size)
-              .text-muted.mb-3.mr-3
-                .h2.mb-0.font-weight-lighter= resume.impressions_count
-                .small= t('.views', count: resume.impressions_count)
-              / .text-muted.text-center
-              /   .h2.mb-0.font-weight-lighter= 12
-              /   .small= t('.likes')
-            div
-              h5.card-title= link_to resume, resume_path(resume)
-              .card-text== markdown2html resume.summary
-              .text-right.small
-                span.mr-3.text-muted
-                  = distance_of_time_in_words_to_now resume.created_at
-                = link_to resume.user, user_path(resume.user)
-    = paginate @resumes
-  .col-lg-3
-    = render 'layouts/shared/sidebar_right'
+- @resumes.each do |resume|
+  .card.mb-3
+    .card-body
+      .d-flex.flex-column.flex-sm-row
+        .d-flex.flex-sm-column.mr-4.text-center.mx-auto
+          .text-muted.mb-3.mr-3
+            .h2.mb-0.font-weight-lighter= resume.answers.size
+            .small= t('.answers', count: resume.answers.size)
+          .text-muted.mb-3.mr-3
+            .h2.mb-0.font-weight-lighter= resume.impressions_count
+            .small= t('.views', count: resume.impressions_count)
+          / .text-muted.text-center
+          /   .h2.mb-0.font-weight-lighter= 12
+          /   .small= t('.likes')
+        div
+          h5.card-title= link_to resume, resume_path(resume)
+          .card-text== markdown2html resume.summary
+          .text-right.small
+            span.mr-3.text-muted
+              = distance_of_time_in_words_to_now resume.created_at
+            = link_to resume.user, user_path(resume.user)
+= paginate @resumes
