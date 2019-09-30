@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def last_answers
-    @last_answers = Resume::Answer.limit(10).order(id: :desc)
+    @last_answers ||= Resume::Answer.web
   end
 end
