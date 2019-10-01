@@ -33,7 +33,10 @@
         a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
     .tab-content.py-3
       .tab-pane.fade.show.active id="resume"
-          = render 'resumes', resumes: @user_resumes
+          - if current_user == @user
+            = render 'resumes', resumes: current_user.resumes
+          - else
+            = render 'resumes', resumes: @user_resumes
       .tab-pane.fade id="answers"
           = render 'answers', answers: @user_resume_answers
       .tab-pane.fade id="comments"
