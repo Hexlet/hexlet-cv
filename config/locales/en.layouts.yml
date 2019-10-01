@@ -6,6 +6,8 @@ en:
         my_profile: My profile
         settings: Settings
         notifications: Notifications
+      sidebar_right:
+        last_answers: Last answers
       nav:
         add_resume: Add resume
         how_to_create_resume: How to create resume

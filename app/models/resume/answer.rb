@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Resume::Answer < ApplicationRecord
+  include Resume::AnswerRepository
   # FIXME: add unique index
   validates :resume, uniqueness: { scope: :user }
   validates :content, presence: true, length: { minimum: 200 }

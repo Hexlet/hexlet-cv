@@ -1,23 +1,20 @@
-.container
-  .row
-    .col-lg-8.mx-auto
-      = simple_form_for [:account, @resume], wrapper: 'horizontal_form' do |f|
-        = f.input :name
-        = f.input :english_fluency
-        = f.input :github_url
-        = f.input :summary, input_html: { rows: 10 }
-        = f.input :skills_description, input_html: { rows: 5 }
-        = f.input :awards_description, input_html: { rows: 5 }
-        h3= t('.work')
-        #works
-          = f.simple_fields_for :works do |work|
-            = render 'work_fields', f: work
-          = link_to_add_association t('.add_work'), f, :works
-        h3= t('.education')
-        #educations
-          = f.simple_fields_for :educations do |education|
-            = render 'education_fields', f: education
-          = link_to_add_association t('.add_education'), f, :educations
-        .d-flex.mt-5
-          .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
-          .mr-3= f.submit class: 'btn btn-outline-primary'
+= simple_form_for [:account, @resume], wrapper: 'horizontal_form' do |f|
+  = f.input :name
+  = f.input :english_fluency
+  = f.input :github_url
+  = f.input :summary, input_html: { rows: 10 }
+  = f.input :skills_description, input_html: { rows: 5 }
+  = f.input :awards_description, input_html: { rows: 5 }
+  h3= t('.work')
+  #works
+    = f.simple_fields_for :works do |work|
+      = render 'work_fields', f: work
+    = link_to_add_association t('.add_work'), f, :works
+  h3= t('.education')
+  #educations
+    = f.simple_fields_for :educations do |education|
+      = render 'education_fields', f: education
+    = link_to_add_association t('.add_education'), f, :educations
+  .d-flex.mt-5
+    .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
+    .mr-3= f.submit class: 'btn btn-outline-primary'

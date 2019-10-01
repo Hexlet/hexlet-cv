@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :title
   helper_method :meta_tag_title
   helper_method :last_notifications
+  helper_method :last_answers
 
   before_action do
     title :base, scope: 'web'
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def last_notifications
     @last_notifications ||= current_user.notifications.order(created_at: :desc).limit(5) if current_user
+  end
+
+  def last_answers
+    @last_answers ||= Resume::Answer.web
   end
 end

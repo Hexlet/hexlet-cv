@@ -1,9 +1,8 @@
 - content_for :header do
   = t('.header')
 
-.container
-  - @notifications.each do |notification|
-    .d-flex
-      i.mt-1.mr-2.far class=icon_class_for_notification(notification)
-      p== message_for_notification(notification)
+- @notifications.each do |notification|
+  .d-flex
+    i.mt-1.mr-2.far class=icon_class_for_notification(notification)
+    p== message_for_notification(notification)
 

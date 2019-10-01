@@ -6,6 +6,12 @@ ru:
         my_profile: Мой профиль
         settings: Настройки
         notifications: Уведомления
+      sidebar_right:
+        last_answers: Последние ответы
+        answers:
+          one: Ответ
+          few: Ответа
+          many: Ответов
       nav:
         add_resume: Добавить резюме
         how_to_create_resume: Как составлять резюме

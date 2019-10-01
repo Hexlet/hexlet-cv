@@ -3,6 +3,5 @@
 class Web::HomeController < ApplicationController
   def index
     @resumes = Resume.web.page(params[:page])
-    @answers = Resume::Answer.limit(10).order(id: :desc)
   end
 end
