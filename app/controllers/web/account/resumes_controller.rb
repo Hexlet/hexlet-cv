@@ -12,7 +12,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     if @resume.save
       @resume.publish! if params[:publish]
       f(:success)
-      redirect_to action: :index
+      redirect_to user_path(current_user)
     else
       render :new
     end
