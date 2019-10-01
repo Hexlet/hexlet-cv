@@ -1,0 +1,13 @@
+- content_for :header do
+  = t('.header')
+
+- @resumes.each do |resume|
+  .card.mb-3
+    .card-header= resume.aasm.human_state
+    .card-body
+      h5.card-title
+        = link_to resume, resume_path(resume)
+        span.ml-3
+          = link_to edit_account_resume_path(resume) do
+            i.far.fa-edit.text-muted
+      .card-text= simple_format resume.summary

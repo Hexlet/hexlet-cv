@@ -2,6 +2,7 @@
   = navbar_menu_item t('.all_resumes'), root_path
   - if signed_in?
     = navbar_menu_item t('.my_profile'), user_path(current_user)
+    = navbar_menu_item t('.my_resume'), account_resumes_path
     = navbar_menu_item t('.settings'), account_profile_path
     = navbar_menu_item t('.notifications'), account_notifications_path
     hr

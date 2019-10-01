@@ -4,6 +4,7 @@ en:
       sidebar:
         all_resumes: All resumes
         my_profile: My profile
+        my_resume: My resume
         settings: Settings
         notifications: Notifications
       sidebar_right:
