@@ -58,9 +58,7 @@
 
   - @resume_educations.each do |education|
     .mb-4
-      b= education.faculty
-      | ,&nbsp;
-      = education.institution
+      = education.description
       .small.text-muted.mt-1.mb-2
         = l education.begin_date, format: :discard_day
         - if education.end_date

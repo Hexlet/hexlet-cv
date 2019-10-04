@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory 'resume/education' do
-    institution
+    description
     begin_date
   end
 end

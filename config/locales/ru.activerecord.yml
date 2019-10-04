@@ -32,6 +32,7 @@ ru:
         end_date: Дата конца
         description: Описание
       resume/education:
+        description: Описание
         institution: Учебное заведение
         faculty: Факультет
         begin_date: Дата начала

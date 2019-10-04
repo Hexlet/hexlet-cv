@@ -2,21 +2,18 @@
 
 one:
   resume: one
-  institution: MyString
-  faculty: MyString
+  description: MyString
   begin_date: 2010-09-01
   end_date: 2014-07-01
 
 two:
   resume: two
-  institution: MyString
-  faculty: MyString
+  description: MyString
   begin_date: 2014-09-01
   end_date: 2018-07-01
 
 full_1:
   resume: full
-  institution: Ташкентский Университет Информационных Технологий
-  faculty: Телекоммуникации
+  description: Телекоммуникации, Ташкентский Университет Информационных Технологий
   begin_date: 2014-09-01
   end_date: 2018-07-01
