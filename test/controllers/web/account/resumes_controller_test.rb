@@ -70,7 +70,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
       resume: { name: resume.name }
     }
     patch account_resume_path(resume), params: params
-    assert resume.reload.state == 'draft'
+    assert { resume.reload.draft? }
     assert_response :redirect
   end
 end
