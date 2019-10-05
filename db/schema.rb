@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_195336) do
+ActiveRecord::Schema.define(version: 2019_10_04_151441) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2019_09_28_195336) do
     t.text "awards_description"
     t.string "english_fluency"
     t.integer "impressions_count", default: 0
+    t.integer "answers_count", default: 0
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 

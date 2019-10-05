@@ -1,11 +1,15 @@
+.btn-group.mb-3
+  - %w(newest popular without_answers).each do |filter|
+    = filter_link t(".#{filter}"), {scope: filter}, class: 'btn btn-light'
+
 - @resumes.each do |resume|
   .card.mb-3
     .card-body
       .d-flex.flex-column.flex-sm-row
         .d-flex.flex-sm-column.mr-4.text-center.mx-auto
           .text-muted.mb-3.mr-3
-            .h2.mb-0.font-weight-lighter= resume.answers.size
-            .small= t('.answers', count: resume.answers.size)
+            .h2.mb-0.font-weight-lighter= resume.answers_count
+            .small= t('.answers', count: resume.answers_count)
           .text-muted.mb-3.mr-3
             .h2.mb-0.font-weight-lighter= resume.impressions_count
             .small= t('.views', count: resume.impressions_count)

@@ -2,6 +2,9 @@ ru:
   web:
     home:
       index:
+        newest: Новые
+        popular: Популярные
+        without_answers: Без рекоммендаций
         answers:
           one: Ответ
           few: Ответа
@@ -47,6 +50,9 @@ ru:
           header: Редактирование резюме
         index:
           header: Мои резюме
+          draft: Черновики
+          all: Все
+          published: Опубликованные
         form:
           work: Опыт работы
           education: Образование

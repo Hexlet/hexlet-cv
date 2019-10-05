@@ -1,6 +1,10 @@
 - content_for :header do
   = t('.header')
 
+.btn-group.mb-3
+  - %w(all draft published).each do |filter|
+    = filter_link t(".#{filter}"), {scope: filter}, class: 'btn btn-light'
+
 - @resumes.each do |resume|
   .card.mb-3
     .card-header= resume.aasm.human_state

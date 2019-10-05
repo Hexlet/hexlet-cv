@@ -3,6 +3,8 @@
 class Web::Account::ResumesController < Web::Account::ApplicationController
   def index
     @resumes = current_user.resumes
+    @resumes = @resumes.draft if params[:scope] == 'draft'
+    @resumes = @resumes.published if params[:scope] == 'published'
   end
 
   def new

@@ -46,4 +46,9 @@ module ApplicationHelper
   def icon_class_for_notification(notification)
     ::NotificationsHelper.notification_icon(notification)
   end
+
+  def filter_link(name, path, options = {}, &block)
+    options[:class] = [options.fetch(:class, nil), active?(path)].reject(&:blank?).join(' ')
+    link_to name, path, options, &block
+  end
 end
