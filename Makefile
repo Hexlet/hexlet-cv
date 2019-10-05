@@ -23,7 +23,6 @@ start:
 
 lint:
 	bundle exec rubocop
-	bundle exec reek
 
 linter-fix:
 	bundle exec rubocop --auto-correct
