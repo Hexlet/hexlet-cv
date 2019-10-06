@@ -18,7 +18,7 @@ class Resume < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :answer_likes, through: :answers, source: :likes
-  has_many :educations, -> { order(begin_date: :desc) }, inverse_of: :resume, dependent: :destroy
+  has_many :educations, -> { order(end_date: :desc) }, inverse_of: :resume, dependent: :destroy
   has_many :works, -> { order(end_date: :desc) }, inverse_of: :resume, dependent: :destroy
   has_many :comments, inverse_of: :resume, dependent: :destroy
 
