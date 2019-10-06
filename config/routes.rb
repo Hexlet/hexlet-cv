@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'pages/about'
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
 
   scope module: :web do
+    get 'pages/about'
+
     root 'home#index'
     resources :resumes do
       scope module: :resumes do
