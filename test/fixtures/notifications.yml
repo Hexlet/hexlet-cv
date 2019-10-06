@@ -1,11 +1,31 @@
-answer_one:
+answer_one_by_one:
   user: one
   resource: one (Resume::Answer)
   state: read
   kind: new_answer
 
-comment_one:
+resume_comment_one_by_one:
   user: one
   resource: one (Resume::Comment)
   state: unread
   kind: new_comment
+
+full_one_answer_full:
+  user: full
+  resource: full_one (Resume::Answer)
+  state: unread
+  kind: new_answer
+
+full_one_comment_full:
+  user: full
+  resource: full_one (Resume::Comment)
+  state: unread
+  kind: new_comment
+
+two_full_one_answer_comment_full:
+  user: full
+  resource: two_full_one (Resume::Answer::Comment)
+  state: unread
+  kind: new_answer_comment
+
+# FIXME: add likes to resume and answers

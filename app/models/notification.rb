@@ -3,6 +3,8 @@
 class Notification < ApplicationRecord
   include AASM
 
+  validates :kind, inclusion: { in: %w[new_answer new_comment new_answer_like new_answer_comment] }
+
   belongs_to :user
   belongs_to :resource, polymorphic: true
 

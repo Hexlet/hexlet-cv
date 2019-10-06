@@ -70,8 +70,8 @@ ru:
           header: Уведомления
     users:
       show:
-        header: Профиль
         answers: Ответов
+        comments: Комментариев
         likes: Лайков
         tab_resumes: Резюме
         tab_answers: Ответы

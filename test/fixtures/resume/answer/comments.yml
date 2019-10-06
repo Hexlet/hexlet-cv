@@ -24,3 +24,10 @@ two_one_full:
   answer: one
   user: full
   answer_user: one
+
+two_full_one:
+  <<: *DEFAULTS
+  resume: two
+  answer: two_full
+  user: one
+  answer_user: full

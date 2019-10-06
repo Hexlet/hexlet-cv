@@ -7,14 +7,14 @@ html.h-100 lang="en"
     .container.my-4
       main
         .row
-          .col-lg-2
-            = render 'layouts/shared/sidebar'
-          .col-lg-8
+          .col-md-2
+            = render 'layouts/shared/menu'
+          .col-md-8
             - if content_for?(:header)
               h1.h2= yield :header
             = yield
-          .col-lg-2
-            = render 'layouts/shared/sidebar_right'
+          .col-md-2
+            = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'
     = content_for :js

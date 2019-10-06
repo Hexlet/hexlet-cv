@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::UsersController < ApplicationController
+  def index; end
+
   def show
     @user = User.find(params[:id])
     @user_resume_answers = @user.resume_answers

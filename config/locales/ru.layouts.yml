@@ -1,18 +1,21 @@
 ru:
   layouts:
     shared:
-      sidebar:
+      menu:
         all_resumes: Все резюме
+        users: Пользователи
         my_profile: Мой профиль
         my_resume: Мои резюме
         settings: Настройки
         notifications: Уведомления
-      sidebar_right:
-        last_answers: Последние ответы
+      last_answers:
+        title: Последние ответы
         answers:
-          one: Ответ
-          few: Ответа
-          many: Ответов
+          one: 1 Ответ
+          few: |
+            %{count} Ответа
+          many: |
+            %{count} Ответов
       nav:
         add_resume: Добавить резюме
         how_to_create_resume: Как составлять резюме

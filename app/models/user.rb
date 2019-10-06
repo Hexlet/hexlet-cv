@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   def self.from_omniauth(auth)
-    if (exist_user = User.find_by(email: auth.info.email))
+    exist_user = User.find_by(email: auth.info.email)
+    if exist_user
       exist_user.provider = auth.provider
       exist_user.uid = auth.uid
       exist_user.save
@@ -32,14 +33,13 @@ class User < ApplicationRecord
     end
   end
 
-  # def guest?
-  #   false
-  # end
+  def full_name
+    return 'Anonymous' if !first_name? || !last_name?
 
-  def to_s
-    name = "#{first_name} #{last_name}"
-    name.strip.empty? ? 'Anonymous' : name
+    "#{first_name} #{last_name}"
   end
+
+  alias to_s full_name
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
   # def send_devise_notification(notification, *args)
