@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
 
   scope module: :web do
-    get 'pages/about'
-
     root 'home#index'
     resources :resumes do
       scope module: :resumes do
@@ -28,5 +26,10 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :pages, only: [] do
+      collection do
+        get 'about'
+      end
+    end
   end
 end
