@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Resume::AnswerRepository
+module Resume::CommentRepository
   extend ActiveSupport::Concern
 
   included do
