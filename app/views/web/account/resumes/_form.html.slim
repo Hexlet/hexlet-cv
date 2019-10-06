@@ -7,14 +7,18 @@
   = f.input :awards_description, input_html: { rows: 5 }
   h3= t('.work')
   #works
+    = link_to_add_association t('.add_work'), f, :works, id: 'addWork',
+            'data-association-insertion-node' => '#addWork',
+            'data-association-insertion-method' => 'after'
     = f.simple_fields_for :works do |work|
       = render 'work_fields', f: work
-    = link_to_add_association t('.add_work'), f, :works
   h3= t('.education')
   #educations
+    = link_to_add_association t('.add_education'), f, :educations, id: 'addEducation',
+            'data-association-insertion-node' => '#addEducation',
+            'data-association-insertion-method' => 'after'
     = f.simple_fields_for :educations do |education|
       = render 'education_fields', f: education
-    = link_to_add_association t('.add_education'), f, :educations
   .d-flex.mt-5
     .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
     .mr-3= f.submit class: 'btn btn-outline-primary'
