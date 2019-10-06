@@ -4,7 +4,7 @@ require 'test_helper'
 
 class Web::PagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get about' do
-    get about_pages_url
+    get '/pages/about'
     assert_response :success
   end
 end

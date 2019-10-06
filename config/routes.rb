@@ -26,10 +26,6 @@ Rails.application.routes.draw do
     end
 
     resources :users
-    resources :pages, only: [] do
-      collection do
-        get 'about'
-      end
-    end
+    resources :pages
   end
 end
