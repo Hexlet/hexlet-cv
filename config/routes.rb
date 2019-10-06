@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'pages/about'
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
 
   scope module: :web do
@@ -27,5 +26,6 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :pages
   end
 end
