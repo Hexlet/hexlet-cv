@@ -5,8 +5,7 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
     like = resource_answer.likes.build
     like.resume = resource_answer.resume
     like.user = current_user
-    if like.valid?
-      like.save!
+    if like.save
       resource_answer.user.notifications.create!(kind: :new_answer_like, resource: like)
       f(:success)
     else
