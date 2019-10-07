@@ -34,6 +34,10 @@ class Resume < ApplicationRecord
     end
   end
 
+  def self.ransackable_scopes(auth_object = nil)
+    %i(scope_eq)
+  end
+
   def to_s
     name
   end

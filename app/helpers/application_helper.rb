@@ -46,4 +46,12 @@ module ApplicationHelper
   def icon_class_for_notification(notification)
     ::NotificationsHelper.notification_icon(notification)
   end
+
+  def filter_link(name, path = '#', options = {})
+    active = current_page?(path, check_parameters: true)
+    assembled_options = options.merge(class: [options[:class], active?(path, active_if: active)].join(' '))
+    link_to_unless active, name, path, assembled_options do
+      content_tag :span, name, assembled_options
+    end
+  end
 end
