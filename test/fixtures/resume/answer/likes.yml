@@ -12,10 +12,10 @@ two:
 
 full_one_two:
   resume: full
-  answer: two
   user: one
+  answer: two
 
-full_one_full:
+full_full_two:
   resume: full
+  user: full
   answer: two
-  user: one

@@ -2,6 +2,7 @@
 
 class Web::Answers::LikesController < Web::Answers::ApplicationController
   def create
+    # TODO: move to mutator
     like = resource_answer.likes.build
     like.resume = resource_answer.resume
     like.user = current_user
@@ -16,7 +17,7 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
   end
 
   def destroy
-    like = resource_answer.likes.find_by user: current_user
+    like = resource_answer.likes.find_by! user: current_user
     like&.destroy!
     f(:success)
 

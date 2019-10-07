@@ -24,7 +24,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     patch resume_comment_path(old_comment, resume), params: { resume_comment: attrs }
     assert_response :redirect
 
-    assert { resume.comments.find_by! attrs }
+    assert { resume.comments.find_by attrs }
   end
 
   test '#create' do
@@ -33,10 +33,9 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     post resume_comments_path(resume), params: { resume_comment: attrs }
     assert_response :redirect
 
-    assert { resume.comments.exists?(attrs) }
+    comment = resume.comments.find_by(attrs)
 
-    resume_owner = resume.user
-    assert { Notification.exists?(user: resume_owner, kind: :new_comment) }
+    assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
   end
 
   test '#create (invalid comment)' do
@@ -50,6 +49,6 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     comment = resume_comments(:two)
     delete resume_comment_path(comment.resume, comment)
     assert_response :redirect
-    assert { !Notification.exists?(resource: comment) }
+    assert { !Notification.find_by(resource: comment) }
   end
 end

@@ -33,11 +33,8 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     post resume_answers_path(resume), params: { resume_answer: attrs }
     assert_response :redirect
 
-    answer = resume.answers.find_by! attrs
-    assert { answer }
-
-    resume_owner = resume.user
-    assert { Notification.exists?(user: resume_owner, kind: :new_answer) }
+    answer = resume.answers.find_by attrs
+    assert { Notification.find_by(user: resume.user, resource: answer, kind: :new_answer) }
   end
 
   test '#create (validaton errors)' do
@@ -53,7 +50,6 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     delete resume_answer_path(resume_answer.resume, resume_answer)
     assert_response :redirect
 
-    assert { !Resume::Answer.exists?(resume_answer.id) }
-    assert { !Notification.exists?(resource: resume_answer) }
+    assert { !Resume::Answer.find_by(id: resume_answer.id) }
   end
 end

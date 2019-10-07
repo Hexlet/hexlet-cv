@@ -4,7 +4,7 @@ require 'test_helper'
 
 class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:full)
     sign_in(@user)
   end
 
@@ -13,22 +13,24 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
     post answer_likes_path(answer)
     assert_response :redirect
 
-    answer_owner = answer.user
-    assert { Notification.exists?(user: answer_owner, kind: :new_answer_like) }
+    like = answer.likes.find_by user: @user
+
+    assert { Notification.find_by(user: answer.user, resource: like, kind: :new_answer_like) }
   end
 
   test '#destroy' do
-    like = resume_answer_likes(:one)
+    like = resume_answer_likes(:full_full_two)
     delete answer_like_path(like.answer, like)
     assert_response :redirect
-    assert { !Notification.exists?(resource: like) }
+
+    assert { !Notification.find_by(resource: like) }
   end
 
-  test 'should not be able to like own answers' do
-    answer = resume_answers(:one)
+  test '#create (cannot like himself)' do
+    answer = resume_answers(:one_full)
     post answer_likes_path(answer)
     assert_response :redirect
 
-    assert { !answer.likes.exists?(user: @user) }
+    assert { !answer.likes.find_by(user: @user) }
   end
 end

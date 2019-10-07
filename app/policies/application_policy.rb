@@ -17,4 +17,11 @@ class ApplicationPolicy
       @scope = scope
     end
   end
+
+  private
+
+  def author?
+    @record.user == @user
+  end
+
 end

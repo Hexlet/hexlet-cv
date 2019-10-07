@@ -2,16 +2,10 @@
 
 class ResumePolicy < ApplicationPolicy
   def show?
-    @record.published? || @record.user == @user
+    @record.published? || author?
   end
 
   def update?
-    @record.user == @user
-  end
-
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+    author?
   end
 end

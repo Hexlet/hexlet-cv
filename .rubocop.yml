@@ -15,6 +15,9 @@ AllCops:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/IfUnlessModifier:
+  Enabled: false
+
 Metrics/LineLength:
   Enabled: false
 

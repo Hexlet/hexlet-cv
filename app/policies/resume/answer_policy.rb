@@ -2,12 +2,10 @@
 
 class Resume::AnswerPolicy < ApplicationPolicy
   def update?
-    @record.user == @user
+    author?
   end
 
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+  def destroy?
+    author?
   end
 end
