@@ -5,9 +5,13 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
     like = resource_answer.likes.build
     like.resume = resource_answer.resume
     like.user = current_user
-    like.save!
-    resource_answer.user.notifications.create!(kind: :new_answer_like, resource: like)
-    f(:success)
+    if like.valid?
+      like.save!
+      resource_answer.user.notifications.create!(kind: :new_answer_like, resource: like)
+      f(:success)
+    else
+      f(:error, errors: like.errors.full_messages.to_sentence)
+    end
 
     redirect_to resume_path(resource_answer.resume)
   end

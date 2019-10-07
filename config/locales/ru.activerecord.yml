@@ -1,5 +1,11 @@
 ru:
   activerecord:
+    errors:
+      models:
+        resume/answer/like:
+          attributes:
+            user:
+              answer_owner: Нельзя лайкнуть свой ответ :)
     models:
       resume: Резюме
       user: Пользователь

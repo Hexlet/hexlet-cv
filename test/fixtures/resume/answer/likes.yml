@@ -3,12 +3,12 @@
 one:
   resume: one
   answer: one
-  user: one
+  user: two
 
 two:
   resume: two
   answer: two
-  user: two
+  user: one
 
 full_one_two:
   resume: full
@@ -18,4 +18,4 @@ full_one_two:
 full_one_full:
   resume: full
   answer: two
-  user: full
+  user: one

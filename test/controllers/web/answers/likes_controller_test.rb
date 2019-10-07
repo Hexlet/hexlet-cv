@@ -23,4 +23,12 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert { !Notification.exists?(resource: like) }
   end
+
+  test 'should not be able to like own answers' do
+    answer = resume_answers(:one)
+    post answer_likes_path(answer)
+    assert_response :redirect
+
+    assert flash[:error]
+  end
 end
