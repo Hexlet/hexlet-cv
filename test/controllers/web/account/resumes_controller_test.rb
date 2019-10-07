@@ -26,6 +26,12 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { Resume.exists?(attrs.slice(:name)) }
   end
 
+  test '#edit' do
+    resume = resumes(:one)
+    get edit_account_resume_path(resume)
+    assert_response :success
+  end
+
   test '#update' do
     resume = resumes(:one)
     work = resume_works(:one)
