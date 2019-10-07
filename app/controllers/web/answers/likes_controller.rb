@@ -18,7 +18,7 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
 
   def destroy
     like = resource_answer.likes.find_by! user: current_user
-    like&.destroy!
+    like.destroy!
     f(:success)
 
     redirect_to resume_path(resource_answer.resume)
