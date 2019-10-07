@@ -42,5 +42,6 @@ ru:
         likes:
           create:
             success: Вы поставили отметку "Нравится"
+            error: "%{errors}"
           destroy:
             success: Вы удалили отметку "Нравится"
