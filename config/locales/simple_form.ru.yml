@@ -14,6 +14,10 @@ ru:
     #     edit:
     #       email: 'E-mail.'
     hints:
+      resume_comment:
+        content: Длина не может превышать 200 символов
+      resume_answer_comment:
+        content: Длина не может превышать 200 символов
       resume:
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
         name: PHP-программист, Android-разработчик, ...
