@@ -46,4 +46,11 @@ module ApplicationHelper
   def icon_class_for_notification(notification)
     ::NotificationsHelper.notification_icon(notification)
   end
+
+  def not_found_random_image
+    # FIXME: add funny pictures
+    content_tag :div, class: 'lead text-center' do
+      t('.nothing')
+    end
+  end
 end

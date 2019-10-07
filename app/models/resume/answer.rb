@@ -6,7 +6,7 @@ class Resume::Answer < ApplicationRecord
   validates :resume, uniqueness: { scope: :user }
   validates :content, presence: true, length: { minimum: 200 }
 
-  belongs_to :resume
+  belongs_to :resume, counter_cache: true
   belongs_to :user
   has_many :likes, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Like'
   has_many :comments, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
