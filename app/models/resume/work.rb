@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Resume::Work < ApplicationRecord
+  include Resume::WorkRepository
+
   belongs_to :resume, dependent: :destroy
 
   validates :company, presence: true

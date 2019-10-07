@@ -33,6 +33,8 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   def edit
     @resume = current_user.resumes.find params[:id]
+    @resume_educations = @resume.educations.web
+    @resume_works = @resume.works.web
   end
 
   def destroy; end
