@@ -8,6 +8,11 @@ one:
   resume: one
   user: one
 
+one_full:
+  <<: *DEFAULTS
+  resume: one
+  user: full
+
 two:
   <<: *DEFAULTS
   resume: two
@@ -19,11 +24,6 @@ without_likes:
   user: two
 
 full_one:
-  <<: *DEFAULTS
-  resume: full
-  user: one
-
-one_full:
   <<: *DEFAULTS
   resume: full
   user: one
