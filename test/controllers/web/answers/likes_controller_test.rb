@@ -29,6 +29,6 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
     post answer_likes_path(answer)
     assert_response :redirect
 
-    assert flash[:error]
+    assert { !answer.likes.exists?(user: @user) }
   end
 end
