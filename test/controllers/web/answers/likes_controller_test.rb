@@ -15,6 +15,7 @@ class Web::Answers::LikesControllerTest < ActionDispatch::IntegrationTest
 
     like = answer.likes.find_by user: @user
 
+    assert { like }
     assert { Notification.find_by(user: answer.user, resource: like, kind: :new_answer_like) }
   end
 

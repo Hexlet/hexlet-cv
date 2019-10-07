@@ -34,6 +34,8 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     answer = resume.answers.find_by attrs
+
+    assert { answer }
     assert { Notification.find_by(user: resume.user, resource: answer, kind: :new_answer) }
   end
 

@@ -35,6 +35,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
 
     comment = resume.comments.find_by(attrs)
 
+    assert { comment }
     assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
   end
 
