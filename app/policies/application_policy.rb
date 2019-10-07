@@ -23,5 +23,4 @@ class ApplicationPolicy
   def author?
     @record.user == @user
   end
-
 end

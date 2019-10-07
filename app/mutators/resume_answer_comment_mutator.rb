@@ -15,4 +15,3 @@ module ResumeAnswerCommentMutator
     comment
   end
 end
-
