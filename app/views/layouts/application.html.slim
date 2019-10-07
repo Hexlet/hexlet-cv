@@ -11,7 +11,7 @@ html.h-100 lang="en"
             = render 'layouts/shared/menu'
           .col-md-8
             - if content_for?(:header)
-              h1.h2= yield :header
+              h1.h2.mb-4= yield :header
             = yield
           .col-md-2
             = render 'layouts/shared/last_answers'

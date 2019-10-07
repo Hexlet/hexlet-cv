@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_215126) do
+ActiveRecord::Schema.define(version: 2019_10_07_231646) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 2019_10_04_215126) do
     t.datetime "locked_at"
     t.string "provider"
     t.string "uid"
+    t.integer "resume_answer_likes_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

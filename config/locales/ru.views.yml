@@ -69,6 +69,8 @@ ru:
         index:
           header: Уведомления
     users:
+      index:
+        header: Рейтинг
       show:
         answers: Ответов
         comments: Комментариев

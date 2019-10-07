@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include UserRepository
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
@@ -11,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :resumes, dependent: :destroy
   has_many :resume_answers, class_name: 'Resume::Answer', dependent: :destroy
+  has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
 

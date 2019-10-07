@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Web::UsersController < ApplicationController
-  def index; end
+  def index
+    @users = User.where('resume_answer_likes_count > ?', 0).order(:resume_answer_likes_count)
+  end
 
   def show
     @user = User.find(params[:id])

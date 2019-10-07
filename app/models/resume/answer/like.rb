@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Resume::Answer::Like < ApplicationRecord
+  counter_culture %i[answer user], column_name: 'resume_answer_likes_count'
+
   validates :resume, uniqueness: { scope: %i[answer user] }
   validate :not_answer_owner
 
