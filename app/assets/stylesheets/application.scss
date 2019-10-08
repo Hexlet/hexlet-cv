@@ -18,14 +18,15 @@
 
 .hexlet-cv-inline-paragraph {
   p {
-    @extend .d-inline
+    @extend .d-inline;
   }
 }
 
 .hexlet-cv-content {
+  @extend .text-break;
   blockquote {
     border-left: 2px solid $gray-400;
     padding-left: 0.75em;
-    @extend .text-muted
+    @extend .text-muted;
   }
 }

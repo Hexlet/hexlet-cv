@@ -50,7 +50,7 @@
         - if work.end_date
           | &nbsp;-&nbsp;
           = l work.end_date, format: :discard_day
-      == markdown2html work.description
+      .hexlet-cv-content== markdown2html work.description
 
 - if @resume_educations.any?
   .d-flex
