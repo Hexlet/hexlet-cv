@@ -10,7 +10,6 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :resource, polymorphic: true
 
-
   aasm column: :state do
     state :unread, initial: true
     state :read
