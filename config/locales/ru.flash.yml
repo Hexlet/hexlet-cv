@@ -22,6 +22,8 @@ ru:
             success: Рекомендация добавлена
           destroy:
             success: Рекомендация удалена
+          change_applying_state:
+            success: Рекомендация помечена как применённая
         comments:
           update:
             success: Комментарий к резюме добавлен
