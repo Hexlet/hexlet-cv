@@ -1,0 +1,7 @@
+ru:
+  notifications:
+    new_answer_html: Пользователь <a href="%{user_path}" class="text-secondary font-weight-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме
+    new_comment_html: Пользователь <a href="%{user_path}" class="text-secondary font-weight-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
+    new_answer_comment_html: Пользователь <a href="%{user_path}" class="text-secondary font-weight-bolder">%{user}</a> оставил <a href="%{answer_comment_path}">новый комментарий</a> к вашей рекомендации
+    new_answer_like_html: Пользователю <a href="%{user_path} class="text-secondary font-weight-bolder"">%{user}</a> нравится ваша <a href="%{answer_path}">рекомендация</a>
+

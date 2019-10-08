@@ -4,5 +4,6 @@
 - @notifications.each do |notification|
   .d-flex
     i.mt-1.mr-2.far class=icon_class_for_notification(notification)
-    p== message_for_notification(notification)
+    p.mr-3== message_for_notification(notification)
+    .text-muted= l notification.created_at, format: :short
 
