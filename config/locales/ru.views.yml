@@ -22,9 +22,11 @@ ru:
         work: Работа
         education: Образование
       show:
+        apply: Применить
         add_a_comment: Добавить комментарий
         recomendations: Рекомендации
         answer_exists: Вы уже оставили рекомендацию
+        title_apply: Пометить рекомендацию как примененную. Нажимать только тогда, когда внесены изменения в резюме.
         likes: |
           Понравилось: %{count}
       comment_requires:

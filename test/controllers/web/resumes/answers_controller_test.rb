@@ -27,6 +27,20 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert { resume.answers.find_by! attrs }
   end
 
+  test '#change_applying_state apply' do
+    answer = resume_answers(:one)
+    assert { answer.pending? }
+    resume = answer.resume
+
+    patch change_applying_state_resume_answer_path(resume, answer), params: { event: :apply }
+    assert_response :redirect
+
+    answer.reload
+
+    assert { answer.applied? }
+    assert { answer.user.notifications.find_by(kind: :answer_applied, resource: answer) }
+  end
+
   test '#create' do
     resume = resumes(:full_without_answers)
     attrs = FactoryBot.attributes_for 'resume/answer'

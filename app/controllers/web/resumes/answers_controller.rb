@@ -3,10 +3,21 @@
 class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   def edit
     @answer = resource_resume.answers.find params[:id]
+    authorize @answer
+  end
+
+  def change_applying_state
+    @answer = resource_resume.answers.find params[:id]
+    authorize @answer
+    @answer.aasm(:applying).fire! params[:event] || :apply # FIXME: remove apply after fixing link
+    @answer.user.notifications.create!(kind: :answer_applied, resource: @answer)
+    f(:success)
+    redirect_to resume_path(resource_resume)
   end
 
   def update
     @answer = resource_resume.answers.find params[:id]
+    authorize @answer
     if @answer.update(resume_answer_params)
       f(:success)
       redirect_to resume_path(resource_resume)

@@ -30,6 +30,8 @@ ru:
         state/published: Опубликовано
       resume/answer:
         content: Ответ
+        applying_state/pending: Ожидает подтверждения
+        applying_state/applied: Изменения внесены
       resume/job:
         content: Описание
       resume/work:

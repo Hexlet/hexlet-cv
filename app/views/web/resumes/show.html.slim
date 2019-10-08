@@ -59,18 +59,33 @@ script type="application/ld+json"
   - @resume_answers.each do |answer|
     .card.mb-4(id="answer-#{answer.id}")
       .card-header.small.mb-2.d-flex
-        .mr-auto
+        .mr-auto.d-flex
           span.font-weight-bold= link_to answer.user, user_path(answer.user)
-          span.ml-2.font-weight-light
+          span.mx-2.font-weight-light
             = link_to distance_of_time_in_words_to_now(answer.created_at), url_for(anchor: "answer-#{answer.id}"), class: 'text-muted'
-        - if current_user == answer.user
-          .d-flex
-            .mr-2
-              = link_to edit_resume_answer_path(@resume, answer) do
-                i.fas.fa-pen.text-secondary
-            div
-              = link_to resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') } do
-                i.fas.fa-times.text-secondary
+
+          - if current_user == answer.user
+            .d-flex.mr-3
+              .mr-2
+                = link_to edit_resume_answer_path(@resume, answer) do
+                  i.fas.fa-pen.text-secondary
+              div
+                = link_to resume_answer_path(@resume, answer), method: :delete, data: { confirm: t('confirm') } do
+                  i.fas.fa-times.text-secondary
+
+        div
+          - if answer.pending? && current_user == @resume.user
+            // FIXME: Data params does not work
+            = link_to t('.apply'), change_applying_state_resume_answer_path(@resume, answer),
+              data: { confirm: t('confirm'), params: { event: :apply }.to_param },
+              method: :patch,
+              class: 'badge badge-success p-1',
+              title: t('.title_apply')
+          - elsif answer.applied?
+              span.text-success= answer.aasm(:applying).human_state
+          - else answer.pending?
+              span.text-info= answer.aasm(:applying).human_state
+
       .card-body.d-flex
         .mr-3.h4
           - let @current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|

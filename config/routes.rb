@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     root 'home#index'
     resources :resumes do
       scope module: :resumes do
-        resources :answers
+        resources :answers do
+          member do
+            patch :change_applying_state
+          end
+        end
         resources :comments
       end
     end

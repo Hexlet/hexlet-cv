@@ -4,6 +4,11 @@ answer_one_by_one:
   state: read
   kind: new_answer
 
+answer_full_by_one:
+  user: full
+  resource: one (Resume::Answer)
+  kind: answer_applied
+
 resume_comment_one_by_one:
   user: one
   resource: one (Resume::Comment)

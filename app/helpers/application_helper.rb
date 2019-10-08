@@ -43,8 +43,8 @@ module ApplicationHelper
     ::NotificationsHelper.message(notification)
   end
 
-  def icon_class_for_notification(notification)
-    ::NotificationsHelper.notification_icon(notification)
+  def class_for_notification(notification)
+    ::NotificationsHelper.notification_class(notification)
   end
 
   def not_found_random_image
