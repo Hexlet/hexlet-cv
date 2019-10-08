@@ -13,7 +13,7 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
       f(:error, errors: like.errors.full_messages.to_sentence)
     end
 
-    redirect_to resume_path(resource_answer.resume)
+    redirect_to resume_path(resource_answer.resume, anchor: "answer-#{resource_answer.id}")
   end
 
   def destroy
@@ -21,6 +21,6 @@ class Web::Answers::LikesController < Web::Answers::ApplicationController
     like.destroy!
     f(:success)
 
-    redirect_to resume_path(resource_answer.resume)
+    redirect_to resume_path(resource_answer.resume, anchor: "answer-#{resource_answer.id}")
   end
 end
