@@ -4,8 +4,8 @@
       .d-flex.flex-column.flex-sm-row
         .d-flex.flex-sm-column.mr-4.text-center.mx-auto
           .text-muted.mb-3.mr-3
-            .h2.mb-0.font-weight-lighter= resume.answers.size
-            .small= t('.answers', count: resume.answers.size)
+            .h2.mb-0.font-weight-lighter= resume.answers.count
+            .small= t('.answers', count: resume.answers.count)
           .text-muted.mb-3.mr-3
             .h2.mb-0.font-weight-lighter= resume.impressions_count
             .small= t('.views', count: resume.impressions_count)
