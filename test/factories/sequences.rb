@@ -40,4 +40,8 @@ FactoryBot.define do
   sequence :github_url do |n|
     "https://github.com/user#{n}"
   end
+
+  sequence :about do |_n|
+    Faker::Lorem.sentence
+  end
 end

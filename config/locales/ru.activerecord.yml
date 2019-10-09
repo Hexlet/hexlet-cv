@@ -18,6 +18,7 @@ ru:
         first_name: Имя
         last_name: Фамилия
         name: Имя
+        about: Обо мне
       resume:
         name: Название
         summary: Описание

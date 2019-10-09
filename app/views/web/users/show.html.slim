@@ -1,6 +1,9 @@
 h1.text-center
   = @user.full_name
 
+p.text-center
+  = @user.about
+
 .d-flex.justify-content-center.mb-3
   .d-flex.flex-column.mr-3.text-center
     .text-muted= t('.answers')
