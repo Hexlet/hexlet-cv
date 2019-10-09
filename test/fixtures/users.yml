@@ -8,6 +8,7 @@ DEFAULTS: &DEFAULTS
 one:
   <<: *DEFAULTS
   email: $LABEL@email.com
+  about: CTO at hexlet.io
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 two:
@@ -18,6 +19,7 @@ two:
 full:
   <<: *DEFAULTS
   email: $LABEL@email.com
+  about: PR-специалист Hexlet
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 with_github:

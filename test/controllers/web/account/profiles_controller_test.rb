@@ -22,5 +22,6 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
     assert { @user.first_name == attrs[:first_name] }
     assert { @user.last_name == attrs[:last_name] }
+    assert { @user.about == attrs[:about] }
   end
 end
