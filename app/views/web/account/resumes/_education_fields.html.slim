@@ -1,5 +1,6 @@
 .nested-fields
   = f.input :description
-  = f.input :begin_date, as: :date, discard_day: true, start_year: 1970
-  = f.input :end_date, as: :date, discard_day: true, start_year: 1970
+  .row
+    = f.input :begin_date, as: :date, discard_day: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
+    = f.input :end_date, as: :date, discard_day: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
   = link_to_remove_association t('.remove_education'), f
