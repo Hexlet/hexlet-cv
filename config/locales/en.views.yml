@@ -2,6 +2,12 @@ en:
   web:
     home:
       index:
+        resumes:
+          one: We have 1 CV on site
+          few: |
+            We have %{count} CV on site
+          many: |
+            We have %{count} CV on site
     resumes:
       answers:
         new:

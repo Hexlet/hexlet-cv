@@ -2,6 +2,12 @@ ru:
   web:
     home:
       index:
+        resumes:
+          one: На сайте 1 резюме
+          few: |
+            На сайте %{count} резюме
+          many: |
+            На сайте %{count} резюме
         answers:
           one: Ответ
           few: Ответа
