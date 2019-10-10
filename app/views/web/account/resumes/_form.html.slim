@@ -19,6 +19,11 @@
             'data-association-insertion-method' => 'after'
     = f.simple_fields_for :educations, @resume_educations do |education|
       = render 'education_fields', f: education
-  .d-flex.mt-5
-    .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
-    .mr-3= f.submit class: 'btn btn-outline-primary', name: 'hide'
+  .row.mt-5
+    .col-sm
+      .d-flex.mb-3
+        .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
+        .mr-3= f.submit class: 'btn btn-outline-primary', name: 'hide'
+    .col-sm
+      .d-flex.justify-content-end.mb-3
+        = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'
