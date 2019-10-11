@@ -67,4 +67,17 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     patch account_resume_path(resume), params: params
     assert_response :redirect
   end
+
+  test 'should hide published resume' do
+    resume = resumes(:one)
+
+    params = {
+      hide: true,
+      resume: { name: resume.name }
+    }
+    patch account_resume_path(resume), params: params
+    assert_response :redirect
+    resume.reload
+    assert { resume.draft? }
+  end
 end

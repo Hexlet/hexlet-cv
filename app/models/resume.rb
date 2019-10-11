@@ -32,6 +32,10 @@ class Resume < ApplicationRecord
     event :publish do
       transitions from: %i[draft published], to: :published
     end
+
+    event :hide do
+      transitions from: %i[draft published], to: :draft
+    end
   end
 
   def to_s

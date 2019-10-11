@@ -12,8 +12,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def create
     @resume = current_user.resumes.build resume_params
     if @resume.save
-      @resume.publish! if params[:publish]
-      f(:success)
+      change_visibility(@resume)
       redirect_to action: :index
     else
       render :new
@@ -23,7 +22,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def update
     @resume = current_user.resumes.find params[:id]
     if @resume.update(resume_params)
-      @resume.publish! if params[:publish]
+      change_visibility(@resume)
       f(:success)
       redirect_to action: :index
     else
@@ -40,6 +39,11 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def destroy; end
 
   private
+
+  def change_visibility(resume)
+    resume.publish! if params[:publish]
+    resume.hide! if params[:hide]
+  end
 
   def resume_params
     attrs = %i[name github_url summary skills_description awards_description english_fluency]
