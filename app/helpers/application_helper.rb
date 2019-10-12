@@ -21,6 +21,10 @@ module ApplicationHelper
     markdown.render(text)
   end
 
+  def truncate_markdown(text, options)
+    truncate(strip_tags(markdown2html(text)), options)
+  end
+
   def active?(path, options = {})
     # raise options.inspect
     if options.key? :active_if
