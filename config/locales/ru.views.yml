@@ -75,9 +75,18 @@ ru:
       index:
         header: Рейтинг
       show:
-        answers: Ответов
-        comments: Комментариев
-        likes: Лайков
+        answers:
+          one: ответ
+          few: ответа
+          many: ответов
+        comments:
+          one: комментарий
+          few: комментария
+          many: комментариев
+        likes:
+          one: лайк
+          few: лайка
+          many: лайков
         tab_resumes: Резюме
         tab_answers: Ответы
         tab_comments: Комментарии

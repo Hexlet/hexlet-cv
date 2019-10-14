@@ -1,21 +1,23 @@
-h1.text-center
-  = @user.full_name
+.px-3.py-4.mb-3.bg-light.rounded
+  h1.text-center
+    = @user.full_name
 
-p.text-center
-  = @user.about
+  p.text-center
+    = @user.about
 
-.d-flex.justify-content-center.mb-3
-  .d-flex.flex-column.mr-3.text-center
-    .text-muted= t('.answers')
-    .h3.text-info= @user_resume_answers.size
-  .d-flex.flex-column.mr-3.text-center
-    .text-muted= t('.comments')
-    .h3.text-info= @user_resume_comments.size
-  .d-flex.flex-column.mr-3.text-center
-    .text-muted= t('.likes')
-    .h3.text-success= @user_resume_answers_likes_count
-
-hr
+  .d-flex.justify-content-center.mt-4
+    .d-flex.flex-column.mx-1.mx-lg-3.text-center
+      .h3 class=(@user_resume_answers.size.positive? ? 'text-info' : 'text-black-50')
+        = @user_resume_answers.size
+      .text-muted= t('.answers', count: @user_resume_answers.size)
+    .d-flex.flex-column.mx-3.text-center
+      .h3 class=(@user_resume_comments.size.positive? ? 'text-info' : 'text-black-50')
+        = @user_resume_comments.size
+      .text-muted= t('.comments', count: @user_resume_comments.size)
+    .d-flex.flex-column.mx-1.mx-lg-3.text-center
+      .h3 class=(@user_resume_answers_likes_count.positive? ? 'text-success' : 'text-black-50')
+        = @user_resume_answers_likes_count
+      .text-muted= t('.likes', count: @user_resume_answers_likes_count)
 
 ul.nav.justify-content-center role="navigation"
   li.nav-item
