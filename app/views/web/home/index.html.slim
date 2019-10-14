@@ -12,10 +12,10 @@
           / .text-muted.text-center
           /   .h2.mb-0.font-weight-lighter= 12
           /   .small= t('.likes')
-        div
+        .d-flex.flex-column
           h5.card-title= link_to resume, resume_path(resume)
-          .card-text= truncate_markdown(resume.summary, length: 200)
-          .text-right.small
+          .card-text.mb-2= truncate_markdown(resume.summary, length: 200)
+          .text-right.small.mt-auto
             span.mr-3.text-muted
               = distance_of_time_in_words_to_now resume.created_at
             = link_to resume.user, user_path(resume.user)
