@@ -8,3 +8,6 @@ en:
   date:
     formats:
       discard_day: '%b %Y'
+  resume_answer_mailer:
+    new_answer_email:
+      subject: You have a new recommendation
