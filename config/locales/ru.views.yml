@@ -68,6 +68,9 @@ ru:
           edit_profile:  Редактировать профиль
           my_comments: Мои коментарии
           my_answers: Мои рекомендации
+          mail_notifications: Уведомления на почту
+          subscribe: Подписаться
+          unsubscribe: Отписаться
       notifications:
         index:
           header: Уведомления

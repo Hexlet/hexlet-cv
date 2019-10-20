@@ -45,6 +45,9 @@ en:
           header: Settings
         show:
           header: Settings
+          mail_notifications: Mailing notifications 
+          subscribe: Subscribe
+          unsubscribe: Unsubscribe
       notifications:
         index:
           header: Notifications
