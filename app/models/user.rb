@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include AASM
   include UserRepository
 
   # Include default devise modules. Others available are:
@@ -15,6 +16,19 @@ class User < ApplicationRecord
   has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  aasm :mailer, column: :mailer_state do
+    state :subscriber, initial: true
+    state :nonsubscriber
+
+    event :subscribe do
+      transitions from: %i[subscriber nonsubscriber], to: :subscriber
+    end
+
+    event :unsubscribe do
+      transitions from: %i[subscriber nonsubscriber], to: :nonsubscriber
+    end
+  end
 
   def self.from_omniauth(auth)
     exist_user = User.find_by(email: auth.info.email)
