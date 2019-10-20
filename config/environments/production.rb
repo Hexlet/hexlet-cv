@@ -64,6 +64,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: ENV.fetch('HOST') }
+  config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
