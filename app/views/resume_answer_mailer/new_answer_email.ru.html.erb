@@ -1,0 +1,7 @@
+<p>
+  <%= link_to @answer.user, @user_url, target: "_blank" %> оставил рекомендацию в вашему резюме <%= link_to @answer.resume, @answer_url, target: "_blank" %>
+</p>
+
+<p>
+  Вы можете отписаться от рассылки в <%= link_to 'настройках', @settings_url, target: "_blank" %>
+</p>

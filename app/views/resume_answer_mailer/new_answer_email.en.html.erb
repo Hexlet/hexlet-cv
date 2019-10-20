@@ -1,0 +1,7 @@
+<p>
+  <%= link_to @answer.user, @user_url, target: "_blank" %> left a recommendation on your CV <%= link_to @answer.resume, @answer_url, target: "_blank" %>
+</p>
+
+<p>
+  You can unsubscribe from the mailing list at <%= link_to 'settings', @settings_url, target: "_blank" %>
+</p>
