@@ -15,6 +15,18 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
     end
   end
 
+  def subscribe
+    current_user.subscribe!
+    f(:success)
+    redirect_to account_profile_path
+  end
+
+  def unsubscribe
+    current_user.unsubscribe!
+    f(:success)
+    redirect_to account_profile_path
+  end
+
   private
 
   def profile_params

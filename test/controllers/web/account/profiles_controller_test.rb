@@ -24,4 +24,27 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert { @user.last_name == attrs[:last_name] }
     assert { @user.about == attrs[:about] }
   end
+
+  test '#subscribe' do
+    @user.unsubscribe!
+    assert { @user.nonsubscriber? }
+
+    patch subscribe_account_profile_path(@user)
+    assert_response :redirect
+
+    @user.reload
+
+    assert { @user.subscriber? }
+  end
+
+  test '#unsubscribe' do
+    assert { @user.subscriber? }
+
+    patch unsubscribe_account_profile_path(@user)
+    assert_response :redirect
+
+    @user.reload
+
+    assert { @user.nonsubscriber? }
+  end
 end

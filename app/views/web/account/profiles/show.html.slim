@@ -2,3 +2,19 @@
   = t('.header')
 
 = render 'form'
+
+h3.my-3= t('.mail_notifications')
+
+div
+  - if current_user.subscriber?
+    = link_to t('.unsubscribe'), unsubscribe_account_profile_path,
+      data: { confirm: t('confirm') },
+      method: :patch,
+      class: 'btn btn-info',
+      title: t('.unsubscribe')
+  - elsif current_user.nonsubscriber?
+    = link_to t('.subscribe'), subscribe_account_profile_path,
+      data: { confirm: t('confirm') },
+      method: :patch,
+      class: 'btn btn-outline-secondary',
+      title: t('.subscribe')
