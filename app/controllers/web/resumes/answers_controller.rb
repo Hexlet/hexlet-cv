@@ -31,6 +31,9 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
     if @answer.persisted?
       f(:success)
       redirect_to resume_path(resource_resume)
+      if @answer.resume.user.subscriber?
+        ResumeAnswerMailer.with(answer: @answer).new_answer_email.deliver_later
+      end
     else
       render :new
     end
