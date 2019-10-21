@@ -13,4 +13,4 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
         = nav_menu_item t('.sign_in'), new_user_session_path
         = nav_menu_item t('.register'), new_user_registration_path
 
-= render_flash_messages
+= render_flash_messages dismissible: true
