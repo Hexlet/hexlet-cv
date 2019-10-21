@@ -4,6 +4,7 @@ DEFAULTS: &DEFAULTS
   first_name: $LABEL
   last_name: Last
   confirmed_at: <%= Time.current %>
+  resume_mailer: true
 
 one:
   <<: *DEFAULTS
