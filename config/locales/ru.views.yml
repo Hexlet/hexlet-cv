@@ -71,6 +71,9 @@ ru:
       notifications:
         index:
           header: Уведомления
+      newsletters:
+        edit:
+          header: Рассылки
     users:
       index:
         header: Рейтинг

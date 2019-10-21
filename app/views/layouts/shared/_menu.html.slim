@@ -16,6 +16,7 @@ ul.nav.flex-column.nav-pills
   ul.nav.flex-column.nav-pills
     = nav_menu_item t('.settings'), account_profile_path
     = nav_menu_item t('.notifications'), account_notifications_path
+    = nav_menu_item t('.newsletters'), edit_account_newsletters_path
 
 - if signed_in? && last_notifications.any?
   .mt-5

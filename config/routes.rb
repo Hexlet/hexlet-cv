@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     namespace :account do
       resources :resumes
       resources :notifications, only: %i[index update]
+      resource :newsletters, only: %i[edit update]
       resource :profile, only: %i[edit update show]
     end
 
