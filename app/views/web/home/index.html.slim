@@ -1,8 +1,8 @@
 .btn-group.mb-3
   = filter_link(t('.all'), {}, class: 'btn btn-light')
-  = filter_link(t('.popular'), {q: :popular}, class: 'btn btn-light')
-  = filter_link(t('.newest'), {q: :newest}, class: 'btn btn-light')
-  = filter_link(t('.without_answers'), {q: :without_answers}, class: 'btn btn-light')
+  = filter_link(t('.popular'), { q: { popular_gteq: Date.current - 1.day } }, class: 'btn btn-light')
+  = filter_link(t('.newest'), { q: { created_at_gteq: Date.current - 1.day } }, class: 'btn btn-light')
+  = filter_link(t('.without_answers'), { q: { answers_count_eq: 0 } }, class: 'btn btn-light')
 
 - @resumes.each do |resume|
   .card.mb-3

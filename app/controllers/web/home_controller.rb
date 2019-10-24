@@ -2,7 +2,7 @@
 
 class Web::HomeController < ApplicationController
   def index
-    q = Resume.ransack(scope_eq: params[:q])
-    @resumes = q.result.web.page(params[:page])
+    q = Resume.ransack(params[:q])
+    @resumes = q.result(distinct: true).web.page(params[:page])
   end
 end
