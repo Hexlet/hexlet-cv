@@ -50,7 +50,7 @@ class Web::Hooks::SparkpostsControllerTest < ActionDispatch::IntegrationTest
     post sparkpost_path(event)
 
     user = users(:one)
-    
+
     assert { @user == user }
   end
 end
