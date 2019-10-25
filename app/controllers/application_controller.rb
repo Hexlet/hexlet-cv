@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   include Title
   include Sparkpost
+  include Mailer
 
   helper_method :title
   helper_method :meta_tag_title
