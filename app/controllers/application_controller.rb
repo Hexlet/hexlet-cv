@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Flash
   include Pundit
   include Title
+  include Sparkpost
 
   helper_method :title
   helper_method :meta_tag_title

@@ -32,5 +32,9 @@ Rails.application.routes.draw do
 
     resources :users
     resources :pages
+
+    scope module: :hooks do
+      resource :sparkpost
+    end
   end
 end
