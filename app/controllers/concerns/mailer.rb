@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mailer
-  def new_answer_mailer(answer)
+  def send_new_answer_mail(answer)
     ResumeAnswerMailer.with(answer: answer).new_answer_email.deliver_later if can_send_new_answer_mail?(answer)
   end
 
