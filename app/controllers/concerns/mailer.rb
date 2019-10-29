@@ -2,7 +2,9 @@
 
 module Mailer
   def send_new_answer_mail(answer)
-    ResumeAnswerMailer.with(answer: answer).new_answer_email.deliver_later if can_send_new_answer_mail?(answer)
+    return nil unless can_send_new_answer_mail?(answer)
+
+    ResumeAnswerMailer.with(answer: answer).new_answer_email.deliver_later
   end
 
   private
