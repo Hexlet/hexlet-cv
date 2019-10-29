@@ -8,7 +8,6 @@ module Mailer
   private
 
   def can_send_new_answer_mail?(answer)
-    user = answer.resume.user
-    user.resume_mailer && !user.bounced_email && !user.marked_as_spam && !user.unconfirmed_email
+    answer.resume.user.can_send_email?
   end
 end
