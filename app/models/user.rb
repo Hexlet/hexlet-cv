@@ -44,7 +44,11 @@ class User < ApplicationRecord
   alias to_s full_name
 
   def can_send_email?
-    resume_mailer && !bounced_email && !marked_as_spam && !unconfirmed_email
+    !bounced_email && !marked_as_spam && !unconfirmed_email
+  end
+
+  def can_send_resume_email?
+    resume_mailer && can_send_email?
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

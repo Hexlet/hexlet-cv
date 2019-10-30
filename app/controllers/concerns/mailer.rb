@@ -10,6 +10,6 @@ module Mailer
   private
 
   def can_send_new_answer_mail?(answer)
-    answer.resume.user.can_send_email?
+    answer.resume.user.can_send_resume_email?
   end
 end
