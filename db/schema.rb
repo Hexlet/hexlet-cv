@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_160824) do
     t.string "uid"
     t.integer "resume_answer_likes_count", default: 0, null: false
     t.string "about"
-    t.boolean "resume_mailer"
+    t.boolean "resume_mail_enabled"
     t.boolean "bounced_email"
     t.boolean "marked_as_spam"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
