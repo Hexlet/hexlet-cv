@@ -19,7 +19,7 @@ ru:
         last_name: Фамилия
         name: Имя
         about: Обо мне
-        resume_mailer: Рассылка активности в ваших резюме
+        resume_mail_enabled: Рассылка активности в ваших резюме
       resume:
         name: Название
         summary: Описание

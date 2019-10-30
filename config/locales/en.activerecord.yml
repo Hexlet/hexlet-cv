@@ -2,4 +2,4 @@ en:
   activerecord:
     attributes:
       user:
-        resume_mailer: Newsletters of activity in your CV
+        resume_mail_enabled: Newsletters of activity in your CV

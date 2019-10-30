@@ -14,12 +14,12 @@ class Web::Account::NewslettersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#update' do
-    attrs = { resume_mailer: false }
+    attrs = { resume_mail_enabled: false }
     patch account_newsletters_path(@user), params: { user: attrs }
     assert_response :redirect
 
     @user.reload
 
-    assert { @user.resume_mailer == attrs[:resume_mailer] }
+    assert { @user.resume_mail_enabled == attrs[:resume_mail_enabled] }
   end
 end

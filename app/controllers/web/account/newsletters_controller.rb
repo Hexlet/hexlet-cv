@@ -14,6 +14,6 @@ class Web::Account::NewslettersController < Web::Account::ApplicationController
   end
 
   def newsletters_params
-    params.require(:user).permit(:resume_mailer)
+    params.require(:user).permit(:resume_mail_enabled)
   end
 end

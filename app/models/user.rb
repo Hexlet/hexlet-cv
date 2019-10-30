@@ -48,7 +48,7 @@ class User < ApplicationRecord
   end
 
   def can_send_resume_email?
-    resume_mailer && can_send_email?
+    resume_mail_enabled && can_send_email?
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
