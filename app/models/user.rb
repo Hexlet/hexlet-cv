@@ -47,10 +47,6 @@ class User < ApplicationRecord
     !bounced_email && !marked_as_spam && !unconfirmed_email
   end
 
-  def can_send_resume_email?
-    resume_mail_enabled && can_send_email?
-  end
-
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
   # def send_devise_notification(notification, *args)
   #   devise_mailer.send(notification, self, *args).deliver_later
