@@ -2,6 +2,10 @@ ru:
   web:
     home:
       index:
+        newest: Новые
+        popular: Популярные
+        without_answers: Без рекоммендаций
+        all: Все
         answers:
           one: Ответ
           few: Ответа

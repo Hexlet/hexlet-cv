@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 2c0df02091819d58c52539ca962ed8070f2d2e47
+  specs:
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -411,6 +424,7 @@ DEPENDENCIES
   pundit (~> 2.1)
   rails
   rails-i18n
+  ransack!
   redcarpet (~> 3.5)
   reek
   rollbar (~> 2.22)

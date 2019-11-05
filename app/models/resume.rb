@@ -25,6 +25,8 @@ class Resume < ApplicationRecord
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
 
+  ransack_alias :popular, :impressions_created_at_or_comments_created_at_or_answers_created_at
+
   aasm column: :state do
     state :draft, initial: true
     state :published

@@ -57,4 +57,13 @@ module ApplicationHelper
       t('.nothing')
     end
   end
+
+  def filter_link(name, path = {}, options = {})
+    filter_path = { q: path }
+    active = current_page?(filter_path, check_parameters: true)
+    assembled_options = options.merge(class: [options[:class], active?(filter_path, active_if: active)].join(' '))
+    link_to_unless active, name, filter_path, assembled_options do
+      content_tag :span, name, assembled_options
+    end
+  end
 end
