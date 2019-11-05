@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        resume_mail_enabled: Newsletters of activity in your CV

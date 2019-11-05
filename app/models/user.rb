@@ -43,6 +43,10 @@ class User < ApplicationRecord
 
   alias to_s full_name
 
+  def can_send_email?
+    !bounced_email && !marked_as_spam && !unconfirmed_email
+  end
+
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
   # def send_devise_notification(notification, *args)
   #   devise_mailer.send(notification, self, *args).deliver_later

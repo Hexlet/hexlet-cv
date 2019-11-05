@@ -48,6 +48,9 @@ en:
       notifications:
         index:
           header: Notifications
+      newsletters:
+        edit:
+          header: Newsletters
     users:
       show:
         header: Profile

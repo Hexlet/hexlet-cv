@@ -68,4 +68,13 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
 
     assert { !Resume::Answer.find_by(id: resume_answer.id) }
   end
+
+  test 'new answer email' do
+    resume = resumes(:full_without_answers)
+    attrs = FactoryBot.attributes_for 'resume/answer'
+
+    assert_emails 1 do
+      post resume_answers_path(resume), params: { resume_answer: attrs }
+    end
+  end
 end
