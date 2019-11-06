@@ -17,7 +17,7 @@ class Web::Hooks::SparkpostsControllerTest < ActionDispatch::IntegrationTest
 
     @user.reload
 
-    assert { @user.bounced_email }
+    assert { @user.email_disabled_delivery }
   end
 
   test '#create spam_complaint' do
@@ -34,7 +34,7 @@ class Web::Hooks::SparkpostsControllerTest < ActionDispatch::IntegrationTest
 
     @user.reload
 
-    assert { @user.marked_as_spam }
+    assert { @user.email_disabled_delivery }
   end
 
   test '#create unknown' do

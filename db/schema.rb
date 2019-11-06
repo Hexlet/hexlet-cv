@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_160824) do
+ActiveRecord::Schema.define(version: 2019_11_06_051332) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_160824) do
     t.boolean "resume_mail_enabled"
     t.boolean "bounced_email"
     t.boolean "marked_as_spam"
+    t.boolean "email_disabled_delivery"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
