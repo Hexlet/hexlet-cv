@@ -8,14 +8,14 @@ module Sparkpost
   def handle_bounce(event)
     email = event[:msys][:message_event][:rcpt_to]
     user = User.find_by(email: email)
-    user.bounced_email = true
+    user.email_disabled_delivery = true
     user.save!
   end
 
   def handle_spam_complaint(event)
     email = event[:msys][:message_event][:rcpt_to]
     user = User.find_by(email: email)
-    user.marked_as_spam = true
+    user.email_disabled_delivery = true
     user.save!
   end
 end
