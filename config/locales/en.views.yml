@@ -2,6 +2,7 @@ en:
   web:
     home:
       index:
+        description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.
     resumes:
       answers:
         new:
