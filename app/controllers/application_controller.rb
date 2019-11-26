@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     title :base, scope: 'web'
   end
 
+  before_action do
+    gon.google_analytics_key = ENV['GOOGLE_ANALYTICS_KEY']
+  end
+
   def last_notifications
     @last_notifications ||= current_user.notifications.order(created_at: :desc).limit(5) if current_user
   end

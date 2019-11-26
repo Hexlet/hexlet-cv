@@ -8,3 +8,7 @@
   = stylesheet_link_tag "application", media: "all"
   = javascript_pack_tag "application"
   = include_gon
+
+  - if Rails.env.production?
+    = render 'layouts/deps/gtm_head'
+    = render 'layouts/deps/ga'
