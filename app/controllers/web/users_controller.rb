@@ -2,7 +2,16 @@
 
 class Web::UsersController < ApplicationController
   def index
+    title :base
+
     @users = User.where('resume_answer_likes_count > ?', 0).order(resume_answer_likes_count: :desc)
+
+    set_meta_tags canonical: users_url
+    set_meta_tags og: {
+      title: title,
+      type: 'website',
+      url: users_url
+    }
   end
 
   def show
