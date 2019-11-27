@@ -2,15 +2,18 @@
 
 class Web::PagesController < ApplicationController
   def show
-    title params[:id].to_sym
+    page = params[:id].to_sym
+    description = t(".#{page}_description")
+    url = page_url(page)
+    title page
 
-    set_meta_tags description: t(".#{params[:id]}_description"),
-                  canonical: pages_url('about')
+    set_meta_tags description: description,
+                  canonical: url
     set_meta_tags og: {
       title: title,
-      description: t(".#{params[:id]}_description"),
+      description: description,
       type: 'website',
-      url: pages_url('about')
+      url: url
     }
 
     render params[:id]
