@@ -27,9 +27,10 @@ jobs:
       with:
         ruby-version: 2.6.x
 
-    - name: Install PostgreSQL 11 client
-          run: |
-            sudo apt-get -yqq install libpq-dev
+    - name: Install SQLite
+      run: |
+        sudo apt-get install libsqlite3-dev
+
     - name: Build app
       run: |
         gem install bundler
@@ -39,8 +40,6 @@ jobs:
 
     - name: Run Tests
       env:
-        PGHOST: localhost
-        PGUSER: postgres
         RAILS_ENV: test
       run: make test
 
