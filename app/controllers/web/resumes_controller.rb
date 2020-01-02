@@ -3,6 +3,14 @@
 class Web::ResumesController < ApplicationController
   impressionist actions: [:show]
 
+  def index
+    @resumes = Resume.web
+
+    respond_to do |format|
+      format.rss
+    end
+  end
+
   def show
     @resume = Resume.find(params[:id])
     authorize @resume
