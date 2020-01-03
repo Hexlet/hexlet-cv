@@ -1,5 +1,8 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
   a.navbar-brand(href="/") HexletCV
+  div.mr-3
+    = link_to resumes_url(format: :rss) do
+      i.fas.fa-rss.text-muted
   button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
