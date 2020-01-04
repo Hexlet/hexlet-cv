@@ -1,4 +1,4 @@
-name: Rails Tests
+name: Main workflow
 
 on:
   pull_request:
