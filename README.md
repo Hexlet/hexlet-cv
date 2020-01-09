@@ -1,7 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/maintainability)](https://codeclimate.com/github/Hexlet/hexlet-cv/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/test_coverage)](https://codeclimate.com/github/Hexlet/hexlet-cv/test_coverage)
-[![build status](https://travis-ci.org/Hexlet/hexlet-cv.svg?branch=master)](https://travis-ci.com/Hexlet/hexlet-cv)
-![github action status](https://github.com/Hexlet/hexlet-cv/workflows/Main%20workflow/badge.svg)
+[![github action status](https://github.com/Hexlet/hexlet-cv/workflows/Main%20workflow/badge.svg)](https://actions-badge.atrox.dev/hexlet/hexlet-cv/goto)
 
 # hexlet-cv
 
