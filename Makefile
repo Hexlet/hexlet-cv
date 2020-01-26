@@ -40,4 +40,13 @@ heroku-console:
 heroku-logs:
 	heroku logs --tail
 
+check:
+	make setup
+	make lint
+	curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+	chmod +x ./cc-test-reporter
+	./cc-test-reporter before-build
+	make test
+	./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $$?
+
 .PHONY: test
