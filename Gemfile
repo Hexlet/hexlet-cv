@@ -56,7 +56,7 @@ group :test do
   gem 'capybara'
   gem 'minitest-power_assert'
   gem 'selenium-webdriver'
-  gem 'simplecov', require: false
+  gem 'simplecov', '0.17.0', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
