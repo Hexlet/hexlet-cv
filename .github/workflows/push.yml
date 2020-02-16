@@ -1,9 +1,6 @@
-name: Main workflow
+name: On Push
 
 on:
-  pull_request:
-    branches:
-      - 'master'
   push:
     branches:
       - 'master'
@@ -21,5 +18,4 @@ jobs:
           RAILS_ENV: test
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         run: |
-            docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
