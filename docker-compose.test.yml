@@ -10,3 +10,8 @@ services:
       - RAILS_ENV
       - CC_TEST_REPORTER_ID
     command: make check
+  ci-test:
+    build: .
+    environment:
+      - RAILS_ENV
+    command: make ci-test

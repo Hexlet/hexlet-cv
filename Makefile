@@ -49,4 +49,9 @@ check:
 	make test
 	./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $$?
 
+ci-test:
+	make setup
+	make lint
+	make test
+
 .PHONY: test
