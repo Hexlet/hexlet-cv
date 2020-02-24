@@ -41,6 +41,7 @@ ru:
         position: Должность
         begin_date: Дата начала
         end_date: Дата конца
+        current: По настоящее время
         description: Описание
       resume/education:
         description: Описание
@@ -48,6 +49,7 @@ ru:
         faculty: Факультет
         begin_date: Дата начала
         end_date: Дата конца
+        current: По настоящее время
       resume/comment:
         content: Комментарий
       answer/comment:
