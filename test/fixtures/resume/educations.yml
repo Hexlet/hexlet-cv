@@ -5,6 +5,7 @@ one:
   description: MyString
   begin_date: 2010-09-01
   end_date: 2014-07-01
+  current: true
 
 two:
   resume: two
