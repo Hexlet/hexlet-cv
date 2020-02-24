@@ -47,7 +47,10 @@
       = work.company
       .small.text-muted.mt-1.mb-2
         = l work.begin_date, format: :discard_day
-        - if work.end_date
+        - if work.current
+          | &nbsp;-&nbsp;
+          = t('.current')
+        - elsif work.end_date
           | &nbsp;-&nbsp;
           = l work.end_date, format: :discard_day
       .hexlet-cv-content== markdown2html work.description

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_051332) do
+ActiveRecord::Schema.define(version: 2020_02_24_105801) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_051332) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "current"
     t.index ["resume_id"], name: "index_resume_works_on_resume_id"
   end
 
