@@ -65,6 +65,9 @@
       = education.description
       .small.text-muted.mt-1.mb-2
         = l education.begin_date, format: :discard_day
-        - if education.end_date
+        - if education.current
+          | &nbsp;-&nbsp;
+          = t('.current')
+        - elsif education.end_date
           | &nbsp;-&nbsp;
           = l education.end_date, format: :discard_day
