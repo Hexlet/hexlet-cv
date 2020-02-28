@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_121914) do
+ActiveRecord::Schema.define(version: 2020_02_28_192329) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 2020_02_24_121914) do
     t.string "english_fluency"
     t.integer "impressions_count", default: 0
     t.integer "answers_count", default: 0, null: false
+    t.string "hexlet_url"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 

@@ -1,4 +1,5 @@
 DEFAULTS: &DEFAULTS
+  hexlet_url: https://ru.hexlet.io/u/$LABEL
   github_url: https://github.com/$LABEL
   name: Resume Name $LABEL
   english_fluency: fluent

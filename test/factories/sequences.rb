@@ -37,6 +37,10 @@ FactoryBot.define do
     Faker::Lorem.paragraph_by_chars(number: 300)
   end
 
+  sequence :hexlet_url do |n|
+    "https://ru.hexlet.io/u/#{n}"
+  end
+
   sequence :github_url do |n|
     "https://github.com/user#{n}"
   end
