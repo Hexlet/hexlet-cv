@@ -23,6 +23,7 @@ ru:
       resume:
         name: Название
         summary: Описание
+        hexlet_url: Hexlet
         github_url: Github
         english_fluency: Владение английским
         skills_description: Навыки
