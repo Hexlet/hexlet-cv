@@ -43,6 +43,10 @@ Rails.application.routes.draw do
         patch :ban
         patch :unban
       end
+      resources :resumes, only: %i[index] do
+        patch :ban
+        patch :unban
+      end
     end
   end
 end

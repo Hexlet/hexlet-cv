@@ -1,0 +1,32 @@
+= search_form_for @q, url: admin_resumes_path, class: 'form-inline mb-2' do |f|
+  = f.label :name_or_user_first_name_or_user_last_name_cont
+  = f.search_field :name_or_user_first_name_or_user_last_name_cont, class: 'form-control mx-2'
+  = f.submit class: 'btn btn-primary'
+
+table.table
+  thead
+    tr
+      th= t('.name')
+      th= t('.state')
+      th= t('.user')
+      th= t('.actions')
+  tbody
+    - @resumes.each do |resume|
+      tr
+        td= link_to resume, resume_path(resume)
+        td= resume.state
+        td= resume.user
+        td
+          - if resume.permitted?
+            = link_to t('.ban'), admin_resume_ban_path(resume),
+              data: { confirm: t('confirm') },
+              method: :patch,
+              class: 'btn btn-danger btn-sm',
+              title: t('.ban')
+          - if resume.banned?
+            = link_to t('.unban'), admin_resume_unban_path(resume),
+              data: { confirm: t('confirm') },
+              method: :patch,
+              class: 'btn btn-success btn-sm',
+              title: t('.unban')
+= paginate @resumes
