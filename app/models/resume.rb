@@ -40,6 +40,19 @@ class Resume < ApplicationRecord
     end
   end
 
+  aasm :admin_state, column: :admin_state do
+    state :permitted, initial: true
+    state :banned
+
+    event :ban do
+      transitions from: %i[permitted banned], to: :banned
+    end
+
+    event :unban do
+      transitions from: %i[permitted banned], to: :permitted
+    end
+  end
+
   def to_s
     name
   end
