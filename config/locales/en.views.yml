@@ -20,6 +20,7 @@ en:
         answer_exists: You've already left a recommendation
         likes: |
           Likes: %{count}
+        banned: Resume in ban
       comments:
         new:
           header: New comment
