@@ -1,0 +1,34 @@
+= search_form_for @q, url: admin_users_path, class: 'form-inline mb-2' do |f|
+  = f.label :first_name_or_last_name_or_email_cont
+  = f.search_field :first_name_or_last_name_or_email_cont, class: 'form-control mx-2'
+  = f.submit class: 'btn btn-primary'
+
+table.table
+  thead
+    tr
+      th= t('.name')
+      th= t('.email')
+      th= t('.role')
+      th= t('.admin_state')
+      th= t('.actions')
+  tbody
+    - @users.each do |user|
+      tr
+        td= link_to user, user_path(user)
+        td= user.email
+        td= user.role
+        td= user.admin_state
+        td
+          - if user.permitted?
+            = link_to t('.ban'), admin_user_ban_path(user),
+              data: { confirm: t('confirm') },
+              method: :patch,
+              class: 'btn btn-danger btn-sm',
+              title: t('.ban')
+          - if user.banned?
+            = link_to t('.unban'), admin_user_unban_path(user),
+              data: { confirm: t('confirm') },
+              method: :patch,
+              class: 'btn btn-success btn-sm',
+              title: t('.unban')
+= paginate @users
