@@ -36,5 +36,9 @@ Rails.application.routes.draw do
     scope module: :hooks do
       resource :sparkpost
     end
+
+    namespace :admin do
+      root 'home#index'
+    end
   end
 end
