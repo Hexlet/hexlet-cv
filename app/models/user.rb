@@ -38,6 +38,16 @@ class User < ApplicationRecord
     end
   end
 
+  # https://github.com/heartcombo/devise/wiki/How-to:-Soft-delete-a-user-when-user-deletes-account
+  def active_for_authentication?
+    super && permitted?
+  end
+
+  # provide a custom message for a banned user
+  def inactive_message
+    banned? ? :banned : super
+  end
+
   def self.from_omniauth(auth)
     exist_user = User.find_by(email: auth.info.email)
     if exist_user

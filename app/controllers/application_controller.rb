@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   include Title
   include Sparkpost
   include Mailer
+  include Auth::User
+
+  before_action :banned?
 
   helper_method :title
   helper_method :meta_tag_title
