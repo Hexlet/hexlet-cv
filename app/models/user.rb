@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include AASM
   include UserRepository
+
+  # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
+  enum role: { user: 0, admin: 1 }
+  after_initialize :set_default_role, if: :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +24,19 @@ class User < ApplicationRecord
   has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  aasm :admin_state, column: :admin_state do
+    state :permitted, initial: true
+    state :banned
+
+    event :ban do
+      transitions from: %i[permitted banned], to: :banned
+    end
+
+    event :unban do
+      transitions from: %i[permitted banned], to: :permitted
+    end
+  end
 
   def self.from_omniauth(auth)
     exist_user = User.find_by(email: auth.info.email)
