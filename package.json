@@ -13,7 +13,7 @@
     "@rails/webpacker": "^4.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
