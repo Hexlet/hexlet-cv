@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
   def last_answers
     @last_answers ||= Resume::Answer.web.limit(10)
   end
+
+  def current_or_guest_user
+    current_user || guest_user
+  end
+
+  def guest_user
+    Guest.new
+  end
 end
