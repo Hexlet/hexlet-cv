@@ -2,15 +2,11 @@
 
 class User < ApplicationRecord
   include AASM
+  extend Enumerize
   include UserRepository
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
-  enum role: { user: 0, admin: 1 }
-  after_initialize :set_default_role, if: :new_record?
-
-  def set_default_role
-    self.role ||= :user
-  end
+  enumerize :role, in: %i[user admin], default: :user, predicates: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

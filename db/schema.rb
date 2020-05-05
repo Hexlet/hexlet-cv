@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_113433) do
     t.boolean "bounced_email"
     t.boolean "marked_as_spam"
     t.boolean "email_disabled_delivery"
-    t.integer "role"
+    t.string "role"
     t.string "admin_state"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
