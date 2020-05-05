@@ -6,10 +6,10 @@
 table.table
   thead
     tr
-      th= t('.name')
-      th= t('.email')
-      th= t('.role')
-      th= t('.admin_state')
+      th= han('user', 'name')
+      th= han('user', 'email')
+      th= han('user', 'role')
+      th= han('user', 'admin_state')
       th= t('.actions')
   tbody
     - @users.each do |user|

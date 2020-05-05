@@ -6,9 +6,9 @@
 table.table
   thead
     tr
-      th= t('.name')
-      th= t('.state')
-      th= t('.user')
+      th= han('resume', 'name')
+      th= han('resume', 'admin_state')
+      th= han('resume', 'user')
       th= t('.actions')
   tbody
     - @resumes.each do |resume|
