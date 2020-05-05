@@ -40,8 +40,9 @@ Rails.application.routes.draw do
     namespace :admin do
       root 'home#index'
       resources :users, only: %i[index] do
-        patch :ban
-        patch :unban
+        member do
+          patch :change_admin_state
+        end
       end
       resources :resumes, only: %i[index] do
         patch :ban

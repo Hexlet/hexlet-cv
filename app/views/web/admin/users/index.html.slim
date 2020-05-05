@@ -17,18 +17,18 @@ table.table
         td= link_to user, user_path(user)
         td= user.email
         td= user.role
-        td= user.admin_state
+        td= user.aasm(:admin_state).human_state
         td
           - if user.permitted?
-            = link_to t('.ban'), admin_user_ban_path(user),
-              data: { confirm: t('confirm') },
-              method: :patch,
-              class: 'btn btn-danger btn-sm',
-              title: t('.ban')
+            = link_to t('.ban'), change_admin_state_admin_user_path(user, params: { event: :ban }),
+                data: { confirm: t('confirm') },
+                method: :patch,
+                class: 'btn btn-danger btn-sm',
+                title: t('.ban')
           - if user.banned?
-            = link_to t('.unban'), admin_user_unban_path(user),
-              data: { confirm: t('confirm') },
-              method: :patch,
-              class: 'btn btn-success btn-sm',
-              title: t('.unban')
+            = link_to t('.unban'), change_admin_state_admin_user_path(user, params: { event: :unban }),
+                data: { confirm: t('confirm') },
+                method: :patch,
+                class: 'btn btn-success btn-sm',
+                title: t('.unban')
 = paginate @users

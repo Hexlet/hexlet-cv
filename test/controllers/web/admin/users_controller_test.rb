@@ -13,23 +13,23 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#ban' do
+  test '#change_admin_state ban' do
     user = users(:one)
 
-    patch admin_user_ban_path(user)
+    patch change_admin_state_admin_user_path(user), params: { event: :ban }
     assert_response :redirect
 
     user.reload
     assert user.banned?
   end
 
-  test '#unban' do
+  test '#change_admin_state unban' do
     user = users(:banned)
 
-    patch admin_user_unban_path(user)
+    patch change_admin_state_admin_user_path(user), params: { event: :unban }
     assert_response :redirect
 
     user.reload
-    assert user.permitted?
+    assert assert user.permitted?
   end
 end

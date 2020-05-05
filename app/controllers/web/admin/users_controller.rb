@@ -6,16 +6,9 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     @users = @q.result(distinct: true).page(params[:page])
   end
 
-  def ban
-    user = User.find(params[:user_id])
-    user.ban!
-    f(:success)
-    redirect_to admin_users_path
-  end
-
-  def unban
-    user = User.find(params[:user_id])
-    user.unban!
+  def change_admin_state
+    @user = User.find params[:id]
+    @user.aasm(:admin_state).fire! params[:event]
     f(:success)
     redirect_to admin_users_path
   end
