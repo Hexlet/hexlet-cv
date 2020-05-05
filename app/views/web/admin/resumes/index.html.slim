@@ -14,19 +14,19 @@ table.table
     - @resumes.each do |resume|
       tr
         td= link_to resume, resume_path(resume)
-        td= resume.state
+        td= resume.aasm(:admin_state).human_state
         td= resume.user
         td
-          - if resume.permitted?
-            = link_to t('.ban'), admin_resume_ban_path(resume),
+          - if resume.available?
+            = link_to t('.archive'), change_admin_state_admin_resume_path(resume, params: { event: :archive }),
               data: { confirm: t('confirm') },
               method: :patch,
               class: 'btn btn-danger btn-sm',
-              title: t('.ban')
-          - if resume.banned?
-            = link_to t('.unban'), admin_resume_unban_path(resume),
+              title: t('.archive')
+          - if resume.archived?
+            = link_to t('.restore'), change_admin_state_admin_resume_path(resume, params: { event: :restore }),
               data: { confirm: t('confirm') },
               method: :patch,
               class: 'btn btn-success btn-sm',
-              title: t('.unban')
+              title: t('.restore')
 = paginate @resumes

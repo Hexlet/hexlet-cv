@@ -45,8 +45,9 @@ Rails.application.routes.draw do
         end
       end
       resources :resumes, only: %i[index] do
-        patch :ban
-        patch :unban
+        member do
+          patch :change_admin_state
+        end
       end
     end
   end

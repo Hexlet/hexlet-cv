@@ -7,7 +7,7 @@ DEFAULTS: &DEFAULTS
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
-  admin_state: :permitted
+  admin_state: :available
 
 one:
   <<: *DEFAULTS
@@ -46,10 +46,10 @@ full:
   summary: |
     Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
 
-banned:
+archived:
   <<: *DEFAULTS
   user: one
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
-  admin_state: :banned
+  admin_state: :archived

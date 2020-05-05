@@ -13,23 +13,23 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#ban' do
+  test '#change_admin_state archive' do
     resume = resumes(:one)
 
-    patch admin_resume_ban_path(resume)
+    patch change_admin_state_admin_resume_path(resume), params: { event: :archive }
     assert_response :redirect
 
     resume.reload
-    assert resume.banned?
+    assert resume.archived?
   end
 
-  test '#unban' do
-    resume = resumes(:banned)
+  test '#change_admin_state restore' do
+    resume = resumes(:archived)
 
-    patch admin_resume_unban_path(resume)
+    patch change_admin_state_admin_resume_path(resume), params: { event: :restore }
     assert_response :redirect
 
     resume.reload
-    assert resume.permitted?
+    assert assert resume.available?
   end
 end

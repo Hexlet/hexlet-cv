@@ -6,16 +6,9 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resumes = @q.result(distinct: true).page(params[:page])
   end
 
-  def ban
-    resume = Resume.find(params[:resume_id])
-    resume.ban!
-    f(:success)
-    redirect_to admin_resumes_path
-  end
-
-  def unban
-    resume = Resume.find(params[:resume_id])
-    resume.unban!
+  def change_admin_state
+    @resume = Resume.find params[:id]
+    @resume.aasm(:admin_state).fire! params[:event]
     f(:success)
     redirect_to admin_resumes_path
   end
