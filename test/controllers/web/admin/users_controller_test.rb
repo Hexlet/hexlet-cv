@@ -20,7 +20,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     user.reload
-    assert user.banned?
+    assert { user.banned? }
   end
 
   test '#change_admin_state unban' do
@@ -30,6 +30,6 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     user.reload
-    assert assert user.permitted?
+    assert { user.permitted? }
   end
 end

@@ -20,7 +20,7 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume.reload
-    assert resume.archived?
+    assert { resume.archived? }
   end
 
   test '#change_admin_state restore' do
@@ -30,6 +30,6 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume.reload
-    assert assert resume.available?
+    assert { resume.available? }
   end
 end
