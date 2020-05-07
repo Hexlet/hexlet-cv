@@ -6,7 +6,7 @@ DEFAULTS: &DEFAULTS
   confirmed_at: <%= Time.current %>
   resume_mail_enabled: true
   role: :user
-  admin_state: :permitted
+  state: permitted
 
 one:
   <<: *DEFAULTS
@@ -42,4 +42,4 @@ banned:
   email: $LABEL@email.com
   about: Banned
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  admin_state: :banned
+  state: banned

@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  aasm :admin_state, column: :admin_state do
+  aasm column: :state do
     state :permitted, initial: true
     state :banned
 

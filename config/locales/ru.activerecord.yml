@@ -20,6 +20,10 @@ ru:
         name: Имя
         about: Обо мне
         resume_mail_enabled: Рассылка активности в ваших резюме
+        role: Роль
+        state: Статус
+        state/permitted: Активен
+        state/banned: Забанен
       resume:
         name: Название
         summary: Описание

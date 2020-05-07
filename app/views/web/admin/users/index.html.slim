@@ -9,12 +9,12 @@ table.table
       th= han('user', 'name')
       th= han('user', 'email')
       th= han('user', 'role')
-      th= han('user', 'admin_state')
+      th= han('user', 'state')
   tbody
     - @users.each do |user|
       tr
         td= link_to user, edit_admin_user_path(user)
         td= user.email
         td= user.role
-        td= user.aasm(:admin_state).human_state
+        td= user.aasm.human_state
 = paginate @users
