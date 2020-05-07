@@ -7,7 +7,6 @@ DEFAULTS: &DEFAULTS
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
-  admin_state: :available
 
 one:
   <<: *DEFAULTS
@@ -52,4 +51,4 @@ archived:
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
-  admin_state: :archived
+  state: archived

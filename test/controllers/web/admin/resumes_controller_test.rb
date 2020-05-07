@@ -66,6 +66,6 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume.reload
-    assert { resume.available? }
+    assert { resume.published? }
   end
 end

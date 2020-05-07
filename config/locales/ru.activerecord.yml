@@ -31,6 +31,7 @@ ru:
         state: Статус
         state/draft: Черновик
         state/published: Опубликовано
+        state/archived: В архиве
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения

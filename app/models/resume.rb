@@ -30,6 +30,7 @@ class Resume < ApplicationRecord
   aasm column: :state do
     state :draft, initial: true
     state :published
+    state :archived
 
     event :publish do
       transitions from: %i[draft published], to: :published
@@ -38,18 +39,13 @@ class Resume < ApplicationRecord
     event :hide do
       transitions from: %i[draft published], to: :draft
     end
-  end
-
-  aasm :admin_state, column: :admin_state do
-    state :available, initial: true
-    state :archived
 
     event :archive do
-      transitions from: %i[available archived], to: :archived
+      transitions from: %i[published], to: :archived
     end
 
     event :restore do
-      transitions from: %i[available archived], to: :available
+      transitions from: %i[archived], to: :published
     end
   end
 
