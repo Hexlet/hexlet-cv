@@ -1,5 +1,19 @@
 ru:
   web:
+    shared:
+      resume_form:
+        work: Опыт работы
+        education: Образование
+        add_work: Добавить опыт работы
+        add_education: Добавить образование
+        publish: Опубликовать
+        cancel: Отмена
+        archive: Архивировать
+        restore: Восстановить их архива
+      work_fields:
+        remove_work: Удалить опыт работы
+      education_fields:
+        remove_education: Удалить образование
     home:
       index:
         description: Платформа, которая помогает получить рекомендации на резюме от участников сообщества и профессиональных HR. Публикуйте резюме и оставляйте рекомендации другим участникам.
@@ -59,17 +73,6 @@ ru:
           header: Редактирование резюме
         index:
           header: Мои резюме
-        form:
-          work: Опыт работы
-          education: Образование
-          add_work: Добавить опыт работы
-          add_education: Добавить образование
-          publish: Опубликовать
-          cancel: Отмена
-        work_fields:
-          remove_work: Удалить опыт работы
-        education_fields:
-          remove_education: Удалить образование
       profiles:
         edit:
           header: Настройки
@@ -120,3 +123,7 @@ ru:
           header: Редактирование комментария
     pages:
       about_description: Цель Hexlet CV - предоставить платформу для сообщества, где вы получите рекомендации на резюме от участников сообщества и профессиональных HR.
+    admin:
+      resumes:
+        edit:
+          header: Редактирование резюме

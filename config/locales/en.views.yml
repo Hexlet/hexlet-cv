@@ -1,5 +1,10 @@
 en:
   web:
+    shared:
+      resume_form:
+        publish: Publish
+        archive: Archive
+        restore: Restore
     home:
       index:
         description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.
@@ -41,8 +46,6 @@ en:
           header: Edit resume
         index:
           header: My resumes
-        form:
-          publish: Publish
       profiles:
         edit:
           header: Settings
@@ -69,3 +72,7 @@ en:
           header: Edit comment
     pages:
       about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
+    account:
+      resumes:
+        edit:
+          header: Edit resume

@@ -6,10 +6,36 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resumes = @q.result(distinct: true).page(params[:page])
   end
 
-  def change_admin_state
+  def update
     @resume = Resume.find params[:id]
-    @resume.aasm(:admin_state).fire! params[:event]
-    f(:success)
-    redirect_to admin_resumes_path
+    if @resume.update(resume_params)
+      change_visibility(@resume)
+      f(:success)
+      redirect_to action: :index
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @resume = Resume.find params[:id]
+    @resume_educations = @resume.educations.web
+    @resume_works = @resume.works.web
+  end
+
+  private
+
+  def change_visibility(resume)
+    resume.archive! if params[:archive]
+    resume.restore! if params[:restore]
+  end
+
+  def resume_params
+    attrs = %i[name hexlet_url github_url summary skills_description awards_description english_fluency]
+    nested_attrs = {
+      educations_attributes: %i[description begin_date end_date current _destroy id],
+      works_attributes: %i[company position description begin_date end_date current _destroy id]
+    }
+    params.require(:resume).permit(*attrs, **nested_attrs)
   end
 end

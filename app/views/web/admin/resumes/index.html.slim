@@ -9,24 +9,12 @@ table.table
       th= han('resume', 'name')
       th= han('resume', 'admin_state')
       th= han('resume', 'user')
-      th= t('.actions')
+      th= han('user', 'email')
   tbody
     - @resumes.each do |resume|
       tr
-        td= link_to resume, resume_path(resume)
+        td= link_to resume, edit_admin_resume_path(resume)
         td= resume.aasm(:admin_state).human_state
         td= resume.user
-        td
-          - if resume.available?
-            = link_to t('.archive'), change_admin_state_admin_resume_path(resume, params: { event: :archive }),
-              data: { confirm: t('confirm') },
-              method: :patch,
-              class: 'btn btn-danger btn-sm',
-              title: t('.archive')
-          - if resume.archived?
-            = link_to t('.restore'), change_admin_state_admin_resume_path(resume, params: { event: :restore }),
-              data: { confirm: t('confirm') },
-              method: :patch,
-              class: 'btn btn-success btn-sm',
-              title: t('.restore')
+        td= resume.user.email
 = paginate @resumes

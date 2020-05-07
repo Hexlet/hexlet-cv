@@ -44,11 +44,7 @@ Rails.application.routes.draw do
           patch :change_admin_state
         end
       end
-      resources :resumes, only: %i[index] do
-        member do
-          patch :change_admin_state
-        end
-      end
+      resources :resumes, only: %i[index edit update]
     end
   end
 end
