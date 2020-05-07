@@ -1,0 +1,10 @@
+= simple_form_for user, url: url do |f|
+  - if current_user.admin? && current_user != user
+    - if user.permitted?
+      .mb-3= f.submit t('.ban'), class: 'btn btn-danger', name: 'ban'
+    - if user.banned?
+      .mb-3= f.submit t('.unban'), class: 'btn btn-warning', name: 'unban'
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :about
+  = f.submit class: 'btn btn-primary'

@@ -13,20 +13,41 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#change_admin_state ban' do
+  test '#update' do
+    user = users(:one)
+    attrs = FactoryBot.attributes_for :user
+    patch admin_user_path(user), params: { user: attrs }
+    assert_response :redirect
+
+    user.reload
+
+    assert { user.first_name == attrs[:first_name] }
+    assert { user.last_name == attrs[:last_name] }
+    assert { user.about == attrs[:about] }
+  end
+
+  test 'should ban' do
     user = users(:one)
 
-    patch change_admin_state_admin_user_path(user), params: { event: :ban }
+    params = {
+      ban: true,
+      user: { first_name: user.first_name }
+    }
+    patch admin_user_path(user), params: params
     assert_response :redirect
 
     user.reload
     assert { user.banned? }
   end
 
-  test '#change_admin_state unban' do
+  test 'should unban' do
     user = users(:banned)
 
-    patch change_admin_state_admin_user_path(user), params: { event: :unban }
+    params = {
+      unban: true,
+      user: { first_name: user.first_name }
+    }
+    patch admin_user_path(user), params: params
     assert_response :redirect
 
     user.reload

@@ -66,6 +66,7 @@ en:
         tab_resumes: Resume
         tab_answers: Answers
         tab_comments: Comments
+        banned: Account has been banned
     answers:
       comments:
         edit:

@@ -10,25 +10,11 @@ table.table
       th= han('user', 'email')
       th= han('user', 'role')
       th= han('user', 'admin_state')
-      th= t('.actions')
   tbody
     - @users.each do |user|
       tr
-        td= link_to user, user_path(user)
+        td= link_to user, edit_admin_user_path(user)
         td= user.email
         td= user.role
         td= user.aasm(:admin_state).human_state
-        td
-          - if user.permitted?
-            = link_to t('.ban'), change_admin_state_admin_user_path(user, params: { event: :ban }),
-                data: { confirm: t('confirm') },
-                method: :patch,
-                class: 'btn btn-danger btn-sm',
-                title: t('.ban')
-          - if user.banned?
-            = link_to t('.unban'), change_admin_state_admin_user_path(user, params: { event: :unban }),
-                data: { confirm: t('confirm') },
-                method: :patch,
-                class: 'btn btn-success btn-sm',
-                title: t('.unban')
 = paginate @users

@@ -12,4 +12,30 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     f(:success)
     redirect_to admin_users_path
   end
+
+  def update
+    @user = User.find params[:id]
+    if @user.update(profile_params)
+      change_visibility(@user)
+      f(:success)
+      redirect_to action: :index
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @user = User.find params[:id]
+  end
+
+  private
+
+  def change_visibility(user)
+    user.ban! if params[:ban]
+    user.unban! if params[:unban]
+  end
+
+  def profile_params
+    params.require(:user).permit(:first_name, :last_name, :about)
+  end
 end

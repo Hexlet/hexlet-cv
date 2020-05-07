@@ -39,11 +39,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root 'home#index'
-      resources :users, only: %i[index] do
-        member do
-          patch :change_admin_state
-        end
-      end
+      resources :users, only: %i[index edit update]
       resources :resumes, only: %i[index edit update]
     end
   end
