@@ -16,5 +16,5 @@ table.table
         td= link_to user, edit_admin_user_path(user)
         td= user.email
         td= user.role
-        td= user.aasm.human_state
+        td= user.aasm(:state).human_state
 = paginate @users

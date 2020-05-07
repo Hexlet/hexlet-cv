@@ -9,7 +9,6 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
   def update
     @resume = Resume.find params[:id]
     if @resume.update(resume_params)
-      change_visibility(@resume)
       f(:success)
       redirect_to action: :index
     else
@@ -25,13 +24,8 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
 
   private
 
-  def change_visibility(resume)
-    resume.archive! if params[:archive]
-    resume.restore! if params[:restore]
-  end
-
   def resume_params
-    attrs = %i[name hexlet_url github_url summary skills_description awards_description english_fluency]
+    attrs = %i[state_event name hexlet_url github_url summary skills_description awards_description english_fluency]
     nested_attrs = {
       educations_attributes: %i[description begin_date end_date current _destroy id],
       works_attributes: %i[company position description begin_date end_date current _destroy id]

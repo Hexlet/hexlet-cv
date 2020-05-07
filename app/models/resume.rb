@@ -7,6 +7,10 @@ class Resume < ApplicationRecord
   has_paper_trail
   is_impressionable counter_cache: true
 
+  before_save :set_state
+
+  attribute :state_event, :string
+
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
 
   validates :name, presence: true
@@ -27,7 +31,7 @@ class Resume < ApplicationRecord
 
   ransack_alias :popular, :impressions_created_at_or_comments_created_at_or_answers_created_at
 
-  aasm column: :state do
+  aasm :state, column: :state do
     state :draft, initial: true
     state :published
     state :archived
@@ -51,5 +55,9 @@ class Resume < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def set_state
+    aasm(:state).fire state_event if state_event
   end
 end

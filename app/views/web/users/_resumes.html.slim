@@ -5,7 +5,7 @@
     .card.mb-3
       - if policy(resume).update?
         .card-header
-          = resume.aasm.human_state
+          = resume.aasm(:state).human_state
           span.ml-3
             = link_to edit_account_resume_path(resume) do
               i.far.fa-edit.text-muted

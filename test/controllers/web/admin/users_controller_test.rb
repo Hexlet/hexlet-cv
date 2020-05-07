@@ -30,8 +30,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     user = users(:one)
 
     params = {
-      ban: true,
-      user: { first_name: user.first_name }
+      user: { state_event: :ban }
     }
     patch admin_user_path(user), params: params
     assert_response :redirect
@@ -44,8 +43,7 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     user = users(:banned)
 
     params = {
-      unban: true,
-      user: { first_name: user.first_name }
+      user: { state_event: :unban }
     }
     patch admin_user_path(user), params: params
     assert_response :redirect

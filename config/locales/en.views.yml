@@ -3,8 +3,7 @@ en:
     shared:
       resume_form:
         publish: Publish
-        archive: Archive
-        restore: Restore
+        hide: Draft
     home:
       index:
         description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.

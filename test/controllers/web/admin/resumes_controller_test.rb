@@ -45,8 +45,7 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume = resumes(:one)
 
     params = {
-      archive: true,
-      resume: { name: resume.name }
+      resume: { state_event: :archive }
     }
     patch admin_resume_path(resume), params: params
     assert_response :redirect
@@ -59,8 +58,7 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume = resumes(:archived)
 
     params = {
-      restore: true,
-      resume: { name: resume.name }
+      resume: { state_event: :restore }
     }
     patch admin_resume_path(resume), params: params
     assert_response :redirect

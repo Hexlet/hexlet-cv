@@ -5,6 +5,10 @@ class User < ApplicationRecord
   extend Enumerize
   include UserRepository
 
+  before_save :set_state
+
+  attribute :state_event, :string
+
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true
 
@@ -21,16 +25,16 @@ class User < ApplicationRecord
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  aasm column: :state do
+  aasm :state, column: :state do
     state :permitted, initial: true
     state :banned
 
     event :ban do
-      transitions from: %i[permitted banned], to: :banned
+      transitions from: %i[permitted], to: :banned
     end
 
     event :unban do
-      transitions from: %i[permitted banned], to: :permitted
+      transitions from: %i[banned], to: :permitted
     end
   end
 
@@ -73,6 +77,10 @@ class User < ApplicationRecord
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
+  end
+
+  def set_state
+    aasm(:state).fire state_event if state_event
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

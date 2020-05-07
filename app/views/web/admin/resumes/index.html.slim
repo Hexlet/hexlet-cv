@@ -14,7 +14,7 @@ table.table
     - @resumes.each do |resume|
       tr
         td= link_to resume, edit_admin_resume_path(resume)
-        td= resume.aasm.human_state
+        td= resume.aasm(:state).human_state
         td= resume.user
         td= resume.user.email
 = paginate @resumes
