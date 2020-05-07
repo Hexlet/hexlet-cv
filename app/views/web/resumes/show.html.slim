@@ -97,8 +97,10 @@ script type="application/ld+json"
               = link_to answer_likes_path(answer), method: 'post', class: 'text-decoration-none' do
                 i.far.fa-thumbs-up.text-secondary
         .w-100
-          .hexlet-cv-content.mb-3
+          .hexlet-cv-content.mb-2
             == markdown2html answer.content
+          .small.text-right
+            a tabindex="0" data-toggle="popover" role="button" data-html="true" data-content="#{html_escape_once(render partial: 'web/resumes/answers/share', locals: { url: url_for(anchor: "answer-#{answer.id}") })}" Share
           - if answer.comments.any?
             .small
               - answer.comments.each do |comment|
