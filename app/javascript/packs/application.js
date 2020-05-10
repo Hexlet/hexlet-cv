@@ -12,6 +12,7 @@ require('channels');
 require('popper.js');
 require('bootstrap');
 require('./cocoon');
+require('./popper');
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -22,10 +23,6 @@ library.add(fas, far, fab)
 
 dom.watch()
 
-
-document.addEventListener("DOMContentLoaded", function(){
-  $('[data-toggle="popover"]').popover()
-});
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

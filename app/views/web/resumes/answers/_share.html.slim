@@ -1,8 +1,9 @@
-= link_to "Copy link", url, class: "btn btn-sm btn-outline-primary"
+input class="form-control form-control-sm" id="click_input_#{url}" type='text' value=url readonly=true
 hr.my-2
-.d-flex.justify-content-end
-  = link_to "#" do
+.d-flex
+  = link_to "Copy link", url, class: "flex-fill", data: { click: 'copy', click_input: "click_input_#{url}" }
+  = link_to "#", data: { share_media: 'facebook' } do
     i.fab.fa-facebook-square.h5.ml-2.mb-0
-  = link_to "#" do
+  = link_to "#", data: { share_media: 'vk' } do
     i.fab.fa-vk.h5.ml-2.mb-0
 
