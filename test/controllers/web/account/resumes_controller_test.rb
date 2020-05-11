@@ -36,23 +36,16 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume = resumes(:one)
     work = resume_works(:one)
 
-    new_work_company = 'another name'
-    new_resume_name = 'another name'
-
-    attrs = {
-      name: new_resume_name,
-      works_attributes: {
-        work.id => work.attributes.merge(company: new_work_company)
-      }
-    }
+    work_attrs = FactoryBot.attributes_for 'resume/work'
+    attrs = FactoryBot.attributes_for(:resume,
+                                      works_attributes: { work.id => work.attributes.merge(company: work_attrs[:company]) })
     patch account_resume_path(resume), params: { resume: attrs }
     assert_response :redirect
 
     resume.reload
     work.reload
-    # TODO: switch to power-assert
-    assert { resume.name == new_resume_name }
-    assert { work.company == new_work_company }
+    assert { resume.name == attrs[:name] }
+    assert { work.company == work_attrs[:company] }
   end
 
   test 'should publish published resume' do

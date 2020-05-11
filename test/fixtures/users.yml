@@ -3,6 +3,7 @@
 DEFAULTS: &DEFAULTS
   first_name: $LABEL
   last_name: Last
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.current %>
   resume_mail_enabled: true
   role: :user
@@ -12,34 +13,28 @@ one:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: CTO at hexlet.io
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 two:
   <<: *DEFAULTS
   email: $LABEL@email.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 full:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: PR-специалист Hexlet
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 with_github:
   <<: *DEFAULTS
   email: github@github.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 admin:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: Admin Hexlet
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   role: :admin
 
 banned:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: Banned
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   state: banned
