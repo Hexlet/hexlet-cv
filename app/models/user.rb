@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  include AASM
+  include StateConcern
   extend Enumerize
   include UserRepository
-
-  before_save :set_state
-
-  attribute :state_event, :string
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true
@@ -77,10 +73,6 @@ class User < ApplicationRecord
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
-  end
-
-  def set_state
-    aasm(:state).fire state_event if state_event
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

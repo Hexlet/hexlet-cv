@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 class Resume < ApplicationRecord
-  include AASM
+  include StateConcern
   extend Enumerize
   include ResumeRepository
   has_paper_trail
   is_impressionable counter_cache: true
-
-  before_save :set_state
-
-  attribute :state_event, :string
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
 
@@ -55,9 +51,5 @@ class Resume < ApplicationRecord
 
   def to_s
     name
-  end
-
-  def set_state
-    aasm(:state).fire state_event if state_event
   end
 end
