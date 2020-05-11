@@ -19,7 +19,7 @@ class Web::ResumesController < ApplicationController
     @answer = Resume::Answer.new resume: @resume
     @current_user_answer = @resume.answers.find_by(user: current_user)
     current_user_likes = @resume.answer_likes.where(user: current_user)
-    @current_user_likes_by_answer_id = current_user_likes.collect { |item| [item.answer_id, item] }.to_h
+    @current_user_likes_by_answer_id = current_user_likes.index_by(&:answer_id)
     @resume_educations = @resume.educations.web
     @resume_works = @resume.works.web
 

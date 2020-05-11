@@ -1,0 +1,31 @@
+= simple_form_for [namespace, resume], wrapper: 'horizontal_form' do |f|
+  - if current_user.admin? && resume.user && current_user != resume.user
+    = f.input :state_event, as: :state_event, collection: resume.aasm(:state).events(permitted: true)
+    .mb-3= f.submit class: 'btn btn-primary'
+  = f.input :name
+  = f.input :english_fluency
+  = f.input :hexlet_url
+  = f.input :github_url
+  = f.input :summary, input_html: { rows: 10 }
+  = f.input :skills_description, input_html: { rows: 5 }
+  = f.input :awards_description, input_html: { rows: 5 }
+  h3= t('.work')
+  #works
+    = link_to_add_association t('.add_work'), f, :works, id: 'addWork', partial: 'web/shared/work_fields',
+            'data-association-insertion-node' => '#addWork',
+            'data-association-insertion-method' => 'after'
+    = f.simple_fields_for :works, resume_works do |work|
+      = render 'web/shared/work_fields', f: work
+  h3= t('.education')
+  #educations
+    = link_to_add_association t('.add_education'), f, :educations, id: 'addEducation', partial: 'web/shared/education_fields',
+            'data-association-insertion-node' => '#addEducation',
+            'data-association-insertion-method' => 'after'
+    = f.simple_fields_for :educations, resume_educations do |education|
+      = render 'web/shared/education_fields', f: education
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
+      .mr-3= f.submit t('.hide'), class: 'btn btn-outline-primary', name: 'hide'
+    .col-sm.d-flex.justify-content-end.mb-3
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

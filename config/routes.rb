@@ -36,5 +36,11 @@ Rails.application.routes.draw do
     scope module: :hooks do
       resource :sparkpost
     end
+
+    namespace :admin do
+      root 'home#index'
+      resources :users, only: %i[index edit update]
+      resources :resumes, only: %i[index edit update]
+    end
   end
 end

@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   include Title
   include Sparkpost
   include Mailer
+  include Auth::User
+
+  before_action :banned?
 
   helper_method :title
   helper_method :meta_tag_title
@@ -26,5 +29,13 @@ class ApplicationController < ActionController::Base
 
   def last_answers
     @last_answers ||= Resume::Answer.web.limit(10)
+  end
+
+  def current_or_guest_user
+    current_user || guest_user
+  end
+
+  def guest_user
+    Guest.new
   end
 end

@@ -1,5 +1,18 @@
 ru:
   web:
+    shared:
+      resume_form:
+        work: Опыт работы
+        education: Образование
+        add_work: Добавить опыт работы
+        add_education: Добавить образование
+        publish: Опубликовать
+        hide: В черновик
+        cancel: Отмена
+      work_fields:
+        remove_work: Удалить опыт работы
+      education_fields:
+        remove_education: Удалить образование
     home:
       index:
         description: Платформа, которая помогает получить рекомендации на резюме от участников сообщества и профессиональных HR. Публикуйте резюме и оставляйте рекомендации другим участникам.
@@ -38,6 +51,7 @@ ru:
         title_apply: Пометить рекомендацию как примененную. Нажимать только тогда, когда внесены изменения в резюме.
         likes: |
           Понравилось: %{count}
+        archived: Резюме заархивировано
       comment_requires:
         feedback: Ваш комментарий важен для нас!
         requires: Для этого действия нужно
@@ -58,17 +72,6 @@ ru:
           header: Редактирование резюме
         index:
           header: Мои резюме
-        form:
-          work: Опыт работы
-          education: Образование
-          add_work: Добавить опыт работы
-          add_education: Добавить образование
-          publish: Опубликовать
-          cancel: Отмена
-        work_fields:
-          remove_work: Удалить опыт работы
-        education_fields:
-          remove_education: Удалить образование
       profiles:
         edit:
           header: Настройки
@@ -102,6 +105,7 @@ ru:
         tab_resumes: Резюме
         tab_answers: Ответы
         tab_comments: Комментарии
+        banned: Аккаунт забанен
       resumes:
         answers:
           one: Ответ
@@ -119,3 +123,10 @@ ru:
           header: Редактирование комментария
     pages:
       about_description: Цель Hexlet CV - предоставить платформу для сообщества, где вы получите рекомендации на резюме от участников сообщества и профессиональных HR.
+    admin:
+      resumes:
+        edit:
+          header: Редактирование резюме
+      users:
+        edit:
+          header: Редактирование пользователя

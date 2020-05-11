@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Resume < ApplicationRecord
-  include AASM
+  include StateConcern
   extend Enumerize
   include ResumeRepository
   has_paper_trail
@@ -27,9 +27,10 @@ class Resume < ApplicationRecord
 
   ransack_alias :popular, :impressions_created_at_or_comments_created_at_or_answers_created_at
 
-  aasm column: :state do
+  aasm :state, column: :state do
     state :draft, initial: true
     state :published
+    state :archived
 
     event :publish do
       transitions from: %i[draft published], to: :published
@@ -37,6 +38,14 @@ class Resume < ApplicationRecord
 
     event :hide do
       transitions from: %i[draft published], to: :draft
+    end
+
+    event :archive do
+      transitions from: %i[published], to: :archived
+    end
+
+    event :restore do
+      transitions from: %i[archived], to: :published
     end
   end
 

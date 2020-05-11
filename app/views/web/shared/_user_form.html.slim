@@ -1,0 +1,7 @@
+= simple_form_for user, url: url do |f|
+  - if current_user.admin? && current_user != user
+    = f.input :state_event, as: :state_event, collection: user.aasm(:state).events(permitted: true)
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :about
+  = f.submit class: 'btn btn-primary'
