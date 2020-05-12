@@ -57,4 +57,12 @@ module ApplicationHelper
       t('.nothing')
     end
   end
+
+  def facebook_share_url(url)
+    "https://facebook.com/sharer.php?display=popup&u=#{url}"
+  end
+
+  def vk_share_url(url)
+    "https://vk.com/share.php?url=#{url}"
+  end
 end

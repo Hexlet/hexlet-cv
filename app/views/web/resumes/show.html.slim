@@ -100,7 +100,7 @@ script type="application/ld+json"
           .hexlet-cv-content.mb-2
             == markdown2html answer.content
           .small.text-right
-            a tabindex="0" data-toggle="popover" role="button" data-html="true" data-content="#{html_escape_once(render partial: 'web/resumes/answers/share', locals: { url: url_for(anchor: "answer-#{answer.id}", only_path: false) })}" Share
+            a tabindex="0" data-toggle="popover" role="button" data-html="true" data-content="#{html_escape_once(render 'web/shared/share_popover', url: url_for(anchor: "answer-#{answer.id}", only_path: false))}" = t(".share")
           - if answer.comments.any?
             .small
               - answer.comments.each do |comment|

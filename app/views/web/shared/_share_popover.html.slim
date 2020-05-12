@@ -1,0 +1,9 @@
+input class="form-control form-control-sm" id="click_input_#{url}" type='text' value=url readonly=true
+hr.my-2
+.d-flex
+  = link_to t("web.share.copy"), url, class: "flex-fill", data: { click: 'copy', click_input: "click_input_#{url}" }
+  = link_to facebook_share_url(url), data: { share_media: 'true' } do
+    i.fab.fa-facebook-square.h5.ml-2.mb-0
+  = link_to vk_share_url(url), data: { share_media: 'true' } do
+    i.fab.fa-vk.h5.ml-2.mb-0
+
