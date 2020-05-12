@@ -1,4 +1,5 @@
 DEFAULTS: &DEFAULTS
+  hexlet_url: https://ru.hexlet.io/u/$LABEL
   github_url: https://github.com/$LABEL
   name: Resume Name $LABEL
   english_fluency: fluent
@@ -43,3 +44,11 @@ full:
     Курсы Backend/Frontend JS Software Engineer на Hexlet
   summary: |
     Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
+
+one_archived:
+  <<: *DEFAULTS
+  user: one
+  skills_description: <%= Faker::Lorem.paragraph %>
+  awards_description: <%= Faker::Lorem.paragraph %>
+  summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
+  state: archived

@@ -1,0 +1,18 @@
+doctype html
+html.h-100 lang="#{I18n.locale}"
+  head
+    = render 'layouts/shared/admin/head'
+  body.d-flex.flex-column.h-100
+
+    = render 'layouts/shared/nav'
+    .container.my-4
+      main
+        .row
+          .col-md-2
+            = render 'layouts/shared/admin/menu'
+          .col-md-10
+            - if content_for?(:header)
+              h1.h2.mb-4= yield :header
+            = yield
+
+    = content_for :js

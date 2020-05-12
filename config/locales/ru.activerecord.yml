@@ -19,9 +19,15 @@ ru:
         last_name: Фамилия
         name: Имя
         about: Обо мне
+        resume_mail_enabled: Рассылка активности в ваших резюме
+        role: Роль
+        state: Статус
+        state/permitted: Активен
+        state/banned: Забанен
       resume:
         name: Название
         summary: Описание
+        hexlet_url: Hexlet
         github_url: Github
         english_fluency: Владение английским
         skills_description: Навыки
@@ -29,6 +35,7 @@ ru:
         state: Статус
         state/draft: Черновик
         state/published: Опубликовано
+        state/archived: В архиве
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения
@@ -40,6 +47,7 @@ ru:
         position: Должность
         begin_date: Дата начала
         end_date: Дата конца
+        current: По настоящее время
         description: Описание
       resume/education:
         description: Описание
@@ -47,6 +55,7 @@ ru:
         faculty: Факультет
         begin_date: Дата начала
         end_date: Дата конца
+        current: По настоящее время
       resume/comment:
         content: Комментарий
       answer/comment:

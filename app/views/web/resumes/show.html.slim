@@ -18,6 +18,9 @@ script type="application/ld+json"
 /     .mr-2= t('.likes')
 /     .font-weight-light= 3
 
+- if @resume.archived?
+  .alert.alert-warning= t('.archived')
+
 .mb-5
   = render 'information'
 

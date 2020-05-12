@@ -5,6 +5,7 @@ FactoryBot.define do
     name { Faker::Job.title }
     summary
     skills_description
+    hexlet_url
     github_url
     awards_description
     english_fluency { :fluent }

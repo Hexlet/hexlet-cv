@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include StateConcern
+  extend Enumerize
   include UserRepository
+
+  # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
+  enumerize :role, in: %i[user admin], default: :user, predicates: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +20,29 @@ class User < ApplicationRecord
   has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  aasm :state, column: :state do
+    state :permitted, initial: true
+    state :banned
+
+    event :ban do
+      transitions from: %i[permitted], to: :banned
+    end
+
+    event :unban do
+      transitions from: %i[banned], to: :permitted
+    end
+  end
+
+  # https://github.com/heartcombo/devise/wiki/How-to:-Soft-delete-a-user-when-user-deletes-account
+  def active_for_authentication?
+    super && permitted?
+  end
+
+  # provide a custom message for a banned user
+  def inactive_message
+    banned? ? :banned : super
+  end
 
   def self.from_omniauth(auth)
     exist_user = User.find_by(email: auth.info.email)
@@ -42,6 +70,10 @@ class User < ApplicationRecord
   end
 
   alias to_s full_name
+
+  def can_send_email?
+    !email_disabled_delivery && !unconfirmed_email
+  end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
   # def send_devise_notification(notification, *args)

@@ -1,0 +1,20 @@
+= search_form_for @q, url: admin_resumes_path, class: 'form-inline mb-2' do |f|
+  = f.label :name_or_user_first_name_or_user_last_name_cont
+  = f.search_field :name_or_user_first_name_or_user_last_name_cont, class: 'form-control mx-2'
+  = f.submit class: 'btn btn-primary'
+
+table.table
+  thead
+    tr
+      th= han('resume', 'name')
+      th= han('resume', 'state')
+      th= han('resume', 'user')
+      th= han('user', 'email')
+  tbody
+    - @resumes.each do |resume|
+      tr
+        td= link_to resume, edit_admin_resume_path(resume)
+        td= resume.aasm(:state).human_state
+        td= resume.user
+        td= resume.user.email
+= paginate @resumes

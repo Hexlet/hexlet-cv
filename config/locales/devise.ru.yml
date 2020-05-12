@@ -1,0 +1,5 @@
+ru:
+  devise:
+    failure:
+      user:
+        banned: "Вы были забанены"

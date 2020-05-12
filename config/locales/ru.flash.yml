@@ -14,6 +14,10 @@ ru:
         notifications:
           read_all:
             success: Все уведомления помечены прочитанными
+        newsletters:
+          update:
+            success: Настройки рассылки сохранены
+            error: Не удалось сохранить настройки рассылки
       resumes:
         answers:
           update:

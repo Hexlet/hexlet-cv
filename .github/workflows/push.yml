@@ -1,0 +1,21 @@
+name: On Push
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        env:
+          COVERAGE: true
+          RAILS_ENV: test
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+            docker-compose --file docker-compose.test.yml run sut

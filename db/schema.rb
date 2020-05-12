@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_060834) do
+ActiveRecord::Schema.define(version: 2020_04_26_103026) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_060834) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+    t.boolean "current"
     t.index ["resume_id"], name: "index_resume_educations_on_resume_id"
   end
 
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_060834) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "current"
     t.index ["resume_id"], name: "index_resume_works_on_resume_id"
   end
 
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_060834) do
     t.string "english_fluency"
     t.integer "impressions_count", default: 0
     t.integer "answers_count", default: 0, null: false
+    t.string "hexlet_url"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
@@ -165,6 +168,12 @@ ActiveRecord::Schema.define(version: 2019_10_09_060834) do
     t.string "uid"
     t.integer "resume_answer_likes_count", default: 0, null: false
     t.string "about"
+    t.boolean "resume_mail_enabled"
+    t.boolean "bounced_email"
+    t.boolean "marked_as_spam"
+    t.boolean "email_disabled_delivery"
+    t.string "role"
+    t.string "state"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

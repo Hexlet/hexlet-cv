@@ -1,5 +1,8 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
   a.navbar-brand(href="/") HexletCV
+  div.mr-3
+    = link_to resumes_url(format: :rss) do
+      i.fas.fa-rss.text-muted
   button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
@@ -13,4 +16,4 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0
         = nav_menu_item t('.sign_in'), new_user_session_path
         = nav_menu_item t('.register'), new_user_registration_path
 
-= render_flash_messages
+= render_flash_messages dismissible: true

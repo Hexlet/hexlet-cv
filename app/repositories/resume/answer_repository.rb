@@ -4,6 +4,6 @@ module Resume::AnswerRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { order(id: :desc) }
+    scope :web, -> { joins(:resume).merge(Resume.published).order(id: :desc) }
   end
 end

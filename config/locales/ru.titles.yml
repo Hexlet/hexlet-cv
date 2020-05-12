@@ -2,3 +2,7 @@ ru:
   titles:
     web:
       base: Hexlet Резюме
+      pages:
+        about: О проекте
+      users:
+        base: Пользователи

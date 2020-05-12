@@ -56,6 +56,7 @@ group :test do
   gem 'capybara'
   gem 'minitest-power_assert'
   gem 'selenium-webdriver'
+  gem 'simplecov', '0.17.0', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
@@ -106,3 +107,5 @@ gem 'pundit', '~> 2.1'
 gem 'meta-tags', '~> 2.12'
 
 gem 'impressionist', '~> 1.6'
+
+gem 'ransack', github: 'activerecord-hackery/ransack'

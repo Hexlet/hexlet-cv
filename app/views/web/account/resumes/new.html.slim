@@ -1,4 +1,5 @@
 - content_for :header do
   = t('.header')
 
-= render 'form'
+= render partial: 'web/shared/resume_form',
+         locals: { namespace: :account, resume: @resume, resume_educations: @resume_educations, resume_works: @resume_works }

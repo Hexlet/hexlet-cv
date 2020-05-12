@@ -1,7 +1,12 @@
 en:
   web:
+    shared:
+      resume_form:
+        publish: Publish
+        hide: Draft
     home:
       index:
+        description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.
     resumes:
       answers:
         new:
@@ -12,6 +17,7 @@ en:
         basic: Basic
         work: Work
         education: Education
+        current: to present
       show:
         add_a_comment: Add a comment
         recomendations: Recomendations
@@ -19,6 +25,7 @@ en:
         likes: |
           Likes: %{count}
         share: Share
+        archived: Resume in archive
       comments:
         new:
           header: New comment
@@ -39,8 +46,6 @@ en:
           header: Edit resume
         index:
           header: My resumes
-        form:
-          publish: Publish
       profiles:
         edit:
           header: Settings
@@ -49,6 +54,9 @@ en:
       notifications:
         index:
           header: Notifications
+      newsletters:
+        edit:
+          header: Newsletters
     users:
       show:
         header: Profile
@@ -58,9 +66,16 @@ en:
         tab_resumes: Resume
         tab_answers: Answers
         tab_comments: Comments
+        banned: Account has been banned
     answers:
       comments:
         edit:
           header: Edit comment
     shared:
       copy: Copy
+    pages:
+      about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
+    account:
+      resumes:
+        edit:
+          header: Edit resume

@@ -1,0 +1,10 @@
+ru:
+  events:
+    user:
+      ban: Забанить
+      unban: Разбанить
+    resume:
+      publish: Опубликовать
+      hide: В черновик
+      archive: Архивировать
+      restore: Восстановить из архива

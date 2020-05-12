@@ -3,6 +3,3 @@ ru:
     submit:
       create: Создать
       update: Изменить
-      resume:
-        update: В черновик
-        create: В черновик
