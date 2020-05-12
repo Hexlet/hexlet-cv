@@ -66,6 +66,10 @@ module ApplicationHelper
     "https://vk.com/share.php?url=#{url}"
   end
 
+  def twitter_share_url(url)
+    "https://twitter.com/share?url=#{url}"
+  end
+
   def filter_link(name, path = {}, options = {})
     filter_path = { q: path }
     active = current_page?(filter_path, check_parameters: true)
