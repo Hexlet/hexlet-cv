@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include StateConcern
   extend Enumerize
   include UserRepository
+  include UserPresenter
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true
@@ -62,14 +63,6 @@ class User < ApplicationRecord
       end
     end
   end
-
-  def full_name
-    return 'Anonymous' if !first_name? || !last_name?
-
-    "#{first_name} #{last_name}"
-  end
-
-  alias to_s full_name
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
