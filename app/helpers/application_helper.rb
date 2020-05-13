@@ -19,10 +19,11 @@ module ApplicationHelper
 
     options = {
       escape_html: true,
-      hard_wrap: true
+      hard_wrap: true,
+      link_attributes: { target: '_blank' }
     }
 
-    renderer = Redcarpet::Render::HTML.new(options, link_attributes: { target: '_blank' })
+    renderer = Redcarpet::Render::HTML.new(options)
     markdown = Redcarpet::Markdown.new(renderer, extensions)
     markdown.render(text)
   end
