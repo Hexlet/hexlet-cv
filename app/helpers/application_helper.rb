@@ -16,13 +16,7 @@ module ApplicationHelper
       filter_html: true,
       safe_links_only: true
     }
-
-    options = {
-      escape_html: true,
-      hard_wrap: true
-    }
-
-    renderer = Redcarpet::Render::HTML.new(options, link_attributes: { target: '_blank' })
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: true, link_attributes: { target: '_blank' })
     markdown = Redcarpet::Markdown.new(renderer, extensions)
     markdown.render(text)
   end
