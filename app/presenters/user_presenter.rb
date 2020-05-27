@@ -8,5 +8,4 @@ module UserPresenter
   end
 
   alias to_s full_name
-
 end
