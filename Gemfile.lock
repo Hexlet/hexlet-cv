@@ -214,7 +214,7 @@ GEM
     power_assert (1.2.0)
     psych (3.1.0)
     public_suffix (4.0.4)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
