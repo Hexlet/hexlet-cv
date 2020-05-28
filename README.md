@@ -11,7 +11,7 @@
 ## Системные требования
 
 * Ruby
-* Node
+* Node.js
 * Yarn
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
@@ -19,11 +19,11 @@
 ## Установка
 
 ```sh
-make setup
-make test # run tests
-make start # run server
+$ make setup
+$ make test # run tests
+$ make start # run server
 
-make fixtures-load # sometimes, when fixtures were changed
+$ make fixtures-load # sometimes, when fixtures were changed
 ```
 
 ---
