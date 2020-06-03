@@ -1,26 +1,21 @@
-footer.text-muted.pb-5.mt-auto
-  .container.mt-5
-    .row
-      .col-12.col-md-4
-        .h4 &copy; Hexlet
-        hr
+footer.bg-light.border-top.mt-auto.py-3
+  .container-xl
+    .row.justify-content-lg-around
+      .col-sm-6.col-md-4.col-lg-auto
+        a.navbar-brand.text-dark.px-0.py-0(href='https://ru.hexlet.io')
+          h2.h5 &copy; Hexlet
         ul.list-unstyled
-         li= link_to t('.about'), page_path('about')
-         li= link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', target: "_blank"
-         li= link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', target: "_blank"
-      / .col-12.col-md-4
-      /   div.h5.mb-3= t('.other_os_projects')
-      /   ul.list-unstyled
-      /     li= link_to 'NodeJS', 'https://github.com/Hexlet/hexlet-interview', target: "_blank"
-      /     li= link_to 'PHP', 'https://github.com/Hexlet/hexlet-sicp', target: "_blank"
-      /     li= link_to 'Java', 'https://github.com/Hexlet/hexlet-correction', target: "_blank"
-      .col-12.col-md-4
-        div.h5.mb-3= t('.help')
+          li= link_to t('.about'), page_path('about')
+          li= link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', target: "_blank"
+          li= link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', target: "_blank"
+      .col-sm-6.col-md-4.col-lg-auto
+        h2.h5= t('.help')
         ul.list-unstyled
           li= link_to t('.knowledge'), 'https://ru.hexlet.io/knowledge', target: "_blank"
           li= link_to t('.blog'), 'https://ru.hexlet.io/blog', target: "_blank"
           li= link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: "_blank"
-        div.h5.mb-3= t('.additionally')
+      .col-sm-6.col-md-4.col-lg-auto
+        h2.h5= t('.additionally')
         ul.list-unstyled
           li= link_to 'Code Basics', 'https://ru.code-basics.com/', target: "_blank"
           li= link_to 'Code Battles', 'https://codebattle.hexlet.io/' , target: "_blank"
