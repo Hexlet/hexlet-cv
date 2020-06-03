@@ -1,4 +1,4 @@
-.nav.nav-tabs.ml-0.mb-3
+.nav.nav-tabs.mb-3
   = filter_link(t('.all'), {}, class: 'nav-item nav-link')
   = filter_link(t('.popular'), { popular_gteq: Date.current - 1.week }, class: 'nav-item nav-link')
   = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day }, class: 'nav-item nav-link')
