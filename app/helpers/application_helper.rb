@@ -43,9 +43,9 @@ module ApplicationHelper
 
   def nav_menu_item(name, path = '#', options = {})
     assembled_options = options.merge(class: "nav-link #{active?(path)}")
-    content_tag :li, class: 'nav-item' do
+    tag.li class: 'nav-item' do
       link_to path, assembled_options do
-        content_tag(:div, name)
+        tag.div name
       end
     end
   end
@@ -60,7 +60,7 @@ module ApplicationHelper
 
   def not_found_random_image
     # FIXME: add funny pictures
-    content_tag :div, class: 'lead text-center' do
+    tag.div class: 'lead text-center' do
       t('.nothing')
     end
   end
@@ -70,7 +70,7 @@ module ApplicationHelper
     active = current_page?(filter_path, check_parameters: true)
     assembled_options = options.merge(class: [options[:class], active?(filter_path, active_if: active)].join(' '))
     link_to_unless active, name, filter_path, assembled_options do
-      content_tag :span, name, assembled_options
+      tag.span name, assembled_options
     end
   end
 end

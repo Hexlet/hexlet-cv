@@ -12,7 +12,7 @@ class StateEventInput < SimpleForm::Inputs::CollectionSelectInput
     value_method = :second
 
     current_state_name = object.aasm(clean_attribute_name).human_state
-    current_state = template.content_tag(:span, "#{I18n.t('.inputs.current_state')} #{current_state_name}", class: 'mx-1')
+    current_state = template.tag.span("#{I18n.t('.inputs.current_state')} #{current_state_name}", class: 'mx-1')
 
     merged_html_options = merge_wrapper_options(input_html_options, wrapper_options)
     merged_input_options = input_options.merge(include_blank: 'select action')
