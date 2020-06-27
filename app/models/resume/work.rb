@@ -3,7 +3,7 @@
 class Resume::Work < ApplicationRecord
   include Resume::WorkRepository
 
-  belongs_to :resume, dependent: :destroy
+  belongs_to :resume
 
   validates :company, presence: true
   validates :position, presence: true
