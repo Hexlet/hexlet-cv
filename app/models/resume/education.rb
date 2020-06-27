@@ -3,7 +3,7 @@
 class Resume::Education < ApplicationRecord
   include Resume::EducationRepository
 
-  belongs_to :resume, dependent: :destroy
+  belongs_to :resume
 
   validates :description, presence: true
   validates :begin_date, presence: true
