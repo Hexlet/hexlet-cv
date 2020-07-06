@@ -12,4 +12,8 @@ class ResumePolicy < ApplicationPolicy
   def update_state?
     @user.admin? && !author? && !@record.new_record?
   end
+
+  def download?
+    author?
+  end
 end
