@@ -10,6 +10,7 @@ class Web::Resumes::PdfsController < Web::Resumes::ApplicationController
       raise ActionController::RoutingError, "Cannot find page '#{params[:id]}'"
     end
 
+    @user = resource_resume.user
     @resume_educations = resource_resume.educations.web
     @resume_works = resource_resume.works.web
 
