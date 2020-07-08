@@ -45,7 +45,8 @@
         - @resume_works.each do |work|
           .col-12
             b.lead= work
-            | ,&nbsp;
+            span.mr-2
+              | ,
             span.lead= work.company
             .lead.text-muted.mt-1.mb-2
               = l work.begin_date, format: :discard_day
