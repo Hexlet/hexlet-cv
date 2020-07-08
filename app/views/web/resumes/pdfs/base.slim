@@ -4,54 +4,49 @@
       .col-12
         h1.text-center.display-4.mb-2= @user
         h2.text-center.lead= resource_resume
-      .d-flex
-        h2.my-4.mr-3= t('.basic')
+      .col-12
+        h2.my-4= t('.basic')
         hr.my-auto.w-100
 
-      .row.mb-3
-        .col-sm-9.hexlet-cv-content.lead
-          == markdown2html resource_resume.summary
+      .col-sm-9.hexlet-cv-content.lead
+        == markdown2html resource_resume.summary
 
-      .d-flex
-        h2.my-4.mr-3= han('resume', 'skills_description')
+      .col-12
+        h2.my-4= han('resume', 'skills_description')
         hr.my-auto.w-100
-      .row.mb-3
-        .col-sm-9.hexlet-cv-content.lead
-          == markdown2html resource_resume.skills_description
+      .col-12.hexlet-cv-content.lead
+        == markdown2html resource_resume.skills_description
 
       - if resource_resume.awards_description?
-        .d-flex
-          h2.my-4.mr-3= han('resume', 'awards_description')
+        .col-12
+          h2.my-4= han('resume', 'awards_description')
           hr.my-auto.w-100
 
-        .row.mb-3
-          .col-sm-9.hexlet-cv-content.lead
-            == markdown2html resource_resume.awards_description
+        .col-12.hexlet-cv-content.lead
+          == markdown2html resource_resume.awards_description
 
-      .d-flex
+      .col-12
         h2.my-4.mr-3= han('resume', 'english_fluency')
         hr.my-auto.w-100
-      .row
-        .col-sm-9.lead
-          = resource_resume.english_fluency.text
+      .col-12.lead
+        = resource_resume.english_fluency.text
 
-      .d-flex
-        h2.my-4.mr-3= han('resume', 'github')
+      .col-12
+        h2.my-4= han('resume', 'github')
         hr.my-auto.w-100
-      .row.mt-3.mb-4
-        .col-sm-9.lead
-          = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank'
+      .col-12.lead
+        = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank'
 
       - if @resume_works.any?
-        .d-flex
-          h2.my-4.mr-3= t('.work')
+        .col-12
+          h2.my-4= t('.work')
           hr.my-auto.w-100
 
         - @resume_works.each do |work|
-          .mb-4
+          .col-12
             b.lead= work
             | ,&nbsp;
-            = work.company
+            .d-inline.lead= work.company
             .lead.text-muted.mt-1.mb-2
               = l work.begin_date, format: :discard_day
               - if work.current
@@ -63,13 +58,13 @@
             .hexlet-cv-content.lead== markdown2html work.description
 
       - if @resume_educations.any?
-        .d-flex
-          h2.my-4.mr-3= t('.education')
+        .col-12
+          h2.my-4= t('.education')
           hr.my-auto.w-100
 
         - @resume_educations.each do |education|
-          .mb-4.lead
-            = education.description
+          .col-12
+            .lead= education.description
             .lead.text-muted.mt-1.mb-2
               = l education.begin_date, format: :discard_day
               - if education.current
