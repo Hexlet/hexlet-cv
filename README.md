@@ -33,3 +33,5 @@ $ make fixtures-load # sometimes, when fixtures were changed
 This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=exercises-javascript).
 
 Video changes #1
+
+Video changes #2
