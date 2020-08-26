@@ -1,2 +1,5 @@
 li.page-item
-  = link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, remote: remote, class: 'page-link'
+  - unless current_page.first?
+    = link_to url, remote: remote, class: 'page-link' do
+      | &laquo;
+      span.d-none.d-lg-inline = t 'views.pagination.first'
