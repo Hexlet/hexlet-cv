@@ -4,7 +4,8 @@ class Web::Account::NewslettersController < Web::Account::ApplicationController
   def edit; end
 
   def update
-    if current_user.update(newsletters_params)
+    user = current_user.becomes(Web::Account::NewsletterForm)
+    if user.update(newsletters_params)
       f(:success)
       redirect_to edit_account_newsletters_path
     else
@@ -14,6 +15,6 @@ class Web::Account::NewslettersController < Web::Account::ApplicationController
   end
 
   def newsletters_params
-    params.require(:user).permit(:resume_mail_enabled)
+    params.require(:user)
   end
 end

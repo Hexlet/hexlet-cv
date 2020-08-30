@@ -2,7 +2,7 @@
 
 module ResumeAnswerCommentMutator
   def self.create(answer, params, current_user)
-    comment = answer.comments.build content: params[:content]
+    comment = answer.comments.build params
     comment.resume = answer.resume
     comment.user = current_user
     comment.answer_user = answer.user

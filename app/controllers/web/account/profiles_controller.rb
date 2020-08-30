@@ -6,7 +6,8 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
   def edit; end
 
   def update
-    if current_user.update(profile_params)
+    user = current_user.becomes(Web::Account::ProfileForm)
+    if user.update(profile_params)
       f(:success)
       redirect_to account_profile_path
     else
@@ -18,6 +19,6 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
   private
 
   def profile_params
-    params.require(:user).permit(:first_name, :last_name, :about)
+    params.require(:user)
   end
 end

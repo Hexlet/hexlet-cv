@@ -7,16 +7,19 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
 
   def update
     @comment = resource_resume.comments.find_by user: current_user, id: params[:id]
-    if @comment.update(resume_comment_params)
+    comment = @comment.becomes(Web::Resumes::CommentForm)
+    if comment.update(resume_comment_params)
       f(:success)
       redirect_to resume_path(resource_resume)
     else
+      @comment = comment.becomes(Resume::Comment)
       render :edit
     end
   end
 
   def create
-    @comment = resource_resume.comments.build content: params[:resume_comment][:content]
+    form = Web::Resumes::CommentForm.new(resume_comment_params)
+    @comment = resource_resume.comments.build form.attributes
     @comment.resume = resource_resume
     @comment.user = current_user
     if @comment.save
@@ -39,6 +42,6 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   private
 
   def resume_comment_params
-    params.require(:resume_comment).permit(:content)
+    params.require(:resume_comment)
   end
 end

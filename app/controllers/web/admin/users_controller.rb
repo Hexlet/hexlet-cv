@@ -8,10 +8,12 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
 
   def update
     @user = User.find params[:id]
-    if @user.update(profile_params)
+    user = @user.becomes(Web::Admin::UserForm)
+    if user.update(profile_params)
       f(:success)
       redirect_to action: :index
     else
+      @user = user.becomes(User)
       render :edit
     end
   end
@@ -23,6 +25,6 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
   private
 
   def profile_params
-    params.require(:user).permit(:state_event, :first_name, :last_name, :about)
+    params.require(:user)
   end
 end

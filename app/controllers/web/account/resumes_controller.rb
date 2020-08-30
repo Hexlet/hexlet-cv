@@ -10,7 +10,8 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   end
 
   def create
-    @resume = current_user.resumes.build resume_params
+    form = Web::Account::ResumeForm.new(resume_params)
+    @resume = current_user.resumes.build form.attributes
     if @resume.save
       change_visibility(@resume)
       redirect_to action: :index
@@ -21,11 +22,13 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   def update
     @resume = current_user.resumes.find params[:id]
-    if @resume.update(resume_params)
+    resume = @resume.becomes(Web::Account::ResumeForm)
+    if resume.update(resume_params)
       change_visibility(@resume)
       f(:success)
       redirect_to action: :index
     else
+      @resume = resume.becomes(Resume)
       render :edit
     end
   end
@@ -46,11 +49,6 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   end
 
   def resume_params
-    attrs = %i[name hexlet_url github_url summary skills_description awards_description english_fluency]
-    nested_attrs = {
-      educations_attributes: %i[description begin_date end_date current _destroy id],
-      works_attributes: %i[company position description begin_date end_date current _destroy id]
-    }
-    params.require(:resume).permit(*attrs, **nested_attrs)
+    params.require(:resume)
   end
 end

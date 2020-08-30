@@ -9,16 +9,19 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   def update
     @comment = resource_answer.comments.find params[:id]
     authorize @comment
-    if @comment.update(answer_comment_params)
+    comment = @comment.becomes(Web::Resumes::Answers::CommentForm)
+    if comment.update(answer_comment_params)
       f(:success)
       redirect_to resume_path(resource_answer.resume)
     else
+      @comment = comment.becomes(Resume::Answer::Comment)
       render :edit
     end
   end
 
   def create
-    @comment = ResumeAnswerCommentMutator.create(resource_answer, params[:resume_answer_comment], current_user)
+    form = Web::Resumes::Answers::CommentForm.new(answer_comment_params)
+    @comment = ResumeAnswerCommentMutator.create(resource_answer, form.attributes, current_user)
     if @comment.persisted?
       f(:success)
       redirect_to resume_path(resource_answer.resume)
@@ -39,6 +42,6 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   private
 
   def answer_comment_params
-    params.require(:resume_answer_comment).permit(:content)
+    params.require(:resume_answer_comment)
   end
 end
