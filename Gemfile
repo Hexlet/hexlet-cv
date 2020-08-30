@@ -109,3 +109,5 @@ gem 'meta-tags', '~> 2.12'
 gem 'impressionist', '~> 1.6'
 
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+gem 'active_form_model'

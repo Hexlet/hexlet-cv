@@ -18,16 +18,19 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   def update
     @answer = resource_resume.answers.find params[:id]
     authorize @answer
-    if @answer.update(resume_answer_params)
+    answer = @answer.becomes(Web::Resumes::AnswerForm)
+    if answer.update(resume_answer_params)
       f(:success)
       redirect_to resume_path(resource_resume)
     else
+      @answer = answer.becomes(Resume::Answer)
       render :edit
     end
   end
 
   def create
-    @answer = ResumeAnswerMutator.create(resource_resume, resume_answer_params, current_user)
+    form = Web::Resumes::AnswerForm.new(resume_answer_params)
+    @answer = ResumeAnswerMutator.create(resource_resume, form.attributes, current_user)
     if @answer.persisted?
       f(:success)
       redirect_to resume_path(resource_resume)
@@ -48,6 +51,6 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   end
 
   def resume_answer_params
-    params.require(:resume_answer).permit(:content)
+    params.require(:resume_answer)
   end
 end

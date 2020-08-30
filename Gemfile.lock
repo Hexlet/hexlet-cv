@@ -48,6 +48,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_form_model (0.1.0)
     activejob (6.0.3.2)
       activesupport (= 6.0.3.2)
       globalid (>= 0.3.6)
@@ -383,6 +384,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  active_form_model
   bootsnap (>= 1.4.2)
   byebug
   capybara
