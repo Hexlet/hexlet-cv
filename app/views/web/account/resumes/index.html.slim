@@ -3,11 +3,12 @@
 
 - @resumes.each do |resume|
   .card.mb-3
-    .card-header= resume.aasm(:state).human_state
+    .card-header
+      = resume.aasm(:state).human_state
+      span.ml-3
+        = link_to edit_account_resume_path(resume) do
+          i.far.fa-edit.text-muted
     .card-body
       h5.card-title
         = link_to resume, resume_path(resume)
-        span.ml-3
-          = link_to edit_account_resume_path(resume) do
-            i.far.fa-edit.text-muted
       .card-text== markdown2html resume.summary
