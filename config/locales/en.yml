@@ -13,8 +13,8 @@ en:
       subject: You have a new recommendation
   views:
     pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
+      first: " First"
+      last: "Last "
+      previous: " Prev"
+      next: "Next "
       truncate: "&hellip;"
