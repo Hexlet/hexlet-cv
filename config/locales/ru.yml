@@ -1,4 +1,5 @@
 ru:
+  standalone_month_names: [Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
   confirm: Вы уверены?
   resume_answer_mailer:
     new_answer_email:
