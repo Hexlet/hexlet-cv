@@ -20,10 +20,16 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
   test '#create' do
     attrs = FactoryBot.attributes_for :resume
+    education_attrs = attrs[:educations_attributes].first
+    works_attrs = attrs[:works_attributes].first
+
     post account_resumes_path, params: { resume: attrs }
     assert_response :redirect
 
-    assert { Resume.exists?(attrs.slice(:name)) }
+    resume = Resume.find_by(name: attrs[:name])
+    assert { resume }
+    assert { resume.educations.exists?(description: education_attrs[:description]) }
+    assert { resume.works.exists?(company: works_attrs[:company]) }
   end
 
   test '#edit' do

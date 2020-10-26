@@ -10,8 +10,9 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   end
 
   def create
-    form = Web::Account::ResumeForm.new(resume_params)
-    @resume = current_user.resumes.build form.attributes
+    @resume = Web::Account::ResumeForm.new(resume_params)
+    @resume.user = current_user
+
     if @resume.save
       change_visibility(@resume)
       redirect_to action: :index
