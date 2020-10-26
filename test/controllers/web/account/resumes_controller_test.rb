@@ -26,10 +26,10 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     post account_resumes_path, params: { resume: attrs }
     assert_response :redirect
 
-    resume = Resume.find_by(attrs.slice(:name))
+    resume = Resume.find_by(name: attrs[:name])
     assert { resume }
-    assert { resume.educations.exists?(education_attrs.slice(:description)) }
-    assert { resume.works.exists?(works_attrs.slice(:company)) }
+    assert { resume.educations.exists?(description: education_attrs[:description]) }
+    assert { resume.works.exists?(company: works_attrs[:company]) }
   end
 
   test '#edit' do
