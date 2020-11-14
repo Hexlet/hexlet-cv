@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ResumeAnswerCommentMutator
+module ResumeAnswer::CommentMutator
   def self.create(answer, params, current_user)
     comment = answer.comments.build params
     comment.resume = answer.resume

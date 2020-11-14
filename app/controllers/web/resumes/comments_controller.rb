@@ -19,11 +19,8 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
 
   def create
     form = Web::Resumes::CommentForm.new(resume_comment_params)
-    @comment = resource_resume.comments.build form.attributes
-    @comment.resume = resource_resume
-    @comment.user = current_user
-    if @comment.save
-      resource_resume.user.notifications.create!(kind: :new_comment, resource: @comment)
+    @comment = Resume::CommentMutator.create(resource_resume, form.attributes, current_user)
+    if @comment.persisted?
       f(:success)
       redirect_to resume_path(resource_resume)
     else
