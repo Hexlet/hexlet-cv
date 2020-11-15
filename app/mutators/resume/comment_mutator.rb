@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Resume::CommentMutator
   def self.create(resume, params, current_user)
     comment = resume.comments.build params
