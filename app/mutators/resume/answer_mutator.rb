@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ResumeAnswerMutator
+module Resume::AnswerMutator
   def self.create(resume, params, current_user)
     answer = resume.answers.build params
     answer.user = current_user

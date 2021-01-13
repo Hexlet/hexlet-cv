@@ -2,15 +2,11 @@
 
 class Web::Answers::LikesController < Web::Answers::ApplicationController
   def create
-    # TODO: move to mutator
-    like = resource_answer.likes.build
-    like.resume = resource_answer.resume
-    like.user = current_user
-    if like.save
-      resource_answer.user.notifications.create!(kind: :new_answer_like, resource: like)
+    @like = Resume::Answer::LikeMutator.create(resource_answer, current_user)
+    if @like.persisted?
       f(:success)
     else
-      f(:error, errors: like.errors.full_messages.to_sentence)
+      f(:error, errors: @like.errors.full_messages.to_sentence)
     end
 
     redirect_to resume_path(resource_answer.resume, anchor: "answer-#{resource_answer.id}")

@@ -30,7 +30,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
 
   def create
     form = Web::Resumes::AnswerForm.new(resume_answer_params)
-    @answer = ResumeAnswerMutator.create(resource_resume, form.attributes, current_user)
+    @answer = Resume::AnswerMutator.create(resource_resume, form.attributes, current_user)
     if @answer.persisted?
       f(:success)
       redirect_to resume_path(resource_resume)
