@@ -2,7 +2,7 @@
 
 class Web::Answers::LikesController < Web::Answers::ApplicationController
   def create
-    @like = ResumeAnswer::LikeMutator.create(resource_answer, current_user)
+    @like = Resume::Answer::LikeMutator.create(resource_answer, current_user)
     if @like.persisted?
       f(:success)
     else

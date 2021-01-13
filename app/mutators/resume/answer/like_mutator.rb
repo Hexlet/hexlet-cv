@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ResumeAnswer::LikeMutator
+module Resume::Answer::LikeMutator
   def self.create(resource_answer, current_user)
     like = resource_answer.likes.build
     like.resume = resource_answer.resume
