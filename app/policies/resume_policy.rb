@@ -8,4 +8,8 @@ class ResumePolicy < ApplicationPolicy
   def update?
     author?
   end
+
+  def download?
+    author?
+  end
 end

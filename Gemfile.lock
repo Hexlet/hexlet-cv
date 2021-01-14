@@ -376,6 +376,9 @@ GEM
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.1.0)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.25)
@@ -436,6 +439,8 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
+  wicked_pdf
+  wkhtmltopdf-binary
   yard
 
 BUNDLED WITH

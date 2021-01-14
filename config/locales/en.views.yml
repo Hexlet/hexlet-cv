@@ -25,6 +25,8 @@ en:
         likes: |
           Likes: %{count}
         archived: Resume in archive
+        download: Download PDF
+        print: Preview PDF
       comments:
         new:
           header: New comment

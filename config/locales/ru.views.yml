@@ -52,6 +52,8 @@ ru:
         likes: |
           Понравилось: %{count}
         archived: Резюме заархивировано
+        download: Скачать резюме в PDF
+        print: Версия для печати
       comment_requires:
         feedback: Ваш комментарий важен для нас!
         requires: Для этого действия нужно
@@ -64,6 +66,12 @@ ru:
           header: Создание комментария
         edit:
           header: Редактирование комментария
+      pdfs:
+        base:
+          basic: Основное
+          work: Работа
+          education: Образование
+          current: по настоящее время
     account:
       resumes:
         new:

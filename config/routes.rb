@@ -12,6 +12,7 @@ Rails.application.routes.draw do
             patch :change_applying_state
           end
         end
+        resources :pdfs, only: :show
         resources :comments
       end
     end

@@ -1,5 +1,6 @@
 = content_for :header do
   = @resume
+
 script type="application/ld+json"
   == sanitize render partial: 'schemas/resume.json', locals: { resume: @resume, educations: @resume_educations, works: @resume_works }
 
@@ -20,6 +21,14 @@ script type="application/ld+json"
 
 - if @resume.archived?
   .alert.alert-warning= t('.archived')
+
+- if policy(@resume).download?
+  .mb-2.d-flex.justify-content-end
+    = link_to resume_pdf_path(@resume, 'base', format: :pdf),
+              class: 'mr-3', title: t('.print'), target: :_blank do
+      i.fas.fa-print
+    = link_to resume_pdf_path(@resume, 'base'), title: t('.download') do
+      i.fas.fa-download
 
 .mb-5
   = render 'information'
