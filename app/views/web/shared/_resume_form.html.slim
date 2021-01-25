@@ -1,5 +1,5 @@
-= simple_form_for [namespace, resume], wrapper: 'horizontal_form' do |f|
-  - if current_user.admin? && resume.user && current_user != resume.user
+= simple_form_for resume, url: url, wrapper: 'horizontal_form' do |f|
+  - if can_update_state
     = f.input :state_event, as: :state_event, collection: resume.aasm(:state).events(permitted: true)
     .mb-3= f.submit class: 'btn btn-primary'
   = f.input :name
