@@ -7,6 +7,7 @@ FactoryBot.define do
     skills_description
     hexlet_url
     github_url
+    contact
     awards_description
     english_fluency { :fluent }
 

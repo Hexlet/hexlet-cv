@@ -45,6 +45,10 @@ FactoryBot.define do
     "https://github.com/user#{n}"
   end
 
+  sequence :contact do
+    Faker::Internet.email
+  end
+
   sequence :about do |_n|
     Faker::Lorem.sentence
   end

@@ -39,6 +39,12 @@
     b= han('resume', 'github')
   .col-sm-9
     = link_to @resume.github_url, @resume.github_url, target: '_blank'
+- if @resume.contact
+  .row.mt-3.mb-4
+    .col-sm-3
+      b= han('resume', 'contact')
+    .col-sm-9
+      = @resume.contact
 
 - if @resume_works.any?
   .d-flex
