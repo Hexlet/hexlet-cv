@@ -21,6 +21,7 @@ ru:
       resume:
         hexlet_url: 'Ссылка на профиль: https://ru.hexlet.io/u/mokevnin'
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
+        contact: 'Предпочитаемый способ связи (емайл, линкендин, телеграмм и т.п.)'
         name: PHP-программист, Android-разработчик, ...
         skills_description: Знаю PHP, пользуюсь Vim, Работал с AWS
         awards_description: Участие в олимпиадах, хакатонах, других профильных меропритиях. Курсы.

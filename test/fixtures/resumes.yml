@@ -1,6 +1,7 @@
 DEFAULTS: &DEFAULTS
   hexlet_url: https://ru.hexlet.io/u/$LABEL
   github_url: https://github.com/$LABEL
+  contact: $LABEL@email.com
   name: Resume Name $LABEL
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
