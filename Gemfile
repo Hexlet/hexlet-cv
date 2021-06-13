@@ -80,7 +80,7 @@ gem 'rails-i18n'
 
 gem 'paper_trail', '~> 10.3'
 
-gem 'gon', '~> 6.2'
+gem 'gon', '~> 6.4'
 
 gem 'enumerize', '~> 2.3'
 
