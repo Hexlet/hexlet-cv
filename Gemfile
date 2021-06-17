@@ -14,7 +14,7 @@ gem 'webpacker'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -76,7 +76,6 @@ end
 
 gem 'cocoon'
 gem 'devise'
-gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'enumerize'
 gem 'flash_rails_messages'
@@ -93,5 +92,6 @@ gem 'redcarpet'
 gem 'rollbar'
 
 gem 'ransack'
+gem 'turbo-rails'
 
 gem 'active_form_model'

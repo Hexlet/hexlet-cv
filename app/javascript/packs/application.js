@@ -6,20 +6,15 @@
 // that code so it'll be compiled.
 
 require('jquery');
-require('@rails/ujs').start();
+// require('@rails/ujs').start();
+require('@hotwired/turbo-rails');
 require('@rails/activestorage').start();
 require('channels');
 require('popper.js');
 require('bootstrap');
-require('./cocoon');
+require('@nathanvda/cocoon');
 
-import { library, dom } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { far } from '@fortawesome/free-regular-svg-icons'
-
-library.add(fas, far)
-
-dom.watch()
+// dom.watch()
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

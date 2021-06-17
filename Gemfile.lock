@@ -96,7 +96,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-bootstrap-views (1.1.0)
     devise-i18n (1.9.4)
       devise (>= 4.7.1)
     diff-lcs (1.4.4)
@@ -273,6 +272,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.5.1)
+    redis (4.3.1)
     reek (6.0.4)
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
@@ -368,6 +368,8 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
+    turbo-rails (0.5.11)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
@@ -407,7 +409,6 @@ DEPENDENCIES
   cocoon
   counter_culture (~> 2.0)
   devise
-  devise-bootstrap-views
   devise-i18n
   dotenv-rails
   enumerize
@@ -432,6 +433,7 @@ DEPENDENCIES
   rails-i18n
   ransack
   redcarpet
+  redis (~> 4.0)
   reek
   rollbar
   rubocop
@@ -446,6 +448,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   sqlite3
+  turbo-rails
   tzinfo-data
   web-console
   webdrivers
