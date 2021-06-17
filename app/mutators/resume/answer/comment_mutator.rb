@@ -6,10 +6,8 @@ module Resume::Answer::CommentMutator
     comment.resume = answer.resume
     comment.user = current_user
     comment.answer_user = answer.user
-    if comment.save
-      if answer.user != comment.user
-        answer.user.notifications.create!(kind: :new_answer_comment, resource: comment)
-      end
+    if comment.save && (answer.user != comment.user)
+      answer.user.notifications.create!(kind: :new_answer_comment, resource: comment)
     end
 
     comment

@@ -74,40 +74,24 @@ group :production do
   gem 'pg'
 end
 
+gem 'cocoon'
+gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'enumerize'
+gem 'flash_rails_messages'
+gem 'gon'
+gem 'impressionist'
 gem 'kaminari'
-
-gem 'rails-i18n'
-
-gem 'paper_trail', '~> 10.3'
-
-gem 'gon', '~> 6.4'
-
-gem 'enumerize', '~> 2.3'
-
-gem 'devise', '~> 4.7'
-
-gem 'devise-i18n', '~> 1.8'
-
+gem 'meta-tags'
 gem 'omniauth-github'
+gem 'paint'
+gem 'paper_trail'
+gem 'pundit'
+gem 'rails-i18n'
+gem 'redcarpet'
+gem 'rollbar'
 
-gem 'flash_rails_messages', '~> 2.1'
-
-gem 'devise-bootstrap-views', '~> 1.1'
-
-gem 'rollbar', '~> 2.22'
-
-gem 'redcarpet', '~> 3.5'
-
-gem 'cocoon', '~> 1.2'
-
-gem 'paint', '~> 2.1'
-
-gem 'pundit', '~> 2.1'
-
-gem 'meta-tags', '~> 2.12'
-
-gem 'impressionist', '~> 1.6'
-
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
 
 gem 'active_form_model'

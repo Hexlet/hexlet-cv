@@ -68,9 +68,12 @@ module ApplicationHelper
   def filter_link(name, path = {}, options = {})
     filter_path = { q: path }
     active = current_page?(filter_path, check_parameters: true)
-    assembled_options = options.merge(class: [options[:class], active?(filter_path, active_if: active)].join(' '))
-    link_to_unless active, name, filter_path, assembled_options do
-      tag.span name, assembled_options
-    end
+    assembled_options = options.merge(class: [options[:class], active?(filter_path, active_if: active)])
+    link_to name, filter_path, assembled_options
+  end
+
+  def structured_data_tag(path, args = {})
+    content = render partial: "schemas/#{path}", formats: [:json], locals: args
+    tag.script(content.html_safe, type: 'application/ld+json')
   end
 end
