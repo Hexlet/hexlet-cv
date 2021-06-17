@@ -3,3 +3,9 @@
 User-agent: *
 Disallow: /admin
 Disallow: /*?
+Disallow: /users/confirmation/new
+Disallow: /users/password/new
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/unlock/new
+Disallow: /users/auth/github
