@@ -1,13 +1,13 @@
 .card.mb-4(id="answer-#{answer.id}")
   .card-header.small.mb-2.d-flex
-    .mr-auto.d-flex
-      span.font-weight-bold= link_to answer.user, user_path(answer.user)
-      span.mx-2.font-weight-light
+    .me-auto.d-flex
+      span.fw-bold= link_to answer.user, user_path(answer.user)
+      span.mx-2.fw-light
         = link_to distance_of_time_in_words_to_now(answer.created_at), url_for(anchor: "answer-#{answer.id}"), class: 'text-muted'
 
       - if current_user == answer.user
-        .d-flex.mr-3
-          .mr-2
+        .d-flex.me-3
+          .me-2
             = link_to edit_resume_answer_path(answer.resume, answer) do
               i.fas.fa-pen.text-secondary
           div
@@ -20,7 +20,7 @@
         = link_to t('.apply'), change_applying_state_resume_answer_path(answer.resume, answer),
           data: { confirm: t('confirm'), params: { event: :apply }.to_param },
           method: :patch,
-          class: 'badge badge-success p-1',
+          class: 'badge bg-success p-1',
           title: t('.title_apply')
       - elsif answer.applied?
           span.text-success= answer.aasm(:applying).human_state
@@ -28,9 +28,9 @@
           span.text-info= answer.aasm(:applying).human_state
 
   .card-body.d-flex
-    .mr-3.h4
+    .me-3.h4
       - let current_user_likes_by_answer_id.fetch(answer.id, nil) do |like|
-        .text-center.text-muted.mb-2.mt-1.font-weight-light
+        .text-center.text-muted.mb-2.mt-1.fw-light
           = answer.likes.count
         - if like
           = link_to answer_like_path(answer, like), method: 'delete', class: 'text-decoration-none' do
@@ -46,16 +46,16 @@
           - answer.comments.each do |comment|
             hr.my-2
             .d-flex(id="answer_comment-#{comment.id}")
-              .mr-auto
-                span.mr-2.hexlet-cv-content.hexlet-cv-inline-paragraph
+              .me-auto
+                span.me-2.hexlet-cv-content.hexlet-cv-inline-paragraph
                   == markdown2html comment.content
                 - if comment.user
-                  span.mr-1
+                  span.me-1
                     = link_to comment.user, user_path(comment.user)
                 = link_to l(comment.created_at, format: :short), url_for(anchor: "answer_comment-#{comment.id}"), class: 'text-muted'
               - if comment.user == current_user
                 .d-flex
-                  .mr-2
+                  .me-2
                     = link_to edit_answer_comment_path(answer, comment)
                       i.fas.fa-pen.text-secondary
                   div

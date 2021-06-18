@@ -6,19 +6,19 @@
   = @resume
 
 / .d-flex.mb-3.text-muted
-/   .d-flex.mr-4
-/     .mr-2= t('.published')
-/     .font-weight-light
+/   .d-flex.me-4
+/     .me-2= t('.published')
+/     .fw-light
 /       = distance_of_time_in_words_to_now @resume.created_at
-/   .d-flex.mr-4
-/     .mr-2= t('.views')
-/     .font-weight-light= 3
-/   .d-flex.mr-4
-/     .mr-2= t('.answers')
-/     .font-weight-light= 3
-/   .d-flex.mr-4
-/     .mr-2= t('.likes')
-/     .font-weight-light= 3
+/   .d-flex.me-4
+/     .me-2= t('.views')
+/     .fw-light= 3
+/   .d-flex.me-4
+/     .me-2= t('.answers')
+/     .fw-light= 3
+/   .d-flex.me-4
+/     .me-2= t('.likes')
+/     .fw-light= 3
 
 - if @resume.archived?
   .alert.alert-warning= t('.archived')
@@ -32,16 +32,16 @@
         - @resume.comments.each do |comment|
           hr.my-2
           .d-flex(id="comment-#{comment.id}")
-            .mr-auto
-              span.mr-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+            .me-auto
+              span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
                 == markdown2html comment.content
               - if comment.user
-                span.mr-1
+                span.me-1
                   = link_to comment.user, user_path(comment.user)
               = link_to l(comment.created_at, format: :short), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
             - if comment.user == current_user
               .d-flex
-                .mr-2
+                .me-2
                   = link_to edit_resume_comment_path(@resume, comment)
                     i.fas.fa-pen.text-secondary
 

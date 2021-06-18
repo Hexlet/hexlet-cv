@@ -6,17 +6,17 @@
       - if policy(resume).update?
         .card-header
           = resume.aasm(:state).human_state
-          span.ml-3
+          span.ms-3
             = link_to edit_account_resume_path(resume) do
               i.far.fa-edit.text-muted
       .card-body
         .d-flex.flex-column.flex-sm-row
-          .text-center.text-muted.mr-4
+          .text-center.text-muted.me-4
             .mb-3
-              .h2.mb-0.font-weight-lighter= resume.answers.count
+              .h2.mb-0.fw-lighter= resume.answers.count
               .small= t('.answers', count: resume.answers.count)
             .mb-3
-              .h2.mb-0.font-weight-lighter= resume.impressions.count
+              .h2.mb-0.fw-lighter= resume.impressions.count
               .small= t('.views', count: resume.impressions.count)
           .d-flex.flex-column
             h5.card-title

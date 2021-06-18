@@ -3,7 +3,7 @@
     .card-header
       = link_to answer.resume, resume_path(answer.resume)
       - if policy(answer).update?
-        span.ml-3
+        span.ms-3
           = link_to edit_resume_answer_path(answer.resume, answer) do
             i.far.fa-edit.text-muted
     .card-body

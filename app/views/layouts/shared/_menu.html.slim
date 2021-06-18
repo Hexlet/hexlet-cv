@@ -22,7 +22,7 @@ ul.nav.flex-column.nav-pills
   .mt-5
     - last_notifications.each do |notification|
       .d-flex.mb-3
-        i.mt-1.mr-2.far class=class_for_notification(notification)
+        i.mt-1.me-2.far class=class_for_notification(notification)
         .text-muted.small
-          p.mb-0== message_for_notification(notification) 
+          p.mb-0== message_for_notification(notification)
           = l notification.created_at, format: :short

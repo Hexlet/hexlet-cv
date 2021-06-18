@@ -26,7 +26,7 @@
       = render 'web/shared/education_fields', f: education
   .row.mt-5
     .col-sm.d-flex.mb-3
-      .mr-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
-      .mr-3= f.submit t('.hide'), class: 'btn btn-outline-primary', name: 'hide'
+      .me-3= f.submit t('.publish'), class: 'btn btn-success', name: 'publish'
+      .me-3= f.submit t('.hide'), class: 'btn btn-outline-primary', name: 'hide'
     .col-sm.d-flex.justify-content-end.mb-3
       = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

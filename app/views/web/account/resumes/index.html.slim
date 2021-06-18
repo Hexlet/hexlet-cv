@@ -5,7 +5,7 @@
   .card.mb-3
     .card-header
       = resume.aasm(:state).human_state
-      span.ml-3
+      span.ms-3
         = link_to edit_account_resume_path(resume) do
           i.far.fa-edit.text-muted
     .card-body

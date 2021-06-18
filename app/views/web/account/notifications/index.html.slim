@@ -3,7 +3,6 @@
 
 - @notifications.each do |notification|
   .d-flex
-    i.mt-1.mr-2.far class=class_for_notification(notification)
-    p.mr-3== message_for_notification(notification)
-    .text-muted.text-nowrap.ml-auto= l notification.created_at, format: :short
-
+    i.mt-1.me-2.far class=class_for_notification(notification)
+    p.me-3== message_for_notification(notification)
+    .text-muted.text-nowrap.ms-auto= l notification.created_at, format: :short
