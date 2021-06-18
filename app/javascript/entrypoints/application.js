@@ -7,7 +7,7 @@
 
 require('jquery');
 // require('@rails/ujs').start();
-require('@hotwired/turbo-rails');
+// require('@hotwired/turbo-rails');
 require('@rails/activestorage').start();
 require('channels');
 require('popper.js');

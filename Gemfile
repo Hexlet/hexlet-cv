@@ -8,13 +8,13 @@ gem 'rails'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+# gem 'sass-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+gem 'redis'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -22,8 +22,8 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'counter_culture', '~> 2.0'
+gem 'bootsnap', require: false
+gem 'counter_culture'
 gem 'dotenv-rails'
 
 group :development, :test do
@@ -56,7 +56,7 @@ group :test do
   gem 'capybara'
   gem 'minitest-power_assert'
   gem 'selenium-webdriver'
-  gem 'simplecov', '0.17.0', require: false
+  gem 'simplecov', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end

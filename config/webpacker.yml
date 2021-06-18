@@ -2,7 +2,7 @@
 
 default: &default
   source_path: app/javascript
-  source_entry_path: packs
+  source_entry_path: entrypoints
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/cache/webpacker
@@ -52,6 +52,7 @@ default: &default
 development:
   <<: *default
   compile: true
+  extract_css: true
 
   # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules
   check_yarn_integrity: true

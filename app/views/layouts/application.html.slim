@@ -8,6 +8,8 @@ html.h-100 lang="#{I18n.locale}"
 
     = render 'layouts/shared/nav'
     .container.my-4
+      .justify-content-center.my-2
+        = render_flash_messages dismissible: true
       main
         .row
           .col-md-2
@@ -20,4 +22,3 @@ html.h-100 lang="#{I18n.locale}"
             = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'
-    = content_for :js

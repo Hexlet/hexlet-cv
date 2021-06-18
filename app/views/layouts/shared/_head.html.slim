@@ -1,17 +1,18 @@
-  meta charset="utf-8"
-  meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
-  meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-  title= title
-  = yield :meta
-  = favicon_link_tag
-  = display_meta_tags
-  = csrf_meta_tags
-  = csp_meta_tag
-  = stylesheet_link_tag "application", media: "all"
-  = javascript_pack_tag "application"
-  = include_gon
-  = auto_discovery_link_tag :rss, resumes_url(format: :rss)
+= stylesheet_packs_with_chunks_tag "application", media: "all"
+= javascript_packs_with_chunks_tag "application", id: 'application'
+= include_gon
+meta charset="utf-8"
+meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+title= title
+= favicon_link_tag
+= yield :meta
+= display_meta_tags
+= csp_meta_tag
+= csrf_meta_tags
+= auto_discovery_link_tag :rss, resumes_url(format: :rss)
+= yield :js
 
-  - if Rails.env.production?
-    = render 'layouts/deps/gtm_head'
-    = render 'layouts/deps/ga'
+- if Rails.env.production?
+  = render 'layouts/deps/gtm_head'
+  = render 'layouts/deps/ga'
