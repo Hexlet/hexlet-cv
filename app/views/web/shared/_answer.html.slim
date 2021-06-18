@@ -62,7 +62,7 @@
                     = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
                       i.fas.fa-times.text-secondary
       hr.my-2
-      a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-toggle="collapse")
+      a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-bs-toggle="collapse")
         = t('.add_a_comment')
       .collapse(id="new_answer_comment-#{answer.id}")
         - if user_signed_in?

@@ -24,11 +24,11 @@
 
 ul.nav.nav-pills.justify-content-center role="navigation"
   li.nav-item
-    a.nav-link.px-3.active data-toggle="tab" href="#resume"= t('.tab_resumes')
+    a.nav-link.px-3.active data-bs-toggle="tab" href="#resume"= t('.tab_resumes')
   li.nav-item
-    a.nav-link.px-3 data-toggle="tab" href="#answers"= t('.tab_answers')
+    a.nav-link.px-3 data-bs-toggle="tab" href="#answers"= t('.tab_answers')
   li.nav-itemЗ
-    a.nav-link.px-3 data-toggle="tab" href="#comments"= t('.tab_comments')
+    a.nav-link.px-3 data-bs-toggle="tab" href="#comments"= t('.tab_comments')
 .tab-content.py-3
   .tab-pane.fade.show.active id="resume"
       = render 'resumes', resumes: @user_resumes

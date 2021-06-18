@@ -49,7 +49,7 @@
                   = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
                     i.fas.fa-times.text-secondary
     hr.my-2
-    a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-toggle="collapse")
+    a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
       = t('.add_a_comment')
     .collapse(id="new_resume_comment-#{@resume.id}")
       - if user_signed_in?
