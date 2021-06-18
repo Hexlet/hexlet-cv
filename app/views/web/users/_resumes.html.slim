@@ -22,6 +22,6 @@
             h5.card-title
               = link_to resume, resume_path(resume)
             .card-text.mb-2.hexlet-cv-content= truncate_markdown(resume.summary, length: 200)
-            .text-right.small.mt-auto
+            .text-end.small.mt-auto
               span.text-muted
                 = distance_of_time_in_words_to_now resume.created_at
