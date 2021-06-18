@@ -58,7 +58,7 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.uid = auth.uid
         user.password = Devise.friendly_token[0, 20]
-        user.first_name, user.last_name = auth.info.name.split(' ')
+        user.first_name, user.last_name = auth.info.name.split
         user.skip_confirmation!
       end
     end
