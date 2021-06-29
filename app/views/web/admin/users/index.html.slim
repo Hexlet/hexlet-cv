@@ -6,15 +6,15 @@
 table.table
   thead
     tr
-      th= han('user', 'name')
-      th= han('user', 'email')
-      th= han('user', 'role')
-      th= han('user', 'state')
+      th = han('user', 'name')
+      th = han('user', 'email')
+      th = han('user', 'role')
+      th = han('user', 'state')
   tbody
     - @users.each do |user|
       tr
-        td= link_to user, edit_admin_user_path(user)
-        td= user.email
-        td= user.role
-        td= user.aasm(:state).human_state
+        td = link_to user, edit_admin_user_path(user)
+        td = user.email
+        td = user.role
+        td = user.aasm(:state).human_state
 = paginate @users

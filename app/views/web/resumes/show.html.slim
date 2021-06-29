@@ -21,7 +21,7 @@
 /     .fw-light= 3
 
 - if @resume.archived?
-  .alert.alert-warning= t('.archived')
+  .alert.alert-warning = t('.archived')
 
 .mb-5
   = render 'information'
@@ -58,14 +58,14 @@
         = render 'comment_requires'
 
 - if @resume_answers.any?
-  .lead.mb-3= t('.recomendations')
+  .lead.mb-3 = t('.recomendations')
 
   - @resume_answers.each do |answer|
     = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
 
 - if user_signed_in?
   - if @current_user_answer
-    .text-center.lead= t('.answer_exists')
+    .text-center.lead = t('.answer_exists')
   - else
     = render partial: 'web/shared/answer_form', locals: { answer: @answer, url: resume_answers_path(@resume) }
 - else

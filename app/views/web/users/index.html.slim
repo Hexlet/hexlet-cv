@@ -4,10 +4,10 @@
 table.table.table-striped
   tr
     th #
-    th= han('user', :resume_answer_likes_count)
-    th= User.model_name.human
+    th = han('user', :resume_answer_likes_count)
+    th = User.model_name.human
   - @users.each.with_index do |user, i|
     tr
-      td= i + 1
-      td= user.resume_answer_likes_count
-      td= link_to user, user_path(user)
+      td = i + 1
+      td = user.resume_answer_likes_count
+      td = link_to user, user_path(user)

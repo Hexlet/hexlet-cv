@@ -1,7 +1,7 @@
 .card.mb-4(id="answer-#{answer.id}")
   .card-header.small.mb-2.d-flex
     .me-auto.d-flex
-      span.fw-bold= link_to answer.user, user_path(answer.user)
+      span.fw-bold = link_to answer.user, user_path(answer.user)
       span.mx-2.fw-light
         = link_to distance_of_time_in_words_to_now(answer.created_at), url_for(anchor: "answer-#{answer.id}"), class: 'text-muted'
 
@@ -23,9 +23,9 @@
           class: 'badge bg-success p-1',
           title: t('.title_apply')
       - elsif answer.applied?
-          span.text-success= answer.aasm(:applying).human_state
+          span.text-success = answer.aasm(:applying).human_state
       - else answer.pending?
-          span.text-info= answer.aasm(:applying).human_state
+          span.text-info = answer.aasm(:applying).human_state
 
   .card-body.d-flex
     .me-3.h4
@@ -62,7 +62,7 @@
                     = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
                       span.bi.bi-x-lg.text-secondary
       hr.my-2
-      a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-bs-toggle="collapse")
+      a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-bs-toggle='collapse')
         = t('.add_a_comment')
       .collapse(id="new_answer_comment-#{answer.id}")
         - if user_signed_in?

@@ -1,8 +1,8 @@
-.text-muted= t('.title')
+.text-muted = t('.title')
 hr.my-2
 - last_answers.each do |answer|
   = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
   .small
     = truncate(answer.content, length: 45)
-    .mt-1.text-muted= t('.answers', count: answer.resume.answers.size)
+    .mt-1.text-muted = t('.answers', count: answer.resume.answers.size)
   hr.my-2
