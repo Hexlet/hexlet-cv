@@ -5,6 +5,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 require('jquery');
 // require('@rails/ujs').start();
 // require('@hotwired/turbo-rails');

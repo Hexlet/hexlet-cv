@@ -43,11 +43,11 @@
               .d-flex
                 .me-2
                   = link_to edit_resume_comment_path(@resume, comment)
-                    i.fas.fa-pen.text-secondary
+                    span.bi.bi-pen-fill.text-secondary
 
                 div
                   = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
-                    i.fas.fa-times.text-secondary
+                    span.bi.bi-x-lg.text-secondary
     hr.my-2
     a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
       = t('.add_a_comment')
