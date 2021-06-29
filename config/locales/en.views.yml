@@ -4,6 +4,8 @@ en:
       resume_form:
         publish: Publish
         hide: Draft
+      answer:
+        add_a_comment: Add a comment
     home:
       index:
         description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.
