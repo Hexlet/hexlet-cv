@@ -8,7 +8,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 require('jquery');
-// require('@rails/ujs').start();
+require('@rails/ujs').start();
 // require('@hotwired/turbo-rails');
 require('@rails/activestorage').start();
 require('channels');
