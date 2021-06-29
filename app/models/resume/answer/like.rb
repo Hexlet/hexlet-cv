@@ -3,10 +3,9 @@
 class Resume::Answer::Like < ApplicationRecord
   counter_culture %i[answer user], column_name: 'resume_answer_likes_count'
 
-  validates :resume, uniqueness: { scope: %i[answer user] }
+  validates :answer, uniqueness: { scope: %i[user] }
   validate :not_answer_owner
 
-  # TODO: add unique index
   belongs_to :resume
   belongs_to :answer, inverse_of: :likes, counter_cache: true
   belongs_to :user

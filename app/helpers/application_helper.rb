@@ -74,6 +74,8 @@ module ApplicationHelper
 
   def structured_data_tag(path, args = {})
     content = render partial: "schemas/#{path}", formats: [:json], locals: args
+    # rubocop:disable Rails/OutputSafety
     tag.script(content.html_safe, type: 'application/ld+json')
+    # rubocop:enable Rails/OutputSafety
   end
 end

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   before_action do
-    gon.google_analytics_key = ENV['GOOGLE_ANALYTICS_KEY']
+    gon.google_analytics_key = Rails.application.config.vars.ga
   end
 
   def last_notifications

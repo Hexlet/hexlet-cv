@@ -13,7 +13,7 @@ two:
 full_one_two:
   resume: full
   user: one
-  answer: two
+  answer: full_one
 
 full_full_two:
   resume: full

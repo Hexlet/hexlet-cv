@@ -33,3 +33,6 @@ Style/Documentation:
 
 Metrics/BlockLength:
   Enabled: false
+
+Style/AsciiComments:
+  Enabled: false

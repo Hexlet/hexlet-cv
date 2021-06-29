@@ -24,7 +24,13 @@ Dotenv::Railtie.load
 module HexletCv
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
+
+    # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsenvironmentvariableaccess
+    config.vars = {
+      ga: ENV['GOOGLE_ANALYTICS_KEY'],
+      email_from: ENV['EMAIL_FROM']
+    }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
