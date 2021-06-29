@@ -5,7 +5,10 @@ html.h-100 lang="#{I18n.locale}"
   body.d-flex.flex-column.h-100
 
     = render 'layouts/shared/nav'
+
     .container.my-4
+      .my-2
+        = render_flash_messages dismissible: true
       main
         .row
           .col-md-2

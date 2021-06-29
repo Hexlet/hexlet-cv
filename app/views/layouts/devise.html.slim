@@ -4,9 +4,10 @@ html.h-100 lang="en"
     = render 'layouts/shared/head'
   body.d-flex.flex-column.h-100
     = render 'layouts/shared/nav'
-    main.flex-shrink-0.my-5
-      .container
-        .row
-          .col-lg-5.col-md-8.mx-auto
-            = yield
+    main.container.flex-shrink-0.my-4
+      .my-2
+        = render_flash_messages dismissible: true
+      .row.my-3
+        .col-lg-5.col-md-8.mx-auto
+          = yield
     = render 'layouts/shared/footer'
