@@ -29,6 +29,7 @@ module HexletCv
     # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsenvironmentvariableaccess
     config.vars = {
       ga: ENV['GOOGLE_ANALYTICS_KEY'],
+      gtm: ENV['GOOGLE_TAG_MANAGER_KEY'],
       email_from: ENV['EMAIL_FROM']
     }
 
