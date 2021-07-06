@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::PagesController < ApplicationController
+class Web::PagesController < Web::ApplicationController
   def show
     page = params[:id].to_sym
     description = t(".#{page}_description")

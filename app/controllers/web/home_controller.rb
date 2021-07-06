@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::HomeController < ApplicationController
+class Web::HomeController < Web::ApplicationController
   def index
     q = Resume.web.ransack(params[:q])
     @resumes = q.result(distinct: true).page(params[:page])

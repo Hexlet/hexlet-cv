@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Resumes::ApplicationController < ApplicationController
+class Web::Resumes::ApplicationController < Web::ApplicationController
   before_action :authenticate_user!
   helper_method :resource_resume
 

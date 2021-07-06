@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Answers::ApplicationController < ApplicationController
+class Web::Answers::ApplicationController < Web::ApplicationController
   before_action :authenticate_user!
   helper_method :resource_answer
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::ResumesController < ApplicationController
+class Web::ResumesController < Web::ApplicationController
   # impressionist actions: [:show]
 
   def index
