@@ -2,7 +2,7 @@
   = f.input :description
   .row
     .col-sm
-      = f.input :begin_date, as: :date, discard_day: true, include_blank: true, start_year: 1970
+      = f.input :begin_date, as: :date, discard_day: true, use_month_names: t('standalone_month_names'), include_blank: true, start_year: 1970
       = f.input :current, as: :boolean
-    = f.input :end_date, as: :date, discard_day: true, include_blank: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
+    = f.input :end_date, as: :date, discard_day: true, use_month_names: t('standalone_month_names'), include_blank: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
   = link_to_remove_association t('.remove_education'), f

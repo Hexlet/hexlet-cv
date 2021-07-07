@@ -1,4 +1,5 @@
 en:
+  standalone_month_names: [January, February, March, April, May, June, July, August, September, October, November, December]
   notifications:
     new_answer_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{answer_path}">new answer</a> for your resume
     new_comment_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{comment_path}">new comment</a> for your resume
