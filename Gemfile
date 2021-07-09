@@ -91,7 +91,12 @@ gem 'rails-i18n'
 gem 'redcarpet'
 gem 'rollbar'
 
+gem 'omniauth', '~> 2.0'
+
+gem 'devise-bootstrap-views', '~> 1.1'
+
 gem 'ransack'
+
 gem 'turbo-rails'
 
 gem 'active_form_model'

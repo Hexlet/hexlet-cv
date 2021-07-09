@@ -2,6 +2,8 @@ test:
 	bin/rails test
 
 setup:
+	npm install --global yarn
+	curl https://cli-assets.heroku.com/install.sh | sh
 	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
@@ -19,7 +21,7 @@ db-reset:
 	bin/rails db:fixtures:load
 
 start:
-	bundle exec heroku local
+	heroku local
 
 lint:
 	bundle exec rubocop
