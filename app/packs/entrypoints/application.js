@@ -5,13 +5,16 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+import '../stylesheets/application.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-require('jquery');
+const $ = require('jquery');
+// @ts-ignore
+window.jQuery = $;
 require('@rails/ujs').start();
 // require('@hotwired/turbo-rails');
-require('@rails/activestorage').start();
-require('channels');
+// require('@rails/activestorage').start();
+// require('channels');
 require('popper.js');
 require('bootstrap');
 require('@nathanvda/cocoon');

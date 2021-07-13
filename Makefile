@@ -1,9 +1,11 @@
 test:
 	bin/rails test
 
-setup:
+prepare:
 	npm install --global yarn
 	curl https://cli-assets.heroku.com/install.sh | sh
+
+setup:
 	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load

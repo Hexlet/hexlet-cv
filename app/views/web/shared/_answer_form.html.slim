@@ -1,4 +1,6 @@
 = turbo_frame_tag 'resume-answer' do
   = simple_form_for answer, url: url do |f|
-    = f.input :content, label: false, input_html: { rows: 12 }
-    = f.submit class: 'btn btn-primary'
+    .mb-3
+      = f.input :content, label: false, input_html: { rows: 12 }
+    .mb-3
+      = f.button :submit, class: 'btn-primary'

@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/rails/webpacker.git
+  revision: 5dae8b51956e9cd739bdfae44f8214fa1e0f49b2
+  specs:
+    webpacker (6.0.0.beta.7)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -116,7 +126,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
-    faraday (1.5.0)
+    faraday (1.5.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -131,7 +141,7 @@ GEM
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)
     faraday-net_http (1.0.1)
-    faraday-net_http_persistent (1.1.0)
+    faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     ffi (1.15.3)
     flash_rails_messages (2.2.0)
@@ -144,6 +154,9 @@ GEM
       multi_json
       request_store (>= 1.0)
     hashie (4.1.0)
+    hpricot (0.8.6)
+    html2slim (0.2.0)
+      hpricot
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
@@ -193,6 +206,8 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.7)
+    nokogiri (1.11.7-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
@@ -211,6 +226,9 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     orm_adapter (0.5.0)
     paint (2.2.1)
     paper_trail (12.0.0)
@@ -304,7 +322,7 @@ GEM
     rubocop-performance (1.11.4)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.11.2)
+    rubocop-rails (2.11.3)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -331,7 +349,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
-    solargraph (0.42.3)
+    solargraph (0.42.4)
       backport (~> 1.2)
       benchmark
       bundler (>= 1.17.2)
@@ -377,11 +395,6 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
-    webpacker (5.4.0)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -391,6 +404,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
@@ -402,7 +416,7 @@ DEPENDENCIES
   cocoon
   counter_culture
   devise
-  devise-bootstrap-views (~> 1.1)
+  devise-bootstrap-views
   devise-i18n
   dotenv-rails
   enumerize
@@ -410,6 +424,7 @@ DEPENDENCIES
   faker
   flash_rails_messages
   gon
+  html2slim
   i18n-debug
   impressionist
   jbuilder
@@ -417,8 +432,9 @@ DEPENDENCIES
   listen
   meta-tags
   minitest-power_assert
-  omniauth (~> 2.0)
+  omniauth
   omniauth-github
+  omniauth-rails_csrf_protection
   paint
   paper_trail
   pg
@@ -446,8 +462,8 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  webpacker
+  webpacker!
   yard
 
 BUNDLED WITH
-   2.2.3
+   2.2.15

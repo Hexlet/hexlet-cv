@@ -20,8 +20,9 @@ ru:
       nav:
         add_resume: Добавить резюме
         how_to_create_resume: Как составлять резюме
-        my_profile: Мой профиль
+        profile: Мой профиль
         settings: Настройки
+        newsletters: Рассылки
         sign_in: Войти
         sign_out: Выйти
         register: Регистрация

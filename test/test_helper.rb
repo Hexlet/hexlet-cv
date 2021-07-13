@@ -32,8 +32,4 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-
-  def sign_with_github
-    get user_github_omniauth_callback_path
-  end
 end

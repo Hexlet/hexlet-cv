@@ -10,7 +10,7 @@ gem 'puma'
 # Use SCSS for stylesheets
 # gem 'sass-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
+gem 'webpacker', github: 'rails/webpacker'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
@@ -40,6 +40,7 @@ end
 group :development do
   gem 'yard'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'html2slim'
   gem 'i18n-debug'
   gem 'listen'
   gem 'web-console'
@@ -91,12 +92,14 @@ gem 'rails-i18n'
 gem 'redcarpet'
 gem 'rollbar'
 
-gem 'omniauth', '~> 2.0'
+gem 'omniauth'
 
-gem 'devise-bootstrap-views', '~> 1.1'
+gem 'devise-bootstrap-views'
 
 gem 'ransack'
 
 gem 'turbo-rails'
 
 gem 'active_form_model'
+
+gem 'omniauth-rails_csrf_protection'

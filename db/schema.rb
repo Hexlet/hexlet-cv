@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2021_06_29_155103) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "resource_type", null: false
-    t.bigint "resource_id", null: false
+    t.integer "resource_id", null: false
     t.string "state"
     t.string "kind"
     t.datetime "created_at", precision: 6, null: false
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_155103) do
   end
 
   create_table "resume_answers", force: :cascade do |t|
-    t.bigint "resume_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "resume_id", null: false
+    t.integer "user_id", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_155103) do
   end
 
   create_table "resume_comments", force: :cascade do |t|
-    t.bigint "resume_id"
-    t.bigint "user_id"
+    t.integer "resume_id"
+    t.integer "user_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

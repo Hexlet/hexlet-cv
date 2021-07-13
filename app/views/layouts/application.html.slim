@@ -12,13 +12,13 @@ html.h-100 lang="#{I18n.locale}"
         = render_flash_messages dismissible: true
       main
         .row
-          .col-md-2
-            = render 'layouts/shared/menu'
-          .col-md-8
+          / .col-md-2
+          /   = render 'layouts/shared/menu'
+          .col-md-9
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header
             = yield
-          .col-md-2
+          .col-md-3
             = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'

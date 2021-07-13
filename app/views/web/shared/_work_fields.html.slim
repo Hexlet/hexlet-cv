@@ -1,10 +1,14 @@
 .nested-fields
-  = f.input :company
-  = f.input :position
-  .row
+  .mb-3
+    = f.input :company
+  .mb-3
+    = f.input :position
+  .row.mb-3
     .col-sm
       = f.input :begin_date, as: :date, discard_day: true, include_blank: true, start_year: 1970
       = f.input :current, as: :boolean
     = f.input :end_date, as: :date, discard_day: true, include_blank: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
-  = f.input :description, as: :text
-  = link_to_remove_association t('.remove_work'), f
+  .mb-3
+    = f.input :description, as: :text
+  .mb-3
+    = link_to_remove_association t('.remove_work'), f

@@ -1,0 +1,8 @@
+p
+  = t('.greeting', recipient: @resource.email)
+p
+  = t('.message')
+p
+  = t('.instruction')
+p
+  = link_to t('.action'), unlock_url(@resource, unlock_token: @token)
