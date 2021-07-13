@@ -24,4 +24,15 @@ class Web::ApplicationController < ApplicationController
   def last_answers
     @last_answers ||= Resume::Answer.web.limit(10)
   end
+
+  # NOTE: https://github.com/charlotte-ruby/impressionist/pull/294
+  def session_hash
+    id = session.id || request.session_options[:id]
+
+    if id.respond_to?(:cookie_value)
+      id.cookie_value
+    elsif id.is_a?(Rack::Session::SessionId)
+      id.public_id
+    end
+  end
 end
