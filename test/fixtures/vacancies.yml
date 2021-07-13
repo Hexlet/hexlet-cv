@@ -1,0 +1,7 @@
+DEFAULTS: &DEFAULTS
+  state: published
+
+one:
+  <<: *DEFAULTS
+  title: Ruby-Разработчик
+  creator: full

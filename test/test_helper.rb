@@ -22,7 +22,7 @@ Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:githu
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   # TODO: return virtualization after fixing power_assert integration
-  parallelize(workers: :number_of_processors)
+  # parallelize(workers: :number_of_processors)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

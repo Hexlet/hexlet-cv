@@ -10,7 +10,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   end
 
   def create
-    @resume = Web::Account::ResumeForm.new(resume_params)
+    @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
 
     if @resume.save
@@ -24,7 +24,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def update
     @resume = current_user.resumes.find params[:id]
     resume = @resume.becomes(Web::Account::ResumeForm)
-    if resume.update(resume_params)
+    if resume.update(params[:resume])
       change_visibility(@resume)
       f(:success)
       redirect_to action: :index
@@ -47,9 +47,5 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def change_visibility(resume)
     resume.publish! if params[:publish]
     resume.hide! if params[:hide]
-  end
-
-  def resume_params
-    params.require(:resume)
   end
 end

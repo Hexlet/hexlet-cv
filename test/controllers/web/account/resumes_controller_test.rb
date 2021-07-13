@@ -32,15 +32,6 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { resume.works.exists?(company: works_attrs[:company]) }
   end
 
-  test '#create invalid entity' do
-    attrs = FactoryBot.attributes_for(:resume, summary: '')
-
-    post account_resumes_path, params: { resume: attrs }
-    assert_response :success
-
-    assert { Resume.find_by(name: attrs[:name]).nil? }
-  end
-
   test '#edit' do
     resume = resumes(:one)
     get edit_account_resume_path(resume)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_155103) do
+ActiveRecord::Schema.define(version: 2021_07_13_120439) do
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -182,6 +182,23 @@ ActiveRecord::Schema.define(version: 2021_06_29_155103) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "vacancies", force: :cascade do |t|
+    t.integer "creator_id", null: false
+    t.string "state"
+    t.string "title"
+    t.string "language"
+    t.string "location"
+    t.string "company"
+    t.string "site"
+    t.string "contact_name"
+    t.string "contact_telegram"
+    t.string "contact_phone"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_vacancies_on_creator_id"
+  end
+
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", limit: 8, null: false
@@ -205,4 +222,5 @@ ActiveRecord::Schema.define(version: 2021_06_29_155103) do
   add_foreign_key "resume_educations", "resumes"
   add_foreign_key "resume_works", "resumes"
   add_foreign_key "resumes", "users"
+  add_foreign_key "vacancies", "users", column: "creator_id"
 end

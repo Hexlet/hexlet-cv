@@ -29,7 +29,7 @@ lint:
 	bundle exec rubocop
 
 linter-fix:
-	bundle exec rubocop --auto-correct
+	bundle exec rubocop -A
 
 deploy:
 	git push heroku master

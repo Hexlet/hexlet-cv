@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   scope module: :web do
     root 'home#index'
+    resources :vacancies, only: %i[index]
     resources :resumes do
       scope module: :resumes do
         resources :answers do
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
     namespace :account do
       resources :resumes
+      resources :vacancies
       resources :notifications, only: %i[index update]
       resource :newsletters, only: %i[edit update]
       resource :profile, only: %i[edit update show]

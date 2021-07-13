@@ -17,6 +17,7 @@ class User < ApplicationRecord
   # has_secure_password
 
   has_many :resumes, dependent: :destroy
+  has_many :vacancies, dependent: :restrict_with_exception, foreign_key: 'creator_id', inverse_of: :creator
   has_many :resume_answers, class_name: 'Resume::Answer', dependent: :destroy
   has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
