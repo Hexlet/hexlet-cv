@@ -39,25 +39,6 @@ en:
       answer_requires:
         write_answer: Sign in to write an answer
         sign_in: Sign in
-    account:
-      resumes:
-        new:
-          header: New resume
-        edit:
-          header: Edit resume
-        index:
-          header: My resumes
-      profiles:
-        edit:
-          header: Settings
-        show:
-          header: Settings
-      notifications:
-        index:
-          header: Notifications
-      newsletters:
-        edit:
-          header: Newsletters
     users:
       show:
         header: Profile
@@ -78,3 +59,18 @@ en:
       resumes:
         edit:
           header: Edit resume
+        new:
+          header: New resume
+        index:
+          header: My resumes
+      profiles:
+        edit:
+          header: Settings
+        show:
+          header: Settings
+      notifications:
+        index:
+          header: Notifications
+      newsletters:
+        edit:
+          header: Newsletters
