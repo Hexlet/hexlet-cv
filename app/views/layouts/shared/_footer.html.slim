@@ -1,22 +1,21 @@
-footer.bg-light.border-top.mt-auto.py-3
+footer.bg-light.border-top.mt-auto.py-5
   .container-xl
     .row.justify-content-lg-around
       .col-sm-6.col-md-4.col-lg-auto
-        a.navbar-brand.text-dark.px-0.py-0(href ='https://ru.hexlet.io')
-          h2.h5 &copy; Hexlet
+        .fs-4.mb-2 Hexlet &copy;
         ul.list-unstyled
-          li = link_to t('.about'), page_path('about')
-          li = link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', target: '_blank', rel: :noopener
-          li = link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', target: '_blank', rel: :noopener
+          li = link_to t('.about'), page_path('about'), class: 'link-dark'
+          li = link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', class: 'link-dark', target: '_blank', rel: :noopener
+          li = link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', class: 'link-dark', target: '_blank', rel: :noopener
       .col-sm-6.col-md-4.col-lg-auto
-        h2.h5 = t('.help')
+        .fs-4.mb-2 = t('.help')
         ul.list-unstyled
-          li = link_to t('.knowledge'), 'https://ru.hexlet.io/knowledge', target: '_blank', rel: :noopener
-          li = link_to t('.blog'), 'https://ru.hexlet.io/blog', target: '_blank', rel: :noopener
-          li = link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: '_blank', rel: :noopener
+          li = link_to t('.blog'), 'https://ru.hexlet.io/blog', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to t('.test_assigments'), 'https://github.com/Hexlet/ru-test-assignments', class: 'link-dark', target: '_blank', rel: :noopener
+          li = link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: '_blank', rel: :noopener, class: 'link-dark'
       .col-sm-6.col-md-4.col-lg-auto
-        h2.h5 = t('.additionally')
+        .fs-4.mb-2 = t('.additionally')
         ul.list-unstyled
-          li = link_to 'Code Basics', 'https://ru.code-basics.com/', target: '_blank', rel: :noopener
-          li = link_to 'Code Battles', 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener
-          li = link_to 'Hexlet Guides', 'https://guides.hexlet.io/', target: '_blank', rel: :noopener
+          li = link_to 'Основы программирования', 'https://ru.code-basics.com/', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to 'КодБатл (Игра для прокачки)', 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to 'Гайды для программистов', 'https://guides.hexlet.io/', target: '_blank', rel: :noopener, class: 'link-dark'

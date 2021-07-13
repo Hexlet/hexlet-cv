@@ -1,37 +1,38 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.flex-shrink-0.border-bottom
-  .container
-    a.navbar-brand(href="/") РезюмеЧек
+.container
+  header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href="/") РезюмеЧек
     / .me-3
       / = link_to resumes_url(format: :rss) do
       /   span.bi.bi-rss.text-muted
-    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      ul.navbar-nav
-        = nav_menu_item t('.how_to_create_resume'), 'https://guides.hexlet.io/how-to-create-a-resume/', target: '_blank'
-      ul.navbar-nav.ms-auto
-        - if user_signed_in?
-          = nav_menu_item t('.add_resume'), new_account_resume_path
-          li.nav-item
-            = link_to account_notifications_path, class: 'nav-link' do
-              span.bi.bi-bell.me-1
-          li.nav-item.dropdown.me-2
-            a.nav-link.dropdown-toggle href="#" data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-              span.bi.bi-person-circle.me-1
-            ul.dropdown-menu.dropdown-menu-end
-              li.dropdown-item-text.d-flex.align-items-center
-                / .flex-shrink-0.me-2
-                  / = image_tag 'user-avatar.png', width: 50, height: 50, alt: 'User Avatar', class: 'rounded-circle'
-                .
-                  .fw-bold = current_user
-                  = current_user.email
-              .dropdown-divider
-              li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'
-              li = link_to t('.settings'), edit_account_profile_path, class: 'dropdown-item'
-              li = link_to t('.newsletters'), edit_account_newsletters_path, class: 'dropdown-item'
-              .dropdown-divider
-              li = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
-          / = nav_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
-        - else
-          = nav_menu_item t('.sign_in'), new_user_session_path
-          = nav_menu_item t('.register'), new_user_registration_path
+    / button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    /   span.navbar-toggler-icon
+    / #navbarSupportedContent.collapse.navbar-collapse
+    ul.nav.nav-pills.me-auto
+      = nav_menu_item t('.how_to_create_resume'), 'https://guides.hexlet.io/how-to-create-a-resume/', target: '_blank'
+    ul.nav.nav-pills
+      - if user_signed_in?
+        li.nav-item
+          = link_to t('.add_resume'), new_account_resume_path, class: 'nav-link link-dark px-2'
+        li.nav-item
+          = link_to account_notifications_path, class: 'nav-link link-dark px-2' do
+            span.bi.bi-bell
+        li.nav-item.dropdown
+          a.nav-link.link-dark.px-2.dropdown-toggle href="#" data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+            span.bi.bi-person-circle
+          ul.dropdown-menu.dropdown-menu-end
+            li.dropdown-item-text.d-flex.align-items-center
+              / .flex-shrink-0.me-2
+                / = image_tag 'user-avatar.png', width: 50, height: 50, alt: 'User Avatar', class: 'rounded-circle'
+              .
+                .fw-bold = current_user
+                = current_user.email
+            .dropdown-divider
+            li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'
+            li = link_to t('.settings'), edit_account_profile_path, class: 'dropdown-item'
+            li = link_to t('.newsletters'), edit_account_newsletters_path, class: 'dropdown-item'
+            .dropdown-divider
+            li = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        / = nav_menu_item t('.sign_out'), destroy_user_session_path, method: :delete
+      - else
+        = nav_menu_item t('.sign_in'), new_user_session_path
+        = nav_menu_item t('.register'), new_user_registration_path
