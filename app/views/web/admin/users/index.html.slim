@@ -1,15 +1,19 @@
-= search_form_for @q, url: admin_users_path, class: 'form-inline mb-2' do |f|
-  = f.label :first_name_or_last_name_or_email_cont
-  = f.search_field :first_name_or_last_name_or_email_cont, class: 'form-control mx-2'
-  = f.submit class: 'btn btn-primary'
+.p-3.mb-3.bg-light
+  = search_form_for @q, default_filter_form_options(url: admin_users_path) do |f|
+    = f.input :first_name_or_last_name_or_email_cont
+    .col-auto.d-flex
+      .mt-auto
+        = f.button :submit, class: 'btn-primary me-2'
+        = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
 
 table.table
   thead
     tr
-      th = han('user', 'name')
-      th = han('user', 'email')
-      th = han('user', 'role')
-      th = han('user', 'state')
+      th = sort_link(@q, 'name')
+      th = sort_link(@q, 'email')
+      th = sort_link(@q, 'role')
+      th = sort_link(@q, 'state')
+      th = sort_link(@q, 'created_at')
   tbody
     - @users.each do |user|
       tr
@@ -17,4 +21,6 @@ table.table
         td = user.email
         td = user.role
         td = user.aasm(:state).human_state
+        td = l user.created_at, format: :short
+
 = paginate @users

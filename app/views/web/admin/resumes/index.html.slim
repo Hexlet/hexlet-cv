@@ -1,15 +1,20 @@
-= search_form_for @q, url: admin_resumes_path, class: 'form-inline mb-2' do |f|
-  = f.label :name_or_user_first_name_or_user_last_name_cont
-  = f.search_field :name_or_user_first_name_or_user_last_name_cont, class: 'form-control mx-2'
-  = f.submit class: 'btn btn-primary'
+.p-3.mb-3.bg-light
+  = search_form_for @q, default_filter_form_options(url: admin_resumes_path) do |f|
+    = f.input :name_cont
+    = f.input :user_first_name_or_user_last_name_cont
+    .col-auto.d-flex
+      .mt-auto
+        = f.button :submit, class: 'btn-primary me-2'
+        = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
 
 table.table
   thead
     tr
-      th = han('resume', 'name')
-      th = han('resume', 'state')
-      th = han('resume', 'user')
-      th = han('user', 'email')
+      th = sort_link(@q, 'name')
+      th = sort_link(@q, 'state')
+      th = sort_link(@q, 'user')
+      th = sort_link(@q, 'email')
+      th = sort_link(@q, 'created_at')
   tbody
     - @resumes.each do |resume|
       tr
@@ -17,4 +22,6 @@ table.table
         td = resume.aasm(:state).human_state
         td = resume.user
         td = resume.user.email
+        td = l resume.created_at, format: :short
+
 = paginate @resumes

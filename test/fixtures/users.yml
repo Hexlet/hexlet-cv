@@ -22,6 +22,7 @@ full:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: PR-специалист Hexlet
+  role: admin
 
 with_github:
   <<: *DEFAULTS

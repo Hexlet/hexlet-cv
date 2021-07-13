@@ -27,6 +27,9 @@
                 .fw-bold = current_user
                 = current_user.email
             .dropdown-divider
+            - if current_or_guest_user.admin?
+              li = link_to t('.admin'), admin_root_path, class: 'dropdown-item'
+
             li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'
             li = link_to t('.settings'), edit_account_profile_path, class: 'dropdown-item'
             li = link_to t('.newsletters'), edit_account_newsletters_path, class: 'dropdown-item'

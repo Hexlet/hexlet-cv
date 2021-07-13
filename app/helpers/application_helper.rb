@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def not_found_random_image
-    # FIXME: add funny pictures
+    # TODO: add funny pictures
     tag.div class: 'lead text-center' do
       t('.nothing')
     end
@@ -77,5 +77,9 @@ module ApplicationHelper
     # rubocop:disable Rails/OutputSafety
     tag.script(content.html_safe, type: 'application/ld+json')
     # rubocop:enable Rails/OutputSafety
+  end
+
+  def default_filter_form_options(options = {})
+    { method: 'get', html: { class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4' }, url: url_for, builder: SimpleForm::FormBuilder, wrapper: 'filter_form', defaults: { required: false } }.merge(options)
   end
 end

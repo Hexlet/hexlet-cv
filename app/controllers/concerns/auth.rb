@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
-module Auth::User
+module Auth
   def banned?
     if current_or_guest_user.banned? # rubocop:disable Style/GuardClause
       sign_out current_user
       flash[:error] = t('.banned')
       redirect_to root_path
     end
+  end
+
+  def admin_signed_in?
+    current_or_guest_user.admin?
+  end
+
+  def authenticate_admin!
+    return redirect_to root_path unless admin_signed_in?
   end
 end

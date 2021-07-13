@@ -5,6 +5,5 @@ module ResumeRepository
 
   included do
     scope :web, -> { order(id: :desc).published }
-    scope :web_admin, -> { order(id: :desc) }
   end
 end

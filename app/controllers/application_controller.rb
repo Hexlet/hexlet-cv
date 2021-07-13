@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   include Pundit
   include Sparkpost
   include Mailer
-  include Auth::User
+  include Auth
 
   before_action :banned?
+  helper_method :current_or_guest_user
 
   def current_or_guest_user
     current_user || guest_user

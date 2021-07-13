@@ -272,8 +272,7 @@ SimpleForm.setup do |config|
   end
 
   # inline input for filter
-  # TODO: поправить классы-обертку на нужный (col-12) после апдейта на Bootstrap 5
-  config.wrappers :filter_form, tag: 'div', class: 'col my-1', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+  config.wrappers :filter_form, tag: 'div', class: 'd-flex flex-column justify-content-end', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -281,7 +280,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'visually-hidden sr-only'
+    b.use :label
 
     b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid', wrap_with: { tag: 'div', class: 'input-group' }
     b.use :error, wrap_with: { tag: 'div', class: 'invalid-feedback' }

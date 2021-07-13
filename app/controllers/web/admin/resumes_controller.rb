@@ -2,8 +2,9 @@
 
 class Web::Admin::ResumesController < Web::Admin::ApplicationController
   def index
-    @q = Resume.web_admin.ransack(params[:q])
-    @resumes = @q.result(distinct: true).page(params[:page])
+    query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
+    @q = Resume.ransack(query)
+    @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
   end
 
   def update
