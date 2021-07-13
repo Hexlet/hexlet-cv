@@ -19,11 +19,11 @@
 ## Установка
 
 ```sh
-$ make setup
-$ make test # run tests
-$ make start # run server
+make setup
+make test # run tests
+make start # run server
 
-$ make fixtures-load # sometimes, when fixtures were changed
+make fixtures-load # sometimes, when fixtures were changed
 ```
 
 ---
