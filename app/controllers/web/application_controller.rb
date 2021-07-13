@@ -24,5 +24,4 @@ class Web::ApplicationController < ApplicationController
   def last_answers
     @last_answers ||= Resume::Answer.web.limit(10)
   end
-
 end

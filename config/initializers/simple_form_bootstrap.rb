@@ -441,7 +441,7 @@ SimpleForm.setup do |config|
     radio_buttons: :vertical_collection,
     range: :vertical_range,
     time: :vertical_multi_select,
-    image_preview: :custom_image_preview,
+    image_preview: :custom_image_preview
   }
 
   # enable custom form wrappers
