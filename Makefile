@@ -51,6 +51,8 @@ ci-setup:
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
-ci-check: ci-setup lint test
+ci-check: lint test
+
+ci-setup-check: ci-setup ci-check
 
 .PHONY: test

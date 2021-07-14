@@ -21,4 +21,5 @@ jobs:
         with:
           bundler-cache: true
 
+      - run: make ci-setup
       - run: make ci-check
