@@ -19,5 +19,4 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run tests
-        run: make test
+      - run: make check
