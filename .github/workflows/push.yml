@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # env:
+    #   RAILS_ENV: test
 
     steps:
       - uses: actions/checkout@v2
@@ -19,4 +21,4 @@ jobs:
         with:
           bundler-cache: true
 
-      - run: make check
+      - run: make ci-check
