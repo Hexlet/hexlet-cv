@@ -12,10 +12,13 @@
     ul.nav.nav-pills
       - if user_signed_in?
         li.nav-item
-          = link_to t('.add_resume'), new_account_resume_path, class: 'nav-link link-dark px-2'
-        li.nav-item
           = link_to account_notifications_path, class: 'nav-link link-dark px-2' do
             span.bi.bi-bell
+        li.nav-item.dropdown
+          a.nav-link.link-dark.px-2.dropdown-toggle href="#" data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false' = t('.add')
+          ul.dropdown-menu.dropdown-menu-end
+            li = link_to t('.add_resume'), new_account_resume_path, class: 'dropdown-item'
+            li = link_to t('.add_vacancy'), new_account_vacancy_path, class: 'dropdown-item'
         li.nav-item.dropdown
           a.nav-link.link-dark.px-2.dropdown-toggle href="#" data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
             span.bi.bi-person-circle

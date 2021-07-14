@@ -2,12 +2,10 @@
 
 FactoryBot.define do
   factory :vacancy do
-    creator { nil }
-    state { 'MyString' }
     title { 'MyString' }
-    language { 'MyString' }
-    location { 'MyString' }
-    company { 'MyString' }
+    language { 'php' }
+    city { 'MyString' }
+    company_name { 'MyString' }
     site { 'MyString' }
     contact_name { 'MyString' }
     contact_telegram { 'MyString' }

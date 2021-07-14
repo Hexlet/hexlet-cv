@@ -68,6 +68,13 @@ ru:
         edit:
           header: Редактирование комментария
     account:
+      vacancies:
+        new:
+          header: Новая вакансия
+        edit:
+          header: Редактирование вакансии
+        index:
+          header: Мои вакансии
       resumes:
         new:
           header: Новое резюме

@@ -19,6 +19,7 @@ html.h-100 lang="#{I18n.locale}"
               h1.h2.mb-4 = yield :header
             = yield
           .col-md-3
-            = render 'layouts/shared/last_answers'
+            .bg-light.rounded.py-2.px-3
+              = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'

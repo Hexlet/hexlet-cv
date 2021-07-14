@@ -18,7 +18,9 @@ ru:
           many: |
             %{count} Ответов
       nav:
-        add_resume: Добавить резюме
+        add: Добавить
+        add_resume: Резюме
+        add_vacancy: Вакансию
         how_to_create_resume: Как составлять резюме
         profile: Мой профиль
         settings: Настройки
@@ -32,7 +34,8 @@ ru:
         other_os_projects: Другие open-source проекты
         help: Помощь
         knowledge: База знаний
-        blog: Блог
+        success_stories: Истории успеха
+        employment_course: Курс по трудоустройству
         recommended_books: Рекомендуемые книги
         test_assigments: Тестовые задания
         additionally: Дополнительно

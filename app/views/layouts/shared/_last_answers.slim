@@ -2,10 +2,10 @@
 
 - last_answers.each do |answer|
   .mb-4
-    = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
+    .fw-bolder= link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}"), class: 'link-dark'
     .small
       = truncate(answer.content, length: 90)
-      .mt-1.text-muted
-        span = t('.answers', count: answer.resume.answers.size)
-        | &nbsp;|&nbsp&nbsp
-        span = link_to answer.user, user_path(answer.user)
+      .mt-1
+        / span = t('.answers', count: answer.resume.answers.size)
+        / | &nbsp;|&nbsp&nbsp
+        = link_to answer.user, user_path(answer.user), class: 'link-dark'

@@ -10,12 +10,13 @@ footer.bg-light.border-top.mt-auto.py-5
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.help')
         ul.list-unstyled
-          li = link_to t('.blog'), 'https://ru.hexlet.io/blog', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to t('.success_stories'), 'https://ru.hexlet.io/blog/categories/success', target: '_blank', rel: :noopener, class: 'link-dark'
           li = link_to t('.test_assigments'), 'https://github.com/Hexlet/ru-test-assignments', class: 'link-dark', target: '_blank', rel: :noopener
-          li = link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to t('.employment_course'), 'https://ru.hexlet.io/courses/employment', class: 'link-dark', target: '_blank', rel: :noopener
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.additionally')
         ul.list-unstyled
           li = link_to 'Основы программирования', 'https://ru.code-basics.com/', target: '_blank', rel: :noopener, class: 'link-dark'
           li = link_to 'КодБатл (Игра для прокачки)', 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener, class: 'link-dark'
           li = link_to 'Гайды для программистов', 'https://guides.hexlet.io/', target: '_blank', rel: :noopener, class: 'link-dark'
+          li = link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: '_blank', rel: :noopener, class: 'link-dark'

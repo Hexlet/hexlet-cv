@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_120439) do
+ActiveRecord::Schema.define(version: 2021_07_14_040510) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -188,14 +194,17 @@ ActiveRecord::Schema.define(version: 2021_07_13_120439) do
     t.string "title"
     t.string "language"
     t.string "location"
-    t.string "company"
+    t.string "company_name"
     t.string "site"
     t.string "contact_name"
     t.string "contact_telegram"
     t.string "contact_phone"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "city_name"
+    t.integer "country_id"
+    t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
 
@@ -222,5 +231,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_120439) do
   add_foreign_key "resume_educations", "resumes"
   add_foreign_key "resume_works", "resumes"
   add_foreign_key "resumes", "users"
+  add_foreign_key "vacancies", "countries"
   add_foreign_key "vacancies", "users", column: "creator_id"
 end

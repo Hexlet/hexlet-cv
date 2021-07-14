@@ -24,6 +24,17 @@ ru:
         state: Статус
         state/permitted: Активен
         state/banned: Забанен
+      vacancy:
+        description: Описание
+        title: Заголовок
+        lanuage: Язык
+        country: Страна
+        city_name: Город
+        company_name: Компания
+        site: Сайт компании
+        contact_name: Имя контакта
+        contact_phone: Телефон контакта
+        contact_telegram: Телеграм контакта
       resume:
         name: Название
         summary: Описание

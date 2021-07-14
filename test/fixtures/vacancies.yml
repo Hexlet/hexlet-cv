@@ -1,5 +1,9 @@
 DEFAULTS: &DEFAULTS
   state: published
+  description: Описание вакансии
+  company_name: Company
+  language: php
+  site: www.hexlet.io
 
 one:
   <<: *DEFAULTS
