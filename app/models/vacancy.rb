@@ -4,6 +4,7 @@ class Vacancy < ApplicationRecord
   include StateConcern
   extend Enumerize
   include VacancyRepository
+  include VacancyPresenter
 
   validates :title, presence: true
   validates :company_name, presence: true
@@ -31,11 +32,6 @@ class Vacancy < ApplicationRecord
     event :archive do
       transitions to: :archived
     end
-  end
-
-  # TODO: move to presenter
-  def location
-    city_name? ? [city_name, country].join(', ') : I18n.t('remote_job')
   end
 
   def to_s

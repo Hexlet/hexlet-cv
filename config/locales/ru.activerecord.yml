@@ -46,6 +46,7 @@ ru:
         country: Страна
         city_name: Город
         location: Место
+        salary: Зарплата
         company_name: Компания
         site: Сайт компании
         contact_name: Имя контакта

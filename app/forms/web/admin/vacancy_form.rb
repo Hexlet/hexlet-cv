@@ -15,5 +15,6 @@ class Web::Admin::VacancyForm < Vacancy
          :country,
          :city_name,
          :link_for_contact,
+         :salary,
          :state_event
 end

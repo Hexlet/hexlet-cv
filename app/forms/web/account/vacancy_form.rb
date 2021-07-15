@@ -14,5 +14,6 @@ class Web::Account::VacancyForm < Vacancy
          :language,
          :country,
          :city_name,
-         :link_for_contact
+         :link_for_contact,
+         :salary
 end

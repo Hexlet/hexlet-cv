@@ -1,4 +1,7 @@
 ru:
+  time:
+    formats:
+      schema: '%m/%d/%Y'
   date:
     formats:
       discard_day: '%b %Y'
