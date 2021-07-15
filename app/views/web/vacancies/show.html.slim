@@ -56,9 +56,15 @@
 
 .row.mb-3
   .col-sm-3
-    b = han('resume', 'summary')
+    b = han('vacancy', 'description')
   .col-sm-9.hexlet-cv-content
     == markdown2html @vacancy.description
+
+.row.mb-3
+  .col-sm-3
+    b = han('vacancy', 'technology_list')
+  .col-sm-9.hexlet-cv-content
+    == @vacancy.technology_list
 
 /   .d-flex.justify-content-center.mt-4
 /     .d-flex.flex-column.mx-1.mx-lg-3.text-center
