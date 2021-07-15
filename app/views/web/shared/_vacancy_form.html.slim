@@ -3,15 +3,21 @@
     = f.input :state_event, as: :state_event
     .mb-3 = f.submit class: 'btn btn-outline-primary'
   .mb-3
-    = f.input :salary
+    = f.input :employment_type
+  .mb-3
+    = f.input :salary_from
+  .mb-3
+    = f.input :salary_to
   .mb-3
     = f.input :title
-  .mb-3
-    = f.input :language
-  .mb-3
-    = f.association :country
+  / .mb-3
+    / = f.input :programming_language
+  / .mb-3
+  /   = f.association :country
   .mb-3
     = f.input :city_name
+  .mb-3
+    = f.input :location
   .mb-3
     = f.input :company_name
   .mb-3
@@ -28,5 +34,7 @@
     = f.input :link_for_contact
   .mb-3
     = f.input :description, as: :text, input_html: { rows: 20 }
+  .mb-3
+    = f.input :technology_list
   .mb-3
     = f.button :submit, class: 'btn-primary'

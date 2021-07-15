@@ -9,11 +9,17 @@
 /   hr.my-auto.w-100
 
 - if @vacancy.salary?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'salary')
+    .col-sm-9
+      = @vacancy.salary
+
 .row.mb-3
   .col-sm-3
-    b = han('vacancy', 'salary')
+    b = han('vacancy', 'employment_type')
   .col-sm-9
-    = number_to_currency @vacancy.salary, locale: :ru
+    = @vacancy.employment_type.humanize
 
 .row.mb-3
   .col-sm-3

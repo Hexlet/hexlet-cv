@@ -74,6 +74,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (8.1.0)
+      activerecord (>= 5.0, < 6.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
@@ -317,7 +319,7 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.7.0)
+    rubocop-ast (1.8.0)
       parser (>= 3.0.1.1)
     rubocop-performance (1.11.4)
       rubocop (>= 1.7.0, < 2.0)
@@ -410,6 +412,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   active_form_model
+  acts-as-taggable-on
   bootsnap
   byebug
   capybara

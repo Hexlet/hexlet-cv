@@ -11,4 +11,5 @@
     .card-body
       h5.card-title
         = link_to vacancy, vacancy_path(vacancy)
-      .card-text == markdown2html vacancy.description
+      .card-text == markdown2html(truncate vacancy.description, length: 100)
+      = vacancy.technology_list

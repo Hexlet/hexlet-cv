@@ -1,5 +1,7 @@
 ru:
   enumerize:
+    employment_type:
+      full-time: Полный день
     english_fluency:
       dont_know: Не знаю
       basic: Начальные знания

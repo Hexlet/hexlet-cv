@@ -11,9 +11,13 @@ class Web::Account::VacancyForm < Vacancy
          :contact_telegram,
          :contact_email,
          :company_name,
-         :language,
+         :programming_language,
          :country,
          :city_name,
          :link_for_contact,
-         :salary
+         :salary_from,
+         :salary_to,
+         :location,
+         :employment_type,
+         :technology_list
 end

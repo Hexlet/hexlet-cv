@@ -42,16 +42,21 @@ ru:
         description: Описание
         link_for_contact: Ссылкадля связи
         title: Заголовок
-        lanuage: Язык
+        programming_lanuage: Язык
+        employment_type: Тип работы
         country: Страна
         city_name: Город
-        location: Место
-        salary: Зарплата
+        location: Адрес
+        technologies: Технологии
+        salary_from: От
+        salary_to: До
         company_name: Компания
         site: Сайт компании
         contact_name: Имя контакта
         contact_phone: Телефон контакта
+        contact_email: Email контакта
         contact_telegram: Телеграм контакта
+        technology_list: Технологии
         state: Состояние
         state/published: Опубликована
       resume:

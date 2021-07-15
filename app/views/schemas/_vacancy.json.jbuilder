@@ -13,14 +13,14 @@ json.set! :hiringOrganization do
 end
 # json.set! :JobLocation, vacancy.location
 json.set! :employmentType, 'full-time'
-if vacancy.salary?
+if vacancy.salary_from?
   json.set! :baseSalary do
     json.set! :@type, 'MonetaryAmount'
     json.set! :currency, 'RUB'
     json.set! :name, vacancy.company_name
     json.set! :value do
       json.set! :@type, 'QuantitativeValue'
-      json.set! :value, vacancy.salary
+      json.set! :value, vacancy.salary_from
       json.set! :unitText, 'MONTH'
     end
   end

@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :vacancy do
     title { 'MyString' }
-    language { 'php' }
-    city { 'MyString' }
+    programming_language { 'php' }
+    city_name { 'MyString' }
     company_name { 'MyString' }
     site { 'MyString' }
     contact_name { 'MyString' }

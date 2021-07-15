@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'acts-as-taggable-on'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use Puma as the app server
