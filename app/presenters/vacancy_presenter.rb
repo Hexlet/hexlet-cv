@@ -3,7 +3,7 @@
 module VacancyPresenter
   include ActionView::Helpers::NumberHelper
 
-  def location
+  def combined_location
     city_name? ? [location, city_name, country].compact.join(', ') : I18n.t('remote_job')
   end
 
