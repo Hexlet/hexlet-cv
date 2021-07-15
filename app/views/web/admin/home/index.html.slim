@@ -1,0 +1,17 @@
+- content_for :header do
+  = t('.Admins')
+
+table.table
+  thead
+    tr
+      th = sort_link(@q, 'name')
+      th = sort_link(@q, 'state')
+      th = sort_link(@q, 'email')
+      th = sort_link(@q, 'created_at')
+  tbody
+    - @admins.each do |admin|
+      tr
+        td = link_to admin, user_path(admin)
+        td = admin.aasm(:state).human_state
+        td = admin.email
+        td = l admin.created_at, format: :short

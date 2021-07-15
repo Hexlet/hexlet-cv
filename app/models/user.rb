@@ -7,7 +7,7 @@ class User < ApplicationRecord
   include UserPresenter
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
-  enumerize :role, in: %i[user admin], default: :user, predicates: true
+  enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

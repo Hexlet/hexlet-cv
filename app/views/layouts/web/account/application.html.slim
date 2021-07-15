@@ -1,0 +1,25 @@
+doctype html
+html.h-100 lang="#{I18n.locale}"
+  head
+    = render 'layouts/shared/head'
+  body.d-flex.flex-column.h-100
+    - if Rails.env.production?
+      = render 'layouts/deps/gtm_body'
+
+    = render 'layouts/shared/nav'
+    .container.my-4
+      .my-2
+        = render_flash_messages dismissible: true
+      main
+        .row
+          / .col-md-2
+          /   = render 'layouts/shared/menu'
+          .col-md-9
+            - if content_for?(:header)
+              h1.h2.mb-4 = yield :header
+            = yield
+          .col-md-3
+            .bg-light.rounded.py-2.px-3
+              = render 'layouts/shared/last_answers'
+
+    = render 'layouts/shared/footer'
