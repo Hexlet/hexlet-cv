@@ -9,3 +9,8 @@ one:
   <<: *DEFAULTS
   title: Ruby-Разработчик
   creator: full
+
+two:
+  <<: *DEFAULTS
+  title: Ruby-Разработчик
+  creator: full
