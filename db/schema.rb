@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_090830) do
+ActiveRecord::Schema.define(version: 2021_07_15_092704) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_090830) do
     t.string "city_name"
     t.integer "country_id"
     t.string "link_for_contact"
+    t.string "contact_email"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end

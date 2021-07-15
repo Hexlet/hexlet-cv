@@ -9,6 +9,7 @@ class Web::Account::VacancyForm < Vacancy
          :contact_name,
          :contact_phone,
          :contact_telegram,
+         :contact_email,
          :company_name,
          :language,
          :country,

@@ -34,12 +34,13 @@
     .col-sm-9
       = @vacancy.contact_phone
 
-- if @vacancy.link_for_contact?
-  .row.mb-3
-    .col-sm-3
-      b = han('vacancy', 'link_for_contact')
-    .col-sm-9
-      = @vacancy.link_for_contact
+- %i[link_for_contact contact_name contact_phone contact_telegram contact_email].each do |field_name|
+  - if @vacancy.send :"#{field_name}?"
+    .row.mb-3
+      .col-sm-3
+        b = han('vacancy', 'link_for_contact')
+      .col-sm-9
+        = @vacancy.send :"#{field_name}"
 
 .row.mb-3
   .col-sm-3
