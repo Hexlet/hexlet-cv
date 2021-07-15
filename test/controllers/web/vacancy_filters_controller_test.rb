@@ -3,8 +3,9 @@
 require 'test_helper'
 
 class Web::VacancyFiltersControllerTest < ActionDispatch::IntegrationTest
+
   test 'should get index' do
-    get web_vacancy_filters_index_url
+    get vacancy_filter_url('tag-php')
     assert_response :success
   end
 end
