@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module UserRepository
+module VacancyRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { order(id: :desc).permitted }
+    scope :web, -> { published.order(id: :desc) }
   end
 end

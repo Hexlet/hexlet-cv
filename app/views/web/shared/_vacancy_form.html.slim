@@ -1,7 +1,7 @@
 = simple_form_for vacancy, as: :vacancy, url: url, wrapper: 'horizontal_form' do |f|
   - if can_update_state
-    = f.input :state_event, as: :state_event, collection: vacancy.aasm(:state).events(permitted: true)
-    .mb-3 = f.submit class: 'btn btn-primary'
+    = f.input :state_event, as: :state_event
+    .mb-3 = f.submit class: 'btn btn-outline-primary'
   .mb-3
     = f.input :title
   .mb-3
@@ -21,6 +21,8 @@
   .mb-3
     = f.input :contact_telegram
   .mb-3
+    = f.input :link_for_contact
+  .mb-3
     = f.input :description, as: :text, input_html: { rows: 20 }
   .mb-3
-    = f.button :submit, class: 'btn-success'
+    = f.button :submit, class: 'btn-primary'

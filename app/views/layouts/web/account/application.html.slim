@@ -12,14 +12,16 @@ html.h-100 lang="#{I18n.locale}"
         = render_flash_messages dismissible: true
       main
         .row
-          / .col-md-2
-          /   = render 'layouts/shared/menu'
+          .col-md-3
+            ul.nav.flex-column.nav-pills
+              = nav_menu_item t('.notifications'), account_notifications_path
+              = nav_menu_item t('.resumes'), account_resumes_path
+              = nav_menu_item t('.vacancies'), account_vacancies_path
+              = nav_menu_item t('.settings'), edit_account_profile_path
+              = nav_menu_item t('.newsletters'), edit_account_newsletters_path
           .col-md-9
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header
             = yield
-          .col-md-3
-            .bg-light.rounded.py-2.px-3
-              = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'

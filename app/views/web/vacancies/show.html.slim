@@ -1,0 +1,77 @@
+/ = content_for :meta do
+/   = structured_data_tag 'resume',
+/     resume: @resume, educations: @resume_educations, works: @resume_works
+
+= content_for :header do
+  = @vacancy
+
+/ .d-flex
+/   h4.my-4.me-3 = t('.basic')
+/   hr.my-auto.w-100
+
+.row.mb-3
+  .col-sm-3
+    b = han('vacancy', 'location')
+  .col-sm-9
+    = @vacancy.location
+
+.row.mb-3
+  .col-sm-3
+    b = han('vacancy', 'company_name')
+  .col-sm-9
+    = @vacancy.company_name
+
+.row.mb-3
+  .col-sm-3
+    b = han('vacancy', 'site')
+  .col-sm-9
+    = @vacancy.site
+
+- if @vacancy.contact_phone?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'contact_phone')
+    .col-sm-9
+      = @vacancy.contact_phone
+
+- if @vacancy.link_for_contact?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'link_for_contact')
+    .col-sm-9
+      = @vacancy.link_for_contact
+
+.row.mb-3
+  .col-sm-3
+    b = han('resume', 'summary')
+  .col-sm-9.hexlet-cv-content
+    == markdown2html @vacancy.description
+
+/   .d-flex.justify-content-center.mt-4
+/     .d-flex.flex-column.mx-1.mx-lg-3.text-center
+/       .h3 class=(@user_resume_answers.size.positive? ? 'text-info' : 'text-black-50')
+/         = @user_resume_answers.size
+/       .text-muted = t('.answers', count: @user_resume_answers.size)
+/     .d-flex.flex-column.mx-3.text-center
+/       .h3 class=(@user_resume_comments.size.positive? ? 'text-info' : 'text-black-50')
+/         = @user_resume_comments.size
+/       .text-muted = t('.comments', count: @user_resume_comments.size)
+/     .d-flex.flex-column.mx-1.mx-lg-3.text-center
+/       .h3 class=(@user_resume_answers_likes_count.positive? ? 'text-success' : 'text-black-50')
+/         = @user_resume_answers_likes_count
+/       .text-muted = t('.likes', count: @user_resume_answers_likes_count)
+
+/ ul.nav.nav-pills.justify-content-center role="navigation"
+/   li.nav-item
+/     a.nav-link.px-3.active data-bs-toggle='tab' href='#resume' = t('.tab_resumes')
+/   li.nav-item
+/     a.nav-link.px-3 data-bs-toggle='tab' href='#answers' = t('.tab_answers')
+/   li.nav-itemЗ
+/     a.nav-link.px-3 data-bs-toggle='tab' href='#comments' = t('.tab_comments')
+/ .tab-content.py-3
+/   .tab-pane.fade.show.active id="resume"
+/       = render 'resumes', resumes: @user_resumes
+/   .tab-pane.fade id="answers"
+/       = render 'answers', answers: @user_resume_answers
+/   .tab-pane.fade id="comments"
+/       = render 'comments', comments: @user_resume_comments

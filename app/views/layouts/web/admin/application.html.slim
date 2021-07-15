@@ -1,9 +1,8 @@
 doctype html
 html.h-100 lang="#{I18n.locale}"
   head
-    = render 'layouts/shared/admin/head'
+    = render 'layouts/shared/head'
   body.d-flex.flex-column.h-100
-
     = render 'layouts/shared/nav'
 
     .container.my-4
@@ -12,7 +11,11 @@ html.h-100 lang="#{I18n.locale}"
       main
         .row
           .col-md-2
-            = render 'layouts/shared/admin/menu'
+            ul.nav.flex-column.nav-pills
+              = nav_menu_item t('.admin'), admin_root_path
+              = nav_menu_item t('.all_users'), admin_users_path
+              = nav_menu_item t('.all_resumes'), admin_resumes_path
+              = nav_menu_item t('.all_vacancies'), admin_vacancies_path
           .col-md-10
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header

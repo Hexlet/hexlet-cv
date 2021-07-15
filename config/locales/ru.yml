@@ -1,4 +1,5 @@
 ru:
+  remote_job: Удаленная работа
   confirm: Вы уверены?
   resume_answer_mailer:
     new_answer_email:

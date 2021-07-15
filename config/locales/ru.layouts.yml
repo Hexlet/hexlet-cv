@@ -1,14 +1,14 @@
 ru:
   layouts:
+    web:
+      account:
+        application:
+          resumes: Мои резюме
+          vacancies: Мои вакансии
+          settings: Настройки
+          notifications: Уведомления
+          newsletters: Рассылки
     shared:
-      menu:
-        all_resumes: Все резюме
-        users: Пользователи
-        my_profile: Мой профиль
-        my_resume: Мои резюме
-        settings: Настройки
-        notifications: Уведомления
-        newsletters: Рассылки
       last_answers:
         title: Последние ответы
         answers:
@@ -18,9 +18,13 @@ ru:
           many: |
             %{count} Ответов
       nav:
+        vacancies: Вакансии
+        resumes: Резюме
         add: Добавить
         add_resume: Резюме
         add_vacancy: Вакансию
+        my_resumes: Мои резюме
+        my_vacancies: Мои вакансии
         how_to_create_resume: Как составлять резюме
         profile: Мой профиль
         settings: Настройки

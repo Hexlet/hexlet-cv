@@ -25,30 +25,4 @@ class Web::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert { user.last_name == attrs[:last_name] }
     assert { user.about == attrs[:about] }
   end
-
-  test 'should ban' do
-    user = users(:one)
-
-    params = {
-      user: { state_event: :ban }
-    }
-    patch admin_user_path(user), params: params
-    assert_response :redirect
-
-    user.reload
-    assert { user.banned? }
-  end
-
-  test 'should unban' do
-    user = users(:banned)
-
-    params = {
-      user: { state_event: :unban }
-    }
-    patch admin_user_path(user), params: params
-    assert_response :redirect
-
-    user.reload
-    assert { user.permitted? }
-  end
 end

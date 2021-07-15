@@ -1,11 +1,25 @@
 ru:
   activerecord:
-    errors:
-      models:
-        resume/answer/like:
-          attributes:
-            user:
-              answer_owner: Нельзя лайкнуть свой ответ :)
+
+    events:
+      user:
+        ban: Забанить
+        unban: Разбанить
+      resume:
+        publish: Опубликовать
+        hide: В черновик
+        archive: Архивировать
+        restore: Восстановить из архива
+      vacancy:
+        publish: Опубликовать
+        archive: Архивировать
+      # errors:
+      #   models:
+      #     resume/answer/like:
+      #       attributes:
+      #         user:
+      #           answer_owner: Нельзя лайкнуть свой ответ :)
+
     models:
       resume: Резюме
       user: Пользователь
@@ -26,15 +40,19 @@ ru:
         state/banned: Забанен
       vacancy:
         description: Описание
+        link_for_contact: Ссылкадля связи
         title: Заголовок
         lanuage: Язык
         country: Страна
         city_name: Город
+        location: Место
         company_name: Компания
         site: Сайт компании
         contact_name: Имя контакта
         contact_phone: Телефон контакта
         contact_telegram: Телеграм контакта
+        state: Состояние
+        state/published: Опубликована
       resume:
         name: Название
         summary: Описание

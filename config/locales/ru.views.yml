@@ -31,6 +31,9 @@ ru:
           few: Просмотра
           many: Просмотров
         likes: Нравится
+    vacancies:
+      index:
+        header: Вакансии (Junior)
     resumes:
       index:
         title: Hexlet Резюме
@@ -137,6 +140,9 @@ ru:
       resumes:
         edit:
           header: Редактирование резюме
+      vacancies:
+        edit:
+          header: Редактирование вакансии
       users:
         edit:
           header: Редактирование пользователя

@@ -10,6 +10,7 @@
 table.table
   thead
     tr
+      th = sort_link(@q, 'id')
       th = sort_link(@q, 'name')
       th = sort_link(@q, 'state')
       th = sort_link(@q, 'user')
@@ -18,7 +19,8 @@ table.table
   tbody
     - @resumes.each do |resume|
       tr
-        td = link_to resume, edit_admin_resume_path(resume)
+        td = link_to resume.id, edit_admin_resume_path(resume)
+        td = link_to resume, resume_path(resume)
         td = resume.aasm(:state).human_state
         td = resume.user
         td = resume.user.email

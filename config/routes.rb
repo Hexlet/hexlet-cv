@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :web do
+    namespace :admin do
+      get 'vacancies/index'
+      get 'vacancies/edit'
+    end
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
 
   scope module: :web do
     root 'home#index'
-    resources :vacancies, only: %i[index]
+    resources :vacancies, only: %i[index show]
     resources :resumes do
       scope module: :resumes do
         resources :answers do
@@ -43,6 +49,7 @@ Rails.application.routes.draw do
       root 'home#index'
       resources :users, only: %i[index edit update]
       resources :resumes, only: %i[index edit update]
+      resources :vacancies, only: %i[index edit update]
     end
   end
 end

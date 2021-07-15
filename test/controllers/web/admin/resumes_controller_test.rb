@@ -31,33 +31,8 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     resume.reload
     work.reload
+
     assert { resume.name == attrs[:name] }
     assert { work.company == work_attrs[:company] }
-  end
-
-  test 'should archive' do
-    resume = resumes(:one)
-
-    params = {
-      resume: { state_event: :archive }
-    }
-    patch admin_resume_path(resume), params: params
-    assert_response :redirect
-
-    resume.reload
-    assert { resume.archived? }
-  end
-
-  test 'should restore' do
-    resume = resumes(:one_archived)
-
-    params = {
-      resume: { state_event: :restore }
-    }
-    patch admin_resume_path(resume), params: params
-    assert_response :redirect
-
-    resume.reload
-    assert { resume.published? }
   end
 end

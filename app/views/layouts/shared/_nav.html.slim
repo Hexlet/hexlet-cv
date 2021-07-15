@@ -7,8 +7,9 @@
     / button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
     /   span.navbar-toggler-icon
     / #navbarSupportedContent.collapse.navbar-collapse
-    ul.nav.nav-pills.me-auto
-      = nav_menu_item t('.how_to_create_resume'), 'https://guides.hexlet.io/how-to-create-a-resume/', target: '_blank'
+    ul.nav.me-auto
+      = nav_menu_item t('.resumes'), root_path
+      = nav_menu_item t('.vacancies'), vacancies_path
     ul.nav.nav-pills
       - if user_signed_in?
         li.nav-item
@@ -34,8 +35,9 @@
               li = link_to t('.admin'), admin_root_path, class: 'dropdown-item'
 
             li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'
+            li = link_to t('.my_resumes'), account_resumes_path, class: 'dropdown-item'
+            li = link_to t('.my_vacancies'), account_resumes_path, class: 'dropdown-item'
             li = link_to t('.settings'), edit_account_profile_path, class: 'dropdown-item'
-            li = link_to t('.newsletters'), edit_account_newsletters_path, class: 'dropdown-item'
             .dropdown-divider
             li = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
         / = nav_menu_item t('.sign_out'), destroy_user_session_path, method: :delete

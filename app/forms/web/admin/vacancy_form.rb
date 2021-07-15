@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Account::VacancyForm < Vacancy
+class Web::Admin::VacancyForm < Vacancy
   include ActiveFormModel
 
   permit :title,
@@ -13,5 +13,6 @@ class Web::Account::VacancyForm < Vacancy
          :language,
          :country,
          :city_name,
-         :link_for_contact
+         :link_for_contact,
+         :state_event
 end

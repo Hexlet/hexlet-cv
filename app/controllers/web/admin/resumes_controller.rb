@@ -8,13 +8,12 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
   end
 
   def update
-    @resume = Resume.find params[:id]
-    resume = @resume.becomes(Web::Admin::ResumeForm)
-    if resume.update(resume_params)
+    resume = Resume.find params[:id]
+    @resume = resume.becomes(Web::Admin::ResumeForm)
+    if @resume.update(params[:resume])
       f(:success)
       redirect_to action: :index
     else
-      @resume = resume.becomes(Resume)
       render :edit
     end
   end
@@ -23,11 +22,5 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resume = Resume.find params[:id]
     @resume_educations = @resume.educations.web
     @resume_works = @resume.works.web
-  end
-
-  private
-
-  def resume_params
-    params.require(:resume)
   end
 end

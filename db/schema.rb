@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_040510) do
+ActiveRecord::Schema.define(version: 2021_07_15_090830) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(version: 2021_07_14_040510) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "city_name"
     t.integer "country_id"
+    t.string "link_for_contact"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
