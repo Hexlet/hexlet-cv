@@ -4,6 +4,7 @@
 - @vacancies.each do |vacancy|
   .card.mb-3.shadow-sm.border-0
     .card-body
+      .text-muted = l vacancy.created_at, format: :short
       h5.card-title = link_to vacancy, vacancy_path(vacancy)
       .card-text.mb-2 = truncate_markdown(vacancy.description, length: 200)
       / .text-end.small.mt-auto

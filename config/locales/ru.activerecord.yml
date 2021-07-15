@@ -48,6 +48,7 @@ ru:
         city_name: Город
         location: Адрес
         technologies: Технологии
+        salary: Зарплата
         salary_from: От
         salary_to: До
         company_name: Компания

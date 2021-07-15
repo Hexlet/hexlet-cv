@@ -4,12 +4,18 @@ module VacancyPresenter
   include ActionView::Helpers::NumberHelper
 
   def combined_location
-    city_name? ? [location, city_name, country].compact.join(', ') : I18n.t('remote_job')
+    city_name? ? [location, city_name, country].compact_blank.join(', ') : I18n.t('remote_job')
   end
 
   def salary
-    from = number_to_currency salary_from, locale: :ru, precision: 0, format: '%n'
-    to = number_to_currency salary_to, locale: :ru, precision: 0
-    [from, to].compact.join ' – '
+    return nil if !salary_to? && !salary_from?
+
+    # from = number_to_currency salary_from, locale: :ru, precision: 0, format: '%n'
+    # to = number_to_currency salary_to, locale: :ru, precision: 0, format: '%n'
+    from = number_with_delimiter salary_from
+    to = number_with_delimiter salary_to
+
+    value = [from, to].compact_blank.join ' – '
+    "#{value} #{I18n.t('number.currency.format.unit')}"
   end
 end
