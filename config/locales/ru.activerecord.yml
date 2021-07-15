@@ -51,6 +51,7 @@ ru:
         salary: Зарплата
         salary_from: От
         salary_to: До
+        position_level: Уровень
         company_name: Компания
         site: Сайт компании
         contact_name: Имя контакта

@@ -5,6 +5,7 @@ class Web::Admin::VacancyForm < Vacancy
 
   permit :title,
          :site,
+         :position_level,
          :description,
          :contact_name,
          :contact_phone,

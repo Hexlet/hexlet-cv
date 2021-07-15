@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'home#index'
     resources :vacancies, only: %i[index show]
-    resources :vacancies_by_city, only: %i[index]
+    resources :vacancy_filters, only: %i[show]
     resources :resumes do
       scope module: :resumes do
         resources :answers do

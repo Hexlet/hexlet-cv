@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_142817) do
+ActiveRecord::Schema.define(version: 2021_07_15_154115) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_142817) do
     t.integer "salary_from"
     t.integer "salary_to"
     t.string "employment_type"
+    t.string "position_level"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end

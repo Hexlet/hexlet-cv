@@ -3,9 +3,9 @@
 module VacancyPresenter
   include ActionView::Helpers::NumberHelper
 
-  def combined_location
-    city_name? ? [location, city_name, country].compact_blank.join(', ') : I18n.t('remote_job')
-  end
+  # def combined_location
+  #   city_name? ? [location, city_name].compact_blank.join(', ') : I18n.t('remote_job')
+  # end
 
   def salary
     return nil if !salary_to? && !salary_from?

@@ -8,4 +8,6 @@ class Web::VacanciesController < Web::ApplicationController
   def show
     @vacancy = Vacancy.find(params[:id])
   end
+
+  def filtered; end
 end

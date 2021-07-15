@@ -15,17 +15,32 @@
     .col-sm-9
       = @vacancy.salary
 
+- if @vacancy.position_level?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'position_level')
+    .col-sm-9
+      = @vacancy.position_level.text
+
 .row.mb-3
   .col-sm-3
     b = han('vacancy', 'employment_type')
   .col-sm-9
-    = @vacancy.employment_type.humanize
+    = @vacancy.employment_type.text
 
-.row.mb-3
-  .col-sm-3
-    b = han('vacancy', 'location')
-  .col-sm-9
-    = @vacancy.combined_location
+- if @vacancy.city_name?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'city_name')
+    .col-sm-9
+      = link_to @vacancy.city_name, vacancy_filter_path(filter_slug(city: @vacancy.city_name))
+
+- if @vacancy.location?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'location')
+    .col-sm-9
+      = @vacancy.location
 
 .row.mb-3
   .col-sm-3
@@ -60,11 +75,14 @@
   .col-sm-9.hexlet-cv-content
     == markdown2html @vacancy.description
 
+- if @vacancy.technologies.any?
 .row.mb-3
   .col-sm-3
     b = han('vacancy', 'technology_list')
   .col-sm-9.hexlet-cv-content
-    == @vacancy.technology_list
+    - @vacancy.technologies.each do |technology|
+      = link_to technology, vacancy_filter_path(filter_slug(technology: technology))
+      | &nbsp;
 
 /   .d-flex.justify-content-center.mt-4
 /     .d-flex.flex-column.mx-1.mx-lg-3.text-center

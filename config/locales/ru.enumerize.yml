@@ -2,6 +2,10 @@ ru:
   enumerize:
     employment_type:
       full-time: Полный день
+    position_level:
+      junior: Джуниор
+      middle: Мидл
+      senior: Синьор
     english_fluency:
       dont_know: Не знаю
       basic: Начальные знания
