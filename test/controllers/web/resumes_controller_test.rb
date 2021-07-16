@@ -9,7 +9,7 @@ class Web::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#index' do
+  test '#index rss' do
     get resumes_path(format: :rss)
     assert_response :success
   end

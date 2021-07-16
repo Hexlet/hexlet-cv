@@ -8,6 +8,11 @@ class Web::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#index rss' do
+    get vacancies_path format: :rss
+    assert_response :success
+  end
+
   test '#show' do
     vacancy = vacancies(:one)
     get vacancy_path(vacancy)
