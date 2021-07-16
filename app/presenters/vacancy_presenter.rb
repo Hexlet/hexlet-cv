@@ -7,6 +7,10 @@ module VacancyPresenter
   #   city_name? ? [location, city_name].compact_blank.join(', ') : I18n.t('remote_job')
   # end
 
+  def header
+    "#{position_level.text} #{title} (#{employment_type.text}) – #{company_name}"
+  end
+
   def salary
     return nil if !salary_to? && !salary_from?
 
