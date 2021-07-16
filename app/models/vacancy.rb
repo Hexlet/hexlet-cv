@@ -13,9 +13,11 @@ class Vacancy < ApplicationRecord
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true
 
   validates :title, presence: true
+  validates :contact_email, 'valid_email_2/email': true
   validates :company_name, presence: true
   validates :description, presence: true
-  validates :site, presence: true
+  validates :site, presence: true, url: true
+  validates :link_for_contact, url: { allow_blank: true }
   # validates :programming_language, presence: true
 
   belongs_to :creator, class_name: 'User'

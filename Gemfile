@@ -107,3 +107,7 @@ gem 'active_form_model'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'translit'
+
+gem 'valid_email2'
+
+gem 'validate_url'

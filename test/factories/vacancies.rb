@@ -6,7 +6,7 @@ FactoryBot.define do
     programming_language { 'php' }
     city_name { 'MyString' }
     company_name { 'MyString' }
-    site { 'MyString' }
+    site { 'https://ru.hexlet.io' }
     contact_name { 'MyString' }
     contact_telegram { 'MyString' }
     contact_phone { 'MyString' }

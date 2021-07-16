@@ -6,6 +6,8 @@ class User < ApplicationRecord
   include UserRepository
   include UserPresenter
 
+  validates :email, 'valid_email_2/email': true
+
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
 

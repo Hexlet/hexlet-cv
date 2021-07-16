@@ -387,6 +387,12 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
+    valid_email2 (4.0.0)
+      activemodel (>= 3.2)
+      mail (~> 2.5)
+    validate_url (1.0.13)
+      activemodel (>= 3.0.0)
+      public_suffix
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -465,6 +471,8 @@ DEPENDENCIES
   translit
   turbo-rails
   tzinfo-data
+  valid_email2
+  validate_url
   web-console
   webdrivers
   webpacker!
