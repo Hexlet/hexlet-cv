@@ -9,7 +9,7 @@ class Web::VacancyFiltersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#index 2' do
-    get vacancy_filter_url('city-moskwa_position_level-junior_technology-android')
+    get vacancy_filter_url('city-moskwa_level-junior_technology-android')
     assert_response :success
   end
 end
