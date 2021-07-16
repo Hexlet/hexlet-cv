@@ -20,7 +20,7 @@
     .col-sm-3
       b = han('vacancy', 'position_level')
     .col-sm-9
-      = @vacancy.position_level.text
+      = link_to @vacancy.position_level.text, vacancy_filter_path(filter_slug(level: @vacancy.position_level))
 
 .row.mb-3
   .col-sm-3
@@ -33,7 +33,7 @@
     .col-sm-3
       b = han('vacancy', 'city_name')
     .col-sm-9
-      = link_to @vacancy.city_name, vacancy_filter_path(filter_slug(city: @vacancy.city_name))
+      = link_to @vacancy.city_name.capitalize, vacancy_filter_path(filter_slug(city: @vacancy.city_name))
 
 - if @vacancy.location?
   .row.mb-3
@@ -81,7 +81,7 @@
     b = han('vacancy', 'technology_list')
   .col-sm-9.hexlet-cv-content
     - @vacancy.technologies.each do |technology|
-      = link_to technology, vacancy_filter_path(filter_slug(technology: technology))
+      = link_to technology, vacancy_filter_path(filter_slug(technology: technology.to_s))
       | &nbsp;
 
 /   .d-flex.justify-content-center.mt-4

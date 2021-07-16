@@ -21,4 +21,9 @@ class Web::Account::VacancyForm < Vacancy
          :location,
          :employment_type,
          :technology_list
+
+  def city_name=(value)
+    processed_value = value ? value.downcase : value
+    super(processed_value)
+  end
 end

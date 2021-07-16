@@ -105,3 +105,5 @@ gem 'turbo-rails'
 gem 'active_form_model'
 
 gem 'omniauth-rails_csrf_protection'
+
+gem 'translit'

@@ -22,4 +22,9 @@ class Web::Admin::VacancyForm < Vacancy
          :technology_list,
          :employment_type,
          :state_event
+
+  def city_name=(value)
+    processed_value = value ? value.downcase : value
+    super(processed_value)
+  end
 end
