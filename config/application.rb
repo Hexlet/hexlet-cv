@@ -25,6 +25,7 @@ module HexletCv
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.exceptions_app = routes
 
     # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsenvironmentvariableaccess
     config.vars = {
