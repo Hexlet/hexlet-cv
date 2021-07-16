@@ -1,6 +1,8 @@
 = content_for :meta do
   = structured_data_tag 'vacancy', vacancy: @vacancy
 
+- set_meta_tags title: @vacancy.header
+
 = content_for :header do
   = @vacancy.header
 

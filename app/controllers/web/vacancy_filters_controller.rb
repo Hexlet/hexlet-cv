@@ -6,7 +6,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
 
     scope = Vacancy.web.page(params[:page])
 
-    @options_for_header = {
+    options_for_header = {
       position_level: '',
       technology: '',
       city_description: ''
@@ -16,17 +16,19 @@ class Web::VacancyFiltersController < Web::ApplicationController
       case key
       when 'level'
         scope = scope.where(position_level: value)
-        @options_for_header[:position_level] = I18n.t(value, scope: 'enumerize.position_level')
+        options_for_header[:position_level] = I18n.t(value, scope: 'enumerize.position_level')
       when 'technology'
         scope = scope.tagged_with value
-        @options_for_header[:technology] = value.capitalize
+        options_for_header[:technology] = value.capitalize
       when 'city'
         decoded_city_name = Slug.decode(value).downcase
         scope = scope.where(city_name: decoded_city_name)
-        @options_for_header[:city_description] = I18n.t('in_the_city', city_name: decoded_city_name.capitalize)
+        options_for_header[:city_description] = I18n.t('in_the_city', city_name: decoded_city_name.capitalize)
       end
     end
 
     @vacancies = scope
+
+    @header = t('.header', **options_for_header)
   end
 end

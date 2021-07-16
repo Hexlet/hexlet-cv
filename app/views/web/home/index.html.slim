@@ -1,3 +1,5 @@
+- set_meta_tags title: t('application_name')
+
 .nav.nav-pills.mb-3.justify-content-center
   = filter_link(t('.all'), {}, class: 'nav-item nav-link')
   = filter_link(t('.popular'), { popular_gteq: Date.current - 1.week }, class: 'nav-item nav-link')

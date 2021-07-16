@@ -1,4 +1,9 @@
+- set_meta_tags title: t('.header')
+
 - content_for :header do
   = t('.header')
+
+- content_for :meta do
+  = auto_discovery_link_tag :rss, vacancies_url(format: :rss)
 
 = render partial: 'web/shared/vacancies', object: @vacancies
