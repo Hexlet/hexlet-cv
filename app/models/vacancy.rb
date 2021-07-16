@@ -8,7 +8,7 @@ class Vacancy < ApplicationRecord
 
   acts_as_taggable_on :technologies
   enumerize :employment_type, in: EMPLOYMENT_TYPES, default: 'full-time', predicates: true, scope: true
-  enumerize :position_level, in: POSITION_LEVELS, default: 'junior', predicates: true, scope: true
+  enumerize :position_level, in: POSITION_LEVELS, predicates: true, scope: true
   # enumerize :programming_language, in: PROGRAMMING_LANGAUGES, default: 'full-time', predicates: true, scope: true
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true
 

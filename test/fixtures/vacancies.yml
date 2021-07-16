@@ -4,13 +4,19 @@ DEFAULTS: &DEFAULTS
   company_name: Company
   programming_language: php
   site: www.hexlet.io
+  position_level: junior
 
 one:
   <<: *DEFAULTS
   title: Ruby-Разработчик
   creator: full
 
-two:
+java-developer:
   <<: *DEFAULTS
-  title: Ruby-Разработчик
+  title: Java-программист
+  creator: full
+
+frontender:
+  <<: *DEFAULTS
+  title: Фронтендер
   creator: full

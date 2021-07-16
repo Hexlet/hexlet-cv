@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Slug
   def self.encode(value)
     Translit.convert(value)
