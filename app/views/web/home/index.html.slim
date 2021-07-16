@@ -9,8 +9,8 @@
 - @resumes.each do |resume|
   .card.mb-3.shadow-sm.border-0
     .card-body
-      .d-flex.flex-column.flex-sm-row
-        .d-flex.flex-sm-column.me-4.text-center.mx-auto
+      .d-flex.flex-row
+        .d-flex.flex-column.me-4.text-center.mx-auto
           .text-muted.mb-3.me-3
             .h2.mb-0.fw-lighter = resume.answers.count
             .small = t('.answers', count: resume.answers.count)

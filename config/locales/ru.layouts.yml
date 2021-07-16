@@ -19,6 +19,7 @@ ru:
             %{count} Ответов
       nav:
         vacancies: Вакансии
+        rating: Рейтинг
         resumes: Резюме
         add: Добавить
         add_resume: Резюме

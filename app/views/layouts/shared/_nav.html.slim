@@ -10,6 +10,7 @@
     ul.nav.me-auto
       = nav_menu_item t('.resumes'), root_path
       = nav_menu_item t('.vacancies'), vacancies_path
+      = nav_menu_item t('.rating'), users_path
     ul.nav.nav-pills
       - if user_signed_in?
         li.nav-item
