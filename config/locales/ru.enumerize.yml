@@ -2,6 +2,7 @@ ru:
   enumerize:
     employment_type:
       full-time: Полный день
+      part-time: Частичная занятость
     position_level:
       junior: Джуниор
       middle: Мидл
