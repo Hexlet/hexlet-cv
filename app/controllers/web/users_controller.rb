@@ -2,13 +2,11 @@
 
 class Web::UsersController < Web::ApplicationController
   def index
-    title :base
-
     @users = User.where('resume_answer_likes_count > ?', 0).order(resume_answer_likes_count: :desc)
 
     set_meta_tags canonical: users_url
     set_meta_tags og: {
-      title: title,
+      title: t('.title'),
       type: 'website',
       url: users_url
     }
@@ -21,11 +19,9 @@ class Web::UsersController < Web::ApplicationController
     @user_resumes = @user.resumes.web
     @user_resume_comments = @user.resume_comments.web
 
-    title @user
-
     set_meta_tags canonical: user_url(@user)
     set_meta_tags og: {
-      title: meta_tag_title(@user),
+      title: @user,
       type: 'website',
       url: user_url(@user)
     }

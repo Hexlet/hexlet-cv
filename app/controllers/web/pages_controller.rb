@@ -5,12 +5,12 @@ class Web::PagesController < Web::ApplicationController
     page = params[:id].to_sym
     description = t(".#{page}_description")
     url = page_url(page)
-    title page
 
-    set_meta_tags description: description,
+    set_meta_tags title: t(".#{page}_title"),
+                  description: description,
                   canonical: url
     set_meta_tags og: {
-      title: title,
+      title: t(".#{page}_title"),
       description: description,
       type: 'website',
       url: url

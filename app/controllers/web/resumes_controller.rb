@@ -23,12 +23,9 @@ class Web::ResumesController < Web::ApplicationController
     @resume_educations = @resume.educations.web
     @resume_works = @resume.works.web
 
-    title @resume
-
-    set_meta_tags description: @resume.summary,
-                  canonical: resume_url(@resume)
+    set_meta_tags canonical: resume_url(@resume)
     set_meta_tags og: {
-      title: meta_tag_title(@resume),
+      title: @resume,
       description: @resume.summary,
       type: 'article',
       url: resume_url(@resume)

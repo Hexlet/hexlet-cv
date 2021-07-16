@@ -1,3 +1,6 @@
+- title [@resume.to_s, @resume.id].join ' | '
+- description @resume.summary
+
 = content_for :meta do
   = structured_data_tag 'resume',
     resume: @resume, educations: @resume_educations, works: @resume_works
