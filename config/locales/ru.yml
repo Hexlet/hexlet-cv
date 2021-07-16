@@ -1,4 +1,6 @@
 ru:
+  application_name: HexletCV
+  in_the_city: "в городе %{city_name}"
   remote_job: Удаленная работа
   confirm: Вы уверены?
   resume_answer_mailer:

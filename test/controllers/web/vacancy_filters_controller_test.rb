@@ -7,4 +7,9 @@ class Web::VacancyFiltersControllerTest < ActionDispatch::IntegrationTest
     get vacancy_filter_url('tag-php')
     assert_response :success
   end
+
+  test '#index 2' do
+    get vacancy_filter_url('city-moskwa_position_level-junior_technology-android')
+    assert_response :success
+  end
 end

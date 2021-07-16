@@ -1,2 +1,8 @@
-one:
+php:
   name: php
+
+js:
+  name: js
+
+android:
+  name: android

@@ -31,9 +31,15 @@ ru:
           few: Просмотра
           many: Просмотров
         likes: Нравится
+    vacancy_filters:
+      show:
+        header: "%{position_level} %{technology} Разработчики %{city_description}"
     vacancies:
+      show:
+        similar_vacancies: Похожие вакансии
+        developers_in_the_city: "%{position_level} %{technology} в городе %{city_name}"
       index:
-        header: Вакансии (Junior)
+        header: Вакансии
     resumes:
       index:
         title: Hexlet Резюме

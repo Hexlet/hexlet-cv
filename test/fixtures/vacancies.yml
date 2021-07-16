@@ -4,6 +4,7 @@ DEFAULTS: &DEFAULTS
   company_name: Company
   programming_language: php
   site: www.hexlet.io
+  city_name: москва
   position_level: junior
 
 one:
