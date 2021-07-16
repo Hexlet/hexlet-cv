@@ -63,7 +63,7 @@
   - if @vacancy.send :"#{field_name}?"
     .row.mb-3
       .col-sm-3
-        b = han('vacancy', 'link_for_contact')
+        b = han('vacancy', field_name)
       .col-sm-9
         = @vacancy.send :"#{field_name}"
 
