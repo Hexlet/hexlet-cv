@@ -2,6 +2,7 @@
 
 User-agent: *
 Disallow: /admin
+Disallow: /account
 Disallow: /*?
 Disallow: /users/confirmation/new
 Disallow: /users/password/new
