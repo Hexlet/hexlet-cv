@@ -40,7 +40,7 @@ ru:
         state/banned: Забанен
       vacancy:
         description: Описание
-        link_for_contact: Ссылкадля связи
+        link_for_contact: Ссылка для связи
         title: Заголовок
         programming_lanuage: Язык
         employment_type: Тип работы

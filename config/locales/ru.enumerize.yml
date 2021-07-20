@@ -3,6 +3,10 @@ ru:
     employment_type:
       full-time: Полный день
       part-time: Частичная занятость
+      contract: Контрактная работа
+      temporary: Временная работа
+      seasonal: Сезонная работа
+      internship: Стажировка
     position_level:
       junior: Джуниор
       middle: Мидл

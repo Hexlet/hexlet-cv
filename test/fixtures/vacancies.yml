@@ -11,13 +11,17 @@ one:
   <<: *DEFAULTS
   title: Ruby-Разработчик
   creator: full
+  salary_from: 1000
+  salary_to: 2000
 
 java-developer:
   <<: *DEFAULTS
   title: Java-программист
   creator: full
+  salary_from: 1000
 
 frontender:
   <<: *DEFAULTS
   title: Фронтендер
   creator: full
+  salary_to: 2000

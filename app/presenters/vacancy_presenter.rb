@@ -16,8 +16,8 @@ module VacancyPresenter
 
     # from = number_to_currency salary_from, locale: :ru, precision: 0, format: '%n'
     # to = number_to_currency salary_to, locale: :ru, precision: 0, format: '%n'
-    from = number_with_delimiter salary_from
-    to = number_with_delimiter salary_to
+    from = salary_from? && I18n.t('salary.from', value: number_with_delimiter(salary_from))
+    to = salary_to? && I18n.t('salary.to', value: number_with_delimiter(salary_to))
 
     value = [from, to].compact_blank.join ' – '
     "#{value} #{I18n.t('number.currency.format.unit')}"
