@@ -1,8 +1,8 @@
-/ - content_for :meta do
 - set_meta_tags canonical: vacancy_filter_url(filter_slug(@options))
-- set_meta_tags title: @header
+- title @header
+- description @description
 
 - content_for :header do
-  - @header
+  - @title
 
 = render partial: 'web/shared/vacancies', object: @vacancies
