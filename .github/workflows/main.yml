@@ -1,6 +1,9 @@
-name: On Push
+name: Main
 
 on:
+  pull_request:
+    branches:
+      - 'master'
   push:
     branches:
       - 'master'
@@ -22,4 +25,4 @@ jobs:
           bundler-cache: true
 
       - run: make ci-setup
-      - run: make ci-check
+      - run: make check
