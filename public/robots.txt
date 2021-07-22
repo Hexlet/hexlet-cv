@@ -1,5 +1,3 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-
 User-agent: *
 Disallow: /admin
 Disallow: /account
@@ -10,3 +8,4 @@ Disallow: /users/sign_in
 Disallow: /users/sign_up
 Disallow: /users/unlock/new
 Disallow: /users/auth/github
+Disallow: */password$
