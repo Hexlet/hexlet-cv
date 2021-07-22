@@ -71,6 +71,7 @@ ru:
         title: "Вакансия %{body}"
         similar_vacancies: Похожие вакансии
         developers_in_the_city: "%{position_level} %{technology} в городе %{city_name}"
+        from_hexlet: При отклике на вакансию указывайте, что вы от Хекслета =)
       index:
         header: Вакансии для разработчиков
         title: Вакансии для программистов

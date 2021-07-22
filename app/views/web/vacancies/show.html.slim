@@ -83,7 +83,9 @@
         = link_to technology, vacancy_filter_path(filter_slug(technology: technology.to_s))
         | &nbsp;
 
-h2.h4 = t('.similar_vacancies')
+.alert.bg-light.shadow-sm.text-muted= t('.from_hexlet')
+
+h2.h3.mt-5.mb-4 = t('.similar_vacancies')
 
 .lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, technology: ''),
   vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
