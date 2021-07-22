@@ -10,7 +10,7 @@ xml.rss(version: '2.0', 'xmlns:atom': 'https://www.w3.org/2005/Atom') do
     @vacancies.each do |vacancy|
       xml.item do
         xml.title vacancy
-        xml.description truncate_markdown(vacancy.description, length: 200)
+        xml.description truncate_markdown(vacancy.description, length: 400)
         xml.pubDate vacancy.created_at.to_s(:rfc822)
         xml.link vacancy_url(vacancy)
         xml.guid vacancy_url(vacancy)
