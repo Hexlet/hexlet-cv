@@ -19,7 +19,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
         options_for_header[:position_level] = I18n.t(value, scope: 'enumerize.position_level')
       when 'technology'
         scope = scope.tagged_with value
-        options_for_header[:technology] = value.capitalize
+        options_for_header[:technology] = value
       when 'city'
         decoded_city_name = Slug.decode(value).downcase
         scope = scope.where(city_name: decoded_city_name)

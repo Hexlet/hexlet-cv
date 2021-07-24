@@ -8,11 +8,13 @@ one:
   <<: *DEFAULTS
   resume: one
   user: one
+  likes_count: 1
 
 two:
   <<: *DEFAULTS
   resume: two
   user: two
+  likes_count: 2
 
 without_likes:
   <<: *DEFAULTS

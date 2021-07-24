@@ -89,5 +89,6 @@ h2.h3.mt-5.mb-4 = t('.similar_vacancies')
 
 .lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, technology: ''),
   vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
+
 - @vacancy.technologies.each do |technology|
-  .lead = link_to t('.developers_in_the_city', technology: technology.to_s, city_name: @vacancy.city_name, position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, technology: technology.to_s))
+  .lead = link_to t('.developers_in_the_city', technology: technology.to_s, city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, technology: technology.to_s))

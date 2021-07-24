@@ -45,9 +45,9 @@ ru:
         options:
           technology:
             title: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}
+              Вакансии для %{position_level} %{technology}-разработчиков %{city_description}
             header: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}
+              Вакансии для %{position_level} %{technology}-разработчиков %{city_description}
             description: |
               Актуальные вакансии для %{position_level} %{technology}-разработчиков %{city_description}. Работа для %{position_level}-программистов, подборка от редакции Hexlet CV
 
