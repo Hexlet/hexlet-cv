@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id @vacancy.id
 json.title @vacancy.title
 json.site @vacancy.site
