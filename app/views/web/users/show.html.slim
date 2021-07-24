@@ -1,5 +1,5 @@
 - title [@user.id, @user.to_s].join ' | '
-- description @user.about
+- description [@user.id, @user].join ' | '
 
 - if @user.banned?
   .alert.alert-warning = t('.banned')
