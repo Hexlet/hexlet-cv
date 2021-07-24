@@ -5,8 +5,8 @@ class Web::VacanciesController < Web::ApplicationController
     @vacancies = Vacancy.web.page(params[:page])
 
     respond_to do |format|
-      format.rss
       format.html
+      format.rss
     end
   end
 
