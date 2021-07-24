@@ -12,5 +12,6 @@ class Web::VacanciesController < Web::ApplicationController
 
   def show
     @vacancy = Vacancy.find(params[:id])
+    respond_with @vacancy, location: resume_url(@vacancy)
   end
 end

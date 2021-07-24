@@ -18,4 +18,10 @@ class Web::VacanciesControllerTest < ActionDispatch::IntegrationTest
     get vacancy_path(vacancy)
     assert_response :success
   end
+
+  test '#show json' do
+    vacancy = vacancies(:one)
+    get vacancy_path(vacancy, format: :json)
+    assert_response :success
+  end
 end
