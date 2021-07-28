@@ -12,7 +12,7 @@ class Web::ResumesController < Web::ApplicationController
   end
 
   def show
-    @resume = Resume.find(params[:id])
+    @resume = Resume.web.find(params[:id])
     authorize @resume
 
     @resume_answers = @resume.answers.includes(:comments).order(likes_count: :desc)
