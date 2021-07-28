@@ -49,8 +49,8 @@ ru:
         location: Адрес
         technologies: Технологии
         salary: Зарплата
-        salary_from: От
-        salary_to: До
+        salary_from: Зарплата от
+        salary_to: Зарплата до
         position_level: Уровень
         company_name: Компания
         site: Сайт компании
