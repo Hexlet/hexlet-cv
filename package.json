@@ -1,6 +1,9 @@
 {
   "name": "hexlet_cv",
   "private": true,
+  "simple-git-hooks": {
+    "pre-push": "make lint"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.14.5",
     "@hotwired/turbo-rails": "^7.0.0-beta.8",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "npm-check-updates": "^11.8.3",
     "resolve-url-loader": "^4.0.0",
+    "simple-git-hooks": "^2.5.1",
     "webpack-dev-server": "^3.11.2"
   }
 }
