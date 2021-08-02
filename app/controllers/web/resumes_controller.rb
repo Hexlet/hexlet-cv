@@ -15,7 +15,11 @@ class Web::ResumesController < Web::ApplicationController
     @resume = Resume.web.find(params[:id])
     authorize @resume
 
-    @resume_answers = @resume.answers.includes(:comments).order(likes_count: :desc)
+    @resume_answers = @resume.answers
+                             .web
+                             .joins(:comments)
+                             .merge(Resume::Answer::Comment.web)
+                             .order(likes_count: :desc)
     @answer = Resume::Answer.new resume: @resume
     @current_user_answer = @resume.answers.find_by(user: current_user)
     current_user_likes = @resume.answer_likes.where(user: current_user)

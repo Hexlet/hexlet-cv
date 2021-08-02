@@ -30,9 +30,9 @@
   = render 'information'
 
   .mt-3
-    - if @resume.comments.any?
+    - if @resume.comments.web.any?
       .small
-        - @resume.comments.each do |comment|
+        - @resume.comments.web.each do |comment|
           hr.my-2
           .d-flex(id="comment-#{comment.id}")
             .me-auto

@@ -1,4 +1,5 @@
 ru:
+  forbidden: Доступ закрыт. Иш ты
   salary:
     from: "от %{value}"
     to: "до %{value}"

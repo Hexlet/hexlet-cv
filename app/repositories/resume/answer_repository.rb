@@ -4,6 +4,9 @@ module Resume::AnswerRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { joins(:resume).merge(Resume.published).order(id: :desc) }
+    scope :web, -> { joins(:resume, :user).merge(Resume.published).merge(User.permitted).order(id: :desc) }
+    # has_many :approved_comments, lambda { |answer|
+    #   answer.comments.joins(:user).merge(User.permitted)
+    # }, class_name: 'Resume::Answer::Comment'
   end
 end

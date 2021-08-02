@@ -3,7 +3,7 @@
 class Resume < ApplicationRecord
   include StateConcern
   extend Enumerize
-  include ResumeRepository
+
   has_paper_trail
   is_impressionable counter_cache: true
 
@@ -21,6 +21,8 @@ class Resume < ApplicationRecord
   has_many :educations, inverse_of: :resume, dependent: :destroy
   has_many :works, inverse_of: :resume, dependent: :destroy
   has_many :comments, inverse_of: :resume, dependent: :destroy
+
+  include ResumeRepository
 
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
