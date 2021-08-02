@@ -39,7 +39,14 @@ ru:
         state/permitted: Активен
         state/banned: Забанен
       vacancy:
-        description: Описание
+        conditions_description: Условия и Бонусы
+        requirements_description: Требования
+        responsibilities_description: Обязанности
+        salary_currency: Валюта
+        salary_amount_type: Сколько денег
+        about_company: О компании
+        about_project: О проекте
+        experience_description: Опыт
         link_for_contact: Ссылка для связи
         title: Заголовок
         programming_lanuage: Язык
@@ -48,10 +55,12 @@ ru:
         city_name: Город
         location: Адрес
         technologies: Технологии
+        directions: Направления
         salary: Зарплата
         salary_from: Зарплата от
         salary_to: Зарплата до
         position_level: Уровень
+        location_of_position: Место работы
         company_name: Компания
         site: Сайт компании
         contact_name: Имя контакта
@@ -59,6 +68,7 @@ ru:
         contact_email: Email контакта
         contact_telegram: Телеграм контакта
         technology_list: Технологии
+        direction_list: Направления
         state: Состояние
         state/published: Опубликована
       resume:

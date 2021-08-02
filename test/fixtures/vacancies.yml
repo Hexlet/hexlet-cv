@@ -1,6 +1,6 @@
 DEFAULTS: &DEFAULTS
   state: published
-  description: Описание вакансии
+  responsibilities_description: Описание вакансии
   company_name: Company
   programming_language: php
   site: www.hexlet.io

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_154115) do
+ActiveRecord::Schema.define(version: 2021_08_02_110418) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -228,7 +228,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_154115) do
     t.string "contact_name"
     t.string "contact_telegram"
     t.string "contact_phone"
-    t.text "description"
+    t.text "conditions_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "city_name"
@@ -239,6 +239,13 @@ ActiveRecord::Schema.define(version: 2021_07_15_154115) do
     t.integer "salary_to"
     t.string "employment_type"
     t.string "position_level"
+    t.string "salary_currency"
+    t.string "location_of_position"
+    t.string "responsibilities_description"
+    t.string "requirements_description"
+    t.string "about_company"
+    t.string "about_project"
+    t.string "experience_description"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end

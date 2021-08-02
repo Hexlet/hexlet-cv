@@ -1,5 +1,17 @@
 ru:
   enumerize:
+    salary_amount_type:
+      gross: До вычетов
+      net: На руки
+      depends: По договоренности
+    location_of_position:
+      remote: Удаленно
+      onsite: В офисе
+      hybrid: Гибрид
+    salary_currency:
+      rub: ₽
+      eur: €
+      usd: $
     employment_type:
       full-time: Полный день
       part-time: Частичная занятость

@@ -10,6 +10,6 @@ FactoryBot.define do
     contact_name { 'MyString' }
     contact_telegram { 'MyString' }
     contact_phone { 'MyString' }
-    description { 'MyString' }
+    responsibilities_description { 'MyString' }
   end
 end

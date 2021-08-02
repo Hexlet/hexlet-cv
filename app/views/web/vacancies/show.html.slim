@@ -1,5 +1,5 @@
 - title t('.title', body: @vacancy.header)
-- description @vacancy.description
+- description @vacancy.responsibilities_description
 
 = content_for :meta do
   = structured_data_tag 'vacancy', vacancy: @vacancy
@@ -61,11 +61,13 @@
       .col-sm-9
         = @vacancy.send :"#{field_name}"
 
-.row.mb-3
-  .col-sm-3
-    b = han('vacancy', 'description')
-  .col-sm-9.hexlet-cv-content
-    == markdown2html @vacancy.description
+- %i[about_company about_project responsibilities_description requirements_description experience_description conditions_description].each do |field_name|
+  - if @vacancy.send :"#{field_name}?"
+    .row.mb-3
+      .col-sm-3
+        b = han('vacancy', field_name)
+      .col-sm-9.hexlet-cv-content
+        == markdown2html = @vacancy.send :"#{field_name}"
 
 - if @vacancy.technologies.any?
   .row.mb-3

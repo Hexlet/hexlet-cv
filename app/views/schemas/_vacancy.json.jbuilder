@@ -4,7 +4,7 @@ json.set! :@context, 'http://schema.org/'
 json.set! :@type, 'JobPosting'
 # json.set! :@id, vacancy_path(vacancy)
 json.set! :title, vacancy.title
-json.set! :description, vacancy.description
+json.set! :description, vacancy.responsibilities_description
 json.set! :validThrough, l(vacancy.created_at + 1.month, format: :schema)
 json.set! :hiringOrganization do
   json.set! :@type, 'Organization'
