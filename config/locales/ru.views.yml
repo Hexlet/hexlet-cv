@@ -43,34 +43,34 @@ ru:
     vacancy_filters:
       show:
         options:
-          technology:
+          direction:
             title: |
-              Вакансии для %{position_level} %{technology}-разработчиков %{city_description}
+              Вакансии для %{position_level} %{direction}-разработчиков %{city_description}
             header: |
-              Вакансии для %{position_level} %{technology}-разработчиков %{city_description}
+              Вакансии для %{position_level} %{direction}-разработчиков %{city_description}
             description: |
-              Актуальные вакансии для %{position_level} %{technology}-разработчиков %{city_description}. Работа для %{technology}-программистов, подборка от редакции Hexlet CV
+              Актуальные вакансии для %{position_level} %{direction}-разработчиков %{city_description}. Работа для %{direction}-программистов, подборка от редакции Hexlet CV
 
           city_name:
             title: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}
+              Вакансии для %{position_level} %{direction} разработчиков %{city_description}
             header: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}
+              Вакансии для %{position_level} %{direction} разработчиков %{city_description}
             description: |
-              Актуальные вакансии для %{position_level} %{technology} разработчиков и программистов %{city_description}
+              Актуальные вакансии для %{position_level} %{direction} разработчиков и программистов %{city_description}
 
           position_level:
             title: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}, работа, свежие вакансии
+              Вакансии для %{position_level} %{direction} разработчиков %{city_description}, работа, свежие вакансии
             header: |
-              Вакансии для %{position_level} %{technology} разработчиков %{city_description}
+              Вакансии для %{position_level} %{direction} разработчиков %{city_description}
             description: |
-              Актуальные вакансии для %{position_level} %{technology} разработчиков %{city_description}. Работа для %{position_level}-программистов, подборка от редакции Hexlet CV
+              Актуальные вакансии для %{position_level} %{direction} разработчиков %{city_description}. Работа для %{position_level}-программистов, подборка от редакции Hexlet CV
     vacancies:
       show:
         title: "Вакансия %{body}"
         similar_vacancies: Похожие вакансии
-        developers_in_the_city: "%{position_level} %{technology} в городе %{city_name}"
+        developers_in_the_city: "%{position_level} %{direction} в городе %{city_name}"
         from_hexlet: При отклике на вакансию указывайте, что вы от Хекслета =)
       index:
         header: Вакансии для разработчиков

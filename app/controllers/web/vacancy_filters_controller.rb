@@ -8,7 +8,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
 
     options_for_header = {
       position_level: '',
-      technology: '',
+      direction: '',
       city_description: ''
     }
 
@@ -17,9 +17,9 @@ class Web::VacancyFiltersController < Web::ApplicationController
       when 'level'
         scope = scope.where(position_level: value)
         options_for_header[:position_level] = I18n.t(value, scope: 'enumerize.position_level')
-      when 'technology'
+      when 'direction'
         scope = scope.tagged_with value
-        options_for_header[:technology] = value
+        options_for_header[:direction] = value
       when 'city'
         decoded_city_name = Slug.decode(value).downcase
         scope = scope.where(city_name: decoded_city_name)
@@ -28,7 +28,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
       end
     end
 
-    keys = %i[position_level technology city_name]
+    keys = %i[position_level direction city_name]
     main_key = keys.find { |k| options_for_header.key? k }
 
     @header = t(".options.#{main_key}.header", **options_for_header)

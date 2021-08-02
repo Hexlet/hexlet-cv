@@ -3,7 +3,7 @@
     .card-body
       .text-muted = l vacancy.created_at, format: :short
       h5.card-title = link_to vacancy, vacancy_path(vacancy)
-      .card-text.mb-2 = truncate_markdown(vacancy.responsibilities_description, length: 200)
+      .card-text.mb-2 = truncate_markdown(vacancy.responsibilities_description.to_s, length: 200)
       / .text-end.small.mt-auto
       /   span.me-3.text-muted
       /     = distance_of_time_in_words_to_now resume.created_at

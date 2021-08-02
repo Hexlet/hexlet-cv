@@ -1,9 +1,19 @@
-one:
+technologies-one:
   tag: php
   taggable: one (Vacancy)
   context: technologies
 
-java-developer-android:
+technologies-java-developer-android:
   tag: android
   taggable: java-developer (Vacancy)
   context: technologies
+
+directions-one:
+  tag: php
+  taggable: one (Vacancy)
+  context: directions
+
+directions-java-developer-android:
+  tag: android
+  taggable: java-developer (Vacancy)
+  context: directions

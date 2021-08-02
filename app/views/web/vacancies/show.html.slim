@@ -74,16 +74,23 @@
     .col-sm-3
       b = han('vacancy', 'technology_list')
     .col-sm-9.hexlet-cv-content
-      - @vacancy.technologies.each do |technology|
-        = link_to technology, vacancy_filter_path(filter_slug(technology: technology.to_s))
+      = @vacancy.technologies.join ', '
+
+- if @vacancy.directions.any?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'direction_list')
+    .col-sm-9.hexlet-cv-content
+      - @vacancy.directions.each do |direction|
+        = link_to direction, vacancy_filter_path(filter_slug(direction: direction.to_s))
         | &nbsp;
 
 .alert.bg-light.shadow-sm.text-muted= t('.from_hexlet')
 
 h2.h3.mt-5.mb-4 = t('.similar_vacancies')
 
-.lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, technology: ''),
+.lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, direction: ''),
   vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
 
-- @vacancy.technologies.each do |technology|
-  .lead = link_to t('.developers_in_the_city', technology: technology.to_s, city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, technology: technology.to_s))
+- @vacancy.directions.each do |direction|
+  .lead = link_to t('.developers_in_the_city', direction: direction.to_s, city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, direction: direction.to_s))
