@@ -41,7 +41,7 @@
   .mb-3
     = f.input :link_for_contact
   .mb-3
-    = f.input :experience_description
+    = f.input :experience_description, as: :text, input_html: { rows: 10 }
   .mb-3
     = f.input :about_company, as: :text, input_html: { rows: 10 }
   .mb-3
