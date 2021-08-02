@@ -40,7 +40,7 @@
     .col-sm-3
       b = han('vacancy', 'experience_description')
     .col-sm-9
-      = @vacancy.experience_description
+      == markdown2html @vacancy.experience_description
 
 - if @vacancy.about_company?
   .row.mb-3
