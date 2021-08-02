@@ -67,7 +67,7 @@
       .col-sm-3
         b = han('vacancy', field_name)
       .col-sm-9.hexlet-cv-content
-        == markdown2html = @vacancy.send :"#{field_name}"
+        == markdown2html @vacancy.send :"#{field_name}"
 
 - if @vacancy.technologies.any?
   .row.mb-3
