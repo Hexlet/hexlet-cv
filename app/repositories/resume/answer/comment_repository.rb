@@ -4,6 +4,6 @@ module Resume::Answer::CommentRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { joins(:user).merge(User.permitted).order(id: :desc) }
+    scope :web, -> { joins(:user).merge(User.permitted).order(id: :asc) }
   end
 end
