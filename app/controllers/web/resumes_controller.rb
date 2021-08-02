@@ -17,8 +17,8 @@ class Web::ResumesController < Web::ApplicationController
 
     @resume_answers = @resume.answers
                              .web
-                             .joins(:comments)
-                             .merge(Resume::Answer::Comment.web)
+                             # .includes(:comments)
+                             # .merge(Resume::Answer::Comment.web)
                              .order(likes_count: :desc)
                              .uniq
     @answer = Resume::Answer.new resume: @resume

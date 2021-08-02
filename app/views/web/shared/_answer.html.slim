@@ -41,9 +41,9 @@
     .w-100
       .hexlet-cv-content.mb-3
         == markdown2html answer.content
-      - if answer.comments.any?
+      - if answer.comments.web.any?
         .small
-          - answer.comments.each do |comment|
+          - answer.comments.web.each do |comment|
             hr.my-2
             .d-flex(id="answer_comment-#{comment.id}")
               .me-auto
