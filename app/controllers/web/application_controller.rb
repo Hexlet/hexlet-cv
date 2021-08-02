@@ -22,7 +22,7 @@ class Web::ApplicationController < ApplicationController
   # end
 
   def last_answers
-    @last_answers ||= Resume::Answer.web.limit(10)
+    @last_answers ||= Resume::Answer.web.order(id: :desc).limit(10)
   end
 
   # NOTE: https://github.com/charlotte-ruby/impressionist/pull/294
