@@ -3,7 +3,7 @@ DEFAULTS: &DEFAULTS
   responsibilities_description: Описание вакансии
   company_name: Company
   programming_language: php
-  site: www.hexlet.io
+  site: https://www.hexlet.io
   city_name: москва
   position_level: junior
 

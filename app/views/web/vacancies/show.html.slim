@@ -7,19 +7,13 @@
 = content_for :header do
   = @vacancy.header
 
-- if @vacancy.salary?
-  .row.mb-3
-    .col-sm-3
-      b = han('vacancy', 'salary')
-    .col-sm-9
-      = @vacancy.salary
-
 - if @vacancy.position_level?
   .row.mb-3
     .col-sm-3
-      b = han('vacancy', 'position_level')
+      b = han('vacancy', 'title')
     .col-sm-9
-      = link_to @vacancy.position_level.text, vacancy_filter_path(filter_slug(level: @vacancy.position_level))
+      - let link_to(@vacancy.position_level.text, vacancy_filter_path(filter_slug(level: @vacancy.position_level))) do |link|
+        | #{link} #{@vacancy}
 
 .row.mb-3
   .col-sm-3
@@ -30,36 +24,44 @@
 - if @vacancy.city_name?
   .row.mb-3
     .col-sm-3
-      b = han('vacancy', 'city_name')
+      b = han('vacancy', 'location_of_position')
     .col-sm-9
-      = link_to @vacancy.city_name.capitalize, vacancy_filter_path(filter_slug(city: @vacancy.city_name))
-
-- if @vacancy.location?
-  .row.mb-3
-    .col-sm-3
-      b = han('vacancy', 'location')
-    .col-sm-9
-      = @vacancy.location
+      - let link_to(@vacancy.city_name.capitalize, vacancy_filter_path(filter_slug(city: @vacancy.city_name))) do |link|
+        | #{link}, #{@vacancy.location_of_position.text}
 
 .row.mb-3
   .col-sm-3
     b = han('vacancy', 'company_name')
   .col-sm-9
-    = @vacancy.company_name
+    = link_to_if @vacancy.site?, @vacancy.company_name, @vacancy.site, rel: 'noopener', target: '_blank'
 
-.row.mb-3
-  .col-sm-3
-    b = han('vacancy', 'site')
-  .col-sm-9
-    = @vacancy.site
+- if @vacancy.experience_description?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'experience_description')
+    .col-sm-9
+      = @vacancy.experience_description
 
-- %i[link_for_contact contact_name contact_phone contact_telegram contact_email].each do |field_name|
-  - if @vacancy.send :"#{field_name}?"
-    .row.mb-3
-      .col-sm-3
-        b = han('vacancy', field_name)
-      .col-sm-9
-        = @vacancy.send :"#{field_name}"
+- if @vacancy.about_company?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'about_company')
+    .col-sm-9
+      = @vacancy.about_company
+
+- if @vacancy.about_project?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'about_project')
+    .col-sm-9
+      = @vacancy.about_project
+
+- if @vacancy.technologies.any?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'technology_list')
+    .col-sm-9.hexlet-cv-content
+      = @vacancy.technologies.join ', '
 
 - %i[about_company about_project responsibilities_description requirements_description experience_description conditions_description].each do |field_name|
   - if @vacancy.send :"#{field_name}?"
@@ -69,12 +71,20 @@
       .col-sm-9.hexlet-cv-content
         == markdown2html @vacancy.send :"#{field_name}"
 
-- if @vacancy.technologies.any?
+- if @vacancy.salary?
   .row.mb-3
     .col-sm-3
-      b = han('vacancy', 'technology_list')
-    .col-sm-9.hexlet-cv-content
-      = @vacancy.technologies.join ', '
+      b = han('vacancy', 'salary')
+    .col-sm-9
+      = @vacancy.salary
+
+- %i[link_for_contact contact_name contact_phone contact_telegram contact_email].each do |field_name|
+  - if @vacancy.send :"#{field_name}?"
+    .row.mb-3
+      .col-sm-3
+        b = han('vacancy', field_name)
+      .col-sm-9
+        = @vacancy.send :"#{field_name}"
 
 - if @vacancy.directions.any?
   .row.mb-3
