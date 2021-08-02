@@ -17,10 +17,10 @@ class Web::ResumesController < Web::ApplicationController
 
     @resume_answers = @resume.answers
                              .web
-                             .includes(:comments)
-                             .references(:comments)
+                             .joins(:comments)
                              .merge(Resume::Answer::Comment.web)
                              .order(likes_count: :desc)
+                             .uniq
     @answer = Resume::Answer.new resume: @resume
     @current_user_answer = @resume.answers.find_by(user: current_user)
     current_user_likes = @resume.answer_likes.where(user: current_user)

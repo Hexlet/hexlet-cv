@@ -31,3 +31,11 @@ two_full_one:
   answer: two_full
   user: one
   answer_user: full
+
+two_full_one2:
+  <<: *DEFAULTS
+  resume: two
+  answer: two_full
+  user: one
+  answer_user: full
+  content: 'Мой другой коммент'
