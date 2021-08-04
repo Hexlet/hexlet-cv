@@ -12,7 +12,7 @@ class Web::ResumesController < Web::ApplicationController
   def show
     @resume = Resume.web.find(params[:id])
     authorize @resume
-    impressionist(@resume) unless current_user == resume.user
+    impressionist(@resume) unless current_user == @resume.user
 
     @resume_answers = @resume.answers
                              .web
