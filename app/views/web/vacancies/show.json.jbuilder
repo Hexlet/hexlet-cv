@@ -3,6 +3,8 @@
 json.id @vacancy.id
 json.title @vacancy.title
 json.site @vacancy.site
+json.salary_from @vacancy.salary_from
+json.salary_to @vacancy.salary_to
 json.salary_currency @vacancy.salary_currency
 json.location_of_position @vacancy.location_of_position.text
 json.salary_amount_type_text @vacancy.salary_amount_type.text
