@@ -2,7 +2,7 @@ User-agent: *
 Disallow: /admin
 Disallow: /account
 Disallow: /*?q
-Disallow: /users/confirmation/new
+Disallow: /users/confirmation
 Disallow: /users/password/new
 Disallow: /users/sign_in
 Disallow: /users/sign_up
@@ -11,3 +11,4 @@ Disallow: /users/auth/github
 Disallow: */password$
 Disallow: */?page=*?
 Disallow: */edit$
+Disallow: *?confirmation_
