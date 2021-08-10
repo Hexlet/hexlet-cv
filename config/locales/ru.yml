@@ -1,5 +1,5 @@
 ru:
-  forbidden: Доступ закрыт. Иш ты
+  forbidden: Доступ закрыт. Ишь ты!
   salary:
     from: "от %{value}"
     to: "до %{value}"
