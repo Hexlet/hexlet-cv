@@ -19,7 +19,7 @@ module VacancyPresenter
     from = salary_from? && I18n.t('salary.from', value: number_with_delimiter(salary_from))
     to = salary_to? && I18n.t('salary.to', value: number_with_delimiter(salary_to))
 
-    value = [from, to].compact_blank.join ' – '
+    value = [from, to].compact_blank.join ' '
     "#{value} #{salary_currency.text} (#{salary_amount_type.text})"
   end
 end
