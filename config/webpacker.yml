@@ -37,6 +37,7 @@ development:
     disable_host_check: true
     use_local_ip: false
     quiet: false
+    allowed_hosts: "all"
     headers:
       'Access-Control-Allow-Origin': '*'
     watch_options:
