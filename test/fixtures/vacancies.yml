@@ -1,6 +1,7 @@
 DEFAULTS: &DEFAULTS
   state: published
-  responsibilities_description: Описание вакансии
+  responsibilities_description: |
+    разрабатывать парсеры биржевых данных разрабатывать программы, которые надежно сохраняют биржевые данные во время торгов поддерживать и развивать автоматический пайплайн ежедневной обработки сохранения
   company_name: Company
   programming_language: php
   site: https://www.hexlet.io
@@ -25,3 +26,8 @@ frontender:
   title: Фронтендер
   creator: full
   salary_to: 2000
+
+php-developer:
+  <<: *DEFAULTS
+  title: PHP-разработчик
+  creator: full

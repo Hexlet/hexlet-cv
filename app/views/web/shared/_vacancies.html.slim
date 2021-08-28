@@ -1,9 +1,26 @@
-- vacancies.each do |vacancy|
-  .card.mb-3.shadow-sm.border-0
+- vacancies.each_with_index do |vacancy, i|
+  - if i != 0
+    hr
+  .card.mb-3.border-0
     .card-body
-      .text-muted = l vacancy.created_at, format: :short
-      h5.card-title = link_to vacancy, vacancy_path(vacancy)
-      .card-text.mb-2 = truncate_markdown(vacancy.responsibilities_description.to_s, length: 200)
+      .small.text-muted = time_ago_in_words vacancy.created_at
+
+      h5.card-title
+        = link_to vacancy_path(vacancy) do
+          span.me-2
+            = vacancy.position_level_text
+          span.me-2
+            = vacancy
+          - if vacancy.salary?
+            span.small.me-2 = vacancy.salary
+          span.me-2
+            span.me-2 -
+            = vacancy.company_name
+
+      .card-text.mb-2
+        = truncate_markdown(vacancy.responsibilities_description.to_s, length: 200)
+        .fw-bold.mt-1
+          = vacancy.technology_list.join(', ')
       / .text-end.small.mt-auto
       /   span.me-3.text-muted
       /     = distance_of_time_in_words_to_now resume.created_at

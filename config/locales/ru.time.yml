@@ -1,0 +1,4 @@
+ru:
+  time:
+    formats:
+      schema: '%m/%d/%Y'

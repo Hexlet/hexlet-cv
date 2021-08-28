@@ -2,7 +2,10 @@
 - description t('.description')
 
 - content_for :header do
-  = t('.header')
+  span.me-2
+    = t('.header')
+  = link_to 'https://t.me/junior_vacancies', target: '_blank' do
+    bi.bi-telegram
 
 - content_for :meta do
   = auto_discovery_link_tag :rss, vacancies_url(format: :rss)

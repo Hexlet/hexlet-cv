@@ -11,8 +11,10 @@
   = filter_link(t('.without_answers'), { answers_count_eq: 0 }, class: 'nav-item nav-link')
 
 .mb-5
-  - @resumes.each do |resume|
-    .card.mb-3.shadow-sm.border-0
+  - @resumes.each_with_index do |resume, i|
+    - if i != 0
+      hr
+    .card.mb-3.border-0
       .card-body
         .d-flex.flex-row
           .d-flex.flex-column.me-4.text-center.mx-auto
