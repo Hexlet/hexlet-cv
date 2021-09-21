@@ -11,6 +11,8 @@ en:
   resume_answer_mailer:
     new_answer_email:
       subject: You have a new recommendation
+  reset: Reset
+  submit: Submit
   views:
     pagination:
       first: " First"

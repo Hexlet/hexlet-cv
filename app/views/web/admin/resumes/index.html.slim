@@ -4,7 +4,7 @@
     = f.input :user_first_name_or_user_last_name_cont
     .col-auto.d-flex
       .mt-auto
-        = f.button :submit, class: 'btn-primary me-2'
+        = f.button :submit, t('submit'), class: 'btn-primary me-2'
         = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
 
 table.table
@@ -22,7 +22,7 @@ table.table
         td = link_to resume.id, edit_admin_resume_path(resume)
         td = link_to resume, resume_path(resume)
         td = resume.aasm(:state).human_state
-        td = resume.user
+        td = link_to resume.user, user_path(resume.user)
         td = resume.user.email
         td = l resume.created_at, format: :short
 

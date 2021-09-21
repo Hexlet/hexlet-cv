@@ -71,6 +71,9 @@ ru:
         direction_list: Направления
         state: Состояние
         state/published: Опубликована
+        name: Имя
+        created_at: Дата создания
+        company: компания
       resume:
         name: Название
         summary: Описание

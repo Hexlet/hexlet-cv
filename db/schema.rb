@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 2021_08_03_074834) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "resource_type", null: false
-    t.integer "resource_id", null: false
+    t.bigint "resource_id", null: false
     t.string "state"
     t.string "kind"
     t.datetime "created_at", precision: 6, null: false
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_074834) do
   end
 
   create_table "resume_answers", force: :cascade do |t|
-    t.integer "resume_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "resume_id", null: false
+    t.bigint "user_id", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_074834) do
   end
 
   create_table "resume_comments", force: :cascade do |t|
-    t.integer "resume_id"
-    t.integer "user_id"
+    t.bigint "resume_id"
+    t.bigint "user_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_074834) do
     t.string "employment_type"
     t.string "position_level"
     t.string "salary_currency"
+    t.string "salary_amount_type"
     t.string "location_of_position"
     t.string "responsibilities_description"
     t.string "requirements_description"
