@@ -26,7 +26,7 @@ make start # run server
 make fixtures-load # sometimes, when fixtures were changed
 ```
 
-### Deploy
+## Deploy
 
 Добавить базу данных
 
@@ -38,11 +38,11 @@ heroku addons:create heroku-postgresql:hobby-dev
 
 ```sh
 heroku config:set SECRET_KEY_BASE=$(rake secret)
-heroku config:set HOST=$(heroku info -s | grep web_url | cut -d= -f2)
+heroku config:set HOST=$(heroku info -s | grep web_url | cut -d= -f2) # https://cv.hexlet.io for production
 heroku config:set RACK_ENV=production
 heroku config:set RAILS_ENV=production
 heroku config:set RAILS_LOG_TO_STDOUT=enabled
-heroku config:set EMAIL_FROM=test@test.ru
+heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
 ---
