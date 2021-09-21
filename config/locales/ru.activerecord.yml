@@ -1,6 +1,5 @@
 ru:
   activerecord:
-
     events:
       user:
         ban: Забанить
@@ -72,7 +71,6 @@ ru:
         state: Состояние
         state/published: Опубликована
         name: Имя
-        created_at: Дата создания
         company: компания
       resume:
         name: Название
