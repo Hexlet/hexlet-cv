@@ -10,10 +10,10 @@ table.table
   thead
     tr
       th = sort_link(@q, 'id')
-      th = sort_link(@q, 'user')
-      th = sort_link(@q, 'state')
       th = sort_link(@q, 'title')
-      / th = sort_link(@q, 'state')
+      th = sort_link(@q, 'state')
+      th = sort_link(@q, 'name')
+      th = sort_link(@q, 'company_name')
       th = sort_link(@q, 'created_at')
   tbody
     - @vacancies.each do |vacancy|
@@ -22,6 +22,7 @@ table.table
         td = link_to vacancy, vacancy_path(vacancy)
         td = vacancy.aasm(:state).human_state
         td = link_to vacancy.creator, user_path(vacancy.creator)
+        td = vacancy.company_name
         / td = user.role
         td = l vacancy.created_at, format: :short
 
