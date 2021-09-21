@@ -26,6 +26,25 @@ make start # run server
 make fixtures-load # sometimes, when fixtures were changed
 ```
 
+### Deploy
+
+Добавить базу данных
+
+```sh
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+Подготовить необходимые переменные окружения:
+
+```sh
+heroku config:set SECRET_KEY_BASE=$(rake secret)
+heroku config:set HOST=$(heroku info -s | grep web_url | cut -d= -f2)
+heroku config:set RACK_ENV=production
+heroku config:set RAILS_ENV=production
+heroku config:set RAILS_LOG_TO_STDOUT=enabled
+heroku config:set EMAIL_FROM=test@test.ru
+```
+
 ---
 
 [![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=exercises-javascript)
