@@ -16,3 +16,4 @@ Disallow: *?*&q
 Disallow: *?*ref=
 Disallow: *?reset_
 Disallow: *?hexlet_
+Disallow: */vacancy_filters/technology-
