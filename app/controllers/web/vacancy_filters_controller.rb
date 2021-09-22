@@ -2,7 +2,7 @@
 
 class Web::VacancyFiltersController < Web::ApplicationController
   def show
-    @options = params[:id].split('_').map { |value| value.split('-', 2) }
+    @options = fetch_options(params[:id])
 
     scope = Vacancy.web.page(params[:page])
 
@@ -36,5 +36,16 @@ class Web::VacancyFiltersController < Web::ApplicationController
     @description = t(".options.#{main_key}.description", **options_for_header)
 
     @vacancies = scope
+  end
+
+  private
+
+  def fetch_options(params)
+    options = params.split('_').map { |value| value.split('-', 2) }
+    if options.filter { |_k, v| v.blank? }.any?
+      raise ActionController::RoutingError, 'Not Found'
+    end
+
+    options
   end
 end
