@@ -84,9 +84,11 @@ module ApplicationHelper
   end
 
   def filter_slug(options)
-    options.sort.map do |k, v|
-      processed_value = k == :city ? Slug.encode(v) : v
-      "#{k}-#{processed_value.downcase}"
-    end.join('_')
+    options
+      .sort
+      .map { |k, v| { k => k == :city ? Slug.encode(v) : v } }.reduce(:merge)
+      .compact
+      .map { |k, v| "#{k}-#{v.downcase}" }
+      .join('_')
   end
 end
