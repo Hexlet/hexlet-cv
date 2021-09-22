@@ -2,7 +2,7 @@
 
 class Web::VacancyFiltersController < Web::ApplicationController
   def show
-    @options = params[:id].split('_').map { |value| value.split('-') }
+    @options = params[:id].split('_').map { |value| value.split('-', 2) }
 
     scope = Vacancy.web.page(params[:page])
 

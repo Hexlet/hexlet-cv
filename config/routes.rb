@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'home#index'
     resources :vacancies, only: %i[index show]
-    resources :vacancy_filters, only: %i[show], constraints: { id: /[a-z]+-[a-z]+(_[a-z]+-[a-z]+)*/ }
+    resources :vacancy_filters, only: %i[show], constraints: { id: /[a-z]+-[\w-]+(_[a-z]+-[\w-]+)*/ }
     resources :resumes do
       scope module: :resumes do
         resources :answers do
