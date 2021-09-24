@@ -1,6 +1,5 @@
 ru:
   activerecord:
-
     events:
       user:
         ban: Забанить
@@ -71,6 +70,8 @@ ru:
         direction_list: Направления
         state: Состояние
         state/published: Опубликована
+        name: Имя
+        company: компания
       resume:
         name: Название
         summary: Описание

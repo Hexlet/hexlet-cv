@@ -1,6 +1,12 @@
 ru:
   layouts:
     web:
+      admin:
+        application:
+          admin: Администраторы
+          all_users: Все пользователи
+          all_resumes: Все резюме
+          all_vacancies: Все вакансии
       account:
         application:
           resumes: Мои резюме
@@ -18,6 +24,7 @@ ru:
           many: |
             %{count} Ответов
       nav:
+        admin: Админка
         vacancies: Вакансии
         rating: Рейтинг
         resumes: Резюме

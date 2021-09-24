@@ -1,5 +1,10 @@
 ru:
   simple_form:
+    labels:
+      q:
+        first_name_or_last_name_or_email_cont: Вхождение по имени, фамилии, почте
+        name_cont: Вхождение по имени
+        user_first_name_or_user_last_name_cont: Вхождение по имени или фамилии
     placeholders:
       resume_answer:
         show:
@@ -53,4 +58,3 @@ ru:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
-

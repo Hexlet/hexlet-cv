@@ -10,6 +10,8 @@ ru:
   resume_answer_mailer:
     new_answer_email:
       subject: У вас новая рекомендация к резюме
+  reset: Сбросить
+  submit: Отправить
   views:
     pagination:
       first: " Первая"
