@@ -48,7 +48,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
 
     # TODO: fix after update controller
     # https://github.com/Hexlet/hexlet-cv/blob/master/app/controllers/web/resumes/answers_controller.rb#L42
-    assert_response :success
+    assert_response :redirect
 
     answer = resume.answers.find_by attrs
 
