@@ -17,3 +17,4 @@ Disallow: *?*ref=
 Disallow: *?reset_
 Disallow: *?hexlet_
 Disallow: */vacancy_filters/technology-
+Disallow: */?vgo_ee=
