@@ -31,3 +31,4 @@ php-developer:
   <<: *DEFAULTS
   title: PHP-разработчик
   creator: full
+  salary_to: 3000
