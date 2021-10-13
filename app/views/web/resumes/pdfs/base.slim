@@ -26,7 +26,7 @@
           == markdown2html resource_resume.awards_description
 
       .col-12
-        h2.my-4.mr-3= han('resume', 'english_fluency')
+        h2.my-4.me-3= han('resume', 'english_fluency')
         hr.w-100
       .col-12.lead
         = resource_resume.english_fluency.text
@@ -45,7 +45,7 @@
         - @resume_works.each do |work|
           .col-12
             b.lead= work
-            span.mr-2
+            span.me-2
               | ,
             span.lead= work.company
             .lead.text-muted.mt-1.mb-2
