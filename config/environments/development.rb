@@ -10,6 +10,7 @@ Rails.application.configure do
   config.cache_classes = false
   config.action_mailer.default_url_options = { host: 'localhost', port: ENV.fetch('PORT', 3000) }
 
+  config.asset_host = 'localhost:3035'
   # Do not eager load code on boot.
   config.eager_load = false
 

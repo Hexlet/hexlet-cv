@@ -22,9 +22,16 @@
 /   .d-flex.me-4
 /     .me-2= t('.likes')
 /     .fw-light= 3
-
 - if @resume.archived?
   .alert.alert-warning = t('.archived')
+
+- if policy(@resume).download?
+  .mb-2.d-flex.justify-content-end
+    = link_to resume_pdf_path(@resume, 'base', format: :pdf),
+              class: 'me-3', title: t('.print'), target: :_blank do
+      i.bi.bi-printer-fill
+    = link_to resume_pdf_path(@resume, 'base'), title: t('.download') do
+      i.bi.bi-download
 
 .mb-5
   = render 'information'
