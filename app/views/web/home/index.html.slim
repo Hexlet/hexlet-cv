@@ -6,8 +6,8 @@
 
 .nav.nav-pills.mb-3.justify-content-center
   = filter_link(t('.all'), {}, class: 'nav-item nav-link')
-  = filter_link(t('.popular'), { popular_gteq: Date.current - 1.week }, class: 'nav-item nav-link')
-  = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day }, class: 'nav-item nav-link')
+  = filter_link(t('.popular'), { popular_gteq: Date.current - 1.week, s: 'impressions_count desc' }, class: 'nav-item nav-link')
+  = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day, s: 'created_at desc' }, class: 'nav-item nav-link')
   = filter_link(t('.without_answers'), { answers_count_eq: 0 }, class: 'nav-item nav-link')
 
 .mb-5
