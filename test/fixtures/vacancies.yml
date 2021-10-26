@@ -20,15 +20,18 @@ java-developer:
   title: Java-программист
   creator: full
   salary_from: 1000
+  salary_to: 2000
 
 frontender:
   <<: *DEFAULTS
   title: Фронтендер
   creator: full
-  salary_to: 2000
+  salary_from: 2000
+  salary_to: 3000
 
 php-developer:
   <<: *DEFAULTS
   title: PHP-разработчик
   creator: full
-  salary_to: 3000
+  salary_from: 3000
+  salary_to: 4000

@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :vacancy do
     title { 'MyString' }
     salary_from { '3000' }
+    salary_to { '5000' }
     programming_language { 'php' }
     city_name { 'MyString' }
     company_name { 'MyString' }
