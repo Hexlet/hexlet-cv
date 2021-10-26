@@ -24,8 +24,12 @@ class Vacancy < ApplicationRecord
   validates :link_for_contact, url: { allow_blank: true }
   validates :position_level, presence: true
   validates :employment_type, presence: true
-  validates :salary_from, presence: true, numericality: { only_integer: true, less_than_or_equal_to: :salary_to, greater_than: 0 }
-  validates :salary_to, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: :salary_from, greater_than: 0 }
+  validates :salary_from, presence: true,
+                          numericality: { only_integer: true, greater_than: 0 },
+                          unless: -> { salary_to&.positive? }
+  validates :salary_to, presence: true,
+                        numericality: { only_integer: true, greater_than: 0 },
+                        unless: -> { salary_from&.positive? }
   validates :salary_currency, presence: true
   # validates :programming_language, presence: true
 
