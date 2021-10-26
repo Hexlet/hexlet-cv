@@ -2,6 +2,7 @@
   = search_form_for @q, default_filter_form_options(url: admin_resumes_path) do |f|
     = f.input :name_cont
     = f.input :user_first_name_or_user_last_name_cont
+    = f.input :user_email_cont
     .col-auto.d-flex
       .mt-auto
         = f.button :submit, t('submit'), class: 'btn-primary me-2'
