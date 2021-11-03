@@ -6,7 +6,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   end
 
   def new
-    @vacancy = Vacancy.new
+    @vacancy = Web::Account::VacancyForm.new
   end
 
   def create
@@ -35,7 +35,8 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   end
 
   def edit
-    @vacancy = current_user.vacancies.find params[:id]
+    vacancy = current_user.vacancies.find params[:id]
+    @vacancy = vacancy.becomes(Web::Account::VacancyForm)
   end
 
   def destroy; end
