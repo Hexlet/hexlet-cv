@@ -6,8 +6,8 @@ json.programming_language = @vacancy.programming_language
 json.location = @vacancy.location
 json.site @vacancy.site
 json.city_name = @vacancy.city_name
-json.salary_from @vacancy.salary_from
-json.salary_to @vacancy.salary_to
+json.salary_from @vacancy.salary_amount_type.depends? ? nil : @vacancy.salary_from
+json.salary_to @vacancy.salary_amount_type.depends? ? nil : @vacancy.salary_to
 json.salary_currency @vacancy.salary_currency
 json.location_of_position @vacancy.location_of_position.text
 json.technology_list = @vacancy.technology_list
