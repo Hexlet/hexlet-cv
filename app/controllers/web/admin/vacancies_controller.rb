@@ -19,6 +19,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def edit
-    @vacancy = Vacancy.find params[:id]
+    vacancy = Vacancy.find params[:id]
+    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
   end
 end

@@ -2,6 +2,7 @@
 
 class Web::Admin::VacancyForm < Vacancy
   include ActiveFormModel
+  extend Enumerize
 
   permit :title,
          :site,
@@ -31,6 +32,8 @@ class Web::Admin::VacancyForm < Vacancy
          :direction_list,
          :employment_type,
          :state_event
+
+  enumerize :salary_amount_type, in: %w[gross net depends]
 
   def city_name=(value)
     processed_value = value ? value.downcase : value

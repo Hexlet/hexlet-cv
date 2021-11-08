@@ -12,6 +12,8 @@ module VacancyPresenter
   end
 
   def salary
+    salary_amount_text = "(#{salary_amount_type.text})"
+    return salary_amount_text if salary_amount_type.depends?
     return nil if !salary_to? && !salary_from?
 
     # from = number_to_currency salary_from, locale: :ru, precision: 0, format: '%n'
@@ -20,6 +22,6 @@ module VacancyPresenter
     to = salary_to? && I18n.t('salary.to', value: number_with_delimiter(salary_to))
 
     value = [from, to].compact_blank.join ' '
-    "#{value} #{salary_currency.text} (#{salary_amount_type.text})"
+    "#{value} #{salary_currency.text} #{salary_amount_text}"
   end
 end
