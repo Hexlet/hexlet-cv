@@ -13,7 +13,7 @@ module VacancyPresenter
 
   def salary
     salary_amount_text = "(#{salary_amount_type.text})"
-    return salary_amount_text if salary_amount_type == 'depends'
+    return salary_amount_text if salary_amount_type.depends?
     return nil if !salary_to? && !salary_from?
 
     # from = number_to_currency salary_from, locale: :ru, precision: 0, format: '%n'
