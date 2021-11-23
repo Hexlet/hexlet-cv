@@ -1,2 +1,5 @@
 li.page-item.disabled
-  = link_to raw(t 'views.pagination.truncate'), '#', class: 'page-link'
+  / FIXME: возможно стоит переделать или использовать готовый гем https://bestgems.org/gems/bootstrap5-kaminari-views
+  - # rubocop:disable Rails/OutputSafety
+  = link_to raw(t('views.pagination.truncate')), '#', class: 'page-link'
+  - # rubocop:enable Rails/OutputSafety

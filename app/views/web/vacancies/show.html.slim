@@ -95,7 +95,7 @@
         = link_to direction, vacancy_filter_path(filter_slug(direction: direction.to_s))
         | &nbsp;
 
-.alert.bg-light.shadow-sm.text-muted= t('.from_hexlet')
+.alert.bg-light.shadow-sm.text-muted = t('.from_hexlet')
 
 h2.h3.mt-5.mb-4 = t('.similar_vacancies')
 
@@ -103,4 +103,7 @@ h2.h3.mt-5.mb-4 = t('.similar_vacancies')
   vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
 
 - @vacancy.directions.each do |direction|
-  .lead = link_to t('.developers_in_the_city', direction: direction.to_s, city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, direction: direction.to_s))
+  .lead = link_to t('.developers_in_the_city',
+    direction: direction.to_s,
+    city_name: @vacancy.city_name.capitalize,
+    position_level: @vacancy.position_level.text), vacancy_filter_path(filter_slug(city: @vacancy.city_name.capitalize, level: @vacancy.position_level, direction: direction.to_s))
