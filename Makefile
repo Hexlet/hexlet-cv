@@ -26,11 +26,17 @@ db-reset:
 start:
 	heroku local
 
-lint:
+lint: lint-rubocop lint-slim
+lint-fix: lint-rubocop-fix
+
+lint-rubocop:
 	bundle exec rubocop
 
-linter-fix:
+lint-rubocop-fix:
 	bundle exec rubocop -A
+
+lint-slim:
+	bundle exec slim-lint app/**/*.slim
 
 deploy:
 	git push heroku master
