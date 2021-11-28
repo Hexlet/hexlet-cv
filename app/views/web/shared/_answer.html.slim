@@ -24,7 +24,7 @@
           title: t('.title_apply')
       - elsif answer.applied?
           span.text-success = answer.aasm(:applying).human_state
-      - else answer.pending?
+      - elsif answer.pending?
           span.text-info = answer.aasm(:applying).human_state
 
   .card-body.d-flex

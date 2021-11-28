@@ -4,9 +4,11 @@ h2
   = f.error_notification
   .form-inputs
     .mb-3
-      = f.input :email, required: true, autofocus: true , input_html: { autocomplete: 'email' }
+      = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
     .mb-3
-      = f.input :password, required: true, hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length), input_html: { autocomplete: 'new-password' }
+      = f.input :password, required: true,
+        hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
+        input_html: { autocomplete: 'new-password' }
     .mb-3
       = f.input :password_confirmation, required: true, input_html: { autocomplete: 'new-password' }
   .form-actions.mb-3
