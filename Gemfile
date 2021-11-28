@@ -40,6 +40,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'slim_lint'
   gem 'sqlite3'
 end
 

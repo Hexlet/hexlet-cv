@@ -2,7 +2,7 @@
 
 - last_answers.each do |answer|
   .mb-4
-    .fw-bolder= link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}"), class: 'link-dark'
+    .fw-bolder = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}"), class: 'link-dark'
     .small
       = truncate(answer.content, length: 90)
       .mt-1

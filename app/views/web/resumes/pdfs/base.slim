@@ -2,52 +2,52 @@
   main
     .row
       .col-12
-        h1.text-center.display-4.mb-2= @user
-        h2.text-center.lead= resource_resume
+        h1.text-center.display-4.mb-2 = @user
+        h2.text-center.lead = resource_resume
       .col-12
-        h2.my-4= t('.basic')
+        h2.my-4 = t('.basic')
         hr.w-100
 
       .col-sm-9.hexlet-cv-content.lead
         == markdown2html resource_resume.summary
 
       .col-12
-        h2.my-4= han('resume', 'skills_description')
+        h2.my-4 = han('resume', 'skills_description')
         hr.w-100
       .col-12.hexlet-cv-content.lead
         == markdown2html resource_resume.skills_description
 
       - if resource_resume.awards_description?
         .col-12
-          h2.my-4= han('resume', 'awards_description')
+          h2.my-4 = han('resume', 'awards_description')
           hr.w-100
 
         .col-12.hexlet-cv-content.lead
           == markdown2html resource_resume.awards_description
 
       .col-12
-        h2.my-4.me-3= han('resume', 'english_fluency')
+        h2.my-4.me-3 = han('resume', 'english_fluency')
         hr.w-100
       .col-12.lead
         = resource_resume.english_fluency.text
 
       .col-12
-        h2.my-4= han('resume', 'github')
+        h2.my-4 = han('resume', 'github')
         hr.w-100
       .col-12.lead
-        = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank'
+        = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
 
       - if @resume_works.any?
         .col-12
-          h2.my-4= t('.work')
+          h2.my-4 = t('.work')
           hr.w-100
 
         - @resume_works.each do |work|
           .col-12
-            b.lead= work
+            b.lead = work
             span.me-2
               | ,
-            span.lead= work.company
+            span.lead = work.company
             .lead.text-muted.mt-1.mb-2
               = l work.begin_date, format: :discard_day
               - if work.current
@@ -56,16 +56,16 @@
               - elsif work.end_date
                 | &nbsp;-&nbsp;
                 = l work.end_date, format: :discard_day
-            .hexlet-cv-content.lead== markdown2html work.description
+            .hexlet-cv-content.lead == markdown2html work.description
 
       - if @resume_educations.any?
         .col-12
-          h2.my-4= t('.education')
+          h2.my-4 = t('.education')
           hr.w-100
 
         - @resume_educations.each do |education|
           .col-12
-            .lead= education.description
+            .lead = education.description
             .lead.text-muted.mt-1.mb-2
               = l education.begin_date, format: :discard_day
               - if education.current

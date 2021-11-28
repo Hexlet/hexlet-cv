@@ -37,7 +37,9 @@
     "resolve-url-loader": "^4.0.0",
     "simple-git-hooks": "^2.7.0",
     "stylelint": "^14.1.0",
+    "stylelint-config-recommended-scss": "^5.0.2",
     "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-config-twbs-bootstrap": "^2.2.4",
     "webpack-dev-server": "^4.6.0"
   }
