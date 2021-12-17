@@ -8,8 +8,17 @@ en:
         resumes:
           update:
             success: Resume updated
+            error: Failed to save changes. Please check form fields and try again.
           create:
             success: Resume added
+            error: Failed to create resume. Please check form fields and try again.
+        vacancies:
+          update:
+            success: Vacancy updated
+            error: Failed to save changes. Please check form fields and try again.
+          create:
+            success: Vacancy added
+            error: Failed to create vacancy. Please check form fields and try again.
         newsletters:
           update:
             success: Newsletters settings saved
