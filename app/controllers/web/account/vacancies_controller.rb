@@ -15,8 +15,10 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
 
     if @vacancy.save
       # change_visibility(@vacancy)
+      f(:success)
       redirect_to action: :index
     else
+      f(:error)
       render :new
     end
   end
@@ -30,6 +32,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
       redirect_to action: :index
     else
       @vacancy = vacancy.becomes(Vacancy)
+      f(:error)
       render :edit
     end
   end

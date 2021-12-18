@@ -15,8 +15,10 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
     if @resume.save
       change_visibility(@resume)
+      f(:success)
       redirect_to action: :index
     else
+      f(:error)
       render :new
     end
   end
@@ -30,6 +32,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
       redirect_to action: :index
     else
       @resume = resume.becomes(Resume)
+      f(:error)
       render :edit
     end
   end
