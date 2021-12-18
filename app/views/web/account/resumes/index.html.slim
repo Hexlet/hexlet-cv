@@ -12,3 +12,6 @@
       h5.card-title
         = link_to resume, resume_path(resume)
       .card-text == markdown2html resume.summary
+
+- if @resumes.empty?
+  = render partial: 'web/shared/empty_list'

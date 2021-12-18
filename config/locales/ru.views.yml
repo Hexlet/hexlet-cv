@@ -22,6 +22,8 @@ ru:
         remove_education: Удалить образование
       answer:
         add_a_comment: Добавить комментарий
+      empty_list:
+        empty: Список пуст
     home:
       index:
         title: Резюме программиста
