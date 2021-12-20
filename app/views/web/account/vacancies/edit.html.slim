@@ -1,5 +1,9 @@
 - content_for :header do
   = t('.header')
 
+- if @vacancy.archived?
+  .alert.alert-secondary
+    = t('.vacancy_archived')
+
 = render partial: 'web/shared/vacancy_form',
-         locals: { vacancy: @vacancy, url: account_vacancy_path(@vacancy), can_update_state: false }
+         locals: { vacancy: @vacancy, url: account_vacancy_path(@vacancy), can_update_state: false, show_archive_button: !@vacancy.archived? }

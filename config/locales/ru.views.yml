@@ -16,6 +16,9 @@ ru:
         publish: Опубликовать
         hide: В черновик
         cancel: Отмена
+      vacancy_form:
+        archive: В архив
+        archive_confirmation: Вы действительно хотите перевести вакансию в архив?
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:
@@ -129,6 +132,7 @@ ru:
           header: Новая вакансия
         edit:
           header: Редактирование вакансии
+          vacancy_archived: Вакансия в архиве
         index:
           header: Мои вакансии
       resumes:

@@ -4,6 +4,9 @@ en:
       resume_form:
         publish: Publish
         hide: Draft
+      vacancy_form:
+        archive: Archive
+        archive_confirmation: Are you sure you want to archive the vacancy?
       answer:
         add_a_comment: Add a comment
       empty_list:
@@ -60,6 +63,14 @@ en:
     pages:
       about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
     account:
+      vacancies:
+        new:
+          header: New vacancy
+        edit:
+          header: Edit vacancy
+          vacancy_archived: Vacancy archived
+        index:
+          header: My vacancies
       resumes:
         edit:
           header: Edit resume
