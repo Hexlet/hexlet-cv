@@ -14,7 +14,6 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     @vacancy.creator = current_user
 
     if @vacancy.save
-      # change_visibility(@vacancy)
       f(:success)
       redirect_to action: :index
     else
@@ -27,7 +26,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     @vacancy = current_user.vacancies.find params[:id]
     vacancy = @vacancy.becomes(Web::Account::VacancyForm)
     if vacancy.update(params[:vacancy])
-      # change_visibility(@vacancy)
+      change_visibility(@vacancy)
       f(:success)
       redirect_to action: :index
     else
@@ -44,10 +43,9 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
 
   def destroy; end
 
-  # private
+  private
 
-  # def change_visibility(resume)
-  #   resume.publish! if params[:publish]
-  #   resume.hide! if params[:hide]
-  # end
+  def change_visibility(vacancy)
+    vacancy.archive! if params[:archive]
+  end
 end

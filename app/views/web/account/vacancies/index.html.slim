@@ -13,3 +13,6 @@
         = link_to vacancy, vacancy_path(vacancy)
       .card-text == markdown2html(truncate(vacancy.responsibilities_description, length: 100))
       = vacancy.technology_list
+
+- if @vacancies.empty?
+  = render partial: 'web/shared/empty_list'
