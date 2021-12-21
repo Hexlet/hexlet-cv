@@ -34,7 +34,7 @@ lint-code:
 	# TODO: add eslint
 
 lint-style:
-	npx stylelint "**/*.scss"
+	npx stylelint "**/*.scss" "!**/vendor/**"
 
 linter-code-fix:
 	bundle exec rubocop -A
