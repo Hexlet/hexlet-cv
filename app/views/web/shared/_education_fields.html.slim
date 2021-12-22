@@ -1,10 +1,13 @@
 .nested-fields
-  .mb-3
-    = f.input :description
-  .row
-    .col-sm
-      = f.input :begin_date, as: :date, discard_day: true, include_blank: true, start_year: 1970
-      = f.input :current, as: :boolean
-    = f.input :end_date, as: :date, discard_day: true, include_blank: true, start_year: 1970, wrapper_html: { class: 'col-sm' }
-  .mb-3
-    = link_to_remove_association t('.remove_education'), f
+  .m-3
+    .p-3.bg-light.rounded-3
+      .mb-3
+        = f.input :description
+      .mb-3
+        = f.input :begin_date, as: :date, discard_day: true, prompt: true, start_year: 1970, end_year: Time.current.year, wrapper: :custom_vertical_date_select
+      .mb-3
+        = f.input :end_date, as: :date, discard_day: true, prompt: true, start_year: 1970, end_year: Time.current.year, wrapper: :custom_vertical_date_select
+      .mb-3.d-flex.justify-content-end
+        = f.input :current, as: :boolean
+    .mb-4
+      = link_to_remove_association t('.remove_education'), f
