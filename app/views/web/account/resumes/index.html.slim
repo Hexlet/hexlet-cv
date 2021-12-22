@@ -10,10 +10,7 @@
           span.bi.bi-pencil-square.text-muted
     .card-body
       h5.card-title
-        - if resume.draft?
-          = resume
-        - else
-          = link_to resume, resume_path(resume)
+        = link_to_unless resume.draft?, resume, resume_path(resume)
       .card-text == markdown2html resume.summary
 
 - if @resumes.empty?
