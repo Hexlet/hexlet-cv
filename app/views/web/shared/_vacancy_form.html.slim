@@ -60,6 +60,6 @@
     .col-sm.d-flex.mb-3
       .me-3 = f.button :submit, class: 'btn btn-primary'
       - if local_assigns.fetch(:show_archive_button, false)
-        .me-3 = f.submit t('.archive'), data: { confirm: t('.archive_confirmation') }, class: 'btn btn-outline-primary', name: 'archive'
+        .me-3 = f.submit t('.archive'), data: { confirm: t('confirm') }, class: 'btn btn-outline-primary', name: 'archive'
     .col-sm.d-flex.justify-content-end.mb-3
       = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

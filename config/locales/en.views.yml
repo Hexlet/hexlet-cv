@@ -6,7 +6,6 @@ en:
         hide: Draft
       vacancy_form:
         archive: Archive
-        archive_confirmation: Are you sure you want to archive the vacancy?
       answer:
         add_a_comment: Add a comment
       empty_list:
