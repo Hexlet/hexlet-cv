@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'home#index'
     resources :vacancies, only: %i[index show]
-    resources :vacancy_filters, only: %i[show]
+    resources :vacancy_filters, only: %i[show] do
+      collection do
+        get :search
+      end
+    end
     resources :resumes do
       scope module: :resumes do
         resources :answers do

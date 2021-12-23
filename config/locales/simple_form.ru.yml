@@ -17,6 +17,19 @@ ru:
       resume_answer:
         show:
           content: Оставьте ваши рекомендации по улучшению резюме. Редактор поддерживает маркдаун.
+      defaults:
+        city: Город
+        direction: Направление
+    options:
+      web_vacancies_search_form:
+        level:
+          junior: Джуниор
+          middle: Мидл
+          senior: Синьор
+    prompts:
+      web_vacancies_search_form:
+        level: Выберите уровень
+
     # Examples
     # labels:
     #   defaults:
@@ -60,6 +73,8 @@ ru:
           description: Специальность, учебное заведение, ...
         works:
           description: Обязанности, достижения
+      web_vacancies_search_form:
+        direction: android, ios, php, js, java и др.
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

@@ -3,6 +3,7 @@
 class Web::VacanciesController < Web::ApplicationController
   def index
     @vacancies = Vacancy.web.page(params[:page])
+    @vacancy_search_form = Web::Vacancies::SearchForm.new
 
     respond_to do |format|
       format.html
