@@ -5,7 +5,7 @@
 - content_for :header do
   - @header
 
-= render 'web/shared/vacancy_filter'
+= render partial: 'web/shared/vacancy_filter', locals: { vacancy_search_form: @vacancy_search_form }
 
 = render partial: 'web/shared/vacancies', object: @vacancies
 
