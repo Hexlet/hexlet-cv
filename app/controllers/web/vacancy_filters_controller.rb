@@ -40,7 +40,8 @@ class Web::VacancyFiltersController < Web::ApplicationController
   end
 
   def search
-    search_id = convert_search_query_to_string(search_params)
+    form = Web::Vacancies::SearchForm.new(params[:web_vacancies_search_form])
+    search_id = form.to_search_id
     redirect_url = search_id.blank? ? vacancies_url : vacancy_filter_url({ id: search_id })
 
     redirect_to redirect_url
@@ -57,29 +58,14 @@ class Web::VacancyFiltersController < Web::ApplicationController
     options
   end
 
-  def search_params
-    params.require(:web_vacancies_search_form).permit(:level, :city, :direction)
-  end
-
   def decode_value(value)
     Slug.decode(value)
   end
 
-  def convert_search_query_to_string(query)
-    q = query.to_h.filter { |_k, v| v.present? }.transform_values(&:strip).symbolize_keys
-    return '' if q.empty?
-
-    helpers.filter_slug(q)
-  end
-
   def prepare_options_for_search_form(options)
-    search_fields = %w[level direction city]
-    result = options.to_h.filter { |_k, v| search_fields.include?(v) }.symbolize_keys
-    if result.key?(:city)
-      city = result[:city]
-      result[:city] = decode_value(city).capitalize
-    end
+    form_fields = options.to_h.symbolize_keys.slice(*Web::Vacancies::SearchForm::ATTRIBUTES)
+    form_fields[:city] = form_fields.key?(:city) ? decode_value(form_fields[:city]) : ''
 
-    result
+    form_fields
   end
 end
