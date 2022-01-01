@@ -4,7 +4,7 @@ class Web::Admin::VacancyForm < Vacancy
   include ActiveFormModel
   extend Enumerize
 
-  permit :title,
+  fields :title,
          :site,
          :position_level,
          :location_of_position,

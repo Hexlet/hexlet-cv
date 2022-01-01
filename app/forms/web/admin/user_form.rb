@@ -3,5 +3,5 @@
 class Web::Admin::UserForm < User
   include ActiveFormModel
 
-  permit :state_event, :first_name, :last_name, :about
+  fields :state_event, :first_name, :last_name, :about
 end
