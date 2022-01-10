@@ -107,7 +107,7 @@ gem 'ransack'
 
 gem 'turbo-rails'
 
-gem 'active_form_model'
+gem 'active_form_model', '~> 0.4.1'
 
 gem 'omniauth-rails_csrf_protection'
 

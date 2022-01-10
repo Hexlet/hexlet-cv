@@ -21,7 +21,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
         scope = scope.tagged_with value
         options_for_header[:direction] = value
       when 'city'
-        decoded_city_name = Slug.decode(value).downcase
+        decoded_city_name = decode_value(value).downcase
         scope = scope.where(city_name: decoded_city_name)
         options_for_header[:city_description] = I18n.t('in_the_city', city_name: decoded_city_name.capitalize)
         options_for_header[:city_name] = decoded_city_name.capitalize
@@ -35,7 +35,16 @@ class Web::VacancyFiltersController < Web::ApplicationController
     @title = t(".options.#{main_key}.title", **options_for_header)
     @description = t(".options.#{main_key}.description", **options_for_header)
 
+    @vacancy_search_form = Web::Vacancies::SearchForm.new(prepare_options_for_search_form(@options))
     @vacancies = scope
+  end
+
+  def search
+    form = Web::Vacancies::SearchForm.new(params[:web_vacancies_search_form])
+    search_id = form.to_search_id
+    redirect_url = search_id.blank? ? vacancies_url : vacancy_filter_url({ id: search_id })
+
+    redirect_to redirect_url
   end
 
   private
@@ -47,5 +56,16 @@ class Web::VacancyFiltersController < Web::ApplicationController
     end
 
     options
+  end
+
+  def decode_value(value)
+    Slug.decode(value)
+  end
+
+  def prepare_options_for_search_form(options)
+    form_fields = options.to_h.symbolize_keys.slice(*Web::Vacancies::SearchForm::ATTRIBUTES)
+    form_fields[:city] = form_fields.key?(:city) ? decode_value(form_fields[:city]) : ''
+
+    form_fields
   end
 end

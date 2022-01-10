@@ -3,5 +3,5 @@
 class Web::Resumes::CommentForm < Resume::Comment
   include ActiveFormModel
 
-  permit :content
+  fields :content
 end

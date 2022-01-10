@@ -287,6 +287,22 @@ SimpleForm.setup do |config|
     b.optional :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
 
+  # horizontal search form with hints
+  config.wrappers :horizontal_search_form_with_hints, tag: 'div', class: 'd-flex flex-column justify-content-start', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label
+
+    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid', wrap_with: { tag: 'div', class: 'input-group' }
+    b.use :error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
+    b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+  end
+
   # bootstrap custom forms
   #
   # custom input for boolean

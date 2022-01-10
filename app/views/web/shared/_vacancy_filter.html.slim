@@ -1,0 +1,9 @@
+.p-3.mb-3.bg-light.rounded-3
+  = simple_form_for vacancy_search_form, default_filter_form_options(url: search_vacancy_filters_path, wrapper: :horizontal_search_form_with_hints) do |f|
+    = f.input :level, collection: POSITION_LEVELS, prompt: :translate, label: false
+    = f.input :city, placeholder: true, label: false
+    = f.input :direction, collection: Vacancy.tags_on(:directions).pluck(:name), prompt: :translate, label: false
+    .col-auto.d-flex.justify-content-end
+      .mt-0
+        = f.button :submit, t('search'), class: 'btn-primary me-2'
+        = link_to t('reset'), vacancies_url, class: 'btn btn-outline-secondary'

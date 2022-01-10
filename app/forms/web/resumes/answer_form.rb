@@ -3,5 +3,5 @@
 class Web::Resumes::AnswerForm < Resume::Answer
   include ActiveFormModel
 
-  permit :content
+  fields :content
 end

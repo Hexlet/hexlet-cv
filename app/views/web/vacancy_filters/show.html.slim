@@ -5,4 +5,9 @@
 - content_for :header do
   - @header
 
+= render partial: 'web/shared/vacancy_filter', locals: { vacancy_search_form: @vacancy_search_form }
+
 = render partial: 'web/shared/vacancies', object: @vacancies
+
+- if @vacancies.empty?
+  = render 'web/shared/empty_list'

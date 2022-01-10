@@ -3,5 +3,5 @@
 class Web::Account::NewsletterForm < User
   include ActiveFormModel
 
-  permit :resume_mail_enabled
+  fields :resume_mail_enabled
 end

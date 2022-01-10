@@ -12,6 +12,7 @@ ru:
       subject: У вас новая рекомендация к резюме
   reset: Сбросить
   submit: Отправить
+  search: Найти
   views:
     pagination:
       first: " Первая"

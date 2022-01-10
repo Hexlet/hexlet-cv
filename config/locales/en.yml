@@ -13,6 +13,7 @@ en:
       subject: You have a new recommendation
   reset: Reset
   submit: Submit
+  search: Search
   views:
     pagination:
       first: " First"

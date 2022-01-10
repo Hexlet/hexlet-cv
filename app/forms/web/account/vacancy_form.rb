@@ -3,7 +3,7 @@
 class Web::Account::VacancyForm < Vacancy
   include ActiveFormModel
 
-  permit :title,
+  fields :title,
          :site,
          :position_level,
          :about_company,

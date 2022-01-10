@@ -9,5 +9,5 @@ class Web::Admin::ResumeForm < Resume
     works_attributes: %i[company position description begin_date end_date current _destroy id]
   }
 
-  permit(*attrs, **nested_attrs)
+  fields(*attrs, **nested_attrs)
 end

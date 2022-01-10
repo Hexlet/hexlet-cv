@@ -12,4 +12,11 @@ class Web::VacancyFiltersControllerTest < ActionDispatch::IntegrationTest
     get vacancy_filter_url('city-moskwa_level-junior_technology-android')
     assert_response :success
   end
+
+  test 'search' do
+    params = { level: :junior }
+    get search_vacancy_filters_url(params: { web_vacancies_search_form: params })
+
+    assert_response :redirect
+  end
 end
