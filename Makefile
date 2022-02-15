@@ -40,7 +40,7 @@ linter-code-fix:
 	bundle exec rubocop -A
 
 deploy:
-	git push heroku master
+	git push heroku main
 
 lsp-configure:
 	bundle exec yard gems
