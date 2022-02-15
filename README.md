@@ -21,7 +21,7 @@
 ```sh
 make setup
 make test # run tests
-make start # run server http://localhost:5000
+make start # run server http://localhost:3000
 
 make fixtures-load # sometimes, when fixtures were changed
 ```
