@@ -7,6 +7,7 @@ DEFAULTS: &DEFAULTS
   site: https://www.hexlet.io
   city_name: москва
   position_level: junior
+  salary_amount_type: :net
 
 one:
   <<: *DEFAULTS
