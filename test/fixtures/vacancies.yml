@@ -32,3 +32,9 @@ php-developer:
   title: PHP-разработчик
   creator: full
   salary_to: 3000
+
+vacancy-depends-salary:
+  <<: *DEFAULTS
+  title: Yoptascript-developer
+  creator: full
+  salary_amount_type: :depends
