@@ -33,7 +33,7 @@ class Web::Account::VacancyForm < Vacancy
   enumerize :salary_amount_type, in: %w[gross net]
 
   def city_name=(value)
-    processed_value = value ? value.downcase : value
+    processed_value = value ? value.downcase.strip : value
     super(processed_value)
   end
 end
