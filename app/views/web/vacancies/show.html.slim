@@ -7,6 +7,10 @@
 = content_for :header do
   = @vacancy.header
 
+- if @vacancy.archived?
+  .alert.alert-secondary
+    = t('.vacancy_archived')
+
 - if @vacancy.position_level?
   .row.mb-3
     .col-sm-3
