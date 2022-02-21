@@ -26,10 +26,10 @@ class Vacancy < ApplicationRecord
   validates :employment_type, presence: true
   validates :salary_from, presence: true,
                           numericality: { only_integer: true, greater_than: 0 },
-                          unless: -> { salary_to&.positive? }
+                          unless: -> { salary_amount_type == :depends || salary_to&.positive? }
   validates :salary_to, presence: true,
                         numericality: { only_integer: true, greater_than: 0 },
-                        unless: -> { salary_from&.positive? }
+                        unless: -> { salary_amount_type == :depends || salary_from&.positive? }
   validates :salary_currency, presence: true
   # validates :programming_language, presence: true
 

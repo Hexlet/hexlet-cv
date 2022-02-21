@@ -12,5 +12,6 @@ FactoryBot.define do
     contact_telegram { 'MyString' }
     contact_phone { 'MyString' }
     responsibilities_description { 'MyString' }
+    salary_amount_type { :net }
   end
 end
