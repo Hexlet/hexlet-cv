@@ -20,7 +20,6 @@ class Vacancy < ApplicationRecord
   validates :company_name, presence: true
   validates :responsibilities_description, presence: true
   validates :site, url: true
-  validates :city_name, presence: true
   validates :link_for_contact, url: { allow_blank: true }
   validates :position_level, presence: true
   validates :employment_type, presence: true
