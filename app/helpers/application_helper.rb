@@ -80,7 +80,7 @@ module ApplicationHelper
   end
 
   def default_filter_form_options(options = {})
-    { method: 'get', html: { class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4' }, url: url_for, builder: SimpleForm::FormBuilder, wrapper: 'filter_form', defaults: { required: false } }.merge(options)
+    { method: 'get', html: { class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-3' }, url: url_for, builder: SimpleForm::FormBuilder, wrapper: 'filter_form', defaults: { required: false } }.merge(options)
   end
 
   def filter_slug(options)

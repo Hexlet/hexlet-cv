@@ -3,7 +3,6 @@
     = f.input :level, collection: POSITION_LEVELS, prompt: :translate, label: false
     = f.input :city, placeholder: true, label: false
     = f.input :direction, collection: Vacancy.tags_on(:directions).pluck(:name), value_method: :downcase, prompt: :translate, label: false
-    .col-auto.d-flex.justify-content-end
-      .mt-0
-        = f.button :submit, t('search'), class: 'btn-primary me-2'
-        = link_to t('reset'), vacancies_url, class: 'btn btn-outline-secondary'
+    .col.d-flex
+      = f.button :submit, t('search'), class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), vacancies_url, class: 'btn btn-outline-secondary'

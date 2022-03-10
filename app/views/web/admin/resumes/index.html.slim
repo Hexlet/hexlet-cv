@@ -3,10 +3,9 @@
     = f.input :name_cont
     = f.input :user_first_name_or_user_last_name_cont
     = f.input :user_email_cont
-    .col-auto.d-flex
-      .mt-auto
-        = f.button :submit, t('submit'), class: 'btn-primary me-2'
-        = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
+    .col.d-flex.align-self-end
+      = f.button :submit, class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
 
 table.table
   thead
