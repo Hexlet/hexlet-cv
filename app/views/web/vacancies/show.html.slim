@@ -103,8 +103,9 @@
 
 h2.h3.mt-5.mb-4 = t('.similar_vacancies')
 
-.lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, direction: ''),
-  vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
+- if @vacancy.city_name?
+  .lead = link_to t('.developers_in_the_city', city_name: @vacancy.city_name.capitalize, position_level: @vacancy.position_level.text, direction: ''),
+    vacancy_filter_path(filter_slug(city: @vacancy.city_name, level: @vacancy.position_level))
 
 - @vacancy.directions.each do |direction|
   .lead = link_to \
