@@ -19,6 +19,12 @@ class Web::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#show vacancy without city name' do
+    vacancy = vacancies(:without_city_name)
+    get vacancy_path(vacancy)
+    assert_response :success
+  end
+
   test '#show json' do
     vacancy = vacancies(:one)
     get vacancy_path(vacancy, format: :json)

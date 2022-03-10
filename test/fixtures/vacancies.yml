@@ -3,6 +3,7 @@ DEFAULTS: &DEFAULTS
   responsibilities_description: |
     разрабатывать парсеры биржевых данных разрабатывать программы, которые надежно сохраняют биржевые данные во время торгов поддерживать и развивать автоматический пайплайн ежедневной обработки сохранения
   company_name: Company
+  creator: full
   programming_language: php
   site: https://www.hexlet.io
   city_name: москва
@@ -12,30 +13,36 @@ DEFAULTS: &DEFAULTS
 one:
   <<: *DEFAULTS
   title: Ruby-Разработчик
-  creator: full
   salary_from: 1000
   salary_to: 2000
 
 java-developer:
   <<: *DEFAULTS
   title: Java-программист
-  creator: full
   salary_from: 1000
 
 frontender:
   <<: *DEFAULTS
   title: Фронтендер
-  creator: full
   salary_to: 2000
 
 php-developer:
   <<: *DEFAULTS
   title: PHP-разработчик
-  creator: full
   salary_to: 3000
 
-vacancy-depends-salary:
+depends_salary:
   <<: *DEFAULTS
   title: Yoptascript-developer
-  creator: full
   salary_amount_type: :depends
+
+without_city_name:
+  title: Vacancy without city name
+  creator: full
+  state: published
+  responsibilities_description: |
+    Работать на работе и зарабатывать
+  company_name: Hexlet-Rus
+  programming_language: Ruby
+  site: https://ru.hexlet.io
+  position_level: junior
