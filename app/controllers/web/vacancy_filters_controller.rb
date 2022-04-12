@@ -8,6 +8,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
 
     options_for_header = {
       position_level: '',
+      city_name: '',
       direction: '',
       city_description: ''
     }
@@ -28,12 +29,15 @@ class Web::VacancyFiltersController < Web::ApplicationController
       end
     end
 
-    keys = %i[position_level direction city_name]
-    main_key = keys.find { |k| options_for_header.key? k }
+    keys = %i[position_level city_name direction]
+    main_key = keys.find { |key| options_for_header[key].present? }
+    level_key = find_level_key(@options)
 
-    @header = t(".options.#{main_key}.header", **options_for_header)
-    @title = t(".options.#{main_key}.title", **options_for_header)
-    @description = t(".options.#{main_key}.description", **options_for_header)
+    default_prefix = ".web.vacancy_filters.show.options.#{main_key}.default"
+
+    @header = t(".options.#{main_key}.#{level_key}.header", default: :"#{default_prefix}.header", **options_for_header)
+    @title = t(".options.#{main_key}.#{level_key}.title", default: :"#{default_prefix}.title", **options_for_header)
+    @description = t(".options.#{main_key}.#{level_key}.description", default: :"#{default_prefix}.description", **options_for_header)
 
     @vacancy_search_form = Web::Vacancies::SearchForm.new(prepare_options_for_search_form(@options))
     @vacancies = scope
@@ -48,6 +52,10 @@ class Web::VacancyFiltersController < Web::ApplicationController
   end
 
   private
+
+  def find_level_key(options)
+    options.find { |o| o.include? 'level' }&.last
+  end
 
   def fetch_options(params)
     options = params.split('_').map { |value| value.split('-', 2) }
