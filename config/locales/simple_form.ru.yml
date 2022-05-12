@@ -23,6 +23,7 @@ ru:
     options:
       web_vacancies_search_form:
         level:
+          intern: Стажёр
           junior: Джуниор
           middle: Мидл
           senior: Синьор
