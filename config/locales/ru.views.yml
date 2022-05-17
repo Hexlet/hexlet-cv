@@ -57,11 +57,11 @@ ru:
                 Актуальные вакансии для %{position_level} %{direction} разработчиков %{city_description}. Работа для %{position_level}-программистов, подборка от редакции Hexlet CV
             intern:
               title: |
-                Вакансии для %{direction} разработчиков (стажеров) %{city_description}, работа, свежие вакансии
+                Стажировки для Джуниор %{direction} разработчиков %{city_description}, работа, свежие вакансии
               header: |
-                Вакансии для %{direction} разработчиков (стажеров) %{city_description}
+                Стажировки для Джуниор %{direction} разработчиков %{city_description}
               description: |
-                Актуальные вакансии для %{direction} разработчиков (стажеров) %{city_description}. Работа для стажеров, подборка от редакции Hexlet CV
+                Актуальные стажировки для Джуниор %{direction} разработчиков %{city_description}. Стажировка для Джуниор разработчиков, подборка от редакции Hexlet CV
 
           city_name:
             title: |
