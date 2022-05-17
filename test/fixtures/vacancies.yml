@@ -26,6 +26,12 @@ frontender:
   title: Фронтендер
   salary_to: 2000
 
+frontender_intern:
+  <<: *DEFAULTS
+  title: Фронтендер
+  salary_to: 1000
+  position_level: intern
+
 php-developer:
   <<: *DEFAULTS
   title: PHP-разработчик
