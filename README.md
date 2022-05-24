@@ -4,11 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/test_coverage)](https://codeclimate.com/github/Hexlet/hexlet-cv/test_coverage)
 [![github action status](https://github.com/Hexlet/hexlet-cv/workflows/Main%20workflow/badge.svg)](https://actions-badge.atrox.dev/hexlet/hexlet-cv/goto)
 
-## Участие
-
-* Обсуждение в канале [#hexlet-volunteers](https://slack-ru.hexlet.io) слака
-
-## Системные требования
+## System requirements
 
 * Ruby
 * Node.js
@@ -16,7 +12,7 @@
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-## Установка
+## Setup
 
 ```sh
 make setup
@@ -28,13 +24,13 @@ make fixtures-load # sometimes, when fixtures were changed
 
 ## Deploy
 
-Добавить базу данных
+Add database:
 
 ```sh
 heroku addons:create heroku-postgresql:hobby-dev
 ```
 
-Подготовить необходимые переменные окружения:
+Prepare environment variables:
 
 ```sh
 heroku config:set SECRET_KEY_BASE=$(rake secret)
@@ -47,8 +43,8 @@ heroku config:set EMAIL_FROM=support@hexlet.io
 
 ---
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=exercises-javascript)
+[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv)
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=exercises-javascript).
+This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv).
 
-See most active contributers on [hexlet-friends](https://friends.hexlet.io/).
+See most active contributors on [hexlet-friends](https://friends.hexlet.io/).
