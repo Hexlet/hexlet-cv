@@ -5,6 +5,8 @@ require 'application_responder'
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :redirect_root_domain
+
   self.responder = ApplicationResponder
   respond_to :html, :json
 
@@ -22,5 +24,13 @@ class ApplicationController < ActionController::Base
 
   def guest_user
     Guest.new
+  end
+
+  private
+
+  def redirect_root_domain
+    return if request.host == ENV.fetch('HOST')
+
+    redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", status: 301)
   end
 end
