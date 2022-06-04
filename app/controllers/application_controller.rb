@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   def redirect_root_domain
     return if request.host == ENV.fetch('HOST')
 
-    redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", status: 301)
+    redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", status: :moved_permanently)
   end
 end

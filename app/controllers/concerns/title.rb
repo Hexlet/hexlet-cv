@@ -11,7 +11,7 @@ module Title
     unless part
       return nil if @parts.blank?
 
-      return @parts.reject(&:blank?).reverse.join(' - ')
+      return @parts.compact_blank.reverse.join(' - ')
     end
 
     @parts << if part.instance_of? Symbol
