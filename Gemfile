@@ -56,7 +56,6 @@ group :development do
   gem 'rubocop'
   gem 'solargraph'
   gem 'spring'
-  gem 'spring-watcher-listen'
 end
 
 group :test do
