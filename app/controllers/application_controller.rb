@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html, :json
 
-  include Pundit
+  include Pundit::Authorization
   include Sparkpost
   include Mailer
   include Auth
