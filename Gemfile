@@ -8,7 +8,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'acts-as-taggable-on'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+# NOTE Не обновил версию рельсы, т.к. https://github.com/charlotte-ruby/impressionist/issues/302
+gem 'rails', '~> 6.1'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -29,6 +30,7 @@ gem 'redis'
 gem 'bootsnap', require: false
 gem 'counter_culture'
 gem 'dotenv-rails'
+gem 'net-smtp', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 

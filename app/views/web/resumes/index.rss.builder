@@ -11,7 +11,7 @@ xml.rss(version: '2.0', 'xmlns:atom': 'https://www.w3.org/2005/Atom') do
       xml.item do
         xml.title resume
         xml.description truncate_markdown(resume.summary, length: 200)
-        xml.pubDate resume.created_at.to_fs(:rfc822)
+        xml.pubDate resume.created_at.to_s(:rfc822)
         xml.link resume_url(resume)
         xml.guid resume_url(resume)
       end
