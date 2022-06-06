@@ -30,6 +30,7 @@ gem 'redis'
 gem 'bootsnap', require: false
 gem 'counter_culture'
 gem 'dotenv-rails'
+gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'wicked_pdf'

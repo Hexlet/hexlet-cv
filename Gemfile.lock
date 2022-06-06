@@ -187,6 +187,10 @@ GEM
     msgpack (1.5.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
+    net-imap (0.2.3)
+      digest
+      net-protocol
+      strscan
     net-pop (0.1.1)
       digest
       net-protocol
@@ -366,6 +370,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    strscan (3.0.3)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
@@ -443,6 +448,7 @@ DEPENDENCIES
   listen
   meta-tags
   minitest-power_assert
+  net-imap
   net-pop
   net-smtp
   omniauth
