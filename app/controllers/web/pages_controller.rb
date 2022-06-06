@@ -11,9 +11,9 @@ class Web::PagesController < Web::ApplicationController
                   canonical: url
     set_meta_tags og: {
       title: t(".#{page}_title"),
-      description: description,
+      description:,
       type: 'website',
-      url: url
+      url:
     }
 
     render params[:id]

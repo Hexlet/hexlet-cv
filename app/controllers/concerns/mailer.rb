@@ -5,6 +5,6 @@ module Mailer
     user = answer.resume.user
     return nil unless user.can_send_email? && user.resume_mail_enabled
 
-    ResumeAnswerMailer.with(answer: answer).new_answer_email.deliver_later
+    ResumeAnswerMailer.with(answer:).new_answer_email.deliver_later
   end
 end

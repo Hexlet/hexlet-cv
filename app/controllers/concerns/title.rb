@@ -36,7 +36,7 @@ module Title
     # msg = I18n.t(key, scope: scope, **values)
     # Rails.logger.debug(Term::ANSIColor.green("title: #{msg}"))
 
-    I18n.t(key, scope: scope)
+    I18n.t(key, scope:)
 
     # msg
   end

@@ -8,7 +8,7 @@ module Flash
     errors = options[:errors]
 
     keys = build_path(key, controller, params[:action])
-    msg = I18n.t(keys.shift, scope: scope, default: keys, **values, errors: errors)
+    msg = I18n.t(keys.shift, scope:, default: keys, **values, errors:)
 
     Rails.logger.debug(Paint["flash: #{msg}", :green])
     type = options[:type] || key
