@@ -7,7 +7,7 @@
 ## System requirements
 
 * Ruby
-* Node.js, '< 17.0.0'
+* Node.js < 17.0.0
 * Yarn
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
