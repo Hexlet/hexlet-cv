@@ -48,7 +48,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
     search_id = form.to_search_id
     redirect_url = search_id.blank? ? vacancies_url : vacancy_filter_url({ id: search_id })
 
-    redirect_to redirect_url
+    redirect_to "#{redirect_url}#{'&format=html' if search_id.include?('.')}"
   end
 
   private
@@ -58,7 +58,8 @@ class Web::VacancyFiltersController < Web::ApplicationController
   end
 
   def fetch_options(params)
-    options = params.split('_').map { |value| value.split('-', 2) }
+    options =
+      params.gsub('&format=html', '').split('_').map { |value| value.split('-', 2) }
     if options.filter { |_k, v| v.blank? }.any?
       raise ActionController::RoutingError, 'Not Found'
     end

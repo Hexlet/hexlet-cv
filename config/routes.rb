@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'home#index'
     resources :vacancies, only: %i[index show]
-    resources :vacancy_filters, only: %i[show] do
+    resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} } do
       collection do
         get :search
       end
