@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'home#index'
     resources :vacancies, only: %i[index show]
-    resources :vacancy_filters, only: %i[show] do
+    # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
+    resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
       collection do
-        get :search
+        get :search, format: true
       end
     end
     resources :resumes do
