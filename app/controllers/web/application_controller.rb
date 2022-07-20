@@ -2,6 +2,7 @@
 
 class Web::ApplicationController < ApplicationController
   include Flash
+  include GonInit
   # include Title
 
   # helper_method :title
@@ -12,10 +13,6 @@ class Web::ApplicationController < ApplicationController
   # before_action do
   #   title :base, scope: 'web'
   # end
-
-  before_action do
-    gon.google_analytics_key = Rails.application.config.vars[:ga]
-  end
 
   # def last_notifications
   #   @last_notifications ||= current_user.notifications.order(created_at: :desc).limit(5) if current_user

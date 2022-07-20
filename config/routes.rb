@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get '/404', to: 'web/errors#not_found', as: :not_found_errors
   match '/500', to: 'web/errors#server_error', via: :all
 
-  devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks',
+                                    sessions: 'web/devise/sessions',
+                                    registrations: 'web/devise/registrations' }
 
   scope module: :web do
     root 'home#index'
