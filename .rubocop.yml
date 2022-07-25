@@ -7,12 +7,17 @@ require:
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.1.2
+  TargetRailsVersion: 6
+  DisplayCopNames: true
   Exclude:
     - 'bin/**'
     - 'db/schema.rb'
     - 'db/migrate/**'
     - 'vendor/**/*'
     - 'node_modules/**/*'
+
+Rails:
+  Enabled: true
 
 Style/ClassAndModuleChildren:
   Enabled: false
