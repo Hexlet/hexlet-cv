@@ -4,6 +4,17 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/test_coverage)](https://codeclimate.com/github/Hexlet/hexlet-cv/test_coverage)
 [![github action status](https://github.com/Hexlet/hexlet-cv/workflows/Main%20workflow/badge.svg)](https://actions-badge.atrox.dev/hexlet/hexlet-cv/goto)
 
+## About
+The purpose of Hexlet CV is to provide a community platform where you get resume recommendations from community members and professional HR.
+
+Interactions on Hexlet CV are based on resumes and resume recommendations. On a particular resume, each community member provides only one recommendation.
+
+Join the community, post resumes and leave recommendations for other members. Tell your colleagues and friends about the site!
+
+The project uses Ruby on Rails.
+
+Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community](https://slack-ru.hexlet.io/).
+
 ## System requirements
 
 * Ruby
