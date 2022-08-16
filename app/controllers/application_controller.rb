@@ -14,10 +14,11 @@ class ApplicationController < ActionController::Base
   include Sparkpost
   include Mailer
   include Auth
+  include Flash
 
   before_action :banned?
   helper_method :current_or_guest_user
-
+  helper_method :f
   def current_or_guest_user
     current_user || guest_user
   end

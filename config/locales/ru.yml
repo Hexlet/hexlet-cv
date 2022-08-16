@@ -1,4 +1,8 @@
 ru:
+  recaptcha:
+    errors:
+      verification_failed: 'Докажите, что вы не робот!'
+      recaptcha_unreachable: 'Ошибка сервера верификации капчи, попробуйте еще раз.'
   forbidden: Доступ закрыт. Ишь ты!
   salary:
     from: "от %{value}"
