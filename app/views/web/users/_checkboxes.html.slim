@@ -1,11 +1,10 @@
 = simple_form_for @user do |f|
-  .card.mb-3.card-header    
-    - User.checkboxes().each do |checkbox|
+  .card.mb-3.card-header
+    - checkboxes = User.checkboxes()
+    - checkboxes.each do |checkbox|
       .d-flex
         .d-flex.align-items-center.flex-column.justify-content-center.me-3
           = f.check_box :check_boxes, { multiple: true, checked: f.object.check_boxes&.include?(checkbox.to_s) }, checkbox, nil
         = f.label t(".#{checkbox}_title")
-      .mt-1.mb-4 
+      .mt-1.mb-4
         = f.label t(".#{checkbox}_description"), class: 'ms-3'
-
-
