@@ -24,7 +24,6 @@
       .h3 class=(@user_resume_answers_likes_count.positive? ? 'text-success' : 'text-black-50')
         = @user_resume_answers_likes_count
       .text-muted = t('.likes', count: @user_resume_answers_likes_count)
-    
     .d-flex.flex-column.mx-1.mx-lg-3.text-center
       #checkbox.h3 class=(@user_check_boxes_count.positive? ? 'text-success' : 'text-black-50')
         = @user_check_boxes_count
