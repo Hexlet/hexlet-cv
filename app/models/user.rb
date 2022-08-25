@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   after_initialize do |user|
-    user.check_boxes = [] if user.check_boxes == nil
+    user.check_boxes = [] if user.check_boxes.nil?
   end
 
   aasm :state, column: :state do
