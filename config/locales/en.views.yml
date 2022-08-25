@@ -54,6 +54,8 @@ en:
         tab_resumes: Resume
         tab_answers: Answers
         tab_comments: Comments
+        tab_checkboxes: Checkbox
+        checkboxes: checkboxes
         banned: Account has been banned
     answers:
       comments:

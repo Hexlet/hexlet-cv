@@ -25,6 +25,10 @@ class User < ApplicationRecord
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  after_initialize do |user|
+    user.check_boxes = [] if user.check_boxes == nil
+  end
+
   aasm :state, column: :state do
     state :permitted, initial: true
     state :banned
@@ -69,6 +73,10 @@ class User < ApplicationRecord
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
+  end
+
+  def self.checkboxes
+    %w[webinars resume open_source code_battle]
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

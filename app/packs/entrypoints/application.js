@@ -18,6 +18,7 @@ require('@rails/ujs').start();
 require('popper.js');
 require('bootstrap');
 require('@nathanvda/cocoon');
+require('./check_boxes.js');
 
 // dom.watch()
 
@@ -30,3 +31,4 @@ require('@nathanvda/cocoon');
 // @ts-ignore
 const images = require.context('../images', true);
 // const imagePath = (name) => images(name, true)
+

@@ -42,10 +42,12 @@ Rails.application.routes.draw do
       resources :vacancies
       resources :notifications, only: %i[index update]
       resource :newsletters, only: %i[edit update]
-      resource :profile, only: %i[edit update show]
+      resource :profile, only: %i[edit update show] do
+        patch '/check_box', to: 'profiles#check_box'
+      end
     end
 
-    resources :users
+    resources :users 
     resources :pages
 
     scope module: :hooks do

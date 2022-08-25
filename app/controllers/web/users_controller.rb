@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Web::UsersController < Web::ApplicationController
+
   def index
     @users = User.where('resume_answer_likes_count > ?', 0).order(resume_answer_likes_count: :desc)
 
@@ -16,6 +17,8 @@ class Web::UsersController < Web::ApplicationController
     @user = User.find(params[:id])
     @user_resume_answers = @user.resume_answers.web
     @user_resume_answers_likes_count = @user.resume_answers.sum('likes_count')
+    @user_check_boxes_count = @user.check_boxes.split('"').length / 2
+
     @user_resumes = @user.resumes.web
     @user_resume_comments = @user.resume_comments.web.joins(:resume).merge(Resume.web)
 

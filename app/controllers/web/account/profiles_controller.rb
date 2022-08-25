@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::Account::ProfilesController < Web::Account::ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:check_box]
+
   def show; end
 
   def edit; end
@@ -16,9 +18,13 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
     end
   end
 
+  def check_box
+    current_user.update(profile_params)
+  end
+
   private
 
   def profile_params
-    params.require(:user)
+    params.require(:user).permit(check_boxes: [])
   end
 end
