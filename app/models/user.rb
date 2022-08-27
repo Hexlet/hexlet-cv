@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def self.checkboxes
-    %w[webinars resume open_source code_battle]
+    %w[work_course resume letter open_source code_battle hexlet github interview]
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

@@ -1,6 +1,5 @@
 const axios = require('axios');
-
-const checkboxes = ["webinars", "resume", "open_source", "code_battle"]
+const checkboxes = ["work_course", "resume", "letter", "open_source", "code_battle", "hexlet", "github", "interview"]
 
 const prepare_data = () => {
   result = []

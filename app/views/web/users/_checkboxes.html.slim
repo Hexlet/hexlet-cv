@@ -2,9 +2,10 @@
   .card.mb-3.card-header
     - checkboxes = User.checkboxes()
     - checkboxes.each do |checkbox|
-      .d-flex
+      .d-flex.my-2
         .d-flex.align-items-center.flex-column.justify-content-center.me-3
           = f.check_box :check_boxes, { multiple: true, checked: f.object.check_boxes&.include?(checkbox.to_s) }, checkbox, nil
-        = f.label t(".#{checkbox}_title")
-      .mt-1.mb-4
-        = f.label t(".#{checkbox}_description"), class: 'ms-3'
+        = f.label t(".#{checkbox}")
+      - if t(".#{checkbox}_description").instance_of? String
+        .mt-1.mb-1
+          = f.label t(".#{checkbox}_description"), class: 'ms-3'
