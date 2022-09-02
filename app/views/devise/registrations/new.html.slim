@@ -11,6 +11,11 @@ h2
         input_html: { autocomplete: 'new-password' }
     .mb-3
       = f.input :password_confirmation, required: true, input_html: { autocomplete: 'new-password' }
+    .mb-2
+      = recaptcha_tags
+      - if f(:recaptcha_error, discard: true)
+        .small.text-danger
+          = f(:recaptcha_error, discard: true)
   .form-actions.mb-3
     = f.button :submit, t('.sign_up'), class: 'btn-primary'
 = render 'devise/shared/links'

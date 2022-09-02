@@ -14,6 +14,8 @@ module Flash
     type = options[:type] || key
     if options[:now]
       flash.now[type] = msg
+    elsif options[:discard]
+      flash.discard(key)
     else
       flash[type] = msg
     end

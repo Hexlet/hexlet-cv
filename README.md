@@ -52,6 +52,20 @@ heroku config:set RAILS_LOG_TO_STDOUT=enabled
 heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
+Configure reCAPTCHA
+
+* Follow the link [reCAPTCHA](https://www.google.com/recaptcha)
+* Log into Admin Console with your credentials or create a new Google Account in case you don't have one
+* At Admin Console register a new site as shown in example below
+
+```sh
+Label: <app_name>.herokuapp.com
+Type reCAPTCHA: reCAPTCHA v2 (Checkbox "I'm not a robot")
+Domains: <app_name>.herokuapp.com (localhost or/and 0.0.0.0 for development env)
+```
+* Accept terms of use and submit
+* Add generated reCAPTCHA `SITE KEY` and `SECRET KEY` to environment variables in production
+* To use reCAPTCHA in development simply copy `SITE KEY` and `SECRET KEY` to your .env file
 ---
 
 [![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv)
