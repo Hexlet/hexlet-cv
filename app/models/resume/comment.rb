@@ -2,7 +2,7 @@
 
 class Resume::Comment < ApplicationRecord
   include Resume::CommentRepository
-  validates :content, presence: true, length: { minimum: 10, maximum: 200 }
+  validates :content, presence: true, length: { minimum: 10, maximum: 400 }
 
   belongs_to :resume
   belongs_to :user
