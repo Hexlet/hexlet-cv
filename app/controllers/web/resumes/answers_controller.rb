@@ -9,7 +9,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
   def change_applying_state
     @answer = resource_resume.answers.find params[:id]
     authorize @answer
-    @answer.aasm(:applying).fire! params[:event] || :apply # FIXME: remove apply after fixing link
+    @answer.aasm(:applying).fire! params[:event]&.to_sym || :apply # FIXME: remove apply after fixing link
     @answer.user.notifications.create!(kind: :answer_applied, resource: @answer)
     f(:success)
     redirect_to resume_path(resource_resume)

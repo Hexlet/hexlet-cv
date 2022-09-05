@@ -119,3 +119,5 @@ gem 'translit'
 gem 'valid_email2'
 
 gem 'validate_url'
+
+gem 'recaptcha'
