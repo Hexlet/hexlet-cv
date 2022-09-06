@@ -433,6 +433,8 @@ GEM
     yard (0.9.28)
       webrick (~> 1.7.0)
     zeitwerk (2.6.0)
+
+PLATFORMS
   arm64-darwin-21
   x86_64-linux
 
@@ -508,4 +510,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.6
+   2.3.7
