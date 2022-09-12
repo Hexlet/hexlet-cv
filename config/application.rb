@@ -47,9 +47,5 @@ module HexletCv
     config.generators do |g|
       g.assets false
     end
-
-    config.active_record.yaml_column_permitted_classes = [
-      ActiveSupport::HashWithIndifferentAccess
-    ]
   end
 end
