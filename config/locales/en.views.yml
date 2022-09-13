@@ -38,12 +38,9 @@ en:
           header: New comment
         edit:
           header: Edit comment
-      comment_requires:
-        feedback: Your feedback is appreciated!
-        requires: This action requires
-        sign_in: sign in
       answer_requires:
         write_answer: Sign in to write an answer
+        sign_up: Sign up
         sign_in: Sign in
     users:
       show:
