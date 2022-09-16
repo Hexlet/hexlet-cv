@@ -11,9 +11,28 @@ ru:
   in_the_city: "в городе %{city_name}"
   remote_job: Удаленная работа
   confirm: Вы уверены?
+  answer_comment_mailer:
+    new_comment_email:
+      content: 'Содержание:'
+      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
+      unsubscribe: Вы можете отписаться от рассылки в
+      settings: настройках
+      subject: К вашей рекомендайии ноый коментарий.
+  resume_comment_mailer:
+    new_comment_email:
+      content: 'Содержание:'
+      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
+      unsubscribe: Вы можете отписаться от рассылки в
+      settings: настройках
+      subject: У вас новый коментарий к резюме
   resume_answer_mailer:
     new_answer_email:
+      content: 'Содержание:'
+      new_answer: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме
+      review: Ваше резюме прошло ревью!
       subject: У вас новая рекомендация к резюме
+      unsubscribe: Вы можете отписаться от рассылки в
+      settings: настройках
   reset: Сбросить
   submit: Отправить
   search: Найти
@@ -24,3 +43,4 @@ ru:
       next: "Следующая "
       previous: " Предыдущая"
       truncate: "&hellip;"
+    

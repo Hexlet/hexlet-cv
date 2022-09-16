@@ -12,9 +12,28 @@ en:
   date:
     formats:
       discard_day: '%b %Y'
+  answer_comment_mailer:
+    new_comment_email:
+      content: 'Content:'
+      new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
+      unsubscribe: You can unsubscribe from the newsletter in
+      settings: settings
+      subject: New comment for your recommendation.
   resume_answer_mailer:
     new_answer_email:
+      content: 'Content:'
+      new_answer: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
+      review: Your resume has been reviewed!
+      unsubscribe: You can unsubscribe from the newsletter in
+      settings: settings
       subject: You have a new recommendation
+  resume_comment_mailer:
+    new_comment_email:
+      content: 'Content:'
+      new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
+      unsubscribe: You can unsubscribe from the newsletter in
+      settings: settings
+      subject: You have a new resume comment
   reset: Reset
   submit: Submit
   search: Search
