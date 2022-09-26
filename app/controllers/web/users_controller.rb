@@ -13,10 +13,11 @@ class Web::UsersController < Web::ApplicationController
   end
 
   def show
+    @checkboxes = User.checkboxes
     @user = User.find(params[:id])
     @user_resume_answers = @user.resume_answers.web
     @user_resume_answers_likes_count = @user.resume_answers.sum('likes_count')
-    @user_check_boxes_count = @user.check_boxes.split('"').length / 2
+    @user_check_boxes_count = @user.profile_checkboxes.split('"').length / 2
 
     @user_resumes = @user.resumes.web
     @user_resume_comments = @user.resume_comments.web.joins(:resume).merge(Resume.web)

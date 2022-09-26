@@ -118,6 +118,18 @@ ru:
         archived: Резюме заархивировано
         download: Скачать резюме в PDF
         print: Версия для печати
+      checkboxes:
+        checkboxes: Отмеченные чекбоксы
+        no_checkboxes: Нет отмеченных чекбоксов
+        work_course: Прошел курс трудоустройства
+        resume: Составил резюме и получил и ревью
+        letter: Проработал сопроводительное письмо
+        letter_description: Сопроводительное письмо было проработано с карьерным консультантом Хекслета
+        open_source: Есть 3 pull-requets в open-source Хекслета
+        code_battle: Решил 50 задач на CodeBattle
+        hexlet: Сделал тестовые из репозитория Хекслета
+        github: Получил ревью профиля на GitHub
+        interview: Принял участие в публичном собеседовании
       comment_requires:
         feedback: Ваш комментарий важен для нас!
         requires: Для этого действия нужно
@@ -197,6 +209,7 @@ ru:
         letter_description: Сопроводительное письмо было проработано с карьерным консультантом Хекслета
         open_source: Есть 3 pull-requets в open-source Хекслета
         code_battle: Решил 50 задач на CodeBattle
+        code_battle_link: "codebattle hexlet io"
         hexlet: Сделал тестовые из репозитория Хекслета
         github: Получил ревью профиля на GitHub
         interview: Принял участие в публичном собеседовании

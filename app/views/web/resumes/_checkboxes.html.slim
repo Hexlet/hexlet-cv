@@ -1,0 +1,11 @@
+- if @checkboxes.empty?
+  h4.my-4.me-3 = t('.no_checkboxes')
+- else
+  h4.my-4.me-3 = t('.checkboxes')
+  - @checkboxes.each do |element|
+    .input-group.mb-3
+      span.text-primary.me-3
+        i.bi.bi-check-square
+      span
+        = t(".#{element}")
+.mb-5

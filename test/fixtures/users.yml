@@ -8,7 +8,7 @@ DEFAULTS: &DEFAULTS
   resume_mail_enabled: true
   role: :user
   state: permitted
-  check_boxes: ["default"]
+  profile_checkboxes: ["default"]
 
 one:
   <<: *DEFAULTS

@@ -25,6 +25,6 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
   private
 
   def profile_params
-    params.require(:user).permit(check_boxes: [])
+    params.require(:user).permit(profile_checkboxes: [])
   end
 end

@@ -28,6 +28,17 @@ class Web::ResumesController < Web::ApplicationController
     @resume_educations = @resume.educations.web
     @resume_works = @resume.works.web
 
+    # @checkboxes_info = current_user.profile_checkboxes
+    @checkboxes_info = @resume.user.profile_checkboxes
+    @checkboxes_list = User.checkboxes
+    @checkboxes = []
+
+    @checkboxes_list.each do |element|
+      if @checkboxes_info.include? element
+        @checkboxes << element
+      end
+    end
+
     set_meta_tags canonical: resume_url(@resume)
     set_meta_tags og: {
       title: @resume,

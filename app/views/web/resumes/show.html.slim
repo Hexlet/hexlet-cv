@@ -67,6 +67,9 @@
       - else
         = render 'comment_requires'
 
+- if current_user.admin?
+  = render 'checkboxes'
+
 - if @resume_answers.any?
   .lead.mb-3 = t('.recomendations')
 

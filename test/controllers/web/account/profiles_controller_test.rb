@@ -27,10 +27,10 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test '#check_box' do
     attrs = %w[work_course resume hexlet]
-    patch check_box_account_profile_path, params: { user: { check_boxes: attrs } }
-    assert { @user.check_boxes.include? 'resume' }
-    assert { @user.check_boxes.include? 'work_course' }
-    assert { @user.check_boxes.include? 'hexlet' }
-    assert_not { @user.check_boxes.include? 'default' }
+    patch check_box_account_profile_path, params: { user: { profile_checkboxes: attrs } }
+    assert { @user.profile_checkboxes.include? 'resume' }
+    assert { @user.profile_checkboxes.include? 'work_course' }
+    assert { @user.profile_checkboxes.include? 'hexlet' }
+    assert { @user.profile_checkboxes.ixclude? 'default' }
   end
 end
