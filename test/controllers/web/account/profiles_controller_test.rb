@@ -31,6 +31,6 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert { @user.profile_checkboxes.include? 'resume' }
     assert { @user.profile_checkboxes.include? 'work_course' }
     assert { @user.profile_checkboxes.include? 'hexlet' }
-    assert { @user.profile_checkboxes.ixclude? 'default' }
+    assert { @user.profile_checkboxes.exclude? 'default' }
   end
 end

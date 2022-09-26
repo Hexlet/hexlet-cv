@@ -67,7 +67,7 @@
       - else
         = render 'comment_requires'
 
-- if current_user.admin?
+- if user_signed_in? && current_user.admin?
   = render 'checkboxes'
 
 - if @resume_answers.any?
