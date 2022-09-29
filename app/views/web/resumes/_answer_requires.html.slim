@@ -2,4 +2,5 @@
   .card-body.d-flex
     .lead.me-auto = t('.write_answer')
     .my-1
-      = link_to t('.sign_up'), new_user_session_path, class: 'btn btn-primary btn-lg'
+      = link_to t('.sign_in'), new_user_session_path, class: 'btn btn-primary btn-lg me-2'
+      = link_to t('.sign_up'), new_user_registration_path, class: 'btn btn-primary btn-lg ms-2'
