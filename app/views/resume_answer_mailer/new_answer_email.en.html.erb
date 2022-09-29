@@ -1,7 +1,0 @@
-<p>
-  <%= link_to @answer.user, user_url(@answer.user), target: "_blank" %> left a recommendation on your CV <%= link_to @answer.resume, resume_url(@answer.resume, anchor: "answer-#{@answer.id}"), target: "_blank" %>
-</p>
-
-<p>
-  You can unsubscribe from resume newsletters at <%= link_to 'settings', account_profile_url, target: "_blank" %>
-</p>

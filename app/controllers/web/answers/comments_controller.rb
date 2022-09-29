@@ -23,6 +23,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
     form = Web::Resumes::Answers::CommentForm.new(answer_comment_params)
     @comment = Resume::Answer::CommentMutator.create(resource_answer, form.attributes, current_user)
     if @comment.persisted?
+      @comment.send_new_comment_email
       f(:success)
       redirect_to resume_path(resource_answer.resume)
     else
