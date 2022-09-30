@@ -5,5 +5,7 @@ module VacancyRepository
 
   included do
     scope :web, -> { published.order(id: :desc) }
+    scope :tags_sorted_list,
+          -> { tags_on(:directions).order('lower(name) ASC').pluck(:name) }
   end
 end
