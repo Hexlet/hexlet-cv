@@ -43,9 +43,9 @@ ru:
     #       email: 'E-mail.'
     hints:
       resume_comment:
-        content: Длина не может превышать 200 символов
+        content: Длина не может превышать 400 символов
       resume_answer_comment:
-        content: Длина не может превышать 200 символов
+        content: Длина не может превышать 400 символов
       vacancy:
         title: PHP-программист, Android-разработчик, ... (без уровня)
         direction_list: |

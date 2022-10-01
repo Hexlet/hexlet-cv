@@ -130,13 +130,10 @@ ru:
         hexlet: Сделал тестовые из репозитория Хекслета
         github: Получил ревью профиля на GitHub
         interview: Принял участие в публичном собеседовании
-      comment_requires:
-        feedback: Ваш комментарий важен для нас!
-        requires: Для этого действия нужно
-        sign_in: войти
       answer_requires:
         write_answer: Войдите на сайт, чтобы написать ответ
-        sign_up: Зарегистрироваться
+        sign_up: Регистрация
+        sign_in: Вход
       comments:
         new:
           header: Создание комментария

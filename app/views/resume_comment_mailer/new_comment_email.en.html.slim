@@ -1,0 +1,15 @@
+p = sanitize t('.new_comment',
+      user_path: user_url(@comment.user),
+      user: "#{@comment.user.first_name} #{@comment.user.last_name}",
+      comment_path: resume_url(@comment.resume, anchor: "comment-#{@comment.id}"))
+
+hr
+
+p = t('.content')
+
+p
+  = @comment.content
+
+hr
+
+p  #{t('.unsubscribe')} #{link_to t('.settings'), account_profile_url, target: '_blank', rel: 'noopener'}

@@ -12,7 +12,7 @@ module StateConcern
 
   module InstanceMethods
     def set_state
-      aasm(:state).fire state_event if state_event.present?
+      aasm(:state).fire state_event.to_sym if state_event.present?
     end
   end
 end

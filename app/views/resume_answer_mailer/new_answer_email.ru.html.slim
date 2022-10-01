@@ -1,0 +1,17 @@
+h2 = t('.review')
+
+p = sanitize t('.new_answer',
+      user_path: user_url(@answer.user),
+      user: "#{@answer.user.first_name} #{@answer.user.last_name}",
+      answer_path: resume_url(@answer.resume, anchor: "answer-#{@answer.id}"))
+
+hr
+
+p = t('.content')
+
+p
+  = @answer.content
+
+hr
+
+p  #{t('.unsubscribe')} #{link_to t('.settings'), account_profile_url, target: '_blank', rel: 'noopener'}
