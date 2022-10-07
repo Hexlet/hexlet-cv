@@ -5,7 +5,7 @@ class Resume::Answer < ApplicationRecord
   include Resume::AnswerRepository
   # FIXME: add unique index
   validates :resume, uniqueness: { scope: :user }
-  validates :content, presence: true, length: { minimum: 200 }
+  validates :content, presence: true, length: { minimum: 20 }
 
   belongs_to :resume, counter_cache: true
   belongs_to :user
