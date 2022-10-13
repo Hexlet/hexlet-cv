@@ -85,6 +85,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'ancestry'
 gem 'cocoon'
 gem 'devise'
 gem 'devise-i18n'

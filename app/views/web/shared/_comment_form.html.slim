@@ -1,5 +1,7 @@
 = simple_form_for comment, url: url do |f|
   .mb-3
     = f.input :content, label: false, as: :text
+  -if parent_id.present?
+    = f.input :parent_id, as: :hidden, input_html: { value: parent_id }
   .mb-3
     = f.button :submit, class: 'btn-primary'

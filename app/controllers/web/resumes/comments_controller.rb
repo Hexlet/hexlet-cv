@@ -3,6 +3,7 @@
 class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   def edit
     @comment = resource_resume.comments.find_by user: current_user, id: params[:id]
+    @parent = @comment.parent_id
   end
 
   def update
@@ -20,6 +21,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
   def create
     form = Web::Resumes::CommentForm.new(resume_comment_params)
     @comment = Resume::CommentMutator.create(resource_resume, form.attributes, current_user)
+    @parent = @comment.parent_id
     if @comment.persisted?
       @comment.send_new_comment_email
       f(:success)

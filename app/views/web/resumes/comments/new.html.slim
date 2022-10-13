@@ -1,4 +1,4 @@
 - content_for :header do
   = t('.header')
 
-= render 'web/shared/comment_form', comment: @comment, url: resume_comments_path(resource_resume)
+= render partial: 'web/shared/comment_form', locals: { comment: @comment, url: resume_comments_path(resource_resume), parent_id: @parent }

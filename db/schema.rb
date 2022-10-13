@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_153127) do
+ActiveRecord::Schema.define(version: 2022_10_13_183711) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 2022_02_17_153127) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "resource_type", null: false
-    t.bigint "resource_id", null: false
+    t.integer "resource_id", null: false
     t.string "state"
     t.string "kind"
     t.datetime "created_at", precision: 6, null: false
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2022_02_17_153127) do
   end
 
   create_table "resume_answers", force: :cascade do |t|
-    t.bigint "resume_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "resume_id", null: false
+    t.integer "user_id", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -96,11 +96,13 @@ ActiveRecord::Schema.define(version: 2022_02_17_153127) do
   end
 
   create_table "resume_comments", force: :cascade do |t|
-    t.bigint "resume_id"
-    t.bigint "user_id"
+    t.integer "resume_id"
+    t.integer "user_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_resume_comments_on_ancestry"
     t.index ["resume_id"], name: "index_resume_comments_on_resume_id"
     t.index ["user_id"], name: "index_resume_comments_on_user_id"
   end

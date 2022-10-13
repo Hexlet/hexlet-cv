@@ -66,6 +66,6 @@
         = t('.add_a_comment')
       .collapse(id="new_answer_comment-#{answer.id}")
         - if user_signed_in?
-          = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer)
+          = render 'web/shared/comment_form', comment: answer.comments.build, url: answer_comments_path(answer), parent_id: nil
         - else
           = render 'comment_requires'

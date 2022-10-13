@@ -16,6 +16,8 @@ ru:
         publish: Опубликовать
         hide: В черновик
         cancel: Отмена
+      resume_comments:
+        add_a_comment: Добавить комментарий
       vacancy_form:
         archive: В архив
       work_fields:

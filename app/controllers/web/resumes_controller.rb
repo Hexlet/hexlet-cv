@@ -27,6 +27,8 @@ class Web::ResumesController < Web::ApplicationController
     @current_user_likes_by_answer_id = current_user_likes.index_by(&:answer_id)
     @resume_educations = @resume.educations.web
     @resume_works = @resume.works.web
+    @comment = @resume.comments.build
+    @resume_comments = @resume.comments.web.includes(:user).arrange
 
     set_meta_tags canonical: resume_url(@resume)
     set_meta_tags og: {

@@ -68,6 +68,8 @@ GEM
       activerecord (>= 6.0, < 7.1)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    ancestry (4.2.0)
+      activerecord (>= 5.2.6)
     ast (2.4.2)
     backport (1.2.0)
     bcrypt (3.1.18)
@@ -443,6 +445,7 @@ DEPENDENCIES
   aasm
   active_form_model (~> 0.4.1)
   acts-as-taggable-on
+  ancestry
   bootsnap
   byebug
   capybara

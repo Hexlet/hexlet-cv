@@ -39,6 +39,22 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
   end
 
+  test '#create (nested comment)' do
+    comment = resume_comments(:one)
+    resume = resumes(:one)
+    attributes = {
+      content: Faker::Lorem.sentence(word_count: 6)
+    }
+    assert_not(comment.has_children?)
+
+    post resume_comments_path(resume), params: { resume_comment: attributes.merge(parent_id: comment.id) }
+
+    new_comment = comment.children.find_by(attributes, user: @user)
+    assert { new_comment }
+    assert { comment.has_children? }
+    assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
+  end
+
   test '#create (invalid comment)' do
     resume = resumes(:one)
     attrs = FactoryBot.attributes_for('resume/comment', content: 'short')

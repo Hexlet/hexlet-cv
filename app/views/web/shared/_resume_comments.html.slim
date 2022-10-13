@@ -1,0 +1,30 @@
+- comments.each do |comment, child_comments|
+  hr.my-2
+  .d-flex.flex-column(id="comment-#{comment.id}")
+    .d-flex
+      .me-auto
+        span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+          == markdown2html comment.content
+        - if comment.user
+          span.me-1
+            = link_to comment.user, user_path(comment.user)
+        = link_to l(comment.created_at, format: :short), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
+      - if comment.user == current_user
+        .d-flex
+          .me-2
+            = link_to edit_resume_comment_path(resume, comment)
+              span.bi.bi-pen-fill.text-secondary
+
+          div
+            = link_to resume_comment_path(resume, comment), method: :delete, data: { confirm: t('confirm') } do
+              span.bi.bi-x-lg.text-secondary
+
+    a.d-block.small.text-muted(href="#new_comment-#{comment.id}" data-bs-toggle="collapse")
+      = t('.add_a_comment')
+    .collapse(id="new_comment-#{comment.id}")
+      = render partial: 'web/shared/comment_form', locals: { comment: current_comment, url: resume_comments_path(resume), parent_id: comment.id }
+
+    - if child_comments
+        .text-muted
+          .m-2
+            = render partial: 'web/shared/resume_comments', locals: { comments: child_comments, resume:, current_comment: }
