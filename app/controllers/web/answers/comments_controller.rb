@@ -3,6 +3,7 @@
 class Web::Answers::CommentsController < Web::Answers::ApplicationController
   def edit
     @comment = resource_answer.comments.find params[:id]
+    @parent = @comment.parent_id
     authorize @comment
   end
 
@@ -22,6 +23,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
   def create
     form = Web::Resumes::Answers::CommentForm.new(answer_comment_params)
     @comment = Resume::Answer::CommentMutator.create(resource_answer, form.attributes, current_user)
+    @parent = @comment.parent_id
     if @comment.persisted?
       @comment.send_new_comment_email
       f(:success)

@@ -28,7 +28,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    resume = resumes(:one)
+    resume = resumes(:two)
     attrs = FactoryBot.attributes_for('resume/comment')
     post resume_comments_path(resume), params: { resume_comment: attrs }
     assert_response :redirect
@@ -40,7 +40,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create (nested comment)' do
-    comment = resume_comments(:one)
+    comment = resume_comments(:one_full)
     resume = resumes(:one)
     attributes = {
       content: Faker::Lorem.sentence(word_count: 6)
@@ -52,7 +52,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     new_comment = comment.children.find_by(attributes, user: @user)
     assert { new_comment }
     assert { comment.has_children? }
-    assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
+    assert { Notification.find_by(user: comment.user, resource: new_comment, kind: :new_nested_comment) }
   end
 
   test '#create (invalid comment)' do

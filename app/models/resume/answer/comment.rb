@@ -3,6 +3,7 @@
 class Resume::Answer::Comment < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10, maximum: 400 }
 
+  has_ancestry
   belongs_to :resume
   belongs_to :answer, inverse_of: :comments
   belongs_to :user

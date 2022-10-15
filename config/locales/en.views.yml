@@ -4,9 +4,11 @@ en:
       resume_form:
         publish: Publish
         hide: Draft
+      resume_comments:
+        add_a_comment: Add a Comment
       vacancy_form:
         archive: Archive
-      answer:
+      answer_comments:
         add_a_comment: Add a comment
       empty_list:
         empty: List is empty

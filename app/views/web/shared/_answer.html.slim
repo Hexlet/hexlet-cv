@@ -43,24 +43,7 @@
         == markdown2html answer.content
       - if answer.comments.web.any?
         .small
-          - answer.comments.web.each do |comment|
-            hr.my-2
-            .d-flex(id="answer_comment-#{comment.id}")
-              .me-auto
-                span.me-2.hexlet-cv-content.hexlet-cv-inline-paragraph
-                  == markdown2html comment.content
-                - if comment.user
-                  span.me-1
-                    = link_to comment.user, user_path(comment.user)
-                = link_to l(comment.created_at, format: :short), url_for(anchor: "answer_comment-#{comment.id}"), class: 'text-muted'
-              - if comment.user == current_user
-                .d-flex
-                  .me-2
-                    = link_to edit_answer_comment_path(answer, comment)
-                      span.bi.bi-pen-fill.text-secondary
-                  div
-                    = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
-                      span.bi.bi-x-lg.text-secondary
+          = render partial: 'web/shared/answer_comments', locals: { comments: answer.comments.web.includes(:user).arrange, answer:, current_comment: answer.comments.build }
       hr.my-2
       a.d-block.small.text-muted(href="#new_answer_comment-#{answer.id}" data-bs-toggle='collapse')
         = t('.add_a_comment')

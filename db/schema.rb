@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_13_183711) do
+ActiveRecord::Schema.define(version: 2022_10_15_000619) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2022_10_13_183711) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_resume_answer_comments_on_ancestry"
     t.index ["answer_id"], name: "index_resume_answer_comments_on_answer_id"
     t.index ["answer_user_id"], name: "index_resume_answer_comments_on_answer_user_id"
     t.index ["resume_id"], name: "index_resume_answer_comments_on_resume_id"

@@ -28,6 +28,8 @@ ru:
         add_a_comment: Добавить комментарий
         apply: Принять
         title_apply: Принять рекомендации
+      answer_comments:
+        add_a_comment: Добавить комментарий
       empty_list:
         empty: Список пуст
     home:
