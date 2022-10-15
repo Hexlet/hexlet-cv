@@ -19,6 +19,20 @@ en:
       unsubscribe: You can unsubscribe from the newsletter in
       settings: settings
       subject: New comment for your recommendation.
+  answer_nested_comment_mailer:
+    new_comment_email:
+      content: 'Content:'
+      new_comment: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> wrote <a href="%{comment_path}">reply</a> to your comment
+      unsubscribe: You can unsubscribe from the newsletter in
+      settings: settings
+      subject: Your comment has been replied to
+  resume_nested_comment_mailer:
+    new_comment_email:
+      content: 'Content:'
+      new_comment: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> wrote <a href="%{comment_path}">reply</a> to your comment
+      unsubscribe: You can unsubscribe from the newsletter in
+      settings: settings
+      subject: Your comment has been replied to
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'

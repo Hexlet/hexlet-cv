@@ -25,7 +25,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
     @comment = Resume::Answer::CommentMutator.create(resource_answer, form.attributes, current_user)
     @parent = @comment.parent_id
     if @comment.persisted?
-      @comment.send_new_comment_email
+      @parent ? @comment.send_new_nested_comment_email(@parent) : @comment.send_new_comment_email
       f(:success)
       redirect_to resume_path(resource_answer.resume)
     else

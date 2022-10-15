@@ -21,4 +21,12 @@ class Resume::Answer::Comment < ApplicationRecord
 
     AnswerCommentMailer.with(comment: self).new_comment_email.deliver_later
   end
+
+  def send_new_nested_comment_email(parent_id)
+    user = answer.comments.find_by(id: parent_id).user
+    return nil unless user.can_send_email? && user.resume_mail_enabled
+
+    # debugger
+    AnswerNestedCommentMailer.with(comment: self, user:).new_comment_email.deliver_later
+  end
 end

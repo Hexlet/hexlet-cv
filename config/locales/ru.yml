@@ -18,6 +18,20 @@ ru:
       unsubscribe: Вы можете отписаться от рассылки в
       settings: настройках
       subject: К вашей рекомендайии ноый коментарий.
+  answer_nested_comment_mailer:
+    new_comment_email:
+      content: 'Содержание:'
+      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> написал <a href="%{comment_path}">ответ</a> на ваш коментарий
+      unsubscribe: Вы можете отписаться от рассылки в
+      settings: настройках
+      subject: Поступил ответ на ваш комментарий
+  resume_nested_comment_mailer:
+    new_comment_email:
+      content: 'Содержание:'
+      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> написал <a href="%{comment_path}">ответ</a> на ваш коментарий
+      unsubscribe: Вы можете отписаться от рассылки в
+      settings: настройках
+      subject: Поступил ответ на ваш комментарий
   resume_comment_mailer:
     new_comment_email:
       content: 'Содержание:'
