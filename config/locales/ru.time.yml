@@ -1,5 +1,5 @@
 ru:
   time:
     formats:
-      default: "%d-%m-%Y %H:%M:%S"
+      long_schema: "%d-%m-%Y %H:%M:%S"
       schema: '%m/%d/%Y'

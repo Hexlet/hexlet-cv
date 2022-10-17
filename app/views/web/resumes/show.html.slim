@@ -49,7 +49,7 @@
                 - if comment.user
                   span.me-1
                     = link_to comment.user, user_path(comment.user)
-                = link_to l(comment.created_at), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
+                = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
               - if comment.user == current_user
                 .d-flex
                   .me-2

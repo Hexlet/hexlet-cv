@@ -1,4 +1,18 @@
 en:
+  months_nominative_case:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
   recaptcha:
     errors:
       verification_failed: 'Confirm that you are not a robot!'
