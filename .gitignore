@@ -38,9 +38,6 @@ yarn-debug.log*
 doc
 .env
 
-# Ignore docker and docker-compose files
-docker-compose.yml
-
 # Ignore coverage files
 /coverage
 .tool-versions
