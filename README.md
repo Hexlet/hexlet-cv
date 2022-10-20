@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/maintainability)](https://codeclimate.com/github/Hexlet/hexlet-cv/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ac489ba3a4c73baf89a9/test_coverage)](https://codeclimate.com/github/Hexlet/hexlet-cv/test_coverage)
-[![github action status](https://github.com/Hexlet/hexlet-cv/workflows/Main%20workflow/badge.svg)](https://actions-badge.atrox.dev/Hexlet/hexlet-cv/goto?ref=main)
+[![github action status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2F%2FHexlet%2Fhexlet-cv%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/Hexlet/hexlet-cv/goto?ref=main)
 
 ## About
 The purpose of Hexlet CV is to provide a community platform where you get resume recommendations from community members and professional HR.
