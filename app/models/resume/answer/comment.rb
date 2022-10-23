@@ -16,7 +16,8 @@ class Resume::Answer::Comment < ApplicationRecord
   end
 
   def send_new_comment_email
-    return nil unless resume.user.can_send_email? && resume.user.resume_mail_enabled
+    user = answer.user
+    return nil unless user.can_send_email? && user.resume_mail_enabled && !user.author?(self)
 
     AnswerCommentMailer.with(comment: self).new_comment_email.deliver_later
   end

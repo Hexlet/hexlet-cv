@@ -63,4 +63,22 @@ class Web::Answers::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert { !Notification.find_by(resource: comment) }
   end
+
+  test 'new comment email' do
+    answer = resume_answers(:one)
+    attrs = FactoryBot.attributes_for('resume/answer/comment')
+
+    assert_emails 1 do
+      post answer_comments_path(answer), params: { resume_answer_comment: attrs }
+    end
+  end
+
+  test 'author of the summary matches the author of the comment' do
+    answer = resume_answers(:one_full)
+    attrs = FactoryBot.attributes_for('resume/answer/comment')
+
+    assert_emails 0 do
+      post answer_comments_path(answer), params: { resume_answer_comment: attrs }
+    end
+  end
 end

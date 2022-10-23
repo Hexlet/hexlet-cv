@@ -80,4 +80,13 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
       post resume_answers_path(resume), params: { resume_answer: attrs }
     end
   end
+
+  test 'author of the summary matches the author of the answer' do
+    resume = resumes(:one)
+    attrs = FactoryBot.attributes_for 'resume/answer'
+
+    assert_emails 0 do
+      post resume_answers_path(resume), params: { resume_answer: attrs }
+    end
+  end
 end
