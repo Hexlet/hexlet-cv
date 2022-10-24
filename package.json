@@ -4,6 +4,9 @@
   "simple-git-hooks": {
     "pre-push": "make lint"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.16.0",
     "@hotwired/turbo-rails": "^7.1.0",
