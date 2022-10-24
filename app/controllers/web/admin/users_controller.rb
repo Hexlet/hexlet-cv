@@ -7,6 +7,10 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     @users = @q.result(distinct: true).page(params[:page])
   end
 
+  def edit
+    @user = User.find params[:id]
+  end
+
   def update
     user = User.find params[:id]
     @user = user.becomes(Web::Admin::UserForm)
@@ -16,9 +20,5 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     else
       render :edit
     end
-  end
-
-  def edit
-    @user = User.find params[:id]
   end
 end

@@ -7,6 +7,11 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     @vacancies = @q.result(distinct: true).page(params[:page])
   end
 
+  def edit
+    vacancy = Vacancy.find params[:id]
+    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
+  end
+
   def update
     vacancy = Vacancy.find params[:id]
     @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
@@ -16,10 +21,5 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     else
       render :edit
     end
-  end
-
-  def edit
-    vacancy = Vacancy.find params[:id]
-    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
   end
 end

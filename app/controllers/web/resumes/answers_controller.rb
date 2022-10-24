@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
-  def edit
+  def show
     @answer = resource_resume.answers.find params[:id]
-    authorize @answer
   end
 
   def change_applying_state
@@ -15,21 +14,9 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
     redirect_to resume_path(resource_resume)
   end
 
-  def update
+  def edit
     @answer = resource_resume.answers.find params[:id]
     authorize @answer
-    answer = @answer.becomes(Web::Resumes::AnswerForm)
-    if answer.update(resume_answer_params)
-      f(:success)
-      redirect_to resume_path(resource_resume)
-    else
-      @answer = answer.becomes(Resume::Answer)
-      render :edit
-    end
-  end
-
-  def show
-    @answer = resource_resume.answers.find params[:id]
   end
 
   def create
@@ -43,6 +30,19 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
       redirect_to resume_path(resource_resume)
     else
       render :new
+    end
+  end
+
+  def update
+    @answer = resource_resume.answers.find params[:id]
+    authorize @answer
+    answer = @answer.becomes(Web::Resumes::AnswerForm)
+    if answer.update(resume_answer_params)
+      f(:success)
+      redirect_to resume_path(resource_resume)
+    else
+      @answer = answer.becomes(Resume::Answer)
+      render :edit
     end
   end
 

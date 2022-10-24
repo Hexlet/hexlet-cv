@@ -9,6 +9,12 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     @resume = Resume.new
   end
 
+  def edit
+    @resume = current_user.resumes.find params[:id]
+    @resume_educations = @resume.educations.web
+    @resume_works = @resume.works.web
+  end
+
   def create
     @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
@@ -35,12 +41,6 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
       f(:error)
       render :edit
     end
-  end
-
-  def edit
-    @resume = current_user.resumes.find params[:id]
-    @resume_educations = @resume.educations.web
-    @resume_works = @resume.works.web
   end
 
   def destroy; end
