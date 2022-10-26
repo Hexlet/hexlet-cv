@@ -1,15 +1,37 @@
 en:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
     required:
       # text: 'required'
       # mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       html: '<span title="required">*</span>'
-    error_notification:
-      default_message: "Please review the problems below:"
+    labels:
+      q:
+        first_name_or_last_name_or_email_cont: Entry by name, surname, mail
+        name_cont: Entry by name
+        user_first_name_or_user_last_name_cont: Entry by first or last name
+        user_email_cont: Entry by user email
+        company_name_cont: Entry by company name
+    placeholders:
+      resume_answer:
+        show:
+          content: Leave your recommendations for improving the resume. The editor supports markdown.
+      defaults:
+        city: City
+        direction: Direction
+    options:
+      web_vacancies_search_form:
+        level:
+          intern: Trainee
+          junior: Junior
+          middle: Middle
+          senior: Senior
+    prompts:
+      web_vacancies_search_form:
+        level: Choose a level
+        direction: Choose a direction
+
     # Examples
     # labels:
     #   defaults:
@@ -19,10 +41,40 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    hints:
+      resume_comment:
+        content: Length cannot exceed 400 characters
+      resume_answer_comment:
+        content: Length cannot exceed 400 characters
+      vacancy:
+        title: Software Engineer, Android developer, … (no level required)
+        direction_list: |
+          It is better to indicate the full stack of technologies in the description. This is a tag field to help potential job seekers find your jobs faster. Here you need to specify only what you can say about the X-developer, for example: android, ios, php, js, java, etc.
+        technology_list: |
+          For example, json, ajax, …
+        location: Street, house, office
+        position_level: If the job considers different levels of candidates, specify the minimum one
+        city_name: If the work is remote or there are many offices, specify the city where the main office is located
+        company_name: It is necessary to specify the real name of the company, by which applicants will be able to find information about the employer
+        site: Plain address (no tags). It is recommended to specify either a link to the home page of the website, or a page about the company where the potential candidate can learn more about the employer
+        contact_phone: The field is public and indexable, visible to all
+        contact_telegram: Profile link, as in https://t.me/username (e.g. https://t.me/hexlet_ru)
+        contact_email: The field is public and indexable, visible to all
+        link_for_contact: |
+          Provide a link to the page with the job description and the feedback form, or a link to the same job posted on another website. The link must be clean, with no tags or advertising parameters
+        description: |
+          В поле используется разметка Markdown (https://guides.hexlet.io/markdown/). Допускается публикация только чистого и форматированного текста (без эмоджи, рекламных вставок и тд)
+      resume:
+        hexlet_url: 'link to your Hexlet account: https://ru.hexlet.io/u/mokevnin'
+        github_url: 'link to your GitHub account: https://github.com/mokevnin'
+        contact: 'Email address, phone number'
+        name: PHP programmer, Android developer, ...
+        skills_description: PHP, Vim, AWS, Agile metodologies
+        awards_description: Participation in competitions, hackathons and other specialized events. Courses.
+        educations:
+          description: Level of education, Field of study, College or University
+        works:
+          description: Outline your responsibilities and achievements
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

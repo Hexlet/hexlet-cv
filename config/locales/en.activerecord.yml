@@ -1,12 +1,112 @@
 en:
   activerecord:
-    attributes:
+    models:
+      resume: Resume
+      user: User
+      resume/answer: Recommendation
+      resume/comment: Comment
+      answer/comment: Comment
+    events:
       user:
-        resume_mail_enabled: Newsletters of activity in your CV
+        ban: Ban
+        unban: Unban
+      resume:
+        publish: Publish
+        hide: Draft
+        archive: To archive
+        restore: Restore from archive
+      vacancy:
+        publish: Publish
+        archive: Archive
+      # errors:
+      #   models:
+      #     resume/answer/like:
+      #       attributes:
+      #         user:
+      #           answer_owner: Нельзя лайкнуть свой ответ :)
+    attributes:
+      resume/answer:
+        content: Answer
+        applying_state/pending: Awaiting confirmation
+        applying_state/applied: Changes applied
+      resume/job:
+        content: Description
+      resume/comment:
+        content: Comment
+      answer/comment:
+        content: Comment
+      vacancy:
+        conditions_description: Supplemental Pay
+        requirements_description: Requirements
+        responsibilities_description: Responsibilities
+        salary_currency: Currency
+        salary_amount_type: Pay
+        about_company: About company
+        about_project: About project
+        experience_description: Experience
+        link_for_contact: Additional links
+        title: Job title
+        programming_lanuage: Язык
+        employment_type: Job type
+        country: Country
+        city_name: City
+        location: Address
+        technologies: Tecnologies
+        directions: Directions
+        salary: Pay
+        salary_from: Pay from
+        salary_to: Pay to
+        position_level: Level
+        location_of_position: Work location
+        company_name: Company name
+        site: Company website
+        contact_name: Your first and last name
+        contact_phone: Your phone number
+        contact_email: Your email
+        contact_telegram: Your telegram
+        technology_list: Technologies
+        direction_list: Tags
+        state: State
+        state/published: Published
+        name: Name
+        company: Company
+      user:
+        resume_answer_likes_count: Likes
+        first_name: First name
+        last_name: Surname
+        name: Name
+        about: Bio
+        resume_mail_enabled: Receive emails from Hexlet CV when somebody interacts with your CV
+        role: Role
+        state: State
+        state/permitted: Active
+        state/banned: Banned
       resume/work:
-        current: To present
+        company: Company
+        position: Job title
+        begin_date: From
+        end_date: To
+        current: I currently work here
+        description: Description
       resume/education:
+        description: Description
+        institution: Institution
+        faculty: Faculty
+        begin_date: From
+        end_date: To
         current: To present
       resume:
         city: City
         relocation: Redy relocation
+        name: Desired Job Title
+        summary: Description
+        hexlet_url: Hexlet
+        github_url: GitHub
+        contact: Contact information
+        english_fluency: Languages
+        skills_description: Skills
+        awards_description: Awards, Certificates
+        state: Status
+        state/draft: Draft
+        state/published: Published
+        state/archived: Archived

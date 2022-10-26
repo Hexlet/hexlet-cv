@@ -1,87 +1,209 @@
 en:
   web:
+    errors:
+      server_error:
+        header: Something went wrong
+        explanation: It lookns we have a bug in the code. The programmers have already sent a message, it remains to wait a bit. In the meantime, you can try to walk around in other sections (if they work)
+      not_found:
+        header: Oops, it's empty
+        explanation: This happens when a page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
       resume_form:
-        publish: Publish
-        hide: Draft
-      vacancy_form:
-        archive: Archive
+        work: Work experience
+        education: Education
+        add_work: Add
+        add_education: Add
+        publish: Post 
+        hide: Draft 
+        cancel: Discart
+      vacancy_form:   
+        archive: Archive     
+        cancel: Cancel
+      work_fields:
+        remove_work: Delete work experience
+      education_fields:
+        remove_education: Delete education
       answer:
         add_a_comment: Add a comment
+        apply: Apply
+        title_apply: Apply recommendations
       empty_list:
-        empty: List is empty
+        empty: Empty
     home:
       index:
+        title: CV reviews
+        header: CV reviews
         description: The platform that helps you get recommendations on CV from community members and professional HR. Publish resumes and leave recommendations to other participants.
+        newest: New
+        popular: Popular
+        without_answers: No recommendations
+        all: All
+        answers:
+          one: Answer
+          other: Answers
+        views:
+          one: View
+          other: Views
+        likes: Likes
+    vacancy_filters:
+      show:
+        options:
+          position_level:
+            default:
+              title: |
+                Vacancies for %{position_level} %{direction} developers %{city_description}, work, fresh vacancies
+              header: |
+                Vacancies for %{position_level} %{direction} developers %{city_description}
+              description: |
+                Actual vacancies for %{position_level} %{direction} developers %{city_description}. Работа для %{position_level}-programmers, compilation from the editors of Hexlet CV
+            intern:
+              title: |
+                Internships for Junior %{direction} developers %{city_description}, work, fresh vacancies
+              header: |
+                Internships for Junior %{direction} developers %{city_description}
+              description: |
+                Actual internships for Junior %{direction} developers %{city_description}. Internship for Junior developers, a compilation from the editors of Hexlet CV
+
+          city_name:
+            title: |
+              Vacancies for %{direction} developers %{city_description}
+            header: |
+              Vacancies for %{direction} developers %{city_description}
+            description: |
+              Actual vacancies %{direction} developers and programmers %{city_description}
+
+          direction:
+            title: |
+              Vacancies for %{direction} developers
+            header: |
+              Vacancies for %{direction} developers
+            description: |
+              Actual vacancies for %{direction} developers. Work for %{direction}-programmers, compilation from the editors of Hexlet CV
+    vacancies:
+      show:
+        title: "Vacancy %{body}"
+        vacancy_archived: Vacancy is archived
+        similar_vacancies: Related jobs
+        developers_in_the_city: "%{position_level} %{direction} in %{city_name}"
+        from_hexlet: When applying for a vacancy, indicate that you are from Hexlet =)
+      index:
+        header: Jobs for developers
+        title: Jobs for programmers
+        description: |
+          Current vacancies for developers and programmers of various levels from the editors of Hexlet CV
     resumes:
+      index:
+        title: Hexlet CV
+        description: A platform that helps get recommendations for improving resumes from community members and professional HR. Post your resume and leave recommendations to other participants.
       answers:
         new:
-          header: New recomendation
+          header: New recommendation
         edit:
-          header: Edit recomendation
+          header: Edit a recommendation
       information:
         basic: Basic
         work: Work
         education: Education
-        current: to present
+        current: To present
+        contact: Contact
       show:
+        apply: Apply
         add_a_comment: Add a comment
-        recomendations: Recomendations
+        recomendations: Recommendations
         answer_exists: You've already left a recommendation
+        title_apply: Mark the recommendation as applied. Click only when changes have been made to the resume.
         likes: |
-          Likes: %{count}
+          Liked: %{count}
         archived: Resume in archive
         download: Download PDF
         print: Preview PDF
+      answer_requires:
+        write_answer: Sign in to write an answer
+        sign_up: Sign up
+        sign_in: Sign in
       comments:
         new:
           header: New comment
         edit:
           header: Edit comment
-      answer_requires:
-        write_answer: Sign in to write an answer
-        sign_up: Sign up
-        sign_in: Sign in
-    users:
-      show:
-        header: Profile
-        answers: Answers
-        likes: Likes
-        resumes: Resume
-        tab_resumes: Resume
-        tab_answers: Answers
-        tab_comments: Comments
-        banned: Account has been banned
-    answers:
-      comments:
-        edit:
-          header: Edit comment
-    pages:
-      about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
+      pdfs:
+        base:
+          basic: Basic
+          work: Work
+          education: Education
+          current: Current
     account:
       vacancies:
         new:
           header: New vacancy
         edit:
           header: Edit vacancy
-          vacancy_archived: Vacancy archived
+          vacancy_archived: Vacancy is archived
         index:
           header: My vacancies
       resumes:
-        edit:
-          header: Edit resume
         new:
           header: New resume
+        edit:
+          header: Edit CV
         index:
           header: My resumes
       profiles:
         edit:
           header: Settings
         show:
-          header: Settings
+          header: Profile
+          edit_profile:  Edit profile
+          my_comments: My comments
+          my_answers: My recommendations
       notifications:
         index:
           header: Notifications
       newsletters:
         edit:
-          header: Newsletters
+          header: Email settings
+    users:
+      index:
+        header: Rating
+        title: Users profiles
+        description: Users profiles – Hexlet CV
+      show:
+        answers:
+          one: Answer
+          other: Answers
+        comments:
+          one: Comment
+          other: Comments
+        likes:
+          one: Like
+          other: Likes
+        tab_resumes: CV
+        tab_answers: Answers
+        tab_comments: Comments
+        banned: Account was banned
+      resumes:
+        answers:
+          one: Answer          
+          other: Answers
+        views:
+          one: View
+          other: Views
+          answers:
+      comments:
+        new:
+          header: Create a comment
+        edit:
+          header: Edit comment
+    pages:
+      about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
+      about_title: About
+    admin:
+      resumes:
+        edit:
+          header: Edit a resume
+      vacancies:
+        edit:
+          header: Edit vacancy
+      users:
+        edit:
+          header: Edit user

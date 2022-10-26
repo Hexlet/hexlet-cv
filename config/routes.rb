@@ -10,8 +10,11 @@ Rails.application.routes.draw do
                                     registrations: 'web/devise/registrations' }
 
   scope module: :web do
-    root 'home#index'
+    scope '(:locale)', locale: /en|ru/ do
+      root 'home#index'
+    end
     resources :vacancies, only: %i[index show]
+
     # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
     resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
       collection do

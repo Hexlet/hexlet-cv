@@ -32,6 +32,8 @@ module HexletCv
     config.load_defaults 6.1
     config.exceptions_app = routes
 
+    config.i18n.available_locales = %i[en ru]
+
     # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsenvironmentvariableaccess
     config.vars = {
       ga: ENV.fetch('GOOGLE_ANALYTICS_KEY', nil),
@@ -43,7 +45,7 @@ module HexletCv
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.i18n.default_locale = :ru
+    config.i18n.default_locale = :en
     config.generators do |g|
       g.assets false
     end

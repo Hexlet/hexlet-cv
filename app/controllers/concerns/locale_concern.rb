@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+module LocaleConcern
+  extend ActiveSupport::Concern
+
+  included do
+    around_action :switch_locale
+  end
+
+  def switch_locale(&)
+    locale = extract_locale || I18n.default_locale
+    I18n.with_locale(locale, &)
+    @locale = I18n.locale
+    session[:locale] = @locale
+  end
+
+  def extract_locale
+    locale = params[:locale]
+    return locale if I18n.available_locales.map(&:to_s).include?(locale)
+
+    nil
+  end
+end

@@ -1,22 +1,45 @@
 en:
   layouts:
+    web:
+      admin:
+        application:
+          admin: Admins
+          all_users: All users
+          all_resumes: All resumes
+          all_vacancies: All jobs
+      account:
+        application:
+          resumes: My CV
+          vacancies: My jobs
+          settings: Settings
+          notifications: Notifications
+          newsletters: Newsletters
     shared:
-      sidebar:
-        all_resumes: All resumes
-        my_profile: My profile
-        my_resume: My resume
-        settings: Settings
-        notifications: Notifications
-        newsletters: Newsletters
-      sidebar_right:
-        last_answers: Last answers
+      last_answers:
+        title: Comments
+        answers:
+          one: 1 Answer
+          other: |
+            %{count} Answers
       nav:
-        add_resume: Add resume
-        how_to_create_resume: How to create resume
-        my_profile: My profile
+        name: Hexlet CV
+        en: English
+        ru: Russian
+        admin: Admin panel
+        vacancies: Find jobs
+        rating: Rating
+        resumes: CV reviews
+        add: Post
+        add_resume: CV
+        add_vacancy: Job
+        my_resumes: My CV
+        my_vacancies: My jobs
+        how_to_create_resume: How to create a resume
+        profile: Profile
         settings: Settings
-        sign_out: Sign out
+        newsletters: Newsletters
         sign_in: Sign in
+        sign_out: Sign out
         register: Sign up
       footer:
         about: About
@@ -24,7 +47,14 @@ en:
         other_os_projects: Other open-source projects
         help: Help
         knowledge: Knowledge
-        blog: Blog
+        success_stories: Success stories
+        employment_course: Employment course
+        code_basics: Code Basics
+        code_battle: Codebattle
+        guides: Hexlet guides
         recommended_books: Recommended books
+        test_assigments: Test assignments
         additionally: Additionally
-    application:
+        books_link: https://hexlet.io/pages/recommended-books
+        guides_link: https://guides.hexlet.io/
+        basics_link: https://code-basics.com/

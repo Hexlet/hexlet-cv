@@ -1,6 +1,6 @@
 .container
   header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
-    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href="/") = t('application_name')
+    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href=root_url) = t('.name')
     / .me-3
       / = link_to resumes_url(format: :rss) do
       /   span.bi.bi-rss.text-muted
@@ -34,7 +34,6 @@
             .dropdown-divider
             - if current_or_guest_user.admin?
               li = link_to t('.admin'), admin_root_path, class: 'dropdown-item'
-
             li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'
             li = link_to t('.my_resumes'), account_resumes_path, class: 'dropdown-item'
             li = link_to t('.my_vacancies'), account_vacancies_path, class: 'dropdown-item'
@@ -45,3 +44,10 @@
       - else
         = nav_menu_item t('.sign_in'), new_user_session_path
         = nav_menu_item t('.register'), new_user_registration_path
+      li.nav-item.dropdown
+        a.nav-link.text-dark.dropdown-toggle href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+          span.me-2 = I18n.locale.upcase
+        ul.dropdown-menu.dropdown-menu-end
+            - I18n.available_locales.without(I18n.locale).each do |locale|
+              = link_to switch_locale_url(locale), class: 'dropdown-item d-flex' do
+                span.my-auto = t(".#{locale}")

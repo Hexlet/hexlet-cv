@@ -1,0 +1,32 @@
+en:
+  enumerize:
+    salary_amount_type:
+      gross: Salary before deductions
+      net: Net salary
+      depends: By agreement
+    location_of_position:
+      remote: Remote
+      onsite: In person
+      hybrid: Hybrid remote
+    salary_currency:
+      rub: ₽
+      eur: €
+      usd: $
+    employment_type:
+      full-time: Full-time
+      part-time: Part-time
+      contract: Fixed term contract
+      temporary: Temporary contract
+      seasonal: Seasonal work
+      internship: Internship
+    position_level:
+      intern: Trainee
+      junior: Junior
+      middle: Middle
+      senior: Senior
+    english_fluency:
+      dont_know: Don't know
+      basic: Basic knowledge
+      read: Reading professional literature
+      pass_interview: I can do interviews
+      fluent: Speak fluently

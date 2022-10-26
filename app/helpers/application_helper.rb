@@ -2,6 +2,23 @@
 
 module ApplicationHelper
   # include AuthManagement
+
+  def switch_locale_url(locale)
+    if locale == I18n.default_locale # en == en / перключаем на en
+      url_for('locale' => nil)
+    else
+      url_for('locale' => locale)
+    end
+  end
+
+  def root_url
+    if I18n.locale.to_s == 'en'
+      '/'
+    else
+      '/ru'
+    end
+  end
+
   def let(value)
     yield value
   end

@@ -24,6 +24,9 @@ ru:
           many: |
             %{count} Ответов
       nav:
+        name: Hexlet CV
+        en: Английский
+        ru: Русский
         admin: Админка
         vacancies: Вакансии
         rating: Рейтинг
@@ -48,7 +51,12 @@ ru:
         knowledge: База знаний
         success_stories: Истории успеха
         employment_course: Курс по трудоустройству
+        code_basics: Основы программирования
+        code_battle: КодБатл(Игра для прокачки)
+        guides: Гайды для программистов
         recommended_books: Рекомендуемые книги
         test_assigments: Тестовые задания
         additionally: Дополнительно
-    application:
+        books_link: https://ru.hexlet.io/pages/recommended-books
+        guides_link: https://guides.hexlet.io/ru/
+        basics_link: https://code-basics.com/ru
