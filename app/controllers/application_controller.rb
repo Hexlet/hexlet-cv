@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 
   include Pundit::Authorization
   include Sparkpost
-  include Mailer
   include Auth
   include Flash
 
