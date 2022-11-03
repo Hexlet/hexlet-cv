@@ -1,3 +1,5 @@
+include make-compose.mk
+
 test:
 	bin/rails test
 

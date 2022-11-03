@@ -7,6 +7,12 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
   end
 
+  def edit
+    @resume = Resume.find params[:id]
+    @resume_educations = @resume.educations.web
+    @resume_works = @resume.works.web
+  end
+
   def update
     resume = Resume.find params[:id]
     @resume = resume.becomes(Web::Admin::ResumeForm)
@@ -16,11 +22,5 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     else
       render :edit
     end
-  end
-
-  def edit
-    @resume = Resume.find params[:id]
-    @resume_educations = @resume.educations.web
-    @resume_works = @resume.works.web
   end
 end
