@@ -13,6 +13,7 @@ class Vacancy < ApplicationRecord
   enumerize :salary_currency, in: %w[rub usd eur], default: 'rub'
   enumerize :salary_amount_type, in: %w[gross net depends], default: 'net'
   enumerize :location_of_position, in: %w[remote onsite hybrid], default: 'onsite'
+  enumerize :locale, in: %i[en ru], default: :ru
   # enumerize :programming_language, in: PROGRAMMING_LANGAUGES, default: 'full-time', predicates: true, scope: true
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true
 

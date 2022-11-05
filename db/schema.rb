@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_153127) do
+ActiveRecord::Schema.define(version: 2022_11_05_015651) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2022_02_17_153127) do
     t.integer "answers_count", default: 0, null: false
     t.string "hexlet_url"
     t.string "contact"
+    t.string "locale"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
@@ -247,6 +248,7 @@ ActiveRecord::Schema.define(version: 2022_02_17_153127) do
     t.string "about_company"
     t.string "about_project"
     t.string "experience_description"
+    t.string "locale"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
