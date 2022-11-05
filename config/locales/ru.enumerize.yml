@@ -3,7 +3,7 @@ ru:
     relocation:
       another_country: Готов в другую страну
       another_city: Готов в рамках странны продивания
-      not_redy: Не готов
+      not_ready: Не готов
     salary_amount_type:
       gross: До вычетов
       net: На руки
