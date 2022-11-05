@@ -7,3 +7,6 @@ en:
         current: To present
       resume/education:
         current: To present
+      resume:
+        city: City
+        relocation: Redy relocation

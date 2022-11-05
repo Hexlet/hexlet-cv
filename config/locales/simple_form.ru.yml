@@ -65,6 +65,8 @@ ru:
         description: |
           В поле используется разметка Markdown (https://guides.hexlet.io/markdown/). Допускается публикация только чистого и форматированного текста (без эмоджи, рекламных вставок и тд)
       resume:
+        city: Укажите город вашего проживания
+        relocation: Укажите вашу готовность к релокации
         hexlet_url: 'Ссылка на профиль: https://ru.hexlet.io/u/mokevnin'
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
         contact: 'Предпочитаемый способ связи (емайл, линкендин, телеграмм и т.п.)'
