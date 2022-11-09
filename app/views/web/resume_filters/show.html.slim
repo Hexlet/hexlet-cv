@@ -1,9 +1,13 @@
-- title seo_for_paging(@page, t('.title'))
-- description seo_for_paging(@page, t('.description'))
+- set_meta_tags canonical: resume_filter_url(filter_slug(@options))
+- title @title
+- description @description
 
 - content_for :header do
-  = t('.header')
+  - @header
 
 = render partial: 'web/shared/resume_filter', locals: { resume_search_form: @resume_search_form, tags: @tags }
 
 = render partial: 'web/shared/resumes', object: @resumes
+
+- if @resumes.empty?
+  = render 'web/shared/empty_list'

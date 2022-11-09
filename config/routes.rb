@@ -29,6 +29,11 @@ Rails.application.routes.draw do
         resources :comments
       end
     end
+    resources :resume_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
+      collection do
+        get :search, format: true
+      end
+    end
     resources :answers, only: [] do
       scope module: :answers do
         resources :comments

@@ -1,0 +1,31 @@
+.nav.nav-pills.mb-3.justify-content-center
+  = filter_link(t('.all'), {}, class: 'nav-item nav-link')
+  = filter_link(t('.popular'), { created_at_gteq: Date.current - 1.week, popular_gteq: Date.current - 1.week, s: 'impressions_count desc' }, class: 'nav-item nav-link')
+  = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day, s: 'created_at desc' }, class: 'nav-item nav-link')
+  = filter_link(t('.without_answers'), { answers_count_eq: 0 }, class: 'nav-item nav-link')
+
+.mb-5
+  - resumes.each_with_index do |resume, i|
+    - if i != 0
+      hr
+    .card.mb-3.border-0
+      .card-body
+        .d-flex.flex-row
+          .d-flex.flex-column.me-4.text-center.mx-auto
+            .text-muted.mb-3.me-3
+              .h2.mb-0.fw-lighter = resume.answers.count
+              .small = t('.answers', count: resume.answers.count)
+            .text-muted.mb-3.me-3
+              .h2.mb-0.fw-lighter = resume.impressions_count
+              .small = t('.views', count: resume.impressions_count)
+          / .text-muted.text-center
+          /   .h2.mb-0.fw-lighter= 12
+          /   .small= t('.likes')
+          .d-flex.flex-column
+            h5.card-title = link_to resume, resume_path(resume)
+            .card-text.text-break.mb-2 = truncate_markdown(resume.summary, length: 200)
+            .text-end.small.mt-auto
+              span.me-3.text-muted
+                = distance_of_time_in_words_to_now resume.created_at
+              = link_to resume.user, user_path(resume.user)
+= paginate resumes

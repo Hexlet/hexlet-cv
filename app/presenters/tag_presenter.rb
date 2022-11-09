@@ -2,6 +2,6 @@
 
 module TagPresenter
   def tags_sorted_list(sort_method = 'ASC')
-    Vacancy.tags_on(:directions).order("lower(name) #{sort_method}").pluck(:name)
+    tags_on(:directions).order("lower(name) #{sort_method}").pluck(:name)
   end
 end

@@ -27,8 +27,17 @@ ru:
           junior: Джуниор
           middle: Мидл
           senior: Синьор
+      web_resumes_search_form:
+        level:
+          intern: Стажёр
+          junior: Джуниор
+          middle: Мидл
+          senior: Синьор
     prompts:
       web_vacancies_search_form:
+        level: Выберите уровень
+        direction: Выберите направление
+      web_resumes_search_form:
         level: Выберите уровень
         direction: Выберите направление
 

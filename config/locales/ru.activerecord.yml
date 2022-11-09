@@ -87,6 +87,9 @@ ru:
         state/draft: Черновик
         state/published: Опубликовано
         state/archived: В архиве
+        technology_list: Технологии
+        direction_list: Направления
+        position_level: Уровень
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения

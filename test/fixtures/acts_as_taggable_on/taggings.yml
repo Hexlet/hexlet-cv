@@ -1,19 +1,39 @@
-technologies-one:
+technologies-one-vacancy:
   tag: php
   taggable: one (Vacancy)
   context: technologies
 
-technologies-java-developer-android:
+technologies-one-resume:
+  tag: php
+  taggable: one (Resume)
+  context: technologies
+
+technologies-java-developer-android-vacancy:
   tag: android
   taggable: java-developer (Vacancy)
   context: technologies
 
-directions-one:
+technologies-java-developer-android-resume:
+  tag: android
+  taggable: java-developer (Resume)
+  context: technologies
+
+directions-one-vacancy:
   tag: php
   taggable: one (Vacancy)
   context: directions
 
-directions-java-developer-android:
+directions-one-resume:
+  tag: php
+  taggable: one (Resume)
+  context: directions
+
+directions-java-developer-android-vacancy:
   tag: android
   taggable: java-developer (Vacancy)
+  context: directions
+
+directions-java-developer-android-resume:
+  tag: android
+  taggable: java-developer (Resume)
   context: directions

@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "locale"
     t.string "city"
     t.string "relocation"
+    t.string "position_level"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 

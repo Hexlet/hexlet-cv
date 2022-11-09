@@ -28,8 +28,7 @@ ru:
         title_apply: Принять рекомендации
       empty_list:
         empty: Список пуст
-    home:
-      index:
+      resumes:
         title: Резюме программиста
         header: Резюме программистов
         description: Сервис для помощи в составлении резюме и поиска сотрудников в сфере IT. Создавайте резюме и откликайтесь на вакансии – Hexlet CV
@@ -64,7 +63,39 @@ ru:
                 Стажировки для Джуниор %{direction} разработчиков %{city_description}
               description: |
                 Актуальные стажировки для Джуниор %{direction} разработчиков %{city_description}. Стажировка для Джуниор разработчиков, подборка от редакции Hexlet CV
+          city_name:
+            title: |
+              Вакансии для %{direction} разработчиков %{city_description}
+            header: |
+              Вакансии для %{direction} разработчиков %{city_description}
+            description: |
+              Актуальные вакансии для %{direction} разработчиков и программистов %{city_description}
 
+          direction:
+            title: |
+              Вакансии для %{direction} разработчиков
+            header: |
+              Вакансии для %{direction} разработчиков
+            description: |
+              Актуальные вакансии для %{direction} разработчиков. Работа для %{direction}-программистов, подборка от редакции Hexlet CV
+    resume_filters:
+      show:
+        options:
+          position_level:
+            default:
+              title: |
+                Резюме для %{position_level} %{direction} разработчиков %{city_description}, работа, свежие резюме
+              header: |
+                Резюме для %{position_level} %{direction} разработчиков %{city_description}
+              description: |
+                Актуальные Резюме для %{position_level} %{direction} разработчиков %{city_description}. Резюме для %{position_level}-программистов, подборка от редакции Hexlet CV
+            intern:
+              title: |
+                Стажировки для Джуниор %{direction} разработчиков %{city_description}, работа, свежие вакансии
+              header: |
+                Стажировки для Джуниор %{direction} разработчиков %{city_description}
+              description: |
+                Актуальные стажировки для Джуниор %{direction} разработчиков %{city_description}. Стажировка для Джуниор разработчиков, подборка от редакции Hexlet CV
           city_name:
             title: |
               Вакансии для %{direction} разработчиков %{city_description}

@@ -3,11 +3,14 @@
 class Resume < ApplicationRecord
   include StateConcern
   extend Enumerize
+  extend TagPresenter
 
+  acts_as_taggable_on :technologies, :directions
   has_paper_trail
   is_impressionable counter_cache: true
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
+  enumerize :position_level, in: POSITION_LEVELS, default: 'junior', predicates: true, scope: true
   enumerize :locale, in: %i[en ru], default: :ru
   enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], default: :not_specified
 
@@ -16,6 +19,7 @@ class Resume < ApplicationRecord
   validates :github_url, presence: true
   validates :summary, presence: true, length: { minimum: 200 }
   validates :skills_description, presence: true
+  validates :position_level, presence: true
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy
