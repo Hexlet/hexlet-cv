@@ -42,6 +42,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
     @vacancy_search_form = Web::Vacancies::SearchForm.new(prepare_options_for_search_form(@options))
     @tags = Vacancy.tags_sorted_list
     @vacancies = scope
+    @page = params[:page]
   end
 
   def search

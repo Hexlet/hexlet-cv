@@ -1,6 +1,6 @@
 - set_meta_tags canonical: vacancy_filter_url(filter_slug(@options))
-- title @title
-- description @description
+- title tag_page(@page, @title)
+- description tag_page(@page, @description)
 
 - content_for :header do
   - @header

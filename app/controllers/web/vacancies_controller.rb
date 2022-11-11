@@ -5,6 +5,7 @@ class Web::VacanciesController < Web::ApplicationController
     @vacancies = Vacancy.web.page(params[:page])
     @vacancy_search_form = Web::Vacancies::SearchForm.new
     @tags = Vacancy.tags_sorted_list
+    @page = params[:page]
 
     respond_to do |format|
       format.html
