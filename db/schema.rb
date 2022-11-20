@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_05_015651) do
+ActiveRecord::Schema.define(version: 2022_11_05_022732) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -148,6 +148,8 @@ ActiveRecord::Schema.define(version: 2022_11_05_015651) do
     t.string "hexlet_url"
     t.string "contact"
     t.string "locale"
+    t.string "city"
+    t.string "relocation"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 

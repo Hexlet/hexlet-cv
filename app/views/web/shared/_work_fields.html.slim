@@ -6,9 +6,24 @@
       .mb-3
         = f.input :position
       .mb-3
-        = f.input :begin_date, as: :date, discard_day: true, prompt: true, start_year: 1970, end_year: Time.current.year, wrapper: :custom_vertical_date_select
+        = f.input :begin_date,
+                  as: :date,
+                  discard_day: true,
+                  use_month_names: t('months_nominative_case'),
+                  prompt: true,
+                  start_year: 1970,
+                  end_year: Time.current.year,
+                  wrapper: :custom_vertical_date_select
       .mb-3
-        = f.input :end_date, as: :date, discard_day: true, prompt: true, start_year: 1970, end_year: Time.current.year, wrapper: :custom_vertical_date_select
+        = f.input :end_date,
+                  as: :date,
+                  discard_day: true,
+                  use_month_names: t('months_nominative_case'),
+                  prompt: true,
+                  start_year: 1970,
+                  end_year: Time.current.year,
+                  wrapper: :custom_vertical_date_select
+
       .mb-3.d-flex.justify-content-end
         = f.input :current, as: :boolean
       .mb-3

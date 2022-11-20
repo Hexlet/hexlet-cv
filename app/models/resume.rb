@@ -9,6 +9,7 @@ class Resume < ApplicationRecord
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
   enumerize :locale, in: %i[en ru], default: :ru
+  enumerize :relocation, in: %i[another_country another_city not_ready], default: :not_ready
 
   validates :name, presence: true
   validates :english_fluency, presence: true

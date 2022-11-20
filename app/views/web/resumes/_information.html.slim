@@ -8,6 +8,18 @@
       b = han('user', 'name')
     .col-sm-9
       = link_to @resume.user, user_path(@resume.user)
+- if @resume.city
+  .row.mb-3
+    .col-sm-3
+      b = han('resume', 'city')
+    .col-sm-9.hexlet-cv-content
+      == markdown2html @resume.city
+- if @resume.relocation
+  .row.mb-3
+    .col-sm-3
+      b = han('resume', 'relocation')
+    .col-sm-9.hexlet-cv-content
+      == markdown2html @resume.relocation_text
 .row.mb-3
   .col-sm-3
     b = han('resume', 'summary')
