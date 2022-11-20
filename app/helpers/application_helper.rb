@@ -91,4 +91,10 @@ module ApplicationHelper
       .map { |k, v| "#{k}-#{v.downcase}" }
       .join('_')
   end
+
+  def seo_for_paging(number_page, text)
+    return text if number_page.nil?
+
+    "#{t('page', number: number_page)}-#{text}"
+  end
 end

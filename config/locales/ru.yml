@@ -25,6 +25,7 @@ ru:
   in_the_city: "в городе %{city_name}"
   remote_job: Удаленная работа
   confirm: Вы уверены?
+  page: Страница %{number}
   answer_comment_mailer:
     new_comment_email:
       content: 'Содержание:'

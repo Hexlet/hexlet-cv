@@ -1,5 +1,5 @@
-- title t('.title')
-- description t('.description')
+- title seo_for_paging(@page, t('.title'))
+- description seo_for_paging(@page, t('.description'))
 
 - content_for :header do
   = t('.header')
