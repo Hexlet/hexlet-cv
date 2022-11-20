@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_022732) do
     t.integer "answers_count", default: 0, null: false
     t.string "hexlet_url"
     t.string "contact"
+    t.string "locale"
     t.string "city"
     t.string "relocation"
     t.index ["user_id"], name: "index_resumes_on_user_id"
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_022732) do
     t.string "about_company"
     t.string "about_project"
     t.string "experience_description"
+    t.string "locale"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
