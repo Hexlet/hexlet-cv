@@ -92,9 +92,9 @@ module ApplicationHelper
       .join('_')
   end
 
-  def tag_page(number_page, text)
+  def seo_for_paging(number_page, text)
     return text if number_page.nil?
 
-    "#{t('.page', number: number_page)}-#{text}"
+    "#{t('page', number: number_page)}-#{text}"
   end
 end

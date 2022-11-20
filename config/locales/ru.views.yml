@@ -30,7 +30,6 @@ ru:
         empty: Список пуст
     home:
       index:
-        page: Страница %{number}
         title: Резюме программиста
         header: Резюме программистов
         description: Сервис для помощи в составлении резюме и поиска сотрудников в сфере IT. Создавайте резюме и откликайтесь на вакансии – Hexlet CV
@@ -49,7 +48,6 @@ ru:
         likes: Нравится
     vacancy_filters:
       show:
-        page: Страница %{number}
         options:
           position_level:
             default:
@@ -90,7 +88,6 @@ ru:
         developers_in_the_city: "%{position_level} %{direction} в городе %{city_name}"
         from_hexlet: При отклике на вакансию указывайте, что вы от Хекслета =)
       index:
-        page: Страница %{number}
         header: Вакансии для разработчиков
         title: Вакансии для программистов
         description: |
