@@ -75,6 +75,8 @@ ru:
       resume:
         name: Название
         summary: Описание
+        city: Город
+        relocation: Готовность к релокации
         hexlet_url: Hexlet
         github_url: GitHub
         contact: Контакт

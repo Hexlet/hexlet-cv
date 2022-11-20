@@ -8,6 +8,7 @@ class Resume < ApplicationRecord
   is_impressionable counter_cache: true
 
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
+  enumerize :relocation, in: %i[another_country another_city not_ready], default: :not_ready
 
   validates :name, presence: true
   validates :english_fluency, presence: true
