@@ -1,4 +1,4 @@
 ru:
   date:
     formats:
-      discard_day: '%b %Y'
+      discard_day: '%B %Y'

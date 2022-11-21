@@ -1,0 +1,4 @@
+en:
+  date:
+    formats:
+      discard_day: '%B %Y'
