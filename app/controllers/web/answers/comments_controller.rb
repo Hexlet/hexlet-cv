@@ -30,7 +30,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     comment = resource_answer.comments.find params[:id]
     authorize comment
