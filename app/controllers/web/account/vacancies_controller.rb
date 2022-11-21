@@ -9,6 +9,11 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     @vacancy = Web::Account::VacancyForm.new
   end
 
+  def edit
+    vacancy = current_user.vacancies.find params[:id]
+    @vacancy = vacancy.becomes(Web::Account::VacancyForm)
+  end
+
   def create
     @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
@@ -34,11 +39,6 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
       f(:error)
       render :edit
     end
-  end
-
-  def edit
-    vacancy = current_user.vacancies.find params[:id]
-    @vacancy = vacancy.becomes(Web::Account::VacancyForm)
   end
 
   def destroy; end
