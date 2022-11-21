@@ -60,6 +60,7 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_emails 1 do
       post resume_comments_path(resume), params: { resume_comment: attrs }
     end
+    assert_response :redirect
   end
 
   test 'author of the summary matches the author of the comment' do
@@ -69,5 +70,6 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_emails 0 do
       post resume_comments_path(resume), params: { resume_comment: attrs }
     end
+    assert_response :redirect
   end
 end

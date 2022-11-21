@@ -79,14 +79,16 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_emails 1 do
       post resume_answers_path(resume), params: { resume_answer: attrs }
     end
+    assert_response :redirect
   end
 
   test 'author of the summary matches the author of the answer' do
-    resume = resumes(:one)
+    resume = resumes(:one_without_answer)
     attrs = FactoryBot.attributes_for 'resume/answer'
 
     assert_emails 0 do
       post resume_answers_path(resume), params: { resume_answer: attrs }
     end
+    assert_response :redirect
   end
 end

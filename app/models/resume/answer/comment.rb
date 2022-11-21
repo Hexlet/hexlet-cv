@@ -14,4 +14,8 @@ class Resume::Answer::Comment < ApplicationRecord
   def to_s
     content
   end
+
+  def author?(user)
+    user_id == user.id
+  end
 end
