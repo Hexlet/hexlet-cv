@@ -32,7 +32,7 @@ ru:
       new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
       unsubscribe: Вы можете отписаться от рассылки в
       settings: настройках
-      subject: К вашей рекомендайии ноый коментарий.
+      subject: К вашей рекомендации ноый коментарий.
   resume_comment_mailer:
     new_comment_email:
       content: 'Содержание:'

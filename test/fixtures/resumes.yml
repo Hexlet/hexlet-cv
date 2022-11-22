@@ -27,6 +27,10 @@ two:
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 3
 
+one_without_answer:
+  <<: *DEFAULTS
+  user: one
+
 full_without_answers:
   <<: *DEFAULTS
   user: full

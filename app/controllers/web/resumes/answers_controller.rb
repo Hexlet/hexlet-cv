@@ -24,7 +24,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
     @answer = Resume::AnswerMutator.create(resource_resume, form.attributes, current_user)
     if @answer.persisted?
       # TODO: Переделать на нормальную реализацию
-      send_new_answer_mail(@answer)
+      EmailSender.send_new_answer_mail(@answer)
 
       f(:success)
       redirect_to resume_path(resource_resume)

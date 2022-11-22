@@ -12,9 +12,7 @@ class Resume::Comment < ApplicationRecord
     content
   end
 
-  def send_new_comment_email
-    return nil unless resume.user.can_send_email? && resume.user.resume_mail_enabled
-
-    ResumeCommentMailer.with(comment: self).new_comment_email.deliver_later
+  def author?(user)
+    user_id == user.id
   end
 end
