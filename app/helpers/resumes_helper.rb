@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ResumesHelper
-  def custom_localize(object, format, locale = I18n.default_locale)
+  def custom_localize(object, format, locale = I18n.locale)
     key_month = locale == :ru ? :months_nominative_case : :'date.month_names'
     format_date = I18n.t(:"date.formats.#{format}")
     result = format_date.to_s.gsub(/%(|\^)B/) do |match|
