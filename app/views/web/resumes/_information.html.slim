@@ -57,13 +57,13 @@
       | ,&nbsp;
       = work.company
       .small.text-muted.mt-1.mb-2
-        = custom_localize work.begin_date, :discard_day
+        = work.begin_date.to_s(:month_and_year)
         - if work.current
           | &nbsp;-&nbsp;
           = t('.current')
         - elsif work.end_date
           | &nbsp;-&nbsp;
-          = custom_localize work.end_date, :discard_day
+          = work.end_date.to_s(:month_and_year)
       .hexlet-cv-content == markdown2html work.description
 
 - if @resume_educations.any?
@@ -75,10 +75,10 @@
     .mb-4
       = education.description
       .small.text-muted.mt-1.mb-2
-        = custom_localize education.begin_date, :discard_day
+        = education.begin_date.to_s(:month_and_year)
         - if education.current
           | &nbsp;-&nbsp;
           = t('.current')
         - elsif education.end_date
           | &nbsp;-&nbsp;
-          = custom_localize education.end_date, :discard_day
+          = education.end_date.to_s(:month_and_year)
