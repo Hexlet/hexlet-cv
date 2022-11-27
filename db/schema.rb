@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_05_022732) do
+ActiveRecord::Schema.define(version: 2022_11_27_083950) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 2022_11_05_022732) do
     t.string "uid"
     t.integer "resume_answer_likes_count", default: 0, null: false
     t.string "about"
-    t.boolean "resume_mail_enabled"
+    t.boolean "resume_mail_enabled", default: true
     t.boolean "bounced_email"
     t.boolean "marked_as_spam"
     t.boolean "email_disabled_delivery"
