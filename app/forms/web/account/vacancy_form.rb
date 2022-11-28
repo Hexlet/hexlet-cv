@@ -28,7 +28,8 @@ class Web::Account::VacancyForm < Vacancy
          :location_of_position,
          :location,
          :employment_type,
-         :technology_list
+         :technology_list,
+         :direction_list
 
   enumerize :salary_amount_type, in: %w[gross net]
 
