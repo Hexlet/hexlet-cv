@@ -37,7 +37,7 @@ class Vacancy < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :country, optional: true
 
-  aasm :state, column: :state do
+  aasm :state, column: :state, timestamps: true do
     state :idle
     state :on_moderate
     state :published

@@ -4,6 +4,6 @@ module VacancyRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { published.order(id: :desc) }
+    scope :web, -> { published.order(published_at: :desc) }
   end
 end
