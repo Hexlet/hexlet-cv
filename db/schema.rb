@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "uid"
     t.integer "resume_answer_likes_count", default: 0, null: false
     t.string "about"
-    t.boolean "resume_mail_enabled", default: true
+    t.boolean "resume_mail_enabled"
     t.boolean "bounced_email"
     t.boolean "marked_as_spam"
     t.boolean "email_disabled_delivery"
