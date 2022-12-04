@@ -30,4 +30,17 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert { vacancy.title == attrs[:title] }
   end
+
+  test '#publish' do
+    vacancy = vacancies(:archived)
+    attrs = vacancy.attributes.merge state_event: :publish
+    previous_published_at = vacancy.published_at
+    patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
+    assert_response :redirect
+
+    vacancy.reload
+
+    assert { vacancy.published_at? }
+    assert { vacancy.published_at != previous_published_at }
+  end
 end

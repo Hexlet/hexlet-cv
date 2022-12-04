@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_27_083950) do
+ActiveRecord::Schema.define(version: 2022_11_18_143604) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "about_project"
     t.string "experience_description"
     t.string "locale"
+    t.datetime "published_at"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
