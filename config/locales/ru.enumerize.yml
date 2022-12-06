@@ -1,9 +1,11 @@
 ru:
   enumerize:
     relocation:
-      another_country: Готов в другую страну
-      another_city: Готов в рамках страны проживания
+      another_country: Готов только в другую страну
+      another_city: Готов только в рамках страны проживания
+      another_city_country: Готов
       not_ready: Не готов
+      not_specified: Не указано
     salary_amount_type:
       gross: До вычетов
       net: На руки
