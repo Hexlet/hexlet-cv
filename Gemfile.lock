@@ -496,7 +496,7 @@ DEPENDENCIES
   webdrivers
   webpacker (~> 6.0.0.rc.5)
   wicked_pdf
-  wkhtmltopdf-binary (~> 0.12.6.6)
+  wkhtmltopdf-binary
   yard
 
 RUBY VERSION
