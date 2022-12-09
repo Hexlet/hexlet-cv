@@ -73,3 +73,5 @@ Domains: <app_name>.herokuapp.com (localhost or/and 0.0.0.0 for development env)
 This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv).
 
 See most active contributors on [hexlet-friends](https://friends.hexlet.io/).
+
+Amen meky ira gorcov
