@@ -8,16 +8,18 @@ module LocaleConcern
   end
 
   def switch_locale(&)
-    locale = extract_locale || I18n.default_locale
-    I18n.with_locale(locale, &)
-    @locale = I18n.locale
-    session[:locale] = @locale
+    locale = extract_locale   
+    
+    if params[:locale].present?
+      I18n.with_locale(params[:locale], &)
+    else
+      I18n.with_locale(I18n.default_locale, &)
+    end    
   end
 
   def extract_locale
     locale = params[:locale]
     return locale if I18n.available_locales.map(&:to_s).include?(locale)
-
     nil
-  end
+  end  
 end

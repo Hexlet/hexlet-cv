@@ -13,10 +13,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include Sparkpost
   include Auth
-  include Flash
-  include LocaleConcern
-  around_action :switch_locale
-  before_action :set_locale
+  include Flash  
   before_action :banned?
   helper_method :current_or_guest_user
   helper_method :f
@@ -38,9 +35,5 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(_options = {})
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
-  end
-
-  def set_locale
-    I18n.locale = session[:locale] = I18n.locale
-  end
+  end  
 end
