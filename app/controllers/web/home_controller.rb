@@ -2,9 +2,10 @@
 
 class Web::HomeController < Web::ApplicationController
   def index
-    q = Resume.web.ransack(params[:q])
-    @resumes = q.result(distinct: true).page(params[:page])
+    @q = Resume.web.ransack(params[:q])
+    @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
     @page = params[:page]
+    @tags = Resume.tags_sorted_list
 
     set_meta_tags og: {
       description: t('.description'),

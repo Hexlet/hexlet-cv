@@ -1,0 +1,8 @@
+.p-3.mb-3.bg-light.rounded-3
+  = search_form_for query, url: root_path, html: { novalidate: true, class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-3' } do |f|
+    = f.input :name_cont, label: false, placeholder: t('.name')
+    = f.input :user_first_name_or_user_last_name_or_user_email_cont, label: false, placeholder: t('.user')
+    = f.input :directions_name_cont, id: '1', collection: tags, label: false, prompt: t('.directions')
+    .col.d-flex
+      = f.button :submit, t('search'), class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), url_for, class: 'btn btn-outline-secondary'

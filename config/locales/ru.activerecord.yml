@@ -87,6 +87,8 @@ ru:
         state/draft: Черновик
         state/published: Опубликовано
         state/archived: В архиве
+        skill_list: Тэги навыков
+        direction_list: Направление
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения
