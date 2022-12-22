@@ -65,13 +65,13 @@
       .collapse(id="new_resume_comment-#{@resume.id}")
         = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
 
+- if @resume_answers.any?
+  .lead.mb-3 = t('.recomendations')
+
+  - @resume_answers.each do |answer|
+    = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
+
 - if user_signed_in?
-  - if @resume_answers.any?
-    .lead.mb-3 = t('.recomendations')
-
-    - @resume_answers.each do |answer|
-      = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
-
   - if @current_user_answer
     .text-center.lead = t('.answer_exists')
   - else
