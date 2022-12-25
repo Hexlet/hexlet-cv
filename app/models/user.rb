@@ -6,6 +6,8 @@ class User < ApplicationRecord
   include UserRepository
   include UserPresenter
 
+  attribute :strides, array: true, default: -> { [] }
+
   validates :email, 'valid_email_2/email': true
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
@@ -78,6 +80,11 @@ class User < ApplicationRecord
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
+  end
+
+  def strides
+    value = super || []
+    value.is_a?(String) ? JSON.parse(value) : value # for compatibility with SQLite
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
