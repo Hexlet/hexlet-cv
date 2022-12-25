@@ -2,6 +2,10 @@ ru:
   flash:
     web:
       account:
+        careers:
+          update:
+            success: Данные обновлены
+            error: Не удалось обновить данные
         profiles:
           update:
             success: Данные обновлены

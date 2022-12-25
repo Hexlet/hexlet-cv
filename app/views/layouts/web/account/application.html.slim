@@ -19,6 +19,7 @@ html.h-100 lang="#{I18n.locale}"
               = nav_menu_item t('.vacancies'), account_vacancies_path
               = nav_menu_item t('.settings'), edit_account_profile_path
               = nav_menu_item t('.newsletters'), edit_account_newsletters_path
+              = nav_menu_item t('.career'), edit_account_career_path
           .col-md-9
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header

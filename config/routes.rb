@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :notifications, only: %i[index update]
       resource :newsletters, only: %i[edit update]
       resource :profile, only: %i[edit update show]
+      resource :career, only: %i[edit update]
     end
 
     resources :users

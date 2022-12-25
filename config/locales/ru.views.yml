@@ -138,6 +138,9 @@ ru:
           education: Образование
           current: по настоящее время
     account:
+      careers:
+        edit:
+          header: Мои цели
       vacancies:
         new:
           header: Новая вакансия
