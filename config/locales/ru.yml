@@ -58,4 +58,13 @@ ru:
       next: "Следующая "
       previous: " Предыдущая"
       truncate: "&hellip;"
-    
+  career:
+    goals:
+      work_course: Пройти курс "Трудоустройство"
+      resume: Составить резюме и получить и ревью
+      letter: Проработать сопроводительное письмо
+      open_source: Отправить 3 pull-requets в open-source Хекслета
+      code_battle: Решить 50 задач на CodeBattle
+      hexlet: Сделать тестовые задания из репозитория Хекслета
+      github: Получить ревью профиля на GitHub
+      interview: Принять участие в публичном собеседовании

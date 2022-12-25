@@ -1,0 +1,11 @@
+.card.mb-3
+  .card-body
+    - Career::GOALS.each do |goal|
+      .input-group.mb-3
+        span.text-primary.me-3
+          - if goal.in?(@user.strides)
+            i.bi.bi-check-square
+          - else
+            i.bi.bi-square
+        span
+          = t("career.goals..#{goal}")

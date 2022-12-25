@@ -185,9 +185,14 @@ ru:
           one: лайк
           few: лайка
           many: лайков
+        strides:
+          one: цель осталась
+          few: цели осталось
+          many: целей осталось
         tab_resumes: Резюме
         tab_answers: Ответы
         tab_comments: Комментарии
+        tab_career: Карьерный трек
         banned: Аккаунт забанен
       resumes:
         answers:
