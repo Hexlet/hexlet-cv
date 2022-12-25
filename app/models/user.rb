@@ -5,10 +5,12 @@ class User < ApplicationRecord
   extend Enumerize
   include UserRepository
   include UserPresenter
+  include ActiveModel::Validations
 
   attribute :strides, array: true, default: -> { [] }
 
   validates :email, 'valid_email_2/email': true
+  validates_with StridesValidator
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
