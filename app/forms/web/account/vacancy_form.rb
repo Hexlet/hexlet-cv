@@ -24,7 +24,7 @@ class Web::Account::VacancyForm < Vacancy
          :salary_from,
          :salary_to,
          :salary_currency,
-         :salary_amoun_type,
+         :salary_amount_type,
          :location_of_position,
          :location,
          :employment_type,
