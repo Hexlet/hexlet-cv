@@ -7,8 +7,9 @@ class Web::PagesController < Web::ApplicationController
     url = page_url(page)
 
     set_meta_tags title: t(".#{page}_title"),
-                  description: description,
+                  description:,
                   canonical: url
+
     set_meta_tags og: {
       title: t(".#{page}_title"),
       description:,
