@@ -1,4 +1,4 @@
-= simple_form_for vacancy, as: :vacancy, url: url, wrapper: 'horizontal_form' do |f|
+= simple_form_for vacancy, as: :vacancy, url:, wrapper: 'horizontal_form' do |f|
   - if can_update_state
     = f.input :state_event, as: :state_event
     .mb-3 = f.submit class: 'btn btn-outline-primary'

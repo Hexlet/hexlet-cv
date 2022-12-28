@@ -1,5 +1,5 @@
 li.page-item
   - unless current_page.first?
-    = link_to url, rel: 'prev', remote: remote, class: 'page-link' do
+    = link_to url, rel: 'prev', remote:, class: 'page-link' do
       | &lsaquo;
       span.d-none.d-lg-inline = t 'views.pagination.previous'
