@@ -101,23 +101,13 @@ gem 'pundit'
 gem 'rails-i18n'
 gem 'redcarpet'
 gem 'rollbar'
-
 gem 'omniauth'
-
 gem 'devise-bootstrap-views'
-
 gem 'ransack'
-
 gem 'turbo-rails'
-
 gem 'active_form_model', '~> 0.4.1'
-
 gem 'omniauth-rails_csrf_protection'
-
 gem 'translit'
-
 gem 'valid_email2'
-
 gem 'validate_url'
-
 gem 'recaptcha'
