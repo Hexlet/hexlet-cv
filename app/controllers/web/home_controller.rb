@@ -5,7 +5,7 @@ class Web::HomeController < Web::ApplicationController
     @q = Resume.web.ransack(params[:q])
     @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
     @page = params[:page]
-    @tags = Resume.tags_sorted_list
+    @tags = Resume.directions_tags
 
     set_meta_tags og: {
       description: t('.description'),
