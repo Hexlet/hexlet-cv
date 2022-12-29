@@ -122,6 +122,10 @@ ru:
         archived: Резюме заархивировано
         download: Скачать резюме в PDF
         print: Версия для печати
+      comment_requires:
+        feedback: Ваш комментарий важен для нас!
+        requires: Для этого действия нужно
+        sign_in: войти
       answer_requires:
         write_answer: Войдите на сайт, чтобы написать ответ
         sign_up: Регистрация

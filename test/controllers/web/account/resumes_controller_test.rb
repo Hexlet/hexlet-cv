@@ -63,7 +63,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
       resume: { name: attrs[:name] }
     }
 
-    patch account_resume_path(resume), params: params
+    patch(account_resume_path(resume), params:)
     assert_response :redirect
   end
 
@@ -74,7 +74,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
       hide: true,
       resume: { name: resume.name }
     }
-    patch account_resume_path(resume), params: params
+    patch(account_resume_path(resume), params:)
     assert_response :redirect
     resume.reload
     assert { resume.draft? }
