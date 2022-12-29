@@ -5,15 +5,13 @@ class User < ApplicationRecord
   extend Enumerize
   include UserRepository
   include UserPresenter
-  include ActiveModel::Validations
-
-  attribute :strides, array: true, default: -> { [] }
 
   validates :email, 'valid_email_2/email': true
-  validates_with StridesValidator
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
+  enumerize :strides, in: Career::GOALS, multiple: true
+  serialize :strides, Array
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -82,11 +80,6 @@ class User < ApplicationRecord
 
   def can_send_email?
     !email_disabled_delivery && !unconfirmed_email
-  end
-
-  def strides
-    value = super || []
-    value.is_a?(String) ? JSON.parse(value) : value # for compatibility with SQLite
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

@@ -26,7 +26,7 @@
       .text-muted = t('.likes', count: @user_resume_answers_likes_count)
     - if current_or_guest_user.admin?
       .d-flex.flex-column.mx-1.mx-lg-3.text-center
-        - goals_left_count = (Career::GOALS - @user.strides).count
+        - goals_left_count = (Career::GOALS.keys - @user.strides).count
         .h3 class=(goals_left_count.zero? ? 'text-success' : 'text-black-50')
           = goals_left_count
         .text-muted = t('.strides', count: goals_left_count)

@@ -3,6 +3,7 @@
 
 = simple_form_for @profile, as: :profile, url: account_career_path do |f|
   .mb-3
-    = f.input :strides, as: :check_boxes, collection: Career::GOALS, checked: @profile.strides, label_method: proc { |goal| t("career.goals.#{goal}") }, legend_tag: false
+    = f.input :strides, as: :check_boxes, collection: Career::GOALS.keys, checked: @profile.strides,
+      label_method: proc { |goal| t("career.goals.#{goal}.caption") }, legend_tag: false
   .mb-3
     = f.button :submit, class: 'btn-primary'

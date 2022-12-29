@@ -60,11 +60,21 @@ ru:
       truncate: "&hellip;"
   career:
     goals:
-      work_course: Пройти курс "Трудоустройство"
-      resume: Составить резюме и получить и ревью
-      letter: Проработать сопроводительное письмо
-      open_source: Отправить 3 pull-requets в open-source Хекслета
-      code_battle: Решить 50 задач на CodeBattle
-      hexlet: Сделать тестовые задания из репозитория Хекслета
-      github: Получить ревью профиля на GitHub
-      interview: Принять участие в публичном собеседовании
+      work_course:
+        caption: Пройти курс "Трудоустройство"
+      resume:
+        caption: Составить резюме и получить и ревью
+        description: На Hexlet CV вы получите ревью вашего резюме от опытных HR и разработчиков
+      letter:
+        caption: Проработать сопроводительное письмо
+      open_source:
+        caption: Отправить 3 pull-requets в open-source Хекслета
+      code_battle:
+        caption: Решить 50 задач на CodeBattle
+        description: Это игровая платформа, на которой программисты соревнуются друг с другом, или же с ботом, решают задачи по программированию, многие из которых могут встретиться на собеседованиях
+      hexlet_tests_repo:
+        caption: Сделать тестовые задания из репозитория Хекслета
+      github_profile_review:
+        caption: Получить ревью профиля на GitHub
+      interview:
+        caption: Принять участие в публичном собеседовании
