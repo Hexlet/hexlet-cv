@@ -37,41 +37,43 @@
   = render 'information'
 
   .mt-3
-    - if user_signed_in?
-      - if @resume.comments.web.any?
-        .small
-          - @resume.comments.web.each do |comment|
-            hr.my-2
-            .d-flex(id="comment-#{comment.id}")
-              .me-auto
-                span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
-                  == markdown2html comment.content
-                - if comment.user
-                  span.me-1
-                    = link_to comment.user, user_path(comment.user)
-                = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
-              - if comment.user == current_user
-                .d-flex
-                  .me-2
-                    = link_to edit_resume_comment_path(@resume, comment)
-                      span.bi.bi-pen-fill.text-secondary
+    - if @resume.comments.web.any?
+      .small
+        - @resume.comments.web.each do |comment|
+          hr.my-2
+          .d-flex(id="comment-#{comment.id}")
+            .me-auto
+              span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+                == markdown2html comment.content
+              - if comment.user
+                span.me-1
+                  = link_to comment.user, user_path(comment.user)
+              = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
+            - if comment.user == current_user
+              .d-flex
+                .me-2
+                  = link_to edit_resume_comment_path(@resume, comment)
+                    span.bi.bi-pen-fill.text-secondary
 
-                  div
-                    = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
-                      span.bi.bi-x-lg.text-secondary
+                div
+                  = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
+                    span.bi.bi-x-lg.text-secondary
       hr.my-2
       a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
         = t('.add_a_comment')
       .collapse(id="new_resume_comment-#{@resume.id}")
-        = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
+        - if user_signed_in?
+          = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
+        - else
+          = render 'comment_requires'
+
+- if @resume_answers.any?
+  .lead.mb-3 = t('.recomendations')
+
+  - @resume_answers.each do |answer|
+    = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
 
 - if user_signed_in?
-  - if @resume_answers.any?
-    .lead.mb-3 = t('.recomendations')
-
-    - @resume_answers.each do |answer|
-      = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
-
   - if @current_user_answer
     .text-center.lead = t('.answer_exists')
   - else
