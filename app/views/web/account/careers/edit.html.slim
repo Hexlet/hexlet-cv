@@ -3,7 +3,19 @@
 
 = simple_form_for @profile, as: :profile, url: account_career_path do |f|
   .mb-3
-    = f.input :strides, as: :check_boxes, collection: Career::GOALS.keys, checked: @profile.strides,
-      label_method: proc { |goal| t("career.goals.#{goal}.caption") }, legend_tag: false
+    = f.input :strides, as: :check_boxes, legend_tag: false do
+      = f.hidden_field :strides, name: 'profile[strides][]'
+      - Career::GOALS.each_key do |goal|
+        .form-check.mb-2
+          input class="form-check-input check_boxes optional" type="checkbox" value=goal name="profile[strides][]" id="profile_strides_#{goal}"
+          label class="form-check-label collection_check_boxes" for=cb_id
+            = t("career.goals.#{goal}.caption")
+          span.ms-4
+            - if I18n.exists?("career.goals.#{goal}.description")
+              span.me-2
+                i.bi.bi-question-circle
+            - if Career::GOALS.dig(goal, :links)&.present?
+              span.me-2
+                i.bi.bi-info-circle
   .mb-3
     = f.button :submit, class: 'btn-primary'
