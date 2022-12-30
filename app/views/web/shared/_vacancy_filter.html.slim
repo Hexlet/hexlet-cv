@@ -2,7 +2,7 @@
   = simple_form_for vacancy_search_form, default_filter_form_options(url: search_vacancy_filters_path, wrapper: :horizontal_search_form_with_hints) do |f|
     = f.input :level, collection: POSITION_LEVELS, prompt: :translate, label: false
     = f.input :city, placeholder: true, label: false
-    = f.input :direction, collection: tags, value_method: :downcase, prompt: :translate, label: false, input_html: { class: 'js-select w-100' }
+    = f.input :direction, as: :select_with_search, collection: tags, value_method: :downcase, prompt: :translate, label: false
     .col.d-flex
       = f.button :submit, t('search'), class: 'btn-primary me-2 flex-grow-1'
       = link_to t('reset'), vacancies_url, class: 'btn btn-outline-secondary'
