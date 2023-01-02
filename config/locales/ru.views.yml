@@ -138,7 +138,7 @@ ru:
           education: Образование
           current: по настоящее время
     account:
-      careers:
+      studies:
         edit:
           header: Мои цели
       vacancies:
@@ -195,7 +195,7 @@ ru:
         tab_resumes: Резюме
         tab_answers: Ответы
         tab_comments: Комментарии
-        tab_career: Карьерный трек
+        tab_study: Карьерный трек
         banned: Аккаунт забанен
       resumes:
         answers:

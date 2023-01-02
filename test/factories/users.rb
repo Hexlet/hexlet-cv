@@ -7,5 +7,6 @@ FactoryBot.define do
     about
     email { Faker::Internet.email }
     password { Faker::Number.number }
+    strides { Study::GOALS.keys.sample(rand(Study::GOALS.length)) }
   end
 end

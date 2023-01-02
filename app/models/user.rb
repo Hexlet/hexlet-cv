@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
-  enumerize :strides, in: Career::GOALS, multiple: true
+  enumerize :strides, in: Study::GOALS.keys, multiple: true
   serialize :strides, Array
 
   # Include default devise modules. Others available are:

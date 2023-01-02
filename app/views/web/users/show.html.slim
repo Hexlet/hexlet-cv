@@ -26,7 +26,7 @@
       .text-muted = t('.likes', count: @user_resume_answers_likes_count)
     - if current_or_guest_user.admin?
       .d-flex.flex-column.mx-1.mx-lg-3.text-center
-        - goals_left_count = (Career::GOALS.keys - @user.strides).count
+        - goals_left_count = (Study::GOALS.keys - @user.strides).count
         .h3 class=(goals_left_count.zero? ? 'text-success' : 'text-black-50')
           = goals_left_count
         .text-muted = t('.strides', count: goals_left_count)
@@ -40,7 +40,7 @@ ul.nav.nav-pills.justify-content-center role="navigation"
     a.nav-link.px-3 data-bs-toggle='tab' href='#comments' = t('.tab_comments')
   - if current_or_guest_user.admin?
     li.nav-item
-      a.nav-link.px-3 data-bs-toggle='tab' href='#career' = t('.tab_career')
+      a.nav-link.px-3 data-bs-toggle='tab' href='#study' = t('.tab_study')
 .tab-content.py-3
   .tab-pane.fade.show.active id="resume"
       = render 'resumes', resumes: @user_resumes
@@ -49,5 +49,5 @@ ul.nav.nav-pills.justify-content-center role="navigation"
   .tab-pane.fade id="comments"
       = render 'comments', comments: @user_resume_comments
   - if current_or_guest_user.admin?
-    .tab-pane.fade id="career"
-        = render 'career'
+    .tab-pane.fade id="study"
+        = render 'study'

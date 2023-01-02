@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Account::CareerForm < User
+class Web::Account::StudyForm < User
   include ActiveFormModel
 
   fields strides: []

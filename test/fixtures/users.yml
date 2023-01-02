@@ -13,12 +13,12 @@ one:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: CTO at hexlet.io
-  strides: <%= Career::GOALS.keys.sample 5 %>
+  strides: <%= Study::GOALS.keys.sample 5 %>
 
 two:
   <<: *DEFAULTS
   email: $LABEL@email.com
-  strides: <%= Career::GOALS.keys.sample 3 %>
+  strides: <%= Study::GOALS.keys.sample 3 %>
 
 full:
   <<: *DEFAULTS

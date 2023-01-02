@@ -2,7 +2,7 @@ ru:
   flash:
     web:
       account:
-        careers:
+        studies:
           update:
             success: Данные обновлены
             error: Не удалось обновить данные

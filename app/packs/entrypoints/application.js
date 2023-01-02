@@ -16,8 +16,9 @@ require('@rails/ujs').start();
 // require('@rails/activestorage').start();
 // require('channels');
 require('popper.js');
-require('bootstrap');
+window.bootstrap = require('bootstrap');
 require('@nathanvda/cocoon');
+// import ("bootstrap");
 
 // dom.watch()
 
@@ -30,3 +31,9 @@ require('@nathanvda/cocoon');
 // @ts-ignore
 const images = require.context('../images', true);
 // const imagePath = (name) => images(name, true)
+
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

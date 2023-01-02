@@ -1,0 +1,23 @@
+- content_for :header do
+  = t('.header')
+
+= simple_form_for @profile, as: :profile, url: account_study_path do |f|
+  .mb-3
+    = f.input :strides, as: :check_boxes, legend_tag: false do
+      = f.collection_check_boxes :strides, Study::GOALS.keys, :to_s,
+        proc { |goal| t("study.goals.#{goal}.caption") },
+        { item_wrapper_tag: :div, item_wrapper_class: 'form-check mb-2' } do |check_box_builder|
+        = check_box_builder.check_box class: %w[form-check-input check_boxes optional]
+        = check_box_builder.label class: %w[form-check-label collection_check_boxes]
+        span.ms-2
+          - goal = check_box_builder.value
+          - if I18n.exists?("study.goals.#{goal}.description")
+            span.me-2
+              i.bi.bi-question-circle data-bs-toggle="popover" data-bs-content=t("study.goals.#{goal}.description") container='body'
+          - articles = Study::GOALS.dig(goal, :articles)
+          - if articles&.present?
+            span
+              - content = "<ul>#{articles.map { |article| "<li><a href=\"#{article[:link]}\" target=\"_blank\">#{article[:caption]}</a></li>" }.join}</ul>"
+              i.bi.bi-info-circle data-bs-toggle="popover" data-bs-title="Подробнее тут" data-bs-html="true" container='body' data-bs-content="#{content}"
+  .mb-3
+    = f.button :submit, class: 'btn-primary'

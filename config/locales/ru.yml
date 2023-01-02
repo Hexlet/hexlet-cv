@@ -58,7 +58,7 @@ ru:
       next: "Следующая "
       previous: " Предыдущая"
       truncate: "&hellip;"
-  career:
+  study:
     goals:
       work_course:
         caption: Пройти курс "Трудоустройство"

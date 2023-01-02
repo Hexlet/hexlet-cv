@@ -1,6 +1,6 @@
 .card.mb-3
   .card-body
-    - Career::GOALS.each_key do |goal|
+    - Study::GOALS.each_key do |goal|
       .input-group.mb-3
         span.text-primary.me-3
           - if goal.in?(@user.strides)
@@ -8,4 +8,4 @@
           - else
             i.bi.bi-square
         span
-          = t("career.goals.#{goal}.caption")
+          = t("study.goals.#{goal}.caption")
