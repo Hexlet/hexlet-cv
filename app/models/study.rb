@@ -20,7 +20,7 @@ module Study
         },
         {
           caption: 'Как участвовать в open source проектах',
-          linl: 'https://ru.hexlet.io/blog/posts/participate-in-open-source'
+          link: 'https://ru.hexlet.io/blog/posts/participate-in-open-source'
         },
         {
           caption: 'Как принять участие в Open Source. Краткое руководство',
