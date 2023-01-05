@@ -2,12 +2,12 @@
 
 class Web::Account::StudiesController < Web::Account::ApplicationController
   def edit
-    @profile = current_user.becomes Web::Account::StudyForm
+    @profile = current_user.becomes(Web::Account::StudyForm)
   end
 
   def update
-    user = current_user.becomes(Web::Account::StudyForm)
-    if user.update(study_params)
+    @profile = current_user.becomes(Web::Account::StudyForm)
+    if @profile.update(study_params)
       f(:success)
       redirect_to edit_account_study_path
     else
