@@ -1,4 +1,4 @@
-= simple_form_for resume, as: :resume, url: url, wrapper: 'horizontal_form' do |f|
+= simple_form_for resume, as: :resume, url:, wrapper: 'horizontal_form' do |f|
   - if can_update_state
     = f.input :state_event, as: :state_event, collection: resume.aasm(:state).events(permitted: true)
     .mb-3 = f.submit class: 'btn btn-primary'
@@ -7,7 +7,7 @@
   .mb-3
     = f.input :city
   .mb-3
-    = f.input :relocation
+    = f.input :relocation, selected: resume.relocation
   .mb-3
     = f.input :english_fluency
   .mb-3

@@ -3,7 +3,13 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'new user with default attribute resume_mail_enabled' do
+    attrs = FactoryBot.attributes_for :user
+
+    user = User.new(attrs)
+    user.save!
+
+    assert { user.valid? }
+    assert { user.resume_mail_enabled }
+  end
 end

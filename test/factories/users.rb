@@ -5,5 +5,7 @@ FactoryBot.define do
     first_name
     last_name
     about
+    email { Faker::Internet.email }
+    password { Faker::Number.number }
   end
 end

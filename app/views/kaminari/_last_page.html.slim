@@ -1,5 +1,5 @@
 li.page-item
   - unless current_page.last?
-    = link_to url, remote: remote, class: 'page-link' do
+    = link_to url, remote:, class: 'page-link' do
       span.d-none.d-lg-inline = t 'views.pagination.last'
       | &raquo;

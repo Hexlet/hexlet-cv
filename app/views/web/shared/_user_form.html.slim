@@ -1,4 +1,4 @@
-= simple_form_for user, url: url do |f|
+= simple_form_for user, url: do |f|
   .mb-3
     - if current_user.admin? && current_user != user
       = f.input :state_event, as: :state_event, collection: user.aasm(:state).events(permitted: true)

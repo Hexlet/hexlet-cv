@@ -117,6 +117,15 @@ en:
         archived: Resume in archive
         download: Download PDF
         print: Preview PDF
+      comments:
+        new:
+          header: New comment
+        edit:
+          header: Edit comment
+      comment_requires:
+        feedback: Your feedback is appreciated!
+        requires: This action requires
+        sign_in: sign in
       answer_requires:
         write_answer: Sign in to write an answer
         sign_up: Sign up
