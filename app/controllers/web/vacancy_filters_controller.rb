@@ -40,7 +40,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
     @description = t(".options.#{main_key}.#{level_key}.description", default: :"#{default_prefix}.description", **options_for_header)
 
     @vacancy_search_form = Web::Vacancies::SearchForm.new(prepare_options_for_search_form(@options))
-    @tags = Vacancy.tags_sorted_list
+    @tags = Vacancy.directions_tags
     @vacancies = scope.distinct
     @page = params[:page]
   end

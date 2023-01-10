@@ -5,7 +5,7 @@ class Web::VacanciesController < Web::ApplicationController
     q = Vacancy.web.ransack(params[:q])
     @vacancies = q.result(distinct: true).page(params[:page])
     @vacancy_search_form = Web::Vacancies::SearchForm.new
-    @tags = Vacancy.tags_sorted_list
+    @tags = Vacancy.directions_tags
     @page = params[:page]
 
     respond_to do |format|
