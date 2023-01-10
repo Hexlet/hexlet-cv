@@ -7,6 +7,7 @@
 
 import '../stylesheets/application.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../scripts/selectVacancyFilter.js'
 
 const $ = require('jquery');
 // @ts-ignore
