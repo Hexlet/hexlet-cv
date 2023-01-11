@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-ruby '~> 3.1.2'
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -9,13 +7,11 @@ gem 'acts-as-taggable-on'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # NOTE Не обновил версию рельсы, т.к. https://github.com/charlotte-ruby/impressionist/issues/302
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
 # gem 'sass-rails'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 6.0.0.rc.5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
@@ -26,10 +22,14 @@ gem 'redis'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'sprockets-rails'
+gem 'terser'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 gem 'counter_culture'
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
@@ -106,8 +106,7 @@ gem 'rails-i18n'
 gem 'ransack'
 gem 'recaptcha'
 gem 'redcarpet'
-gem 'rollbar'
+gem 'rollbar' # TODO: switch to sentry
 gem 'translit'
-gem 'turbo-rails'
 gem 'validate_url'
 gem 'valid_email2'
