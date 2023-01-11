@@ -42,10 +42,10 @@ module ApplicationHelper
   end
 
   def nav_menu_item(name, path = '#', options = {})
-    assembled_options = options.merge(class: "nav-link link-dark #{active?(path)}")
-    tag.li class: 'nav-item' do
+    assembled_options = options.merge(class: "nav-link #{active?(path)}")
+    tag.li class: 'nav-item me-3' do
       link_to path, assembled_options do
-        tag.div(name)
+        name
       end
     end
   end
@@ -68,7 +68,7 @@ module ApplicationHelper
   def filter_link(name, path = {}, options = {})
     filter_path = { q: path }
     active = current_page?(filter_path, check_parameters: true)
-    assembled_options = options.merge(class: [options[:class], 'link-dark', active?(filter_path, active_if: active)])
+    assembled_options = options.merge(class: [options[:class], active?(filter_path, active_if: active)])
     link_to name, filter_path, assembled_options
   end
 
