@@ -19,7 +19,6 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 
 * Ruby
 * Node.js < 17.0.0
-* Yarn
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 

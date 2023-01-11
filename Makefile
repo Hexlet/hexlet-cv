@@ -3,11 +3,13 @@ include make-compose.mk
 test:
 	bin/rails test
 
-prepare:
-	npm install --global yarn
+frontend:
+	npx nodemon -L --watch webpack.config.js --exec npm run build:watch
+
+setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 
-setup:
+setup: setup-heroku
 	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
@@ -56,7 +58,7 @@ heroku-logs:
 
 ci-setup:
 	cp -n .env.example .env || true
-	yarn install
+	npm install
 	bundle install --without production development
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load

@@ -1,10 +1,10 @@
-FROM ruby:3.1.2
+FROM ruby:3.2
 
 WORKDIR /usr/src/app/
 
 COPY . .
 
-RUN apt update && apt install -y nodejs npm && npm install --global yarn
+RUN apt update && apt install -y nodejs npm
 
 RUN make setup
 

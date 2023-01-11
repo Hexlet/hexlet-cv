@@ -21,7 +21,7 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+# Dotenv::Railtie.load
 
 module HexletCv
   class Application < Rails::Application
@@ -31,7 +31,7 @@ module HexletCv
     config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
 
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
     config.exceptions_app = routes
 
     # https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsenvironmentvariableaccess

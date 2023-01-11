@@ -6,7 +6,7 @@ require:
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.1.2
+  TargetRubyVersion: 3.2
   TargetRailsVersion: 6
   DisplayCopNames: true
   Exclude:
