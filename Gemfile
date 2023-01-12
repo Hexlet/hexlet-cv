@@ -24,8 +24,8 @@ gem 'redis'
 
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'sprockets-rails'
 gem 'sorbet'
+gem 'sprockets-rails'
 gem 'terser'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
