@@ -2,6 +2,8 @@
 
 require_relative 'boot'
 
+ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+
 require 'active_model/railtie'
 require 'active_job/railtie'
 require 'active_record/railtie'

@@ -3,13 +3,16 @@
 class Resume < ApplicationRecord
   include StateConcern
   extend Enumerize
+  extend TagResumePresenter
 
   has_paper_trail
   is_impressionable counter_cache: true
 
+  acts_as_taggable_on :skills, :directions
+
   enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
   enumerize :locale, in: %i[en ru], default: :ru
-  enumerize :relocation, in: %i[another_country another_city not_ready], default: :not_ready
+  enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], default: :not_specified
 
   validates :name, presence: true
   validates :english_fluency, presence: true

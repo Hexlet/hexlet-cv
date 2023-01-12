@@ -3,7 +3,7 @@
 class Vacancy < ApplicationRecord
   include StateConcern
   extend Enumerize
-  extend TagPresenter
+  extend TagVacancyPresenter
   include VacancyRepository
   include VacancyPresenter
 

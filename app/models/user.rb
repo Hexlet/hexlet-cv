@@ -43,6 +43,15 @@ class User < ApplicationRecord
     super && permitted?
   end
 
+  def initialize(attribute = nil)
+    defaults = {
+      resume_mail_enabled: true
+    }
+
+    attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
+    super(attrs_with_defaults)
+  end
+
   # provide a custom message for a banned user
   def inactive_message
     banned? ? :banned : super

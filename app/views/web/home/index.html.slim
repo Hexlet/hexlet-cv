@@ -4,7 +4,9 @@
 - content_for :header do
   = t('.header')
 
-.nav.nav-pills.mb-3.justify-content-center
+= render partial: 'web/shared/resume_filter', locals: { query: @q, tags: @tags }
+
+.p-3.nav.nav-pills.mb-3.justify-content-center
   = filter_link(t('.all'), {}, class: 'nav-item nav-link')
   = filter_link(t('.popular'), { created_at_gteq: Date.current - 1.week, popular_gteq: Date.current - 1.week, s: 'impressions_count desc' }, class: 'nav-item nav-link')
   = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day, s: 'created_at desc' }, class: 'nav-item nav-link')
@@ -31,6 +33,10 @@
             h5.card-title.text-break = link_to resume, resume_path(resume)
             .card-text.text-break.mb-2 = truncate_markdown(resume.summary, length: 200)
             .text-end.small.mt-auto
+              .d-flex.fw-bold
+                - resume.skill_list.each do |skill|
+                  .m-1
+                    = filter_link(skill, { skills_name_in: skill }, class: 'nav-item nav-link')
               span.me-3.text-muted
                 = distance_of_time_in_words_to_now resume.created_at
               = link_to resume.user, user_path(resume.user)

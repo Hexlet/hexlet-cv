@@ -19,8 +19,10 @@
 
       .card-text.mb-2
         = truncate_markdown(vacancy.responsibilities_description.to_s, length: 200)
-        .fw-bold.mt-1
-          = vacancy.technology_list.join(', ')
+        .d-flex.fw-bold.flex-wrap
+          - vacancy.technology_list.each do |technology|
+            .m-1
+              = filter_link(technology, { technologies_name_in: technology }, class: 'nav-item nav-link')
       / .text-end.small.mt-auto
       /   span.me-3.text-muted
       /     = distance_of_time_in_words_to_now resume.created_at
