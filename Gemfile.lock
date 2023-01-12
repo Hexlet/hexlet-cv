@@ -397,6 +397,7 @@ GEM
     sorbet (0.5.10624)
       sorbet-static (= 0.5.10624)
     sorbet-static (0.5.10624-universal-darwin-21)
+    sorbet-static (0.5.10624-x86_64-linux)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -451,6 +452,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   aasm
