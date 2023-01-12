@@ -9,9 +9,9 @@ Rails.application.routes.draw do
                                     sessions: 'web/devise/sessions',
                                     registrations: 'web/devise/registrations' }
   scope '(:locale)', locale: /en|ru/ do
-    root 'home#index'
   end
   scope module: :web do
+    root 'home#index'
     resource :locale, only: [] do
       member do
         get :switch
