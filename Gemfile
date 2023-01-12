@@ -34,6 +34,7 @@ gem 'dotenv-rails'
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
+gem 'turbo-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
