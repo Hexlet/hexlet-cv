@@ -22,7 +22,7 @@ en:
           other: |
             %{count} Answers
       nav:
-        name: Hexlet CV
+        application_name: Hexlet CV
         en: English
         ru: Russian
         admin: Admin panel

@@ -24,7 +24,7 @@ ru:
           many: |
             %{count} Ответов
       nav:
-        name: Hexlet CV
+        application_name: Hexlet CV
         en: Английский
         ru: Русский
         admin: Админка

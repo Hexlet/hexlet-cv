@@ -8,58 +8,64 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks',
                                     sessions: 'web/devise/sessions',
                                     registrations: 'web/devise/registrations' }
-
-  scope module: :web do
-    scope '(:locale)', locale: /en|ru/ do
+  scope '(:locale)', locale: /en|ru/ do
+    scope module: :web do
       root 'home#index'
-    end
-    resources :vacancies, only: %i[index show]
-
-    # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
-    resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
-      collection do
-        get :search, format: true
-      end
-    end
-    resources :resumes do
-      scope module: :resumes do
-        resources :answers do
-          member do
-            patch :change_applying_state
-          end
+      resource :locale, only: [] do
+        member do
+          get :switch
         end
-        resources :pdfs, only: :show
-        resources :comments
       end
-    end
-    resources :answers, only: [] do
-      scope module: :answers do
-        resources :comments
-        resources :likes, only: %i[create destroy]
-        resources :comments, only: %i[create update destroy]
+
+      resources :vacancies, only: %i[index show]
+
+      # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
+      resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
+        collection do
+          get :search, format: true
+        end
       end
-    end
 
-    namespace :account do
-      resources :resumes
-      resources :vacancies
-      resources :notifications, only: %i[index update]
-      resource :newsletters, only: %i[edit update]
-      resource :profile, only: %i[edit update show]
-    end
+      resources :resumes do
+        scope module: :resumes do
+          resources :answers do
+            member do
+              patch :change_applying_state
+            end
+          end
+          resources :pdfs, only: :show
+          resources :comments
+        end
+      end
+      resources :answers, only: [] do
+        scope module: :answers do
+          resources :comments
+          resources :likes, only: %i[create destroy]
+          resources :comments, only: %i[create update destroy]
+        end
+      end
 
-    resources :users
-    resources :pages
+      namespace :account do
+        resources :resumes
+        resources :vacancies
+        resources :notifications, only: %i[index update]
+        resource :newsletters, only: %i[edit update]
+        resource :profile, only: %i[edit update show]
+      end
 
-    scope module: :hooks do
-      resource :sparkpost
-    end
+      resources :users
+      resources :pages
 
-    namespace :admin do
-      root 'home#index'
-      resources :users, only: %i[index edit update]
-      resources :resumes, only: %i[index edit update]
-      resources :vacancies, only: %i[index edit update]
+      scope module: :hooks do
+        resource :sparkpost
+      end
+
+      namespace :admin do
+        root 'home#index'
+        resources :users, only: %i[index edit update]
+        resources :resumes, only: %i[index edit update]
+        resources :vacancies, only: %i[index edit update]
+      end
     end
   end
 end

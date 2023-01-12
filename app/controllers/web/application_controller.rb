@@ -5,7 +5,6 @@ class Web::ApplicationController < ApplicationController
   include GonInit
   include LocaleConcern
   # include Title
-  around_action :switch_locale
   # helper_method :title
   # helper_method :meta_tag_title
   helper_method :last_notifications

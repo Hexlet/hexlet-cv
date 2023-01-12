@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", status: :moved_permanently)
   end
 
-  def default_url_options(_options = {})
+  def default_url_options
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 end

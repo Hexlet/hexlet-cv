@@ -1,6 +1,6 @@
 .container
   header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
-    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href=root_url) = t('.name')
+    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href=root_path) = t('.application_name')
     / .me-3
       / = link_to resumes_url(format: :rss) do
       /   span.bi.bi-rss.text-muted
@@ -49,5 +49,5 @@
           span.me-2 = I18n.locale.upcase
         ul.dropdown-menu.dropdown-menu-end
             - I18n.available_locales.without(I18n.locale).each do |locale|
-              = link_to switch_locale_url(locale), class: 'dropdown-item d-flex' do
+              = link_to switch_locale_path(new_locale: locale), class: 'dropdown-item d-flex' do
                 span.my-auto = t(".#{locale}")
