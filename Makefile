@@ -59,6 +59,7 @@ heroku-logs:
 ci-setup:
 	cp -n .env.example .env || true
 	npm ci
+	npm run build
 	bundle install --without production development
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
