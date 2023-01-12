@@ -25,11 +25,12 @@ gem 'redis'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'sprockets-rails'
+gem 'sorbet'
 gem 'terser'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 gem 'counter_culture'
-# gem 'dotenv-rails'
+gem 'dotenv-rails'
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
