@@ -21,6 +21,10 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# NOTE: https://github.com/charlotte-ruby/impressionist/issues/302
+impressionist_dir = Gem::Specification.find_by_name('impressionist').gem_dir
+require File.join(impressionist_dir, '/app/controllers/impressionist_controller.rb')
+
 Dotenv::Railtie.load
 
 module HexletCv
