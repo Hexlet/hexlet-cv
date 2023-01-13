@@ -59,8 +59,8 @@ heroku-logs:
 	heroku logs --tail
 
 ci-setup:
-	# NOTE: github install deps automatically
 	cp -n .env.example .env || true
+	bundle
 	npm run build
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
