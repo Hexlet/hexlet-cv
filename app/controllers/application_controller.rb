@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def redirect_root_domain
     return if request.host == ENV.fetch('HOST')
 
-    redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", status: :moved_permanently)
+    redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", allow_other_host: true, status: :moved_permanently)
   end
 
   def default_url_options
