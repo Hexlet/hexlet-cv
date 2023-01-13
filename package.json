@@ -5,7 +5,7 @@
     "pre-push": "make lint"
   },
   "engines": {
-    "node": "16.x"
+    "node": "19.x"
   },
   "type": "module",
   "dependencies": {
