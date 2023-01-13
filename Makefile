@@ -14,6 +14,7 @@ setup: setup-heroku
 	bin/setup
 	bin/rails db:fixtures:load
 	npm ci
+	npm run build
 	npx simple-git-hooks
 
 fixtures-load:
@@ -58,10 +59,9 @@ heroku-logs:
 	heroku logs --tail
 
 ci-setup:
+	# NOTE: github install deps automatically
 	cp -n .env.example .env || true
-	npm ci
 	npm run build
-	bundle install --without production development
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
