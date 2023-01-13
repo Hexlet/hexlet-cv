@@ -1,4 +1,5 @@
-version: '3.7'
+---
+version: "3.7"
 
 services:
   app:
@@ -8,14 +9,15 @@ services:
     ports:
       - "3000:3000"
     env_file:
-     - ".env"
+      - .env
     command: "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
-  webpacker:
-    build: .
-    environment:
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-    command: ./bin/webpack-dev-server
-    volumes:
-      - .:/usr/src/app/
-    ports:
-      - '3035:3035'
+
+  # webpacker:
+  #   build: .
+  #   environment:
+  #     - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+  #   command: ./bin/webpack-dev-server
+  #   volumes:
+  #     - .:/usr/src/app/
+  #   ports:
+  #     - '3035:3035'

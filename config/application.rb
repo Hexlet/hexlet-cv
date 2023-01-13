@@ -21,6 +21,10 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# NOTE: https://github.com/charlotte-ruby/impressionist/issues/302
+impressionist_dir = Gem::Specification.find_by_name('impressionist').gem_dir
+require File.join(impressionist_dir, '/app/controllers/impressionist_controller.rb')
+
 Dotenv::Railtie.load
 
 module HexletCv
@@ -31,7 +35,7 @@ module HexletCv
     config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
 
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
     config.exceptions_app = routes
 
     config.i18n.available_locales = %i[en ru]

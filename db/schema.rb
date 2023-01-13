@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_27_083950) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_27_083950) do
   create_table "countries", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -31,8 +30,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.text "message"
     t.text "referrer"
     t.text "params"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
     t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
     t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
@@ -50,8 +49,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.integer "resource_id", null: false
     t.string "state"
     t.string "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["resource_type", "resource_id"], name: "index_notifications_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
@@ -62,8 +61,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.integer "user_id", null: false
     t.integer "answer_user_id", null: false
     t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_resume_answer_comments_on_answer_id"
     t.index ["answer_user_id"], name: "index_resume_answer_comments_on_answer_user_id"
     t.index ["resume_id"], name: "index_resume_answer_comments_on_resume_id"
@@ -74,8 +73,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.integer "resume_id", null: false
     t.integer "answer_id", null: false
     t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["answer_id", "user_id"], name: "index_resume_answer_likes_on_answer_id_and_user_id", unique: true
     t.index ["answer_id"], name: "index_resume_answer_likes_on_answer_id"
     t.index ["resume_id"], name: "index_resume_answer_likes_on_resume_id"
@@ -86,8 +85,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.integer "resume_id", null: false
     t.integer "user_id", null: false
     t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "likes_count"
     t.string "applying_state"
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
@@ -99,8 +98,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.integer "resume_id"
     t.integer "user_id"
     t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["resume_id"], name: "index_resume_comments_on_resume_id"
     t.index ["user_id"], name: "index_resume_comments_on_user_id"
   end
@@ -111,8 +110,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "faculty"
     t.date "begin_date"
     t.date "end_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "description"
     t.boolean "current"
     t.index ["resume_id"], name: "index_resume_educations_on_resume_id"
@@ -125,8 +124,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.date "begin_date"
     t.date "end_date"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "current"
     t.index ["resume_id"], name: "index_resume_works_on_resume_id"
   end
@@ -135,8 +134,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "state"
     t.string "name"
     t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "url"
     t.text "summary"
     t.text "skills_description"
@@ -160,7 +159,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "tagger_type"
     t.integer "tagger_id"
     t.string "context", limit: 128
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.string "tenant", limit: 128
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
@@ -176,8 +175,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
@@ -186,24 +185,24 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "email"
     t.string "first_name"
     t.string "last_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
-    t.datetime "locked_at"
+    t.datetime "locked_at", precision: nil
     t.string "provider"
     t.string "uid"
     t.integer "resume_answer_likes_count", default: 0, null: false
@@ -232,8 +231,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "contact_telegram"
     t.string "contact_phone"
     t.text "conditions_description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "city_name"
     t.integer "country_id"
     t.string "link_for_contact"
@@ -251,7 +250,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "about_project"
     t.string "experience_description"
     t.string "locale"
-    t.datetime "published_at"
+    t.datetime "published_at", precision: nil
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
   end
@@ -262,7 +261,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_083950) do
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object", limit: 1073741823
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 

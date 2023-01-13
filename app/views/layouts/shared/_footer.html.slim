@@ -4,15 +4,15 @@ footer.bg-light.border-top.mt-auto.py-5
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 Hexlet &copy;
         ul.list-unstyled
-          li = link_to t('.about'), page_path('about'), class: 'link-dark'
-          li = link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', class: 'link-dark', target: '_blank', rel: :noopener
-          li = link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', class: 'link-dark', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.about'), page_path('about')
+          li.mb-3 = link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', target: '_blank', rel: :noopener
+          li = link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', target: '_blank', rel: :noopener
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.help')
         ul.list-unstyled
-          li = link_to t('.success_stories'), 'https://ru.hexlet.io/blog/categories/success', target: '_blank', rel: :noopener, class: 'link-dark'
-          li = link_to t('.test_assigments'), 'https://github.com/Hexlet/ru-test-assignments', class: 'link-dark', target: '_blank', rel: :noopener
-          li = link_to t('.employment_course'), 'https://ru.hexlet.io/courses/employment', class: 'link-dark', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.success_stories'), 'https://ru.hexlet.io/blog/categories/success', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.test_assigments'), 'https://github.com/Hexlet/ru-test-assignments', target: '_blank', rel: :noopener
+          li = link_to t('.employment_course'), 'https://ru.hexlet.io/courses/employment', target: '_blank', rel: :noopener
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.additionally')
         ul.list-unstyled
@@ -20,3 +20,4 @@ footer.bg-light.border-top.mt-auto.py-5
           li = link_to t('.code_battle'), 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener, class: 'link-dark'
           li = link_to t('.guides'), t('.guides_link'), target: '_blank', rel: :noopener, class: 'link-dark'
           li = link_to t('.recommended_books'), t('.books_link'), target: '_blank', rel: :noopener, class: 'link-dark'
+
