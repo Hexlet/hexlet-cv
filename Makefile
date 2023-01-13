@@ -60,9 +60,10 @@ heroku-logs:
 
 ci-setup:
 	cp -n .env.example .env || true
-	bundle
+	npm ci
 	npm run build
-	RAILS_ENV=test bin/rails db:prepare
+	bundle
+	# RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
 check: lint test
