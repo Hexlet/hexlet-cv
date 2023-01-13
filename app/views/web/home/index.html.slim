@@ -33,7 +33,7 @@
             h5.card-title.text-break = link_to resume, resume_path(resume)
             .card-text.text-break.mb-2 = truncate_markdown(resume.summary, length: 200)
             .text-end.small.mt-auto
-              .d-flex.fw-bold
+              .d-flex.fw-bold.flex-wrap
                 - resume.skill_list.each do |skill|
                   .m-1
                     = filter_link(skill, { skills_name_in: skill }, class: 'nav-item nav-link')
