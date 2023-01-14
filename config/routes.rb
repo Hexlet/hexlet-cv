@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   get '/404', to: 'web/errors#not_found', as: :not_found_errors
   match '/500', to: 'web/errors#server_error', via: :all
 
-  devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks',
-                                    sessions: 'web/devise/sessions',
-                                    registrations: 'web/devise/registrations' }
   scope '(:locale)', locale: /en|ru/ do
+    devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
+                                                                 registrations: 'web/devise/registrations' }
   end
+  devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
   scope module: :web do
     root 'home#index'
     resource :locale, only: [] do
