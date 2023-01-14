@@ -3,10 +3,10 @@ en:
     errors:
       server_error:
         header: Something went wrong
-        explanation: It lookns we have a bug in the code. The programmers have already sent a message, it remains to wait a bit. In the meantime, you can try to walk around in other sections (if they work)
+        explanation: It looks like we have a bug in the code. The programmers have already got a message, please wait a bit. For now you can try to browse other sections (if they work)
       not_found:
         header: Oops, it's empty
-        explanation: This happens when a page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
+        explanation: This happens when the page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
       resume_form:
         work: Work experience
