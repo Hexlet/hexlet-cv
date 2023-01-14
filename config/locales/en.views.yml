@@ -99,7 +99,7 @@ en:
         new:
           header: New recommendation
         edit:
-          header: Edit a recommendation
+          header: Edit the recommendation
       information:
         basic: Basic
         work: Work
@@ -110,10 +110,10 @@ en:
         apply: Apply
         add_a_comment: Add a comment
         recomendations: Recommendations
-        answer_exists: You've already left a recommendation
+        answer_exists: You've already left the recommendation
         title_apply: Mark the recommendation as applied. Click only when changes have been made to the resume.
         likes: |
-          Liked: %{count}
+          Likes: %{count}
         archived: Resume in archive
         download: Download PDF
         print: Preview PDF
