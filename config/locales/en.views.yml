@@ -8,6 +8,10 @@ en:
         header: Oops, it's empty
         explanation: This happens when the page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
+      resume_filter:
+        directions: Choose a direction
+        name: CV title
+        user: Name/Surname/Email
       resume_form:
         work: Work experience
         education: Education

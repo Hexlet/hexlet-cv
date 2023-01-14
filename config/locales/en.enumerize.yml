@@ -1,5 +1,11 @@
 en:
   enumerize:
+    relocation:
+      another_country: Another country only
+      another_city: Within the country of residence only
+      another_city_country: Ready
+      not_ready: Not ready
+      not_specified: Not specified
     salary_amount_type:
       gross: Salary before deductions
       net: Net salary

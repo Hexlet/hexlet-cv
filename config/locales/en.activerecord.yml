@@ -46,7 +46,7 @@ en:
         experience_description: Experience
         link_for_contact: Additional links
         title: Job title
-        programming_lanuage: Язык
+        programming_lanuage: Programming language
         employment_type: Job type
         country: Country
         city_name: City
@@ -97,7 +97,7 @@ en:
         current: To present
       resume:
         city: City
-        relocation: Ready to relocate
+        relocation: Willing to relocate
         name: Desired Job Title
         summary: Description
         hexlet_url: Hexlet
@@ -110,3 +110,5 @@ en:
         state/draft: Draft
         state/published: Published
         state/archived: Archived
+        skill_list: Skill tags
+        direction_list: Direction
