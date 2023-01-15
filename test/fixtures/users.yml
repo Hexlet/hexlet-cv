@@ -13,10 +13,12 @@ one:
   <<: *DEFAULTS
   email: $LABEL@email.com
   about: CTO at hexlet.io
+  resume_answer_likes_count: 2
 
 two:
   <<: *DEFAULTS
   email: $LABEL@email.com
+  resume_answer_likes_count: 3
 
 full:
   <<: *DEFAULTS
