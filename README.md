@@ -22,6 +22,22 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
+## Setup in Docker
+
+Prepare the `.env` file
+
+```sh
+make env-prepare
+```
+
+Build and start the app
+
+```sh
+make compose-build # build project
+make compose-setup
+make compose # start server at http://localhost:3000
+```
+
 ## Setup
 
 ```sh

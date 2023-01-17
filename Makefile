@@ -6,11 +6,14 @@ test:
 frontend:
 	npx nodemon -L --watch webpack.config.js --exec npm run build:watch
 
+env-prepare:
+	cp -n .env.example .env	
+
 setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 
 setup: setup-heroku
-	cp -n .env.example .env || true
+	make env-prepare
 	bin/setup
 	bin/rails db:fixtures:load
 	npm ci
@@ -59,10 +62,12 @@ heroku-logs:
 	heroku logs --tail
 
 ci-setup:
-	cp -n .env.example .env || true
+	make env-prepare
 	npm ci
 	npm run build
 	bundle
+	# yarn install
+	# bundle install --without production development
 	# RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
