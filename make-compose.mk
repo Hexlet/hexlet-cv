@@ -7,6 +7,9 @@ compose-setup:
 compose-build:
 	docker-compose build
 
+compose-bash:
+	docker-compose run app bash
+
 compose-logs:
 	docker-compose logs -f
 

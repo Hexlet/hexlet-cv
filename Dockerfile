@@ -5,8 +5,9 @@ WORKDIR /usr/src/app/
 RUN apt update && apt install -y npm curl && \
     curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && \
     apt install -y nodejs && \
-    npm install npm@latest && \
-    npm install --global yarn && npm cache clean --force 
+    npm install -g npm@latest yarn&& \
+    npm cache clean --force && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
