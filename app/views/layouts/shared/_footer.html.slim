@@ -4,6 +4,7 @@ footer.bg-light.border-top.mt-5.py-5
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 Hexlet &copy;
         ul.list-unstyled
+          li.mb-3 = link_to t('.rating'), users_path
           li.mb-3 = link_to t('.about'), page_path('about')
           li.mb-3 = link_to t('.source_code'), 'https://github.com/Hexlet/hexlet-cv', target: '_blank', rel: :noopener
           li = link_to 'Slack #hexlet-volunteers', 'https://slack-ru.hexlet.io/', target: '_blank', rel: :noopener

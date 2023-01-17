@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/403', to: 'web/errors#forbidden', as: :not_forbidden_errors
-  get '/404', to: 'web/errors#not_found', as: :not_found_errors
-  match '/500', to: 'web/errors#server_error', via: :all
-
   devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks',
                                     sessions: 'web/devise/sessions',
                                     registrations: 'web/devise/registrations' }
 
   scope module: :web do
+    get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
+    get '/404', to: 'errors#not_found', as: :not_found_errors
+    match '/500', to: 'errors#server_error', via: :all
+
     root 'home#index'
+    resource :employment, only: %i[show]
     resources :vacancies, only: %i[index show]
     # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
     resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do

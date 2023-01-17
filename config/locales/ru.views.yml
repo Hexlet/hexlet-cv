@@ -1,6 +1,9 @@
 ---
 ru:
   web:
+    employments:
+      show:
+        employment: Трудоустройство
     errors:
       server_error:
         header: Что-то пошло не так
