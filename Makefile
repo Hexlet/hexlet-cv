@@ -7,8 +7,11 @@ prepare:
 	npm install --global yarn
 	curl https://cli-assets.heroku.com/install.sh | sh
 
+env-prepare:
+	cp -n .env.example .env	
+
 setup:
-	cp -n .env.example .env || true
+	make env-prepare
 	bin/setup
 	bin/rails db:fixtures:load
 	npx simple-git-hooks
@@ -55,7 +58,7 @@ heroku-logs:
 	heroku logs --tail
 
 ci-setup:
-	cp -n .env.example .env || true
+	make env-prepare
 	yarn install
 	bundle install --without production development
 	RAILS_ENV=test bin/rails db:prepare

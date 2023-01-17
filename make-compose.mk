@@ -1,6 +1,9 @@
 compose:
 	docker-compose up -d
 
+compose-setup:
+	docker-compose run --rm app make setup
+
 compose-build:
 	docker-compose build
 
@@ -20,11 +23,10 @@ compose-restart:
 	docker-compose restart
 
 compose-test:
-	docker-compose run --rm app make fixtures-load && make test
+	docker-compose run --rm app make test
 
 compose-lint:
 	docker-compose run --rm app make lint
 
 compose-lint-fix:
 	docker-compose run --rm app make linter-code-fix
-
