@@ -1,6 +1,3 @@
-- title [@resume.to_s, @resume.id].join ' | '
-- description @resume.summary
-
 = content_for :meta do
   = structured_data_tag 'resume',
     resume: @resume, educations: @resume_educations, works: @resume_works
@@ -36,30 +33,32 @@
 .mb-5
   = render 'information'
 
-  .mt-3
+  .mt-5.pt-5
+    h3.mb-3 = t('.comments')
     - if @resume.comments.web.any?
-      .small
-        - @resume.comments.web.each do |comment|
-          hr.my-2
-          .d-flex(id="comment-#{comment.id}")
-            .me-auto
-              span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
-                == markdown2html comment.content
+      - @resume.comments.web.each_with_index do |comment, i|
+        - if i > 0
+          hr.mb-4
+        .d-flex(id="comment-#{comment.id}")
+          .me-auto
+            span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+              == markdown2html comment.content
+            span.small
               - if comment.user
                 span.me-1
                   = link_to comment.user, user_path(comment.user)
               = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
-            - if comment.user == current_user
-              .d-flex
-                .me-2
-                  = link_to edit_resume_comment_path(@resume, comment)
-                    span.bi.bi-pen-fill.text-secondary
+          - if comment.user == current_user
+            .d-flex
+              .me-2
+                = link_to edit_resume_comment_path(@resume, comment)
+                  span.bi.bi-pen-fill.text-secondary
 
-                div
-                  = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
-                    span.bi.bi-x-lg.text-secondary
+              div
+                = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
+                  span.bi.bi-x-lg.text-secondary
       hr.my-2
-      a.d-block.small.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
+      a.d-block.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
         = t('.add_a_comment')
       .collapse(id="new_resume_comment-#{@resume.id}")
         - if user_signed_in?
@@ -68,7 +67,7 @@
           = render 'comment_requires'
 
 - if @resume_answers.any?
-  .lead.mb-3 = t('.recomendations')
+  h3.mb-3 = t('.recomendations')
 
   - @resume_answers.each do |answer|
     = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
