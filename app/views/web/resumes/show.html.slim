@@ -37,7 +37,7 @@
     h3.mb-3 = t('.comments')
     - if @resume.comments.web.any?
       - @resume.comments.web.each_with_index do |comment, i|
-        - if i > 0
+        - if i != 0
           hr.mb-4
         .d-flex(id="comment-#{comment.id}")
           .me-auto
