@@ -1,12 +1,12 @@
 FROM ruby:3.2.0
 
-RUN apt-get update
-
 ENV NODE_VERSION 19.x
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash -
 
-RUN apt-get install -y nodejs
+RUN apt-get update \
+  && apt-get install -y nodejs \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app/
 
