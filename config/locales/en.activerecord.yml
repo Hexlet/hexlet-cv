@@ -1,6 +1,6 @@
 en:
   activerecord:
-  models:
+    models:
       resume: Resume
       user: User
       resume/answer: Recommendation
@@ -25,50 +25,7 @@ en:
       #         user:
       #           answer_owner: Нельзя лайкнуть свой ответ :)
     attributes:
-
-      user:
-        resume_mail_enabled: Receive emails from Hexlet CV when somebody interacts with your CV
-        resume_answer_likes_count: Likes
-        first_name: First name
-        last_name: Surname
-        name: Name
-        about: Bio
-        role: Role
-        state: State
-        state/permitted: Active
-        state/banned: Banned
-      resume/work:
-        current: I currently work here
-        company: Company
-        position: Job title
-        begin_date: From
-        end_date: To
-        description: Description
-      resume/education:
-        current: To present
-        description: Description
-        institution: Institution
-        faculty: Faculty
-        begin_date: From
-        end_date: To
-      resume:
-        city: City
-        relocation: Willing to relocate
-        name: Desired Job Title
-        summary: Description
-        hexlet_url: Hexlet
-        github_url: GitHub
-        contact: Contact information
-        english_fluency: Languages
-        skills_description: Skills
-        awards_description: Awards, Certificates
-        state: Status
-        state/draft: Draft
-        state/published: Published
-        state/archived: Archived
-        skill_list: Skill tags
-        direction_list: Direction
-            resume/answer:
+      resume/answer:
         content: Answer
         applying_state/pending: Awaiting confirmation
         applying_state/applied: Changes applied
@@ -113,3 +70,45 @@ en:
         state/published: Published
         name: Name
         company: Company
+      user:
+        resume_answer_likes_count: Likes
+        first_name: First name
+        last_name: Surname
+        name: Name
+        about: Bio
+        resume_mail_enabled: Receive emails from Hexlet CV when somebody interacts with your CV
+        role: Role
+        state: State
+        state/permitted: Active
+        state/banned: Banned
+      resume/work:
+        company: Company
+        position: Job title
+        begin_date: From
+        end_date: To
+        current: I currently work here
+        description: Description
+      resume/education:
+        description: Description
+        institution: Institution
+        faculty: Faculty
+        begin_date: From
+        end_date: To
+        current: To present
+      resume:
+        city: City
+        relocation: Willing to relocate
+        name: Desired Job Title
+        summary: Description
+        hexlet_url: Hexlet
+        github_url: GitHub
+        contact: Contact information
+        english_fluency: Languages
+        skills_description: Skills
+        awards_description: Awards, Certificates
+        state: Status
+        state/draft: Draft
+        state/published: Published
+        state/archived: Archived
+        skill_list: Skill tags
+        direction_list: Direction
