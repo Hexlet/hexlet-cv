@@ -1,22 +1,27 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/403', to: 'web/errors#forbidden', as: :not_forbidden_errors
-  get '/404', to: 'web/errors#not_found', as: :not_found_errors
-  match '/500', to: 'web/errors#server_error', via: :all
 
   scope '(:locale)', locale: /en|ru/ do
     devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
                                                                  registrations: 'web/devise/registrations' }
-  end
+                                                                 end
+
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
   scope module: :web do
+    get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
+    get '/404', to: 'errors#not_found', as: :not_found_errors
+    match '/500', to: 'errors#server_error', via: :all
+
     root 'home#index'
+
     resource :locale, only: [] do
       member do
         get :switch
       end
     end
+
+    resource :employment, only: %i[show]
 
     resources :vacancies, only: %i[index show]
 

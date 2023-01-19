@@ -1,3 +1,4 @@
+---
 ru:
   layouts:
     web:
@@ -29,7 +30,7 @@ ru:
         ru: Русский
         admin: Админка
         vacancies: Вакансии
-        rating: Рейтинг
+        employment: Трудоустройство
         resumes: Резюме
         add: Добавить
         add_resume: Резюме
@@ -45,6 +46,7 @@ ru:
         register: Регистрация
       footer:
         about: О проекте
+        rating: Рейтинг
         source_code: Исходный код
         other_os_projects: Другие open-source проекты
         help: Помощь

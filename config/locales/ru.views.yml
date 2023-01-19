@@ -1,5 +1,9 @@
+---
 ru:
   web:
+    employments:
+      show:
+        employment: Трудоустройство
     errors:
       server_error:
         header: Что-то пошло не так
@@ -115,6 +119,7 @@ ru:
         apply: Применить
         add_a_comment: Добавить комментарий
         recomendations: Рекомендации
+        comments: Комментарии
         answer_exists: Вы уже оставили рекомендацию
         title_apply: Пометить рекомендацию как примененную. Нажимать только тогда, когда внесены изменения в резюме.
         likes: |
