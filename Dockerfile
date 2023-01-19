@@ -8,10 +8,11 @@ RUN apt-get update \
   && apt-get install -y nodejs \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/app/
+ENV PROJECT_ROOT /app
 
-COPY . .
+RUN mkdir -p ${PROJECT_ROOT}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # RUN apt update && apt install -y nodejs npm
 
@@ -21,5 +22,18 @@ RUN make setup
 
 RUN bin/rake db:migrate
 >>>>>>> update docker file
+=======
+WORKDIR ${PROJECT_ROOT}
 
-CMD "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
+ENV BUNDLE_APP_CONFIG ${PROJECT_ROOT}/.bundle/config
+ENV GEM_HOME ${PROJECT_ROOT}/vendor/bundle
+ENV BUNDLE_PATH ${GEM_HOME}
+>>>>>>> fix
+
+# COPY . .
+
+# RUN make setup
+
+# RUN bin/rake db:migrate
+
+# CMD "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"

@@ -5,25 +5,16 @@ compose-build:
 	docker-compose build
 
 compose-bash:
-	docker-compose run app bash
-
-compose-logs:
-	docker-compose logs -f
-
-compose-down:
-	docker-compose down || true
+	docker-compose run --rm app bash
 
 compose-clear:
 	docker-compose down -v --remove-orphans || true
 
-compose-stop:
-	docker-compose stop || true
+compose-down:
+	docker-compose down || true
 
-compose-restart:
-	docker-compose restart
-
-compose-test:
-	docker-compose run --rm app make fixtures-load && make test
+compose-install:
+	docker-compose run --rm app make setup
 
 compose-lint:
 	docker-compose run --rm app make lint
@@ -31,3 +22,16 @@ compose-lint:
 compose-lint-fix:
 	docker-compose run --rm app make linter-code-fix
 
+compose-logs:
+	docker-compose logs -f
+
+compose-restart:
+	docker-compose restart
+
+compose-stop:
+	docker-compose stop || true
+
+compose-setup: compose-down compose-build compose-install
+
+compose-test:
+	docker-compose run --rm app make test
