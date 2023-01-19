@@ -2,6 +2,7 @@
 
 module ApplicationHelper
   # include AuthManagement
+
   def let(value)
     yield value
   end

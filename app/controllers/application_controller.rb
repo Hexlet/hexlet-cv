@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   include Sparkpost
   include Auth
   include Flash
-
   before_action :banned?
   helper_method :current_or_guest_user
   helper_method :f
@@ -32,5 +31,9 @@ class ApplicationController < ActionController::Base
     return if request.host == ENV.fetch('HOST')
 
     redirect_to("#{request.protocol}#{ENV.fetch('HOST')}#{request.fullpath}", allow_other_host: true, status: :moved_permanently)
+  end
+
+  def default_url_options
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 end
