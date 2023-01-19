@@ -9,12 +9,11 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 ENV PROJECT_ROOT /app
-
 RUN mkdir -p ${PROJECT_ROOT}
 
 WORKDIR ${PROJECT_ROOT}
 
-ENV BUNDLE_APP_CONFIG ${PROJECT_ROOT}/.bundle/config
+ENV BUNDLE_APP_CONFIG ${PROJECT_ROOT}/bundle/config
 ENV GEM_HOME ${PROJECT_ROOT}/vendor/bundle
 ENV BUNDLE_PATH ${GEM_HOME}
 
