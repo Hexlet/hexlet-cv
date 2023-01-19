@@ -7,4 +7,4 @@ exclude:
 linters:
 
   LineLength:
-    max: 300
+    max: 1000

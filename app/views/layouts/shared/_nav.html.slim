@@ -8,7 +8,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
       ul.navbar-nav.me-auto
         = nav_menu_item t('.resumes'), root_path
         = nav_menu_item t('.vacancies'), vacancies_path
-        = nav_menu_item t('.rating'), users_path
+        = nav_menu_item t('.employment'), employment_path
       ul.navbar-nav.nav-pills
         - if user_signed_in?
           li.nav-item

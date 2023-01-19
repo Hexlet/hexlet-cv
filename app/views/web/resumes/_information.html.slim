@@ -1,5 +1,5 @@
 .d-flex
-  h4.my-4.me-3 = t('.basic')
+  h2.my-4.me-3 = t('.basic')
   hr.my-auto.w-100
 
 - if @resume.user.first_name?
@@ -60,7 +60,7 @@
 
 - if @resume_works.any?
   .d-flex
-    h4.my-4.me-3 = t('.work')
+    h2.my-4.me-3 = t('.work')
     hr.my-auto.w-100
 
   - @resume_works.each do |work|
@@ -68,7 +68,7 @@
       b = work
       | ,&nbsp;
       = work.company
-      .small.text-muted.mt-1.mb-2
+      .text-muted.mt-1.mb-2
         = work.begin_date.to_formatted_s(:month_and_year)
         - if work.current
           | &nbsp;-&nbsp;
@@ -80,13 +80,13 @@
 
 - if @resume_educations.any?
   .d-flex
-    h4.my-4.me-3 = t('.education')
+    h2.my-4.me-3 = t('.education')
     hr.my-auto.w-100
 
   - @resume_educations.each do |education|
     .mb-4
       = education.description
-      .small.text-muted.mt-1.mb-2
+      .text-muted.mt-1.mb-2
         = education.begin_date.to_formatted_s(:month_and_year)
         - if education.current
           | &nbsp;-&nbsp;
