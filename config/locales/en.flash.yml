@@ -21,7 +21,7 @@ en:
             error: Failed to create vacancy. Please check form fields and try again.
         newsletters:
           update:
-            success: Newsletters settings saved
+            success: Email settings updated
             error: Failed to save newsletters settings
       resumes:
         answers:
@@ -51,4 +51,3 @@ en:
             success: You put a "Like" mark on it
           destroy:
             success: You deleted the "Like" mark
-

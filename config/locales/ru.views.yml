@@ -25,7 +25,7 @@ ru:
         hide: В черновик
         cancel: Отмена
       vacancy_form:
-        archive: В архив
+        cancel: Отмена
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:
@@ -167,7 +167,7 @@ ru:
           header: Настройки
         show:
           header: Мой профиль
-          edit_profile:  Редактировать профиль
+          edit_profile: Редактировать профиль
           my_comments: Мои коментарии
           my_answers: Мои рекомендации
       notifications:
