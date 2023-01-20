@@ -27,6 +27,7 @@ WORKDIR ${PROJECT_ROOT}
 ENV BUNDLE_APP_CONFIG ${PROJECT_ROOT}/bundle/config
 ENV GEM_HOME ${PROJECT_ROOT}/vendor/bundle
 ENV BUNDLE_PATH ${GEM_HOME}
+<<<<<<< HEAD
 >>>>>>> fix
 
 # COPY . .
@@ -36,3 +37,5 @@ ENV BUNDLE_PATH ${GEM_HOME}
 # RUN bin/rake db:migrate
 
 # CMD "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
+=======
+>>>>>>> fix run test in docker

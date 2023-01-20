@@ -7,8 +7,6 @@ services:
       context: .
       dockerfile: Dockerfile
     command: "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
-    env_file:
-      - .env
     volumes:
       - ~/.bash_history:/root/.bash_history
       - .:/app
