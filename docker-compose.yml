@@ -3,14 +3,18 @@ version: "3.7"
 
 services:
   app:
-    build: .
-    volumes:
-      - .:/usr/src/app/
-    ports:
-      - "3000:3000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
     env_file:
       - .env
-    command: "bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}"
+    volumes:
+      - ~/.bash_history:/root/.bash_history
+      - .:/app
+    ports:
+      - "3000:3000"
+    
 
   # webpacker:
   #   build: .
