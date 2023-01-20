@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  scope '(:locale)', locale: /en|ru/ do
-    devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
+Rails.application.routes.draw do  
+scope '(:locale)', locale: /en|ru/ do
+  devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
                                                                  registrations: 'web/devise/registrations' }
   end
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
+ 
   scope module: :web do
     get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
     get '/404', to: 'errors#not_found', as: :not_found_errors
