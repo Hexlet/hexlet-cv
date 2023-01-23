@@ -5,6 +5,7 @@ class Web::Devise::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :check_captcha, only: [:create]
   # rubocop:enable Rails/LexicallyScopedActionFilter
   include GonInit
+  include LocaleConcern
 
   private
 
