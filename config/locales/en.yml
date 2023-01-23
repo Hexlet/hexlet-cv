@@ -15,8 +15,8 @@ en:
     - December
   recaptcha:
     errors:
-      verification_failed: 'Confirm that you are not a robot!'
-      recaptcha_unreachable: 'reCAPTCHA verification server error, please try again.'
+      verification_failed: "Confirm that you are not a robot!"
+      recaptcha_unreachable: "reCAPTCHA verification server error, please try again."
   notifications:
     new_answer_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{answer_path}">new answer</a> for your resume
     new_comment_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{comment_path}">new comment</a> for your resume
@@ -24,19 +24,22 @@ en:
     new_answer_like_html: User <a href="%{user_path}">%{user}</a> likes <a href="%{answer_path}">your answer</a>
   confirm: Are you sure?
   page: Page %{number}
+  salary:
+    from: "from %{value}"
+    to: "to %{value}"
   date:
     formats:
-      discard_day: '%b %Y'
+      discard_day: "%b %Y"
   answer_comment_mailer:
     new_comment_email:
-      content: 'Content:'
+      content: "Content:"
       new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
       unsubscribe: You can unsubscribe from the newsletter in
       settings: settings
       subject: New comment for your recommendation.
   resume_answer_mailer:
     new_answer_email:
-      content: 'Content:'
+      content: "Content:"
       new_answer: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
       review: Your resume has been reviewed!
       unsubscribe: You can unsubscribe from the newsletter in
@@ -44,7 +47,7 @@ en:
       subject: You have a new recommendation
   resume_comment_mailer:
     new_comment_email:
-      content: 'Content:'
+      content: "Content:"
       new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
       unsubscribe: You can unsubscribe from the newsletter in
       settings: settings

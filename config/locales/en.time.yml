@@ -1,0 +1,5 @@
+en:
+  time:
+    formats:
+      long_schema: "%d-%m-%Y %H:%M:%S"
+      schema: "%m/%d/%Y"

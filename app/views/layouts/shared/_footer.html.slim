@@ -17,7 +17,7 @@ footer.bg-light.border-top.mt-5.py-5
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.additionally')
         ul.list-unstyled
-          li.mb-3 = link_to 'Основы программирования', 'https://ru.code-basics.com/', target: '_blank', rel: :noopener
-          li.mb-3 = link_to 'КодБатл (Игра для прокачки)', 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener
-          li.mb-3 = link_to 'Гайды для программистов', 'https://guides.hexlet.io/', target: '_blank', rel: :noopener
-          li = link_to t('.recommended_books'), 'https://ru.hexlet.io/pages/recommended-books', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.code_basics'), t('.basics_link'), target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.code_battle'), 'https://codebattle.hexlet.io/', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.guides'), t('.guides_link'), target: '_blank', rel: :noopener
+          li = link_to t('.recommended_books'), t('.books_link'), target: '_blank', rel: :noopener
