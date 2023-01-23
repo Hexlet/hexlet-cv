@@ -49,4 +49,4 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
           ul.dropdown-menu.dropdown-menu-end
             - I18n.available_locales.without(I18n.locale).each do |locale|
               = link_to switch_locale_path(new_locale: locale), class: 'dropdown-item d-flex' do
-                span.my-auto = t(".#{locale}") 
+                span.my-auto = t(".#{locale}")
