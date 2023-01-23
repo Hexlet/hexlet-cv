@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'web/omniauth_callbacks',
-                                    sessions: 'web/devise/sessions',
-                                    registrations: 'web/devise/registrations' }
+  devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
+  scope '(:locale)', locale: /en|ru/ do
+  devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
+                                                               registrations: 'web/devise/registrations' }
 
   scope module: :web do
     get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
@@ -11,6 +12,11 @@ Rails.application.routes.draw do
     match '/500', to: 'errors#server_error', via: :all
 
     root 'home#index'
+    resource :locale, only: [] do
+      member do
+        get :switch
+      end
+    end
     resource :employment, only: %i[show]
     resources :vacancies, only: %i[index show]
     # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
@@ -60,4 +66,5 @@ Rails.application.routes.draw do
       resources :vacancies, only: %i[index edit update]
     end
   end
+end
 end
