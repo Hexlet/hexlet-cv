@@ -37,6 +37,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "npm-check-updates": "^16.6.2",
+    "@toast-ui/editor": "^3.2.1",
     "postcss-scss": "^4.0.6",
     "resolve-url-loader": "^5.0.0",
     "simple-git-hooks": "^2.8.1",
