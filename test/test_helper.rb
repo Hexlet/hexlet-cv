@@ -33,3 +33,7 @@ end
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 end
+
+Rails.application.configure do
+  routes.default_url_options[:locale] = :en
+end
