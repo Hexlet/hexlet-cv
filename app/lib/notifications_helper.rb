@@ -26,16 +26,16 @@ class NotificationsHelper
     def new_answer_params(resource)
       {
         user: resource.user,
-        user_path: user_path(resource.user),
-        answer_path: resume_path(resource.resume, anchor: "answer-#{resource.id}")
+        user_path: user_path(resource.user, locale: I18n.locale),
+        answer_path: resume_path(resource.resume, anchor: "answer-#{resource.id}", locale: I18n.locale)
       }
     end
 
     def new_comment_params(resource)
       {
         user: resource.user,
-        user_path: user_path(resource.user),
-        comment_path: resume_path(resource.resume, anchor: "comment-#{resource.id}")
+        user_path: user_path(resource.user, locale: I18n.locale),
+        comment_path: resume_path(resource.resume, anchor: "comment-#{resource.id}", locale: I18n.locale)
       }
     end
 

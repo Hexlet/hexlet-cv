@@ -15,7 +15,7 @@ class Web::Account::NewslettersControllerTest < ActionDispatch::IntegrationTest
 
   test '#update' do
     attrs = { resume_mail_enabled: false }
-    patch account_newsletters_path(@user), params: { user: attrs }
+    patch account_newsletters_path(@user, locale: I18n.locale), params: { user: attrs }
     assert_response :redirect
 
     @user.reload
