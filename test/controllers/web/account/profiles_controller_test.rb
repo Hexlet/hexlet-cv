@@ -15,7 +15,7 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test '#update' do
     attrs = FactoryBot.attributes_for :user
-    patch account_profile_path(@user), params: { user: attrs }
+    patch account_profile_path(@user, locale: I18n.locale), params: { user: attrs }
     assert_response :redirect
 
     @user.reload
