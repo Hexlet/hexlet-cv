@@ -5,7 +5,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../stylesheets/application.scss';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from "@toast-ui/editor";
