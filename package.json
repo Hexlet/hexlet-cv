@@ -39,6 +39,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@toast-ui/editor": "^3.2.1",
+    "lint-staged": "^13.1.0",
     "npm-check-updates": "^16.6.3",
     "postcss-scss": "^4.0.6",
     "resolve-url-loader": "^5.0.0",
