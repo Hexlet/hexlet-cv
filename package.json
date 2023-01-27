@@ -2,7 +2,7 @@
   "name": "hexlet_cv",
   "private": true,
   "simple-git-hooks": {
-    "pre-push": "make lint"
+    "pre-commit": "npx lint-staged --relative"
   },
   "engines": {
     "node": "19.x"
