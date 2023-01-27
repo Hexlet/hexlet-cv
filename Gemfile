@@ -57,7 +57,7 @@ gem 'pundit'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'recaptcha'
-gem 'redcarpet'
+gem 'redcarpet', github: 'vmg/redcarpet'
 gem 'rollbar' # TODO: switch to sentry
 gem 'simple_form'
 gem 'slim-rails'
