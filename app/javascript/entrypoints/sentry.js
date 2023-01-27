@@ -2,8 +2,8 @@ import * as Sentry from '@sentry/browser';
 import { BrowserTracing } from '@sentry/tracing';
 
 // https://docs.sentry.io/platforms/javascript/
-// NOTE: Config via env variable SENTRY_DSN, SENTRY_RELEASE
 Sentry.init({
+  dsn: 'https://85a2460d54d24846963a314a247a790a@o1090356.ingest.sentry.io/4504576077004800',
   integrations: [new BrowserTracing()],
   debug: true,
   tracesSampleRate: 0.001,
