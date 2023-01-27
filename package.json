@@ -52,6 +52,7 @@
   },
   "scripts": {
     "build": "webpack --mode production --color",
-    "build:watch": "webpack --watch --mode development --color"
+    "build:watch": "webpack --watch --mode development --color",
+    "postdeploy": "./deploy-notify.sh"
   }
 }
