@@ -147,6 +147,7 @@ GEM
     ffi (1.15.5)
     flash_rails_messages (2.3.0)
       rails (>= 5.2)
+    geocoder (1.8.1)
     globalid (1.0.1)
       activesupport (>= 5.0)
     gon (6.4.0)
