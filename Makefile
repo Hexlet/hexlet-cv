@@ -14,7 +14,7 @@ setup: setup-heroku
 	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
-	npm ci
+	npm i
 	npm run build
 	npx simple-git-hooks
 
