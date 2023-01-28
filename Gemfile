@@ -60,7 +60,6 @@ gem 'rails-i18n'
 gem 'ransack'
 gem 'recaptcha'
 gem 'redcarpet', github: 'vmg/redcarpet'
-gem 'rollbar' # TODO: switch to sentry
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simple_form'
