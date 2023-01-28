@@ -42,3 +42,9 @@ Metrics/BlockLength:
 
 Style/AsciiComments:
   Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false

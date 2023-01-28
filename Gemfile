@@ -89,12 +89,14 @@ group :production do
 end
 
 gem 'active_form_model', '~> 0.4.1'
+gem 'browser'
 gem 'cocoon'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'enumerize'
 gem 'flash_rails_messages'
+gem 'geocoder'
 gem 'gon'
 gem 'impressionist'
 gem 'kaminari'

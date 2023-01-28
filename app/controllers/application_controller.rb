@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def default_url_options
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
+  end
+
   def redirect_root_domain
     return if request.host == ENV.fetch('HOST')
 

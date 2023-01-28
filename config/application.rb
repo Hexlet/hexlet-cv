@@ -49,7 +49,8 @@ module HexletCv
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.i18n.default_locale = :ru
+    config.i18n.available_locales = %i[en ru]
+    config.i18n.default_locale = :en
     config.generators do |g|
       g.assets false
     end

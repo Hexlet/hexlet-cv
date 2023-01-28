@@ -18,7 +18,7 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resume = resume.becomes(Web::Admin::ResumeForm)
     if @resume.update(params[:resume])
       f(:success)
-      redirect_to action: :index
+      redirect_to admin_resumes_path
     else
       render :edit
     end
