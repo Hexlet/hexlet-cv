@@ -21,7 +21,7 @@ en:
             error: Failed to create vacancy. Please check form fields and try again.
         newsletters:
           update:
-            success: Newsletters settings saved
+            success: Email settings updated
             error: Failed to save newsletters settings
       resumes:
         answers:
