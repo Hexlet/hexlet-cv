@@ -1,7 +1,7 @@
 include make-compose.mk
 
 test:
-	RAILS_LOCALE=ru bin/rails test
+	RAILS_LOCALE=en bin/rails test
 	bin/rails test
 
 frontend:

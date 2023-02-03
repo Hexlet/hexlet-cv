@@ -20,7 +20,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
 
     if @vacancy.save
       f(:success)
-      redirect_to action: :index
+      redirect_to account_vacancies_path
     else
       f(:error)
       render :new
@@ -33,7 +33,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     if vacancy.update(params[:vacancy])
       change_visibility(@vacancy)
       f(:success)
-      redirect_to action: :index
+      redirect_to account_vacancies_path
     else
       @vacancy = vacancy.becomes(Vacancy)
       f(:error)

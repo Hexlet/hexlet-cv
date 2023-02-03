@@ -1,5 +1,4 @@
 ---
-
 require:
   - rubocop-performance
   - rubocop-rails
@@ -10,11 +9,11 @@ AllCops:
   TargetRailsVersion: 6
   DisplayCopNames: true
   Exclude:
-    - 'bin/**'
-    - 'db/schema.rb'
-    - 'db/migrate/**'
-    - 'vendor/**/*'
-    - 'node_modules/**/*'
+    - "bin/**"
+    - "db/schema.rb"
+    - "db/migrate/**"
+    - "vendor/**/*"
+    - "node_modules/**/*"
 
 Rails:
   Enabled: true
@@ -41,4 +40,10 @@ Metrics/BlockLength:
   Enabled: false
 
 Style/AsciiComments:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
   Enabled: false

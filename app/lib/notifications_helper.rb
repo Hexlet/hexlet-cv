@@ -42,24 +42,24 @@ class NotificationsHelper
     def new_answer_comment_params(resource)
       {
         user: resource.user,
-        user_path: user_path(resource.user),
-        answer_comment_path: resume_path(resource.resume, anchor: "answer_comment-#{resource.id}")
+        user_path: user_path(resource.user, locale: I18n.locale),
+        answer_comment_path: resume_path(resource.resume, locale: I18n.locale, anchor: "answer_comment-#{resource.id}")
       }
     end
 
     def answer_applied_params(answer)
       {
         user: answer.resume.user,
-        user_path: user_path(answer.resume.user),
-        answer_path: resume_path(answer.resume, anchor: "answer-#{answer.id}")
+        user_path: user_path(answer.resume.user, locale: I18n.locale),
+        answer_path: resume_path(answer.resume, locale: I18n.locale, anchor: "answer-#{answer.id}")
       }
     end
 
     def new_answer_like_params(resource)
       {
         user: resource.user,
-        user_path: user_path(resource.user),
-        answer_path: resume_path(resource.resume, anchor: "answer-#{resource.answer.id}")
+        user_path: user_path(resource.user, locale: I18n.locale),
+        answer_path: resume_path(resource.resume, locale: I18n.locale, anchor: "answer-#{resource.answer.id}")
       }
     end
   end

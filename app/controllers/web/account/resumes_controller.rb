@@ -22,7 +22,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     if @resume.save
       change_visibility(@resume)
       f(:success)
-      redirect_to action: :index
+      redirect_to account_resumes_path
     else
       f(:error)
       render :new
@@ -35,7 +35,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     if resume.update(params[:resume])
       change_visibility(@resume)
       f(:success)
-      redirect_to action: :index
+      redirect_to account_resumes_path
     else
       @resume = resume.becomes(Resume)
       f(:error)
