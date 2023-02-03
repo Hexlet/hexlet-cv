@@ -27,6 +27,7 @@ en:
         ru: Russian
         admin: Admin panel
         vacancies: Find jobs
+        employment: Employment
         rating: Rating
         resumes: CV reviews
         add: Post
@@ -43,6 +44,7 @@ en:
         register: Sign up
       footer:
         about: About
+        rating: Rating
         source_code: Source code
         other_os_projects: Other open-source projects
         help: Help

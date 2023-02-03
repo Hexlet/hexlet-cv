@@ -4,6 +4,33 @@ ru:
     employments:
       show:
         employment: Трудоустройство
+        description: Новый раздел, который станет центром управления своим трудоустройством. Пока в разработке, будет постоянно меняться
+        seasonality: Сезонность
+        seasonality_description: "Найм в любой области обладает сезонностью. Общая схема такая: В конце января начинается набор, который доходит до пика в марте-апреле, затем резкое снижение (майские) и плато летом. Затем к сентябрю снова начинается рост найма, который доходит до пика в октябре. В ноябре начинается спад, который доходит до самой низкой точке в декабре, когда никто не нанимает, так как праздники и никто не хочет платить новым людям за 10 праздничных дней, когда они еще ничего не сделали. Дальше цикл повторяется."
+        check_list: Чек-лист трудоустройства
+        check_list_steps:
+          free_course: "Пройден бесплатный курс https://ru.hexlet.io/courses/employment"
+          cv: "Резюме добавленное на https://cv.hexlet.io и проверенной карьерным консультантом Хекслета"
+          habr: "Аккаунт на https://qna.habr.com/ и десяток отвеченных вопросов"
+          opensourse: "Хотя бы два принятых пулреквеста в Open Source https://guides.hexlet.io/ru/how-to-be-a-helpful-for-the-hexlet-community/"
+          linkedin: "Заполненный профиль на Linkedin"
+          github: "Оформленный профиль на гитхабе, в который включены учебные проекты"
+          twitter: "Twitter аккаунт с сообщениями на технические темы"
+        developer_specifics: Специфика для разработчиков
+        dev_specifics_steps:
+          free_course: "Пройден бесплатный курс https://ru.hexlet.io/courses/employment-for-developers"
+          leetcode: "Аккаунт на  https://leetcode.com/ и десяток выполненных задач"
+          codewars: "Аккаунт на https://www.codewars.com/ и десяток выполненных задач "
+          stackoverflow: "Аккаунт на https://stackoverflow.com/ и десяток отвеченных вопросов"
+          test_assignments: "Несколько решенных тестовых заданий https://github.com/Hexlet/ru-test-assignments"
+          books: "Прочитаны три книги из списка https://ru.hexlet.io/pages/recommended-books"
+        qa_specifics: Специфика для тестировщиков
+        qa_specifics_steps:
+        analitics_specifics: Специфика для аналитиков
+        analitics_specifics_steps:
+        devops_specifics: Специфика для администраторов/DevOps
+        devops_specifics_steps:
+        in_progress: В процессе
     errors:
       server_error:
         header: Что-то пошло не так
@@ -167,7 +194,7 @@ ru:
           header: Настройки
         show:
           header: Мой профиль
-          edit_profile:  Редактировать профиль
+          edit_profile: Редактировать профиль
           my_comments: Мои коментарии
           my_answers: Мои рекомендации
       notifications:

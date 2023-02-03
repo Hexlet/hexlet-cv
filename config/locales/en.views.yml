@@ -1,5 +1,37 @@
 en:
   web:
+    employments:
+      show:
+        employment: Employment
+        description: New section that will become the managment center of your employment. In development, will constantly change.
+        where_find_jobs: Where to look for a job?  
+        seasonality: Seasonality
+        seasonality_description: "Hiring in any job field has a seasonality. The general scheme is: The hiring process begins at the end of January, it reaches its peak in March-April, than a sharp decline during the May holidays and hiring plateau in Summer.
+        In September hiring increases again with its peak in October. In November the slowdown begins, which reaches its lowest point in December, when no one is hiring due to the holidays as employers are not willing to pay newcomers for 10 public holidays when they haven't done any work yet. Then the cycle repeats."
+        check_list: Employment check-list
+        check_list_steps:
+          free_course: "Free course completed: https://ru.hexlet.io/courses/employment"
+          cv: "CV added at https://cv.hexlet.io and reviewed by Hexlet HR consultant"
+          habr: "Account at https://qna.habr.com/ and at least 10 answers"
+          opensourse: "At least two approved Open Source pull requests https://guides.hexlet.io/ru/how-to-be-a-helpful-for-the-hexlet-community/"
+          linkedin: "Completed profile at Linkedin"
+          github: "Completed profile at Github with study projects included"
+          twitter: "Twitter account with technical related messages"
+        developer_specifics: Specifics for developers
+        dev_specifics_steps:
+          free_course: "Free cource completed https://ru.hexlet.io/courses/employment-for-developers"
+          leetcode: "Account at  https://leetcode.com/ and 10 completed tasks"
+          codewars: "Account at https://www.codewars.com/ and 10 completed tasks "
+          stackoverflow: "Account at https://stackoverflow.com/ and 10 answered questions"
+          test_assignments: "Several test assignments completed https://github.com/Hexlet/ru-test-assignments"
+          books: "3 books from the list read https://ru.hexlet.io/pages/recommended-books"
+        qa_specifics: Specifics for QA
+        qa_specifics_steps:            
+        analitics_specifics: Specifics for analysts
+        analitics_specifics_steps:
+        devops_specifics: Specifics for DevOps/ System administators
+        devops_specifics_steps:
+        in_progress: In progress        
     errors:
       server_error:
         header: Something went wrong
@@ -208,7 +240,7 @@ en:
         edit:
           header: Edit comment
     pages:
-      about_description: The goal of Hexlet CV is to provide a community platform where you will receive recommendations on resumes from community members and professional HR.
+      about_description: The goal of Hexlet CV is to provide a platform for community where you will receive recommendations on your CV from community members and professional HR.
       about_title: About
     admin:
       resumes:
