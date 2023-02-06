@@ -8,7 +8,7 @@
 import '../stylesheets/application.scss';
 
 import 'bootstrap-icons/font/bootstrap-icons.scss';
-// import '../scripts/selectVacancyFilter.js'
+import '../scripts/selectVacancyFilter.js'
 
 import '@nathanvda/cocoon';
 import ujs from '@rails/ujs';

@@ -97,4 +97,12 @@ module ApplicationHelper
 
     "#{t('page', number: number_page)}-#{text}"
   end
+
+  def split_long_tags(tags)
+    max_length = 20
+    tags.map do |tag|
+      new_tag = tag.size > max_length ? "#{tag[0...20]}..." : tag
+      new_tag
+    end
+  end
 end
