@@ -21,6 +21,9 @@ Rails.application.configure do
     'Cache-Control' => "public, max-age=#{1.hour.to_i}"
   }
 
+  # Compress CSS using a preprocessor (compress with webpack).
+  config.assets.css_compressor = Class.new { def self.compress(str) str end } # rubocop:disable Style/SingleLineMethods
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

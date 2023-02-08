@@ -30,12 +30,41 @@ gem 'sorbet'
 gem 'sprockets-rails'
 gem 'terser'
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aasm'
+gem 'active_form_model', '~> 0.4.1'
 gem 'bootsnap', require: false
+gem 'cocoon'
 gem 'counter_culture'
+gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
 gem 'dotenv-rails'
+gem 'enumerize'
+gem 'flash_rails_messages'
+gem 'gon'
+gem 'impressionist'
+gem 'kaminari'
+gem 'meta-tags'
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+gem 'paint'
+gem 'paper_trail'
+gem 'pundit'
+gem 'rails-i18n'
+gem 'ransack'
+gem 'recaptcha'
+gem 'redcarpet', github: 'vmg/redcarpet'
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'translit'
+gem 'validate_url'
+gem 'valid_email2'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
@@ -78,38 +107,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'simple_form'
-
-gem 'slim-rails'
-
-gem 'aasm'
-
 group :production do
   gem 'pg'
 end
-
-gem 'active_form_model', '~> 0.4.1'
-gem 'cocoon'
-gem 'devise'
-gem 'devise-bootstrap-views'
-gem 'devise-i18n'
-gem 'enumerize'
-gem 'flash_rails_messages'
-gem 'gon'
-gem 'impressionist'
-gem 'kaminari'
-gem 'meta-tags'
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection'
-gem 'paint'
-gem 'paper_trail'
-gem 'pundit'
-gem 'rails-i18n'
-gem 'ransack'
-gem 'recaptcha'
-gem 'redcarpet'
-gem 'rollbar' # TODO: switch to sentry
-gem 'translit'
-gem 'validate_url'
-gem 'valid_email2'

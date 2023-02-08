@@ -17,7 +17,7 @@
   .mb-3
     = f.input :contact
   .mb-3
-    = f.input :summary, input_html: { rows: 10 }
+    = f.input :summary, as: :markdown_editor
   .mb-3
     = f.input :skills_description, input_html: { rows: 5 }
   .mb-3

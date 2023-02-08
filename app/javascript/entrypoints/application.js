@@ -6,6 +6,8 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from "@toast-ui/editor";
 
 import 'bootstrap-icons/font/bootstrap-icons.scss';
 import '../scripts/selectVacancyFilter.js'
@@ -23,3 +25,24 @@ ujs.start();
 // const images = require.context('../images', true);
 // @ts-ignore
 // const imagePath = (name) => images(name, true)
+
+document.querySelectorAll('[data-provide="hexlet-markdown"]')
+    .forEach(el => {
+        const container = document.createElement('div')
+        el.parentElement.appendChild(container);
+        el.classList.add('d-none');
+        const editor = new Editor({
+            el: container,
+            initialEditType: 'markdown',
+            previewStyle: 'tab',
+            usageStatistics: false,
+            initialValue: el.value,
+            events: {
+                keyup(_, e) {
+                    el.value = e.target.outerText
+                }
+            }
+        });
+
+        editor.getMarkdown();
+    });

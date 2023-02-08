@@ -1,0 +1,5 @@
+{
+  "**/*.{rb,rake,axlsx}": "bundle exec rubocop",
+  "**/*.scss": "npx stylelint",
+  "**/*.html.slim": "bundle exec slim-lint app/views/"
+}

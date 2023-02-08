@@ -9,7 +9,7 @@ DEFAULTS: &DEFAULTS
   city_name: москва
   position_level: junior
   salary_amount_type: :net
-  published_at: <%= 3.minute.ago.to_s(:db) %>
+  published_at: <%= 3.minute.ago.to_fs(:db) %>
 
 one:
   <<: *DEFAULTS
@@ -53,7 +53,7 @@ without_city_name:
   programming_language: Ruby
   site: https://ru.hexlet.io
   position_level: junior
-  published_at: <%= 1.minute.ago.to_s(:db) %>
+  published_at: <%= 1.minute.ago.to_fs(:db) %>
 
 archived:
   <<: *DEFAULTS
