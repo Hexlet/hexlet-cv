@@ -99,10 +99,9 @@ module ApplicationHelper
   end
 
   def split_long_tags(tags)
-    max_length = 20
+    max_length = 40
     tags.map do |tag|
-      new_tag = tag.size > max_length ? "#{tag[0...20]}..." : tag
-      new_tag
+      tag.size > max_length ? "#{tag[0...max_length]}..." : tag
     end
   end
 end
