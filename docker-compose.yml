@@ -6,20 +6,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: "make start"
+    command: make backend
     volumes:
       - ~/.bash_history:/root/.bash_history
       - .:/app
     ports:
       - "3000:3000"
-    
+    depends_on:
+      - frontend
+    stdin_open: true
+    tty: true
 
-  # webpacker:
-  #   build: .
-  #   environment:
-  #     - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-  #   command: ./bin/webpack-dev-server
-  #   volumes:
-  #     - .:/usr/src/app/
-  #   ports:
-  #     - '3035:3035'
+  frontend:
+    build: .
+    command: make frontend
+    volumes:
+      - .:/app

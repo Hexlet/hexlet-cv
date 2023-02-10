@@ -6,6 +6,10 @@ test:
 frontend:
 	npx nodemon -L --watch webpack.config.js --exec npm run build:watch
 
+backend:
+	rm -rf tmp/pids/server.pid
+	bundle exec rails s -p 3000 -b '0.0.0.0'
+
 setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 

@@ -3,7 +3,6 @@ FROM ruby:3.2.1
 ENV NODE_VERSION 19.x
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash -
-RUN curl https://cli-assets.heroku.com/install.sh | sh
 
 RUN apt-get update \
   && apt-get install -y nodejs \
