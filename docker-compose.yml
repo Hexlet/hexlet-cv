@@ -14,11 +14,11 @@ services:
       - "3000:3000"
     depends_on:
       - frontend
+    stdin_open: true
+    tty: true
 
   frontend:
     build: .
     command: make frontend
-    ports:
-      - "8888:8888"
     volumes:
       - .:/app
