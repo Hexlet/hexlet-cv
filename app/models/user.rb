@@ -25,14 +25,6 @@ class User < ApplicationRecord
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[first_name last_name email]
-  end
-
-  def self.ransackable_associations(_auth_object = nil)
-    []
-  end
-
   aasm :state, column: :state do
     state :permitted, initial: true
     state :banned
