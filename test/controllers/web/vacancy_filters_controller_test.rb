@@ -13,6 +13,11 @@ class Web::VacancyFiltersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#index 3' do
+    get vacancy_filter_url('city-kislowodsk _level-middle_technology-php / symfony')
+    assert_response :success
+  end
+
   test 'search' do
     params = { level: :junior }
     get search_vacancy_filters_url(params: { web_vacancies_search_form: params })
