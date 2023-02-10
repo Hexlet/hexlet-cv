@@ -34,14 +34,6 @@ class Resume < ApplicationRecord
 
   ransack_alias :popular, :impressions_created_at_or_comments_created_at_or_answers_created_at
 
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[name directions_name]
-  end
-
-  def self.ransackable_associations(_auth_object = nil)
-    ['user']
-  end
-
   aasm :state, column: :state do
     state :draft, initial: true
     state :published

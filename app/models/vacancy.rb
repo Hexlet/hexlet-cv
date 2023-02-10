@@ -37,14 +37,6 @@ class Vacancy < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :country, optional: true
 
-  def self.ransackable_attributes(_auth_object = nil)
-    ['company_name']
-  end
-
-  def self.ransackable_associations(_auth_object = nil)
-    []
-  end
-
   aasm :state, column: :state, timestamps: true do
     state :idle
     state :on_moderate
