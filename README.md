@@ -32,6 +32,16 @@ make start # run server http://localhost:3000
 make fixtures-load # sometimes, when fixtures were changed
 ```
 
+## Setup in Docker
+
+```sh
+make compose-setup # setup app
+make compose-test # run tests
+make compose # run server http://localhost:3000
+
+make compose-ci-check # run ci
+```
+
 ## Deploy
 
 Add database:

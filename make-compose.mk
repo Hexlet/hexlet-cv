@@ -25,6 +25,9 @@ compose-lint-fix:
 compose-logs:
 	docker-compose logs -f
 
+compose-rails-console:
+	docker-compose run --rm app make console
+
 compose-restart:
 	docker-compose restart
 
@@ -35,3 +38,6 @@ compose-setup: compose-down compose-build compose-install
 
 compose-test:
 	docker-compose run --rm app make test
+
+compose-ci-check:
+	docker-compose run --rm app make ci-setup-check
