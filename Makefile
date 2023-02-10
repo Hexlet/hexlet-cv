@@ -23,6 +23,9 @@ fixtures-load:
 clean:
 	bin/rails db:drop
 
+console:
+	bin/rails c
+
 db-reset:
 	bin/rails db:drop
 	bin/rails db:create
