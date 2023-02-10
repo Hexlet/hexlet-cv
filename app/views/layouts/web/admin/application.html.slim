@@ -20,3 +20,5 @@ html.h-100 lang="#{I18n.locale}"
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header
             = yield
+
+= javascript_include_tag 'sentry', 'sprockets', 'application'
