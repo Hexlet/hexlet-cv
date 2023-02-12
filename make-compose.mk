@@ -22,6 +22,12 @@ compose-lint:
 compose-lint-fix:
 	docker-compose run --rm app make linter-code-fix
 
+compose-lint-eslint:
+	docker-compose run --rm app make lint-eslint
+
+compose-lint-eslint-fix:
+	docker-compose run --rm app make lint-eslint-fix
+
 compose-logs:
 	docker-compose logs -f
 
