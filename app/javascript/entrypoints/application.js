@@ -6,11 +6,10 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss';
-// import '../scripts/selectVacancyFilter.js'
-import editorRun from '../scripts/markdownEditor.js';
-
 import '@nathanvda/cocoon';
 import ujs from '@rails/ujs';
+import editorRun from '../scripts/markdownEditor.js';
+// import '../scripts/selectVacancyFilter.js'
 
 ujs.start();
 editorRun();
