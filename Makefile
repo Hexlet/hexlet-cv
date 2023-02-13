@@ -7,6 +7,10 @@ test:
 frontend:
 	npx nodemon -L --watch webpack.config.js --exec npm run build:watch
 
+backend:
+	rm -rf tmp/pids/server.pid
+	bundle exec rails s -p 3000 -b '0.0.0.0'
+
 setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 
@@ -24,6 +28,9 @@ fixtures-load:
 clean:
 	bin/rails db:drop
 
+console:
+	bin/rails c
+
 db-reset:
 	bin/rails db:drop
 	bin/rails db:create
@@ -38,7 +45,13 @@ lint: lint-code lint-style
 lint-code:
 	bundle exec rubocop
 	bundle exec slim-lint app/views/
-	# TODO: add eslint
+	make lint-eslint
+
+lint-eslint:
+	npx eslint app/javascript --ext .js
+
+lint-eslint-fix:
+	npx eslint app/javascript --ext .js --fix
 
 lint-style:
 	npx stylelint "**/*.scss" "!**/vendor/**"

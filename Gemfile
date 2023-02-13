@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '3.2.0'
+ruby '3.2.1'
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -57,7 +57,7 @@ gem 'paint'
 gem 'paper_trail'
 gem 'pundit'
 gem 'rails-i18n'
-gem 'ransack'
+gem 'ransack', '~>3'
 gem 'recaptcha'
 gem 'redcarpet', github: 'vmg/redcarpet'
 gem 'sentry-rails'

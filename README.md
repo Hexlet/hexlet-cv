@@ -17,8 +17,8 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 
 ## System requirements
 
-* Ruby
-* Node.js < 17.0.0
+* Ruby >= 3.2.1
+* Node.js >= 19.0.0
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
@@ -31,6 +31,25 @@ make start # run server http://localhost:3000
 
 make fixtures-load # sometimes, when fixtures were changed
 ```
+
+## Setup in Docker
+
+```sh
+make compose-setup # setup app
+make compose-test # run tests
+make compose # run server http://localhost:3000
+
+make compose-ci-check # run ci
+```
+
+## Debug in Docker
+
+```sh
+docker container ls # watch container
+docker attach [container_id]
+```
+
+and inser `debugger` in controller
 
 ## Deploy
 
