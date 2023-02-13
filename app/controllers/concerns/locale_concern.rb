@@ -8,7 +8,7 @@ module LocaleConcern
   end
 
   def switch_locale(&)
-    locale = params[:locale]&.present? ? extract_locale : I18n.default_locale
+    locale = params[:locale]&.present? ? extract_locale : :en
     I18n.with_locale(locale, &)
   end
 

@@ -48,13 +48,13 @@ class Web::ApplicationController < ApplicationController
     if current_page?(root_path) && !params[:locale]
       remembered_locale = session[:locale].presence
       if remembered_locale
-        if remembered_locale.to_sym != I18n.default_locale
-          redirect_to root_url(locale: remembered_locale), allow_other_host: true
+        if remembered_locale.to_sym == I18n.default_locale
+          redirect_to root_url(locale: I18n.default_locale), allow_other_host: true
         end
       else
-        ru_country_codes = ['RU']
-        if locale_from_accept_language_header == :ru || ru_country_codes.include?(country_by_ip)
-          redirect_to root_url(locale: :ru), allow_other_host: true
+        en_country_codes = ['EN']
+        if locale_from_accept_language_header == :en || en_country_codes.include?(country_by_ip)
+          redirect_to root_url(locale: nil), allow_other_host: true
         end
       end
     else
@@ -63,7 +63,7 @@ class Web::ApplicationController < ApplicationController
   end
 
   def country_by_ip
-    @country_by_ip = Geocoder.search(request.remote_ip).first&.country_code || 'EN'
+    @country_by_ip = Geocoder.search(request.remote_ip).first&.country_code || 'RU'
   end
 
   def locale_from_accept_language_header

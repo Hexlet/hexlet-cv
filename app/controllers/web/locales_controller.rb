@@ -15,9 +15,9 @@ module Web
       session[:locale] = locale
 
       if locale&.to_sym == I18n.default_locale
-        redirect_to root_path(locale: nil), allow_other_host: true
-      else
         redirect_to root_path(locale:), allow_other_host: true
+      else
+        redirect_to root_path(locale: nil), allow_other_host: true
       end
     end
   end
