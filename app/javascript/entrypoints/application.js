@@ -11,6 +11,7 @@ import editorRun from '../scripts/markdownEditor.js';
 
 import '@nathanvda/cocoon';
 import ujs from '@rails/ujs';
+
 ujs.start();
 editorRun();
 

@@ -44,7 +44,13 @@ lint: lint-code lint-style
 lint-code:
 	bundle exec rubocop
 	bundle exec slim-lint app/views/
-	# TODO: add eslint
+	make lint-eslint
+
+lint-eslint:
+	npx eslint app/javascript --ext .js
+
+lint-eslint-fix:
+	npx eslint app/javascript --ext .js --fix
 
 lint-style:
 	npx stylelint "**/*.scss" "!**/vendor/**"
