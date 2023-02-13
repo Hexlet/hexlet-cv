@@ -42,6 +42,15 @@ make compose # run server http://localhost:3000
 make compose-ci-check # run ci
 ```
 
+## Debug in Docker
+
+```sh
+docker container ls # watch container
+docker attach [container_id]
+```
+
+and inser `debugger` in controller
+
 ## Deploy
 
 Add database:
