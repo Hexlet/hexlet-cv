@@ -79,4 +79,26 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume.reload
     assert { resume.draft? }
   end
+
+  test '#create whith valid length tags direction' do
+    attrs = FactoryBot.attributes_for :resume
+    attrs[:direction_list] = 'Ruby-dveloper'
+
+    post account_resumes_path, params: { resume: attrs }
+    assert_response :redirect
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { resume }
+  end
+
+  test 'do not create if tag length exceeds 40 characters' do
+    attrs = FactoryBot.attributes_for :resume
+    attrs[:direction_list] = 'Ruby' * 40
+
+    post account_resumes_path, params: { resume: attrs }
+    assert_response :unprocessable_entity
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { !resume }
+  end
 end
