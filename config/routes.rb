@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'web/omniauth_callbacks' }
   scope '(:locale)', locale: /en|ru/ do
     devise_for :users, skip: :omniauth_callbacks, controllers: { sessions: 'web/devise/sessions',
-                                                                 registrations: 'web/devise/registrations' }
+                                                                 registrations: 'web/devise/registrations',
+                                                                 passwords: 'web/devise/passwords',
+                                                                 confirmations: 'web/devise/confirmations',
+                                                                 unlocks: 'web/devise/unlocks' }
 
     scope module: :web do
       get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
