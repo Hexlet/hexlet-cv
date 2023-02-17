@@ -67,7 +67,7 @@ en:
       resume:
         city: Specify the city of your residence
         direction_list: |
-          Specify your direction. This tag field will help HR consultants and employers find your CV faster. Here you need to specify only what can be described as X-developer, for example: android, ios, php, js, java, etc.
+          Specify your direction. Here you need to specify only what you can say about the X-developer, for example: Java-developer. The maximum length is 40 characters. Separate tags with commas.
         skill_list: |
           Specify your skills. This tag field will help HR consultants and employers find your CV faster. Here you can specify your stack of technologies, for example: ajax, docker, Postgresql etc.
         relocation: Specify whether you're ready to relocate
