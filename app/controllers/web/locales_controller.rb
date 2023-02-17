@@ -14,11 +14,20 @@ module Web
 
       session[:locale] = locale
 
+      friendly_redirect(request.referer, locale)
+    end
+
+    private
+
+    def friendly_redirect(url, locale)
+      parsed_url = URI.parse(url || root_path)
       if locale&.to_sym == I18n.default_locale
-        redirect_to root_path(locale:), allow_other_host: true
+        path = parsed_url.path == '/' ? "/#{locale}" : "/#{locale}#{parsed_url.path}"
+        parsed_url.path = path
       else
-        redirect_to root_path(locale: nil), allow_other_host: true
+        parsed_url.path = parsed_url.path.sub('/ru', '')
       end
+      redirect_to url_for(parsed_url.to_s), allow_other_host: true
     end
   end
 end
