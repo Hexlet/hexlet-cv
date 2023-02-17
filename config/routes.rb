@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resource :employment, only: %i[show]
       resources :vacancies, only: %i[index show]
       # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
-      resources :vacancy_filters, only: %i[show], constraints: { id: %r{[^/]+} }, format: false, defaults: { format: 'html' } do
+      resources :vacancy_filters, only: %i[show], format: false, defaults: { format: 'html' } do
         collection do
           get :search, format: true
         end
