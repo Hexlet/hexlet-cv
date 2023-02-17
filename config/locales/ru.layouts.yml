@@ -25,6 +25,9 @@ ru:
           many: |
             %{count} Ответов
       nav:
+        application_name: Hexlet CV
+        en: Английский
+        ru: Русский
         admin: Админка
         vacancies: Вакансии
         employment: Трудоустройство
@@ -50,7 +53,13 @@ ru:
         knowledge: База знаний
         success_stories: Истории успеха
         employment_course: Курс по трудоустройству
+        code_basics: Основы программирования
+        code_battle: КодБатл (Игра для прокачки)
+        guides: Гайды для программистов
         recommended_books: Рекомендуемые книги
         test_assigments: Тестовые задания
         additionally: Дополнительно
+        books_link: https://ru.hexlet.io/pages/recommended-books
+        guides_link: https://guides.hexlet.io/ru/
+        basics_link: https://code-basics.com/ru
     application:

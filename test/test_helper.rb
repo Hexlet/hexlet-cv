@@ -19,6 +19,13 @@ OmniAuth.config.add_mock(
 )
 Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
 
+# rubocop:disable Rails/I18nLocaleAssignment
+I18n.locale = ENV.fetch('RAILS_LOCALE', 'ru').to_sym
+# rubocop:enable Rails/I18nLocaleAssignment
+
+Rails.application.routes.default_url_options[:locale] = I18n.locale
+Rails.application.config.action_mailer.default_url_options[:locale] = I18n.locale
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   # TODO: return virtualization after fixing power_assert integration

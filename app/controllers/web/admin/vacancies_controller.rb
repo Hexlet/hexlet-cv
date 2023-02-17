@@ -17,7 +17,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
     if @vacancy.update(params[:vacancy])
       f(:success)
-      redirect_to action: :index
+      redirect_to admin_vacancies_path
     else
       render :edit
     end

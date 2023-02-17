@@ -1,7 +1,7 @@
 / header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
 nav.navbar.navbar-expand-lg.bg-body-tertiary
   .container
-    a.navbar-brand(href="/") = t('application_name')
+    a.navbar-brand(href=root_path) = t('.application_name')
     button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarSupportedContent
@@ -43,3 +43,10 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
         - else
           = nav_menu_item t('.sign_in'), new_user_session_path
           = nav_menu_item t('.register'), new_user_registration_path
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle href='#' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+           span.me-2 = I18n.locale.upcase
+          ul.dropdown-menu.dropdown-menu-end
+            - I18n.available_locales.without(I18n.locale).each do |locale|
+              = link_to switch_locale_path(new_locale: locale), class: 'dropdown-item d-flex' do
+                span.my-auto = t(".#{locale}")

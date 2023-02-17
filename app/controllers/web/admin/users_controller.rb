@@ -16,7 +16,7 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     @user = user.becomes(Web::Admin::UserForm)
     if @user.update(params[:user])
       f(:success)
-      redirect_to action: :index
+      redirect_to admin_users_path
     else
       render :edit
     end
