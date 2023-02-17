@@ -9,7 +9,7 @@ import '../stylesheets/application.scss';
 import '@nathanvda/cocoon';
 import ujs from '@rails/ujs';
 import editorRun from '../scripts/markdownEditor.js';
-// import '../scripts/selectVacancyFilter.js'
+import '../scripts/selectVacancyFilter.js';
 
 ujs.start();
 editorRun();
