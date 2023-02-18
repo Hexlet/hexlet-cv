@@ -12,7 +12,7 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
       redirect_to account_profile_path
     else
       f(:error)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

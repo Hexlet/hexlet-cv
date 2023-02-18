@@ -14,7 +14,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
       f(:success)
       redirect_to resume_path(resource_answer.resume)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class Web::Answers::CommentsController < Web::Answers::ApplicationController
       redirect_to resume_path(resource_answer.resume)
     else
       @comment = comment.becomes(Resume::Answer::Comment)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
