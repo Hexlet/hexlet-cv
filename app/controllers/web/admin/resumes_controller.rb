@@ -20,7 +20,7 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
       f(:success)
       redirect_to admin_resumes_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 end

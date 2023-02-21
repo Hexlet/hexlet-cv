@@ -29,7 +29,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
       f(:success)
       redirect_to resume_path(resource_resume)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -42,7 +42,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
       redirect_to resume_path(resource_resume)
     else
       @answer = answer.becomes(Resume::Answer)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

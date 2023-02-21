@@ -23,7 +23,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
       redirect_to account_vacancies_path
     else
       f(:error)
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     else
       @vacancy = vacancy.becomes(Vacancy)
       f(:error)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

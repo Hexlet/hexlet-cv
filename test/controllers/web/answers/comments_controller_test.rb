@@ -54,7 +54,7 @@ class Web::Answers::CommentsControllerTest < ActionDispatch::IntegrationTest
     answer = resume_answers(:full_one)
     attrs = FactoryBot.attributes_for('resume/answer/comment', content: 'short')
     post answer_comments_path(answer), params: { resume_answer_comment: attrs }
-    assert_response :success
+    assert_response :unprocessable_entity
   end
 
   test '#destroy' do

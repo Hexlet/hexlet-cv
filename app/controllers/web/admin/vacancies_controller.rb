@@ -19,7 +19,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
       f(:success)
       redirect_to admin_vacancies_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 end

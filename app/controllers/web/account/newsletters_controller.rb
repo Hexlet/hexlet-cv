@@ -10,7 +10,7 @@ class Web::Account::NewslettersController < Web::Account::ApplicationController
       redirect_to edit_account_newsletters_path
     else
       f(:error)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

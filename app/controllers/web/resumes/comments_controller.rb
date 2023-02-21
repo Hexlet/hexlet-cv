@@ -13,7 +13,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
       f(:success)
       redirect_to resume_path(resource_resume)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class Web::Resumes::CommentsController < Web::Resumes::ApplicationController
       redirect_to resume_path(resource_resume)
     else
       @comment = comment.becomes(Resume::Comment)
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
