@@ -10,11 +10,12 @@ class Web::Devise::RegistrationsController < Devise::RegistrationsController
   private
 
   def check_captcha
+    I18n.locale = session[:locale]
     return if verify_recaptcha
 
     self.resource = resource_class.new sign_up_params
     resource.validate
-    resource.errors.add(:base, t('recaptcha.errors.verification_failed')) unless resource.errors.any?
+    resource.errors.add(:base, t('recaptcha.errors.verification_failed', locale: I18n.locale)) unless resource.errors.any?
     set_minimum_password_length
     respond_with_navigational(resource) do
       f(:recaptcha_error, discard: true)
