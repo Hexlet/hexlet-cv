@@ -22,10 +22,8 @@ module LocaleConcern
 
   def extract_locale_from_path
     parsed_locale = request.path.scan(%r{/en|/ru})&.first&.split('/')&.last
-    if parsed_locale.nil? || parsed_locale == 'en'
-      :en
-    else
-      :ru
-    end
+    return :en if parsed_locale.nil? || parsed_locale == 'en'
+
+    I18n.default_locale
   end
 end
