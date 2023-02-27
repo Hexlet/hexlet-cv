@@ -1,9 +1,9 @@
 ru:
   devise:
-    correct_errors: "Пожалуйста исправте ошибки:"
+    correct_errors: "Пожалуйста, исправьте ошибки:"
     failure:
       user:
         banned: "Вы были забанены"
-        not_found_in_database: Нет пользователя с такой почтой
-        invalid: Не правельный логин или пароль.
+        not_found_in_database: Не верный логин или пароль.
+        invalid: Не правильный логин или пароль.
         unauthenticated: Вам необходимо войти в систему или зарегистрироваться.
