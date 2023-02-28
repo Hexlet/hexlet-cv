@@ -2,6 +2,7 @@
 
 en:
   devise:
+    correct_errors: "please, correct the mistakes:"
     failure:
       user:
         banned: "You have been banned"

@@ -1,7 +1,7 @@
 h2
   = t('.change_your_password')
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
+  = f.error_notification message: t('devise.correct_errors')
   = f.input :reset_password_token, as: :hidden
   = f.full_error :reset_password_token
   .form-inputs
