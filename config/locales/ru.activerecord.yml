@@ -27,6 +27,7 @@ ru:
       answer/comment: Комментарий
     attributes:
       user:
+        password: пароль
         resume_answer_likes_count: Количество лайков
         first_name: Имя
         last_name: Фамилия

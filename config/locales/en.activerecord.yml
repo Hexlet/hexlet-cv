@@ -71,6 +71,7 @@ en:
         name: Name
         company: Company
       user:
+        password: password
         resume_answer_likes_count: Likes
         first_name: First name
         last_name: Surname
