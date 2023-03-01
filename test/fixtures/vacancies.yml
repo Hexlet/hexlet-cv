@@ -17,6 +17,13 @@ one:
   salary_from: 1000
   salary_to: 2000
 
+two:
+  <<: *DEFAULTS
+  title: Ruby-Developer
+  creator: two
+  salary_from: 1000
+  salary_to: 2000
+
 java-developer:
   <<: *DEFAULTS
   title: Java-программист
