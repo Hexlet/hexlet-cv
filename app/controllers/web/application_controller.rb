@@ -49,12 +49,12 @@ class Web::ApplicationController < ApplicationController
       remembered_locale = session[:locale].presence
       if remembered_locale
         if remembered_locale.to_sym == I18n.default_locale
-          redirect_to root_url(locale: I18n.default_locale)
+          redirect_to root_url(locale: I18n.default_locale), allow_other_host: true
         end
       else
         en_country_codes = ['EN']
-        if locale_from_accept_language_header != :en && en_country_codes.exclude?(country_by_ip)
-          redirect_to root_url(locale: :ru)
+        if locale_from_accept_language_header == :en && en_country_codes.exclude?(country_by_ip)
+          redirect_to root_url(locale: nil), allow_other_host: true
         end
       end
     else
