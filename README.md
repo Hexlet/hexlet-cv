@@ -13,7 +13,7 @@ Join the community, post resumes and leave recommendations for other members. Te
 
 The project uses Ruby on Rails.
 
-Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community](https://slack-ru.hexlet.io/).
+Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/12).
 
 ## System requirements
 
