@@ -31,7 +31,8 @@ en:
         analitics_specifics_steps:
         devops_specifics: Specifics for DevOps/ System administators
         devops_specifics_steps:
-        in_progress: In progress        
+        in_progress: In progress
+        where_find_jobs: "Job search sites:"        
     errors:
       server_error:
         header: Something went wrong
