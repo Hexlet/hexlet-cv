@@ -63,13 +63,13 @@
               | ,
             span.lead = work.company
             .lead.text-muted.mt-1.mb-2
-              = l work.begin_date, format: :discard_day
+              = work.begin_date.to_formatted_s(:month_and_year)
               - if work.current
                 | &nbsp;-&nbsp;
                 = t('.current')
               - elsif work.end_date
                 | &nbsp;-&nbsp;
-                = l work.end_date, format: :discard_day
+                = work.end_date.to_formatted_s(:month_and_year)
             .hexlet-cv-content.lead == markdown2html work.description
 
       - if @resume_educations.any?
