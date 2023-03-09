@@ -81,10 +81,10 @@
           .col-12
             .lead = education.description
             .lead.text-muted.mt-1.mb-2
-              = l education.begin_date, format: :discard_day
+              = education.begin_date.to_formatted_s(:month_and_year)
               - if education.current
                 | &nbsp;-&nbsp;
                 = t('.current')
               - elsif education.end_date
                 | &nbsp;-&nbsp;
-                = l education.end_date, format: :discard_day
+                = education.end_date.to_formatted_s(:month_and_year)
