@@ -63,4 +63,12 @@ class Vacancy < ApplicationRecord
   def to_s
     title
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id title state name company_name created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[technologies user]
+  end
 end

@@ -80,6 +80,14 @@ class User < ApplicationRecord
     !email_disabled_delivery && !unconfirmed_email
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[first_name last_name email]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[resumes]
+  end
+
   # NOTE: https://github.com/plataformatec/devise#activejob-integration
   # def send_devise_notification(notification, *args)
   #   devise_mailer.send(notification, self, *args).deliver_later
