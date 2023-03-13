@@ -62,6 +62,7 @@ ru:
         position_level: Уровень
         location_of_position: Место работы
         company_name: Компания
+        creator: Имя
         site: Сайт компании
         contact_name: Имя контакта
         contact_phone: Телефон контакта

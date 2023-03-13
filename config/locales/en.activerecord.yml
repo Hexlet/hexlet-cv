@@ -59,6 +59,7 @@ en:
         position_level: Level
         location_of_position: Work location
         company_name: Company name
+        creator: Name
         site: Company website
         contact_name: Your first and last name
         contact_phone: Your phone number
