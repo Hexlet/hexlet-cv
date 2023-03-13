@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::Account::VacanciesController < Web::Account::ApplicationController
+  after_action :verify_authorized, only: %i[edit update]
+
   def index
     @vacancies = current_user.vacancies
   end
@@ -12,6 +14,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   def edit
     vacancy = current_user.vacancies.find params[:id]
     @vacancy = vacancy.becomes(Web::Account::VacancyForm)
+    authorize vacancy
   end
 
   def create
@@ -29,6 +32,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
 
   def update
     @vacancy = current_user.vacancies.find params[:id]
+    authorize @vacancy
     vacancy = @vacancy.becomes(Web::Account::VacancyForm)
     if vacancy.update(params[:vacancy])
       change_visibility(@vacancy)
