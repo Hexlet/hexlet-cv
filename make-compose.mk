@@ -16,6 +16,12 @@ compose-down:
 compose-install:
 	docker-compose run --rm app make setup
 
+compose-install-npm:
+	docker-compose run --rm app npm install --force
+
+compose-install-bundle:
+	docker-compose run --rm app bundle install --jobs $(shell nproc)
+
 compose-lint:
 	docker-compose run --rm app make lint
 
