@@ -75,7 +75,10 @@ en:
         relocation: Specify whether you're ready to relocate
         hexlet_url: "link to your Hexlet account: https://ru.hexlet.io/u/mokevnin"
         github_url: "link to your GitHub account: https://github.com/mokevnin"
-        contact: "Email address, phone number"
+        contact: Here you can specify additional contacts - for example, links to social networks
+        contact_phone: "Your phone: +1 935 555 55 55"
+        contact_email: "Your email: example@test.com"
+        contact_telegram: "Your Telegram: https://tlgg.ru/Kiril or @Kiril"
         name: PHP programmer, Android developer, ...
         skills_description: PHP, Vim, AWS, Agile metodologies
         awards_description: Participation in competitions, hackathons and other specialized events. Courses.
