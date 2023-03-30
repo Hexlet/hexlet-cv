@@ -12,6 +12,11 @@ module Web
         return
       end
 
+      unless current_or_guest_user.guest?
+        current_user.locale = locale
+        current_user.save!
+      end
+
       session[:locale] = locale
 
       if locale&.to_sym == I18n.default_locale

@@ -45,7 +45,8 @@ class User < ApplicationRecord
 
   def initialize(attribute = nil)
     defaults = {
-      resume_mail_enabled: true
+      resume_mail_enabled: true,
+      locale: I18n.locale
     }
 
     attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
@@ -56,6 +57,8 @@ class User < ApplicationRecord
   def inactive_message
     banned? ? :banned : super
   end
+
+  def guest?; end
 
   def self.from_omniauth(auth)
     exist_user = User.find_by(email: auth.info.email)
