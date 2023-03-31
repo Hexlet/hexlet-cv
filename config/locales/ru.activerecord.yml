@@ -12,12 +12,6 @@ ru:
       vacancy:
         publish: Опубликовать
         archive: Архивировать
-      # errors:
-      #   models:
-      #     resume/answer/like:
-      #       attributes:
-      #         user:
-      #           answer_owner: Нельзя лайкнуть свой ответ :)
 
     models:
       resume: Резюме
@@ -81,7 +75,10 @@ ru:
         relocation: Готовность к релокации
         hexlet_url: Hexlet
         github_url: GitHub
-        contact: Контакт
+        contact: Дополнительные контакты
+        contact_phone: Телефон
+        contact_email: Почта
+        contact_telegram: Телеграм
         english_fluency: Владение английским
         skills_description: Навыки
         awards_description: Награды, Сертификаты
@@ -115,3 +112,11 @@ ru:
         content: Комментарий
       answer/comment:
         content: Комментарий
+    errors:
+      models:
+        resume:
+          attributes:
+            contact_email:
+              invalid: имеет не верный формат
+            contact_phone:
+              invalid: имеет неверное формат
