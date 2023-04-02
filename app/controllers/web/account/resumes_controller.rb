@@ -2,7 +2,7 @@
 
 class Web::Account::ResumesController < Web::Account::ApplicationController
   def index
-    @resumes = current_user.resumes
+    @resumes = current_user.resumes.with_locale
   end
 
   def new

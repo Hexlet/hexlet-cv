@@ -4,7 +4,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   after_action :verify_authorized, only: %i[edit update]
 
   def index
-    @vacancies = current_user.vacancies
+    @vacancies = current_user.vacancies.with_locale
   end
 
   def new

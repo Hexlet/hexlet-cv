@@ -4,6 +4,7 @@ DEFAULTS: &DEFAULTS
     разрабатывать парсеры биржевых данных разрабатывать программы, которые надежно сохраняют биржевые данные во время торгов поддерживать и развивать автоматический пайплайн ежедневной обработки сохранения
   company_name: Company
   creator: full
+  locale: <%= I18n.locale %>
   programming_language: php
   site: https://www.hexlet.io
   city_name: москва
@@ -54,6 +55,7 @@ without_city_name:
   title: Vacancy without city name
   creator: full
   state: published
+  locale: <%= I18n.locale %>
   responsibilities_description: |
     Работать на работе и зарабатывать
   company_name: Hexlet-Rus

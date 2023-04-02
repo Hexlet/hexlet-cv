@@ -4,6 +4,7 @@ DEFAULTS: &DEFAULTS
   first_name: $LABEL
   last_name: Last
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  locale: <%= I18n.locale %>
   confirmed_at: <%= Time.current %>
   resume_mail_enabled: true
   role: :user

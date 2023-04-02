@@ -3,6 +3,7 @@ DEFAULTS: &DEFAULTS
   github_url: https://github.com/$LABEL
   contact: $LABEL@email.com
   name: Resume Name $LABEL
+  locale: <%= I18n.locale %>
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
