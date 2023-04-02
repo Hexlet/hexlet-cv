@@ -18,12 +18,6 @@ en:
       vacancy:
         publish: Publish
         archive: Archive
-      # errors:
-      #   models:
-      #     resume/answer/like:
-      #       attributes:
-      #         user:
-      #           answer_owner: Нельзя лайкнуть свой ответ :)
     attributes:
       resume/answer:
         content: Answer
@@ -104,7 +98,10 @@ en:
         summary: Description
         hexlet_url: Hexlet
         github_url: GitHub
-        contact: Contact information
+        contact: Additional contacts
+        contact_phone: Phone
+        contact_email: Email
+        contact_telegram: Telegram
         english_fluency: Languages
         skills_description: Skills
         awards_description: Awards, Certificates
@@ -114,3 +111,11 @@ en:
         state/archived: Archived
         skill_list: Skill tags
         direction_list: Direction
+    errors:
+      models:
+        resume:
+          attributes:
+            contact_email:
+              invalid: is not in the correct format
+            contact_phone:
+              invalid: is not in the correct format

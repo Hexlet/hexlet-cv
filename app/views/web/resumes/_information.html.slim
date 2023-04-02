@@ -54,6 +54,21 @@
 - if @resume.contact
   .row.mt-3.mb-4
     .col-sm-3
+      b = han('resume', 'contact_phone')
+    .col-sm-9
+      = @resume.contact_phone
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact_email')
+    .col-sm-9
+      = @resume.contact_email
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact_telegram')
+    .col-sm-9
+      = @resume.contact_telegram
+  .row.mt-3.mb-4
+    .col-sm-3
       b = han('resume', 'contact')
     .col-sm-9
       = @resume.contact

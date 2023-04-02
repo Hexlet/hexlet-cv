@@ -19,6 +19,10 @@ class Resume < ApplicationRecord
   validates :github_url, presence: true
   validates :summary, presence: true, length: { minimum: 200 }
   validates :skills_description, presence: true
+  validates :contact_email, 'valid_email_2/email': true
+  # TODO: В будущем для валидации номеров телефона надо подключить гем
+  validates :contact_phone, format: { with: /\A((\d{1}|\+\d{1})[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$\z/ },
+                            if: -> { contact_phone.present? }
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy

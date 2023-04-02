@@ -75,7 +75,10 @@ ru:
         relocation: Укажите вашу готовность к релокации
         hexlet_url: 'Ссылка на профиль: https://ru.hexlet.io/u/mokevnin'
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
-        contact: 'Предпочитаемый способ связи (емайл, линкедин, телеграмм и т.п.)'
+        contact: Здесь можно указать дополнительные контакты - например ссылки на социальные сети
+        contact_phone: "Ваш телефон: +7 906 777 77 77"
+        contact_email: "Ваша почта email@example.ru"
+        contact_telegram: 'Ваш телеграм: https://tlgg.ru/Kiril или @Kiril'
         name: PHP-программист, Android-разработчик, ...
         skills_description: Знаю PHP, пользуюсь Vim, Работал с AWS
         awards_description: Участие в олимпиадах, хакатонах, других профильных мероприятиях. Курсы.
