@@ -4,7 +4,7 @@ class Web::ResumesController < Web::ApplicationController
   impressionist actions: [:show]
 
   def index
-    @resumes = Resume.web
+    @resumes = Resume.web.order(id: :desc)
 
     respond_to do |format|
       format.rss

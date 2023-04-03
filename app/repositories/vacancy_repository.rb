@@ -5,6 +5,6 @@ module VacancyRepository
   include WithLocaleConcern
 
   included do
-    scope :web, -> { with_locale.published.order(published_at: :desc) }
+    scope :web, -> { with_locale.published }
   end
 end

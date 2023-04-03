@@ -3,7 +3,7 @@
 class Web::HomeController < Web::ApplicationController
   def index
     @q = Resume.web.ransack(params[:q])
-    @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
+    @resumes = @q.result(distinct: true).includes(:user).page(params[:page]).order(id: :desc)
     @page = params[:page]
     @tags = Resume.directions_tags
 
