@@ -5,6 +5,7 @@ DEFAULTS: &DEFAULTS
   contact_phone: +7 999 999 99 99
   contact_telegram: '@$LABEL'
   name: Resume Name $LABEL
+  locale: <%= I18n.locale %>
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>

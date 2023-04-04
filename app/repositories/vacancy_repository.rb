@@ -2,8 +2,9 @@
 
 module VacancyRepository
   extend ActiveSupport::Concern
+  include WithLocaleConcern
 
   included do
-    scope :web, -> { published.order(published_at: :desc) }
+    scope :web, -> { with_locale.published }
   end
 end

@@ -4,7 +4,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   after_action :verify_authorized, only: %i[edit update]
 
   def index
-    @vacancies = current_user.vacancies
+    @vacancies = current_user.vacancies.with_locale
   end
 
   def new
@@ -20,6 +20,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   def create
     @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
+    @vacancy.locale = current_user.locale
 
     if @vacancy.save
       f(:success)

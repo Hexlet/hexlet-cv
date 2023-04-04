@@ -2,7 +2,7 @@
 
 class Web::Account::ResumesController < Web::Account::ApplicationController
   def index
-    @resumes = current_user.resumes
+    @resumes = current_user.resumes.with_locale
   end
 
   def new
@@ -18,6 +18,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def create
     @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
+    @resume.locale = current_user.locale
 
     if @resume.save
       change_visibility(@resume)
