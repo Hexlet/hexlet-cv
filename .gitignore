@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+bundle/*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3*
@@ -43,3 +44,4 @@ doc
 .tool-versions
 .idea/
 app/assets/builds/
+
