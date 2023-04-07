@@ -1,4 +1,4 @@
-FROM ruby:3.2.1
+FROM ruby:3.2.2
 
 ENV NODE_VERSION 19.x
 
