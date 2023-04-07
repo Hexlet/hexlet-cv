@@ -8,6 +8,8 @@ class Web::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     I18n.locale = session[:locale] || I18n.default_locale
 
     if @user.persisted?
+      @user.locale = I18n.locale
+      @user.save!
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?
     else
