@@ -14,7 +14,9 @@ backend:
 setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 
-setup: setup-heroku
+setup: setup-heroku setup-app
+
+setup-app:
 	cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
