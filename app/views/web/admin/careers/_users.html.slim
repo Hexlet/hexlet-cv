@@ -1,0 +1,19 @@
+h3.my-4.me-3 = t('.steps_career')
+
+= link_to t('.add_user'), new_admin_career_member_path(@career), class: 'btn btn-primary'
+table.table
+  thead
+    tr
+      th = t('.name')
+      th = t('.email')
+      th = t('.started_at')
+      th = t('.finished_at')
+      th = t('.action')
+  tbody
+    - users.each do |user|
+      tr
+        td = link_to user, user_path(user)
+        td = user.email
+        td = show_date(user.career_members.last.created_at, :long)
+        td = show_date(user.career_members.last.finished_at, :long)
+        td = link_to t('.archive'), archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'

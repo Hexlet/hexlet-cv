@@ -1,0 +1,26 @@
+- content_for :header do
+  = t('career')
+
+= simple_form_for @career, as: :career, url: admin_career_path(@career), wrapper: 'horizontal_form' do |f|
+  p-0.pt-3.mb-5.hexlet-dashboard-courses
+    ul.nav.nav-tabs.justify-content-center[role='tablist']
+      li.nav-item
+        a.nav-link.active[data-bs-toggle='tab' href='#career' role='tab'] = t('.career')
+      li.nav-item
+        a.nav-link[data-bs-toggle='tab' href='#items' role='tab'] = t('.items')
+    .tab-content.pt-4
+      .tab-pane.active[id='career' role='tabpanel']
+        = render 'form', f:
+
+      .tab-pane[id='items' role='tabpanel']
+        .nested-fields.mb-3
+          .row
+            .col-md-1
+            .col-md-7
+              = t('.steps')
+        = f.simple_fields_for :items, @items, wrapper: :inline_form do |item_form|
+          = render 'item_step_fields', f: item_form
+        .add_association.mt-3
+          span.me-3
+            = link_to_add_association f, :items, render_options: { wrapper: 'inline_form' }, partial: 'item_step_fields', class: 'btn btn-outline-primary' do
+              = t('.add_step')

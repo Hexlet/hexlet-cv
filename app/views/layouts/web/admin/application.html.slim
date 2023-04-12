@@ -16,6 +16,8 @@ html.h-100 lang="#{I18n.locale}"
               = nav_menu_item t('.all_users'), admin_users_path
               = nav_menu_item t('.all_resumes'), admin_resumes_path
               = nav_menu_item t('.all_vacancies'), admin_vacancies_path
+              = nav_menu_item t('.all_career_paths'), admin_careers_path
+              = nav_menu_item t('.all_steps'), admin_steps_path
           .col-md-10
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header

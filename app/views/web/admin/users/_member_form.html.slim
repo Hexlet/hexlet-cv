@@ -1,0 +1,8 @@
+ = simple_form_for member, wrapper: :inline_form, url: admin_career_members_path do |f|
+  .d-none
+    = f.input :user_id, as: :hidden, input_html: { value: user.id }
+  .row.g-2
+    .col-12.col-lg-6.col-xl-7
+      = f.input :career_id, collection: @careers
+    .col-12.col-lg-6.col-xl-5
+      = f.submit t('.add'), class: 'btn btn-primary w-100'

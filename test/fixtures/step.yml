@@ -1,0 +1,9 @@
+DEFAULTS: &DEFAULTS
+  name: Соcтавь резюме
+  description: <%= Faker::Lorem.paragraph %>
+  tasks_text: <%= Faker::Lorem.paragraph %>
+  review_needed: true
+  locale: <%= I18n.locale %>
+
+one:
+   <<: *DEFAULTS

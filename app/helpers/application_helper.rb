@@ -99,4 +99,11 @@ module ApplicationHelper
 
     "#{t('page', number: number_page)}-#{text}"
   end
+
+  # rubocop:disable Rails/HelperInstanceVariable
+  def append_javascript_packs(*packs)
+    @javascript_packs ||= []
+    @javascript_packs.push(*packs)
+  end
+  # rubocop:enable Rails/HelperInstanceVariable
 end

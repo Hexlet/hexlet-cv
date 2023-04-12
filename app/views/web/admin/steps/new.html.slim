@@ -1,0 +1,6 @@
+- content_for :header do
+  = t('steps')
+
+= render 'menu'
+
+= render partial: 'web/admin/steps/form', locals: { step: @step, url: admin_steps_path }
