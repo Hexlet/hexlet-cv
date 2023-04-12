@@ -1,0 +1,15 @@
+= simple_form_for step, url:, wrapper: 'horizontal_form' do |f|
+  .mb-3
+    = f.input :name
+  .mb-3
+    = f.input :description, as: :markdown_editor
+  .mb-3
+    = f.input :tasks_text, as: :markdown_editor
+  .mb-3
+    = f.input :locale
+  .mb-3
+    = f.input :review_needed
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .me-3 = f.button :submit, class: 'btn btn-success', name: 'create'
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

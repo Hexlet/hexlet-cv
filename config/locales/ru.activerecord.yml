@@ -32,6 +32,20 @@ ru:
         state: Статус
         state/permitted: Активен
         state/banned: Забанен
+      career:
+        name: Название
+        description: Описание
+        locale: Язык
+        slug: Уникальное имя
+      career/member:
+        finished_at: Закончен
+        user: Студент
+      career/step:
+        name: Название
+        description: Описание
+        locale: Язык
+        tasks_text: Задачи
+        review_needed: Нужно ли ревью
       vacancy:
         conditions_description: Условия и Бонусы
         requirements_description: Требования
@@ -120,3 +134,7 @@ ru:
               invalid: имеет не верный формат
             contact_phone:
               invalid: имеет неверное формат
+        career:
+          attributes:
+            slug:
+              slug: неверный slug

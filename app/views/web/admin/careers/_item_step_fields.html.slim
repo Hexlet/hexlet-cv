@@ -1,0 +1,9 @@
+.nested-fields.mb-3
+  .row
+    .col-md-1
+      = link_to_remove_association f, class: 'btn btn-xs btn-warning' do
+        = t('.remove_field')
+    .col-md-7
+      = f.association :career_step, collection: @steps, hint: t('.step')
+    .col-md-2
+      = f.input :order, hint: t('.order')

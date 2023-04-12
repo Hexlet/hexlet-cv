@@ -1,5 +1,8 @@
 ru:
   enumerize:
+    locale:
+      ru: Русский
+      en: Английский
     relocation:
       another_country: Готов только в другую страну
       another_city: Готов только в рамках страны проживания

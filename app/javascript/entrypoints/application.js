@@ -8,11 +8,12 @@
 import '../stylesheets/application.scss';
 import '@nathanvda/cocoon';
 import ujs from '@rails/ujs';
-// import editorRun from '../scripts/markdownEditor.js';
+import editorRun from '../scripts/markdownEditor.js';
 import '../scripts/selectVacancyFilter.js';
+import '../scripts/autocomplete.js';
 
 ujs.start();
-// editorRun();
+editorRun();
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

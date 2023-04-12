@@ -1,0 +1,39 @@
+- content_for :header do
+  = t('.career_path')
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'name')
+  .col-sm-9
+    = @career.name
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'description')
+  .col-sm-9.hexlet-cv-content
+    == markdown2html @career.description
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'slug')
+  .col-sm-9
+    = @career.slug
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'locale')
+  .col-sm-9
+    = @career.locale_text
+
+ul.nav.nav-tabs[role='tablist']
+  li.nav-item
+    a.nav-link.active[data-bs-toggle='tab' href='#users_career' role='tab'] = t('.users_career')
+  li.nav-item
+    a.nav-link[data-bs-toggle='tab' href='#steps' role='tab'] = t('.steps')
+
+.tab-content.pt-4
+  .tab-pane.active[id='users_career' role='tabpanel']
+    = render 'users', users: @users, career: @career
+
+  .tab-pane[id='steps' role='tabpanel']
+    = render 'steps', steps: @steps, career: @career
