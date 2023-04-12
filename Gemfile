@@ -7,6 +7,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'acts-as-taggable-on'
 
+gem 'ruby-openai'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # NOTE Не обновил версию рельсы, т.к. https://github.com/charlotte-ruby/impressionist/issues/302
 gem 'rails', '~> 7'

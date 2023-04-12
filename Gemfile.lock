@@ -159,6 +159,9 @@ GEM
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
@@ -350,6 +353,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    ruby-openai (3.7.0)
+      httparty (>= 0.18.1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -522,6 +527,7 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
+  ruby-openai
   selenium-webdriver
   sentry-rails
   sentry-ruby
