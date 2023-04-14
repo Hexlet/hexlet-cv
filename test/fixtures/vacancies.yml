@@ -72,8 +72,8 @@ archived:
   salary_to: 2000
   salary_currency: rub
 
-over_two_weeks_old:
+over_month_old:
   <<: *DEFAULTS
   title: Фронтендер
   salary_to: 2000
-  published_at: <%= 3.weeks.ago.to_fs(:db) %>
+  published_at: <%= 2.month.ago.to_fs(:db) %>

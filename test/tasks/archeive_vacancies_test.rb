@@ -9,7 +9,7 @@ class ArchiveVacanciesTest < ActiveSupport::TestCase
   end
 
   test 'archive vacancies' do
-    vacancy = vacancies(:over_two_weeks_old)
+    vacancy = vacancies(:over_month_old)
 
     assert { vacancy.published? }
 
