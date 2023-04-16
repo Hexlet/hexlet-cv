@@ -1,4 +1,5 @@
 en:
+  recommendation_open_ai: "### Improvement recommendation:\n %{recommendation}\n### Cover letter:\n %{letter}\n### Editing:\n %{edit_text}"
   application_name: Hexlet CV
   in_the_city: "in the city %{city_name}"
   months_nominative_case:
@@ -61,3 +62,7 @@ en:
       previous: " Prev"
       next: "Next "
       truncate: "&hellip;"
+  open_ai_command:
+    evaluate_resume: resume evaluation
+    write_cover_letter: write a cover letter
+    edit_text: edit the text

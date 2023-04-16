@@ -22,6 +22,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
     if @resume.save
       change_visibility(@resume)
+      OpenAiJob.perform_later(@resume.id) if @resume.published? && !@resume.evaluated_ai?
       f(:success)
       redirect_to account_resumes_path
     else
@@ -35,6 +36,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     resume = @resume.becomes(Web::Account::ResumeForm)
     if resume.update(params[:resume])
       change_visibility(@resume)
+      OpenAiJob.perform_later(@resume.id) if @resume.published? && !@resume.evaluated_ai?
       f(:success)
       redirect_to account_resumes_path
     else

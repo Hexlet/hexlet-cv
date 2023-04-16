@@ -53,3 +53,6 @@ compose-test:
 
 compose-ci-check:
 	docker-compose run --rm app make ci-setup-check
+
+compose-rails:
+	docker-compose run --rm app bin/rails $(T)

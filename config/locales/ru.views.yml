@@ -58,7 +58,6 @@ ru:
         remove_work: Удалить опыт работы
       education_fields:
         remove_education: Удалить образование
-      answer:
         add_a_comment: Добавить комментарий
         apply: Принять
         title_apply: Принять рекомендации
@@ -236,6 +235,18 @@ ru:
           few: Просмотра
           many: Просмотров
     answers:
+      recommendation_open_ai: | 
+        ### Рекомендация по улучшению:
+
+        %{recommendation}
+
+        ### Сопроводительное письмо:
+
+        %{letter}
+
+        ### Редактура:
+
+        %{edit_text}"
       comments:
         new:
           header: Создание комментария
