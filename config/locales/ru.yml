@@ -60,5 +60,5 @@ ru:
       truncate: "&hellip;"
   open_ai_command:
     evaluate_resume: оцени резюме
-    write_cover_letter: напиши сопроводительное письмо
-    edit_text: проведи редактуру текста
+    write_cover_letter: напиши сопроводительное письмо к резюме
+    edit_text: проведи редактуру текста резюме
