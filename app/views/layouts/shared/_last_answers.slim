@@ -4,7 +4,7 @@
   .mb-4
     .fw-bolder = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
     .small
-      = truncate(answer.content, length: 90)
+      = truncate_markdown(answer.content, length: 90)
       .mt-1
         / span = t('.answers', count: answer.resume.answers.size)
         / | &nbsp;|&nbsp&nbsp

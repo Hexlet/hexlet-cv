@@ -11,7 +11,11 @@ class OpenAiHelper
   end
 
   def send_content(prompt, resume_content)
-    response = chat([{ role: 'user', content: prompt }, { role: 'user', content: resume_content }])
+    response = chat([
+                      { role: 'system', content: I18n.t('open_ai_command.system_command') },
+                      { role: 'user', content: prompt },
+                      { role: 'user', content: resume_content }
+                    ])
 
     raise StandardError, response['error']['message'] if response['error']
 
