@@ -57,14 +57,14 @@
               div
                 = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
                   span.bi.bi-x-lg.text-secondary
-      hr.my-2
-      a.d-block.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
-        = t('.add_a_comment')
-      .collapse(id="new_resume_comment-#{@resume.id}")
-        - if user_signed_in?
-          = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
-        - else
-          = render 'comment_requires'
+    hr.my-2
+    a.d-block.text-muted(href="#new_resume_comment-#{@resume.id}" data-bs-toggle="collapse")
+      = t('.add_a_comment')
+    .collapse(id="new_resume_comment-#{@resume.id}")
+      - if user_signed_in?
+        = render 'web/shared/comment_form', comment: @resume.comments.build, url: resume_comments_path(@resume)
+      - else
+        = render 'comment_requires'
 
 - if @resume_answers.any?
   h3.mb-3 = t('.recomendations')
