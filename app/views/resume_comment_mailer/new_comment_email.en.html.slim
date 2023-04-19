@@ -1,7 +1,7 @@
 p = sanitize t('.new_comment',
       user_path: user_url(@comment.user, locale: I18n.locale),
       user: "#{@comment.user.first_name} #{@comment.user.last_name}",
-      comment_path: resume_url(@comment.resume, anchor: "comment-#{@comment.id}"), locale: I18n.locale)
+      comment_path: resume_url(@comment.resume, anchor: "comment-#{@comment.id}", locale: I18n.locale))
 
 hr
 

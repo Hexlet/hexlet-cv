@@ -18,10 +18,11 @@ class ResumeAutoAnswerService
       ActiveRecord::Base.transaction do
         user = User.find_by(email: ENV.fetch('EMAIL_SPECIAL_USER'))
         attrs = { content: }
-        Resume::AnswerMutator.create(resume, attrs, user)
+        @answer = Resume::AnswerMutator.create(resume, attrs, user)
         resume.evaluated_ai = true
         resume.save!
       end
+      EmailSender.send_new_answer_mail(@answer) if @answer&.persisted?
     end
 
     def prepare_resume(resume)
