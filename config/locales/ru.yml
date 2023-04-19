@@ -58,3 +58,7 @@ ru:
       next: "Следующая "
       previous: " Предыдущая"
       truncate: "&hellip;"
+  open_ai_command:
+    evaluate_resume: оцени резюме
+    write_cover_letter: напиши сопроводительное письмо
+    edit_text: проведи редактуру текста

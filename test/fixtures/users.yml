@@ -42,3 +42,8 @@ banned:
   email: $LABEL@email.com
   about: Banned
   state: banned
+
+special:
+  <<: *DEFAULTS
+  email: info@hexlet.io
+  about: bot

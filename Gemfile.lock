@@ -128,6 +128,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    dry-container (0.11.0)
+      concurrent-ruby (~> 1.0)
     e2mmap (0.1.0)
     enumerize (2.6.1)
       activesupport (>= 3.2)
@@ -491,6 +493,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   dotenv-rails
+  dry-container
   enumerize
   factory_bot_rails
   faker

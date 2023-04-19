@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_07_133244) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_145907) do
+  create_table "career_items", force: :cascade do |t|
+    t.integer "order"
+    t.string "career_id"
+    t.string "step_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "career_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "career_id"
+    t.datetime "finished_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "careers", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "direction"
+    t.string "locale"
+    t.integer "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_careers_on_creator_id"
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -152,7 +179,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_133244) do
     t.string "contact_phone"
     t.string "contact_email"
     t.string "contact_telegram"
+    t.boolean "evaluated_ai"
     t.index ["user_id"], name: "index_resumes_on_user_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "tasks"
+    t.boolean "review_needed"
+    t.integer "creator_id", null: false
+    t.string "locale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_steps_on_creator_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -269,6 +309,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_133244) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "careers", "users", column: "creator_id"
   add_foreign_key "notifications", "users"
   add_foreign_key "resume_answer_comments", "resume_answers", column: "answer_id"
   add_foreign_key "resume_answer_comments", "resumes"
@@ -282,6 +323,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_133244) do
   add_foreign_key "resume_educations", "resumes"
   add_foreign_key "resume_works", "resumes"
   add_foreign_key "resumes", "users"
+  add_foreign_key "steps", "users", column: "creator_id"
   add_foreign_key "taggings", "tags"
   add_foreign_key "vacancies", "countries"
   add_foreign_key "vacancies", "users", column: "creator_id"

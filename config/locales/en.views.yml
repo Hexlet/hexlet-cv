@@ -254,3 +254,16 @@ en:
       users:
         edit:
           header: Edit user
+    answers:
+      recommendation_open_ai: |
+        ### Improvement recommendation:
+
+        %{recommendation}
+
+        ### Cover letter:
+
+        %{letter}
+
+        ### Editing:
+        
+        %{edit_text}"

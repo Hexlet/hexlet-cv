@@ -27,12 +27,19 @@ Rails.application.routes.default_url_options[:locale] = I18n.locale
 Rails.application.config.action_mailer.default_url_options[:locale] = I18n.locale
 
 class ActiveSupport::TestCase
+  include ActiveJob::TestHelper
   # Run tests in parallel with specified workers
   # TODO: return virtualization after fixing power_assert integration
   # parallelize(workers: :number_of_processors)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+
+  setup do
+    queue_adapter.perform_enqueued_jobs = true
+
+    queue_adapter.perform_enqueued_at_jobs = true
+  end
 
   # Add more helper methods to be used by all tests here...
 end

@@ -18,18 +18,27 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test '#create' do
+  test '#create and published' do
+    user_special = users(:special)
     attrs = FactoryBot.attributes_for :resume
     education_attrs = attrs[:educations_attributes].first
     works_attrs = attrs[:works_attributes].first
+    params = {
+      publish: true,
+      resume: attrs
+    }
 
-    post account_resumes_path, params: { resume: attrs }
+    post(account_resumes_path, params:)
     assert_response :redirect
 
     resume = Resume.find_by(name: attrs[:name])
+
+    last_answer = resume.answers.last
     assert { resume }
     assert { resume.educations.exists?(description: education_attrs[:description]) }
     assert { resume.works.exists?(company: works_attrs[:company]) }
+    assert { resume.evaluated_ai? }
+    assert { last_answer.user_id == user_special.id }
   end
 
   test '#edit' do
@@ -39,6 +48,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#update' do
+    user_special = users(:special)
     resume = resumes(:one)
     work = resume_works(:one)
 
@@ -50,8 +60,11 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     resume.reload
     work.reload
+    last_answer = resume.answers.last
     assert { resume.name == attrs[:name] }
     assert { work.company == work_attrs[:company] }
+    assert { resume.evaluated_ai? }
+    assert { last_answer.user_id == user_special.id }
   end
 
   test 'should publish published resume' do
