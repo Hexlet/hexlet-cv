@@ -26,12 +26,23 @@ class ResumeAutoAnswerService
     end
 
     def prepare_resume(resume)
-      resume
-        .serializable_hash
-        .deep_symbolize_keys
-        .slice(:name, :summary, :skills_description, :awards_description, :contact_phone, :contact_email)
-        .values
-        .join('\n')
+      resume_content = resume
+                       .serializable_hash
+                       .deep_symbolize_keys
+                       .slice(:name, :summary, :skills_description, :awards_description, :contact_phone, :contact_email)
+                       .values
+                       .join('\n')
+      work_content = resume.works.reduce('') do |acc, work|
+        content = work.serializable_hash.deep_symbolize_keys.slice(:company, :position, :begin_date, :end_date, :description)
+        acc += I18n.t('format_for_openAI.work', company: content[:company], position: content[:position], begin_date: content[:begin_date], end_date: content[:end_date], description: content[:description])
+        "#{acc}\n"
+      end
+      education_content = resume.educations.reduce('') do |acc, education|
+        content = education.serializable_hash.deep_symbolize_keys.slice(:institution, :faculty, :begin_date, :end_date, :description)
+        acc += I18n.t('format_for_openAI.education', institution: content[:institution], faculty: content[:faculty], begin_date: content[:begin_date], end_date: content[:end_date], description: content[:description])
+        "#{acc}\n"
+      end
+      "#{resume_content}\n#{work_content}\n#{education_content}"
     end
   end
   private_class_method :prepare_resume
