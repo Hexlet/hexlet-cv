@@ -65,3 +65,4 @@ en:
     evaluate_resume: resume evaluation
     write_cover_letter: write a cover letter for resume
     edit_text: edit resume text
+    system_command: be strict, speak facts, response as list
