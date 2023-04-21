@@ -66,3 +66,18 @@ en:
     write_cover_letter: write a cover letter for resume
     edit_text: edit resume text
     system_command: be strict, speak facts, response as list
+  format_for_openAI:
+    work: |
+      Place of work:
+      Company: %{company}
+      Position: %{position}
+      Begin work: %{begin_date}
+      End work: %{end_date}
+      Description: %{description}
+    education: |
+      Place of study:
+      Institute: %{institution}
+      Faculty: %{faculty}
+      Start date: %{begin_date}
+      End of training: %{end_date}
+      Description: %{description}

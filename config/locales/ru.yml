@@ -63,3 +63,19 @@ ru:
     write_cover_letter: напиши сопроводительное письмо к резюме
     edit_text: проведи редактуру текста резюме
     system_command: будь строг, говори факты, отвечай списком
+  format_for_openAI:
+    work: |
+      Место работы:
+      Компания: %{company}
+      Позиция: %{position}
+      Начало работы: %{begin_date}
+      Конец работы: %{end_date}
+      Описание: %{description}
+    education: |
+      Место учебы:
+      Институт: %{institution}
+      Факультет: %{faculty}
+      Начало обучения: %{begin_date}
+      Конец обучения: %{end_date}
+      Описание: %{description}
+      

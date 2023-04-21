@@ -1,6 +1,9 @@
 ---
 ru:
   web:
+    careers:
+      show:
+        career_path: Карьерный трек
     employments:
       show:
         employment: Трудоустройство
@@ -248,7 +251,7 @@ ru:
 
         ### Редактура:
 
-        %{edit_text}"
+        %{edit_text}
       comments:
         new:
           header: Создание комментария
