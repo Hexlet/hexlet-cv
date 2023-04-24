@@ -40,7 +40,10 @@
             span.bi.bi-hand-thumbs-up.text-secondary
     .w-100
       .hexlet-cv-content.mb-3
-        == markdown2html answer.content
+        - if answer.user.email == ENV.fetch('EMAIL_SPECIAL_USER')
+          == markdown2html(answer.content, details: true)
+        - else
+          == markdown2html answer.content
       - if answer.comments.web.any?
         - answer.comments.web.each do |comment|
           hr.mb-4

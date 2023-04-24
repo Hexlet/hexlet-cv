@@ -247,11 +247,18 @@ ru:
 
         ### Сопроводительное письмо:
 
-        %{letter}
+        <details>
+          <summary>Развернуть письмо</summary>
+          %{letter}
+        </details>
 
         ### Редактура:
 
-        %{edit_text}
+        <details>
+          <summary>Развернуть текст</summary>
+          %{edit_text}
+        </details>
+
       comments:
         new:
           header: Создание комментария

@@ -262,8 +262,14 @@ en:
 
         ### Cover letter:
 
-        %{letter}
+        <details>
+          <summary>Expand letter</summary>
+          %{letter}
+        </details>
 
         ### Editing:
         
-        %{edit_text}
+        <details>
+          <summary>Expand text</summary>
+          %{edit_text}
+        </details>
