@@ -2,7 +2,7 @@
 
 module UserPresenter
   def full_name
-    return 'Anonymous' if !first_name? || !last_name?
+    return 'Anonymous' if !first_name? && !last_name?
 
     "#{first_name} #{last_name}"
   end
