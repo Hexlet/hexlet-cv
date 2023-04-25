@@ -241,21 +241,15 @@ ru:
           many: Просмотров
     answers:
       recommendation_open_ai: | 
-        ### Рекомендация по улучшению:
-
         %{recommendation}
 
-        ### Сопроводительное письмо:
-
         <details>
-          <summary>Развернуть письмо</summary>
+          <summary>Сопроводительное письмо</summary>
           %{letter}
         </details>
 
-        ### Редактура:
-
         <details>
-          <summary>Развернуть текст</summary>
+          <summary>Improved resume</summary>
           %{edit_text}
         </details>
 
