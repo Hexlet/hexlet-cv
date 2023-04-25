@@ -10,20 +10,22 @@ module ApplicationHelper
     model_name.classify.constantize.human_attribute_name(attribute_name)
   end
 
-  def markdown2html(text)
+  def markdown2html(text, option = {})
     extensions = {
       autolink: true,
       filter_html: true,
       safe_links_only: true
     }
 
-    options = {
+    default_option = {
       escape_html: true,
       hard_wrap: true,
       link_attributes: { target: '_blank' }
     }
 
-    renderer = Redcarpet::Render::HTML.new(options)
+    merge_options = default_option.merge(option)
+
+    renderer = MarkdownRenderer.new(merge_options)
     markdown = Redcarpet::Markdown.new(renderer, extensions)
     markdown.render(text)
   end

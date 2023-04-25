@@ -256,14 +256,14 @@ en:
           header: Edit user
     answers:
       recommendation_open_ai: |
-        ### Improvement recommendation:
-
         %{recommendation}
 
-        ### Cover letter:
-
-        %{letter}
-
-        ### Editing:
+        <details>
+          <summary>Сover letter</summary>
+          %{letter}
+        </details>
         
-        %{edit_text}
+        <details>
+          <summary>Improved resume</summary>
+          %{edit_text}
+        </details>

@@ -241,17 +241,18 @@ ru:
           many: Просмотров
     answers:
       recommendation_open_ai: | 
-        ### Рекомендация по улучшению:
-
         %{recommendation}
 
-        ### Сопроводительное письмо:
+        <details>
+          <summary>Сопроводительное письмо</summary>
+          %{letter}
+        </details>
 
-        %{letter}
+        <details>
+          <summary>Улучшенное резюме</summary>
+          %{edit_text}
+        </details>
 
-        ### Редактура:
-
-        %{edit_text}
       comments:
         new:
           header: Создание комментария
