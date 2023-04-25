@@ -190,6 +190,7 @@ en:
           header: My vacancies
       resumes:
         new:
+          info_for_user: Please note that if you plan to look for a job abroad, create a resume in the English version of the site
           header: New resume
         edit:
           header: Edit CV
