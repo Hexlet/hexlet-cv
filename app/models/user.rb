@@ -24,7 +24,6 @@ class User < ApplicationRecord
   has_many :resume_answer_likes, through: :resume_answers, source: :likes
   has_many :resume_comments, class_name: 'Resume::Comment', dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :career_members, class_name: 'Career::Member', dependent: :destroy
 
   aasm :state, column: :state do
     state :permitted, initial: true

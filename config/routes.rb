@@ -8,13 +8,6 @@ Rails.application.routes.draw do
                                                                  passwords: 'web/devise/passwords',
                                                                  confirmations: 'web/devise/confirmations',
                                                                  unlocks: 'web/devise/unlocks' }
-    namespace :api_internal do
-      resources :users, only: [] do
-        collection do
-          get :search
-        end
-      end
-    end
 
     scope module: :web do
       get '/403', to: 'errors#forbidden', as: :not_forbidden_errors
@@ -74,16 +67,6 @@ Rails.application.routes.draw do
         resources :users, only: %i[index edit update]
         resources :resumes, only: %i[index edit update]
         resources :vacancies, only: %i[index edit update]
-        resources :careers, only: %i[index show new create edit update] do
-          scope module: :careers do
-            resources :members, only: %i[new create] do
-              member do
-                patch :archive
-              end
-            end
-          end
-        end
-        resources :steps, only: %i[index show new create edit update]
       end
     end
   end

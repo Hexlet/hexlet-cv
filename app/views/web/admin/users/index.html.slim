@@ -1,4 +1,9 @@
-= render 'search_form', q: @q, url: admin_users_path
+.p-3.mb-3.bg-light
+  = search_form_for @q, default_filter_form_options(url: admin_users_path) do |f|
+    = f.input :first_name_or_last_name_or_email_cont, as: :string
+    .col.d-flex.align-self-end
+      = f.button :submit, class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
 
 table.table
   thead

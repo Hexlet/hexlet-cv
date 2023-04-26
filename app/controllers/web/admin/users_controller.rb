@@ -2,7 +2,8 @@
 
 class Web::Admin::UsersController < Web::Admin::ApplicationController
   def index
-    @q = User.ransack(query_params)
+    query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
+    @q = User.ransack(query)
     @users = @q.result(distinct: true).page(params[:page])
   end
 
@@ -19,11 +20,5 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def query_params
-    { s: 'created_at desc' }.merge(params.permit![:q] || {})
   end
 end
