@@ -26,7 +26,9 @@ ru:
           steps: Шаги
           add_step: Добавить шаг
         show:
+          users_career: Студенты в карьернои треки
           career_path: Карьерный трек
+          steps: Шаги карьерного трека 
         menu:
           new: Новый
           list: Список
@@ -43,8 +45,15 @@ ru:
           created_at: Создан
           steps_career: Шаги карьерного трека
         users:
+          users_career: Студенты
+          email: Почта
+          name: Имя
+          finished_at: Зкончен
+          started_at: Начат
+          action: Действие
+          archive: Архивировать
           question: Вы уверенны?
-          add_user: Добавить пользователя
+          add_user: Добавить студента
       users:
         in_career_path:
           started_at: Начат
