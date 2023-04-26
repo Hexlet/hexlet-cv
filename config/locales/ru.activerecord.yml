@@ -32,6 +32,19 @@ ru:
         state: Статус
         state/permitted: Активен
         state/banned: Забанен
+      career:
+        name: Название
+        description: Описание
+        locale: Язык
+        slug: Уникальное имя
+      career/member:
+        user: Студент
+      step:
+        name: Название
+        description: Описание
+        locale: Язык
+        tasks_text: Задачи
+        review_needed: Нужно ли ревью
       vacancy:
         conditions_description: Условия и Бонусы
         requirements_description: Требования

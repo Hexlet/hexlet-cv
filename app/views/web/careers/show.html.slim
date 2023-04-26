@@ -1,0 +1,14 @@
+- content_for :header do
+  = t('.career_path')
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'name')
+  .col-sm-9
+    = @career.name
+
+.row.mb-3
+  .col-sm-3
+    b = han('career', 'description')
+  .col-sm-9.hexlet-cv-content
+    == markdown2html @career.description

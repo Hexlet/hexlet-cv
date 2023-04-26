@@ -1,0 +1,7 @@
+- content_for :header do
+  = t('career')
+
+= render 'menu'
+
+= simple_form_for @career, as: :career, url: admin_careers_path, wrapper: 'horizontal_form' do |f|
+  = render 'form', f:

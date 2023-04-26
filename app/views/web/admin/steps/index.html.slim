@@ -1,0 +1,17 @@
+- content_for :header do
+  = t('steps')
+
+= render 'menu'
+
+table.table
+  thead
+    tr
+      th = sort_link(@q, 'name')
+      th = sort_link(@q, 'created_at')
+      th = t('.action')
+  tbody
+    - @steps.each do |step|
+      tr
+        td = link_to step.name, admin_step_path(step), class: 'text-decoration-none'
+        td = l step.created_at, format: :long
+        td = link_to t('.edit'), edit_admin_step_path(step), class: 'btn btn-primary btn-sm'

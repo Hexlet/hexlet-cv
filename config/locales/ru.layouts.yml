@@ -2,12 +2,6 @@
 ru:
   layouts:
     web:
-      admin:
-        application:
-          admin: Администраторы
-          all_users: Все пользователи
-          all_resumes: Все резюме
-          all_vacancies: Все вакансии
       account:
         application:
           resumes: Мои резюме
@@ -35,6 +29,7 @@ ru:
         add: Добавить
         add_resume: Резюме
         add_vacancy: Вакансию
+        career_path: Карьерный трек
         my_resumes: Мои резюме
         my_vacancies: Мои вакансии
         how_to_create_resume: Как составлять резюме

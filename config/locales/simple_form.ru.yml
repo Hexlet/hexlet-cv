@@ -86,6 +86,8 @@ ru:
           description: Специальность, учебное заведение, ...
         works:
           description: Обязанности, достижения
+      career:
+        description: Поддерживается Markdown https://guides.hexlet.io/ru/markdown/
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

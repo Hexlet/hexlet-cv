@@ -1,0 +1,10 @@
+- content_for :header do
+  = t('.add_user')
+
+= simple_form_for @career_member, url: admin_career_members_path(@resource_career), wrapper: 'horizontal_form' do |f|
+  .mb-3
+    = f.association :user, as: :autocomplete, source: search_api_internal_users_url(format: 'json')
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .me-3 = f.submit t('.add'), class: 'btn btn-success', name: 'create'
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

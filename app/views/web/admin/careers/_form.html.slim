@@ -1,0 +1,12 @@
+  .mb-3
+    = f.input :name
+  .mb-3
+    = f.input :description, as: :markdown_editor
+  .mb-3
+    = f.input :slug
+  .mb-3
+    = f.input :locale
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .me-3 = f.submit t('.submit'), class: 'btn btn-success', name: 'create'
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'
