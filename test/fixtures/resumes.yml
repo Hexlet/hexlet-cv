@@ -11,6 +11,7 @@ DEFAULTS: &DEFAULTS
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
+  evaluated_ai_state: not_evaluated
   answers_count: 0
 
 one:
@@ -64,3 +65,11 @@ one_archived:
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: archived
+
+one_evaluated_failed:
+  <<: *DEFAULTS
+  user: one
+  skills_description: <%= Faker::Lorem.paragraph %>
+  awards_description: <%= Faker::Lorem.paragraph %>
+  summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
+  evaluated_ai_state: failed
