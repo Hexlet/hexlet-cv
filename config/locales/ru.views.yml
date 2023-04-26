@@ -231,7 +231,6 @@ ru:
         tab_answers: Ответы
         tab_comments: Комментарии
         banned: Аккаунт забанен
-        tab_careers: Карьерный трек
       resumes:
         answers:
           one: Ответ
@@ -241,7 +240,6 @@ ru:
           one: Просмотр
           few: Просмотра
           many: Просмотров
-        nothing: У вас еще нет резюме
     answers:
       recommendation_open_ai: | 
         %{recommendation}
@@ -264,4 +262,13 @@ ru:
     pages:
       about_description: Цель Hexlet CV - предоставить платформу, где каждый может получить рекомендации по улучшению резюме от участников сообщества и профессиональных HR.
       about_title: О проекте
-      
+    admin:
+      resumes:
+        edit:
+          header: Редактирование резюме
+      vacancies:
+        edit:
+          header: Редактирование вакансии
+      users:
+        edit:
+          header: Редактирование пользователя

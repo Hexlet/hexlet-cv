@@ -1,9 +1,0 @@
-- if careers.empty?
-  = not_found_random_image
-- else
-  - careers.each do |career|
-    .card.mb-3
-      .card-header
-        = career.name
-      .card-body
-        .card-text.hexlet-cv-content == markdown2html career.description
