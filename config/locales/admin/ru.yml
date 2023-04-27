@@ -1,0 +1,78 @@
+---
+ru:
+  web:
+    admin:
+      resumes:
+        edit:
+          header: Редактирование резюме
+      vacancies:
+        edit:
+          header: Редактирование вакансии
+      users:
+        edit:
+          header: Редактирование пользователя
+      home:
+        index:
+          admins: Администраторы
+      careers:
+        item_step_fields:
+          step: шаг
+          order: порядковый номер шага
+          remove_field: Удалить
+        index:
+          action: Действие
+          edit: Редактировать
+        edit:
+          career: Карьерный трек
+          items: Шаги карьерного трека
+          steps: Шаги
+          add_step: Добавить шаг
+        show:
+          users_career: Студенты в карьернои треки
+          career_path: Карьерный трек
+          steps: Шаги карьерного трека 
+        menu:
+          new: Новый
+          list: Список
+        members:
+          new:
+            add: Добавить
+            add_user: Добавление пользователя
+            cancel: Отмена
+        form:
+          cancel: Отменить
+        steps:
+          action: Действие
+          edit: Редактировать
+          add_new_step: Добавить новый шаг
+          steps_career: Шаги карьерного трека
+          show:
+            step: Шаг %{step_name}
+        users:
+          users_career: Студенты
+          action: Действие
+          archive: Архивировать
+          question: Вы уверенны?
+          add_user: Добавить студента
+      users:
+        in_career_path:
+          started_at: Начат
+          finished_at: Закончен
+        index:
+          question: Вы уверенны?
+          career_path: Карьерный трек
+          cancel: Отменить
+        search_form:
+          search: Найти
+        member_form:
+          add: Назначить
+      steps:
+        menu:
+          list: Список
+          new: Новый
+        index:
+          action: Действие
+          edit: Редактировать
+        show:
+          step: Шаг карьерного трека
+          

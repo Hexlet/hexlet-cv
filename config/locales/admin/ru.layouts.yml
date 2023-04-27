@@ -1,0 +1,11 @@
+---
+ru:
+  layouts:
+    web:
+      admin:
+        application:
+          admin: Администраторы
+          all_users: Все пользователи
+          all_resumes: Все резюме
+          all_vacancies: Все вакансии
+          all_career_paths: Карьерные треки

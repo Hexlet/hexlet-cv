@@ -99,4 +99,10 @@ module ApplicationHelper
 
     "#{t('page', number: number_page)}-#{text}"
   end
+
+  def show_date_if(date, format)
+    return if date.blank?
+
+    l date, format:
+  end
 end

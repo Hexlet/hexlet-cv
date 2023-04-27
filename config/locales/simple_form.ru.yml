@@ -42,6 +42,10 @@ ru:
     #     edit:
     #       email: 'E-mail.'
     hints:
+      career:
+        step: Шаг
+        items:
+          order: Порядковый номер 
       resume_comment:
         content: Длина не может превышать 400 символов
       resume_answer_comment:
@@ -86,6 +90,8 @@ ru:
           description: Специальность, учебное заведение, ...
         works:
           description: Обязанности, достижения
+      career:
+        description: Поддерживается Markdown https://guides.hexlet.io/ru/markdown/
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
