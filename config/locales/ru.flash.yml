@@ -7,6 +7,10 @@ ru:
           update:
             success: Данные обновлены
             error: Не удалось обновить данные
+      careers:
+        members:
+          show:
+            error: Такой карьерный трек не найден!
         resumes:
           update:
             success: Резюме обновлено

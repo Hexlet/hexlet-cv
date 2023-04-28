@@ -2,8 +2,21 @@
 ru:
   web:
     careers:
+      index:
+        not_found_career: Вам не назначенны карьерные треки
       show:
+        start_career: К прохождению
         career_path: Карьерный трек
+      members:
+        show:
+          name_step: 'Шаг %{number}: %{name}'
+          tasks: 'Задачи:'
+          step_finish: Завершить шаг
+          step_finished: Шаг завершен
+        career_info:
+          career: Карьерный трек
+          started_at: Начат %{date}
+          student_html: 'Студент: <b>%{link}</b>'
     employments:
       show:
         employment: Трудоустройство

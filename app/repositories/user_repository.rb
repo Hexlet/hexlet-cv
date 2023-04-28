@@ -5,6 +5,6 @@ module UserRepository
 
   included do
     scope :web, -> { order(id: :desc).permitted }
-    scope :current_career, ->(career) { joins(:careers).merge(Career::Member.active).where(careers: career) }
+    scope :current_career, ->(career) { joins(:careers).where(careers: career) }
   end
 end

@@ -14,7 +14,7 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#show' do
-    career = career(:one)
+    career = careers(:one)
     get admin_career_path(career)
     assert_response :success
   end
@@ -35,18 +35,18 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#edit' do
-    career = career(:one)
+    career = careers(:one)
     get edit_admin_career_path(career)
     assert_response :success
   end
 
   test '#update' do
-    career = career(:two)
+    career = careers(:two)
     attrs = FactoryBot.attributes_for :career
     attrs[:items_attributes] = [
       {
         order: 1,
-        career_step_id: career_step(:one).id
+        career_step_id: career_steps(:one).id
       }
     ]
     patch admin_career_path(career), params: { career: attrs }

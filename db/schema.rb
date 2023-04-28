@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_03_140032) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_082427) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -32,6 +32,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_140032) do
     t.index ["career_id"], name: "index_career_members_on_career_id"
     t.index ["user_id", "career_id"], name: "index_career_members_on_user_id_and_career_id", unique: true, where: "state = 'active'"
     t.index ["user_id"], name: "index_career_members_on_user_id"
+  end
+
+  create_table "career_step_members", force: :cascade do |t|
+    t.integer "career_step_id", null: false
+    t.integer "career_member_id", null: false
+    t.string "step_state", null: false
+    t.integer "order", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["career_member_id", "career_step_id"], name: "index_career_step_members_on_career_member_id_and_career_step_id", unique: true
+    t.index ["career_member_id"], name: "index_career_step_members_on_career_member_id"
+    t.index ["career_step_id"], name: "index_career_step_members_on_career_step_id"
   end
 
   create_table "career_steps", force: :cascade do |t|
@@ -318,6 +330,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_140032) do
   add_foreign_key "career_items", "careers"
   add_foreign_key "career_members", "careers"
   add_foreign_key "career_members", "users"
+  add_foreign_key "career_step_members", "career_members"
+  add_foreign_key "career_step_members", "career_steps"
   add_foreign_key "notifications", "users"
   add_foreign_key "resume_answer_comments", "resume_answers", column: "answer_id"
   add_foreign_key "resume_answer_comments", "resumes"
