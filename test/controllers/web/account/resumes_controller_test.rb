@@ -37,8 +37,35 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { resume }
     assert { resume.educations.exists?(description: education_attrs[:description]) }
     assert { resume.works.exists?(company: works_attrs[:company]) }
-    assert { resume.evaluated_ai? }
+    assert { resume.evaluated? }
     assert { last_answer.user_id == user_special.id }
+  end
+
+  test '#create and to draft' do
+    attrs = FactoryBot.attributes_for :resume
+
+    params = {
+      hide: true,
+      resume: attrs
+    }
+
+    post(account_resumes_path, params:)
+    assert_response :redirect
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { resume.not_evaluated? }
+  end
+
+  test '#update evaluated_ai_state failed' do
+    resume = resumes(:one_evaluated_failed)
+    attrs = FactoryBot.attributes_for(:resume)
+
+    patch account_resume_path(resume), params: { resume: attrs }
+
+    assert_response :redirect
+    resume.reload
+
+    assert { resume.evaluated? }
   end
 
   test '#edit' do
@@ -63,7 +90,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     last_answer = resume.answers.last
     assert { resume.name == attrs[:name] }
     assert { work.company == work_attrs[:company] }
-    assert { resume.evaluated_ai? }
+    assert { resume.evaluated? }
     assert { last_answer.user_id == user_special.id }
   end
 

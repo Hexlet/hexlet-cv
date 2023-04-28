@@ -60,6 +60,25 @@ class Resume < ApplicationRecord
     end
   end
 
+  aasm :evaluated_ai_state, column: :evaluated_ai_state do
+    state :not_evaluated, initial: true
+    state :processing
+    state :evaluated
+    state :failed
+
+    event :process do
+      transitions from: %i[not_evaluated failed], to: :processing, guard: :published?
+    end
+
+    event :mark_as_evaluated do
+      transitions from: :processing, to: :evaluated
+    end
+
+    event :mark_as_failed do
+      transitions from: :processing, to: :failed
+    end
+  end
+
   def to_s
     name
   end
