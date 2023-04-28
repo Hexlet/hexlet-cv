@@ -9,6 +9,8 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
         = nav_menu_item t('.resumes'), root_path
         = nav_menu_item t('.vacancies'), vacancies_path
         = nav_menu_item t('.employment'), employment_path
+        - if user_signed_in?
+          = nav_menu_item t('.career_path'), careers_path
       ul.navbar-nav.nav-pills
         - if user_signed_in?
           li.nav-item

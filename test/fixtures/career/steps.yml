@@ -6,5 +6,4 @@ DEFAULTS: &DEFAULTS
   locale: <%= I18n.locale %>
 
 one:
-  id: 1
   <<: *DEFAULTS

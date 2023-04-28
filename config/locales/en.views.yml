@@ -1,5 +1,17 @@
 en:
   web:
+    careers:
+      index:
+        not_found_career: Вам не назначенны карьерные треки
+      show:
+        start_career: Start
+        career_path: Career Path
+      members:
+        show:
+          name_step: 'Step %{number}: %{name}'
+          tasks: 'Tasks:'
+          step_finish: Finish step
+          step_finished: Finished step
     employments:
       show:
         employment: Employment

@@ -8,6 +8,7 @@ table.table
       th = han('user', 'email')
       th = han('career/member', 'created_at')
       th = han('career/member', 'finished_at')
+      th = han('career/member', 'state')
       th = t('.action')
   tbody
     - users.each do |user|
@@ -16,4 +17,7 @@ table.table
         td = user.email
         td = show_date_if(user.career_members.last.created_at, :long)
         td = show_date_if(user.career_members.last.finished_at, :long)
-        td = link_to t('.archive'), archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'
+        td = user.career_members.last.aasm(:state).human_state
+        td
+          - if user.career_members.last.may_mark_as_archived?
+            = link_to t('.archive'), archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'
