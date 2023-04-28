@@ -1,0 +1,10 @@
+- if @user_careers.empty?
+  h3 = t('.not_found_career')
+- else
+  - @user_careers.each do |career|
+    - let @user_career_members_by_career[career.id] do |career_member|
+      .card.mb-3
+        .card-header.border-success
+          -if career_member&.finished?
+            span.bi.bi-check2.text-success
+          = link_to career.name, career_path(career, career_member:), class: 'text-decoration-none'

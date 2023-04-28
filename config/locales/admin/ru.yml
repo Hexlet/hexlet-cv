@@ -65,6 +65,7 @@ ru:
           archive: Архивировать
           question: Вы уверенны?
           add_user: Добавить студента
+          no_date: Не завершен
       users:
         in_career_path:
           started_at: Начат
