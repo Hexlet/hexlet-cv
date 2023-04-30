@@ -43,4 +43,9 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert { vacancy.published_at? }
     assert { vacancy.published_at != previous_published_at }
   end
+
+  test '#export vacancies to csv' do
+    get admin_vacancies_path(format: :csv)
+    assert_response :success
+  end
 end

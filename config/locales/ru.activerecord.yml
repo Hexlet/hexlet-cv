@@ -70,7 +70,7 @@ ru:
         position_level: Уровень
         location_of_position: Место работы
         company_name: Компания
-        creator: Имя
+        creator: Имя предстовителя
         site: Сайт компании
         contact_name: Имя контакта
         contact_phone: Телефон контакта
@@ -78,8 +78,11 @@ ru:
         contact_telegram: Телеграм контакта
         technology_list: Технологии
         direction_list: Направления
+        published_at: Дата публикации
         state: Состояние
         state/published: Опубликована
+        state/archived: В архиве
+        state/on_moderate: На модерации
         name: Имя
         company: компания
       resume:

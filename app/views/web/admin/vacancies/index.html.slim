@@ -1,9 +1,8 @@
-.p-3.mb-3.bg-light
-  = search_form_for @q, default_filter_form_options(url: admin_vacancies_path) do |f|
-    = f.input :company_name_cont
-    .col.d-flex.align-self-end
-      = f.button :submit, t('submit'), class: 'btn-primary me-2 flex-grow-1'
-      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
+= link_to url_for(params.permit!.merge(format: 'csv')) do
+    span.bi.bi-file-earmark-spreadsheet
+      = t('.export')
+
+= render 'search_form', q: @q
 
 table.table
   thead
@@ -14,6 +13,7 @@ table.table
       th = sort_link(@q, 'creator')
       th = sort_link(@q, 'company_name')
       th = sort_link(@q, 'created_at')
+      th = sort_link(@q, 'published_at')
   tbody
     - @vacancies.each do |vacancy|
       tr
@@ -23,6 +23,7 @@ table.table
         td = link_to vacancy.creator, user_path(vacancy.creator)
         td = vacancy.company_name
         / td = user.role
-        td = l vacancy.created_at, format: :short
+        td = l vacancy.created_at, format: :long
+        td = show_date_if(vacancy.published_at, :long)
 
 = paginate @vacancies
