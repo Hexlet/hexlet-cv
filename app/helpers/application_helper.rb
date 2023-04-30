@@ -101,7 +101,7 @@ module ApplicationHelper
   end
 
   def show_date_if(date, format)
-    return if date.blank?
+    return t('.no_date') if date.blank?
 
     l date, format:
   end

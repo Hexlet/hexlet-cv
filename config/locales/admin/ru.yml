@@ -6,8 +6,15 @@ ru:
         edit:
           header: Редактирование резюме
       vacancies:
+        search_form:
+          creator: имя/фамилия/почта
+          created_at_from: 'Дата создания с:'
+          created_at_to: 'по:'
         edit:
           header: Редактирование вакансии
+        index:
+          no_date: нет даты
+          export: Экспортировать вакансии в csv
       users:
         edit:
           header: Редактирование пользователя

@@ -12,7 +12,7 @@ ru:
         name_cont: Вхождение по имени
         user_first_name_or_user_last_name_cont: Вхождение по имени или фамилии
         user_email_cont: Вхождение по email пользователя
-        company_name_cont: Вхождение по названию компании
+        # company_name_cont: Вхождение по названию компании
     placeholders:
       resume_answer:
         show:
