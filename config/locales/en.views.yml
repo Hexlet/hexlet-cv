@@ -74,6 +74,7 @@ en:
         newest: New
         popular: Popular
         without_answers: No recommendations
+        without_answers_human: No recommendations with consultant
         all: All
         answers:
           one: Answer

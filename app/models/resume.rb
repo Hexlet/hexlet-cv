@@ -88,6 +88,6 @@ class Resume < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[directions user skills]
+    %w[directions user skills answers]
   end
 end

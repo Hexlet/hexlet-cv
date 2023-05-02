@@ -11,6 +11,7 @@
   = filter_link(t('.popular'), { created_at_gteq: Date.current - 1.week, popular_gteq: Date.current - 1.week, s: 'impressions_count desc' }, class: 'nav-item nav-link')
   = filter_link(t('.newest'), { created_at_gteq: Date.current - 1.day, s: 'created_at desc' }, class: 'nav-item nav-link')
   = filter_link(t('.without_answers'), { answers_count_eq: 0 }, class: 'nav-item nav-link')
+  = filter_link(t('.without_answers_human'), { answers_count_eq: 1, answers_user_id_not_eq: @user.id }, class: 'nav-item nav-link')
 
 .mb-5
   - @resumes.each_with_index do |resume, i|
