@@ -20,8 +20,8 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
             vacancy.id,
             vacancy.title,
             vacancy.aasm(:state).human_state,
-            vacancy.company_name,
             "#{vacancy.creator.email}(#{vacancy.creator.first_name} #{vacancy.creator.last_name})",
+            vacancy.company_name,
             l(vacancy.created_at, format: :long),
             show_date_if(vacancy.published_at, :long)
           ]
