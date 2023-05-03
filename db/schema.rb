@@ -14,12 +14,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
-    t.integer "career_step_id", null: false
+    t.integer "step_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["career_id", "career_step_id"], name: "index_career_items_on_career_id_and_career_step_id", unique: true
+    t.index ["career_id", "step_id"], name: "index_career_items_on_career_id_and_step_id", unique: true
     t.index ["career_id"], name: "index_career_items_on_career_id"
-    t.index ["career_step_id"], name: "index_career_items_on_career_step_id"
+    t.index ["step_id"], name: "index_career_items_on_step_id"
   end
 
   create_table "career_members", force: :cascade do |t|
@@ -32,16 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
     t.index ["career_id"], name: "index_career_members_on_career_id"
     t.index ["user_id", "career_id"], name: "index_career_members_on_user_id_and_career_id", unique: true, where: "state = 'active'"
     t.index ["user_id"], name: "index_career_members_on_user_id"
-  end
-
-  create_table "career_steps", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description", null: false
-    t.text "tasks_text", null: false
-    t.boolean "review_needed"
-    t.string "locale", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "careers", force: :cascade do |t|
@@ -200,6 +190,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.text "tasks_text", null: false
+    t.boolean "review_needed"
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -314,8 +314,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "career_items", "career_steps"
   add_foreign_key "career_items", "careers"
+  add_foreign_key "career_items", "steps"
   add_foreign_key "career_members", "careers"
   add_foreign_key "career_members", "users"
   add_foreign_key "notifications", "users"
