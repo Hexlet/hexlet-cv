@@ -36,6 +36,7 @@ console:
 db-reset:
 	bin/rails db:drop
 	bin/rails db:create
+	bin/rails db:schema:load
 	bin/rails db:migrate
 	bin/rails db:fixtures:load
 
