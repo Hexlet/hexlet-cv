@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_095429) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
-    t.integer "career_step_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "career_step_id", null: false
     t.index ["career_id", "career_step_id"], name: "index_career_items_on_career_id_and_career_step_id", unique: true
     t.index ["career_id"], name: "index_career_items_on_career_id"
     t.index ["career_step_id"], name: "index_career_items_on_career_step_id"
@@ -198,6 +198,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
     t.boolean "evaluated_ai"
     t.string "evaluated_ai_state"
     t.index ["user_id"], name: "index_resumes_on_user_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.text "tasks_text", null: false
+    t.boolean "review_needed"
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
