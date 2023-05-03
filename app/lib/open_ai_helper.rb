@@ -5,9 +5,10 @@ class OpenAiHelper
 
   MODEL = 'gpt-3.5-turbo'
   TEMPERATURE = 0.7
+  REQUEST_TIMEOUT = 500
 
   def initialize
-    @client = OpenAI::Client.new
+    @client = OpenAI::Client.new(request_timeout: REQUEST_TIMEOUT)
   end
 
   def send_content(prompt, resume_content)

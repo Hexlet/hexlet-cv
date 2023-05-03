@@ -19,10 +19,13 @@ class ResumeAutoAnswerService
         user = User.find_by(email: ENV.fetch('EMAIL_SPECIAL_USER'))
         attrs = { content: }
         @answer = Resume::AnswerMutator.create(resume, attrs, user)
-        resume.evaluated_ai = true
-        resume.save!
+        resume.mark_as_evaluated!
       end
       EmailSender.send_new_answer_mail(@answer) if @answer&.persisted?
+    rescue StandardError => e
+      Rails.logger.error("#{e.class}: #{e.message}")
+      resume.mark_as_failed!
+      raise e
     end
 
     def prepare_resume(resume)

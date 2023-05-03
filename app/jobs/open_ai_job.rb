@@ -7,6 +7,9 @@ class OpenAiJob < ApplicationJob
 
   def perform(resume_id)
     resume = Resume.find(resume_id)
+    return unless resume.may_process?
+
+    resume.process!
     ResumeAutoAnswerService.evaluate_resume(resume)
   end
 end
