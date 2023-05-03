@@ -29,4 +29,8 @@ class Resume::Answer < ApplicationRecord
   def author?(user)
     user_id == user.id
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[user_id]
+  end
 end

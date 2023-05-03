@@ -2,7 +2,8 @@
 
 class Web::HomeController < Web::ApplicationController
   def index
-    @q = Resume.web.with_locale.ransack(params[:q])
+    form = Web::Resumes::SearchForm.new(params[:q])
+    @q = Resume.web.with_locale.ransack(form.to_h)
     @resumes = @q.result(distinct: true).includes(:user).page(params[:page]).order(id: :desc)
     @page = params[:page]
     @tags = Resume.directions_tags
