@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_193233) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_140032) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
-    t.integer "career_step_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "career_step_id", null: false
     t.index ["career_id", "career_step_id"], name: "index_career_items_on_career_id_and_career_step_id", unique: true
     t.index ["career_id"], name: "index_career_items_on_career_id"
     t.index ["career_step_id"], name: "index_career_items_on_career_step_id"
