@@ -37,6 +37,6 @@ ru:
             error: Ошибка! Проверьте поля формы
         resumes:
           archive:
-            success: Резюме успешно архивированно
-          restore:
             success: Резюме успешно архивировано
+          restore:
+            success: Резюме успешно опубликовано
