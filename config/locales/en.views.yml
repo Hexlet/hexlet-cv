@@ -155,6 +155,7 @@ en:
         archived: Resume in archive
         download: Download PDF
         print: Preview PDF
+        to_admin: To Admin panel
       comments:
         new:
           header: New comment

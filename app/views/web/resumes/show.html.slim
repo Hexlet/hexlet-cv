@@ -3,7 +3,12 @@
     resume: @resume, educations: @resume_educations, works: @resume_works
 
 = content_for :header do
-  = @resume
+  .d-flex.justify-content-between
+    .m-1
+      = @resume
+    - if current_or_guest_user.admin?
+      .m-1
+        = link_to t('.to_admin'), admin_resumes_path(q: { id_eq: @resume.id }), class: 'btn btn-primary'
 
 / .d-flex.mb-3.text-muted
 /   .d-flex.me-4

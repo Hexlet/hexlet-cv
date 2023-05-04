@@ -23,4 +23,18 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def archive
+    resume = Resume.find(params[:id])
+    resume.archive!
+    f(:success)
+    redirect_to admin_resumes_path(q: { id_eq: resume.id })
+  end
+
+  def restore
+    resume = Resume.find(params[:id])
+    resume.restore!
+    f(:success)
+    redirect_to admin_resumes_path(q: { id_eq: resume.id })
+  end
 end

@@ -35,4 +35,26 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { resume.name == attrs[:name] }
     assert { work.company == work_attrs[:company] }
   end
+
+  test '#archive' do
+    resume = resumes(:one)
+
+    patch archive_admin_resume_path(resume)
+
+    assert_redirected_to admin_resumes_path(q: { id_eq: resume.id })
+    resume.reload
+
+    assert { resume.archived? }
+  end
+
+  test '#restore' do
+    resume = resumes(:one_archived)
+
+    patch restore_admin_resume_path(resume)
+
+    assert_redirected_to admin_resumes_path(q: { id_eq: resume.id })
+    resume.reload
+
+    assert { resume.published? }
+  end
 end

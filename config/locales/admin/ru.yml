@@ -3,6 +3,10 @@ ru:
   web:
     admin:
       resumes:
+        index:
+          action: Действие
+          archive: В архив
+          restore: Опубликовать
         edit:
           header: Редактирование резюме
       vacancies:
