@@ -159,6 +159,7 @@ ru:
         archived: Резюме заархивировано
         download: Скачать резюме в PDF
         print: Версия для печати
+        to_admin: В админку
       comment_requires:
         feedback: Ваш комментарий важен для нас!
         requires: Для этого действия нужно

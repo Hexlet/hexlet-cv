@@ -72,7 +72,12 @@ Rails.application.routes.draw do
       namespace :admin do
         root 'home#index'
         resources :users, only: %i[index edit update]
-        resources :resumes, only: %i[index edit update]
+        resources :resumes, only: %i[index edit update] do
+          member do
+            patch :archive
+            patch :restore
+          end
+        end
         resources :vacancies, only: %i[index edit update]
         resources :careers, only: %i[index show new create edit update] do
           scope module: :careers do

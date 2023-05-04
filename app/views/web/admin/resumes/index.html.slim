@@ -16,6 +16,7 @@ table.table
       th = sort_link(@q, 'user')
       th = sort_link(@q, 'email')
       th = sort_link(@q, 'created_at')
+      th = t('.action')
   tbody
     - @resumes.each do |resume|
       tr
@@ -25,5 +26,10 @@ table.table
         td = link_to resume.user, user_path(resume.user)
         td = resume.user.email
         td = l resume.created_at, format: :short
+        td
+          - if resume.may_restore?
+            = link_to t('.restore'), restore_admin_resume_path(resume), method: :patch, class: 'btn btn-success btn-sm'
+          - elsif resume.may_archive?
+            = link_to t('.archive'), archive_admin_resume_path(resume), method: :patch, class: 'btn btn-danger btn-sm'
 
 = paginate @resumes

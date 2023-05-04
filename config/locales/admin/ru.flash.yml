@@ -35,3 +35,8 @@ ru:
           create:
             success: Шаг успешно создан
             error: Ошибка! Проверьте поля формы
+        resumes:
+          archive:
+            success: Резюме успешно архивированно
+          restore:
+            success: Резюме успешно опубликованно
