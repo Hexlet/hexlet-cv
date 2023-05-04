@@ -1,4 +1,5 @@
 include make-compose.mk
+include make-services-app.mk
 
 test:
 	RAILS_LOCALE=en bin/rails test
