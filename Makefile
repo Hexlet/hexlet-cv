@@ -20,7 +20,7 @@ setup: setup-heroku setup-app
 setup-app:
 	cp -n .env.example .env || true
 	bin/setup
-	bin/rails db:fixtures:load
+	make db-reset
 	npm i
 	npm run build
 	npx simple-git-hooks
