@@ -20,7 +20,7 @@ setup: setup-heroku setup-app
 setup-app:
 	cp -n .env.example .env || true
 	bin/setup
-	bin/rails db:fixtures:load
+	make db-reset
 	npm i
 	npm run build
 	npx simple-git-hooks
@@ -35,11 +35,11 @@ console:
 	bin/rails c
 
 db-reset:
-	bin/rails db:drop
-	bin/rails db:create
-	bin/rails db:schema:load
-	bin/rails db:migrate
-	bin/rails db:fixtures:load
+	bin/rails db:drop || true
+	bin/rails db:create || true
+	bin/rails db:schema:load || true
+	bin/rails db:migrate || true
+	bin/rails db:fixtures:load || true
 
 start:
 	heroku local -p 3000
