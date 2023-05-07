@@ -5,6 +5,5 @@ module UserRepository
 
   included do
     scope :web, -> { order(id: :desc).permitted }
-    scope :current_career, ->(career) { joins(:careers).where(careers: career) }
   end
 end
