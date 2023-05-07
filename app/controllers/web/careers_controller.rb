@@ -4,13 +4,13 @@ class Web::CareersController < Web::ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user_careers = current_user.careers.web
-    user_career_members = current_user.career_members.with_not_archived_member
+    @user_careers = current_user.careers.with_not_archived_members
+    user_career_members = current_user.career_members.with_not_archived
     @user_career_members_by_career = user_career_members.index_by(&:career_id)
   end
 
   def show
     @career = Career.find(params[:id])
-    @career_member = current_user.career_members.with_not_archived_member.last
+    @career_member = current_user.career_members.with_not_archived.last
   end
 end

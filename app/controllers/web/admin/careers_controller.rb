@@ -10,7 +10,7 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
   def show
     @career = Career.find(params[:id])
     @steps = @career.steps.ordered
-    @users = User.includes(:career_members).current_career(@career)
+    @users = @career.users.includes(:career_members).distinct
   end
 
   def new
