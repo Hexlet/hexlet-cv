@@ -5,6 +5,5 @@ FactoryBot.define do
     step_state { 'active' }
     career_member_id
     career_step_id
-    order
   end
 end

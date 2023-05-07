@@ -2,9 +2,9 @@
 
 class Career::Step::Member < ApplicationRecord
   include StateConcern
+  include Career::Step::MemberRepository
 
   validates :career_step, uniqueness: { scope: :career_member }
-  validates :order, presence: true
 
   belongs_to :career_step, class_name: 'Career::Step', inverse_of: :career_step_members
   belongs_to :career_member, class_name: 'Career::Member', inverse_of: :career_step_members
