@@ -21,7 +21,7 @@ ru:
               error: Исправьте ошибки
               success: Шаг обновлен
           update:
-            success: Карьерный трек успешно обнавлен!
+            success: Карьерный трек успешно обновлен!
             error: Ошибка! Проверьте поля формы
         career_members:
           destroy:
@@ -42,3 +42,6 @@ ru:
             success: Резюме успешно архивировано
           restore:
             success: Резюме успешно опубликовано
+        vacancies:
+          update:
+            success: Вакансия успешно обновлена
