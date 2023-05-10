@@ -24,3 +24,7 @@
           span.me-3
             = link_to_add_association f, :items, render_options: { wrapper: 'inline_form' }, partial: 'item_step_fields', class: 'btn btn-outline-primary' do
               = t('.add_step')
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .me-3 = f.button :submit, class: 'btn btn-success', name: 'create'
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'
