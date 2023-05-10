@@ -4,6 +4,6 @@ ru:
     failure:
       user:
         banned: "Вы были забанены"
-        not_found_in_database: Не верный логин или пароль.
+        not_found_in_database: Неверный логин или пароль.
         invalid: Не правильный логин или пароль.
         unauthenticated: Вам необходимо войти в систему или зарегистрироваться.
