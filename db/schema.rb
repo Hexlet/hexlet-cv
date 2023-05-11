@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_195055) do
   create_table "career_step_members", force: :cascade do |t|
     t.integer "career_step_id", null: false
     t.integer "career_member_id", null: false
-    t.string "step_state", null: false
+    t.string "state", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["career_member_id", "career_step_id"], name: "index_career_step_members_on_career_member_id_and_career_step_id", unique: true

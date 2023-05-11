@@ -29,13 +29,15 @@ class Career::Member < ApplicationRecord
   end
 
   def can_show_step_body?(item)
-    finished_step_member_count = career_step_members.finished.size
-    return item.order == 1 if finished_step_member_count.zero?
+    first_item = career.items.first
+    last_finished_item = career.items.with_finished_step_members(self).last
 
-    item.order <= finished_step_member_count + 1
+    return item == first_item unless career_step_members.finished.any?
+
+    item.order >= last_finished_item&.order || item.order < last_finished_item&.order
   end
 
   def career_step_members_finished?
-    career_step_members.finished.size >= career.steps.size
+    career_step_members.finished.last.career_step == career.steps.last
   end
 end

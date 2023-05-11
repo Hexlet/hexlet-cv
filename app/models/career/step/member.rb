@@ -10,7 +10,7 @@ class Career::Step::Member < ApplicationRecord
   belongs_to :career_member, class_name: 'Career::Member', inverse_of: :career_step_members
   has_one :user, through: :career_member
 
-  aasm :step_state, column: :step_state do
+  aasm :state do
     state :active, initial: true
     state :finished
 
