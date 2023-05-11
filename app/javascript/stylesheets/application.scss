@@ -5,3 +5,13 @@ $link-decoration: none;
 @import 'select2';
 @import 'select2-bootstrap-5-theme';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+
+.hexlet-cv-content {
+  details {
+    >summary {
+      @extend .mb-3;
+    }
+  }
+}
