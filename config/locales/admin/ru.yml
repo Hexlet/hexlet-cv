@@ -41,7 +41,9 @@ ru:
         show:
           users_career: Студенты в карьернои треки
           career_path: Карьерный трек
-          steps: Шаги карьерного трека 
+          steps: Шаги карьерного трека
+        new:
+          cancel: Отменить
         menu:
           new: Новый
           list: Список
