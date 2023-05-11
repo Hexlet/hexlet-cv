@@ -127,6 +127,7 @@ ru:
         similar_vacancies: Похожие вакансии
         developers_in_the_city: "%{position_level} %{direction} в городе %{city_name}"
         from_hexlet: При отклике на вакансию указывайте, что вы от Хекслета =)
+        link_for_contact: Для отклика на вакансию %{title} переходите по ссылке
       index:
         header: Вакансии для разработчиков
         title: Вакансии для программистов

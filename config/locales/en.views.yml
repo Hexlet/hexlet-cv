@@ -123,6 +123,7 @@ en:
         similar_vacancies: Related jobs
         developers_in_the_city: "%{position_level} %{direction} in %{city_name}"
         from_hexlet: When applying for a vacancy, indicate that you are from Hexlet =)
+        link_for_contact: To apply for the vacancy %{title} follow the link
       index:
         header: Jobs for developers
         title: Jobs for programmers

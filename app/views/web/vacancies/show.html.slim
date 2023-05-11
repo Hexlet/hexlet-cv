@@ -82,13 +82,20 @@
     .col-sm-9
       = @vacancy.salary
 
-- %i[link_for_contact contact_name contact_phone contact_telegram contact_email].each do |field_name|
+- %i[contact_name contact_phone contact_telegram contact_email].each do |field_name|
   - if @vacancy.send :"#{field_name}?"
     .row.mb-3
       .col-sm-3
         b = han('vacancy', field_name)
       .col-sm-9.text-break
         = @vacancy.send :"#{field_name}"
+
+- if @vacancy.link_for_contact?
+  .row.mb-3
+    .col-sm-3
+      b = han('vacancy', 'link_for_contact')
+    .col-sm-9
+      = link_to t('.link_for_contact', title: @vacancy.title), @vacancy.link_for_contact, class: 'text-decoration-none'
 
 - if @vacancy.directions.any?
   .row.mb-3
