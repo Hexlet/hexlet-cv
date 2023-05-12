@@ -44,12 +44,20 @@
         .col-12.lead
           = link_to resource_resume.hexlet_url, resource_resume.hexlet_url, target: '_blank', rel: 'noopener'
 
-      - if resource_resume.contact?
+      - @resume_contact_information.each do |field, content|
+        - if content
+          .col-12
+            h2.my-4 = han('resume', field)
+            hr.w-100
+          .col-12.lead
+            = content
+
+      - if resource_resume.relocation?
         .col-12
-          h2.my-4 = han('resume', 'contact')
+          h2.my-4 = han('resume', 'relocation')
           hr.w-100
         .col-12.lead
-          = resource_resume.contact
+            = resource_resume.relocation.text
 
       - if @resume_works.any?
         .col-12
