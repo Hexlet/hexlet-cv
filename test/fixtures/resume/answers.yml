@@ -35,3 +35,18 @@ two_full:
   <<: *DEFAULTS
   resume: two
   user: full
+
+special_answer:
+  content: |
+    <%= Faker::Lorem.paragraph(sentence_count: 30) %>
+
+    <details>
+      <summary>Сопроводительное письмо</summary>
+      <%= Faker::Lorem.paragraph(sentence_count: 20) %>
+    </details>
+    <details>
+      <summary>Улучшенное резюме</summary>
+      <%= Faker::Lorem.paragraph(sentence_count: 20) %>
+    </details>
+  user: special
+  resume: full_without_answers
