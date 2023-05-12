@@ -4,7 +4,9 @@
   - @user_careers.each do |career|
     - let @user_career_members_by_career[career.id] do |career_member|
       .card.mb-3
-        .card-header.border-success
+        .card-header
           -if career_member&.finished?
-            span.bi.bi-check2.text-success
-          = link_to career.name, career_path(career, career_member:), class: 'text-decoration-none'
+             span.bi.bi-check2.text-success
+          = link_to career.name, career_member_path(career, career_member), class: 'text-decoration-none'
+        .card-body
+          .card-text.hexlet-cv-content == markdown2html career.description
