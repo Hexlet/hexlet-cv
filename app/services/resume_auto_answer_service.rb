@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ResumeAutoAnswerService
-  # TODO: переделать на нормальную реализацию
-  extend ApplicationHelper
-
   class << self
     def evaluate_resume(resume)
       client = ApplicationContainer[:open_ai_helper]
@@ -20,7 +17,8 @@ class ResumeAutoAnswerService
 
       ActiveRecord::Base.transaction do
         attrs = { content: }
-        @answer = Resume::AnswerMutator.create(resume, attrs, ai_bot_user)
+        bot = AiBotHelper.ai_bot_user
+        @answer = Resume::AnswerMutator.create(resume, attrs, bot)
         resume.mark_as_evaluated!
       end
       EmailSender.send_new_answer_mail(@answer) if @answer&.persisted?
