@@ -20,7 +20,7 @@ class Career::Member < ApplicationRecord
     end
 
     event :mark_as_finished do
-      transitions from: %i[active], to: :finished
+      transitions from: %i[active], to: :finished, guard: :career_step_members_finished?
     end
 
     event :mark_as_archived do
@@ -29,15 +29,28 @@ class Career::Member < ApplicationRecord
   end
 
   def can_show_step_body?(item)
-    first_item = career.items.first
-    last_finished_item = career.items.with_finished_step_members(self).last
-
-    return item == first_item unless career_step_members.finished.any?
-
-    item.order >= last_finished_item&.order || item.order < last_finished_item&.order
+    item.order <= current_item.order
   end
 
   def career_step_members_finished?
-    career_step_members.finished.last.career_step == career.steps.last
+    career_step_members.finished.last&.career_step == career.steps.last
+  end
+
+  def current_item
+    first_active_item = career.items.order(order: :asc).with_active_step_members(self).first
+    last_finished_item = career.items.order(order: :asc).with_finished_step_members(self).last
+
+    return first_active_item if first_active_item.present?
+
+    last_finished_item
+  end
+
+  def next_item
+    item = current_item
+    next_item = career.items.order(order: :asc).where(order: item.order..).second
+
+    return item if next_item.blank?
+
+    next_item
   end
 end
