@@ -16,9 +16,9 @@ class ResumeAutoAnswerService
       content = I18n.t('recommendation_open_ai', recommendation: content_recommendation, letter: content_covering_letter, edit_text: content_edited_text, scope: 'web.answers')
 
       ActiveRecord::Base.transaction do
-        user = User.find_by(email: ENV.fetch('EMAIL_SPECIAL_USER'))
         attrs = { content: }
-        @answer = Resume::AnswerMutator.create(resume, attrs, user)
+        bot = AiBotHelper.ai_bot_user
+        @answer = Resume::AnswerMutator.create(resume, attrs, bot)
         resume.mark_as_evaluated!
       end
       EmailSender.send_new_answer_mail(@answer) if @answer&.persisted?
