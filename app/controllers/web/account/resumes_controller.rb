@@ -18,7 +18,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def create
     @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
-    @resume.locale = current_user.locale
+    @resume.locale = I18n.locale
 
     if @resume.save
       change_visibility(@resume)
