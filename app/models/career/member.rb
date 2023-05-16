@@ -15,11 +15,11 @@ class Career::Member < ApplicationRecord
     state :finished
     state :archived
 
-    event :mark_as_active do
+    event :activate do
       transitions from: %i[archived], to: :active
     end
 
-    event :mark_as_finished do
+    event :finish do
       transitions from: %i[active], to: :finished, guard: :career_step_members_finished?
     end
 
@@ -37,20 +37,17 @@ class Career::Member < ApplicationRecord
   end
 
   def current_item
-    first_active_item = career.items.order(order: :asc).with_active_step_members(self).first
-    last_finished_item = career.items.order(order: :asc).with_finished_step_members(self).last
+    career_items = career.items.order(order: :asc)
+    return career_items.last if finished?
+
+    first_active_item = career_items.with_active_step_members(self).first
 
     return first_active_item if first_active_item.present?
 
-    last_finished_item
-  end
+    last_finished_item = career_items.with_finished_step_members(self).last
 
-  def next_item
-    item = current_item
-    next_item = career.items.order(order: :asc).where(order: item.order..).second
+    return career_items.where(order: last_finished_item&.order..).second if last_finished_item.present?
 
-    return item if next_item.blank?
-
-    next_item
+    career_items.first
   end
 end

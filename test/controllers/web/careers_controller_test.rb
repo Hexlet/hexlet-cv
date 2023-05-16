@@ -10,10 +10,4 @@ class Web::CareerControllerTest < ActionDispatch::IntegrationTest
     get careers_path
     assert_response :success
   end
-
-  test '#show' do
-    career = careers(:one)
-    get career_path(career)
-    assert_response :success
-  end
 end

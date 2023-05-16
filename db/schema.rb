@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_080525) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_144355) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_080525) do
     t.integer "career_step_id", null: false
     t.index ["career_id", "career_step_id"], name: "index_career_items_on_career_id_and_career_step_id", unique: true
     t.index ["career_id", "order"], name: "index_career_items_on_career_id_and_order", unique: true
-    t.index ["career_id"], name: "index_career_items_on_career_id"
     t.index ["career_step_id"], name: "index_career_items_on_career_step_id"
   end
 
@@ -42,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_080525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["career_member_id", "career_step_id"], name: "index_career_step_members_on_career_member_id_and_career_step_id", unique: true
-    t.index ["career_member_id"], name: "index_career_step_members_on_career_member_id"
+    t.index ["career_step_id"], name: "index_career_step_members_on_career_step_id"
   end
 
   create_table "career_steps", force: :cascade do |t|

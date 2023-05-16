@@ -4,6 +4,6 @@ module Career::MemberRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :with_not_archived, -> { where.not(state: :archived) }
+    scope :without_archive_members, -> { where.not(state: :archived) }
   end
 end
