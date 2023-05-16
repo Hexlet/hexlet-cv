@@ -105,8 +105,8 @@ en:
         english_fluency: Languages
         skills_description: Skills
         awards_description: Awards, Certificates
-        locale: Язык
-        state_event: Состояние
+        locale: Language
+        state_event: State
         state: Status
         state/draft: Draft
         state/published: Published
