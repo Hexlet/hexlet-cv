@@ -47,6 +47,10 @@ make compose-ci-check # run ci
 ```sh
 docker container ls # watch container
 docker attach [container_id]
+
+or
+
+make app-debug
 ```
 
 and inser `debugger` in controller
