@@ -25,6 +25,7 @@ class Web::Admin::VacancyForm < Vacancy
          :country,
          :city_name,
          :link_for_contact,
+         :locale,
          :salary_from,
          :salary_to,
          :location,

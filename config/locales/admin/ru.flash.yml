@@ -40,6 +40,8 @@ ru:
             success: Резюме успешно архивировано
           restore:
             success: Резюме успешно опубликовано
+          update:
+            success: Резюме успешно обновленно
         vacancies:
           update:
             success: Вакансия успешно обновлена
