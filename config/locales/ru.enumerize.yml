@@ -17,6 +17,9 @@ ru:
       remote: Удаленно
       onsite: В офисе
       hybrid: Гибрид
+    role:
+      user: Пользователь
+      admin: Администратор
     salary_currency:
       rub: ₽
       eur: €
