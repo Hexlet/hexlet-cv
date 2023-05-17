@@ -1,7 +1,9 @@
 = simple_form_for user, url: do |f|
-  .mb-3
-    - if current_user.admin? && current_user != user
+  - if current_user.admin? && current_user != user
+    .mb-3
       = f.input :state_event, as: :state_event, collection: user.aasm(:state).events(permitted: true)
+    .mb-3
+      = f.input :role
   .mb-3
     = f.input :first_name
   .mb-3
