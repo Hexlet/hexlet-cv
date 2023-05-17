@@ -45,6 +45,7 @@ en:
         country: Country
         city_name: City
         location: Address
+        locale: Language
         technologies: Tecnologies
         directions: Directions
         salary: Pay

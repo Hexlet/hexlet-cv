@@ -6,4 +6,4 @@
     = t('.vacancy_archived')
 
 = render partial: 'web/shared/vacancy_form',
-         locals: { vacancy: @vacancy, url: account_vacancy_path(@vacancy), can_update_state: false, show_archive_button: !@vacancy.archived? }
+         locals: { vacancy: @vacancy, url: account_vacancy_path(@vacancy), can_update: false, show_archive_button: !@vacancy.archived? }
