@@ -1,6 +1,8 @@
 = simple_form_for resume, as: :resume, url:, wrapper: 'horizontal_form' do |f|
-  - if can_update_state
+  - if can_update
     = f.input :state_event, as: :state_event, collection: resume.aasm(:state).events(permitted: true)
+    .mt-3
+      = f.input :locale
     .mb-3 = f.submit class: 'btn btn-primary'
   .mb-3
     = f.input :name

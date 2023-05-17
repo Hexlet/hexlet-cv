@@ -45,6 +45,7 @@ en:
         country: Country
         city_name: City
         location: Address
+        locale: Language
         technologies: Tecnologies
         directions: Directions
         salary: Pay
@@ -105,6 +106,8 @@ en:
         english_fluency: Languages
         skills_description: Skills
         awards_description: Awards, Certificates
+        locale: Language
+        state_event: State
         state: Status
         state/draft: Draft
         state/published: Published

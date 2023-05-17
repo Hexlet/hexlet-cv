@@ -56,6 +56,7 @@ ru:
         about_project: О проекте
         experience_description: Опыт
         link_for_contact: Ссылка для связи
+        locale: Язык
         title: Должность
         programming_lanuage: Язык
         employment_type: Тип занятости
@@ -99,6 +100,8 @@ ru:
         english_fluency: Владение английским
         skills_description: Навыки
         awards_description: Награды, Сертификаты
+        locale: Язык
+        state_event: Состояние
         state: Статус
         state/draft: Черновик
         state/published: Опубликовано

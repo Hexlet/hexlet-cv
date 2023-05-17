@@ -12,6 +12,7 @@ class Web::Admin::ResumeForm < Resume
     contact_email
     contact_phone
     contact_telegram
+    locale
     summary
     skills_description
     awards_description
