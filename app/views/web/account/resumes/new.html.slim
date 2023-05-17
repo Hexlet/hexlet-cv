@@ -1,8 +1,8 @@
 - content_for :header do
   = t('.header')
 
-.alert.alert-warning.alert-dismissible.fade.show[role="alert"]
-  p = t('.info_for_user')
+.alert.alert-warning.alert-dismissible.fade.show.mb-4[role="alert"]
+  p.mb-0 = t('.info_for_user')
 
 = render partial: 'web/shared/resume_form',
          locals: { resume: @resume, url: account_resumes_path, resume_educations: @resume_educations, resume_works: @resume_works, can_update: false }
