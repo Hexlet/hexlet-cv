@@ -19,5 +19,5 @@ table.table
         td = show_date_if(user.career_members.last.finished_at, :long)
         td = user.career_members.last.aasm(:state).human_state
         td
-          - if user.career_members.last.may_mark_as_archived?
+          - if user.career_members.last.may_archive?
             = link_to t('.archive'), archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'

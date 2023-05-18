@@ -10,7 +10,7 @@ ru:
       careers:
         members:
           show:
-            error: Такой карьерный трек не найден!
+            error: Доступ закрыт!
         resumes:
           update:
             success: Резюме обновлено

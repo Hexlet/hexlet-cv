@@ -2,3 +2,8 @@ one:
   user: one
   career: one
   state: active
+
+two:
+  user: full
+  career: one
+  state: active

@@ -1,9 +1,8 @@
 en:
   web:
     careers:
-      index:
-        not_found_career: Вам не назначенны карьерные треки
       show:
+        back: Назад
         start_career: Start
         career_path: Career Path
       members:
@@ -226,6 +225,8 @@ en:
         edit:
           header: Email settings
     users:
+      careers:
+        not_found_career: You are not assigned career tracks
       index:
         header: Rating
         title: Users profiles

@@ -4,7 +4,7 @@ ul.nav.nav-tabs.mt-2.mb-4
   - @career_items.each_with_index do |item, index|
     li.nav-item
       - if resource_member.can_show_step_body?(item)
-        = link_to career_member_path(resource_career, resource_member, step: item.order), class: ['nav-link px-3', @career_item&.order == item.order ? 'active' : ''] do
+        = link_to career_member_path(resource_career, resource_member, step: index + 1), class: ['nav-link px-3', career_item.order == item.order ? 'active' : ''] do
           - if @career_step_members[index]&.finished?
             span.text-success
               span.bi.bi-check2
@@ -15,7 +15,7 @@ ul.nav.nav-tabs.mt-2.mb-4
         a.nav-link.disabled.pe-auto[data-bs-placement='bottom', data-bs-toggle='tooltip']
           = index + 1
 .row.my-1
-  h3 = t('.name_step', number: @career_item.order, name: @career_step.name)
+  h3 = t('.name_step', number: career_item.order, name: @career_step.name)
   .col-lg-8
     .bg-light.rounded.py-2.px-3
       == markdown2html(@career_step.description)

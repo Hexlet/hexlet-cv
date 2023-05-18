@@ -3,7 +3,7 @@
 class Web::CareersController < Web::ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @user_career_members = current_user.career_members.includes(:career).without_archive_members
+  def show
+    @career = Career.find(params[:id])
   end
 end

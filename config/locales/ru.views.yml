@@ -2,9 +2,8 @@
 ru:
   web:
     careers:
-      index:
-        not_found_career: Вам не назначенны карьерные треки
       show:
+        back: Назад
         start_career: К прохождению
         career_path: Карьерный трек
       members:
@@ -226,6 +225,8 @@ ru:
         edit:
           header: Рассылки
     users:
+      careers:
+        not_found_career: Вам не назначенны карьерные треки
       index:
         header: Рейтинг
         title: Профили пользователей

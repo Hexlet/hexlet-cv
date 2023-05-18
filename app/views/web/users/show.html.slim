@@ -32,8 +32,9 @@ ul.nav.nav-pills.justify-content-center role="navigation"
     a.nav-link.px-3 data-bs-toggle='tab' href='#answers' = t('.tab_answers')
   li.nav-itemЗ
     a.nav-link.px-3 data-bs-toggle='tab' href='#comments' = t('.tab_comments')
-  li.nav-item3
-    a.nav-link.px-3 data-bs-toggle='tab' href='#careers' = t('.tab_careers')
+  - if current_or_guest_user == @user
+    li.nav-item3
+      a.nav-link.px-3 data-bs-toggle='tab' href='#careers' = t('.tab_careers')
 .tab-content.py-3
   .tab-pane.fade.show.active id="resume"
       = render 'resumes', resumes: @user_resumes
