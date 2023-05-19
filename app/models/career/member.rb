@@ -37,7 +37,7 @@ class Career::Member < ApplicationRecord
   end
 
   def current_item
-    career_items = career.items.order(order: :asc)
+    career_items = career.items.ordered
     return career_items.last if finished?
 
     first_active_item = career_items.with_active_step_members(self).first
@@ -52,6 +52,6 @@ class Career::Member < ApplicationRecord
   end
 
   def next_item(item)
-    career.items.where(order: item&.order..).order(order: :asc).second
+    career.items.where(order: item.order..).order(order: :asc).second
   end
 end

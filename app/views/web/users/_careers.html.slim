@@ -4,7 +4,7 @@
   - @user_career_members.each do |career_member|
     .card.mb-3
       .card-header
-        -if career_member&.finished?
+        -if career_member.finished?
             span.bi.bi-check2.text-success
         = link_to career_member.career.name, career_member_path(career_member.career, career_member), class: 'text-decoration-none'
       .card-body
