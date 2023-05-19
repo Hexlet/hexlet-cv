@@ -18,7 +18,7 @@
             .col-md-1
             .col-md-7
               = t('.steps')
-        = f.simple_fields_for :items, @career.items.order(order: :asc), wrapper: :inline_form do |item_form|
+        = f.simple_fields_for :items, @career.items.ordered, wrapper: :inline_form do |item_form|
           = render 'item_step_fields', f: item_form
         .add_association.mt-3
           span.me-3

@@ -1,9 +1,11 @@
-- if careers.empty?
-  = not_found_random_image
+- if @user_career_members.empty?
+  h3 = t('.not_found_career')
 - else
-  - careers.each do |career|
+  - @user_career_members.each do |career_member|
     .card.mb-3
       .card-header
-        = career.name
+        -if career_member.finished?
+            span.bi.bi-check2.text-success
+        = link_to career_member.career.name, career_member_path(career_member.career, career_member), class: 'text-decoration-none'
       .card-body
-        .card-text.hexlet-cv-content == markdown2html career.description
+        .card-text.hexlet-cv-content == markdown2html career_member.career.description

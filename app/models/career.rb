@@ -9,6 +9,7 @@ class Career < ApplicationRecord
   has_many :items, class_name: 'Career::Item', dependent: :destroy
   has_many :steps, through: :items, source: :career_step
   has_many :members, class_name: 'Career::Member', dependent: :destroy
+  has_many :users, through: :members
 
   accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
   enumerize :locale, in: I18n.available_locales

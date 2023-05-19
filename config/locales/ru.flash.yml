@@ -7,6 +7,10 @@ ru:
           update:
             success: Данные обновлены
             error: Не удалось обновить данные
+      careers:
+        members:
+          show:
+            error: Доступ закрыт!
         resumes:
           update:
             success: Резюме обновлено

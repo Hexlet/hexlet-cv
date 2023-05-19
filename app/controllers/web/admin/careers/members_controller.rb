@@ -18,7 +18,7 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
 
   def archive
     member = Career::Member.find(params[:id])
-    member.mark_as_archived!
+    member.archive!
     f(:success)
     redirect_to admin_career_path(resource_career)
   end

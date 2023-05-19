@@ -3,7 +3,19 @@ ru:
   web:
     careers:
       show:
+        back: Назад
+        start_career: К прохождению
         career_path: Карьерный трек
+      members:
+        show:
+          name_step: 'Шаг %{number}: %{name}'
+          tasks: 'Задачи:'
+          step_finish: Завершить шаг
+          step_finished: Шаг завершен
+        career_info:
+          career: Карьерный трек
+          started_at: Начат %{date}
+          student_html: 'Студент: <b>%{link}</b>'
     employments:
       show:
         employment: Трудоустройство
@@ -213,6 +225,8 @@ ru:
         edit:
           header: Рассылки
     users:
+      careers:
+        not_found_career: Вам не назначенны карьерные треки
       index:
         header: Рейтинг
         title: Профили пользователей

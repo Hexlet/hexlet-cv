@@ -38,8 +38,12 @@ ru:
         locale: Язык
         slug: Уникальное имя
       career/member:
+        state: Состояние
         finished_at: Закончен
         user: Студент
+        state/active: Активный
+        state/archived: В архиве
+        state/finished: Завершен
       career/step:
         name: Название
         description: Описание

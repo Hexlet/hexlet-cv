@@ -1,5 +1,16 @@
 en:
   web:
+    careers:
+      show:
+        back: Назад
+        start_career: Start
+        career_path: Career Path
+      members:
+        show:
+          name_step: 'Step %{number}: %{name}'
+          tasks: 'Tasks:'
+          step_finish: Finish step
+          step_finished: Finished step
     employments:
       show:
         employment: Employment
@@ -214,6 +225,8 @@ en:
         edit:
           header: Email settings
     users:
+      careers:
+        not_found_career: You are not assigned career tracks
       index:
         header: Rating
         title: Users profiles

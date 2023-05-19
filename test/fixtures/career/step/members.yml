@@ -1,0 +1,4 @@
+one:
+  state: 'active'
+  career_member: one
+  career_step: one
