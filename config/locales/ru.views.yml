@@ -46,7 +46,7 @@ ru:
         devops_specifics: Специфика для администраторов/DevOps
         devops_specifics_steps:
         in_progress: В процессе
-        where_find_jobs: 'Площадки для поиска работы:'
+        where_find_jobs: Площадки для поиска работы
     errors:
       server_error:
         header: Что-то пошло не так

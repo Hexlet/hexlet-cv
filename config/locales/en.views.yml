@@ -15,7 +15,6 @@ en:
       show:
         employment: Employment
         description: New section that will become the managment center of your employment. In development, will constantly change.
-        where_find_jobs: Where to look for a job?  
         seasonality: Seasonality
         seasonality_description: "Hiring in any job field has a seasonality. The general scheme is: The hiring process begins at the end of January, it reaches its peak in March-April, than a sharp decline during the May holidays and hiring plateau in Summer.
         In September hiring increases again with its peak in October. In November the slowdown begins, which reaches its lowest point in December, when no one is hiring due to the holidays as employers are not willing to pay newcomers for 10 public holidays when they haven't done any work yet. Then the cycle repeats."
@@ -37,13 +36,13 @@ en:
           test_assignments: "Several test assignments completed https://github.com/Hexlet/ru-test-assignments"
           books: "3 books from the list read https://ru.hexlet.io/pages/recommended-books"
         qa_specifics: Specifics for QA
-        qa_specifics_steps:            
+        qa_specifics_steps:
         analitics_specifics: Specifics for analysts
         analitics_specifics_steps:
         devops_specifics: Specifics for DevOps/ System administators
         devops_specifics_steps:
         in_progress: In progress
-        where_find_jobs: "Job search sites:"        
+        where_find_jobs: Job search sites
     errors:
       server_error:
         header: Something went wrong
