@@ -45,5 +45,5 @@ banned:
 
 special:
   <<: *DEFAULTS
-  email: info@hexlet.io
+  email: special@test.io
   about: bot
