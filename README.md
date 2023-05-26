@@ -26,6 +26,11 @@ Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/
 
 ```sh
 make setup
+
+or for Apple silicon machine if setup fails with unsupported arch
+
+make setup-arm64
+
 make test # run tests
 make start # run server http://localhost:3000
 
