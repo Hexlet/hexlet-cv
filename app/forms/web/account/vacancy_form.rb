@@ -31,7 +31,7 @@ class Web::Account::VacancyForm < Vacancy
          :technology_list,
          :direction_list
 
-  enumerize :salary_amount_type, in: %w[gross net]
+  enumerize :salary_amount_type, in: %w[gross net depends]
 
   def city_name=(value)
     processed_value = value ? value.downcase.strip : value

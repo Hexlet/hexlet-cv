@@ -21,7 +21,7 @@ class Vacancy < ApplicationRecord
   validates :contact_email, 'valid_email_2/email': true
   validates :company_name, presence: true
   validates :responsibilities_description, presence: true
-  validates :site, url: true
+  validates :site, url: { allow_blank: true }
   validates :link_for_contact, url: { allow_blank: true }
   validates :position_level, presence: true
   validates :employment_type, presence: true
