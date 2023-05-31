@@ -51,14 +51,14 @@
     .col-sm-3
       b = han('vacancy', 'about_company')
     .col-sm-9
-      = @vacancy.about_company
+      == markdown2html @vacancy.about_company
 
 - if @vacancy.about_project?
   .row.mb-3
     .col-sm-3
       b = han('vacancy', 'about_project')
     .col-sm-9
-      = @vacancy.about_project
+      == markdown2html @vacancy.about_project
 
 - if @vacancy.technologies.any?
   .row.mb-3
