@@ -64,6 +64,8 @@ en:
           Provide a link to the page with the job description and the feedback form, or a link to the same job posted on another website. The link must be clean, with no tags or advertising parameters
         description: |
           The field uses Markdown (https://guides.hexlet.io/markdown/) markup. It is allowed to publish only clean and formatted text (without emojis, commercials, etc.)
+        salary_from: Required if salary to is empty or salary type is depends
+        salary_to: Required if salary from is empty or salary type is depends
       resume:
         summary: |
           Markdown supported https://guides.hexlet.io/ru/markdown/
