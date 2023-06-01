@@ -87,12 +87,15 @@ ru:
         name: PHP-программист, Android-разработчик, ...
         skills_description: Знаю PHP, пользуюсь Vim, Работал с AWS
         awards_description: Участие в олимпиадах, хакатонах, других профильных мероприятиях. Курсы.
+        experience_description: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
+        about_company: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
+        about_project: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
         educations:
           description: Специальность, учебное заведение, ...
         works:
           description: Обязанности, достижения
       career:
-        description: Поддерживается Markdown https://guides.hexlet.io/ru/markdown/
+        description: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
