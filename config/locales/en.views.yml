@@ -225,6 +225,7 @@ en:
           header: Email settings
     users:
       careers:
+        start_career: 'Start career track: %{name}'
         not_found_career: You are not assigned career tracks
       index:
         header: Rating

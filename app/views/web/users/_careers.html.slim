@@ -6,6 +6,7 @@
       .card-header
         -if career_member.finished?
             span.bi.bi-check2.text-success
-        = link_to career_member.career.name, career_member_path(career_member.career, career_member), class: 'text-decoration-none'
+        = link_to career_member_path(career_member.career, career_member), class: 'text-decoration-none' do
+          = t('.start_career', name: career_member.career.name)
       .card-body
         .card-text.hexlet-cv-content == markdown2html career_member.career.description

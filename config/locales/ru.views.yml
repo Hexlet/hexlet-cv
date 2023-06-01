@@ -227,6 +227,7 @@ ru:
     users:
       careers:
         not_found_career: Вам не назначенны карьерные треки
+        start_career: 'Начать карьерный трек: %{name}'
       index:
         header: Рейтинг
         title: Профили пользователей
