@@ -36,11 +36,12 @@
       b = han('resume', 'awards_description')
     .col-sm-9.hexlet-cv-content
       == markdown2html @resume.awards_description
-.row
-  .col-sm-3
-    b = han('resume', 'english_fluency')
-  .col-sm-9
-    = @resume.english_fluency.text
+- if @resume.locale == 'ru'
+  .row
+    .col-sm-3
+      b = han('resume', 'english_fluency')
+    .col-sm-9
+      = @resume.english_fluency.text
 .row.mt-3.mb-4
   .col-sm-3
     b = han('resume', 'hexlet')
