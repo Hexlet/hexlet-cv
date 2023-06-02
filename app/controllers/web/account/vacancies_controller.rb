@@ -20,7 +20,6 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   def create
     @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
-    @vacancy.locale = I18n.locale
 
     if @vacancy.save
       f(:success)
