@@ -10,7 +10,7 @@
     = f.input :city
   .mb-3
     = f.input :relocation, selected: resume.relocation
-  - if @resume.locale == 'ru' && !(@resume.new_record? && I18n.locale == :en)
+  - if @resume.locale_ru?
     .mb-3
       = f.input :english_fluency, required: true
   .mb-3

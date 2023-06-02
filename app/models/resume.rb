@@ -15,7 +15,7 @@ class Resume < ApplicationRecord
   enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], default: :not_specified
 
   validates :name, presence: true
-  validates :english_fluency, presence: true, unless: -> { locale == 'en' || (new_record? && I18n.locale == :en) }
+  validates :english_fluency, presence: true, if: -> { locale_ru? }
   validates :github_url, presence: true
   validates :summary, presence: true, length: { minimum: 200 }
   validates :skills_description, presence: true
@@ -89,5 +89,9 @@ class Resume < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[directions user skills answers]
+  end
+
+  def locale_ru?
+    locale == 'ru' && !(new_record? && I18n.locale == :en)
   end
 end
