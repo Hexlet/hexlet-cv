@@ -226,7 +226,7 @@ ru:
           header: Рассылки
     users:
       careers:
-        not_found_career: Вам не назначенны карьерные треки
+        not_found_career: Вы не проходите Карьерный трек
         start_career: 'Начать карьерный трек: %{name}'
       index:
         header: Рейтинг

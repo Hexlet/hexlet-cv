@@ -226,7 +226,7 @@ en:
     users:
       careers:
         start_career: 'Start career track: %{name}'
-        not_found_career: You are not assigned career tracks
+        not_found_career: You don't pass the career track
       index:
         header: Rating
         title: Users profiles
