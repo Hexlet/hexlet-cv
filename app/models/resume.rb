@@ -79,6 +79,15 @@ class Resume < ApplicationRecord
     end
   end
 
+  def initialize(attribute = nil)
+    defaults = {
+      locale: I18n.locale
+    }
+
+    attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
+    super(attrs_with_defaults)
+  end
+
   def to_s
     name
   end
