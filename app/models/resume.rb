@@ -101,6 +101,6 @@ class Resume < ApplicationRecord
   end
 
   def locale_ru?
-    locale == 'ru' && !(new_record? && I18n.locale == :en)
+    locale == 'ru'
   end
 end
