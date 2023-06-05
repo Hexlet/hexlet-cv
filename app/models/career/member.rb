@@ -52,6 +52,6 @@ class Career::Member < ApplicationRecord
   end
 
   def next_item(item)
-    career.items.where(order: item.order..).order(order: :asc).second
+    career.items.where(order: item.order..).ordered.second
   end
 end
