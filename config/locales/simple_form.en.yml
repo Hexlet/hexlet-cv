@@ -1,3 +1,5 @@
+markdown_tips: &markdown_tips '<a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a> is supported'
+
 en:
   simple_form:
     required:
@@ -16,7 +18,7 @@ en:
     placeholders:
       resume_answer:
         show:
-          content: Leave your recommendations for improving the resume. The editor supports markdown.
+          content: *markdown_tips
       defaults:
         city: City
         direction: Direction
@@ -62,13 +64,18 @@ en:
         contact_email: The field is public and indexable, visible to all
         link_for_contact: |
           Provide a link to the page with the job description and the feedback form, or a link to the same job posted on another website. The link must be clean, with no tags or advertising parameters
-        description: |
-          The field uses Markdown (https://guides.hexlet.io/markdown/) markup. It is allowed to publish only clean and formatted text (without emojis, commercials, etc.)
+        description: *markdown_tips
         salary_from: Required if salary to is empty or salary type is depends
         salary_to: Required if salary from is empty or salary type is depends
+        experience_description: *markdown_tips
+        about_company: *markdown_tips
+        about_project: *markdown_tips
+      career:
+        description: *markdown_tips
       resume:
-        summary: |
-          Markdown supported https://guides.hexlet.io/ru/markdown/
+        summary: *markdown_tips
+        skills_description: *markdown_tips
+        awards_description: *markdown_tips
         city: Specify the city of your residence
         direction_list: |
           Specify your direction. Here you need to specify only what you can say about the X-developer, for example: Java-developer. The maximum length is 40 characters. Separate tags with commas.
@@ -82,8 +89,6 @@ en:
         contact_email: "Your email: example@test.com"
         contact_telegram: "Your Telegram: https://tlgg.ru/Kiril or @Kiril"
         name: PHP programmer, Android developer, ...
-        skills_description: PHP, Vim, AWS, Agile metodologies
-        awards_description: Participation in competitions, hackathons and other specialized events. Courses.
         educations:
           description: Level of education, Field of study, College or University
         works:

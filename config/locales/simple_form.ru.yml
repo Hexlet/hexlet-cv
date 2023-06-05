@@ -1,3 +1,5 @@
+markdown_tips: &markdown_tips 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
+
 ru:
   simple_form:
     required:
@@ -44,7 +46,7 @@ ru:
       career:
         step: Шаг
         items:
-          order: Порядковый номер 
+          order: Порядковый номер
       resume_comment:
         content: Длина не может превышать 400 символов
       resume_answer_comment:
@@ -65,13 +67,11 @@ ru:
         contact_email: Поле публичное и индексируемое, видно всем
         link_for_contact: |
           Здесь можно указать ссылку на страницу с вакансией и формой обратной связи, либо ссылку на эту же вакансию, размещенную на другом сайте. Ссылка должна быть чистой, без меток и рекламных параметров
-        description: |
-          В поле используется разметка Markdown (https://guides.hexlet.io/markdown/). Допускается публикация только чистого и форматированного текста (без эмоджи, рекламных вставок и тд)
+        description: *markdown_tips
         salary_from: Обязательно к заполнению, если не указан верхний уровень зарплаты и зарплата не по договоренности
         salary_to: Обязательно к заполнению, если не указан нижний уровень зарплаты и зарплата не по договоренности
       resume:
-        summary: |
-          Поддерживается Markdown https://guides.hexlet.io/ru/markdown/
+        summary: *markdown_tips
         city: Укажите город вашего проживания
         direction_list: |
           Укажите ваше направление. Здесь нужно указывать только то, про что можно сказать X-разработчик, например: Java-разработчик. Максимальная длина 40 символов. Тэги разделяйте запятыми.
@@ -87,15 +87,19 @@ ru:
         name: PHP-программист, Android-разработчик, ...
         skills_description: Знаю PHP, пользуюсь Vim, Работал с AWS
         awards_description: Участие в олимпиадах, хакатонах, других профильных мероприятиях. Курсы.
-        experience_description: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
-        about_company: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
-        about_project: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
+        experience_description: *markdown_tips
+        about_company: *markdown_tips
+        about_project: *markdown_tips
         educations:
           description: Специальность, учебное заведение, ...
         works:
           description: Обязанности, достижения
       career:
-        description: 'Поддерживается <a href="https://guides.hexlet.io/ru/markdown/" target="_blank">markdown</a>'
+        description: *markdown_tips
+      resume:
+        summary: *markdown_tips
+        skills_description: *markdown_tips
+        awards_description: *markdown_tips
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
