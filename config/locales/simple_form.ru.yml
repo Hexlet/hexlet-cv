@@ -72,6 +72,8 @@ ru:
         salary_to: Обязательно к заполнению, если не указан нижний уровень зарплаты и зарплата не по договоренности
       resume:
         summary: *markdown_tips
+        skills_description: *markdown_tips
+        awards_description: *markdown_tips
         city: Укажите город вашего проживания
         direction_list: |
           Укажите ваше направление. Здесь нужно указывать только то, про что можно сказать X-разработчик, например: Java-разработчик. Максимальная длина 40 символов. Тэги разделяйте запятыми.
@@ -85,8 +87,6 @@ ru:
         contact_email: "Ваша почта email@example.ru"
         contact_telegram: 'Ваш телеграм: https://tlgg.ru/Kiril или @Kiril'
         name: PHP-программист, Android-разработчик, ...
-        skills_description: Знаю PHP, пользуюсь Vim, Работал с AWS
-        awards_description: Участие в олимпиадах, хакатонах, других профильных мероприятиях. Курсы.
         experience_description: *markdown_tips
         about_company: *markdown_tips
         about_project: *markdown_tips
@@ -96,10 +96,6 @@ ru:
           description: Обязанности, достижения
       career:
         description: *markdown_tips
-      resume:
-        summary: *markdown_tips
-        skills_description: *markdown_tips
-        awards_description: *markdown_tips
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
