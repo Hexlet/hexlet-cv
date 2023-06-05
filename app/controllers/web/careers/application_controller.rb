@@ -4,7 +4,7 @@ class Web::Careers::ApplicationController < Web::ApplicationController
   before_action :authenticate_user!
   helper_method :resource_career, :resource_member
 
-  rescue_from Pundit::NotAuthorizedError, with: :not_allowed
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def resource_career
     @resource_career ||= Career.find params[:career_id]
@@ -14,7 +14,7 @@ class Web::Careers::ApplicationController < Web::ApplicationController
     @resource_member ||= Career::Member.find params[:id]
   end
 
-  def not_allowed
+  def user_not_authorized
     f(:error)
     redirect_to root_path
   end
