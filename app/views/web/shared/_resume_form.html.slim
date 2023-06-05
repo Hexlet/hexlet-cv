@@ -10,8 +10,9 @@
     = f.input :city
   .mb-3
     = f.input :relocation, selected: resume.relocation
-  .mb-3
-    = f.input :english_fluency
+  - if @resume.locale_ru?
+    .mb-3
+      = f.input :english_fluency, required: true
   .mb-3
     = f.input :hexlet_url
   .mb-3
