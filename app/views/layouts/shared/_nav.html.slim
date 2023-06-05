@@ -37,6 +37,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
               li = link_to t('.my_resumes'), account_resumes_path, class: 'dropdown-item'
               li = link_to t('.my_vacancies'), account_vacancies_path, class: 'dropdown-item'
               li = link_to t('.settings'), edit_account_profile_path, class: 'dropdown-item'
+              li = link_to t('.career'), account_members_path, class: 'dropdown-item'
               .dropdown-divider
               li = link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
           / = nav_menu_item t('.sign_out'), destroy_user_session_path, method: :delete

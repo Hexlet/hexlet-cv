@@ -1,0 +1,12 @@
+- members.each do |member|
+  .card.mb-3
+    .card-header
+      - if member.finished?
+        span.bi.bi-check2.text-success
+      = link_to career_member_path(member.career, member), class: 'text-decoration-none' do
+        = t('.start_career', name: member.career.name)
+    .card-body
+      .card-text.hexlet-cv-content == markdown2html member.career.description
+
+- if members.empty?
+  = render partial: 'web/shared/empty_list'

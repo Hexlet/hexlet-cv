@@ -194,6 +194,12 @@ ru:
           education: Образование
           current: по настоящее время
     account:
+      careers:
+        members:
+          index:
+            header: Карьерный трек
+            tab_active: Активные
+            tab_finished: Завершенные
       vacancies:
         new:
           header: Новая вакансия
