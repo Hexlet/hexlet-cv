@@ -4,6 +4,7 @@ require 'test_helper'
 
 class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @career = careers(:devops)
     @admin = users(:admin)
     sign_in(@admin)
   end
@@ -14,8 +15,7 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#show' do
-    career = careers(:one)
-    get admin_career_path(career)
+    get admin_career_path(@career)
     assert_response :success
   end
 
@@ -35,23 +35,21 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#edit' do
-    career = careers(:one)
-    get edit_admin_career_path(career)
+    get edit_admin_career_path(@career)
     assert_response :success
   end
 
   test '#update' do
-    career = careers(:two)
     attrs = FactoryBot.attributes_for :career
     attrs[:items_attributes] = [
       {
         order: 1,
-        career_step_id: career_steps(:one).id
+        career_step_id: career_steps(:step_one).id
       }
     ]
-    patch admin_career_path(career), params: { career: attrs }
+    patch admin_career_path(@career), params: { career: attrs }
 
     assert_redirected_to admin_careers_path
-    assert { career.items.size == 1 }
+    assert { @career.items.size == 1 }
   end
 end

@@ -1,4 +1,39 @@
-one:
+item_one:
   order: 1
-  career: one
-  career_step: one
+  career: developer
+  career_step: step_one
+
+item_two:
+  order: 2
+  career: developer
+  career_step: step_two
+
+item_three:
+  order: 3
+  career: developer
+  career_step: step_three
+
+item_four:
+  order: 4
+  career: developer
+  career_step: step_four
+ 
+item_five:
+  order: 5
+  career: developer
+  career_step: step_five
+
+item_six:
+  order: 6
+  career: developer
+  career_step: step_six
+
+item_seven:
+  order: 7
+  career: developer
+  career_step: step_seven
+
+item_eight:
+  order: 8
+  career: developer
+  career_step: step_eight

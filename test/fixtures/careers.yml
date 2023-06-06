@@ -4,11 +4,16 @@ DEFAULTS: &DEFAULTS
   slug: developers
   locale: <%= I18n.locale %>
 
-one:
+analytics:
    <<: *DEFAULTS
-   slug: tester js
+   slug: analytics
 
-two:
+devops:
   <<: *DEFAULTS
-  name: Иженер по автоматизированному тестированию
+  name: DevOps инженер
   slug: devops
+
+developer:
+  <<: *DEFAULTS
+  name: Разработчик
+  slug: developer

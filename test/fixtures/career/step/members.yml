@@ -1,4 +1,4 @@
 one:
   state: 'active'
-  career_member: one
-  career_step: one
+  career_member: member_full
+  career_step: step_one
