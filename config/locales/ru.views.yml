@@ -200,6 +200,8 @@ ru:
             header: Карьерный трек
             tab_active: Активные
             tab_finished: Завершенные
+          members:
+            start_career: 'Начать карьерный трек: %{name}'
       vacancies:
         new:
           header: Новая вакансия

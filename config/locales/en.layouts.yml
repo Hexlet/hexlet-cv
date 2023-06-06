@@ -14,6 +14,7 @@ en:
           settings: Settings
           notifications: Notifications
           newsletters: Newsletters
+          career: Craeer path
     shared:
       last_answers:
         title: Comments
@@ -26,6 +27,7 @@ en:
         en: English
         ru: Russian
         admin: Admin panel
+        career: Career path
         vacancies: Find jobs
         employment: Employment
         career_path: Career path

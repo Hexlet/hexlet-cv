@@ -193,6 +193,14 @@ en:
           education: Education
           current: Current
     account:
+      careers:
+        members:
+          index:
+            header: Career path
+            tab_active: Active
+            tab_finished: Finished
+          members:
+            start_career: 'Start career path: %{name}'
       vacancies:
         new:
           header: New vacancy
