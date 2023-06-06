@@ -17,3 +17,24 @@ directions-java-developer-android:
   tag: android
   taggable: java-developer (Vacancy)
   context: directions
+
+
+directions-one-without-answer:
+  tag: frontend
+  taggable: one_without_answer (Resume)
+  context: directions
+
+directions-full-without-answers:
+  tag: devops
+  taggable: full_without_answers (Resume)
+  context: directions
+
+skills-one-without-answer:
+  tag: nginx
+  taggable: one_without_answer (Resume)
+  context: skills
+
+skills-full-without-answers:
+  tag: rubocop
+  taggable: full_without_answers (Resume)
+  context: skills

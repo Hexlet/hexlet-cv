@@ -1,9 +1,9 @@
-one:
+member_one:
   user: one
-  career: one
+  career: developer
   state: active
 
-two:
+member_full:
   user: full
-  career: one
+  career: developer
   state: active

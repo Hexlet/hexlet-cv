@@ -10,7 +10,7 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
 
   test '#create' do
     user = users(:two)
-    career = careers(:one)
+    career = careers(:devops)
     attrs = {
       user_id: user.id
     }
@@ -23,8 +23,8 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
   end
 
   test '#archive' do
-    member = career_members(:one)
-    career = careers(:one)
+    member = career_members(:member_one)
+    career = careers(:devops)
 
     patch archive_admin_career_member_path(career, member)
 

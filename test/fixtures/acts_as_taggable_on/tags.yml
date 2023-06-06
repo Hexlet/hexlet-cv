@@ -6,3 +6,21 @@ js:
 
 android:
   name: android
+
+sharp:
+  name: C#
+
+frontend:
+  name: frontend-разработчик
+
+backend:
+  name: backend-разработчик
+
+devops:
+  name: DevOps
+
+nginx:
+  name: nginx
+
+rubocop:
+  name: rubocop

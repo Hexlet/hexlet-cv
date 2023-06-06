@@ -2,8 +2,32 @@ DEFAULTS: &DEFAULTS
   description: <%= Faker::Lorem.paragraph %>
   tasks_text: <%= Faker::Lorem.paragraph %>
   review_needed: true
+  name: Пофиль Linkedin
   locale: <%= I18n.locale %>
 
-one:
+step_one:
   <<: *DEFAULTS
   name: Соcтавьте резюме
+
+step_two:
+  <<: *DEFAULTS
+  name: Напишите сопроводительное письмо
+
+step_three:
+  <<: *DEFAULTS
+  name: Пофиль Linkedin
+
+step_four:
+  <<: *DEFAULTS
+ 
+step_five:
+  <<: *DEFAULTS
+
+step_six:
+  <<: *DEFAULTS
+
+step_seven:
+  <<: *DEFAULTS
+
+step_eight:
+  <<: *DEFAULTS

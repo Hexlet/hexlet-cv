@@ -7,6 +7,7 @@ class Web::Resumes::SearchForm
     name_cont
     user_first_name_or_user_last_name_or_user_email_cont
     directions_name_cont
+    skills_name_in
     created_at_gteq
     popular_gteq
     created_at_gteq

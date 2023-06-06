@@ -2,13 +2,13 @@
 
 class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @career = careers(:one)
-    @step = career_steps(:one)
+    @career = careers(:developer)
+    @step = career_steps(:step_one)
     @career_step_member = career_step_members(:one)
   end
 
   test '#finish' do
-    user = users(:one)
+    user = users(:full)
     sign_in(user)
 
     patch finish_career_step_member_path(@career, @step, @career_step_member)

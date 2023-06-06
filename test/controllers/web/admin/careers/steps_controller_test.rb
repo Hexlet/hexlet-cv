@@ -5,8 +5,8 @@ require 'test_helper'
 class Web::Admin::Careers::StepsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
-    @career = careers(:one)
-    @career_step = career_steps(:one)
+    @career = careers(:devops)
+    @career_step = career_steps(:step_one)
     sign_in(@admin)
   end
 

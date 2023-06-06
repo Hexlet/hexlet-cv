@@ -2,8 +2,8 @@
 
 class Web::Careers::MembersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @member = career_members(:one)
-    @career = careers(:one)
+    @member = career_members(:member_one)
+    @career = careers(:developer)
   end
 
   test '#show' do
