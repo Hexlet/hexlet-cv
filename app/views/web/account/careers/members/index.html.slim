@@ -1,0 +1,14 @@
+- content_for :header do
+  = t('.header')
+
+ul.nav.nav-pills.justify-content-center role="navigation"
+  li.nav-item
+    a.nav-link.px-3.active data-bs-toggle='tab' href='#active' = t('.tab_active')
+  li.nav-item
+    a.nav-link.px-3 data-bs-toggle='tab' href='#finished' = t('.tab_finished')
+
+.tab-content.py-3
+  .tab-pane.fade.show.active id="active"
+      = render 'members', members: @active_members
+  .tab-pane.fade id="finished"
+      = render 'members', members: @finished_members

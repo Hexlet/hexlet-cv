@@ -9,6 +9,7 @@ ru:
           settings: Настройки
           notifications: Уведомления
           newsletters: Рассылки
+          career: Карьерный трек
     shared:
       last_answers:
         title: Последние ответы
@@ -20,6 +21,7 @@ ru:
             %{count} Ответов
       nav:
         application_name: Hexlet CV
+        career: Карьерный трек
         en: Английский
         ru: Русский
         admin: Админка
