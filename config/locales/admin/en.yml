@@ -1,0 +1,91 @@
+---
+en:
+  web:
+    admin:
+      resumes:
+        index:
+          action: Action
+          archive: Archive
+          restore: Publish
+        edit:
+          header: Resume editing
+      vacancies:
+        search_form:
+          creator: name/surname/mail
+          created_at_from: 'Creation date from:'
+          created_at_to: 'By:'
+        edit:
+          header: Job editing
+        index:
+          no_date: no date
+          export: Export jobs to csv
+      users:
+        edit:
+          header: User editing
+      home:
+        index:
+          admins: Administrators
+      careers:
+        item_step_fields:
+          step: step
+          order: step sequence number
+          remove_field: Delete
+        index:
+          action: Action
+          edit: Edit
+        edit:
+          career: Career track
+          items: Career track steps
+          steps: Steps
+          add_step: Add step
+        show:
+          users_career: Students in career tracks
+          career_path: Career track
+          steps: Career track steps
+        new:
+          cancel: Cancel
+        menu:
+          list: List careers
+          new: New
+        members:
+          new:
+            add: Add
+            add_user: Adding a user
+            cancel: Cancel
+        form:
+          cancel: Cancel
+        steps:
+          action: Action
+          edit: Edit
+          add_new_step: Add new step
+          steps_career: Career track steps
+          show:
+            step: Step %{step_name}
+        users:
+          users_career: Students
+          action: Action
+          archive: Archive
+          question: You are sure?
+          add_user: Add student
+          no_date: Not finished
+      users:
+        in_career_path:
+          started_at: Started
+          finished_at: Finished
+        index:
+          question: You are sure?
+          career_path: Career track
+          cancel: Cancel
+        search_form:
+          search: Find
+        member_form:
+          add: Appoint
+      steps:
+        menu:
+          list: List
+          new: New
+        index:
+          action: Action
+          edit: Edit
+        show:
+          step: Career track step

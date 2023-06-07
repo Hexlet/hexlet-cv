@@ -25,6 +25,7 @@ en:
     new_answer_comment_html: User <a href="%{user_path}">%{user}</a> left a <a href="%{answer_comment_path}">new comment</a> for your answer
     new_answer_like_html: User <a href="%{user_path}">%{user}</a> likes <a href="%{answer_path}">your answer</a>
   confirm: Are you sure?
+  career: Career path
   page: Page %{number}
   date:
     formats:

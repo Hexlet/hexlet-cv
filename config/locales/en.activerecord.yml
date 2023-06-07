@@ -29,6 +29,11 @@ en:
         content: Comment
       answer/comment:
         content: Comment
+      career:
+        name: Name
+        slug: Slug
+        description: Description
+        locale: Locale
       vacancy:
         conditions_description: Supplemental Pay
         requirements_description: Requirements

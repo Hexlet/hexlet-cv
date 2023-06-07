@@ -1,12 +1,6 @@
 en:
   layouts:
     web:
-      admin:
-        application:
-          admin: Admins
-          all_users: All users
-          all_resumes: All resumes
-          all_vacancies: All jobs
       account:
         application:
           resumes: My CV

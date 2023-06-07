@@ -1,0 +1,49 @@
+---
+en:
+  flash:
+    web:
+      admin:
+        careers:
+          create:
+            success: Career Track Created!
+            error: Error! Check form fields
+          members:
+            archive:
+              success: Assigned track successfully archived
+            create:
+              success: User added to career track
+              error: Error! Failed to assign career track to user!
+          steps:
+            create:
+              error: Correct the mistakes
+              success: Step created successfully
+            update:
+              error: Correct the mistakes
+              success: Step updated
+          update:
+            success: Career track successfully updated!
+            error: Error! Check form fields
+        career_members:
+          destroy:
+            success: Career track canceled successfully
+            error: Error! Failed to unassign career track!
+          create:
+            error: Error! Failed to assign career track to user!
+            success: Career track successfully assigned
+        steps:
+          update:
+            success: Step successfully updated
+            error: Error! Check form fields
+          create:
+            success: Step created successfully
+            error: Error! Check form fields
+        resumes:
+          archive:
+            success: Resume archived successfully
+          restore:
+            success: Resume published successfully
+          update:
+            success: Resume updated successfully
+        vacancies:
+          update:
+            success: Job updated successfully
