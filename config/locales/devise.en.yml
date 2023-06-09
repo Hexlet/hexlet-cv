@@ -6,6 +6,9 @@ en:
     failure:
       user:
         banned: "You have been banned"
+        not_found_in_database: Wrong login or password.
+        invalid: Incorrect login or password.
+        unauthenticated: You need to login or register.
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
