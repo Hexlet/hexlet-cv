@@ -8,9 +8,8 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
   end
 
   def show
-    @career = Career.find(params[:id])
-    @steps = @career.steps.ordered
-    @users = @career.users.distinct
+    @steps = resource_career.steps.ordered
+    @users = resource_career.users.distinct
   end
 
   def new
@@ -18,9 +17,7 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
   end
 
   def edit
-    career = Career.find(params[:id])
-    @career = career.becomes(Web::Admin::CareerForm)
-    @items = @career.items
+    @items = resource_career.items
     @steps = Career::Step.all
   end
 
@@ -36,8 +33,7 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
   end
 
   def update
-    career = Career.find(params[:id])
-    @career = career.becomes(Web::Admin::CareerForm)
+    @career = resource_career.becomes(Web::Admin::CareerForm)
     if @career.update(params[:career])
       f(:success)
       redirect_to admin_careers_path

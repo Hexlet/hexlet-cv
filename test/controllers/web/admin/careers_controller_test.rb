@@ -15,7 +15,7 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#show' do
-    get admin_career_path(@career)
+    get admin_career_path(@career.slug)
     assert_response :success
   end
 
@@ -29,13 +29,13 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
     post admin_careers_path, params: { career: attrs }
     assert_redirected_to admin_careers_path
 
-    career = Career.find_by(name: attrs[:name])
+    career = Career.find_by(slug: attrs[:slug])
 
     assert { career }
   end
 
   test '#edit' do
-    get edit_admin_career_path(@career)
+    get edit_admin_career_path(@career.slug)
     assert_response :success
   end
 
@@ -47,7 +47,7 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
         career_step_id: career_steps(:step_one).id
       }
     ]
-    patch admin_career_path(@career), params: { career: attrs }
+    patch admin_career_path(@career.slug), params: { career: attrs }
 
     assert_redirected_to admin_careers_path
     assert { @career.items.size == 1 }

@@ -10,7 +10,7 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
     if @career_member.save
       EmailSender.send_new_career_member_email(@career_member)
       f(:success)
-      redirect_to admin_career_path(resource_career)
+      redirect_to admin_career_path(resource_career.slug)
     else
       f(:error)
       render :new
@@ -21,7 +21,7 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
     member = Career::Member.find(params[:id])
     member.archive!
     f(:success)
-    redirect_to admin_career_path(resource_career)
+    redirect_to admin_career_path(resource_career.slug)
   end
 
   private

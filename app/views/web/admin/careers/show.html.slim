@@ -5,25 +5,25 @@
   .col-sm-3
     b = han('career', 'name')
   .col-sm-9
-    = @career.name
+    = resource_career.name
 
 .row.mb-3
   .col-sm-3
     b = han('career', 'description')
   .col-sm-9.hexlet-cv-content
-    == markdown2html @career.description
+    == markdown2html resource_career.description
 
 .row.mb-3
   .col-sm-3
     b = han('career', 'slug')
   .col-sm-9
-    = @career.slug
+    = resource_career.slug
 
 .row.mb-3
   .col-sm-3
     b = han('career', 'locale')
   .col-sm-9
-    = @career.locale_text
+    = resource_career.locale_text
 
 ul.nav.nav-tabs[role='tablist']
   li.nav-item
@@ -33,7 +33,7 @@ ul.nav.nav-tabs[role='tablist']
 
 .tab-content.pt-4
   .tab-pane.active[id='users_career' role='tabpanel']
-    = render 'users', users: @users, career: @career
+    = render 'users', users: @users, career: resource_career
 
   .tab-pane[id='steps' role='tabpanel']
-    = render 'steps', steps: @steps, career: @career
+    = render 'steps', steps: @steps, career: resource_career

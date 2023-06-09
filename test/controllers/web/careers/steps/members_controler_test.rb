@@ -11,7 +11,7 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
     user = users(:full)
     sign_in(user)
 
-    patch finish_career_step_member_path(@career, step, career_step_member)
+    patch finish_career_step_member_path(@career.slug, step, @career_step_member)
 
     assert_response :redirect
 

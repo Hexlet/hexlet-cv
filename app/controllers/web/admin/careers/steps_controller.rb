@@ -14,11 +14,11 @@ class Web::Admin::Careers::StepsController < Web::Admin::Careers::ApplicationCon
   end
 
   def create
-    form = Web::Admin::Career::StepForm.new(career_step_params)
+    form = Web::Admin::Career::StepForm.new(params[:career_step])
     @step = Career::StepMutator.create(resource_career, form.attributes)
     if @step.persisted?
       f(:success)
-      redirect_to admin_career_path(resource_career)
+      redirect_to admin_career_path(resource_career.slug)
     else
       f(:error)
       render :new, status: :unprocessable_entity
@@ -26,22 +26,15 @@ class Web::Admin::Careers::StepsController < Web::Admin::Careers::ApplicationCon
   end
 
   def update
-    @step = Career::Step.find(params[:id])
-    step = @step.becomes(Web::Admin::Career::StepForm)
+    step = Career::Step.find(params[:id])
+    @step = step.becomes(Web::Admin::Career::StepForm)
 
-    if step.update(career_step_params)
+    if @step.update(params[:career_step])
       f(:success)
-      redirect_to admin_career_path(resource_career)
+      redirect_to admin_career_path(resource_career.slug)
     else
-      @step = step.becomes(Web::Admin::Career::StepForm)
       f(:error)
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def career_step_params
-    params.require(:career_step)
   end
 end

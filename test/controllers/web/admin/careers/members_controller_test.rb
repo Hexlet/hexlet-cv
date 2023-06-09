@@ -15,8 +15,8 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
       user_id: @user.id
     }
 
-    post admin_career_members_path(@career), params: { career_member: attrs }
-    assert_redirected_to admin_career_path(@career)
+    post admin_career_members_path(@career.slug), params: { career_member: attrs }
+    assert_redirected_to admin_career_path(@career.slug)
 
     member = Career::Member.find_by(user_id: attrs[:user_id])
     assert { member }
@@ -25,9 +25,9 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
   test '#archive' do
     member = career_members(:member_one)
 
-    patch archive_admin_career_member_path(@career, member)
+    patch archive_admin_career_member_path(@career.slug, member)
 
-    assert_redirected_to admin_career_path(@career)
+    assert_redirected_to admin_career_path(@career.slug)
     member.reload
     assert { member.archived? }
   end

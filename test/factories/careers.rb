@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :career do
-    name { 'Аналитик' }
+    name { 'Инженер по тестированию' }
     description { Faker::Lorem.paragraph }
-    slug { Faker::Lorem.word }
+    slug { 'test-engineer' }
     locale { 'ru' }
 
     items_attributes do

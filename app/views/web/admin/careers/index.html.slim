@@ -13,7 +13,7 @@ table.table
   tbody
     - @careers.each do |career|
       tr
-        td = link_to career.name, admin_career_path(career), class: 'no decorete'
+        td = link_to career.name, admin_career_path(career.slug), class: 'no decorete'
         td = career.slug
         td = l career.created_at, format: :long
-        td = link_to t('.edit'), edit_admin_career_path(career), class: 'btn btn-primary btn-sm'
+        td = link_to t('.edit'), edit_admin_career_path(career.slug), class: 'btn btn-primary btn-sm'

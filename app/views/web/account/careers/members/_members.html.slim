@@ -3,8 +3,9 @@
     .h4.card-header.p-3.d-flex.justify-content-between
       .me-3 = member.career.name
       - if member.finished?
-        span.bi.bi-check-circle-fill.text-success[aria-label="#{t('.career_track_finished')}"]
-
+        span.bi.bi-check2.text-success
+      = link_to career_member_path(member.career.slug, member), class: 'text-decoration-none' do
+        = t('.start_career', name: member.career.name)
     .card-body
       .card-text.hexlet-cv-content == markdown2html member.career.description
       - if member.finished?

@@ -1,6 +1,6 @@
 h3.my-4.me-3 = t('.steps_career')
 
-= link_to t('.add_new_step'), new_admin_career_step_path(career), class: 'btn btn-primary'
+= link_to t('.add_new_step'), new_admin_career_step_path(career.slug), class: 'btn btn-primary'
 
 table.table
   thead
@@ -11,6 +11,6 @@ table.table
   tbody
     - steps.each do |step|
       tr
-        td = link_to step.name, admin_career_step_path(career, step), class: 'text-decoration-none'
+        td = link_to step.name, admin_career_step_path(career.slug, step), class: 'text-decoration-none'
         td = l step.created_at, format: :long
-        td = link_to t('.edit'), edit_admin_career_step_path(career, step), class: 'btn btn-primary'
+        td = link_to t('.edit'), edit_admin_career_step_path(career.slug, step), class: 'btn btn-primary'

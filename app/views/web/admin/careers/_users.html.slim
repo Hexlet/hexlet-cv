@@ -1,6 +1,6 @@
 h3.my-4.me-3 = t('.users_career')
 
-= link_to t('.add_user'), new_admin_career_member_path(@career), class: 'btn btn-primary'
+= link_to t('.add_user'), new_admin_career_member_path(career.slug), class: 'btn btn-primary'
 table.table
   thead
     tr
@@ -20,4 +20,4 @@ table.table
         td = user.career_members.last.aasm(:state).human_state
         td
           - if user.career_members.last.may_archive?
-            = link_to t('.archive'), archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'
+            = link_to t('.archive'), archive_admin_career_member_path(career.slug, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-primary'

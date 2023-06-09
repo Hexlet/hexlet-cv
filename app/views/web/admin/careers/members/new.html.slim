@@ -1,7 +1,7 @@
 - content_for :header do
   = t('.add_user')
 
-= simple_form_for @career_member, url: admin_career_members_path(resource_career), wrapper: 'horizontal_form' do |f|
+= simple_form_for @career_member, url: admin_career_members_path(resource_career.slug), wrapper: 'horizontal_form' do |f|
   .mb-3
     = f.association :user, as: :autocomplete, source: search_api_internal_users_url(format: 'json')
   .row.mt-5
