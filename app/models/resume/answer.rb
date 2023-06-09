@@ -9,8 +9,8 @@ class Resume::Answer < ApplicationRecord
 
   belongs_to :resume, counter_cache: true
   belongs_to :user
-  has_many :likes, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Like'
-  has_many :comments, dependent: :delete_all, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
+  has_many :likes, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Like'
+  has_many :comments, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
   has_many :notifications, as: :resource, dependent: :destroy
 
   aasm :applying, column: :applying_state do

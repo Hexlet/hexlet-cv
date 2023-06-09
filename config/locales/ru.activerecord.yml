@@ -144,6 +144,10 @@ ru:
               invalid: имеет не верный формат
             contact_phone:
               invalid: имеет неверное формат
+        resume/answer/like:
+          attributes:
+            user:
+              answer_owner: Вы не можете поставить лайк, вы являетесь автором
         career:
           attributes:
             slug:
