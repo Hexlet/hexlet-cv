@@ -29,6 +29,10 @@ ru:
             success: Настройки рассылки сохранены
             error: Не удалось сохранить настройки рассылки
       careers:
+        steps:
+          members:
+            finish:
+              success: Шаг завершен!
         members:
           show:
             error: Доступ закрыт!

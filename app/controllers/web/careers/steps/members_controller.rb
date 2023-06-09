@@ -11,6 +11,7 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
       @career_member = resource_career.members.where(user: current_user).active.last
       @career_member.finish! if @career_member.may_finish?
     end
+    f(:success)
     redirect_to career_member_path(resource_career, @career_member)
   end
 end

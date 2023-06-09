@@ -38,6 +38,14 @@ en:
             success: Commentary to the resume added
           destroy:
             success: Commentary to the resume deleted
+      careers:
+        steps:
+          members:
+            finish:
+              success: Шаг завершен!
+        members:
+          show:
+            error: Доступ закрыт!
       answers:
         comments:
           update:
