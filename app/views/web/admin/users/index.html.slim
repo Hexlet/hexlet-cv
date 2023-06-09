@@ -15,7 +15,7 @@ table.table
         td = link_to user.id, edit_admin_user_path(user)
         td = link_to user, user_path(user)
         td = user.email
-        td = user.role
+        td = user.role_text
         td = user.aasm(:state).human_state
         td = l user.created_at, format: :short
 

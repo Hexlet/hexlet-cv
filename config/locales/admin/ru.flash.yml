@@ -47,3 +47,6 @@ ru:
         vacancies:
           update:
             success: Вакансия успешно обновлена
+        users:
+          update:
+            success: Данные пользователя успешно обновлены

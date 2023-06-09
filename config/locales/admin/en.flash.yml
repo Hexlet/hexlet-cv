@@ -47,3 +47,6 @@ en:
         vacancies:
           update:
             success: Job updated successfully
+        users:
+          update:
+            success: User data updated successfully
