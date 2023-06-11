@@ -39,7 +39,7 @@ ru:
           steps: Шаги
           add_step: Добавить шаг
         show:
-          users_career: Студенты в карьернои треки
+          users_career: Студенты проходящие карьерный трек
           career_path: Карьерный трек
           steps: Шаги карьерного трека
         new:
