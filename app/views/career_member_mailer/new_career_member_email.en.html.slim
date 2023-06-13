@@ -1,0 +1,16 @@
+span = t('.career_path')
+
+hr
+
+span = t('.description')
+
+ul
+  - t('.list').each do |item|
+    li = item
+
+div
+  = link_to t('.start_career', name: @career.name), career_member_url(@career, @career_member, locale: I18n.locale)
+
+hr
+
+p  #{t('unsubscribe')} #{link_to t('settings'), edit_account_newsletters_url(locale: I18n.locale), target: '_blank', rel: 'noopener'}

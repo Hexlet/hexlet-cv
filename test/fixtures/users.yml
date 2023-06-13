@@ -47,3 +47,8 @@ special:
   <<: *DEFAULTS
   email: special@test.io
   about: bot
+
+mail_delivery_disabled:
+  <<: *DEFAULTS
+  email: mail_delivery_disabled@email.com
+  resume_mail_enabled: false
