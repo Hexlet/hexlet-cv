@@ -38,7 +38,7 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
     }
 
     assert_emails 1 do
-      post admin_career_members_path(@career), params: { career_member: attrs }
+      post admin_career_members_path(@career.slug), params: { career_member: attrs }
     end
   end
 
@@ -49,7 +49,7 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
     }
 
     assert_emails 0 do
-      post admin_career_members_path(@career), params: { career_member: attrs }
+      post admin_career_members_path(@career.slug), params: { career_member: attrs }
     end
   end
 end
