@@ -23,10 +23,18 @@ class EmailSender
       AnswerCommentMailer.with(comment:).new_comment_email.deliver_later
     end
 
+    def send_new_career_member_email(career_member)
+      user = career_member.user
+
+      return unless user.can_send_email?
+
+      CareerMemberMailer.with(career_member:, user:).new_career_member_email.deliver_later
+    end
+
     private
 
     def can_send_email_notification?(user, resource)
-      user.can_send_email? && user.resume_mail_enabled && !resource.author?(user)
+      user.can_send_email? && !resource.author?(user)
     end
   end
 end

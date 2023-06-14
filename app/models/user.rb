@@ -82,7 +82,7 @@ class User < ApplicationRecord
   end
 
   def can_send_email?
-    !email_disabled_delivery && !unconfirmed_email
+    !email_disabled_delivery && !unconfirmed_email && resume_mail_enabled
   end
 
   def self.ransackable_attributes(_auth_object = nil)

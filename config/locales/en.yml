@@ -34,23 +34,28 @@ en:
     new_comment_email:
       content: 'Content:'
       new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
-      unsubscribe: You can unsubscribe from the newsletter in
-      settings: settings
       subject: New comment for your recommendation.
+  career_member_mailer:
+    new_career_member_email:
+      subject: You have been assigned a career track.
+      career_path: Cheers cheers! Now you can complete the Career track! Follow the link and start preparing for employment.
+      description: |
+        Career Track is a service on Hexlet that helps students prepare for employment: work out a resume, cover letter, portfolio, get practical interview skills and much, much more!
+      list:
+        - Go through all the steps of the Career Track and complete tasks for them, this will help you prepare as much as possible for entering the labor market
+        - If during the passage of the Career track you have questions, you can contact your curator
+        - We also recommend that you start the Career track as soon as possible, because. it is very important to complete it before you enter the labor market. Our task is to make sure that you enter the labor market as the most prepared candidate, both in terms of hard and sift skills. So let's not waste time! Start preparing for employment!
+      start_career: "Start career track: %{name}"
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'
       new_answer: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
       review: Your resume has been reviewed!
-      unsubscribe: You can unsubscribe from the newsletter in
-      settings: settings
       subject: You have a new recommendation
   resume_comment_mailer:
     new_comment_email:
       content: 'Content:'
       new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
-      unsubscribe: You can unsubscribe from the newsletter in
-      settings: settings
       subject: You have a new resume comment
   reset: Reset
   submit: Submit
@@ -82,3 +87,5 @@ en:
       Start date: %{begin_date}
       End of training: %{end_date}
       Description: %{description}
+  unsubscribe: You can unsubscribe from the newsletter in
+  settings: settings
