@@ -16,7 +16,7 @@ table.table
       th = sort_link(@q, 'user')
       th = sort_link(@q, 'email')
       th = sort_link(@q, 'created_at')
-      th = t('.action')
+      th = t('actions')
   tbody
     - @resumes.each do |resume|
       tr
@@ -27,9 +27,16 @@ table.table
         td = resume.user.email
         td = l resume.created_at, format: :short
         td
-          - if resume.may_restore?
-            = link_to t('.restore'), restore_admin_resume_path(resume), method: :patch, class: 'btn btn-success btn-sm'
-          - elsif resume.may_archive?
-            = link_to t('.archive'), archive_admin_resume_path(resume), method: :patch, class: 'btn btn-danger btn-sm'
+          .text-center
+            = link_to resume_path(resume), class: 'btn btn-outline-primary btn-sm me-1' do
+              span.bi.bi-eye-fill
+            = link_to edit_admin_resume_path(resume), class: 'btn btn-outline-primary btn-sm me-1', title: t('.edit') do
+              span.bi.bi-gear-fill
+            - if resume.may_restore?
+              = link_to restore_admin_resume_path(resume), method: :patch, class: 'btn btn-outline-primary btn-sm', data: { confirm: t('confirm') }, title: t('.restore') do
+                span.bi.bi-activity
+            - elsif resume.may_archive?
+              = link_to archive_admin_resume_path(resume), method: :patch, class: 'btn btn-outline-primary btn-sm', data: { confirm: t('confirm') }, title: t('.archive') do
+                span.bi.bi-file-earmark-zip
 
 = paginate @resumes

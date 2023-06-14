@@ -7,10 +7,14 @@ table.table
     tr
       th = han('career/step', 'name')
       th = han('career/step', 'created_at')
-      th = t('.action')
+      th = t('actions')
   tbody
     - steps.each do |step|
       tr
         td = link_to step.name, admin_career_step_path(career, step), class: 'text-decoration-none'
         td = l step.created_at, format: :long
-        td = link_to t('.edit'), edit_admin_career_step_path(career, step), class: 'btn btn-primary'
+        td
+           = link_to admin_career_step_path(career, step), class: 'btn btn-outline-primary btn-sm me-1' do
+              span.bi.bi-eye-fill
+           = link_to edit_admin_career_step_path(career, step), class: 'btn btn-outline-primary btn-sm me-1', title: t('.edit') do
+              span.bi.bi-gear-fill

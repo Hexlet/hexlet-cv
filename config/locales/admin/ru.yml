@@ -4,9 +4,9 @@ ru:
     admin:
       resumes:
         index:
-          action: Действие
-          archive: В архив
-          restore: Опубликовать
+          edit: Редактировать резюме
+          archive: Убрать в архив
+          restore: Опубликовать резюме
         edit:
           header: Редактирование резюме
       vacancies:
@@ -17,30 +17,28 @@ ru:
         edit:
           header: Редактирование вакансии
         index:
+          edit: Редактировать вакансию
           no_date: нет даты
           export: Экспортировать вакансии в csv
       users:
         edit:
           header: Редактирование пользователя
-      home:
-        index:
-          admins: Администраторы
       careers:
         item_step_fields:
           step: шаг
           order: порядковый номер шага
           remove_field: Удалить
         index:
-          action: Действие
-          edit: Редактировать
+          edit: Редактировать карьерный трек
         edit:
           career: Карьерный трек
           items: Шаги карьерного трека
           steps: Шаги
           add_step: Добавить шаг
         show:
+          edit: Редактировать
           users_career: Студенты проходящие карьерный трек
-          career_path: Карьерный трек
+          career_track: 'Карьерный трек: %{name}'
           steps: Шаги карьерного трека
         new:
           cancel: Отменить
@@ -55,7 +53,6 @@ ru:
         form:
           cancel: Отменить
         steps:
-          action: Действие
           edit: Редактировать
           add_new_step: Добавить новый шаг
           steps_career: Шаги карьерного трека
@@ -63,7 +60,6 @@ ru:
             step: Шаг %{step_name}
         users:
           users_career: Студенты
-          action: Действие
           archive: Архивировать
           question: Вы уверенны?
           add_user: Добавить студента
@@ -85,7 +81,6 @@ ru:
           list: Список
           new: Новый
         index:
-          action: Действие
           edit: Редактировать
         show:
           step: Шаг карьерного трека

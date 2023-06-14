@@ -1,6 +1,3 @@
-- content_for :header do
-  = t('career')
-
 = render 'menu'
 
 table.table
@@ -9,11 +6,15 @@ table.table
       th = sort_link(@q, 'name')
       th = sort_link(@q, 'slug')
       th = sort_link(@q, 'created_at')
-      th = t('.action')
+      th = t('actions')
   tbody
     - @careers.each do |career|
       tr
         td = link_to career.name, admin_career_path(career), class: 'no decorete'
         td = career.slug
         td = l career.created_at, format: :long
-        td = link_to t('.edit'), edit_admin_career_path(career), class: 'btn btn-primary btn-sm'
+        td
+          = link_to admin_career_path(career), class: 'btn btn-outline-primary btn-sm me-1' do
+            span.bi.bi-eye-fill
+          = link_to edit_admin_career_path(career), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+            span.bi.bi-gear-fill

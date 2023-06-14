@@ -4,9 +4,9 @@ en:
     admin:
       resumes:
         index:
-          action: Action
-          archive: Archive
-          restore: Publish
+          edit: Edit CV
+          archive: Archive CV
+          restore: Publish CV
         edit:
           header: Resume editing
       vacancies:
@@ -17,6 +17,7 @@ en:
         edit:
           header: Job editing
         index:
+          edit: Editing Job
           no_date: no date
           export: Export jobs to csv
       users:
@@ -31,7 +32,6 @@ en:
           order: step sequence number
           remove_field: Delete
         index:
-          action: Action
           edit: Edit
         edit:
           career: Career track
@@ -39,8 +39,9 @@ en:
           steps: Steps
           add_step: Add step
         show:
+          edit: Edit
           users_career: Students in career tracks
-          career_path: Career track
+          career_track: 'Career track: %{name}'
           steps: Career track steps
         new:
           cancel: Cancel
@@ -55,7 +56,6 @@ en:
         form:
           cancel: Cancel
         steps:
-          action: Action
           edit: Edit
           add_new_step: Add new step
           steps_career: Career track steps
@@ -63,7 +63,6 @@ en:
             step: Step %{step_name}
         users:
           users_career: Students
-          action: Action
           archive: Archive
           question: You are sure?
           add_user: Add student
@@ -85,7 +84,6 @@ en:
           list: List
           new: New
         index:
-          action: Action
           edit: Edit
         show:
           step: Career track step

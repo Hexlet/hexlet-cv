@@ -9,6 +9,7 @@ table.table
       th = sort_link(@q, 'role')
       th = sort_link(@q, 'state')
       th = sort_link(@q, 'created_at')
+      th = t('actions')
   tbody
     - @users.each do |user|
       tr
@@ -18,5 +19,10 @@ table.table
         td = user.role_text
         td = user.aasm(:state).human_state
         td = l user.created_at, format: :short
+        td
+          = link_to user_path(user), class: 'btn btn-outline-primary btn-sm me-2' do
+            span.bi.bi-eye-fill
+          = link_to edit_admin_user_path(user), class: 'btn btn-outline-primary btn-sm' do
+            span.bi.bi-gear-fill
 
 = paginate @users

@@ -1,6 +1,3 @@
-- content_for :header do
-  = t('.admins')
-
 table.table
   thead
     tr
@@ -8,6 +5,7 @@ table.table
       th = sort_link(@q, 'state')
       th = sort_link(@q, 'email')
       th = sort_link(@q, 'created_at')
+      th = t('actions')
   tbody
     - @admins.each do |admin|
       tr
@@ -15,3 +13,6 @@ table.table
         td = admin.aasm(:state).human_state
         td = admin.email
         td = l admin.created_at, format: :short
+        td
+          = link_to user_path(admin), class: 'btn btn-outline-primary' do
+            span.bi.bi-eye-fill

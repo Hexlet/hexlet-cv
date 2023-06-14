@@ -14,6 +14,7 @@ table.table
       th = sort_link(@q, 'company_name')
       th = sort_link(@q, 'created_at')
       th = sort_link(@q, 'published_at')
+      td = t('actions')
   tbody
     - @vacancies.each do |vacancy|
       tr
@@ -25,5 +26,10 @@ table.table
         / td = user.role
         td = l vacancy.created_at, format: :long
         td = show_date_if(vacancy.published_at, :long)
+        td
+          = link_to vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm me-1' do
+            span.bi.bi-eye-fill
+          = link_to edit_admin_vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+            span.bi.bi-gear-fill
 
 = paginate @vacancies
