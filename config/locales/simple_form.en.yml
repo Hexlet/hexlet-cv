@@ -16,9 +16,6 @@ en:
         user_email_cont: Entry by user email
         company_name_cont: Entry by company name
     placeholders:
-      resume_answer:
-        show:
-          content: *markdown_tips
       defaults:
         city: City
         direction: Direction
@@ -93,6 +90,9 @@ en:
           description: Level of education, Field of study, College or University
         works:
           description: Outline your responsibilities and achievements
+      resume_answer:
+        show:
+          content: *markdown_tips
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
