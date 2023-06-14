@@ -6,6 +6,7 @@ class Web::Devise::RegistrationsController < Devise::RegistrationsController
   # rubocop:enable Rails/LexicallyScopedActionFilter
   include GonInit
   include LocaleConcern
+  include DeviseHelper
 
   private
 
