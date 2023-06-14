@@ -38,7 +38,7 @@ en:
   career_member_mailer:
     new_career_member_email:
       subject: You have been assigned a career track.
-      career_path: Cheers cheers! Now you can complete the Career track! Follow the link and start preparing for employment.
+      career_path: Cheers cheers! Now you can complete the Career track! Follow <a href="%{career_path}" class="text-secondary fw-bolder">the link</a> and start preparing for employment.
       description: |
         Career Track is a service on Hexlet that helps students prepare for employment: work out a resume, cover letter, portfolio, get practical interview skills and much, much more!
       list:
