@@ -31,12 +31,12 @@ ru:
   answer_comment_mailer:
     new_comment_email:
       content: 'Содержание:'
-      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
+      new_comment_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
       subject: К вашей рекомендации новый комментарий.
   career_member_mailer:
     new_career_member_email:
       subject: Вам назначен карьерный трек.
-      career_path: Ура-ура! Теперь ты можешь проходить Карьерный трек! Переходи <a href="%{career_path}" class="text-secondary fw-bolder">по ссылке</a> и начинай готовиться к трудоустройству.
+      career_path_html: Ура-ура! Теперь ты можешь проходить Карьерный трек! Переходи <a href="%{career_path}" class="text-secondary fw-bolder">по ссылке</a> и начинай готовиться к трудоустройству.
       description: |
         Карьерный трек — это сервис на Хекслете, который помогает студентам подготовиться к трудоустройству: проработать резюме, сопроводительное, портфолио, получить практические навыки прохождения интервью и многое-многое другое!
       list:
@@ -48,12 +48,12 @@ ru:
   resume_comment_mailer:
     new_comment_email:
       content: 'Содержание:'
-      new_comment: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
+      new_comment_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
       subject: У вас новый коментарий к резюме
   resume_answer_mailer:
     new_answer_email:
       content: 'Содержание:'
-      new_answer: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме
+      new_answer_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме
       review: Ваше резюме прошло ревью!
       subject: У вас новая рекомендация к резюме
   reset: Сбросить

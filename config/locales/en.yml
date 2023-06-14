@@ -33,12 +33,12 @@ en:
   answer_comment_mailer:
     new_comment_email:
       content: 'Content:'
-      new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
+      new_comment_html: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
       subject: New comment for your recommendation.
   career_member_mailer:
     new_career_member_email:
       subject: You have been assigned a career track.
-      career_path: Cheers cheers! Now you can complete the Career track! Follow <a href="%{career_path}" class="text-secondary fw-bolder">the link</a> and start preparing for employment.
+      career_path_html: Cheers cheers! Now you can complete the Career track! Follow <a href="%{career_path}" class="text-secondary fw-bolder">the link</a> and start preparing for employment.
       description: |
         Career Track is a service on Hexlet that helps students prepare for employment: work out a resume, cover letter, portfolio, get practical interview skills and much, much more!
       list:
@@ -49,13 +49,13 @@ en:
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'
-      new_answer: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
+      new_answer_html: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
       review: Your resume has been reviewed!
       subject: You have a new recommendation
   resume_comment_mailer:
     new_comment_email:
       content: 'Content:'
-      new_comment: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
+      new_comment_html: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}">a new comment</a> on your summary
       subject: You have a new resume comment
   reset: Reset
   submit: Submit
