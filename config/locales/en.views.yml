@@ -196,11 +196,13 @@ en:
       careers:
         members:
           index:
-            header: Career path
+            header: Career track
             tab_active: Active
             tab_finished: Finished
           members:
-            start_career: 'Start career path: %{name}'
+            start_career: Start Career track
+            show: Show Career track
+            career_track_finished: career track finished
       vacancies:
         new:
           header: New vacancy
