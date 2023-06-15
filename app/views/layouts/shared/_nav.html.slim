@@ -14,7 +14,10 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
         - if user_signed_in?
           li.nav-item
             = link_to account_notifications_path, class: 'nav-link px-2' do
-              span.bi.bi-bell
+              - if current_user.unread_notifications?
+                span.bi.bi-bell-fill.text-danger
+              -else
+                span.bi.bi-bell
           li.nav-item.dropdown
             a.nav-link.px-2.dropdown-toggle href="#" data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false' = t('.add')
             ul.dropdown-menu.dropdown-menu-end

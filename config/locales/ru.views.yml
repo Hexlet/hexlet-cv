@@ -237,6 +237,9 @@ ru:
           my_answers: Мои рекомендации
       notifications:
         index:
+          notification_read: Уведомление прочитанно
+          mark_as_read: Пометить как прочитанное
+          content: Содержание
           header: Уведомления
       newsletters:
         edit:

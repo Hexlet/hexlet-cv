@@ -7,5 +7,9 @@ module UserPresenter
     "#{first_name} #{last_name}"
   end
 
+  def unread_notifications?
+    notifications.unread.exists?
+  end
+
   alias to_s full_name
 end

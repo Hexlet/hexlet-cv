@@ -2,6 +2,9 @@ en:
   flash:
     web:
       account:
+        notifications:
+          update:
+            success: Notification read.
         profiles:
           update:
             success: Data updated

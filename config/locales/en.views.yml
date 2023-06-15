@@ -240,7 +240,10 @@ en:
           my_answers: My recommendations
       notifications:
         index:
+          notification_read: Notification read
+          mark_as_read: Mark as Read
           header: Notifications
+          content: Content
       newsletters:
         edit:
           header: Email settings

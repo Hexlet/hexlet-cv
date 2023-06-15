@@ -1,6 +1,7 @@
 en:
   activerecord:
     models:
+      notification: Notification
       resume: Resume
       user: User
       resume/answer: Recommendation
@@ -71,6 +72,10 @@ en:
         state/published: Published
         name: Name
         company: Company
+      notification:
+        state: State Notification
+        state/read: Read
+        state/unread: Unread
       user:
         password: password
         resume_answer_likes_count: Likes

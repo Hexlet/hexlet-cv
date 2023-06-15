@@ -30,7 +30,13 @@ full_one_comment_full:
 two_full_one_answer_comment_full:
   user: full
   resource: two_full_one (Resume::Answer::Comment)
-  state: unread
+  state: read
   kind: new_answer_comment
+
+career_member_full_by_full:
+  user: full
+  resource: member_full (Career::Member)
+  state: unread
+  kind: new_career_member
 
 # FIXME: add likes to resume and answers
