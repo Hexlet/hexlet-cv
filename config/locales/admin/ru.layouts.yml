@@ -4,8 +4,9 @@ ru:
     web:
       admin:
         application:
-          admin: Администраторы
-          all_users: Все пользователи
-          all_resumes: Все резюме
-          all_vacancies: Все вакансии
-          all_career_paths: Карьерные треки
+          admins: Администраторы
+          all_users: Пользователи
+          all_resumes: Резюме
+          all_vacancies: Вакансии
+          all_career_tracks: Карьерные треки
+          career_track: Карьерный трек

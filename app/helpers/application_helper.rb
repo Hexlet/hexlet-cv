@@ -52,6 +52,27 @@ module ApplicationHelper
     end
   end
 
+  def sidebar_menu_divider(value)
+    tag.div value, class: 'sidebar-heading mt-4 mb-1 fw-bold text-uppercase small'
+  end
+
+  # rubocop:disable Rails/OutputSafety
+  def sidebar_menu_item(name, fa_class = nil, path = '#', *args, &)
+    args_options = args.extract_options!
+    options = { class: class_names('nav-link text-body ps-0', 'fw-bold': active?(path)) }.merge args_options
+    tag.li class: 'nav-item mb-3' do
+      link_to path, options do
+        [
+          if fa_class
+            tag.span(nil, class: "bi #{fa_class} me-2")
+          end,
+          tag.span(name, class: '', &)
+        ].join.html_safe
+      end
+    end
+  end
+  # rubocop:enable Rails/OutputSafety
+
   def message_for_notification(notification)
     ::NotificationsHelper.message(notification)
   end
