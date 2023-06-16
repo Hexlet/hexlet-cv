@@ -30,7 +30,8 @@ en:
         item_step_fields:
           step: step
           order: step sequence number
-          remove_field: Delete
+          remove_field: Delete step
+          edit: Edit step
         index:
           edit: Edit
         edit:

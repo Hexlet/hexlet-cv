@@ -27,7 +27,8 @@ ru:
         item_step_fields:
           step: шаг
           order: порядковый номер шага
-          remove_field: Удалить
+          remove_field: Удалить шаг
+          edit: Редактировать шаг
         index:
           edit: Редактировать карьерный трек
         edit:
