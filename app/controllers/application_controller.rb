@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   include Sparkpost
   include Auth
   include Flash
+  include DeviseHelper
 
   before_action :banned?
   helper_method :current_or_guest_user
