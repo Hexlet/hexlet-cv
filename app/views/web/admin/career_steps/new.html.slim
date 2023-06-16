@@ -1,0 +1,4 @@
+- content_for :header do
+  = t('.new_step')
+
+= render 'form', step: @step, url: admin_career_steps_path

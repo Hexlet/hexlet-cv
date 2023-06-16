@@ -1,0 +1,17 @@
+= link_to t('.back'), url_for(:back), class: 'btn btn-secondary me-1'
+= link_to edit_admin_career_step_path(@step), class: 'btn btn-primary', title: t('.edit') do
+  span.bi.bi-gear-fill.me-1
+  = t('.edit')
+
+.row.my-1
+  .col-lg-12
+    .my-1
+      h3 = @step.name
+      .bg-light.rounded.py-2.px-3
+        == markdown2html(@step.description)
+    .my-1
+      h4 = t('.tasks')
+      .bg-light.rounded.py-2.px-3
+        == markdown2html(@step.tasks_text)
+
+= render 'careers', careers: @careers

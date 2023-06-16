@@ -1,0 +1,11 @@
+- content_for :header do
+  = @step.name
+
+- if @careers.any?
+  = link_to '#attached', class: 'btn btn-primary' do
+    span.bi.bi-eye
+    = t('.attached_careers')
+
+= render 'form', step: @step, url: admin_career_step_path(@step)
+
+= render 'careers', careers: @careers

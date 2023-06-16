@@ -27,6 +27,12 @@ ru:
           edit: Редактировать вакансию
           no_date: нет даты
           export: Экспортировать вакансии в csv
+      users:
+        edit:
+          header: Редактирование пользователя
+      home:
+        index:
+          admins: Администраторы
       careers:
         item_step_fields:
           step: шаг
@@ -59,9 +65,8 @@ ru:
           cancel: Отменить
         steps:
           edit: Редактировать
-          add_new_step: Добавить новый шаг
+          add_new_step: Добавить шаг
           steps_career: Шаги карьерного трека
-          show_step: Посмотреть
           show:
             step: Шаг %{step_name}
         users:

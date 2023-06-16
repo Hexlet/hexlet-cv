@@ -30,6 +30,26 @@ en:
       home:
         index:
           admins: Administrators
+      career_steps:
+        index:
+          edit: Edit
+          show: Show
+          action: Actions
+        menu:
+          list: List
+          new: New
+        show:
+          attached: Attached to Careers
+          tasks: Tasks
+          actions: Actions
+          edit: Edit
+          show: Show
+          back: Back
+        careers:
+          edit: Edit
+          attached: Step related career tracks
+          actions: Action
+          show: Show
       careers:
         item_step_fields:
           step: step

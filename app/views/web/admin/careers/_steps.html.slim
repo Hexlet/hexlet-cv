@@ -1,6 +1,6 @@
 h3.my-4.me-3 = t('.steps_career')
 
-= link_to t('.add_new_step'), new_admin_career_step_path(career), class: 'btn btn-primary'
+/ = link_to t('.add_new_step'), new_admin_career_step_path(career), class: 'btn btn-primary'
 
 table.table
   thead
@@ -9,9 +9,9 @@ table.table
       th = han('career/step', 'created_at')
       th = t('actions')
   tbody
-    - steps.each do |step|
+    - career_steps.each do |step|
       tr
-        td = link_to step.name, admin_career_step_path(career, step), class: 'text-decoration-none'
+        td = link_to step.name, admin_career_step_path(step), class: 'text-decoration-none'
         td = l step.created_at, format: :long
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
