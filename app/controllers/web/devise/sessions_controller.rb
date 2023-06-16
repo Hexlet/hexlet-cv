@@ -3,5 +3,4 @@
 class Web::Devise::SessionsController < Devise::SessionsController
   include GonInit
   include LocaleConcern
-  include DeviseHelper
 end

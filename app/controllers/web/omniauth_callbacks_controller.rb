@@ -2,7 +2,6 @@
 
 class Web::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include LocaleConcern
-  include DeviseHelper
 
   def github
     @user = User.from_omniauth(request.env['omniauth.auth'])

@@ -2,5 +2,4 @@
 
 class Web::Devise::PasswordsController < Devise::PasswordsController
   include LocaleConcern
-  include DeviseHelper
 end
