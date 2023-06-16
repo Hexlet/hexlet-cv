@@ -1,4 +1,44 @@
-one:
-  state: 'active'
+one_by_user_full:
+  state: active
   career_member: member_full
   career_step: step_one
+
+one_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_one
+
+two_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_two
+
+three_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_three
+
+four_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_four
+
+five_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_five
+
+six_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_six
+
+seven_by_user_one:
+  state: finished
+  career_member: member_one
+  career_step: step_seven
+
+eight_by_user_one:
+  state: active
+  career_member: member_one
+  career_step: step_eight
