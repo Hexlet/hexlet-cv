@@ -20,7 +20,6 @@ ru:
           many: |
             %{count} Ответов
       nav:
-        application_name: Hexlet CV
         career: Карьерный трек
         en: Английский
         ru: Русский
