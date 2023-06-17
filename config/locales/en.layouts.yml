@@ -17,7 +17,6 @@ en:
           other: |
             %{count} Answers
       nav:
-        application_name: Hexlet CV
         en: English
         ru: Russian
         admin: Admin panel
