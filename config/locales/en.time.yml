@@ -3,3 +3,4 @@ en:
     formats:
       long_schema: "%d-%m-%Y %H:%M:%S"
       schema: "%m/%d/%Y"
+      without_time: "%d.%m.%Y"

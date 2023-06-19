@@ -1,6 +1,6 @@
 .border.bg-body-tertiary.p-4.rounded.mb-4
   .row
-    .col-md
+    .col-10
       .small.text-body-secondary = t('.career')
       = link_to resource_career.name, career_path(resource_career), class: 'h1 d-block text-decoration-none link-secondary', target: '_blank', rel: :noopener
       span.text-nowrap = t('.started_at', date: l(resource_member.created_at, format: :long))

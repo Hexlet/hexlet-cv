@@ -6,6 +6,10 @@ en:
         start_career: Start
         career_path: Career Path
       members:
+        career_info:
+          career: Career track
+          started_at: Begin %{date}
+          student_html: 'Student: <b>%{link}</b>'
         show:
           name_step: 'Step %{number}: %{name}'
           tasks: 'Tasks:'
