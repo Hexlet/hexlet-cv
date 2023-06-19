@@ -7,6 +7,23 @@ en:
           list: List
         index:
           admins: Administrators
+      career_users:
+        show:
+          back: Back
+          archive: Arachive
+          career: Career track
+        active_careers:
+          show: Профиль пользователя
+        archived_careers:
+          show: Профиль пользователя
+        finished_careers:
+          no_date: Не завершен
+          show: Профиль пользователя
+        index:
+          users_active_career: Проходящие карьерный трек
+          users_finished_career: Закончившие карьерный трек
+          users_archived_career: Архив
+          add_user: Assign a student a career track
       resumes:
         index:
           edit: Edit CV

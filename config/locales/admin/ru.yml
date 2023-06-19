@@ -7,6 +7,23 @@ ru:
           list: Список
         index:
           admins: Администраторы
+      career_users:
+        show:
+          back: Назад
+          archive: Архивировать
+          career: Карьерные треки
+        active_careers:
+          show: Профиль пользователя
+        archived_careers:
+          show: Профиль пользователя
+        finished_careers:
+          no_date: Не завершен
+          show: Профиль пользователя
+        index:
+          users_active_career: Проходящие карьерный трек
+          users_finished_career: Закончившие карьерный трек
+          users_archived_career: Архив
+          add_user: Назначить студенту карьерный трек
       resumes:
         index:
           edit: Редактировать резюме

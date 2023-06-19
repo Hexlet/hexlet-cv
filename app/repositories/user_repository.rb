@@ -4,6 +4,8 @@ module UserRepository
   extend ActiveSupport::Concern
 
   included do
-    scope :web, -> { order(id: :desc).permitted }
+    scope :ordered, -> { order(id: :desc) }
+    scope :web, -> { ordered.permitted }
+    scope :with_careers, -> { joins(:careers) }
   end
 end

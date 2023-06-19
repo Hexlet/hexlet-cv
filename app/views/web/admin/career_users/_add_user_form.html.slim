@@ -1,0 +1,7 @@
+= simple_form_for career_member, url: admin_career_member_users_path do |f|
+  = f.association :user, as: :autocomplete, source: search_api_internal_users_url(format: 'json')
+  = f.association :career, as: :select_with_search, collection: careers
+  .row.mt-5
+    .col-sm.d-flex.mb-3
+      .me-3 = f.button :submit, class: 'btn btn-success', name: 'create'
+      = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

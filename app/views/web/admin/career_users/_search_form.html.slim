@@ -1,0 +1,7 @@
+.p-3.mb-3.bg-light
+  = search_form_for q, default_filter_form_options(url: admin_career_users_path, html: { class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-3', novalidate: true }) do |f|
+    = f.input :last_name_cont, placeholder: han('user', :last_name), label: false
+    = f.input :email_cont, placeholder: han('user', :email), label: false
+    .col.d-flex.align-self-end
+      = f.button :submit, t('submit'), class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'

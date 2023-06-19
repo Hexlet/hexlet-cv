@@ -3,6 +3,7 @@ ru:
   flash:
     web:
       admin:
+        
         careers:
           create:
             success: Карьерный трек создан!
@@ -44,3 +45,7 @@ ru:
         users:
           update:
             success: Данные пользователя успешно обновлены
+        career_member_users:
+          create:
+            success: Студент добавлен в карьерный трек
+            error: Студенту уже назначен карьерный трек

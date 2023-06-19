@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       notification: Notification
+      career: Career track
       resume: Resume
       user: User
       resume/answer: Recommendation
@@ -35,6 +36,8 @@ en:
         slug: Slug
         description: Description
         locale: Locale
+      career/member:
+        career: Career track
       vacancy:
         conditions_description: Supplemental Pay
         requirements_description: Requirements

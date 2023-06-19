@@ -1,0 +1,22 @@
+= render 'search_form', q: @q
+
+h2 = t('.users_active_career')
+
+a.btn.btn-warning[data-bs-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false"]
+  span.bi.bi-patch-plus.me-1
+  = t('.add_user')
+.collapse[id="collapse-1"]
+  .mb-2.m-4
+    = render 'add_user_form', career_member: @career_member, careers: @careers
+
+= render 'active_careers', users: @users_with_active_career, q: @q
+
+- if @users_with_finished_career.any?
+  h2 = t('.users_finished_career')
+  = render 'finished_careers', users: @users_with_finished_career, q: @q
+
+- if @users_with_archived_career.any?
+  h2 = t('.users_archived_career')
+  = render 'archived_careers', users: @users_with_archived_career, q: @q
+
+= paginate @users

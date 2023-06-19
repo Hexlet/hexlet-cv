@@ -21,7 +21,7 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
     member = Career::Member.find(params[:id])
     member.archive!
     f(:success)
-    redirect_to admin_career_path(resource_career)
+    redirect_to params[:back_to] || admin_career_path(resource_career)
   end
 
   private
