@@ -3,7 +3,7 @@
 
 - if @careers.any?
   = link_to '#attached', class: 'btn btn-primary' do
-    span.bi.bi-eye
+    span.bi.bi-eye.me-1
     = t('.attached_careers')
 
 = render 'form', step: @step, url: admin_career_step_path(@step)
