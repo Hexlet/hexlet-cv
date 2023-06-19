@@ -1,9 +1,9 @@
 .border.bg-body-tertiary.p-4.rounded.mb-4
-  .row
-    .col-10
+  .row.gy-3
+    .col-lg-9
       .small.text-body-secondary = t('.career')
       = link_to resource_career.name, career_path(resource_career), class: 'h1 d-block text-decoration-none link-secondary', target: '_blank', rel: :noopener
       span.text-nowrap = t('.started_at', date: l(resource_member.created_at, format: :long))
-    .col-md.d-flex.flex-column.mt-3.mt-md-0.text-md-end
+    .col-lg-3.text-lg-end
       .text-truncate
         = t('.student_html', link: link_to(resource_member.user, user_path(resource_member.user), class: 'text-decoration-none'))
