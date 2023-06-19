@@ -44,6 +44,7 @@ en:
             success: Resume published successfully
           update:
             success: Resume updated successfully
+            error: Failed to save changes. Please check form fields and try again.
         vacancies:
           update:
             success: Job updated successfully
