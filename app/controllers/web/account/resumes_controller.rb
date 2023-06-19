@@ -39,7 +39,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
       f(:success)
       redirect_to account_resumes_path
     else
-      @resume = resume.becomes(Resume)
+      @resume = resume
       f(:error)
       render :edit, status: :unprocessable_entity
     end
