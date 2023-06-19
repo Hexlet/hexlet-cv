@@ -22,7 +22,7 @@ class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
   end
 
   def create
-    @step = Web::Admin::Career::StepForm.new(career_step_params)
+    @step = Web::Admin::Career::StepForm.new(params[:career_step])
     if @step.save
       f(:success)
       redirect_to admin_career_step_path(@step)
@@ -36,7 +36,7 @@ class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
     @step = Career::Step.find(params[:id])
     step = @step.becomes(Web::Admin::Career::StepForm)
 
-    if step.update(career_step_params)
+    if step.update(params[:career_step])
       f(:success)
       redirect_to admin_career_step_path(@step)
     else
@@ -44,11 +44,5 @@ class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
       f(:error)
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def career_step_params
-    params.require(:career_step)
   end
 end
