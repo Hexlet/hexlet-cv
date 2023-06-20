@@ -31,15 +31,14 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   end
 
   def update
-    @resume = current_user.resumes.find params[:id]
-    resume = @resume.becomes(Web::Account::ResumeForm)
-    if resume.update(params[:resume])
+    resume = current_user.resumes.find params[:id]
+    @resume = resume.becomes(Web::Account::ResumeForm)
+    if @resume.update(params[:resume])
       change_visibility(@resume)
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
     else
-      @resume = resume
       f(:error)
       render :edit, status: :unprocessable_entity
     end
