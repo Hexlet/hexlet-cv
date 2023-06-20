@@ -17,6 +17,10 @@ class Web::Admin::ResumeForm < Resume
     skills_description
     awards_description
     english_fluency
+    city
+    relocation
+    skill_list
+    direction_list
   ]
 
   nested_attrs = {
