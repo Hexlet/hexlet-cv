@@ -61,10 +61,10 @@ en:
         company_name: Company name
         creator: Name
         site: Company website
-        contact_name: Your first and last name
-        contact_phone: Your phone number
-        contact_email: Your email
-        contact_telegram: Your telegram
+        contact_name: First and last name
+        contact_phone: Phone number
+        contact_email: Email
+        contact_telegram: Telegram
         technology_list: Technologies
         direction_list: Tags
         state: State
