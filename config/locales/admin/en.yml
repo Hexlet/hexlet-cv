@@ -8,6 +8,8 @@ en:
         index:
           admins: Administrators
       career_users:
+        add_user_form:
+          cancel: Отмена
         show:
           back: Back
           archive: Arachive

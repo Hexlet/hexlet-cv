@@ -8,6 +8,8 @@ ru:
         index:
           admins: Администраторы
       career_users:
+        add_user_form:
+          cancel: Отмена
         show:
           back: Назад
           archive: Архивировать
