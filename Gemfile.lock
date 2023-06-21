@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/usernaimandrey/aasm_history.git
+  revision: 9a385398761205f86bc78f8baaa4b2fe3268caff
+  specs:
+    aasm_history (0.1.3)
+      aasm (~> 5.5)
+
+GIT
   remote: https://github.com/vmg/redcarpet.git
   revision: 3e3f0b522fbe9283ba450334b5cec7a439dc0955
   specs:
@@ -480,6 +487,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  aasm_history!
   active_form_model (~> 0.4.1)
   acts-as-taggable-on
   bootsnap

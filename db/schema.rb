@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_125208) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_143258) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -208,6 +208,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_125208) do
     t.boolean "evaluated_ai"
     t.string "evaluated_ai_state"
     t.index ["user_id"], name: "index_resumes_on_user_id"
+  end
+
+  create_table "state_histories", force: :cascade do |t|
+    t.string "state"
+    t.string "previous_state"
+    t.integer "stateable_id"
+    t.string "stateable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

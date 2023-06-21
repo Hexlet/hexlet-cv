@@ -10,7 +10,8 @@ class Career::Member < ApplicationRecord
   belongs_to :career
   has_many :career_step_members, class_name: 'Career::Step::Member', inverse_of: :career_member, foreign_key: 'career_member_id', dependent: :destroy
 
-  aasm :state, timestamps: true do
+  aasm column: :state, timestamps: true do
+    has_history
     state :active, initial: true
     state :finished
     state :archived
@@ -54,4 +55,6 @@ class Career::Member < ApplicationRecord
   def next_item(item)
     career.items.where(order: item.order..).ordered.second
   end
+
+  has_state_history
 end
