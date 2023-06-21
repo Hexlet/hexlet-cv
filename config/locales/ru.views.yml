@@ -57,6 +57,10 @@ ru:
     shared:
       answer:
         add_a_comment: Добавить комментарий
+      career_members:
+        start_career: Проходить карьерный трек
+        show: Посмотреть карьерный трек
+        career_track_finished: карьерный трек завершен
       resume_filter:
         directions: Выберите направление
         name: Название резюме
@@ -200,10 +204,6 @@ ru:
             header: Карьерный трек
             tab_active: Активные
             tab_finished: Завершенные
-          members:
-            start_career: Проходить карьерный трек
-            show: Посмотреть карьерный трек
-            career_track_finished: карьерный трек завершен
       vacancies:
         new:
           header: Новая вакансия

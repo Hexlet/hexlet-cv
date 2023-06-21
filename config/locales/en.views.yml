@@ -55,6 +55,10 @@ en:
         header: Oops, it's empty
         explanation: This happens when the page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
+      career_members:
+        start_career: Start Career track
+        show: Show Career track
+        career_track_finished: career track finished
       resume_filter:
         directions: Choose a direction
         name: CV title
@@ -203,10 +207,6 @@ en:
             header: Career track
             tab_active: Active
             tab_finished: Finished
-          members:
-            start_career: Start Career track
-            show: Show Career track
-            career_track_finished: career track finished
       vacancies:
         new:
           header: New vacancy

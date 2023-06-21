@@ -9,6 +9,6 @@ ul.nav.nav-pills.justify-content-center role="navigation"
 
 .tab-content.py-3
   .tab-pane.fade.show.active id="active"
-      = render 'members', members: @active_members
+      = render 'web/shared/career_members', members: @active_members
   .tab-pane.fade id="finished"
-      = render 'members', members: @finished_members
+      = render 'web/shared/career_members', members: @finished_members
