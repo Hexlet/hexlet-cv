@@ -8,7 +8,6 @@ ru:
         career_path: Карьерный трек
       members:
         show:
-          name_step: 'Шаг %{number}: %{name}'
           tasks: 'Задачи:'
           step_finish: Завершить шаг
           step_finished: Шаг завершен

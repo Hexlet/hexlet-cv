@@ -17,7 +17,7 @@ ul.nav.nav-tabs.mt-2.mb-4
 .row.my-1
   .col-lg-8
     .my-1
-      h3 = t('.name_step', number: @career_item.order, name: @career_step.name)
+      h3 = @career_step.name
       .bg-light.rounded.py-2.px-3
         == markdown2html(@career_step.description)
     .my-1

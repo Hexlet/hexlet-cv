@@ -11,7 +11,6 @@ en:
           started_at: Begin %{date}
           student_html: 'Student: <b>%{link}</b>'
         show:
-          name_step: 'Step %{number}: %{name}'
           tasks: 'Tasks:'
           step_finish: Finish step
           step_finished: Finished step

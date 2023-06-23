@@ -8,7 +8,7 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
     authorize career_step_member
     ActiveRecord::Base.transaction do
       career_step_member.finish!
-      @career_member = resource_career.members.where(user: current_user).active.last
+      @career_member = career_step_member.career_member
       @career_member.finish! if @career_member.may_finish?
     end
     f(:success)

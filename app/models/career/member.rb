@@ -33,7 +33,7 @@ class Career::Member < ApplicationRecord
   end
 
   def career_step_members_finished?
-    career_step_members.ordered.finished.last&.career_step == career.steps.ordered.last
+    career_step_members.ordered.finished.count == career.steps.ordered.count
   end
 
   def current_item
