@@ -85,12 +85,9 @@ ru:
         empty: Список пуст
       empty:
         empty_now_but_read_something_useful: Пока здесь ничего нет. Вы можете почитать кое-что полезное на Хекслете
-        how_to_compose_resume: Как составить резюме
-        how_to_prepare_for_interview: Как подготовиться к интервью
-        how_to_pass_interview: Как пройти собеседование
-        compose_resume_link: 'https://guides.hexlet.io/ru/how-to-create-a-resume/'
-        prepare_for_interview_link: 'https://guides.hexlet.io/ru/how-to-prepare-for-interview/'
-        pass_interview_link: 'https://guides.hexlet.io/ru/how-to-pass-the-interview/'
+        compose_resume_link_html: <a href="https://guides.hexlet.io/ru/how-to-create-a-resume" target="_blank">Как составить резюме</a>
+        second_useful_link_html: <a href="https://guides.hexlet.io/ru/how-to-prepare-for-interview/" target="_blank">Как подготовиться к интервью</a>
+        third_useful_link_html: <a href="https://guides.hexlet.io/ru/how-to-pass-the-interview/" target="_blank">Как проходить собеседование</a>
     home:
       index:
         title: Резюме программиста

@@ -85,12 +85,9 @@ en:
         empty: Empty
       empty:
         empty_now_but_read_something_useful: There is nothing here yet. You can read something useful on Hexlet
-        how_to_compose_resume: How to compose resume
-        how_to_prepare_for_interview: How to prepare for interview
-        how_to_pass_interview: How to pass interview
-        compose_resume_link: 'https://guides.hexlet.io/ru/how-to-create-a-resume/'
-        prepare_for_interview_link: 'https://guides.hexlet.io/ru/how-to-prepare-for-interview/'
-        pass_interview_link: 'https://guides.hexlet.io/ru/how-to-pass-the-interview/'
+        compose_resume_link_html: <a href="https://guides.hexlet.io/ru/how-to-create-a-resume" target="_blank">How to compose resume</a>
+        second_useful_link_html: <a href="https://guides.hexlet.io/check-list-of-engineering-practices/" target="_blank">Checklist of essential engineering practices</a>
+        third_useful_link_html: <a href="https://guides.hexlet.io/learning/" target="_blank">How to learn to cope with negative thoughts</a>
     home:
       index:
         title: CV reviews
