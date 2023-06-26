@@ -13,3 +13,5 @@
   = auto_discovery_link_tag :rss, vacancies_url(format: :rss)
 
 = render partial: 'web/shared/vacancies', object: @vacancies
+- if @vacancies.empty?
+  = render partial: 'web/shared/empty'

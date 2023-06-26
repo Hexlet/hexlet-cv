@@ -85,6 +85,11 @@ en:
         title_apply: Apply recommendations
       empty_list:
         empty: Empty
+      empty:
+        empty_now_but_read_something_useful: There is nothing here yet. You can read something useful on Hexlet
+        compose_resume_link_html: <a href="https://guides.hexlet.io/ru/how-to-create-a-resume" target="_blank">How to compose resume</a>
+        second_useful_link_html: <a href="https://guides.hexlet.io/check-list-of-engineering-practices/" target="_blank">Checklist of essential engineering practices</a>
+        third_useful_link_html: <a href="https://guides.hexlet.io/learning/" target="_blank">How to learn to cope with negative thoughts</a>
     home:
       index:
         title: CV reviews
