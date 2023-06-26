@@ -5,7 +5,7 @@ class Web::HomeController < Web::ApplicationController
     form = Web::Resumes::SearchForm.new(params[:q])
     @bot = AiBotHelper.ai_bot_user
     @q = Resume.web.with_locale.ransack(form.to_h)
-    @resumes = @q.result(distinct: true).includes(:user).page(params[:page]).order(id: :desc)
+    @resumes = @q.result(distinct: true).includes(:user, :skills).page(params[:page]).order(id: :desc)
     @page = params[:page]
     @tags = Resume.directions_tags
 

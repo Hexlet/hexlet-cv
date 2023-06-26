@@ -4,7 +4,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
   def show
     @options = fetch_options(params[:id])
 
-    scope = Vacancy.web.page(params[:page]).order(published_at: :desc)
+    scope = Vacancy.web.includes(:technologies).page(params[:page]).order(published_at: :desc)
 
     options_for_header = {
       position_level: '',

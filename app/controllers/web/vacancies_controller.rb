@@ -2,7 +2,7 @@
 
 class Web::VacanciesController < Web::ApplicationController
   def index
-    q = Vacancy.web.ransack(params[:q])
+    q = Vacancy.web.includes(:technologies).ransack(params[:q])
     @vacancies = q.result(distinct: true).page(params[:page]).order(published_at: :desc)
     @vacancy_search_form = Web::Vacancies::SearchForm.new
     @tags = Vacancy.directions_tags
