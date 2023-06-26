@@ -42,3 +42,8 @@
                 = distance_of_time_in_words_to_now resume.created_at
               = link_to resume.user, user_path(resume.user)
   = paginate @resumes
+- if @resumes.empty?
+  - if params[:q].nil?
+    = render partial: 'web/shared/empty'
+  - else
+    = render partial: 'web/shared/empty_list'
