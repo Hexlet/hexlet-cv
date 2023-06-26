@@ -58,6 +58,7 @@ ru:
         apply: Принять
         add_a_comment: Добавить комментарий
       career_members:
+        continue_career: Продолжить
         start_career: Проходить карьерный трек
         show: Посмотреть карьерный трек
         career_track_finished: карьерный трек завершен

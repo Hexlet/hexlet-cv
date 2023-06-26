@@ -3,6 +3,7 @@
 class Career::Member < ApplicationRecord
   include StateConcern
   include Career::MemberRepository
+  include Career::MemberPresenter
 
   validates :user, uniqueness: { scope: :career, conditions: -> { where.not(state: :archived) } }
 

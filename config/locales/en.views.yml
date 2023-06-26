@@ -55,6 +55,7 @@ en:
         explanation: This happens when the page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
       career_members:
+        continue_career: Сontinue 
         start_career: Start Career track
         show: Show Career track
         career_track_finished: career track finished

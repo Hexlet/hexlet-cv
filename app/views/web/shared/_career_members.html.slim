@@ -4,12 +4,18 @@
       .me-3 = member.career.name
       - if member.finished?
         span.bi.bi-check-circle-fill.text-success[aria-label="#{t('.career_track_finished')}"]
+      - else
+        .progress.align-self-center.col-4
+          .progress-bar[role='progressbar' style="width: #{member.progress_percent}%"; aria-valuenow="#{member.progress_percent}"  aria-valuemin='0' aria-valuemax='100'] = member.progress_percent
 
     .card-body
       .card-text.hexlet-cv-content == markdown2html member.career.description
       - if member.finished?
         = link_to career_member_path(member.career, member), class: 'btn btn-success' do
           = t('.show')
+      - elsif member.progress_percent.positive?
+        = link_to career_member_path(member.career, member), class: 'btn btn-warning' do
+          = t('.continue_career')
       - else
         = link_to career_member_path(member.career, member), class: 'btn btn-primary' do
           = t('.start_career')
