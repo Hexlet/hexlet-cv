@@ -88,9 +88,9 @@ en:
         how_to_compose_resume: How to compose resume
         how_to_prepare_for_interview: How to prepare for interview
         how_to_pass_interview: How to pass interview
-        compose_resume_link: 'https://translate.google.com/translate?sl=ru&tl=en&u=https://guides.hexlet.io/ru/how-to-create-a-resume/'
-        prepare_for_interview_link: 'https://translate.google.com/translate?sl=ru&tl=en&u=https://guides.hexlet.io/ru/how-to-prepare-for-interview/'
-        pass_interview_link: 'https://translate.google.com/translate?sl=ru&tl=en&u=https://guides.hexlet.io/ru/how-to-pass-the-interview/'
+        compose_resume_link: 'https://guides.hexlet.io/ru/how-to-create-a-resume/'
+        prepare_for_interview_link: 'https://guides.hexlet.io/ru/how-to-prepare-for-interview/'
+        pass_interview_link: 'https://guides.hexlet.io/ru/how-to-pass-the-interview/'
     home:
       index:
         title: CV reviews
