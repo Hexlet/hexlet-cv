@@ -14,7 +14,7 @@
         = link_to career_member_path(member.career, member), class: 'btn btn-success' do
           = t('.show')
       - elsif member.progress_percent.positive?
-        = link_to career_member_path(member.career, member), class: 'btn btn-warning' do
+        = link_to career_member_path(member.career, member), class: 'btn btn-success' do
           = t('.continue_career')
       - else
         = link_to career_member_path(member.career, member), class: 'btn btn-primary' do
