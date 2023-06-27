@@ -84,7 +84,7 @@ module ApplicationHelper
   def not_found_random_image
     # TODO: add funny pictures
     tag.div class: 'lead text-center' do
-      t('.nothing')
+      image_tag('toto_empty.png', size: '500x300', alt: t('.nothing'))
     end
   end
 

@@ -273,6 +273,8 @@ en:
           one: View
           other: Views
           answers:
+      empty_list:
+        nothing: There is nothing here yet
       comments:
         new:
           header: Create a comment
