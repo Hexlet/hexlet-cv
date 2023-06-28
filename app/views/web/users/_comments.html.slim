@@ -1,6 +1,9 @@
-- comments.each do |comment|
-  .card.mb-3
-    .card-header
-      = link_to comment.resume, resume_path(comment.resume)
-    .card-body
-      .card-text.hexlet-cv-content == markdown2html comment.content
+- if comments.empty?
+  = render 'profile_empty_list'
+- else
+  - comments.each do |comment|
+    .card.mb-3
+      .card-header
+        = link_to comment.resume, resume_path(comment.resume)
+      .card-body
+        .card-text.hexlet-cv-content == markdown2html comment.content

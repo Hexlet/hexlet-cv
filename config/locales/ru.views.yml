@@ -275,8 +275,8 @@ ru:
           one: Просмотр
           few: Просмотра
           many: Просмотров
-      empty_list:
-        nothing: Здесь пока ни чего нет
+      profile_empty_list:
+        nothing: Здесь пока ничего нет
     answers:
       recommendation_open_ai: | 
         %{recommendation}

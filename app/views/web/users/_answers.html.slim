@@ -1,10 +1,13 @@
-- answers.each do |answer|
-  .card.mb-3
-    .card-header
-      = link_to answer.resume, resume_path(answer.resume)
-      - if policy(answer).update?
-        span.ms-3
-          = link_to edit_resume_answer_path(answer.resume, answer) do
-            i.far.fa-edit.text-muted
-    .card-body
-      .card-text.hexlet-cv-content == markdown2html truncate answer.content, length: 300, escape: false
+- if answers.empty?
+  = render 'profile_empty_list'
+- else
+  - answers.each do |answer|
+    .card.mb-3
+      .card-header
+        = link_to answer.resume, resume_path(answer.resume)
+        - if policy(answer).update?
+          span.ms-3
+            = link_to edit_resume_answer_path(answer.resume, answer) do
+              i.far.fa-edit.text-muted
+      .card-body
+        .card-text.hexlet-cv-content == markdown2html truncate answer.content, length: 300, escape: false
