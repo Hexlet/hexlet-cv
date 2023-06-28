@@ -15,12 +15,11 @@ table.table
         td = notification.aasm(:state).human_state
         td = l notification.created_at, format: :short
         td
-          .text-center
-            - if notification.may_mark_as_read?
-              = link_to account_notification_path(notification), method: :patch, class: 'btn btn-outline-primary btn-sm me-1', title: t('.mark_as_read') do
-                span.bi.bi-bookmark-check
-            - else
-              span.h4.bi.bi-check-circle-fill.text-success[aria-label="#{t('.notification_read')}"]
+          - if notification.may_mark_as_read?
+            = link_to account_notification_path(notification), method: :patch, class: 'btn btn-outline-primary btn-sm me-1', title: t('.mark_as_read') do
+              span.bi.bi-bookmark-check
+          - else
+            span.h4.bi.bi-check-circle-fill.text-success[aria-label="#{t('.notification_read')}"]
 
 = paginate @notifications
 

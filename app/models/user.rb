@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :career_members, class_name: 'Career::Member', dependent: :destroy
   has_many :careers, through: :career_members
+  has_many :unread_notifications, -> { unread }, class_name: 'Notification', inverse_of: :user, dependent: :nullify
 
   aasm :state, column: :state do
     state :permitted, initial: true

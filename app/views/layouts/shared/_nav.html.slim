@@ -14,7 +14,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
         - if user_signed_in?
           li.nav-item
             = link_to account_notifications_path, class: 'nav-link px-2' do
-              - if current_user.unread_notifications?
+              - if current_user.unread_notifications.any?
                 span.bi.bi-bell-fill.text-danger
               -else
                 span.bi.bi-bell
