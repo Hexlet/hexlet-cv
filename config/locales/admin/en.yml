@@ -7,6 +7,8 @@ en:
           edit: Edit CV
           archive: Archive CV
           restore: Publish CV
+          confirm_archive: Are you sure you want to archive your resume?
+          confirm_restore: Are you sure you want to post your resume?
         edit:
           header: Resume editing
       vacancies:
@@ -60,6 +62,7 @@ en:
           edit: Edit
           add_new_step: Add new step
           steps_career: Career track steps
+          show_step: Show
           show:
             step: Step %{step_name}
         users:

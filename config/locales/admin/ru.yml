@@ -7,6 +7,8 @@ ru:
           edit: Редактировать резюме
           archive: Убрать в архив
           restore: Опубликовать резюме
+          confirm_archive: Вы уверенны что хотите отправить резюме в архив
+          confirm_restore: Вы уверенны что хотите опубликовать резюме
         edit:
           header: Редактирование резюме
       vacancies:
@@ -57,6 +59,7 @@ ru:
           edit: Редактировать
           add_new_step: Добавить новый шаг
           steps_career: Шаги карьерного трека
+          show_step: Посмотреть
           show:
             step: Шаг %{step_name}
         users:
