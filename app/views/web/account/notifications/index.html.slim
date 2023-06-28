@@ -1,11 +1,27 @@
 - content_for :header do
   = t('.header')
 
-- @notifications.each do |notification|
-  .d-flex
-    i.mt-1.me-2.far class=class_for_notification(notification)
-    p.me-3 == message_for_notification(notification)
-    .text-muted.text-nowrap.ms-auto = l notification.created_at, format: :short
+table.table
+  thead
+    tr
+      th = t('.content')
+      th = han('notification', 'state')
+      th = sort_link(@q, 'created_at')
+      th = t('actions')
+  tbody
+    - @notifications.each do |notification|
+      tr
+        td == message_for_notification(notification)
+        td = notification.aasm(:state).human_state
+        td = l notification.created_at, format: :short
+        td
+          - if notification.may_mark_as_read?
+            = link_to account_notification_path(notification), method: :patch, class: 'btn btn-outline-primary btn-sm me-1', title: t('.mark_as_read') do
+              span.bi.bi-bookmark-check
+          - else
+            span.h4.bi.bi-check-circle-fill.text-success[aria-label="#{t('.notification_read')}"]
+
+= paginate @notifications
 
 - if @notifications.empty?
   = render partial: 'web/shared/empty_list'

@@ -62,5 +62,13 @@ class NotificationsHelper
         answer_path: resume_path(resource.resume, locale: I18n.locale, anchor: "answer-#{resource.answer.id}")
       }
     end
+
+    def new_career_member_params(resource)
+      career = resource.career
+      {
+        career: career.name,
+        career_path: career_member_path(career, resource, locale: I18n.locale)
+      }
+    end
   end
 end

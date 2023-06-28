@@ -19,7 +19,10 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
     assert_redirected_to admin_career_path(@career)
 
     member = Career::Member.find_by(user_id: attrs[:user_id])
+    notification = Notification.find_by(user: @user, resource: member, kind: :new_career_member)
+
     assert { member }
+    assert { notification }
   end
 
   test '#archive' do

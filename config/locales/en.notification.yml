@@ -1,0 +1,8 @@
+en:
+  notifications:
+    new_answer_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}" class="fw-bolder">new recommendation</a> to your resume
+    new_comment_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{comment_path}" class="fw-bolder">new comment</a> to your resume
+    new_answer_comment_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_comment_path}" class="fw-bolder">new comment</a> to your recommendation
+    new_answer_like_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> likes your <a href="%{answer_path}" class="fw-bolder"> recommendation</a>
+    answer_applied_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> improved his resume using your <a href="%{answer_path}" class="fw-bolder ">recommendation</a>
+    new_career_member_html: Hooray! You have been assigned a career track <a href="%{career_path}" class="fw-bolder">%{career}</a>. Get started and get ready for a job.

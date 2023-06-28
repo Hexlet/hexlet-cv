@@ -2,7 +2,7 @@
 ru:
   flash:
     web:
-      account:
+      account:          
         profiles:
           update:
             success: Данные обновлены
@@ -24,6 +24,8 @@ ru:
         notifications:
           read_all:
             success: Все уведомления помечены прочитанными
+          update:
+            success: Уведомление прочитанно.
         newsletters:
           update:
             success: Настройки рассылки сохранены
