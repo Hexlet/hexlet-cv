@@ -7,6 +7,9 @@ app-install-npm:
 app-install-bundle:
 	docker compose run --rm app bundle install --jobs $(shell nproc)
 
+app-update-bundle:
+	docker-compose run --rm app bundle update --jobs $(shell nproc)
+
 app-debug:
 	docker attach --sig-proxy=false --detach-keys="ctrl-c" $(shell docker ps -q --filter publish=3000)
 
