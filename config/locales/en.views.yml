@@ -274,6 +274,8 @@ en:
           one: View
           other: Views
           answers:
+      profile_empty_list:
+        nothing: There is nothing here yet
       comments:
         new:
           header: Create a comment
