@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module CsvConcern
   def generate_csv(records, headers)
     Enumerator.new do |csv|

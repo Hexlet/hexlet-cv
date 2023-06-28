@@ -61,7 +61,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
 
   def fetch_options(params)
     options = params.split('_').map { |value| value.split('-', 2) }
-    if options.filter { |_k, v| v.blank? }.any?
+    if options.any? { |_k, v| v.blank? }
       raise ActionController::RoutingError, 'Not Found'
     end
 
