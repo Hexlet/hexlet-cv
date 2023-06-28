@@ -86,7 +86,7 @@ ru:
         title_apply: Принять рекомендации
       empty_list:
         empty: Список пуст
-      empty:
+      links_guides:
         empty_now_but_read_something_useful: Пока здесь ничего нет. Вы можете почитать кое-что полезное на Хекслете
         compose_resume_link_html: <a href="https://guides.hexlet.io/ru/how-to-create-a-resume" target="_blank">Как составить резюме</a>
         second_useful_link_html: <a href="https://guides.hexlet.io/ru/how-to-prepare-for-interview/" target="_blank">Как подготовиться к интервью</a>
