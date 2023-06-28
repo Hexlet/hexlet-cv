@@ -45,7 +45,7 @@ en:
         - Go through all the steps of the Career Track and complete tasks for them, this will help you prepare as much as possible for entering the labor market
         - If during the passage of the Career track you have questions, you can contact your curator
         - We also recommend that you start the Career track as soon as possible, because. it is very important to complete it before you enter the labor market. Our task is to make sure that you enter the labor market as the most prepared candidate, both in terms of hard and sift skills. So let's not waste time! Start preparing for employment!
-      start_career: "Start career track: %{name}"
+      start_career: Start career track
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'
@@ -87,5 +87,5 @@ en:
       Start date: %{begin_date}
       End of training: %{end_date}
       Description: %{description}
-  unsubscribe: You can unsubscribe from the newsletter in
+  unsubscribe: You have received this email because you have registered for Hexlet Cv. If you want, you can
   settings: settings

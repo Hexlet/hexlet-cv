@@ -1,7 +1,11 @@
 - content_for :header do
   = t('.career_path')
-.mb-3
-  = link_to t('.back'), url_for(:back), class: 'btn btn-outline-secondary'
+.d-flex
+  .mb-3.me-2
+    = link_to t('.back'), url_for(:back), class: 'btn btn-outline-secondary'
+  - if @career_member
+    .md-3
+      = link_to t('.start'), career_member_path(@career, @career_member), class: 'btn btn-primary'
 
 .row.mb-3
   .col-sm-3

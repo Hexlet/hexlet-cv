@@ -5,5 +5,6 @@ class Web::CareersController < Web::ApplicationController
 
   def show
     @career = Career.find(params[:id])
+    @career_member = Career::Member.find_by(user: current_user, career: @career)
   end
 end

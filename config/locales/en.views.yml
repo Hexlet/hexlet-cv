@@ -2,7 +2,8 @@ en:
   web:
     careers:
       show:
-        back: Назад
+        start: Start
+        back: Back
         start_career: Start
         career_path: Career Path
       members:

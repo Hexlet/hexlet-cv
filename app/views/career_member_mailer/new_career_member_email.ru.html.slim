@@ -9,7 +9,7 @@ ul
     li = item
 
 div
-  = link_to t('.start_career', name: @career.name), career_member_url(@career, @career_member, locale: I18n.locale)
+  = link_to t('.start_career'), career_url(@career, locale: I18n.locale)
 
 hr
 

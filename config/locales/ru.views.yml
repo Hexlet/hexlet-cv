@@ -3,6 +3,7 @@ ru:
   web:
     careers:
       show:
+        start: Начать
         back: Назад
         start_career: К прохождению
         career_path: Карьерный трек
