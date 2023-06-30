@@ -14,7 +14,8 @@ table.table
         td = career.slug
         td = l career.created_at, format: :long
         td
-          = link_to admin_career_path(career), class: 'btn btn-outline-primary btn-sm me-1' do
-            span.bi.bi-eye-fill
-          = link_to edit_admin_career_path(career), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
-            span.bi.bi-gear-fill
+          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+            = link_to admin_career_path(career), class: 'btn btn-outline-primary btn-sm' do
+              span.bi.bi-eye-fill
+            = link_to edit_admin_career_path(career), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+              span.bi.bi-gear-fill
