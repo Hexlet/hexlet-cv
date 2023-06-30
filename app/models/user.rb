@@ -91,7 +91,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[resumes]
+    %w[resumes careers career_members]
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

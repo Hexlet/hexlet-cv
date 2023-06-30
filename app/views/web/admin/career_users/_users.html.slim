@@ -1,0 +1,26 @@
+- if users.empty?
+  = render 'web/shared/empty_list'
+- else
+  table.table.table-striped
+    thead
+      tr
+        th = sort_link(q, 'last_name')
+        th = sort_link(q, 'first_name')
+        th = sort_link(q, 'email')
+        th = han('career', 'name')
+        th = han('career/member', 'created_at')
+        th = han('career/member', 'finished_at')
+        th = t('actions')
+
+    tbody
+      - users.each do |user|
+        tr
+          td = user.last_name
+          td = user.first_name
+          td = user.email
+          td = render 'careers', careers: user.careers
+          td = show_date_if(user.career_members.last.created_at, :long)
+          td = show_date_if(user.career_members.last.finished_at, :long)
+          td
+            = link_to admin_career_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+              span.bi.bi-eye-fill

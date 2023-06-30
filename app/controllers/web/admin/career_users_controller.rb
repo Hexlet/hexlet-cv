@@ -1,13 +1,22 @@
 # frozen_string_literal: true
 
 class Web::Admin::CareerUsersController < Web::Admin::ApplicationController
-  def index
+  before_action only: %i[index archived finished] do
     query = { s: 'id desc' }.merge(params.permit![:q] || {})
-    @q = User.permitted.with_careers.ransack(query)
-    @users = @q.result.page(params[:page]).per(10)
-    @users_with_active_career = @users.merge(Career::Member.active)
-    @users_with_archived_career = @users.merge(Career::Member.archived)
-    @users_with_finished_career = @users.merge(Career::Member.finished)
+    @q = User.permitted.with_careers.includes(:careers, :career_members).ransack(query)
+    @users = @q.result
+  end
+
+  def index
+    @users_with_active_career = @users.merge(Career::Member.active).page(params[:page]).per(20)
+  end
+
+  def archived
+    @users_with_archived_career = @users.merge(Career::Member.archived).page(params[:page]).per(20)
+  end
+
+  def finished
+    @users_with_finished_career = @users.merge(Career::Member.finished).page(params[:page]).per(20)
   end
 
   def show
