@@ -3,11 +3,20 @@
 require 'test_helper'
 
 class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @admin = users(:admin)
+    sign_in(@admin)
+  end
+
+  test '#new' do
+    get new_admin_career_member_user_path
+
+    assert_response :success
+  end
+
   test '#create' do
     career = careers(:analytics)
-    user = users(:one)
-    admin = users(:admin)
-    sign_in(admin)
+    user = users(:two)
 
     attrs = {
       career_id: career.id,

@@ -9,8 +9,14 @@ en:
           admins: Administrators
       career_users:
         add_user_form:
+      career_member_users:
+        new:
+          add_user: Adding to career track
+        form:
           cancel: Отмена
+      career_users:
         show:
+          confirm: Are you sure you want to remove the user from the career track?
           back: Back
           archive: Arachive
           career: Career track
@@ -22,10 +28,14 @@ en:
           no_date: Не завершен
           show: Профиль пользователя
         index:
+          students: Students
           users_active_career: Проходящие карьерный трек
           users_finished_career: Закончившие карьерный трек
           users_archived_career: Архив
           add_user: Assign a student a career track
+        menu:
+          list: List
+          new: Assign a student a career track
       resumes:
         index:
           edit: Edit CV

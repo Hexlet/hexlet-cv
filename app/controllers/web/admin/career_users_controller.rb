@@ -8,8 +8,6 @@ class Web::Admin::CareerUsersController < Web::Admin::ApplicationController
     @users_with_active_career = @users.merge(Career::Member.active)
     @users_with_archived_career = @users.merge(Career::Member.archived)
     @users_with_finished_career = @users.merge(Career::Member.finished)
-    @career_member = Career::Member.new
-    @careers = Career.all
   end
 
   def show

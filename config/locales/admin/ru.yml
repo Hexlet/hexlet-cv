@@ -10,7 +10,9 @@ ru:
       career_users:
         add_user_form:
           cancel: Отмена
+      career_users:
         show:
+          confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека
           back: Назад
           archive: Архивировать
           career: Карьерные треки
@@ -22,10 +24,13 @@ ru:
           no_date: Не завершен
           show: Профиль пользователя
         index:
+          students: Студенты
           users_active_career: Проходящие карьерный трек
           users_finished_career: Закончившие карьерный трек
           users_archived_career: Архив
-          add_user: Назначить студенту карьерный трек
+        menu:
+          list: Список
+          new: Назначить студенту карьерный трек
       resumes:
         index:
           edit: Редактировать резюме

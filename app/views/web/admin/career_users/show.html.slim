@@ -23,8 +23,9 @@ table.table.table-striped
         td = member.career.name
         td = member.aasm(:state).human_state
         td
-          = link_to admin_career_path(member.career), class: 'btn btn-outline-primary btn-sm me-1', title: t('.show') do
-            span.bi.bi-eye-fill
-          - if member.may_archive?
-            = link_to archive_admin_career_member_path(member.career, member, back_to: @back_to_page), class: 'btn btn-outline-primary btn-sm', method: :patch, data: { confirm: t('confirm') }, title: t('.archive') do
-              span.bi.bi-file-earmark-zip
+          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+            = link_to admin_career_path(member.career), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+              span.bi.bi-eye-fill
+            - if member.may_archive?
+              = link_to archive_admin_career_member_path(member.career, member, back_to: @back_to_page), class: 'btn btn-outline-danger btn-sm', method: :patch, data: { confirm: t('.confirm') }, title: t('.archive') do
+                span.bi.bi.bi-trash3

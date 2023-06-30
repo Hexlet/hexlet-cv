@@ -5,7 +5,7 @@ class Career::Member < ApplicationRecord
   include Career::MemberRepository
   include Career::MemberPresenter
 
-  validates :user, uniqueness: { scope: :career, conditions: -> { where.not(state: :archived) } }
+  validates :user, uniqueness: { conditions: -> { active } }
 
   belongs_to :user
   belongs_to :career
