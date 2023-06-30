@@ -33,6 +33,29 @@ ru:
       home:
         index:
           admins: Администраторы
+      career_steps:
+        edit:
+          attached_careers: 'Связанные карьерные треки:'
+        form:
+          cancel: Отменить
+        index:
+          show: Посмотреть
+          edit: Редактировать
+          action: Действие
+        new:
+          new_step: Создание шага
+        menu:
+          list: Список
+          new: Новый
+        show:
+          tasks: Задачи
+          edit: Редактировать
+          back: Назад
+        careers:
+          edit: Редактировать
+          attached: Шаг свзязан с карьерными треками
+          actions: Действия
+          show: Посмотреть
       careers:
         item_step_fields:
           step: шаг

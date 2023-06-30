@@ -35,6 +35,8 @@ en:
           edit: Edit
           show: Show
           action: Actions
+        form:
+          cancel: Отменить
         menu:
           list: List
           new: New
