@@ -1,6 +1,8 @@
 - content_for :header do
   = t('career')
 
+= render 'menu', career: @career
+
 = simple_form_for @career, as: :career, url: admin_career_path(@career), wrapper: 'horizontal_form' do |f|
   p-0.pt-3.mb-5.hexlet-dashboard-courses
     ul.nav.nav-tabs.justify-content-center[role='tablist']
