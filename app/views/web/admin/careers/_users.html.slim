@@ -21,8 +21,9 @@ table.table
         td = show_date_if(user.career_members.last.finished_at, :long)
         td = user.career_members.last.aasm(:state).human_state
         td
-          = link_to user_path(user), class: 'btn btn-outline-primary btn-sm me-1' do
-              span.bi.bi-eye-fill
-          - if user.career_members.last.may_archive?
-            = link_to archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-outline-primary btn-sm', title: t('.archive') do
-              span.bi.bi-file-earmark-zip
+          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+            = link_to user_path(user), class: 'btn btn-outline-primary btn-sm' do
+                span.bi.bi-eye-fill
+            - if user.career_members.last.may_archive?
+              = link_to archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-outline-danger btn-sm', title: t('.archive') do
+                span.bi.bi.bi-trash3

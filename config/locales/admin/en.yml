@@ -68,7 +68,7 @@ en:
         users:
           users_career: Students
           archive: Archive
-          question: You are sure?
+          question: Are you sure you want to remove the user from the career track?
           add_user: Add student
           no_date: Not finished
       users:
