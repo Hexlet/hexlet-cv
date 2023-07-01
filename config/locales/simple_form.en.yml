@@ -16,6 +16,9 @@ en:
         user_email_cont: Entry by user email
         company_name_cont: Entry by company name
     placeholders:
+      resume_answer:
+        show:
+          content: You can leave recommendations for improving the resume. The editor supports markdown.
       defaults:
         city: City
         direction: Direction
