@@ -6,11 +6,13 @@
 .row.my-1
   .col-lg-12
     .my-1
-      h3 = @step.name
+      .h3
+        = @step.name
       .bg-light.rounded.py-2.px-3
         == markdown2html(@step.description)
     .my-1
-      h4 = t('.tasks')
+      .h4
+        = t('.tasks')
       .bg-light.rounded.py-2.px-3
         == markdown2html(@step.tasks_text)
 

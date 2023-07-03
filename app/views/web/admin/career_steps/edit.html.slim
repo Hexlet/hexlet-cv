@@ -1,7 +1,7 @@
 - content_for :header do
-  = @step.name
+  = t('.step', name: @step.name)
 
-= render 'menu', step: @step
+= render 'menu'
 
 - if @careers.any?
   .mb-2

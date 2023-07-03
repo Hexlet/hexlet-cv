@@ -35,6 +35,7 @@ ru:
           admins: Администраторы
       career_steps:
         edit:
+          step: 'Шаг: %{name}'
           attached_careers: 'Связанные карьерные треки:'
         form:
           cancel: Отменить
