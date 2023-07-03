@@ -2,6 +2,11 @@
 en:
   web:
     admin:
+      home:
+        menu:
+          list: List
+        index:
+          admins: Administrators
       resumes:
         index:
           edit: Edit CV
@@ -22,9 +27,6 @@ en:
           edit: Editing Job
           no_date: no date
           export: Export jobs to csv
-      users:
-        edit:
-          header: User editing
       home:
         index:
           admins: Administrators

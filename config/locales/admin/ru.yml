@@ -2,6 +2,11 @@
 ru:
   web:
     admin:
+      home:
+        menu:
+          list: Список
+        index:
+          admins: Администраторы
       resumes:
         index:
           edit: Редактировать резюме
@@ -22,9 +27,6 @@ ru:
           edit: Редактировать вакансию
           no_date: нет даты
           export: Экспортировать вакансии в csv
-      users:
-        edit:
-          header: Редактирование пользователя
       careers:
         item_step_fields:
           step: шаг

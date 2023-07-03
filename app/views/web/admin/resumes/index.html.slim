@@ -21,15 +21,21 @@ table.table
     - @resumes.each do |resume|
       tr
         td = link_to resume.id, edit_admin_resume_path(resume)
-        td = link_to resume, resume_path(resume)
+        td
+          / TODO: сделать возможным просматривать админам архивные и неопубликованные резюме
+          - if resume.published?
+            = link_to resume, resume_path(resume)
+          - else
+            = resume
         td = resume.aasm(:state).human_state
         td = link_to resume.user, user_path(resume.user)
         td = resume.user.email
         td = l resume.created_at, format: :short
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to resume_path(resume), class: 'btn btn-outline-primary btn-sm' do
-              span.bi.bi-eye-fill
+            - if resume.published?
+              = link_to resume_path(resume), class: 'btn btn-outline-primary btn-sm' do
+                span.bi.bi-eye-fill
             = link_to edit_admin_resume_path(resume), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
               span.bi.bi-gear-fill
             - if resume.may_restore?
