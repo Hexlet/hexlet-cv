@@ -83,7 +83,7 @@ en:
         last_name: Surname
         name: Name
         about: Bio
-        resume_mail_enabled: Receive emails from Hexlet CV when somebody interacts with your CV
+        resume_mail_enabled: Receive notifications for your resume and other activities
         role: Role
         state: State
         state/permitted: Active
