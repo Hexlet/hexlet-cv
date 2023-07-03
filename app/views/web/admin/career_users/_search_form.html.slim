@@ -2,7 +2,7 @@
   = search_form_for q, default_filter_form_options(url: admin_career_users_path) do |f|
     = f.input :last_name_or_first_name_cont, placeholder: "#{han('user', :last_name)}/#{han('user', :first_name)}", label: false
     = f.input :email_cont, placeholder: han('user', :email), label: false
-    = f.input :careers_slug_eq, as: :select_with_search, collection: @careers.map { |career| [career.name, career.slug] }
+    = f.input :careers_slug_eq, placeholder: han('career', :name), label: false, as: :select_with_search, collection: @careers.map { |career| [career.name, career.slug] }
     .col.d-flex.align-self-end
       = f.button :submit, t('submit'), class: 'btn-primary me-2 flex-grow-1'
       = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
