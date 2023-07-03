@@ -7,8 +7,10 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   end
 
   def create
-    @career_member = Career::Member.new(career_member_params)
-    if @career_member.save
+    career = Career.find(career_member_params[:career_id])
+    @career_member = Career::MemberMutator.create(career, career_member_params)
+    if @career_member.persisted?
+      EmailSender.send_new_career_member_email(@career_member)
       f(:success)
       redirect_to admin_career_users_path
     else
