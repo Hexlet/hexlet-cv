@@ -5,6 +5,7 @@ class Web::Admin::CareerUsersController < Web::Admin::ApplicationController
     query = { s: 'id desc' }.merge(params.permit![:q] || {})
     @q = User.permitted.with_careers.includes(:careers, :career_members).ransack(query)
     @users = @q.result
+    @careers = Career.all
   end
 
   def index
