@@ -4,6 +4,8 @@ require 'test_helper'
 
 class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:two)
+    @career = careers(:analytics)
     @admin = users(:admin)
     sign_in(@admin)
   end
@@ -15,12 +17,9 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
   end
 
   test '#create' do
-    career = careers(:analytics)
-    user = users(:two)
-
     attrs = {
-      career_id: career.id,
-      user_id: user.id
+      career_id: @career.id,
+      user_id: @user.id
     }
 
     post admin_career_member_users_path, params: { career_member: attrs }
@@ -29,6 +28,20 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
 
     career_member = Career::Member.find_by(attrs)
 
+    notification = Notification.find_by(user: @user, resource: career_member, kind: :new_career_member)
+
     assert { career_member }
+    assert { notification }
+  end
+
+  test 'new member email' do
+    attrs = {
+      career_id: @career.id,
+      user_id: @user.id
+    }
+
+    assert_emails 1 do
+      post admin_career_member_users_path, params: { career_member: attrs }
+    end
   end
 end

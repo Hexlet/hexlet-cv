@@ -21,4 +21,16 @@ class Web::Admin::CareerUsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test '#archived' do
+    get archived_admin_career_users_path
+
+    assert_response :success
+  end
+
+  test '#finished' do
+    get finished_admin_career_users_path
+
+    assert_response :success
+  end
 end
