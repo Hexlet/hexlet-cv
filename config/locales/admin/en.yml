@@ -30,30 +30,6 @@ en:
       home:
         index:
           admins: Administrators
-      career_steps:
-        edit:
-          step: 'Step: %{name}'
-        index:
-          edit: Edit
-          show: Show
-          action: Actions
-        form:
-          cancel: Отменить
-        menu:
-          list: List
-          new: New
-        show:
-          attached: Attached to Careers
-          tasks: Tasks
-          actions: Actions
-          edit: Edit
-          show: Show
-          back: Back
-        careers:
-          edit: Edit
-          attached: Step related career tracks
-          actions: Action
-          show: Show
       careers:
         item_step_fields:
           step: step
@@ -61,8 +37,10 @@ en:
           remove_field: Delete step
           edit: Edit step
         index:
+          career: Career tracks
           edit: Edit
         edit:
+          cancel: Cancel
           career: Career track
           items: Career track steps
           steps: Steps
@@ -97,6 +75,30 @@ en:
           question: Are you sure you want to remove the user from the career track?
           add_user: Add student
           no_date: Not finished
+        steps:
+          edit:
+            step: 'Step: %{name}'
+          index:
+            edit: Edit
+            show: Show
+            action: Actions
+          form:
+            cancel: Отменить
+          menu:
+            list: List
+            new: New
+          show:
+            attached: Attached to Careers
+            tasks: Tasks
+            actions: Actions
+            edit: Edit
+            show: Show
+            back: Back
+          careers:
+            edit: Edit
+            attached: Step related career tracks
+            actions: Action
+            show: Show
       users:
         in_career_path:
           started_at: Started

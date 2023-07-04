@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
+class Web::Admin::Careers::StepsController < Web::Admin::Careers::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
     @q = Career::Step.ransack(query)
@@ -25,7 +25,7 @@ class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
     @step = Web::Admin::Career::StepForm.new(params[:career_step])
     if @step.save
       f(:success)
-      redirect_to admin_career_step_path(@step)
+      redirect_to admin_step_path(@step)
     else
       f(:error)
       render :new, status: :unprocessable_entity
@@ -38,7 +38,7 @@ class Web::Admin::CareerStepsController < Web::Admin::ApplicationController
 
     if step.update(params[:career_step])
       f(:success)
-      redirect_to admin_career_step_path(@step)
+      redirect_to admin_step_path(@step)
     else
       @step = step.becomes(Web::Admin::Career::StepForm)
       f(:error)

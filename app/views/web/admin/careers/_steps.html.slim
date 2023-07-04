@@ -9,11 +9,11 @@ table.table
   tbody
     - career_steps.each do |step|
       tr
-        td = link_to step.name, admin_career_step_path(step), class: 'text-decoration-none'
+        td = link_to step.name, admin_step_path(step), class: 'text-decoration-none'
         td = l step.created_at, format: :long
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to admin_career_step_path(career, step), class: 'btn btn-outline-primary btn-sm', title: t('.show_step') do
+            = link_to admin_step_path(career, step), class: 'btn btn-outline-primary btn-sm', title: t('.show_step') do
               span.bi.bi-eye-fill
-            = link_to edit_admin_career_step_path(career, step), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+            = link_to edit_admin_step_path(step), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
               span.bi.bi-gear-fill

@@ -96,7 +96,13 @@ Rails.application.routes.draw do
           end
         end
         resources :vacancies, only: %i[index edit update]
-        resources :career_steps, only: %i[index new show create edit update]
+        resources :careers, only: [] do
+          scope module: :careers do
+            collection do
+              resources :steps, only: %i[index new show create edit update]
+            end
+          end
+        end
         resources :careers, only: %i[index show new create edit update] do
           scope module: :careers do
             resources :items, only: %i[create]

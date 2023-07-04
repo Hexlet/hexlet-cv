@@ -1,5 +1,0 @@
-ul.nav.nav-tabs.mb-4
-  = menu_item t('.list'), admin_career_steps_path
-  = menu_item t('.new'), new_admin_career_step_path
-  - if @step&.persisted?
-    = menu_item @step.name, edit_admin_career_step_path(@step)

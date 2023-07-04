@@ -18,7 +18,7 @@ table.table
         td = l step.created_at, format: :short
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to admin_career_step_path(step), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+            = link_to admin_step_path(step), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
               span.bi.bi-eye-fill
-            = link_to edit_admin_career_step_path(step), class: 'btn btn-outline-primary btn-sm me-1', title: t('.edit') do
+            = link_to edit_admin_step_path(step), class: 'btn btn-outline-primary btn-sm me-1', title: t('.edit') do
               span.bi.bi-gear-fill
