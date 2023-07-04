@@ -33,14 +33,14 @@ class Web::Admin::Careers::StepsController < Web::Admin::Careers::ApplicationCon
   end
 
   def update
-    @step = Career::Step.find(params[:id])
-    step = @step.becomes(Web::Admin::Career::StepForm)
+    step = Career::Step.find(params[:id])
+    @step = step.becomes(Web::Admin::Career::StepForm)
 
-    if step.update(params[:career_step])
+    if @step.update(params[:career_step])
       f(:success)
       redirect_to admin_step_path(@step)
     else
-      @step = step.becomes(Web::Admin::Career::StepForm)
+      @careers = @step.careers
       f(:error)
       render :edit, status: :unprocessable_entity
     end
