@@ -16,6 +16,13 @@ en:
           update:
             success: Career track successfully updated!
             error: Error! Check form fields
+          steps:
+            update:
+              success: Step successfully updated
+              error: Error! Check form fields
+            create:
+              success: Step created successfully
+              error: Error! Check form fields
         career_members:
           destroy:
             success: Career track canceled successfully
@@ -23,13 +30,6 @@ en:
           create:
             error: Error! Failed to assign career track to user!
             success: Career track successfully assigned
-        career_steps:
-          update:
-            success: Step successfully updated
-            error: Error! Check form fields
-          create:
-            success: Step created successfully
-            error: Error! Check form fields
         resumes:
           archive:
             success: Resume archived successfully
