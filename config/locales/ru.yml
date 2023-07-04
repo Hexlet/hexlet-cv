@@ -2,6 +2,7 @@ ru:
   actions: Действия
   career: Карьерный трек
   steps: Шаг карьерного трека
+  action_buttons: Кнопки действий
   months_nominative_case:
     -
     - Январь

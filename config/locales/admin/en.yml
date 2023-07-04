@@ -2,11 +2,18 @@
 en:
   web:
     admin:
+      home:
+        menu:
+          list: List
+        index:
+          admins: Administrators
       resumes:
         index:
-          action: Action
-          archive: Archive
-          restore: Publish
+          edit: Edit CV
+          archive: Archive CV
+          restore: Publish CV
+          confirm_archive: Are you sure you want to archive your resume?
+          confirm_restore: Are you sure you want to post your resume?
         edit:
           header: Resume editing
       vacancies:
@@ -17,11 +24,9 @@ en:
         edit:
           header: Job editing
         index:
+          edit: Editing Job
           no_date: no date
           export: Export jobs to csv
-      users:
-        edit:
-          header: User editing
       home:
         index:
           admins: Administrators
@@ -29,9 +34,9 @@ en:
         item_step_fields:
           step: step
           order: step sequence number
-          remove_field: Delete
+          remove_field: Delete step
+          edit: Edit step
         index:
-          action: Action
           edit: Edit
         edit:
           career: Career track
@@ -39,8 +44,9 @@ en:
           steps: Steps
           add_step: Add step
         show:
+          edit: Edit
           users_career: Students in career tracks
-          career_path: Career track
+          career_track: 'Career track: %{name}'
           steps: Career track steps
         new:
           cancel: Cancel
@@ -55,17 +61,16 @@ en:
         form:
           cancel: Cancel
         steps:
-          action: Action
           edit: Edit
           add_new_step: Add new step
           steps_career: Career track steps
+          show_step: Show
           show:
             step: Step %{step_name}
         users:
           users_career: Students
-          action: Action
           archive: Archive
-          question: You are sure?
+          question: Are you sure you want to remove the user from the career track?
           add_user: Add student
           no_date: Not finished
       users:
@@ -85,7 +90,6 @@ en:
           list: List
           new: New
         index:
-          action: Action
           edit: Edit
         show:
           step: Career track step

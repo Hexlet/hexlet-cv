@@ -2,6 +2,7 @@ en:
   actions: Actions
   application_name: Hexlet CV
   in_the_city: "in the city %{city_name}"
+  action_buttons: Action button
   months_nominative_case:
     -
     - January

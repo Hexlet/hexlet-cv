@@ -7,6 +7,9 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
   end
 
+  # TODO: сделать возможным просматривать админам архивные и неопубликованные резюме
+  def show; end
+
   def edit
     @resume = Resume.find params[:id]
     @resume_educations = @resume.educations.web
