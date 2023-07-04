@@ -12,8 +12,6 @@ en:
       q:
         first_name_or_last_name_or_email_cont: Entry by name, surname, mail
         name_cont: Entry by name
-        user_first_name_or_user_last_name_cont: Entry by first or last name
-        user_email_cont: Entry by user email
         company_name_cont: Entry by company name
     placeholders:
       resume_answer:

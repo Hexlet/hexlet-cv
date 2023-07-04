@@ -1,21 +1,14 @@
-.p-3.mb-3.bg-light
-  = search_form_for @q, default_filter_form_options(url: admin_resumes_path) do |f|
-    = f.input :name_cont
-    = f.input :user_first_name_or_user_last_name_cont
-    = f.input :user_email_cont
-    .col.d-flex.align-self-end
-      = f.button :submit, class: 'btn-primary me-2 flex-grow-1'
-      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'
+= render 'search_form', q: @search
 
 table.table
   thead
     tr
-      th = sort_link(@q, 'id')
-      th = sort_link(@q, 'name')
-      th = sort_link(@q, 'state')
-      th = sort_link(@q, 'user')
-      th = sort_link(@q, 'email')
-      th = sort_link(@q, 'created_at')
+      th = sort_link(@search, 'id')
+      th = sort_link(@search, 'name')
+      th = sort_link(@search, 'state')
+      th = sort_link(@search, 'user')
+      th = sort_link(@search, 'email')
+      th = sort_link(@search, 'created_at')
       th = t('actions')
   tbody
     - @resumes.each do |resume|

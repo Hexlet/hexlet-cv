@@ -3,8 +3,8 @@
 class Web::Admin::ResumesController < Web::Admin::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Resume.ransack(query)
-    @resumes = @q.result(distinct: true).includes(:user).page(params[:page])
+    @search = Resume.ransack(query)
+    @resumes = @search.result(distinct: true).includes(:user).page(params[:page])
   end
 
   # TODO: сделать возможным просматривать админам архивные и неопубликованные резюме

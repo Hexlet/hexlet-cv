@@ -12,8 +12,6 @@ ru:
       q:
         first_name_or_last_name_or_email_cont: Вхождение по имени, фамилии, почте
         name_cont: Вхождение по имени
-        user_first_name_or_user_last_name_cont: Вхождение по имени или фамилии
-        user_email_cont: Вхождение по email пользователя
     placeholders:
       resume_answer:
         show:
