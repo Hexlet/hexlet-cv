@@ -310,3 +310,7 @@ en:
           <summary>Improved resume</summary>
           %{edit_text}
         </details>
+
+      comments:
+        edit:
+          header: Edit comment
