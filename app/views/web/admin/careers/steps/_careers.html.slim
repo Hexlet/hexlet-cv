@@ -1,0 +1,21 @@
+.h4
+  = t('.attached')
+
+- if careers.any?
+  table.table id='attached'
+    thead
+      tr
+        th = han('career', 'name')
+        th = t('.actions')
+    tbody
+      - careers.each do |career|
+        tr
+          td = career.name
+          td
+            .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+              = link_to admin_career_path(career), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+                span.bi.bi-eye-fill
+              = link_to edit_admin_career_path(career), class: 'btn btn-outline-primary btn-sm me-1', title: t('.edit') do
+                span.bi.bi-gear-fill
+- else
+  = render 'web/shared/empty_list'

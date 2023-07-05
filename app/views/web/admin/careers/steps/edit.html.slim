@@ -1,4 +1,14 @@
 - content_for :header do
-  = t('steps')
+  = t('.step', name: @step.name)
 
-= render 'web/admin/careers/steps/form', step: @step, url: admin_career_step_path(resource_career, @step)
+= render 'menu'
+
+- if @careers.any?
+  .mb-2
+    span.me-3
+      = t('.attached_careers')
+    span
+      - @careers.each do |career|
+        = link_to career.name, admin_career_path(career), class: 'badge rounded-pill bg-success me-1'
+
+= render 'form', step: @step, url: admin_step_path(@step)

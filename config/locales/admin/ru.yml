@@ -27,6 +27,12 @@ ru:
           edit: Редактировать вакансию
           no_date: нет даты
           export: Экспортировать вакансии в csv
+      users:
+        edit:
+          header: Редактирование пользователя
+      home:
+        index:
+          admins: Администраторы
       careers:
         item_step_fields:
           step: шаг
@@ -34,8 +40,10 @@ ru:
           remove_field: Удалить шаг
           edit: Редактировать шаг
         index:
+          career: Карьерные треки
           edit: Редактировать карьерный трек
         edit:
+          cancel: Отмена
           career: Карьерный трек
           items: Шаги карьерного трека
           steps: Шаги
@@ -59,9 +67,8 @@ ru:
           cancel: Отменить
         steps:
           edit: Редактировать
-          add_new_step: Добавить новый шаг
+          add_new_step: Добавить шаг
           steps_career: Шаги карьерного трека
-          show_step: Посмотреть
           show:
             step: Шаг %{step_name}
         users:
@@ -70,6 +77,30 @@ ru:
           question: Вы уверенны что хотите удалить пользователя из карьерного трека?
           add_user: Добавить студента
           no_date: Не завершен
+        steps:
+          edit:
+            step: 'Шаг: %{name}'
+            attached_careers: 'Связанные карьерные треки:'
+          form:
+            cancel: Отменить
+          index:
+            show: Посмотреть
+            edit: Редактировать
+            action: Действие
+          new:
+            new_step: Создание шага
+          menu:
+            list: Список
+            new: Новый
+          show:
+            tasks: Задачи
+            edit: Редактировать
+            back: Назад
+          careers:
+            edit: Редактировать
+            attached: Шаг свзязан с карьерными треками
+            actions: Действия
+            show: Посмотреть
       users:
         in_career_path:
           started_at: Начат
