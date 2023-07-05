@@ -1,4 +1,5 @@
 include make-compose.mk
+include make-podman-compose.mk
 include make-services-app.mk
 
 test:
