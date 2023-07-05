@@ -22,4 +22,4 @@ podman-compose-restart:
 podman-compose-stop:
 	podman-compose stop || true
 
-compose-setup: podman-compose-down podman-compose-build podman-compose-install
+podman-compose-setup: podman-compose-down podman-compose-build podman-compose-install
