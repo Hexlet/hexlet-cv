@@ -10,7 +10,13 @@ ru:
       career_users:
         add_user_form:
           cancel: Отмена
-      career_users:
+      career_member_users:
+        new:
+          add_user: Добавление пользователя в карьерный трек
+        form:
+          cancel: Отмена
+        search_form:
+          careers: Карьерный трек
         finished:
           users_finished_career: Закончившие карьерный трек
         archived:

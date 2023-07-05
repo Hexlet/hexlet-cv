@@ -89,13 +89,18 @@ Rails.application.routes.draw do
       namespace :admin do
         root 'home#index'
         resources :users, only: %i[index edit update]
-        resources :career_member_users, only: %i[new create]
-        resources :career_users, only: %i[index show] do
+        resources :career_member_users, only: %i[index show new create] do
           collection do
             get :archived
             get :finished
           end
         end
+        # resources :career_users, only: %i[index show] do
+        #   collection do
+        #     get :archived
+        #     get :finished
+        #   end
+        # end
         resources :resumes, only: %i[index edit update] do
           member do
             patch :archive

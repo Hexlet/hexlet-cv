@@ -22,5 +22,5 @@
           td = show_date_if(user.career_members.last.created_at, :long)
           td = show_date_if(user.career_members.last.finished_at, :long)
           td
-            = link_to admin_career_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+            = link_to admin_career_member_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
               span.bi.bi-eye-fill

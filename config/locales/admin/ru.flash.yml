@@ -3,7 +3,6 @@ ru:
   flash:
     web:
       admin:
-        
         careers:
           create:
             success: Карьерный трек создан!

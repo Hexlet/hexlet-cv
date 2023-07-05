@@ -10,6 +10,32 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
     sign_in(@admin)
   end
 
+  test '#index' do
+    get admin_career_member_users_path
+
+    assert_response :success
+  end
+
+  test '#show' do
+    user = users(:full)
+
+    get admin_career_member_user_path(user)
+
+    assert_response :success
+  end
+
+  test '#archived' do
+    get archived_admin_career_member_users_path
+
+    assert_response :success
+  end
+
+  test '#finished' do
+    get finished_admin_career_member_users_path
+
+    assert_response :success
+  end
+
   test '#new' do
     get new_admin_career_member_user_path
 
@@ -24,7 +50,7 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
 
     post admin_career_member_users_path, params: { career_member: attrs }
 
-    assert_redirected_to admin_career_users_path
+    assert_redirected_to admin_career_member_users_path
 
     career_member = Career::Member.find_by(attrs)
 

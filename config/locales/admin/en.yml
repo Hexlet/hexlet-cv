@@ -8,13 +8,14 @@ en:
         index:
           admins: Administrators
       career_users:
-        add_user_form:
+        add_user_form:  
       career_member_users:
         new:
           add_user: Adding to career track
         form:
-          cancel: Отмена
-      career_users:
+          cancel: Cancel
+        search_form:
+          careers: Career track
         finished:
           users_finished_career: Finished career track
         archived:
