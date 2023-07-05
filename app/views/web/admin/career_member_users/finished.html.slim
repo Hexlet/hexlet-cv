@@ -5,6 +5,6 @@
 
 = render 'menu'
 
-= render 'users', users: @users_with_finished_career, q: @q
+= render 'users', users: @users_with_finished_career, q: @q, finished: true
 
 = paginate @users_with_finished_career
