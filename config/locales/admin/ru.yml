@@ -96,7 +96,7 @@ ru:
             cancel: Отмена
         form:
           cancel: Отменить
-        steps:
+        steps_list:
           edit: Редактировать
           add_new_step: Добавить шаг
           steps_career: Шаги карьерного трека

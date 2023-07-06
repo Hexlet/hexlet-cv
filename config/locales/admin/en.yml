@@ -92,7 +92,7 @@ en:
             cancel: Cancel
         form:
           cancel: Cancel
-        steps:
+        steps_list:
           edit: Edit
           add_new_step: Add new step
           steps_career: Career track steps
