@@ -1,0 +1,5 @@
+.text-end.small.mt-auto
+  .d-flex.fw-bold.flex-wrap
+    - careers.each do |career|
+      .m-1
+        = filter_link(career.name, { careers_slug_in: career.slug }, class: 'badge bg-success text-body-tertiary')

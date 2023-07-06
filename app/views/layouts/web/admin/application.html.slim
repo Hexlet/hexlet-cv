@@ -19,6 +19,7 @@ html.h-100 lang="#{I18n.locale}"
               = sidebar_menu_divider t('.career_track')
               = sidebar_menu_item t('.all_career_tracks'), 'bi-graph-up-arrow', admin_careers_path
               = sidebar_menu_item t('.all_career_steps'), 'bi bi-bar-chart-steps', admin_steps_path
+              = sidebar_menu_item t('.students'), 'bi bi-mortarboard', admin_career_member_users_path
           .col-md-10
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header

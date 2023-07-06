@@ -1,0 +1,6 @@
+- content_for :header do
+  = t('.add_user')
+
+= render 'menu'
+
+= render 'form', career_member: @career_member, careers: @careers

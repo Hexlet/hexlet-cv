@@ -7,6 +7,36 @@ en:
           list: List
         index:
           admins: Administrators
+      career_users:
+        add_user_form:  
+      career_member_users:
+        new:
+          add_user: Adding to career track
+        form:
+          cancel: Cancel
+        search_form:
+          careers: Career track
+        finished:
+          users_finished_career: Finished career track
+        archived:
+          users_archived_career: Archive
+        show:
+          confirm: Are you sure you want to remove the user from the career track?
+          back: Back
+          archive: Arachive
+          career: Career track
+        index:
+          students: Students
+          users_active_career: Passing career track
+          add_user: Assign a student a career track
+        menu:
+          users_finished_career: Finished career track
+          users_archived_career: Archive
+          list: List
+          new: Assign a student a career track
+        users:
+          no_date: Not finished
+          show: User profile
       resumes:
         index:
           edit: Edit CV

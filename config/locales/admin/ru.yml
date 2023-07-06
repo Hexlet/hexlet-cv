@@ -7,6 +7,37 @@ ru:
           list: Список
         index:
           admins: Администраторы
+      career_users:
+        add_user_form:
+          cancel: Отмена
+      career_member_users:
+        new:
+          add_user: Добавление пользователя в карьерный трек
+        form:
+          cancel: Отмена
+        search_form:
+          careers: Карьерный трек
+        finished:
+          users_finished_career: Закончившие карьерный трек
+        archived:
+          users_archived_career: Проходящие карьерный трек
+        show:
+          confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека
+          back: Назад
+          archive: Архивировать
+          career: Карьерные треки
+        index:
+          students: Студенты
+          users_active_career: Проходящие карьерный трек
+          users_archived_career: Архив
+        menu:
+          list: Список
+          new: Назначить студенту карьерный трек
+          users_finished_career: Закончившие карьерный трек
+          users_archived_career: Архив
+        users:
+          show: Профиль пользователя
+          no_date: Не завершен
       resumes:
         index:
           edit: Редактировать резюме

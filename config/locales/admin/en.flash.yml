@@ -44,3 +44,7 @@ en:
         users:
           update:
             success: User data updated successfully
+        career_member_users:
+          create:
+            success: Student added to career track
+            error: The student has already been assigned a career track

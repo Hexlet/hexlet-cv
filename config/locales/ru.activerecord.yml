@@ -14,6 +14,7 @@ ru:
         archive: Архивировать
 
     models:
+      career: Карьерный трек
       resume: Резюме
       user: Пользователь
       notification: Уведомление
@@ -39,6 +40,7 @@ ru:
         locale: Язык
         slug: Уникальное имя
       career/member:
+        career: Карьерный трек
         state: Состояние
         finished_at: Закончен
         user: Студент
