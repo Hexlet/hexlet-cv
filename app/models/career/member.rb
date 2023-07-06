@@ -55,4 +55,16 @@ class Career::Member < ApplicationRecord
   def next_item(item)
     career.items.where(order: item.order..).ordered.second
   end
+
+  def steps_count
+    Rails.cache.fetch("member_step_count#{id}", expires_in: 12.hours) do
+      career.steps.count
+    end
+  end
+
+  def finished_steps_count
+    Rails.cache.fetch("finished_step_count#{id}", expires_in: 1.hour) do
+      career_step_members.finished.count
+    end
+  end
 end

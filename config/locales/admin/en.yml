@@ -39,6 +39,7 @@ en:
           list: List
           new: Assign a student a career track
         users:
+          progress: All/Finished
           no_date: Not finished
           show: User profile
       resumes:

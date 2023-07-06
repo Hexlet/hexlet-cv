@@ -11,6 +11,7 @@
         th = han('career/member', 'created_at')
         - unless @users_with_finished_career.nil?
           th = han('career/member', 'finished_at')
+        th = t('.progress')
         th = t('actions')
 
     tbody
@@ -23,6 +24,7 @@
           td = show_date_if(user.career_members.last.created_at, :without_time)
           - unless @users_with_finished_career.nil?
             td = show_date_if(user.career_members.last.finished_at, :without_time)
+          td = user.active_career_member.progress_by_finished_steps
           td
             = link_to admin_career_member_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
               span.bi.bi-eye-fill

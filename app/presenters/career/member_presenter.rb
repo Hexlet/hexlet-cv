@@ -6,4 +6,8 @@ module Career::MemberPresenter
     finished_steps_count = career_step_members.finished.count
     finished_steps_count * 100 / steps_count
   end
+
+  def progress_by_finished_steps
+    "#{steps_count}/#{finished_steps_count}"
+  end
 end
