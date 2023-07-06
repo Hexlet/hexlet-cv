@@ -16,3 +16,9 @@ member_with_github:
   user: with_github
   created_at: <%= 1.week.ago.to_fs(:db) %>
   updated_at: <%= 1.week.ago.to_fs(:db) %>
+
+member_lost_user_in_career:
+  <<: *DEFAULTS
+  user: lost_user_in_career
+  created_at: <%= 1.week.ago.to_fs(:db) %>
+  updated_at: <%= 1.week.ago.to_fs(:db) %>
