@@ -41,7 +41,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   def show
     @user = User.find(params[:id])
     @user_career_members = @user.career_members.includes(:career, :career_step_members)
-    @last_cativity_by_id = @user_career_members.each_with_object({}) { |member, acc| acc[member.id] = member.career_step_members.active.last.created_at }
+    @last_ativity_by_id = @user_career_members.each_with_object({}) { |member, acc| acc[member.id] = member.career_step_members.active.last.created_at }
     @back_to_page = admin_career_member_user_path(@user)
   end
 

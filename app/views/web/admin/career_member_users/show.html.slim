@@ -24,7 +24,7 @@ table.table.table-striped
       tr
         td = member.career.name
         td = member.aasm(:state).human_state
-        td = show_date_if(@last_cativity_by_id[member.id], :without_time)
+        td = show_date_if(@last_ativity_by_id[member.id], :without_time)
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
             = link_to admin_career_path(member.career), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
