@@ -1,0 +1,10 @@
+- content_for :header do
+  = t('.users_lost_career')
+
+= render 'search_form', q: @q
+
+= render 'menu'
+
+= render 'users', users: @users_lost_career, q: @q, finished: false
+
+= paginate @users_lost_career

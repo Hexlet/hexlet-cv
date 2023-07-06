@@ -1,9 +1,18 @@
-member_one:
-  user: one
+DEFAULTS: &DEFAULTS
   career: developer
   state: active
 
+
+member_one:
+  <<: *DEFAULTS
+  user: one
+
 member_full:
+  <<: *DEFAULTS
   user: full
-  career: developer
-  state: active
+
+member_with_github:
+  <<: *DEFAULTS
+  user: with_github
+  created_at: <%= 1.week.ago.to_fs(:db) %>
+  updated_at: <%= 1.week.ago.to_fs(:db) %>

@@ -93,14 +93,9 @@ Rails.application.routes.draw do
           collection do
             get :archived
             get :finished
+            get :lost
           end
         end
-        # resources :career_users, only: %i[index show] do
-        #   collection do
-        #     get :archived
-        #     get :finished
-        #   end
-        # end
         resources :resumes, only: %i[index edit update] do
           member do
             patch :archive

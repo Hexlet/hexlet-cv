@@ -36,6 +36,12 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
     assert_response :success
   end
 
+  test '#lost' do
+    get lost_admin_career_member_users_path
+
+    assert_response :success
+  end
+
   test '#new' do
     get new_admin_career_member_user_path
 

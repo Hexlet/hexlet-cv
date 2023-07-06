@@ -20,7 +20,10 @@ en:
           users_finished_career: Finished career track
         archived:
           users_archived_career: Archive
+        lost:
+          users_lost_career: Lost students
         show:
+          last_activity_at: Last activty date
           confirm: Are you sure you want to remove the user from the career track?
           back: Back
           archive: Arachive
@@ -30,6 +33,7 @@ en:
           users_active_career: Passing career track
           add_user: Assign a student a career track
         menu:
+          user_lost_career: Lost students
           users_finished_career: Finished career track
           users_archived_career: Archive
           list: List
