@@ -42,3 +42,10 @@ eight_by_user_one:
   state: active
   career_member: member_one
   career_step: step_eight
+
+one_by_user_with_github:
+  state: active
+  career_member: member_with_github
+  career_step: step_one
+  created_at: <%= 1.week.ago.to_fs(:db) %>
+  updated_at: <%= 1.week.ago.to_fs(:db) %>

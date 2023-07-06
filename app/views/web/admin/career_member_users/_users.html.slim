@@ -9,7 +9,7 @@
         th = sort_link(q, 'email')
         th = han('career', 'name')
         th = han('career/member', 'created_at')
-        - if finished
+        - unless @users_with_finished_career.nil?
           th = han('career/member', 'finished_at')
         th = t('actions')
 
@@ -21,7 +21,7 @@
           td = user.email
           td = render 'careers', careers: user.careers
           td = show_date_if(user.career_members.last.created_at, :without_time)
-          - if finished
+          - unless @users_with_finished_career.nil?
             td = show_date_if(user.career_members.last.finished_at, :without_time)
           td
             = link_to admin_career_member_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do

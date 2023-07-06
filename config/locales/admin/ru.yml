@@ -20,8 +20,11 @@ ru:
         finished:
           users_finished_career: Закончившие карьерный трек
         archived:
-          users_archived_career: Проходящие карьерный трек
+          users_archived_career: Архивные
+        lost:
+          users_lost_career: Студенты которые давно не учились
         show:
+          last_activity_at: Дата последней активности
           confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека
           back: Назад
           archive: Архивировать
@@ -32,6 +35,7 @@ ru:
           users_archived_career: Архив
         menu:
           list: Список
+          user_lost_career: Давно не учились
           new: Назначить студенту карьерный трек
           users_finished_career: Закончившие карьерный трек
           users_archived_career: Архив
