@@ -61,7 +61,7 @@ ru:
       career_members:
         finished_percent: "%{count}%"
         continue_career: Продолжить
-        start_career: Проходить карьерный трек
+        start_career: Начать
         show: Посмотреть карьерный трек
         career_track_finished: карьерный трек завершен
       resume_filter:
@@ -282,7 +282,7 @@ ru:
       profile_empty_list:
         nothing: Здесь пока ничего нет
     answers:
-      recommendation_open_ai: | 
+      recommendation_open_ai: |
         %{recommendation}
 
         <details>
@@ -303,4 +303,3 @@ ru:
     pages:
       about_description: Цель Hexlet CV - предоставить платформу, где каждый может получить рекомендации по улучшению резюме от участников сообщества и профессиональных HR.
       about_title: О проекте
-      
