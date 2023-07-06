@@ -25,11 +25,12 @@
         .col-12.hexlet-cv-content.lead
           == markdown2html resource_resume.awards_description
 
-      .col-12
-        h2.my-4.me-3 = han('resume', 'english_fluency')
-        hr.w-100
-      .col-12.lead
-        = resource_resume.english_fluency.text
+      - if resource_resume.english_fluency?
+        .col-12
+          h2.my-4.me-3 = han('resume', 'english_fluency')
+          hr.w-100
+        .col-12.lead
+          = resource_resume.english_fluency.text
 
       .col-12
         h2.my-4 = han('resume', 'github')
