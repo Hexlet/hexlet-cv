@@ -4,7 +4,7 @@ class N8nClient
   BASE_URI = 'https://workflows.hexlet.io'
 
   EVENTS = {
-    lost_students: 'webhook-test/340-cv-career-track'
+    lost_students: 'webhook/340-cv-career-track'
   }.freeze
 
   HEADER = {
