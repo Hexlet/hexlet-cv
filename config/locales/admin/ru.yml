@@ -18,7 +18,7 @@ ru:
         search_form:
           careers: Карьерный трек
         finished:
-          users_finished_career: Закончившие карьерный трек
+          users_finished_career: Закончили КТ
         archived:
           users_archived_career: Архивные
         lost:
@@ -29,6 +29,7 @@ ru:
           back: Назад
           archive: Архивировать
           career: Карьерные треки
+          no_date: Нет даты
         index:
           students: Студенты
           users_active_career: Проходящие карьерный трек
@@ -37,7 +38,7 @@ ru:
           list: Список
           user_lost_career: Давно не учились
           new: Назначить студенту карьерный трек
-          users_finished_career: Закончившие карьерный трек
+          users_finished_career: Закончили КТ
           users_archived_career: Архив
         users:
           progress: Всего/Пройденно

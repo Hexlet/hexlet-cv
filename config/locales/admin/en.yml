@@ -17,7 +17,7 @@ en:
         search_form:
           careers: Career track
         finished:
-          users_finished_career: Finished career track
+          users_finished_career: Finished CT
         archived:
           users_archived_career: Archive
         lost:
@@ -28,13 +28,14 @@ en:
           back: Back
           archive: Arachive
           career: Career track
+          no_date: No date
         index:
           students: Students
           users_active_career: Passing career track
           add_user: Assign a student a career track
         menu:
           user_lost_career: Lost students
-          users_finished_career: Finished career track
+          users_finished_career: Finished CT
           users_archived_career: Archive
           list: List
           new: Assign a student a career track
