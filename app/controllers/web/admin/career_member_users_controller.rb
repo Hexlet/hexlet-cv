@@ -31,6 +31,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
   def lost
     @users_lost_career = @users
+                         .only_active_career_members
                          .with_career_step_members
                          .includes(career_members: :career_step_members)
                          .merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
