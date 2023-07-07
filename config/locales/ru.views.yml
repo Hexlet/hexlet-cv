@@ -266,10 +266,12 @@ ru:
           few: лайка
           many: лайков
         tab_resumes: Резюме
-        tab_answers: Ответы
+        tab_answers: 'Комментарии пользователя %{user_name}'
         tab_comments: Комментарии
         banned: Аккаунт забанен
         tab_careers: Карьерный трек
+        user_comments: Комментарии, которые вы оставляете по резюме других пользователей
+        users_comments: 'Комментарии других пользователей к резюме %{user_name}'
       resumes:
         answers:
           one: Ответ
