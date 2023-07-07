@@ -20,6 +20,7 @@ en:
       vacancy:
         publish: Publish
         archive: Archive
+        send_to_moderate: Send to moderate
     attributes:
       resume/answer:
         content: Answer

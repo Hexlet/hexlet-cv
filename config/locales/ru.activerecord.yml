@@ -12,6 +12,7 @@ ru:
       vacancy:
         publish: Опубликовать
         archive: Архивировать
+        send_to_moderate: Отправить на модерацию
 
     models:
       career: Карьерный трек
