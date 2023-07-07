@@ -1,48 +1,81 @@
-= content_for :header do
-  = t('.employment')
+section.container-xl
+  .row
+    .col-3
+      .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3
+        .card-body.d-flex.align-items-center.p-0
+          .position-relative.me-3
+            = image_tag 'graduates/vasileva.png', width: 84, height: 84
+            .position-absolute.me-2[style='top: 60px; right: -10px;']
+              span.bi.bi-check-circle-fill.fs-5.text-success
+          .flex-column
+            .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Part-Time
+            .small.fw-bold Валентина Васильева
+            .small.text-secondary Бэкенд-разработчик
+    .col.text-center.py-5
+      h1.display-4.fw-bold Знания и поддержка для тех, кто хочет
+      span.text-bg-primary.rounded-5.px-4.display-4.fw-bold устроиться в IT
+    .col-3
+      .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3
+        .card-body.d-flex.align-items-center.p-0
+          .position-relative.me-3
+            = image_tag 'graduates/vasileva.png', width: 84, height: 84
+            .position-absolute.me-2[style='top: 60px; right: -10px;']
+              span.bi.bi-check-circle-fill.fs-5.text-success
+          .flex-column
+            .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Part-Time
+            .small.fw-bold Валентина Васильева
+            .small.text-secondary Бэкенд-разработчик
 
-p = t('.description')
+section.py-5
+  .row.row-cols-1.row-cols-md-2.row-cols-xl-3.gy-3
+    .col
+      .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-2.p-lg-3 Разместить свое резюме
+          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
+    .col
+      .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-2.p-lg-3 Посмотреть актуальные вакансии для выпускников
+          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
+    .col
+      .card.text-bg-dark.rounded-4.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-2.p-lg-3 Пройти Карьерный трек
+          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
 
-h2 = t('.where_find_jobs')
+= render 'options'
 
-ul
-  li hh.ru
-  li career.habr.ru
-  li https://cv.hexlet.io/vacancies
+= render 'blocks'
 
-h2 = t('.seasonality')
+= render 'join_ct'
 
-p = t('.seasonality_description')
+= render 'companies'
 
-h2 = t('.check_list')
+= render 'reviews'
 
-ol
-  li = t('.check_list_steps.free_course')
-  li = t('.check_list_steps.cv')
-  li = t('.check_list_steps.habr')
-  li = t('.check_list_steps.opensourse')
-  li = t('.check_list_steps.linkedin')
-  li = t('.check_list_steps.github')
-  li = t('.check_list_steps.twitter')
+= render 'infographic'
 
-h2 = t('.developer_specifics')
+section.py-4.py-lg-5
+  h2.fs-1.fw-bold Как присоединиться к Карьерному треку
+  .row.row-cols-1.row-cols-md-2.mt-4.gy-4
+    .col
+      .card.text-bg-dark.rounded-4.border-0.shadow-sm.h-100.p-4.p-lg-5
+        .card-body.d-flex.p-0
+          .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
+          .d-flex.flex-column
+            .fs-5.fw-bold.mb-2 Обучаетесь в группе или индивидуально с наставником
+            .x-font-size-18.mb-3 Сообщите своему куратору, он сориентирует по дальнейшим шагам
+            = link_to 'Написать куратору', root_path, class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
+    .col
+      .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.h-100.p-4.p-lg-5
+        .card-body.d-flex.p-0
+          .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
+          .d-flex.flex-column
+            .fs-5.fw-bold.mb-2 Учитесь самостоятельно: бесплатно или по подписке
+            .x-font-size-18.mb-3 Выберите программу, в которую входит помощь с трудоустройством
+            = link_to 'Выбрать профессию', 'https://ru.hexlet.io/courses#professions', class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
 
-ol
-  li = t('.dev_specifics_steps.free_course')
-  li = t('.dev_specifics_steps.leetcode')
-  li = t('.dev_specifics_steps.codewars')
-  li = t('.dev_specifics_steps.stackoverflow')
-  li = t('.dev_specifics_steps.test_assignments')
-  li = t('.dev_specifics_steps.books')
+= render 'professions'
 
-h2 = t('.qa_specifics')
-
-p = t('.in_progress')
-
-h2 = t('.analitics_specifics')
-
-p = t('.in_progress')
-
-h2 = t('.devops_specifics')
-
-p = t('.in_progress')
+= javascript_include_tag 'employments'

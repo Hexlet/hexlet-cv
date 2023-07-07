@@ -15,3 +15,17 @@ $link-decoration: none;
     }
   }
 }
+
+.x-font-size-18 {
+  font-size: 18px;
+}
+
+.x-shadow-fade-in {
+  transition-property: box-shadow;
+  transition-duration: .33s;
+  transition-timing-function: ease-out;
+}
+
+.shadow-sm.x-shadow-fade-in:hover {
+  @extend .shadow;
+}
