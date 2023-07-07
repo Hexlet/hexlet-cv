@@ -5,5 +5,4 @@
   .alert.alert-secondary
     = t('.vacancy_archived')
 
-= render partial: 'web/shared/vacancy_form',
-         locals: { vacancy: @vacancy, url: account_vacancy_path(@vacancy), can_update: false, show_archive_button: !@vacancy.archived? }
+= render 'form', vacancy: @vacancy, url: account_vacancy_path(@vacancy), show_archive_button: !@vacancy.archived?

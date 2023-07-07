@@ -73,9 +73,6 @@ en:
         publish: Post 
         hide: Draft 
         cancel: Discart
-      vacancy_form:   
-        archive: Archive     
-        cancel: Cancel
       work_fields:
         remove_work: Delete work experience
       education_fields:
@@ -215,6 +212,9 @@ en:
             tab_active: Active
             tab_finished: Finished
       vacancies:
+        form:  
+          archive: Archive     
+          cancel: Cancel
         new:
           header: New vacancy
         edit:

@@ -1,5 +1,4 @@
 - content_for :header do
   = t('.header')
 
-= render partial: 'web/shared/vacancy_form',
-         locals: { vacancy: @vacancy, url: account_vacancies_path, can_update: false }
+= render 'form', vacancy: @vacancy, url: account_vacancies_path, show_archive_button: false

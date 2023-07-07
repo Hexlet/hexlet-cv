@@ -1,9 +1,4 @@
 = simple_form_for vacancy, as: :vacancy, url:, wrapper: 'horizontal_form' do |f|
-  - if can_update
-    = f.input :state_event, as: :state_event
-    .mt-3
-      = f.input :locale
-    .mb-3 = f.submit class: 'btn btn-outline-primary'
   .mb-3
     = f.input :position_level
   .mb-3
@@ -20,10 +15,6 @@
     = f.input :salary_currency
   .mb-3
     = f.input :title
-  / .mb-3
-    / = f.input :programming_language
-  / .mb-3
-  /   = f.association :country
   .mb-3
     = f.input :city_name
   .mb-3

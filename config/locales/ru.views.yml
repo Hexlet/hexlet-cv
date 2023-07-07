@@ -76,8 +76,6 @@ ru:
         publish: Опубликовать
         hide: В черновик
         cancel: Отмена
-      vacancy_form:
-        archive: В архив
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:
@@ -212,6 +210,9 @@ ru:
             tab_active: Активные
             tab_finished: Завершенные
       vacancies:
+        form: 
+          archive: В архив
+          cancel: Отмена
         new:
           header: Новая вакансия
         edit:
