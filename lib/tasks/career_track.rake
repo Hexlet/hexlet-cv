@@ -3,7 +3,9 @@
 namespace :career_track do
   desc 'This is task find lost student in career track'
   task notify_about_lost_students: :environment do
-    members = Career::Member.joins(:career_step_members).merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
+    members = Career::Member.joins(:career_step_members)
+                            .active
+                            .merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
     abort 'No lost student' if members.empty?
 
     payload = members.each_with_object({}) do |member, acc|
