@@ -52,3 +52,7 @@ mail_delivery_disabled:
   <<: *DEFAULTS
   email: mail_delivery_disabled@email.com
   resume_mail_enabled: false
+
+lost_user_in_career:
+  <<: *DEFAULTS
+  email: $LABEL@email.com
