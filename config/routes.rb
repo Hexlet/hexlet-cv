@@ -102,7 +102,7 @@ Rails.application.routes.draw do
             patch :restore
           end
         end
-        resources :vacancies, only: %i[index edit update]
+        resources :vacancies, only: %i[index new create edit update]
         resources :careers, only: [] do
           scope module: :careers do
             collection do

@@ -91,7 +91,10 @@ ru:
         technology_list: Технологии
         direction_list: Направления
         published_at: Дата публикации
+        state_event: Статус
         state: Состояние
+        state/idle: Черновик
+        state/on_moderate: На модерации
         state/published: Опубликована
         state/archived: В архиве
         state/on_moderate: На модерации

@@ -53,10 +53,17 @@ en:
         edit:
           header: Resume editing
       vacancies:
+        form:
+          cancel: Cancel
+        menu:
+          list: List
+          new: New Job
         search_form:
           creator: name/surname/mail
           created_at_from: 'Creation date from:'
           created_at_to: 'By:'
+        new:
+          new_vacancy: New Job
         edit:
           header: Job editing
         index:

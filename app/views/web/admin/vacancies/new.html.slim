@@ -1,0 +1,6 @@
+- content_for :header do
+  = t('.new_vacancy')
+
+= render 'menu'
+
+= render 'form', vacancy: @vacancy, url: admin_vacancies_path

@@ -13,6 +13,23 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#new' do
+    get new_admin_vacancy_path
+
+    assert_response :success
+  end
+
+  test '#create' do
+    attrs = FactoryBot.attributes_for :vacancy
+
+    post admin_vacancies_path, params: { vacancy: attrs }
+    assert_redirected_to admin_vacancies_path
+
+    vacancy = Vacancy.find_by(title: attrs[:title])
+    assert { vacancy }
+    assert { vacancy.idle? }
+  end
+
   test '#edit' do
     vacancy = vacancies(:one)
     get edit_admin_vacancy_path(vacancy)
