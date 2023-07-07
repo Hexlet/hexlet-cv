@@ -1,4 +1,6 @@
 - content_for :header do
   = t('.header')
 
-= render partial: 'web/shared/vacancy_form', locals: { vacancy: @vacancy, url: admin_vacancy_path, can_update: true }
+= render 'menu'
+
+= render 'form', vacancy: @vacancy, url: admin_vacancy_path

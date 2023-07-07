@@ -54,10 +54,17 @@ ru:
         edit:
           header: Редактирование резюме
       vacancies:
+        form:
+          cancel: Отмена
+        menu:
+          list: Список
+          new: Новая вакансия
         search_form:
           creator: имя/фамилия/почта
           created_at_from: 'Дата создания с:'
           created_at_to: 'по:'
+        new:
+          new_vacancy: Новая вакансия
         edit:
           header: Редактирование вакансии
         index:

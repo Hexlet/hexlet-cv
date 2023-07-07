@@ -1,0 +1,5 @@
+ul.nav.nav-tabs.mb-4
+  = menu_item t('.list'), admin_vacancies_path
+  = menu_item t('.new'), new_admin_vacancy_path
+  - if @vacancy&.persisted?
+    = menu_item @vacancy.title, edit_admin_vacancy_path(@vacancy)

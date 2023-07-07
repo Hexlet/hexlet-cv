@@ -72,7 +72,12 @@ en:
         technology_list: Technologies
         direction_list: Tags
         state: State
+        state_event: Status
         state/published: Published
+        state/idle: Draft
+        state/on_moderate: On moderate
+        state/published: Published
+        state/archived: Archived
         name: Name
         company: Company
       notification:

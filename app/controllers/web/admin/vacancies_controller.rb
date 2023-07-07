@@ -30,9 +30,26 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     end
   end
 
+  def new
+    @vacancy = Web::Admin::VacancyForm.new
+  end
+
   def edit
     vacancy = Vacancy.find params[:id]
     @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
+  end
+
+  def create
+    @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
+    @vacancy.creator = current_user
+
+    if @vacancy.save
+      f(:success)
+      redirect_to admin_vacancies_path
+    else
+      f(:error)
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
