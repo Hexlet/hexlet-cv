@@ -8,8 +8,11 @@ namespace :career_track do
                             .merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
     abort 'No lost student' if members.empty?
 
-    payload = members.each_with_object({}) do |member, acc|
-      acc[member.id] = {
+    payload = members.map do |member|
+      {
+        user_id: member.user.id,
+        member_id: member.id,
+        user_locale: member.user.locale,
         full_name: member.user.full_name,
         email: member.user.email,
         career_track: member.career.name,
