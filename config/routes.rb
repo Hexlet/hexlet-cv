@@ -27,6 +27,13 @@ Rails.application.routes.draw do
           get :switch
         end
       end
+      resource :careers, only: [] do
+        scope module: :careers do
+          member do
+            resource :employment, only: %i[show]
+          end
+        end
+      end
       resources :careers, only: %i[show] do
         scope module: :careers do
           resources :members, only: %i[show]
@@ -41,7 +48,6 @@ Rails.application.routes.draw do
           end
         end
       end
-      resource :employment, only: %i[show]
       resources :vacancies, only: %i[index show]
       # FIXME: фикс дирекшенов с точками типа node.js, убрать, когда определимся, нужно ли будем валидировать направления и запретим указывать точки
       resources :vacancy_filters, only: %i[show], format: false, defaults: { format: 'html' } do

@@ -14,12 +14,9 @@ html.h-100 lang="#{I18n.locale}"
         .row
           / .col-md-2
           /   = render 'layouts/shared/menu'
-          .col-md-9
+          .col-md-12
             - if content_for?(:header)
               h1.mb-5 = yield :header
             = yield
-          .col-md-3
-            .bg-light.rounded.py-2.px-3
-              = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'

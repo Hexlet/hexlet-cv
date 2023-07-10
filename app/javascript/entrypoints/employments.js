@@ -21,15 +21,15 @@ const companies = new Swiper('#companies .swiper', {
   },
 });
 
-// const reviews = new Swiper('#reviews .swiper', {
-//   loop: true,
-//   autoplay: {
-//     delay: 5000,
-//   },
-//   slidesPerView: 'auto',
-//   spaceBetween: 30,
-//   pagination: {
-//     el: '#reviews .swiper-pagination',
-//     clickable: true,
-//   },
-// });
+const reviews = new Swiper('#reviews .swiper', {
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  slidesPerView: 'auto',
+  spaceBetween: 30,
+  pagination: {
+    el: '#reviews .swiper-pagination',
+    clickable: true,
+  },
+});
