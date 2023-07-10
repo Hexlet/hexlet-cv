@@ -30,6 +30,7 @@ en:
           archive: Arachive
           career: Career track
           no_date: No date
+          restore: Restore to CT
         index:
           students: Students
           users_active_career: Passing career track
