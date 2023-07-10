@@ -8,7 +8,8 @@
       = @resume
     - if current_or_guest_user.admin?
       .m-1
-        = link_to t('.to_admin'), admin_resumes_path(q: { id_eq: @resume.id }), class: 'btn btn-primary'
+        = link_to edit_admin_resume_path(@resume), class: 'btn btn-primary' do
+          span.bi.bi-gear
 
 / .d-flex.mb-3.text-muted
 /   .d-flex.me-4
