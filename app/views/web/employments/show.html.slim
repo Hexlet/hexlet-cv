@@ -27,22 +27,28 @@ section.container-xl
             .small.text-secondary Бэкенд-разработчик
 
 section.py-5
-  .row.row-cols-1.row-cols-md-2.row-cols-xl-3.gy-3
+  .row.row-cols-1.row-cols-xl-3.gy-3
     .col
       .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
         .card-body.d-flex.justify-content-between.p-0
           h3.fw-bold.fs-5.p-2.p-lg-3 Разместить свое резюме
-          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
+          .text-end.mt-auto
+            = link_to new_account_resume_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
+              span.bi.bi-arrow-down-right.fs-3
     .col
       .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
         .card-body.d-flex.justify-content-between.p-0
           h3.fw-bold.fs-5.p-2.p-lg-3 Посмотреть актуальные вакансии для выпускников
-          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
+          .text-end.mt-auto
+            = link_to vacancies_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
+              span.bi.bi-arrow-down-right.fs-3
     .col
       .card.text-bg-dark.rounded-4.shadow-sm.x-shadow-fade-in.h-100.p-3
         .card-body.d-flex.justify-content-between.p-0
           h3.fw-bold.fs-5.p-2.p-lg-3 Пройти Карьерный трек
-          span.bi.bi-arrow-down-right.fs-3.text-end.mt-auto
+          .text-end.mt-auto
+            = link_to new_account_vacancy_path, class: 'text-bg-dark stretched-link', target: '_blank', rel: :noopener do
+              span.bi.bi-arrow-down-right.fs-3
 
 = render 'options'
 
