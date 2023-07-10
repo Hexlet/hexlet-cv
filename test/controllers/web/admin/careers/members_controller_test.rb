@@ -35,6 +35,16 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
     assert { member.archived? }
   end
 
+  test '#activate' do
+    member = career_members(:archived_member)
+
+    patch activate_admin_career_member_path(@career, member)
+
+    assert_redirected_to admin_career_member_users_path
+    member.reload
+    assert { member.active? }
+  end
+
   test 'new career member email' do
     attrs = {
       user_id: @user.id

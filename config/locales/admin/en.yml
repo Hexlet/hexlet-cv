@@ -23,6 +23,7 @@ en:
         lost:
           users_lost_career: Lost students
         show:
+          confirm_activate: Are you sure you want to restore the user to the career track
           last_activity_at: Last activty date
           confirm: Are you sure you want to remove the user from the career track?
           back: Back

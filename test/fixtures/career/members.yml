@@ -22,3 +22,8 @@ member_lost_user_in_career:
   user: lost_user_in_career
   created_at: <%= 1.week.ago.to_fs(:db) %>
   updated_at: <%= 1.week.ago.to_fs(:db) %>
+
+archived_member:
+  <<: *DEFAULTS
+  user: special
+  state: archived

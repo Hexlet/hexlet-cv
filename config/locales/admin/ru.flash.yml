@@ -8,6 +8,8 @@ ru:
             success: Карьерный трек создан!
             error: Ошибка! Проверьте поля формы
           members:
+            activate:
+              success: Студент в карьерном треке
             archive:
               success: Назначенный трек успено архивирован
             create:

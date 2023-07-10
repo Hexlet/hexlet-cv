@@ -24,6 +24,13 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
     redirect_to params[:back_to] || admin_career_path(resource_career)
   end
 
+  def activate
+    member = Career::Member.find(params[:id])
+    member.activate!
+    f(:success)
+    redirect_to params[:back_to] || admin_career_member_users_path
+  end
+
   private
 
   def career_member_params

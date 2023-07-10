@@ -8,6 +8,8 @@ en:
             success: Career Track Created!
             error: Error! Check form fields
           members:
+            activate:
+              success: Student in career track
             archive:
               success: Assigned track successfully archived
             create:
