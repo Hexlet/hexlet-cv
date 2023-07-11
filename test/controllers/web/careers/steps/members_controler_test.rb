@@ -38,4 +38,15 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
     assert { career_step_member.finished? }
     assert { career_member.finished? }
   end
+
+  test '#finish last steps email' do
+    user = users(:one)
+    step = career_steps(:step_eight)
+    career_step_member = career_step_members(:eight_by_user_one)
+    sign_in(user)
+
+    assert_emails 1 do
+      patch finish_career_step_member_path(@career, step, career_step_member)
+    end
+  end
 end

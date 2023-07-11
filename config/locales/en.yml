@@ -49,6 +49,21 @@ en:
         - If during the passage of the Career track you have questions, you can contact your curator
         - We also recommend that you start the Career track as soon as possible, because. it is very important to complete it before you enter the labor market. Our task is to make sure that you enter the labor market as the most prepared candidate, both in terms of hard and sift skills. So let's not waste time! Start preparing for employment!
       start_career: Start career track
+
+    career_member_finish:
+      subject: You have completed the career track.
+      title_html: |
+        Cheers cheers! So you have come to the end of the Career track. Pay attention that you still have additional tasks, be sure to go through them and fill in the “gaps” that remain.
+        
+        Also pay attention to the conditions for partner companies, if you want to get into a team with one of Hecklet's partners, you must fulfill a number of requirements that are written in <a href="%{step_path}" class="text-secondary fw-bolder ">this step</a>.
+      
+      description_html: |
+        All materials of the Career Track remain with you, so you can use them at any time.
+
+        <b>If you have completed your profession on Hexlet and completed an internship in Open Source</b>, start applying for vacancies. The career track has collected a huge list of sites where you can do this.
+        
+        <b>You can find a list of venues</b> <a href="https://docs.google.com/document/d/1X26UtHarvYQcYTXMtteGsUjCF5HU67Z9I7El6QkIcTU/edit#heading=h.9dtwvaurt21v" class="text-secondary fw-bolder" >here!</a>
+
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'

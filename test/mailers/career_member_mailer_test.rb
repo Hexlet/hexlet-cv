@@ -9,4 +9,11 @@ class CareerMemberMailerTest < ActionMailer::TestCase
     mail = CareerMemberMailer.with(career_member:, user:).new_career_member_email
     assert { user.email == mail.to.first }
   end
+
+  test 'career member finish' do
+    career_member = career_members(:member_with_github)
+    user = career_member.user
+    mail = CareerMemberMailer.with(career_member:, user:).career_member_finish
+    assert { user.email == mail.to.first }
+  end
 end
