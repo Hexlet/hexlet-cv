@@ -6,3 +6,4 @@ en:
     new_answer_like_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> likes your <a href="%{answer_path}" class="fw-bolder"> recommendation</a>
     answer_applied_html: User <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> improved his resume using your <a href="%{answer_path}" class="fw-bolder ">recommendation</a>
     new_career_member_html: Hooray! You have been assigned a career track <a href="%{career_path}" class="fw-bolder">%{career}</a>. Get started and get ready for a job.
+    career_member_finish_html: Cheers cheers! So you've come to the end of the Career Track <a href="%{career_path}" class="fw-bolder">%{career}</a>. Start applying for jobs!

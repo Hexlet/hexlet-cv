@@ -32,7 +32,9 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
 
     career_step_member.reload
     career_member = @career.members.find_by(user:)
+    notification = Notification.find_by(kind: :career_member_finish, user:, resource: career_member)
 
+    assert { notification }
     assert { career_step_member.finished? }
     assert { career_member.finished? }
   end

@@ -70,5 +70,13 @@ class NotificationsHelper
         career_path: career_member_path(career, resource, locale: I18n.locale)
       }
     end
+
+    def career_member_finish_params(resource)
+      career = resource.career
+      {
+        career: career.name,
+        career_path: career_member_path(career, resource, locale: I18n.locale)
+      }
+    end
   end
 end

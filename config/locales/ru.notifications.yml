@@ -6,3 +6,4 @@ ru:
     new_answer_like_html: Пользователю <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> нравится ваша <a href="%{answer_path}" class="fw-bolder">рекомендация</a>
     answer_applied_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> улучшил резюме используя вашу <a href="%{answer_path}" class="fw-bolder">рекомендацию</a>
     new_career_member_html: Ура! Вам назначен карьерный трек <a href="%{career_path}" class="fw-bolder">%{career}</a>. Приступайте к прохождению и готовьтесь к трудоустройству.
+    career_member_finish_html: Ура-ура! Вот ты и подошёл к завершению Карьерного трека <a href="%{career_path}" class="fw-bolder">%{career}</a>. Начинай откликаться на вакансии!
