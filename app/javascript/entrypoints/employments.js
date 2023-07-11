@@ -1,5 +1,7 @@
+// eslint-disable-next-line import/no-unresolved
 import Swiper from 'swiper/bundle';
 
+// eslint-disable-next-line no-unused-vars
 const companies = new Swiper('#companies .swiper', {
   loop: true,
   slidesPerView: 2,
@@ -21,6 +23,7 @@ const companies = new Swiper('#companies .swiper', {
   },
 });
 
+// eslint-disable-next-line no-unused-vars
 const reviews = new Swiper('#reviews .swiper', {
   loop: true,
   autoplay: {

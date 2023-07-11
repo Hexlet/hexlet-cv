@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Careers::EmploymentsController < Web::Careers::ApplicationController
+class Web::EmploymentsController < Web::ApplicationController
   def show
     set_meta_tags canonical: employment_url
     # set_meta_tags og: {

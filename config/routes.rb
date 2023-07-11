@@ -27,13 +27,9 @@ Rails.application.routes.draw do
           get :switch
         end
       end
-      resource :careers, only: [] do
-        scope module: :careers do
-          member do
-            resource :employment, only: %i[show]
-          end
-        end
-      end
+
+      resource :employment, only: %i[show]
+
       resources :careers, only: %i[show] do
         scope module: :careers do
           resources :members, only: %i[show]
