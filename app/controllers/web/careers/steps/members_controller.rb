@@ -8,6 +8,7 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
     authorize career_step_member
     career_member = career_step_member.career_member
     Career::Step::MemberMutator.create!(career_step_member, career_member)
+    EmailSender.send_career_member_finish(career_member)
     f(:success)
     redirect_to career_member_path(resource_career, career_member)
   end

@@ -7,4 +7,10 @@ class CareerMemberMailerPreview < ActionMailer::Preview
     user = career_member.user
     CareerMemberMailer.with(career_member:, user:).new_career_member_email
   end
+
+  def career_member_finish
+    career_member = Career::Member.first
+    user = career_member.user
+    CareerMemberMailer.with(career_member:, user:).career_member_finish
+  end
 end

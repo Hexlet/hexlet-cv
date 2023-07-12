@@ -31,6 +31,14 @@ class EmailSender
       CareerMemberMailer.with(career_member:, user:).new_career_member_email.deliver_later
     end
 
+    def send_career_member_finish(career_member)
+      user = career_member.user
+
+      return unless user.can_send_email? && career_member.finished?
+
+      CareerMemberMailer.with(career_member:, user:).career_member_finish.deliver_later
+    end
+
     private
 
     def can_send_email_notification?(user, resource)

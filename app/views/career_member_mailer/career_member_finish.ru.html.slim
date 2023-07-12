@@ -1,0 +1,9 @@
+span = t('.title_html', step_path: career_member_url(@career, @career_member, step: 2, locale: I18n.locale))
+
+hr
+
+span = t('.description_html')
+
+hr
+
+p  #{t('unsubscribe')} #{link_to t('settings'), edit_account_newsletters_url(locale: I18n.locale), target: '_blank', rel: 'noopener'}
