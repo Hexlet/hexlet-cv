@@ -8,5 +8,6 @@ class Web::Admin::Career::StepForm < Career::Step
          :tasks_text,
          :review_needed,
          :direction,
-         :locale
+         :locale,
+         :slug
 end
