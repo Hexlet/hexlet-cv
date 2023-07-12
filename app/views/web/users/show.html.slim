@@ -29,7 +29,7 @@ ul.nav.nav-pills.justify-content-center role="navigation"
   li.nav-item
     = link_to t('.tab_resumes'), '#resume', class: 'nav-link px-3 active', 'data-bs-toggle': 'tab'
   li.nav-item
-    = link_to t('.tab_answers', user_name: @user.full_name), '#answers', class: 'nav-link px-3', 'data-bs-toggle': 'tab', title: t('.user_comments')
+    = link_to t('.tab_answers', user_name: @user.full_name), '#answers', class: 'nav-link px-3', 'data-bs-toggle': 'tab', title: t('.user_comments', user_name: @user.full_name)
   li.nav-itemЗ
     = link_to t('.tab_comments'), '#comments', class: 'nav-link px-3', 'data-bs-toggle': 'tab', title: t('.users_comments', user_name: @user.full_name)
   - if current_or_guest_user == @user
