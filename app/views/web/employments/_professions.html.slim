@@ -1,5 +1,5 @@
 section.py-4.py-lg-5
-  h2.fs-1.fw-bold Популярные профессии с помощью в трудоустройстве
+  h2.fs-1.fw-bold = t('.title')
   .row.row-cols-1.row-cols-md-2.row-cols-xl-3.gy-4.mt-4
     - t('.profession_cards').each do |program|
       .col
@@ -7,7 +7,7 @@ section.py-4.py-lg-5
           .card-body.d-flex.flex-column.pt-1
             .d-flex.justify-content-between.align-items-center.my-4
               .d-flex.flex-wrap.small
-                .text-nowrap.me-2 профессия
+                .text-nowrap.me-2 = t('.profession')
                 span.align-bottom.small.me-2 &bull;
                 .text-nowrap = program.fetch(:price)
             .h4.mb-3 = program.fetch(:stack)
@@ -18,4 +18,4 @@ section.py-4.py-lg-5
                 span.small.me-2 &bull;
                 .text-nowrap = program.fetch(:level)
               .ms-auto.text-end
-                = link_to 'Перейти', program.fetch(:link), class: 'btn btn-primary px-4 px-lg-5', target: '_blank', rel: 'noopener'
+                = link_to t('.link_to'), program.fetch(:link), class: 'btn btn-primary px-4 px-lg-5', target: '_blank', rel: 'noopener'
