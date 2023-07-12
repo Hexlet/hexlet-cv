@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Career::Step < ApplicationRecord
+  before_save :generate_slug!, if: -> { new_record? }
+
   extend Enumerize
   include Career::StepRepository
 
@@ -13,5 +15,9 @@ class Career::Step < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at direction locale name]
+  end
+
+  def generate_slug!
+    self.slug = name.parameterize
   end
 end
