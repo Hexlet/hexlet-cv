@@ -1,19 +1,19 @@
-section.py-3.py-lg-5#options
-  h2.fs-1.fw-bold = t('.description_html')
-  .row.mt-4.mt-lg-5
-    .col-lg-7.mb-4.mb-lg-0
-      .d-flex.mb-1
-        .text-primary.bi.bi-check2.fs-4.me-3
-        .x-font-size-18 Научиться правильно презентовать себя через резюме, сопроводительное письмо и рабочие профили
-      .d-flex.mb-1
-        .text-primary.bi.bi-check2.fs-4.me-3
-        .x-font-size-18 Проходить технические интервью и выполнять тестовые задания
-      .d-flex
-        .text-primary.bi.bi-check2.fs-4.me-3
-        .x-font-size-18 Получать продакшен-опыт в открытых проектах Хекслета и на стажировках компаний-партнёров
+section.py-4.py-lg-5
+  h2.fs-1.fw-bold = t('.title')
+  .row.row-cols-1.row-cols-md-2.mt-4.gy-4
     .col
-      .card.bg-light.rounded-4.border-0.shadow-sm.h-100.p-4
-        .card-body.d-flex.flex-column.p-0
-          .d-flex.mb-3
-            .text-bg-dark.rounded-5.x-font-size-18.px-3 Задача Карьерного трека
-          .mt-auto.x-font-size-18 Помочь вам стать привлекательным для работодателя кандидатом и довести вас до оффера
+      .card.text-bg-dark.rounded-4.border-0.shadow-sm.h-100.p-4.p-lg-5
+        .card-body.d-flex.p-0
+          .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
+          .d-flex.flex-column
+            .fs-5.fw-bold.mb-2 = t('.group_learning')
+            .x-font-size-18.mb-3 = t('.inform_tutor')
+            = link_to t('.write_tutor'), root_path, class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
+    .col
+      .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.h-100.p-4.p-lg-5
+        .card-body.d-flex.p-0
+          .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
+          .d-flex.flex-column
+            .fs-5.fw-bold.mb-2 = t('.self_learning')
+            .x-font-size-18.mb-3 = t('.choose_program')
+            = link_to t('.choose_profession'), 'https://ru.hexlet.io/courses#professions', class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'

@@ -57,33 +57,11 @@
                 .small.fw-bold Дарья Харитонова
                 .small.text-secondary Python-разработчик
 
-  section.py-4.py-xl-5
-    .row.row-cols-1.row-cols-md-3.gy-3.py-md-5
-      .col
-        .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
-          .card-body.d-flex.justify-content-between.p-0
-            h3.fw-bold.fs-5.p-2.p-lg-3 Разместить свое резюме
-            .text-end.mt-auto
-              = link_to new_account_resume_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
-                span.bi.bi-arrow-down-right.fs-3
-      .col
-        .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
-          .card-body.d-flex.justify-content-between.p-0
-            h3.fw-bold.fs-5.p-lg-3 Посмотреть актуальные вакансии для выпускников
-            .text-end.mt-auto
-              = link_to vacancies_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
-                span.bi.bi-arrow-down-right.fs-3
-      .col
-        .card.text-bg-dark.rounded-4.shadow-sm.x-shadow-fade-in.h-100.p-3
-          .card-body.d-flex.justify-content-between.p-0
-            h3.fw-bold.fs-5.p-2.p-lg-3 Пройти Карьерный трек
-            .text-end.mt-auto
-              = link_to '#options', class: 'text-bg-dark stretched-link' do
-                span.bi.bi-arrow-down-right.fs-3
+  = render 'cards'
 
-  = render 'options'
+  = render 'intro'
 
-  = render 'blocks'
+  = render 'about_process'
 
   = render 'join_ct'
 
@@ -93,25 +71,7 @@
 
   = render 'infographic'
 
-  section.py-4.py-lg-5
-    h2.fs-1.fw-bold Как присоединиться к Карьерному треку
-    .row.row-cols-1.row-cols-md-2.mt-4.gy-4
-      .col
-        .card.text-bg-dark.rounded-4.border-0.shadow-sm.h-100.p-4.p-lg-5
-          .card-body.d-flex.p-0
-            .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
-            .d-flex.flex-column
-              .fs-5.fw-bold.mb-2 Обучаетесь в группе или индивидуально с наставником
-              .x-font-size-18.mb-3 Сообщите своему куратору, он сориентирует по дальнейшим шагам
-              = link_to 'Написать куратору', root_path, class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
-      .col
-        .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.h-100.p-4.p-lg-5
-          .card-body.d-flex.p-0
-            .d-none.d-lg-block.text-primary.fs-1.lh-1.bi.bi-arrow-right.me-3
-            .d-flex.flex-column
-              .fs-5.fw-bold.mb-2 Учитесь самостоятельно: бесплатно или по подписке
-              .x-font-size-18.mb-3 Выберите программу, в которую входит помощь с трудоустройством
-              = link_to 'Выбрать профессию', 'https://ru.hexlet.io/courses#professions', class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
+  = render 'options'
 
   = render 'professions'
 
