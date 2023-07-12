@@ -25,7 +25,51 @@ ru:
           description_html: '<a href="https://career.hexlet.io/" class="text-decoration-underline" target="_blank">Карьерный трек</a> помогает студентам Хекслета подготовиться к трудоустройству'
         companies:
           companies_html: '<span class="text-primary">40+</span> компаний-партнеров Карьерного трека'
+          alfa_bank: Альфа Банк
+          rambler: Rambler
+          regru: Regru
+          bookmate: Bookmate
+          healthsamurai: Health Samurai
+          uchiru: Учи.ру
+          dualboot: Dualboot partners
+          funbox: Funbox
+          yandex: Яндекс
+          tinkoff: Тинькофф
+          aviasales: Авиасейлc
+          agima: Agima
+          peter_service: PeterService
+          simtech: Simtech
+          abbyy: Abbyy
+          dc: Delivery Club
+          itech: Itech Group
+          avito_tech: Avito Tech
+          qiwi: QIWI
+          vc_ru: VC.RU
+          rtk_it: Ростелеком ИТ
+          simple_life: Simple life
+          pkzdrav: Комтек
+          greenatom_rossatom: Greenatom
+          csssr: CSSSR
+          jetrockets: JetRockets
+          sber_devices: Sber Devices
+          flant: Flant
+          cdek: CДЭК IT
+          kontur: Контур
+          timeweb: Timeweb
+          ozon: OZON
+          evrone: EVRONE
+          bell_integrator: Bell integrator
+          otkritie: Банк Открытие
+          mts: МТС
+          one_two_trip: One Two Trip
+          kion: Онлайн кинотеатр КИОН
+          zarplataru: Зарплата.ру
+          city_mobil: СитиМобил
+          cian: ЦИАН
+          volt: Volt
+          car_price: Car Price
         reviews:
+          logo: Логотип компании
           review_cards:
             - body: Мы давно работаем с Хекслетом. Наши сотрудники обучаются на платформе по разным направлениям, поэтому нам легко было оценить качество образования еще до партнерской программы. Теперь к нам приходят и выпускники профессии. Это ребята с опытом выполненных проектов, сильнее и увереннее, чем кандидаты с рынка. Они быстро вливаются в работу и легко погружаются в проект
               logo: logos/rostelecom.svg
