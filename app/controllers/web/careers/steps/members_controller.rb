@@ -10,6 +10,6 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
     Career::Step::MemberMutator.create!(career_step_member, career_member)
     EmailSender.send_career_member_finish(career_member)
     f(:success)
-    redirect_to career_member_path(resource_career, career_member)
+    redirect_to career_member_path(resource_career.slug, career_member)
   end
 end

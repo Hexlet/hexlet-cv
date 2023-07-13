@@ -31,4 +31,4 @@ ul.nav.nav-tabs.mt-2.mb-4
         span.text-success
           = t('.step_finished')
       - else
-        = link_to t('.step_finish'), finish_career_step_member_path(resource_career, @career_step, @career_step_member), method: :patch, class: 'btn btn-primary'
+        = link_to t('.step_finish'), finish_career_step_member_path(resource_career.slug, @career_step, @career_step_member), method: :patch, class: 'btn btn-primary'

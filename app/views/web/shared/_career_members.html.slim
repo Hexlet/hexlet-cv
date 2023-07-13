@@ -11,13 +11,13 @@
     .card-body
       .card-text.hexlet-cv-content == markdown2html member.career.description
       - if member.finished?
-        = link_to career_member_path(member.career, member), class: 'btn btn-success' do
+        = link_to career_member_path(member.career.slug, member), class: 'btn btn-success' do
           = t('.show')
       - elsif member.progress_percent.positive?
-        = link_to career_member_path(member.career, member), class: 'btn btn-success' do
+        = link_to career_member_path(member.career.slug, member), class: 'btn btn-success' do
           = t('.continue_career')
       - else
-        = link_to career_member_path(member.career, member), class: 'btn btn-primary' do
+        = link_to career_member_path(member.career.slug, member), class: 'btn btn-primary' do
           = t('.start_career')
 
 - if members.empty?
