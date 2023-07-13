@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_152356) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_071807) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_152356) do
     t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
+    t.string "slug", null: false
     t.index ["slug"], name: "index_career_steps_on_slug", unique: true
   end
 
