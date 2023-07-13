@@ -8,7 +8,7 @@ section.py-4.py-lg-5
           .d-flex.flex-column
             .fs-5.fw-bold.mb-2 = t('.group_learning')
             .x-font-size-18.mb-3 = t('.inform_tutor')
-            = link_to t('.write_tutor'), root_path, class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start', target: '_blank', rel: 'noopener'
+            = mail_to('support@hexlet.io', t('.write_tutor'), rel: 'nofollow', class: 'btn btn-primary fw-bold px-md-4 mt-auto align-self-start')
     .col
       .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.h-100.p-4.p-lg-5
         .card-body.d-flex.p-0
