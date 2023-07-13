@@ -7,7 +7,7 @@ class Web::Careers::ApplicationController < Web::ApplicationController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def resource_career
-    @resource_career ||= Career.find params[:career_id]
+    @resource_career ||= Career.find_by!(slug: params[:career_id])
   end
 
   def resource_member
