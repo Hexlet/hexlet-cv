@@ -39,6 +39,8 @@ en:
         locale: Locale
       career/member:
         career: Career track
+      career/step:
+        notification_kind: Notification type
       vacancy:
         conditions_description: Supplemental Pay
         requirements_description: Requirements

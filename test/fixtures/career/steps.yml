@@ -32,6 +32,7 @@ step_six:
 step_seven:
   <<: *DEFAULTS
   name: Прохождение практики в Open Source
+  notification_kind: open_source
 
 step_eight:
   <<: *DEFAULTS

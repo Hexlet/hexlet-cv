@@ -128,6 +128,7 @@ ru:
             step: 'Шаг: %{name}'
             attached_careers: 'Связанные карьерные треки:'
           form:
+            notification: Если требуется студенту отправить уведомление
             cancel: Отменить
           index:
             show: Посмотреть

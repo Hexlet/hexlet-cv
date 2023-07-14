@@ -5,6 +5,7 @@ class Career::Step < ApplicationRecord
   include Career::StepRepository
 
   enumerize :locale, in: I18n.available_locales
+  enumerize :notification_kind, in: %i[open_source], predicates: true
 
   validates :name, :description, :tasks_text, :locale, presence: true
 
@@ -14,9 +15,5 @@ class Career::Step < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at direction locale name]
-  end
-
-  def generate_slug!
-    self.slug = name.parameterize
   end
 end

@@ -54,6 +54,7 @@ ru:
         locale: Язык
         tasks_text: Задачи
         review_needed: Нужно ли ревью
+        notification_kind: Тип уведомления
       notification:
         state: Состаяние уведомления
         state/read: Прочитанно

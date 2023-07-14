@@ -36,3 +36,5 @@ en:
       read: Reading professional literature
       pass_interview: I can do interviews
       fluent: Speak fluently
+    notification_kind:
+      open_source: Open source

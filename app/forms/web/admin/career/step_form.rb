@@ -9,5 +9,5 @@ class Web::Admin::Career::StepForm < Career::Step
          :review_needed,
          :direction,
          :locale,
-         :slug
+         :notification_kind
 end
