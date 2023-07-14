@@ -5,7 +5,7 @@ class Career::Step < ApplicationRecord
   include Career::StepRepository
 
   enumerize :locale, in: I18n.available_locales
-  validates :slug, presence: true, slug: true, uniqueness: { case_sensitive: false }
+
   validates :name, :description, :tasks_text, :locale, presence: true
 
   has_many :career_items, class_name: 'Career::Item', inverse_of: :career_step, foreign_key: 'career_step_id', dependent: :destroy

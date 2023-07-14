@@ -8,39 +8,31 @@ DEFAULTS: &DEFAULTS
 step_one:
   <<: *DEFAULTS
   name: 'Прохождение курса: Трудоустройство'
-  slug: prohozhdenie-kursa-trudoustroystvo
 
 step_two:
   <<: *DEFAULTS
   name: Составление резюме
-  slug: sostavlenie-rezyume
 
 step_three:
   <<: *DEFAULTS
   name: Составление сопроводительного письма
-  slug: sostavlenie-soprovoditelnogo-pisma
 
 step_four:
   <<: *DEFAULTS
   name: 'Прохождение курса: Трудоустройство для разработчиков'
-  slug: prohozhdenie-kursa-trudoustroystvo-dlya-razrabotchikov
  
 step_five:
   <<: *DEFAULTS
   name: Заполнение профиля на GitHub
-  slug: zapolnenie-profilya-na-github
 
 step_six:
   <<: *DEFAULTS
   name: Заполнение профиля на LinkedIn
-  slug: zapolnenie-profilya-na-linkedin
 
 step_seven:
   <<: *DEFAULTS
   name: Прохождение практики в Open Source
-  slug: prohozhdenie-praktiki-v-open-source
 
 step_eight:
   <<: *DEFAULTS
   name: Выполнение дополнительных заданий
-  slug: vypolnenie-dopolnitelnyh-zadaniy

@@ -128,7 +128,6 @@ en:
             show: Show
             action: Actions
           form:
-            slug: 'A persons unique identification number, eg: cover-letter'
             cancel: Отменить
           menu:
             list: List
