@@ -7,8 +7,9 @@ class Career::Step::MemberMutator
       career_step_member.finish!
       if career_member.may_finish?
         career_member.finish!
-        user.notifications.create!(kind: :career_member_finish, resource: career_member)
+        @notification = user.notifications.create!(kind: :career_member_finish, resource: career_member)
       end
     end
+    @notification
   end
 end

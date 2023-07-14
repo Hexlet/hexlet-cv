@@ -27,3 +27,7 @@ archived_member:
   <<: *DEFAULTS
   user: special
   state: archived
+
+member_next_step_open_source:
+  <<: *DEFAULTS
+  user: next_step_open_source
