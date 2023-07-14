@@ -163,3 +163,7 @@ ru:
           attributes:
             slug:
               slug: неверный slug
+        career/step:
+          attributes:
+            slug:
+              slug: должен быть уникальным

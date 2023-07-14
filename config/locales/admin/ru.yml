@@ -128,6 +128,7 @@ ru:
             step: 'Шаг: %{name}'
             attached_careers: 'Связанные карьерные треки:'
           form:
+            slug: 'Уникальный идентификатор понятный человеку, например: soprovoditelnoe-pismo'
             cancel: Отменить
           index:
             show: Посмотреть

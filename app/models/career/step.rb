@@ -5,6 +5,7 @@ class Career::Step < ApplicationRecord
   include Career::StepRepository
 
   enumerize :locale, in: I18n.available_locales
+  validates :slug, presence: true, slug: true, uniqueness: { case_sensitive: false }
   validates :name, :description, :tasks_text, :locale, presence: true
 
   has_many :career_items, class_name: 'Career::Item', inverse_of: :career_step, foreign_key: 'career_step_id', dependent: :destroy
@@ -13,5 +14,9 @@ class Career::Step < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at direction locale name]
+  end
+
+  def generate_slug!
+    self.slug = name.parameterize
   end
 end
