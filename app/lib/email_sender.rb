@@ -31,7 +31,7 @@ class EmailSender
       CareerMemberMailer.with(career_member:, user:).new_career_member_email.deliver_later
     end
 
-    def send_notification(career_member, notification_kind = nil)
+    def send_notification_career(career_member, notification_kind = nil)
       return unless notification_kind
 
       user = career_member.user
