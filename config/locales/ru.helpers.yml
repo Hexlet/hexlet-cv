@@ -3,3 +3,5 @@ ru:
     submit:
       create: Создать
       update: Изменить
+      web_lead_form:
+        create: Получить консультацию
