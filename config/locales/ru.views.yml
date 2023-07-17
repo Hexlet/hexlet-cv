@@ -144,6 +144,8 @@ ru:
       form:
         title: Хотите обучаться с наставником и стать участником Карьерного трека?
         leave_contacts: Оставьте контакты — мы позвоним и ответим на все вопросы
+        user_agreement_with_offer_html: |
+          Отправляя форму, вы принимаете «<a href="https://ru.hexlet.io/pages/personal_data" class="text-body text-decoration-underline" target="_blank" rel="nofollow">Соглашение об обработке персональных данных</a>» и условия «<a href="https://ru.hexlet.io/pages/offer" class="text-body text-decoration-underline" target="_blank" rel="nofollow">Оферты</a>», а также соглашаетесь с «<a href="https://ru.hexlet.io/pages/tos" class="text-body text-decoration-underline" target="_blank" rel="nofollow">Условиями использования</a>»
     errors:
       server_error:
         header: Что-то пошло не так
