@@ -4,7 +4,7 @@ ul.nav.nav-tabs.mt-2.mb-4
   - @career_items.each.with_index(1) do |item, step|
     li.nav-item
       - if resource_member.can_show_step_body?(item)
-        = link_to career_member_path(resource_career, resource_member, step:), class: ['nav-link px-3', @career_item.order == item.order ? 'active' : ''] do
+        = link_to career_member_path(resource_career.slug, resource_member, step:), class: ['nav-link px-3', @career_item.order == item.order ? 'active' : ''] do
           - if @career_step_members_by_step_id[item.career_step_id]&.finished?
             span.text-success
               span.bi.bi-check2.me-1
