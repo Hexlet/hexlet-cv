@@ -10,7 +10,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
         = nav_menu_item t('.resumes'), root_path
         = nav_menu_item t('.vacancies'), vacancies_path
         = nav_menu_item t('.employment'), employment_path
-      ul.navbar-nav.nav-pills
+      ul.navbar-nav
         - if user_signed_in?
           li.nav-item
             = link_to account_notifications_path, class: 'nav-link px-2' do
