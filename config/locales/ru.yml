@@ -80,6 +80,11 @@ ru:
 
         <br>
 
+        Полезные ссылки:<br>
+        <ul>
+          <li><a href="https://ru.hexlet.io/blog/posts/kak-vybrat-svoy-pervyy-open-sors-proekt-instruktsiya-ot-heksleta" class="text-secondary fw-bolder">Как выбрать свой первый Open Source проект</a></li>
+          <li><a href="https://guides.hexlet.io/ru/how-to-be-a-helpful-for-the-hexlet-community/" class="text-secondary fw-bolder">Как участвовать в жизни Хекслета</a></li>
+        </ul>
         Удачи! 
 
   resume_comment_mailer:
