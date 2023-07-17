@@ -56,3 +56,7 @@ mail_delivery_disabled:
 lost_user_in_career:
   <<: *DEFAULTS
   email: $LABEL@email.com
+
+next_step_open_source:
+  <<: *DEFAULTS
+  email: $LABEL@email.com

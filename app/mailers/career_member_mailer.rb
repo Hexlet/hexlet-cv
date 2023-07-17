@@ -16,4 +16,12 @@ class CareerMemberMailer < ApplicationMailer
 
     mail(to: @user.email)
   end
+
+  def next_step_open_source
+    @career_member = params[:career_member]
+    @user = params[:user]
+    @career = @career_member.career
+
+    mail(to: @user.email)
+  end
 end

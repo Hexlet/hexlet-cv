@@ -64,6 +64,27 @@ en:
         
         <b>You can find a list of venues</b> <a href="https://docs.google.com/document/d/1X26UtHarvYQcYTXMtteGsUjCF5HU67Z9I7El6QkIcTU/edit#heading=h.9dtwvaurt21v" class="text-secondary fw-bolder" >here!</a>
 
+    next_step_open_source:
+      subject: Первая половина позади
+
+      description_html: |
+        Congratulations! You have passed the first half of the Career Track, where we have analyzed what the IT market is and how to get into it.<br>
+        
+        We also worked on your work profiles. Now is the time to get down to practice, namely, to develop a portfolio.<br>
+
+        
+        A portfolio is a very important part of a job search. This is not only an opportunity to gain practical experience in development, but also something that will set you apart from other candidates in the market.<br>
+
+        <br>
+
+        Proceed to the next <a href="%{career_path}" class="text-secondary fw-bolder">steps</a> and be sure to follow all the recommendations and tasks on them!<br>
+
+        As a reminder, if you have any questions, you can contact your group curator.<br>
+
+        <br>
+
+        Good luck!
+
   resume_answer_mailer:
     new_answer_email:
       content: 'Content:'

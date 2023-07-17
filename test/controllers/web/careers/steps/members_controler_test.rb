@@ -49,4 +49,15 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
       patch finish_career_step_member_path(@career.slug, step, career_step_member)
     end
   end
+
+  test '#next step open source' do
+    user = users(:next_step_open_source)
+    step = career_steps(:step_one)
+    career_step_member = career_step_members(:one_by_user_next_step_open_source)
+    sign_in(user)
+
+    assert_emails 1 do
+      patch finish_career_step_member_path(@career.slug, step, career_step_member)
+    end
+  end
 end

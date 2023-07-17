@@ -11,7 +11,8 @@ step_one:
 
 step_two:
   <<: *DEFAULTS
-  name: Составление резюме
+  name: Прохождение практики в Open Source 
+  notification_kind: next_step_open_source
 
 step_three:
   <<: *DEFAULTS
@@ -31,8 +32,7 @@ step_six:
 
 step_seven:
   <<: *DEFAULTS
-  name: Прохождение практики в Open Source
-  notification_kind: open_source
+  name: Составление резюме
 
 step_eight:
   <<: *DEFAULTS

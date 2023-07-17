@@ -5,7 +5,7 @@ class Career::Step < ApplicationRecord
   include Career::StepRepository
 
   enumerize :locale, in: I18n.available_locales
-  enumerize :notification_kind, in: %i[open_source], predicates: true
+  enumerize :notification_kind, in: %i[next_step_open_source], predicates: true
 
   validates :name, :description, :tasks_text, :locale, presence: true
 
