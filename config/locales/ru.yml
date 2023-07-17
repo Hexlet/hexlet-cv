@@ -39,14 +39,18 @@ ru:
   career_member_mailer:
     new_career_member_email:
       subject: Вам назначен карьерный трек.
-      career_path_html: Ура-ура! Теперь ты можешь проходить Карьерный трек! Переходи <a href="%{career_path}" class="text-secondary fw-bolder">по ссылке</a> и начинай готовиться к трудоустройству.
-      description: |
-        Карьерный трек — это сервис на Хекслете, который помогает студентам подготовиться к трудоустройству: проработать резюме, сопроводительное, портфолио, получить практические навыки прохождения интервью и многое-многое другое!
-      list:
-        - Проходи все шаги Карьерного трека и выполняй задания к ним, это поможет тебе максимально подготовиться к выходу на рынок труда
-        - Если в ходе прохождения Карьерного трека у тебя будут возникать вопросы, ты можешь обратиться к своему куратору
-        - Также мы рекомендуем, как можно скорее приступать к Карьерному треку, т.к. очень важно завершить его до того момента, как ты выйдешь на рынок труда. Наша с тобой задача сделать так, чтобы на рынок труда ты выходил уже максимально подготовленным кандидатом, как по hard, так и по sift skills. Поэтому не будем терять временя! Приступай к подготовке к трудоустройству!
-      start_career: Начать карьерный трек
+      introduction_html: |
+        Поздравляем! Вам открыт доступ к Карьерному треку — нашему сервису для старта карьеры в IT.<br> 
+        В нём мы поможем вам составить резюме и написать сопроводительное письмо, подготовиться к собеседованиям и откликнуться на вакансии.<br>
+      in_track: К треку
+      list_html: |
+        За время участия в Треке вы:
+        <ul>
+          <li>Соберете и оформите классное портфолио. Мы подскажем, как преподнести опыт в <a href="https://help.hexlet.io/ru/articles/111465-cto-takoe-proekty?utm_source=activecampaign&utm_medium=email&utm_campaign=all-courses&utm_content=career-track&utm_term=email_after-registration-ct.segment_ct">Учебныйх проектах</a> и в <a href="https://help.hexlet.io/ru/articles/122957-praktika-v-opensors-proektax?utm_source=activecampaign&utm_medium=email&utm_campaign=all-courses&utm_content=career-track&utm_term=email_after-registration-ct.segment_ct">опенсорс-проектах</a></li>
+          <li>Прокачаете резюме на сервисе <a href="https://cv.hexlet.io/?utm_source=activecampaign&utm_medium=email&utm_campaign=all-courses&utm_content=career-track&utm_term=email_after-registration-ct.segment_ct">Hexlet CV</a> и получите обратную связь от участников сообщества и опытных HR-специалистов.</li>
+          <li>Получите рекомендацию для трудоустройства в компании-партнёры Хекслета, где знают и ценят наших студентов. Для этого придется выполнить несколько <a href="https://help.hexlet.io/ru/articles/172515-karernyi-trek?utm_source=activecampaign&utm_medium=email&utm_campaign=all-courses&utm_content=career-track&utm_term=email_after-registration-ct.segment_ct">условий</a>, так что не откладывайте старт надолго</li>
+        </ul>   
+      start_career: Начать подготовку
 
     career_member_finish:
       subject: Вы завершили карьерный трек.
@@ -76,7 +80,7 @@ ru:
 
         Переходи к следующим <a href="%{career_path}" class="text-secondary fw-bolder">шагам</a> и обязательно выполняй все рекомендации и задания по ним!<br>
 
-        Напоминаем: если у тебя будут возникать вопросы, ты можешь обратиться к кураторму своей группы.<br>
+        Напоминаем: если у тебя будут возникать вопросы, ты можешь обратиться к куратору своей группы.<br>
 
         <br>
 

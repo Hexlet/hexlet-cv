@@ -1,15 +1,17 @@
-span = t('.career_path_html', career_path: career_member_url(@career.slug, @career_member, locale: I18n.locale))
+span = t('.introduction_html')
 
-hr
+br
 
-span = t('.description')
+= link_to account_members_url(locale: I18n.locale), style: 'border: none; text-decoration: none; color: white; background: #0B63F6;' do
+  = t('.in_track')
 
-ul
-  - t('.list').each do |item|
-    li = item
+br
+
+= t('.list_html', locale: I18n.locale)
 
 div
-  = link_to t('.start_career'), career_url(@career, locale: I18n.locale)
+  = link_to career_url(@career, locale: I18n.locale), style: 'border: none; text-decoration: none; color: white; background: #0B63F6;' do
+    = t('.start_career')
 
 hr
 
