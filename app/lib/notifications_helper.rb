@@ -78,5 +78,12 @@ class NotificationsHelper
         career_path: career_member_path(career, resource, locale: I18n.locale)
       }
     end
+
+    def next_step_open_source_params(resource)
+      career = resource.career
+      {
+        career_path: career_member_path(career, resource, locale: I18n.locale)
+      }
+    end
   end
 end

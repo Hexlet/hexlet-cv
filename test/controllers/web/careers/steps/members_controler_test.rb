@@ -60,4 +60,18 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
       patch finish_career_step_member_path(@career.slug, step, career_step_member)
     end
   end
+
+  test '#next step open source notification' do
+    user = users(:next_step_open_source)
+    step = career_steps(:step_one)
+    career_step_member = career_step_members(:one_by_user_next_step_open_source)
+    career_member = career_members(:member_next_step_open_source)
+    sign_in(user)
+
+    patch finish_career_step_member_path(@career.slug, step, career_step_member)
+
+    notification = Notification.find_by(kind: :next_step_open_source, user:, resource: career_member)
+
+    assert { notification }
+  end
 end

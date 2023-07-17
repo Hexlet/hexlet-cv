@@ -3,7 +3,9 @@
 class Notification < ApplicationRecord
   include AASM
 
-  validates :kind, inclusion: { in: %w[new_answer new_comment new_answer_like new_answer_comment answer_applied new_career_member career_member_finish] }
+  validates :kind, inclusion: {
+    in: %w[new_answer new_comment new_answer_like new_answer_comment answer_applied new_career_member career_member_finish next_step_open_source]
+  }
   validates :resource_type, presence: true
 
   belongs_to :user

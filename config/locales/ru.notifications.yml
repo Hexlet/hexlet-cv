@@ -7,3 +7,6 @@ ru:
     answer_applied_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> улучшил резюме используя вашу <a href="%{answer_path}" class="fw-bolder">рекомендацию</a>
     new_career_member_html: Ура! Вам назначен карьерный трек <a href="%{career_path}" class="fw-bolder">%{career}</a>. Приступайте к прохождению и готовьтесь к трудоустройству.
     career_member_finish_html: Ура-ура! Вот ты и подошёл к завершению Карьерного трека <a href="%{career_path}" class="fw-bolder">%{career}</a>. Начинай откликаться на вакансии!
+    next_step_open_source_html:  |
+      Первая половина <a href="%{career_path}" class="fw-bolder">Карьерного трека</a> позади! Впереди очень важный шаг - Участие в Open Source проектах<br>
+      <a href="https://ru.hexlet.io/blog/posts/kak-vybrat-svoy-pervyy-open-sors-proekt-instruktsiya-ot-heksleta class="fw-bolder">Как выбрать свой первый опенсорс проект</a>

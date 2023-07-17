@@ -7,12 +7,10 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
     career_step_member = Career::Step::Member.find(params[:id])
     authorize career_step_member
     career_member = career_step_member.career_member
-    next_step = career_member.next_item(career_member.current_item)&.career_step
 
     notification = Career::Step::MemberMutator.create!(career_step_member, career_member)
-    notification_kind = next_step&.notification_kind || notification&.kind
 
-    EmailSender.send_notification_career(career_member, notification_kind)
+    EmailSender.send_notification_career(career_member, notification&.kind)
     f(:success)
     redirect_to career_member_path(resource_career.slug, career_member)
   end
