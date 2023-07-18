@@ -2,6 +2,8 @@
 
 module ApplicationHelper
   # include AuthManagement
+  include CustomUrlHelpersConcern
+
   def let(value)
     yield value
   end
