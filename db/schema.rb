@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_17_153132) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_075121) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -103,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_153132) do
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_leads_on_email", unique: true
   end
 
   create_table "notifications", force: :cascade do |t|

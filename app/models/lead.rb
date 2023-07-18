@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 class Lead < ApplicationRecord
-  validates :email, :phone_number, :user_name, presence: true
+  validates :user_name, :phone_number, presence: true
+  validates :email, 'valid_email_2/email': true, presence: true, uniqueness: true
 end

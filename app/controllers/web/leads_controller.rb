@@ -7,7 +7,8 @@ class Web::LeadsController < Web::ApplicationController
       f(:success)
       redirect_to root_path
     else
-      render :show
+      f(:success_existing_user, type: :success)
+      redirect_to new_user_session_path
     end
   end
 end
