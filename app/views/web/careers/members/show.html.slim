@@ -28,7 +28,7 @@ ul.nav.nav-tabs.mt-2.mb-4
   .col-lg-4
     .text-center.mb-3
       - if @career_step_member.finished?
-        span.text-success
+        span.text-success.h4
           = t('.step_finished')
       - else
         = link_to t('.step_finish'), finish_career_step_member_path(resource_career.slug, @career_step, @career_step_member), method: :patch, class: 'btn btn-primary'

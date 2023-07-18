@@ -14,12 +14,12 @@ html.h-100 lang="#{I18n.locale}"
         .row
           .col-md-3
             ul.nav.flex-column.nav-pills
-              = nav_menu_item t('.notifications'), account_notifications_path
-              = nav_menu_item t('.resumes'), account_resumes_path
-              = nav_menu_item t('.vacancies'), account_vacancies_path
-              = nav_menu_item t('.settings'), edit_account_profile_path
-              = nav_menu_item t('.newsletters'), edit_account_newsletters_path
-              = nav_menu_item t('.career'), account_members_path
+              = sidebar_menu_item t('.notifications'), 'bi-bell-fill', account_notifications_path
+              = sidebar_menu_item t('.resumes'), 'bi-card-text', account_resumes_path
+              = sidebar_menu_item t('.vacancies'), 'bi-briefcase', account_vacancies_path
+              = sidebar_menu_item t('.settings'), 'bi-gear-wide-connected', edit_account_profile_path
+              = sidebar_menu_item t('.newsletters'), 'bi-envelope', edit_account_newsletters_path
+              = sidebar_menu_item t('.career'), 'bi-graph-up-arrow', account_members_path
           .col-md-9
             - if content_for?(:header)
               h1.h2.mb-4 = yield :header
