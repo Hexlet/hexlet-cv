@@ -79,11 +79,21 @@ heroku config:set RAILS_LOG_TO_STDOUT=enabled
 heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
-Configure reCAPTCHA
+Configure reCAPTCHA for prodaction:
 
 * Follow the link [reCAPTCHA](https://www.google.com/recaptcha)
 * Log into Admin Console with your credentials or create a new Google Account in case you don't have one
 * At Admin Console register a new site as shown in example below
+
+Configure reCAPTCHA for development:
+
+* add test key to .ENV file if they were not generated:
+
+```
+# test key for recapcha https://github.com/MTG/freesound/issues/879
+RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+```
 
 ```sh
 Label: <app_name>.herokuapp.com
