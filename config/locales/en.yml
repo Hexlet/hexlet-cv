@@ -87,7 +87,6 @@ en:
 
   resume_answer_mailer:
     new_answer_email:
-      content: 'Content:'
       new_answer_html: The user <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> left <a href="%{answer_path}">a new recommendation</a> to your summary
       review: Your resume has been reviewed!
       subject: You have a new recommendation

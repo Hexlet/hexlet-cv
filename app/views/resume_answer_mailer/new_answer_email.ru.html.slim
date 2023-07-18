@@ -7,11 +7,4 @@ p = t('.new_answer_html',
 
 hr
 
-p = t('.content')
-
-p
-  = @answer.content
-
-hr
-
 p  #{t('unsubscribe')} #{link_to t('settings'), edit_account_newsletters_url, target: '_blank', rel: 'noopener'}

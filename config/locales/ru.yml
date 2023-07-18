@@ -98,7 +98,6 @@ ru:
       subject: У вас новый коментарий к резюме
   resume_answer_mailer:
     new_answer_email:
-      content: 'Содержание:'
       new_answer_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме
       review: Ваше резюме прошло ревью!
       subject: У вас новая рекомендация к резюме
