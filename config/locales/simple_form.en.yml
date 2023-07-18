@@ -62,12 +62,14 @@ en:
         contact_email: The field is public and indexable, visible to all
         link_for_contact: |
           Provide a link to the page with the job description and the feedback form, or a link to the same job posted on another website. The link must be clean, with no tags or advertising parameters
-        description: *markdown_tips
         salary_from: Required if salary to is empty or salary type is depends
         salary_to: Required if salary from is empty or salary type is depends
         experience_description: *markdown_tips
         about_company: *markdown_tips
         about_project: *markdown_tips
+        responsibilities_description: *markdown_tips
+        requirements_description: *markdown_tips
+        conditions_description: *markdown_tips
       career:
         description: *markdown_tips
       resume:
