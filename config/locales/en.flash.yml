@@ -26,10 +26,6 @@ en:
           update:
             success: Email settings updated
             error: Failed to save newsletters settings
-      leads:
-        create:
-          success_existing_user: An application with this mail already exists, so we will call you soon. If you still have questions write to <a href="mailto:support@hexlet.io">support@hexlet.io</a>
-          success: We have received your application! We will call you back from 10 am to 7 pm on the next working day, answer all questions and tell you about how the training is going.
       resumes:
         answers:
           update:

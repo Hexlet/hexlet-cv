@@ -5,15 +5,15 @@ section.py-4.py-md-5#form
         .col
           h2.display-6.fw-bold.mt-sm-5.mb-4 = t('.title')
           p.fs-5.mb-4 = t('.leave_contacts')
-      = simple_form_for @lead, url: leads_path(anchor: 'consultation') do |f|
-        .row.flex-column.flex-md-row.g-3.gy-md-2
-          .col
-            = f.input :user_name, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :user_name)
-          .col
-            = f.input :phone_number, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :phone_number)
-          .col
-            = f.input :email, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :email)
-          .col-lg-auto
-            = f.button :submit, class: 'btn-primary w-100 fw-medium py-2 px-5'
-          .small.text-center.mt-3
-            = t('.user_agreement_with_offer_html')
+      / = simple_form_for @lead, url: leads_path(anchor: 'consultation') do |f|
+      /   .row.flex-column.flex-md-row.g-3.gy-md-2
+      /     .col
+      /       = f.input :user_name, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :user_name)
+      /     .col
+      /       = f.input :phone_number, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :phone_number)
+      /     .col
+      /       = f.input :email, label: false, input_html: { class: 'border-primary bg-transparent py-2' }, placeholder: han('lead', :email)
+      /     .col-lg-auto
+      /       = f.button :submit, class: 'btn-primary w-100 fw-medium py-2 px-5'
+      /     .small.text-center.mt-3
+      /       = t('.user_agreement_with_offer_html')

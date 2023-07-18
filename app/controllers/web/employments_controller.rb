@@ -2,7 +2,6 @@
 
 class Web::EmploymentsController < Web::ApplicationController
   def show
-    @lead = Web::LeadForm.new
     set_meta_tags canonical: employment_url
     # set_meta_tags og: {
     #   title: @resume,

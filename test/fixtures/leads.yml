@@ -1,5 +1,0 @@
----
-lead_one:
-  user_name: <%= Faker::Name.name %>
-  phone_number: <%= Faker::PhoneNumber.cell_phone %>
-  email: <%= Faker::PhoneNumber.cell_phone %>
