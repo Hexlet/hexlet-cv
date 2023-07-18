@@ -5,15 +5,15 @@ section.py-4.py-lg-5
       .col
         .card.bg-light.shadow-sm.x-shadow-fade-in.border-secondary.border-opacity-10.rounded-4.p-xl-1.h-100
           .card-body.d-flex.flex-column.pt-1
-            .d-flex.justify-content-between.align-items-center.my-4
-              .d-flex.flex-wrap.small
+            .my-4
+              .d-flex.align-items-center.flex-wrap.small
                 .text-nowrap.me-2 = t('.profession')
                 span.align-bottom.small.me-2 &bull;
                 .text-nowrap = program.fetch(:price)
             .h4.mb-3 = program.fetch(:stack)
             .small.text-secondary.mb-4 = program.fetch(:description)
-            .mt-auto.d-flex.align-items-center
-              .d-flex.flex-wrap.small
+            .mt-auto.d-flex
+              .d-flex.align-items-center.flex-wrap.small
                 .text-nowrap.me-2 = program.fetch(:duration)
                 span.small.me-2 &bull;
                 .text-nowrap = program.fetch(:level)
