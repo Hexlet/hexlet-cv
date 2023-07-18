@@ -55,6 +55,10 @@ ru:
         tasks_text: Задачи
         review_needed: Нужно ли ревью
         notification_kind: Тип уведомления
+      lead:
+        email: Электронная почта
+        phone_number: Номер телефона
+        user_name: Имя
       notification:
         state: Состаяние уведомления
         state/read: Прочитанно

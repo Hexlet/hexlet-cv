@@ -3,3 +3,5 @@ en:
     submit:
       create: Save
       update: Change
+      web_lead_form:
+        create: To get a consultation

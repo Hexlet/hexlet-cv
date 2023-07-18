@@ -1,0 +1,26 @@
+<svg width="102" height="34" viewBox="0 0 102 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>logovolt</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-375 -169)">
+<g id="logovolt">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(375 174)" fill="#00000"/>
+</g>
+<g id="Shape">
+<use xlink:href="#path1_fill" transform="translate(405 175)" fill="#00000"/>
+</g>
+<g id="Rectangle-path">
+<use xlink:href="#path2_fill" transform="translate(439 169)" fill="#00000"/>
+</g>
+<g id="Shape">
+<use xlink:href="#path3_fill" transform="translate(453 169)" fill="#00000"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 16.2472 13.6919L 12 17.5941L 7.75281 13.7604L 7.75281 0L 0 0L 0 17.0465L 12 28L 24 17.1834L 24 0L 16.2472 0L 16.2472 13.6919Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 0 14C 0 6.31372 6.24509 0 14 0C 21.7549 0 28 6.31372 28 14C 28 21.7549 21.7549 28 14 28C 6.24509 28 0 21.7549 0 14ZM 7.68628 14C 7.68628 17.4314 10.5 20.3137 14 20.3137C 17.5 20.3137 20.3137 17.4314 20.3137 14C 20.3137 10.5686 17.5 7.68628 14 7.68628C 10.5686 7.68628 7.68628 10.5686 7.68628 14Z"/>
+<path id="path2_fill" d="M 0 0L 8 0L 8 33L 0 33L 0 0Z"/>
+<path id="path3_fill" d="M 24 13.4342L 24 5.78706L 12.5746 5.78706L 12.5746 0L 4.93521 0L 4.93521 5.78706L 0 5.78706L 0.0676056 13.572L 4.93521 13.572L 4.93521 23.1482L 16.0225 33L 23.9324 33L 23.9324 25.1461L 18.862 25.1461L 12.5746 19.5658L 12.5746 13.4342L 24 13.4342Z"/>
+</defs>
+</svg>

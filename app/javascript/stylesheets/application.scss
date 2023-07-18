@@ -5,6 +5,7 @@ $link-decoration: none;
 @import 'select2';
 @import 'select2-bootstrap-5-theme';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import "swiper/css/bundle";
 
 
 
@@ -14,4 +15,18 @@ $link-decoration: none;
       @extend .mb-3;
     }
   }
+}
+
+.x-font-size-18 {
+  font-size: 18px;
+}
+
+.x-shadow-fade-in {
+  transition-property: box-shadow;
+  transition-duration: .33s;
+  transition-timing-function: ease-out;
+}
+
+.shadow-sm.x-shadow-fade-in:hover {
+  @extend .shadow;
 }

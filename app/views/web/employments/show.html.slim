@@ -1,48 +1,130 @@
-= content_for :header do
-  = t('.employment')
+- if I18n.locale == :ru
+  section.container-xl
+    .row
+      .d-none.d-xl-block.col-3
+        .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3
+          .card-body.d-flex.align-items-center.p-0
+            .position-relative.me-3
+              = image_tag 'graduates/vasileva.png', width: 84, height: 84
+              .position-absolute.me-2[style='top: 60px; right: -10px;']
+                span.bi.bi-check-circle-fill.fs-5.text-success
+            .flex-column
+              .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Part-Time
+              .small.fw-bold Валентина Васильева
+              .small.text-secondary Бэкенд-разработчик
+        .position-relative
+          .card.position-absolute.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3[style='top: 30px; left: -30px;']
+            .card-body.d-flex.flex-column.align-items-center.p-0
+              .position-relative
+                = image_tag 'graduates/masyutin.png', class: 'mb-2', width: 84, height: 84
+                .position-absolute.me-2[style='top: 60px; right: -10px;']
+                  span.bi.bi-check-circle-fill.fs-5.text-success
+              .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Full-Time
+              .small.fw-bold Сергей Масютин
+              .small.text-secondary Python-разработчик
+          .card.position-absolute.rounded-4.border-secondary.border-opacity-10.shadow-sm.py-3.px-4[style='top: 90px; right: -30px;']
+            .card-body.d-flex.flex-column.align-items-center.p-0
+              .position-relative
+                = image_tag 'graduates/guba.png', class: 'mb-2', width: 84, height: 84
+                .position-absolute.me-2[style='top: 60px; right: -10px;']
+                  span.bi.bi-check-circle-fill.fs-5.text-success
+              .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Full-Time
+              .small.fw-bold Евгений Губа
+              .small.text-secondary PHP-разработчик
+      .col.text-center.py-4.py-md-5
+        h1.display-4.fw-bold.pt-lg-5 Знания и поддержка для тех, кто хочет
+        span.text-bg-primary.rounded-5.px-3.px-md-4.display-4.fw-bold устроиться в IT
+      .d-none.d-md-block.col.col-xl-3
+        .position-relative
+          .card.position-absolute.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3[style='top: 40px;']
+            .card-body.d-flex.align-items-center.p-0
+              .position-relative.me-3
+                = image_tag 'graduates/belocrylets.png', width: 84, height: 84
+                .position-absolute.me-2[style='top: 60px; right: -10px;']
+                  span.bi.bi-check-circle-fill.fs-5.text-success
+              .flex-column
+                .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Full-Time
+                .small.fw-bold Сергей Белокрылец
+                .small.text-secondary Фронтенд-разработчик
+          .card.position-absolute.rounded-4.border-secondary.border-opacity-10.shadow-sm.p-3[style='top: 220px; right: -30px;']
+            .card-body.d-flex.align-items-center.p-0
+              .position-relative.me-3
+                = image_tag 'graduates/kharitonova.png', width: 84, height: 84
+                .position-absolute.me-2[style='top: 60px; right: -10px;']
+                  span.bi.bi-check-circle-fill.fs-5.text-success
+              .flex-column
+                .d-inline-block.bg-primary.bg-opacity-10.rounded-2.small.px-1 Part-Time
+                .small.fw-bold Дарья Харитонова
+                .small.text-secondary Python-разработчик
 
-p = t('.description')
+  = render 'cards'
 
-h2 = t('.where_find_jobs')
+  = render 'intro'
 
-ul
-  li hh.ru
-  li career.habr.ru
-  li https://cv.hexlet.io/vacancies
+  = render 'about_process'
 
-h2 = t('.seasonality')
+  = render 'join_ct'
 
-p = t('.seasonality_description')
+  = render 'companies'
 
-h2 = t('.check_list')
+  = render 'reviews'
 
-ol
-  li = t('.check_list_steps.free_course')
-  li = t('.check_list_steps.cv')
-  li = t('.check_list_steps.habr')
-  li = t('.check_list_steps.opensourse')
-  li = t('.check_list_steps.linkedin')
-  li = t('.check_list_steps.github')
-  li = t('.check_list_steps.twitter')
+  = render 'infographic'
 
-h2 = t('.developer_specifics')
+  = render 'options'
 
-ol
-  li = t('.dev_specifics_steps.free_course')
-  li = t('.dev_specifics_steps.leetcode')
-  li = t('.dev_specifics_steps.codewars')
-  li = t('.dev_specifics_steps.stackoverflow')
-  li = t('.dev_specifics_steps.test_assignments')
-  li = t('.dev_specifics_steps.books')
+  = render 'professions'
 
-h2 = t('.qa_specifics')
+  / = render 'form'
 
-p = t('.in_progress')
+  = javascript_include_tag 'employments'
 
-h2 = t('.analitics_specifics')
+- else
+  = content_for :header do
+    = t('.employment')
 
-p = t('.in_progress')
+  p = t('.description')
 
-h2 = t('.devops_specifics')
+  h2 = t('.where_find_jobs')
 
-p = t('.in_progress')
+  ul
+    li hh.ru
+    li career.habr.ru
+    li https://cv.hexlet.io/vacancies
+
+  h2 = t('.seasonality')
+
+  p = t('.seasonality_description')
+
+  h2 = t('.check_list')
+
+  ol
+    li = t('.check_list_steps.free_course')
+    li = t('.check_list_steps.cv')
+    li = t('.check_list_steps.habr')
+    li = t('.check_list_steps.opensourse')
+    li = t('.check_list_steps.linkedin')
+    li = t('.check_list_steps.github')
+    li = t('.check_list_steps.twitter')
+
+  h2 = t('.developer_specifics')
+
+  ol
+    li = t('.dev_specifics_steps.free_course')
+    li = t('.dev_specifics_steps.leetcode')
+    li = t('.dev_specifics_steps.codewars')
+    li = t('.dev_specifics_steps.stackoverflow')
+    li = t('.dev_specifics_steps.test_assignments')
+    li = t('.dev_specifics_steps.books')
+
+  h2 = t('.qa_specifics')
+
+  p = t('.in_progress')
+
+  h2 = t('.analitics_specifics')
+
+  p = t('.in_progress')
+
+  h2 = t('.devops_specifics')
+
+  p = t('.in_progress')

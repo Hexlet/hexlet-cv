@@ -1,0 +1,23 @@
+section.py-4.py-xl-5
+  .row.row-cols-1.row-cols-md-3.gy-3.py-md-5
+    .col
+      .card.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-2.p-lg-3 = t('.post_resume')
+          .text-end.mt-auto
+            = link_to new_account_resume_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
+              span.bi.bi-arrow-down-right.fs-3
+    .col
+      .card.bg-light.rounded-4.border-secondary.border-opacity-10.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-lg-3 = t('.view_vacancies')
+          .text-end.mt-auto
+            = link_to vacancies_path, class: 'text-body stretched-link', target: '_blank', rel: :noopener do
+              span.bi.bi-arrow-down-right.fs-3
+    .col
+      .card.text-bg-dark.rounded-4.shadow-sm.x-shadow-fade-in.h-100.p-3
+        .card-body.d-flex.justify-content-between.p-0
+          h3.fw-bold.fs-5.p-2.p-lg-3 = t('.pass_ct')
+          .text-end.mt-auto
+            = link_to '#options', class: 'text-bg-dark stretched-link' do
+              span.bi.bi-arrow-down-right.fs-3

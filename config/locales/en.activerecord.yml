@@ -41,6 +41,10 @@ en:
         career: Career track
       career/step:
         notification_kind: Notification type
+      lead:
+        email: Email
+        phone_number: Phone
+        user_name: Name
       vacancy:
         conditions_description: Supplemental Pay
         requirements_description: Requirements

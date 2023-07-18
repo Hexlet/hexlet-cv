@@ -1,0 +1,15 @@
+section.py-4.py-lg-5#reviews
+  h2.fs-1.fw-bold = t('.title')
+  .position-relative.mt-5
+    .swiper
+      .swiper-wrapper
+        - t('.review_cards').each do |review|
+          .swiper-slide.col-8
+            .card.border-0.bg-light.rounded-4.position-relative
+              .card-body.p-4
+                p = review.fetch(:body)
+              .position-absolute[style='border-top: 57px solid #F7F8FA; border-right: 46px solid transparent; left: 40px; bottom: -36px']
+            .my-5
+              = image_tag review.fetch(:logo), width: 115, height: 29, alt: t('.logo')
+
+      .swiper-pagination

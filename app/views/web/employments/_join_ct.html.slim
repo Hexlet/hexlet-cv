@@ -1,0 +1,9 @@
+section.py-4.py-lg-5
+  .bg-primary.bg-opacity-10.rounded-5.p-4.p-lg-5
+    .row
+      .col.d-flex.flex-column
+        .fs-4.me-xl-5.mb-4 = t('.invited_to_internships_html')
+        .mt-auto
+          / = link_to t('.join'), '#form', class: 'btn btn-lg btn-primary px-sm-5'
+      .col-auto.align-self-end.text-end.d-none.d-xl-block
+        = image_tag 'internship.svg', width: 377, height: 225
