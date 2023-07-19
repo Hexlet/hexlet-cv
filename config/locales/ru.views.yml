@@ -312,7 +312,7 @@ ru:
           index:
             header: Карьерный трек
             tab_active: Активные
-            tab_finished: Завершенные
+            tab_finished: Пройденны
       vacancies:
         form: 
           archive: В архив
