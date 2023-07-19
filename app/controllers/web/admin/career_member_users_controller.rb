@@ -3,7 +3,7 @@
 class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationController
   # TODO: удобнее здесь выводить members
   before_action only: %i[index archived finished lost] do
-    query = { s: 'id desc' }.merge(params.permit![:q] || {})
+    query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
     @q = User.permitted.includes(:careers, :career_members).ransack(query)
     @users = @q.result
     @careers = Career.all
