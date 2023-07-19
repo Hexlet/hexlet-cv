@@ -157,12 +157,6 @@ ru:
       answer:
         apply: Принять
         add_a_comment: Добавить комментарий
-      career_members:
-        finished_percent: "%{count}%"
-        continue_career: Продолжить
-        start_career: Начать
-        show: Посмотреть карьерный трек
-        career_track_finished: карьерный трек завершен
       resume_filter:
         directions: Выберите направление
         name: Название резюме
@@ -304,6 +298,17 @@ ru:
     account:
       careers:
         members:
+          career_members:
+            finished_percent: "%{count}%"
+            continue_career: Продолжить
+            start_career: Начать
+            show: Посмотреть карьерный трек
+            career_track_finished: карьерный трек завершен
+            tota_coding: Тота програмирует
+            empty_html: |
+              Здесь будут карьерные треки, которые вы проходите или уже прошли.<br>
+              <br>
+              Если вы еще не являетесь учасником карьерного трека, узнайте что такое <a href="%{employment}">карьерный трек</a> и как к нему присоединится.
           index:
             header: Карьерный трек
             tab_active: Активные

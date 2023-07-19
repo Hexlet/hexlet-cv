@@ -55,12 +55,6 @@ en:
         header: Oops, it's empty
         explanation: This happens when the page has been deleted or an error has accidentally crept into the address. But it's okay, you can just poke on any menu item from above and get to the right place.
     shared:
-      career_members:
-        finished_percent: "%{count}%"
-        continue_career: Сontinue 
-        start_career: Start Career track
-        show: Show Career track
-        career_track_finished: career track finished
       resume_filter:
         directions: Choose a direction
         name: CV title
@@ -207,6 +201,17 @@ en:
     account:
       careers:
         members:
+          career_members:
+            finished_percent: "%{count}%"
+            continue_career: Сontinue 
+            start_career: Start Career track
+            show: Show Career track
+            career_track_finished: career track finished
+            tota_coding: Tota coding
+            empty: |
+              There will be career tracks that you are going through or have already completed.<br>
+              <br>
+              If you are not yet a member of the career track, learn what <a href="%{employment}">career track</a> is and how to join it.
           index:
             header: Career track
             tab_active: Active

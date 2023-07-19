@@ -21,4 +21,8 @@
           = t('.start_career')
 
 - if members.empty?
-  = render 'web/users/profile_empty_list', text: nil
+  .d-flex.flex-column.flex-lg-row.align-items-lg-center.pt-3
+    .mb-4.fs-5
+      = t('.empty_html', employment: employment_path)
+    .mb-4.text-center
+      = image_tag 'toto_welcome.jpg', class: 'img-fluid x-flip-horizontal', width: 800, height: 400, alt: t('.tota_coding')
