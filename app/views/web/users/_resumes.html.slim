@@ -1,5 +1,5 @@
 - if resumes.empty?
-  = render 'profile_empty_list'
+  = render 'profile_empty_list', text: t('.not_resumes')
 - else
   - resumes.each do |resume|
     .card.mb-3

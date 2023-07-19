@@ -8,6 +8,6 @@ module Career::MemberPresenter
   end
 
   def progress_by_finished_steps
-    "#{steps_count}/#{finished_steps_count}"
+    I18n.t('career_progress', finished_steps: finished_steps_count, total_steps: steps_count)
   end
 end

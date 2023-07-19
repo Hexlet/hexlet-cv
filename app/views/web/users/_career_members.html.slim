@@ -1,0 +1,26 @@
+- if members.any?
+  .h2.mt-5.mb-4 = t('.career')
+  - members.each do |career_member|
+    - let progress[career_member.id] do |member|
+      hr
+        .d-flex.align-items-center.mb-4
+          span.h4.mb-0.me-2.text-truncate
+            = link_to career_path(member[:career_slug]), class: 'text-decoration-none text-body' do
+              = member[:career_name]
+          span.badge.bg-body-tertiary.text-body = career_member.aasm(:state).human_state
+          .d-none.d-sm-block.ms-sm-auto.text-body-secondary.small
+            = l career_member.created_at, format: :without_time
+        .row-cols-1.row-cols-lg-3
+          .col
+          - if member[:finished_steps_count].positive?
+            .mb-3
+              = link_to "#steps-#{career_member.id}", aria: { controls: "steps-#{career_member.id}", expanded: false }, 'data-bs-target': "#steps-#{career_member.id}", 'data-bs-toggle': 'collapse', class: 'text-decoration-none' do
+                span[id="#{career_member.id}", role='tabpanel']
+                  = member[:career_progress]
+
+              .collapse(id="steps-#{career_member.id}", aria-labelledby="#{career_member.id}")
+                ol.pt-2.mb-0
+                  - member[:finished_steps].each do |step|
+                    li = step
+- else
+  = render 'profile_empty_list', text: t('.not_career_members')

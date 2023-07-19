@@ -32,9 +32,8 @@ ul.nav.nav-pills.justify-content-center role="navigation"
     = link_to t('.tab_answers', user_name: @user.full_name), '#answers', class: 'nav-link px-3', 'data-bs-toggle': 'tab', title: t('.user_comments', user_name: @user.full_name)
   li.nav-itemЗ
     = link_to t('.tab_comments'), '#comments', class: 'nav-link px-3', 'data-bs-toggle': 'tab', title: t('.users_comments', user_name: @user.full_name)
-  - if current_or_guest_user == @user
-    li.nav-item3
-      = link_to t('.tab_careers'), '#careers', class: 'nav-link px-3', 'data-bs-toggle': 'tab'
+  li.nav-item3
+    = link_to t('.tab_careers'), '#careers', class: 'nav-link px-3', 'data-bs-toggle': 'tab'
 .tab-content.py-3
   .tab-pane.fade.show.active id="resume"
       = render 'resumes', resumes: @user_resumes
@@ -43,4 +42,4 @@ ul.nav.nav-pills.justify-content-center role="navigation"
   .tab-pane.fade id="comments"
       = render 'comments', comments: @user_resume_comments
   .tab-pane.fade id="careers"
-     = render 'web/shared/career_members', members: @career_members
+     = render 'career_members', members: @career_members, progress: @career_progress

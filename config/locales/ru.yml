@@ -1,6 +1,7 @@
 ru:
   actions: Действия
   career: Карьерный трек
+  career_progress: 'Пройденно %{finished_steps} из %{total_steps} шагов'
   steps: Шаг карьерного трека
   action_buttons: Кнопки действий
   career_steps: Шаги карьерных треков

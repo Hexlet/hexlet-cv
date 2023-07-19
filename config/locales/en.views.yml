@@ -248,6 +248,8 @@ en:
         edit:
           header: Email settings
     users:
+      career_members:
+        career: Career track
       careers:
         start_career: 'Start career track: %{name}'
         not_found_career: You don't pass the career track
@@ -272,6 +274,7 @@ en:
         users_comments: 'Comments from other users on the summary %{user_name}'
         banned: Account was banned
       resumes:
+        not_resumes: The user does not have any published resumes
         answers:
           one: Answer
           other: Answers
@@ -282,10 +285,15 @@ en:
       profile_empty_list:
         nothing: There is nothing here yet
       comments:
+        not_comments: Пользователю не оставляли комментариев
         new:
           header: Create a comment
         edit:
           header: Edit comment
+      answers:
+        not_answer: Пользователь не коментировал резюме
+      career_members:
+        not_career_members: Пользователь не участвует в карьерном треке 
     pages:
       about_description: The goal of Hexlet CV is to provide a platform for community where you will receive recommendations on your CV from community members and professional HR.
       about_title: About

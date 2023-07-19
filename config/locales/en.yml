@@ -3,6 +3,7 @@ en:
   application_name: Hexlet CV
   in_the_city: "in the city %{city_name}"
   career_steps: Career steps
+  career_progress: 'Completed %{finished_steps} of %{total_steps} steps'
   action_buttons: Action buttons
   months_nominative_case:
     -

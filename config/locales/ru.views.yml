@@ -345,6 +345,8 @@ ru:
         edit:
           header: Рассылки
     users:
+      career_members:
+        career: Карьерные треки
       careers:
         not_found_career: Вы не проходите Карьерный трек
         start_career: 'Начать карьерный трек: %{name}'
@@ -373,6 +375,7 @@ ru:
         user_comments: 'Комментарии, которые %{user_name} оставляет по резюме других пользователей'
         users_comments: 'Комментарии других пользователей к резюме %{user_name}'
       resumes:
+        not_resumes: У пользователя нет ни одного опубликованного резюме
         answers:
           one: Ответ
           few: Ответа
@@ -381,6 +384,13 @@ ru:
           one: Просмотр
           few: Просмотра
           many: Просмотров
+      comments:
+        not_comments: Пользователю не оставляли комментариев
+      answers:
+        not_answer: Пользователь не коментировал резюме
+      career_members:
+        career: Карьерные треки
+        not_career_members: Пользователь не участвует в карьерном треке
       profile_empty_list:
         nothing: Здесь пока ничего нет
     answers:
