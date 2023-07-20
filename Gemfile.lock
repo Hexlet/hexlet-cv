@@ -271,6 +271,7 @@ GEM
     phonelib (0.8.2)
     popper_js (2.11.7)
     power_assert (2.0.3)
+    prettier_print (1.2.1)
     public_suffix (5.0.1)
     puma (6.3.0)
       nio4r (~> 2.0)
@@ -360,6 +361,14 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    ruby-lsp (0.7.3)
+      language_server-protocol (~> 3.17.0)
+      sorbet-runtime
+      syntax_tree (>= 6.1.1, < 7)
+    ruby-lsp-rails (0.2.2)
+      rails (>= 6.0)
+      ruby-lsp (>= 0.6.2, < 0.8.0)
+      sorbet-runtime (>= 0.5.9897)
     ruby-openai (4.2.0)
       faraday (>= 1)
       faraday-multipart (>= 1)
@@ -423,6 +432,7 @@ GEM
       yard (~> 0.9, >= 0.9.24)
     sorbet (0.5.10888)
       sorbet-static (= 0.5.10888)
+    sorbet-runtime (0.5.10924)
     sorbet-static (0.5.10888-universal-darwin-21)
     sorbet-static (0.5.10888-universal-darwin-22)
     sorbet-static (0.5.10888-x86_64-linux)
@@ -437,6 +447,8 @@ GEM
     sqlite3 (1.6.3-arm64-darwin)
     sqlite3 (1.6.3-x86_64-darwin)
     sqlite3 (1.6.3-x86_64-linux)
+    syntax_tree (6.1.1)
+      prettier_print (>= 1.2.0)
     temple (0.10.2)
     terser (1.1.16)
       execjs (>= 0.3.0, < 3)
@@ -537,6 +549,7 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
+  ruby-lsp-rails
   ruby-openai
   selenium-webdriver
   sentry-rails

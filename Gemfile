@@ -88,6 +88,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'ruby-lsp-rails'
   gem 'yard'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'html2slim'
