@@ -2,8 +2,17 @@
   = link_to t('.back'), url_for(:back), class: 'btn btn-secondary'
 
 .px-3.py-4.mb-3.bg-light.rounded
-  .h1.text-center
+  .h1.text-center.me-2
     = @user.full_name
+
+    = link_to amocrm_lead_search_curl(@user.email), class: 'text-decoration-none btn btn-outline-primary ms-2', target: :_blank, rel: :noopener, title: 'AmoCRM' do
+      span.bi.bi-bookmark-star
+
+  p.text-center
+    = t('.user_id_html', path: user_path(@user.id), id: @user.id)
+
+  p.text-center
+    = t('.email', email: @user.email)
 
   p.text-center
     = @user.about
@@ -16,22 +25,27 @@ table.table.table-striped
     tr
       th = han('career', 'name')
       th = han('career/member', 'state')
+      th = t('.current_step')
+      th = t('.progress')
       th = t('.last_activity_at')
       th = t('actions')
 
   tbody
-    - @user_career_members.each do |member|
-      tr
-        td = member.career.name
-        td = member.aasm(:state).human_state
-        td = show_date_if(@last_ativity_by_id[member.id], :without_time)
-        td
-          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to admin_career_path(member.career), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
-              span.bi.bi-eye-fill
-            - if member.may_archive?
-              = link_to archive_admin_career_member_path(member.career, member, back_to: @back_to_page), class: 'btn btn-outline-danger btn-sm', method: :patch, data: { confirm: t('.confirm') }, title: t('.archive') do
-                span.bi.bi.bi-trash3
-            - if member.may_activate?
-              = link_to activate_admin_career_member_path(member.career, member, back_to: @back_to_page), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_activate') }, title: t('.restore') do
-                span.bi.bi-arrow-counterclockwise
+    - @career_members.each do |career_member|
+      - let @progress[career_member.id] do |member|
+        tr
+          td = member[:career_name].name
+          td = career_member.aasm(:state).human_state
+          td = member[:current_step]
+          td = member[:progress]
+          td = show_date_if(member[:last_activity_at], :without_time)
+          td
+            .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+              = link_to admin_career_path(member[:career_name]), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+                span.bi.bi-eye-fill
+              - if career_member.may_archive?
+                = link_to archive_admin_career_member_path(member[:career_name], career_member, back_to: @back_to_page), class: 'btn btn-outline-danger btn-sm', method: :patch, data: { confirm: t('.confirm') }, title: t('.archive') do
+                  span.bi.bi.bi-trash3
+              - if career_member.may_activate?
+                = link_to activate_admin_career_member_path(member[:career_name], career_member, back_to: @back_to_page), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_activate') }, title: t('.restore') do
+                  span.bi.bi-arrow-counterclockwise

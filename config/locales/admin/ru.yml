@@ -24,7 +24,11 @@ ru:
         lost:
           users_lost_career: Студенты которые давно не учились
         show:
-          last_activity_at: Дата последней активности
+          user_id_html: 'ID: <a href="%{path}">%{id}</a>'
+          email: 'email: %{email}'
+          last_activity_at: Последняя активность
+          progress: Прогресс
+          current_step: Текущий шаг
           confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека
           confirm_activate: Вы уверенны что хотите востонавить пользователя в карьерный трек
           back: Назад

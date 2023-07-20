@@ -42,8 +42,14 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
   def show
     @user = User.find(params[:id])
-    @user_career_members = @user.career_members.includes(:career, :career_step_members)
-    @last_ativity_by_id = @user_career_members.each_with_object({}) { |member, acc| acc[member.id] = member.career_step_members.active.last&.created_at }
+    @career_members = @user.career_members.includes(:career, :career_step_members)
+    @progress = @career_members.each_with_object({}) do |member, acc|
+      acc[member.id] = {}
+      acc[member.id][:career_name] = member.career
+      acc[member.id][:last_activity_at] = member.career_step_members.active.last&.created_at
+      acc[member.id][:progress] = member.progress_by_finished_steps
+      acc[member.id][:current_step] = member.current_item.career_step.name
+    end
     @back_to_page = admin_career_member_user_path(@user)
   end
 

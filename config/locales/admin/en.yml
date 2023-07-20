@@ -23,8 +23,12 @@ en:
         lost:
           users_lost_career: Lost students
         show:
+          user_id_html: 'ID: <a href="%{path}">%{id}</a>'
+          email: 'email: %{email}'
           confirm_activate: Are you sure you want to restore the user to the career track
           last_activity_at: Last activty date
+          progress: Progress
+          current_step: Current step
           confirm: Are you sure you want to remove the user from the career track?
           back: Back
           archive: Arachive
