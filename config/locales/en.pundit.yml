@@ -4,4 +4,4 @@ en:
     default: Access closed. Look you!
     vacancy_policy:
       edit?: You can't edit a posted job!
-      update?: You can't udate a posted job!
+      update?: You can't update a posted job!

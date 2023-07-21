@@ -45,10 +45,10 @@ en:
         steps:
           members:
             finish:
-              success: Шаг завершен!
+              success: Step completed!
         members:
           show:
-            error: Доступ закрыт!
+            error: Access denied!
       answers:
         comments:
           update:

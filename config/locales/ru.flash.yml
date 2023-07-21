@@ -25,7 +25,7 @@ ru:
           read_all:
             success: Все уведомления помечены прочитанными
           update:
-            success: Уведомление прочитанно.
+            success: Уведомление прочитано.
         newsletters:
           update:
             success: Настройки рассылки сохранены
