@@ -3,9 +3,9 @@ h2
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .form-inputs
     .mb-3
-      = f.input :email, autofocus: true, input_html: { autocomplete: 'email' }
+      = f.input :email, autofocus: true, required: true, input_html: { autocomplete: 'email' }
     .mb-3
-      = f.input :password, input_html: { autocomplete: 'current-password' }
+      = f.input :password, required: true, input_html: { autocomplete: 'current-password' }
     .mb-3
       = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
   .form-actions.mb-3
