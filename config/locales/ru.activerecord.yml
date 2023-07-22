@@ -61,9 +61,9 @@ ru:
         phone_number: Номер телефона
         user_name: Имя
       notification:
-        state: Состаяние уведомления
-        state/read: Прочитанно
-        state/unread: Не прочитанно
+        state: Состояние уведомления
+        state/read: Прочитано
+        state/unread: Непрочитано
       vacancy:
         conditions_description: Условия и Бонусы
         requirements_description: Требования
@@ -89,7 +89,7 @@ ru:
         position_level: Уровень
         location_of_position: Место работы
         company_name: Компания
-        creator: Имя предстовителя
+        creator: Имя представителя
         site: Сайт компании
         contact_name: Имя контакта
         contact_phone: Телефон контакта

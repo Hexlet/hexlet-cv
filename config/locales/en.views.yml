@@ -18,7 +18,7 @@ en:
     employments:
       show:
         employment: Employment
-        description: New section that will become the managment center of your employment. In development, will constantly change.
+        description: New section that will become the management center of your employment. In development, will constantly change.
         seasonality: Seasonality
         seasonality_description: "Hiring in any job field has a seasonality. The general scheme is: The hiring process begins at the end of January, it reaches its peak in March-April, than a sharp decline during the May holidays and hiring plateau in Summer. In September hiring increases again with its peak in October. In November the slowdown begins, which reaches its lowest point in December, when no one is hiring due to the holidays as employers are not willing to pay newcomers for 10 public holidays when they haven't done any work yet. Then the cycle repeats."
         check_list: Employment check-list
@@ -32,7 +32,7 @@ en:
           twitter: "Twitter account with technical related messages"
         developer_specifics: Specifics for developers
         dev_specifics_steps:
-          free_course: "Free cource completed https://ru.hexlet.io/courses/employment-for-developers"
+          free_course: "Free course completed https://ru.hexlet.io/courses/employment-for-developers"
           leetcode: "Account at  https://leetcode.com/ and 10 completed tasks"
           codewars: "Account at https://www.codewars.com/ and 10 completed tasks "
           stackoverflow: "Account at https://stackoverflow.com/ and 10 answered questions"
@@ -42,7 +42,7 @@ en:
         qa_specifics_steps:
         analitics_specifics: Specifics for analysts
         analitics_specifics_steps:
-        devops_specifics: Specifics for DevOps/ System administators
+        devops_specifics: Specifics for DevOps/ System Administrators
         devops_specifics_steps:
         in_progress: In progress
         where_find_jobs: Job search sites
@@ -60,13 +60,13 @@ en:
         name: CV title
         user: Name/Surname/Email
       resume_form:
-        work: Work experience
+        work: Work Experience
         education: Education
         add_work: Add
         add_education: Add
         publish: Post 
         hide: Draft 
-        cancel: Discart
+        cancel: Discard
       work_fields:
         remove_work: Delete work experience
       education_fields:
@@ -203,7 +203,7 @@ en:
         members:
           career_members:
             finished_percent: "%{count}%"
-            continue_career: Сontinue 
+            continue_career: Continue
             start_career: Start Career track
             show: Show Career track
             career_track_finished: career track finished
@@ -290,15 +290,15 @@ en:
       profile_empty_list:
         nothing: There is nothing here yet
       comments:
-        not_comments: Пользователю не оставляли комментариев
+        not_comments: No comments were left for the user
         new:
           header: Create a comment
         edit:
           header: Edit comment
       answers:
-        not_answer: Пользователь не коментировал резюме
+        not_answer: The user did not comment on the resume
       career_members:
-        not_career_members: Пользователь не участвует в карьерном треке 
+        not_career_members: The user does not participate in the career track 
     pages:
       about_description: The goal of Hexlet CV is to provide a platform for community where you will receive recommendations on your CV from community members and professional HR.
       about_title: About
@@ -317,7 +317,7 @@ en:
         %{recommendation}
 
         <details>
-          <summary>Сover letter</summary>
+          <summary>Cover letter</summary>
           %{letter}
         </details>
         

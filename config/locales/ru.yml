@@ -1,7 +1,7 @@
 ru:
   actions: Действия
   career: Карьерный трек
-  career_progress: 'Пройденно %{finished_steps} из %{total_steps} шагов'
+  career_progress: 'Пройдено %{finished_steps} из %{total_steps} шагов'
   steps: Шаг карьерного трека
   action_buttons: Кнопки действий
   career_steps: Шаги карьерных треков
@@ -96,7 +96,7 @@ ru:
     new_comment_email:
       content: 'Содержание:'
       new_comment_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{comment_path}">новый комментарий</a> к вашему резюме
-      subject: У вас новый коментарий к резюме
+      subject: У вас новый комментарий к резюме
   resume_answer_mailer:
     new_answer_email:
       new_answer_html: Пользователь <a href="%{user_path}" class="text-secondary fw-bolder">%{user}</a> оставил <a href="%{answer_path}">новую рекомендацию</a> к вашему резюме

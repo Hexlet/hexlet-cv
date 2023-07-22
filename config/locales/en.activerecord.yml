@@ -62,7 +62,7 @@ en:
         city_name: City
         location: Address
         locale: Language
-        technologies: Tecnologies
+        technologies: Technologies
         directions: Directions
         salary: Pay
         salary_from: Pay from

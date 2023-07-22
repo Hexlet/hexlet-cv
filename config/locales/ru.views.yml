@@ -304,15 +304,15 @@ ru:
             start_career: Начать
             show: Посмотреть карьерный трек
             career_track_finished: карьерный трек завершен
-            tota_coding: Тота програмирует
+            tota_coding: Тота программирует
             empty_html: |
               Здесь будут карьерные треки, которые вы проходите или уже прошли.<br>
               <br>
-              Если вы еще не являетесь учасником карьерного трека, узнайте что такое <a href="%{employment}">карьерный трек</a> и как к нему присоединится.
+              Если вы еще не являетесь участником карьерного трека, узнайте что такое <a href="%{employment}">карьерный трек</a> и как к нему присоединится.
           index:
             header: Карьерный трек
             tab_active: Активные
-            tab_finished: Пройденны
+            tab_finished: Пройденные
       vacancies:
         form: 
           archive: В архив
@@ -338,11 +338,11 @@ ru:
         show:
           header: Мой профиль
           edit_profile: Редактировать профиль
-          my_comments: Мои коментарии
+          my_comments: Мои комментарии
           my_answers: Мои рекомендации
       notifications:
         index:
-          notification_read: Уведомление прочитанно
+          notification_read: Уведомление прочитано
           mark_as_read: Пометить как прочитанное
           content: Содержание
           header: Уведомления
@@ -392,7 +392,7 @@ ru:
       comments:
         not_comments: Пользователю не оставляли комментариев
       answers:
-        not_answer: Пользователь не коментировал резюме
+        not_answer: Пользователь не комментировал резюме
       career_members:
         career: Карьерные треки
         not_career_members: Пользователь не участвует в карьерном треке

@@ -56,7 +56,7 @@ en:
       title_html: |
         Cheers cheers! So you have come to the end of the Career track. Pay attention that you still have additional tasks, be sure to go through them and fill in the “gaps” that remain.
         
-        Also pay attention to the conditions for partner companies, if you want to get into a team with one of Hecklet's partners, you must fulfill a number of requirements that are written in <a href="%{step_path}" class="text-secondary fw-bolder ">this step</a>.
+        Also pay attention to the conditions for partner companies, if you want to get into a team with one of Hexlet's partners, you must fulfill a number of requirements that are written in <a href="%{step_path}" class="text-secondary fw-bolder ">this step</a>.
       
       description_html: |
         All materials of the Career Track remain with you, so you can use them at any time.
@@ -66,7 +66,7 @@ en:
         <b>You can find a list of venues</b> <a href="https://docs.google.com/document/d/1X26UtHarvYQcYTXMtteGsUjCF5HU67Z9I7El6QkIcTU/edit#heading=h.9dtwvaurt21v" class="text-secondary fw-bolder" >here!</a>
 
     next_step_open_source:
-      subject: Первая половина позади
+      subject: The first half is completed
 
       description_html: |
         Congratulations! You have passed the first half of the Career Track, where we have analyzed what the IT market is and how to get into it.<br>
