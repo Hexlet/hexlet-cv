@@ -4,9 +4,9 @@
   table.table.table-striped
     thead
       tr
-        th = sort_link(q, 'last_name')
-        th = sort_link(q, 'first_name')
-        th = sort_link(q, 'email')
+        th = sort_link(q, 'user_last_name')
+        th = sort_link(q, 'user_first_name')
+        th = sort_link(q, 'user_email')
         th = t('.current_step')
         th = han('career', 'name')
         th = han('career/member', 'created_at')
