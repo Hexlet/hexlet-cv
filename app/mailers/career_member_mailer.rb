@@ -9,7 +9,7 @@ class CareerMemberMailer < ApplicationMailer
     mail(to: @user.email)
   end
 
-  def career_member_finish
+  def career_member_finish_email
     @career_member = params[:career_member]
     @user = params[:user]
     @career = @career_member.career
@@ -17,7 +17,7 @@ class CareerMemberMailer < ApplicationMailer
     mail(to: @user.email)
   end
 
-  def next_step_open_source
+  def next_step_open_source_email
     @career_member = params[:career_member]
     @user = params[:user]
     @career = @career_member.career

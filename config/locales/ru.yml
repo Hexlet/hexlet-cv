@@ -53,7 +53,7 @@ ru:
         </ul>   
       start_career: Начать подготовку
 
-    career_member_finish:
+    career_member_finish_email:
       subject: Вы завершили карьерный трек.
       title_html: |
         Ура-ура! Вот ты и подошёл к завершению Карьерного трека. Обрати внимание, что у тебя ещё остались дополнительные задания, обязательно пройдись по ним и заполни те “пробелы”, которые остались.
@@ -67,7 +67,7 @@ ru:
         
         <b>Список площадок ты найдёшь</b> <a href="https://docs.google.com/document/d/1X26UtHarvYQcYTXMtteGsUjCF5HU67Z9I7El6QkIcTU/edit#heading=h.9dtwvaurt21v" class="text-secondary fw-bolder">здесь!</a>
 
-    next_step_open_source:
+    next_step_open_source_email:
       subject: Первая половина позади
 
       description_html: |

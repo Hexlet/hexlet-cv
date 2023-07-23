@@ -51,7 +51,7 @@ en:
         - We also recommend that you start the Career track as soon as possible, because. it is very important to complete it before you enter the labor market. Our task is to make sure that you enter the labor market as the most prepared candidate, both in terms of hard and sift skills. So let's not waste time! Start preparing for employment!
       start_career: Start career track
 
-    career_member_finish:
+    career_member_finish_email:
       subject: You have completed the career track.
       title_html: |
         Cheers cheers! So you have come to the end of the Career track. Pay attention that you still have additional tasks, be sure to go through them and fill in the “gaps” that remain.
@@ -65,7 +65,7 @@ en:
         
         <b>You can find a list of venues</b> <a href="https://docs.google.com/document/d/1X26UtHarvYQcYTXMtteGsUjCF5HU67Z9I7El6QkIcTU/edit#heading=h.9dtwvaurt21v" class="text-secondary fw-bolder" >here!</a>
 
-    next_step_open_source:
+    next_step_open_source_email:
       subject: The first half is completed
 
       description_html: |
