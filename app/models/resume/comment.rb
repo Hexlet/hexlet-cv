@@ -7,6 +7,7 @@ class Resume::Comment < ApplicationRecord
   belongs_to :resume
   belongs_to :user
   has_many :notifications, as: :resource, dependent: :destroy
+  has_many :events, as: :resource, dependent: :destroy
 
   def to_s
     content

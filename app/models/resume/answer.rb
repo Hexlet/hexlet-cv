@@ -12,6 +12,7 @@ class Resume::Answer < ApplicationRecord
   has_many :likes, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Like'
   has_many :comments, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
   has_many :notifications, as: :resource, dependent: :destroy
+  has_many :events, as: :resource, dependent: :destroy
 
   aasm :applying, column: :applying_state do
     state :pending, initial: true

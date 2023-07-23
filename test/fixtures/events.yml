@@ -1,0 +1,5 @@
+new_career_member_full:
+  user: full
+  resource: member_full (Craeer::Member)
+  kind: new_career_member
+  locale: <%= I18n.locale %>

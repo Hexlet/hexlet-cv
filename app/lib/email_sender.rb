@@ -31,14 +31,20 @@ class EmailSender
       CareerMemberMailer.with(career_member:, user:).new_career_member_email.deliver_later
     end
 
-    def send_notification_career(career_member, notification_kind = nil)
-      return unless notification_kind
-
-      user = career_member.user
+    def send_next_step_open_source_email(resource)
+      user = resource.user
 
       return unless user.can_send_email?
 
-      CareerMemberMailer.with(career_member:, user:).public_send("#{notification_kind}_email").deliver_later
+      CareerMemberMailer.with(career_member: resource, user:).next_step_open_source_email.deliver_later
+    end
+
+    def send_career_member_finish_email(resource)
+      user = resource.user
+
+      return unless user.can_send_email?
+
+      CareerMemberMailer.with(career_member: resource, user:).career_member_finish_email.deliver_later
     end
 
     private

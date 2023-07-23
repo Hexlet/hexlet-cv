@@ -9,6 +9,7 @@ class Career::Member < ApplicationRecord
 
   belongs_to :user
   belongs_to :career
+  has_many :events, as: :resource, dependent: :destroy
   has_many :career_step_members, class_name: 'Career::Step::Member', inverse_of: :career_member, foreign_key: 'career_member_id', dependent: :destroy
 
   aasm :state, timestamps: true do

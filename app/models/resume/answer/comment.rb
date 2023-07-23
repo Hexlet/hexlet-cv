@@ -8,6 +8,7 @@ class Resume::Answer::Comment < ApplicationRecord
   belongs_to :user
   belongs_to :answer_user, class_name: 'User'
   has_many :notifications, as: :resource, dependent: :destroy
+  has_many :events, as: :resource, dependent: :destroy
 
   include Resume::Answer::CommentRepository
 

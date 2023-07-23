@@ -10,7 +10,8 @@ class Web::Careers::Steps::MembersController < Web::Careers::Steps::ApplicationC
 
     notification = Career::Step::MemberMutator.create!(career_step_member, career_member)
 
-    EmailSender.send_notification_career(career_member, notification&.kind)
+    # EmailSender.send_notification_career(career_member, notification&.kind)
+    EventSender.serve!(notification.kind, career_member)
     f(:success)
     redirect_to career_member_path(resource_career.slug, career_member)
   end
