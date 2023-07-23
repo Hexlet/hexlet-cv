@@ -1,32 +1,43 @@
-- if users.empty?
+- if career_members.empty?
   = render 'web/shared/empty_list'
 - else
   table.table.table-striped
     thead
       tr
-        th = sort_link(q, 'last_name')
-        th = sort_link(q, 'first_name')
-        th = sort_link(q, 'email')
+        th = sort_link(q, 'user_last_name')
+        th = sort_link(q, 'user_first_name')
+        th = sort_link(q, 'user_email')
+        th = t('.current_step')
         th = han('career', 'name')
         th = han('career/member', 'created_at')
-        - unless @users_with_finished_career.nil?
+        - unless @finished_career_members.nil?
           th = han('career/member', 'finished_at')
         - if show_progress
           th = t('.progress')
         th = t('actions')
 
     tbody
-      - users.each do |user|
-        tr
-          td = user.last_name
-          td = user.first_name
-          td = user.email
-          td = render 'careers', careers: user.careers
-          td = show_date_if(user.career_members.last.created_at, :without_time)
-          - unless @users_with_finished_career.nil?
-            td = show_date_if(user.career_members.last.finished_at, :without_time)
-          - if show_progress
-            td = user.active_career_member.progress_by_finished_steps
-          td
-            = link_to admin_career_member_user_path(user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
-              span.bi.bi-eye-fill
+      - career_members.each do |career_member|
+        - let users[career_member.id] do |user|
+          tr
+            td = user[:last_name]
+            td = user[:first_name]
+            td = user[:email]
+            td = user[:current_step] || t('.not_started')
+            td = render 'careers', careers: user[:careers]
+            td = show_date_if(career_member.created_at, :without_time)
+            - unless @finished_career_members.nil?
+              td = show_date_if(career_member.finished_at, :without_time)
+            - if show_progress
+              td = user[:progress]
+            td
+              .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+                = link_to admin_career_member_user_path(career_member.user), class: 'btn btn-outline-primary btn-sm', title: t('.show') do
+                  span.bi.bi-eye-fill
+
+                - if career_member.may_archive?
+                  = link_to archive_admin_career_member_path(career_member.career, career_member, back_to: @back_to_page), class: 'btn btn-outline-danger btn-sm', method: :patch, data: { confirm: t('.confirm') }, title: t('.archive') do
+                    span.bi.bi.bi-trash3
+                - if career_member.may_activate?
+                  = link_to activate_admin_career_member_path(career_member.career, career_member, back_to: @back_to_page), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_activate') }, title: t('.restore') do
+                    span.bi.bi-arrow-counterclockwise

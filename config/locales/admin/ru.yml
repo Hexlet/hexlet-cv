@@ -47,6 +47,10 @@ ru:
           users_finished_career: Закончили КТ
           users_archived_career: Архив
         users:
+          current_step: Текущий шаг
+          not_started: Не стартовал
+          confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека
+          confirm_activate: Вы уверенны что хотите востонавить пользователя в карьерный трек
           progress: Всего/Пройденно
           show: Профиль пользователя
           no_date: Не завершен

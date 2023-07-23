@@ -1,43 +1,53 @@
 # frozen_string_literal: true
 
 class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationController
-  # TODO: удобнее здесь выводить members
   before_action only: %i[index archived finished lost] do
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = User.permitted.includes(:careers, :career_members).ransack(query)
-    @users = @q.result
+    @q = Career::Member.joins(:user, :career).merge(User.permitted).ransack(query)
+    @career_members = @q.result
     @careers = Career.all
   end
 
   def index
-    @users_with_active_career = @users
-                                .only_active_career_members
-                                .page(params[:page])
-                                .per(20)
+    @active_career_members = @career_members
+                             .active
+                             .page(params[:page])
+                             .per(20)
+
+    @users = prepare_data(@active_career_members)
+    @back_to_page = admin_career_member_users_path
   end
 
   def archived
-    @users_with_archived_career = @users
-                                  .only_archived_career_members
-                                  .page(params[:page])
-                                  .per(20)
+    @archived_career_members = @career_members
+                               .archived
+                               .page(params[:page])
+                               .per(20)
+
+    @users = prepare_data(@archived_career_members)
+    @back_to_page = archived_admin_career_member_users_path
   end
 
   def finished
-    @users_with_finished_career = @users
-                                  .only_finished_career_members
-                                  .page(params[:page])
-                                  .per(20)
+    @finished_career_members = @career_members
+                               .finished
+                               .page(params[:page])
+                               .per(20)
+
+    @users = prepare_data(@finished_career_members)
   end
 
   def lost
-    @users_lost_career = @users
-                         .only_active_career_members
-                         .with_career_step_members
-                         .includes(career_members: :career_step_members)
-                         .merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
-                         .page(params[:page])
-                         .per(20)
+    @lost_career_members = @career_members
+                           .active
+                           .joins(:career_step_members)
+                           .includes(:career_step_members)
+                           .merge(Career::Step::Member.active.where(created_at: ..1.week.ago))
+                           .page(params[:page])
+                           .per(20)
+
+    @users = prepare_data(@lost_career_members)
+    @back_to_page = lost_admin_career_member_users_path
   end
 
   def show
@@ -45,10 +55,10 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
     @career_members = @user.career_members.includes(:career, :career_step_members)
     @progress = @career_members.each_with_object({}) do |member, acc|
       acc[member.id] = {}
-      acc[member.id][:career_name] = member.career
+      acc[member.id][:career] = member.career
       acc[member.id][:last_activity_at] = member.career_step_members.active.last&.created_at
       acc[member.id][:progress] = member.progress_by_finished_steps
-      acc[member.id][:current_step] = member.current_item.career_step.name
+      acc[member.id][:current_step] = member.current_item&.career_step&.name
     end
     @back_to_page = admin_career_member_user_path(@user)
   end
@@ -76,5 +86,17 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
   def career_member_params
     params.require(:career_member).permit(:user_id, :career_id)
+  end
+
+  def prepare_data(career_members)
+    career_members.each_with_object({}) do |member, acc|
+      acc[member.id] = {}
+      acc[member.id][:last_name] = member.user.last_name
+      acc[member.id][:first_name] = member.user.first_name
+      acc[member.id][:email] = member.user.email
+      acc[member.id][:careers] = member.user.careers
+      acc[member.id][:current_step] = member.current_item&.career_step&.name
+      acc[member.id][:progress] = member.progress_by_finished_steps
+    end
   end
 end

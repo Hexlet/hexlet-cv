@@ -7,6 +7,6 @@
 
 h2 = t('.users_active_career')
 
-= render 'users', users: @users_with_active_career, q: @q, show_progress: true
+= render 'users', career_members: @active_career_members, users: @users, q: @q, show_progress: true
 
-= paginate @users_with_active_career
+= paginate @active_career_members

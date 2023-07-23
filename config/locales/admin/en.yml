@@ -46,6 +46,10 @@ en:
           list: List
           new: Assign a student a career track
         users:
+          current_step: Current step
+          not_started: Not started
+          confirm: Are you sure you want to remove the user from the career track?
+          confirm_activate: Are you sure you want to restore the user to the career track
           progress: All/Finished
           no_date: Not finished
           show: User profile

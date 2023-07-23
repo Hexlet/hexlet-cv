@@ -5,6 +5,6 @@
 
 = render 'menu'
 
-= render 'users', users: @users_with_archived_career, q: @q, show_progress: false
+= render 'users', career_members: @archived_career_members, users: @users, q: @q, show_progress: false
 
-= paginate @users_with_archived_career
+= paginate @archived_career_members
