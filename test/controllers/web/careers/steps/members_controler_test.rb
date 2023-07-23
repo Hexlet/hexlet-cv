@@ -33,8 +33,10 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
     career_step_member.reload
     career_member = @career.members.find_by(user:)
     notification = Notification.find_by(kind: :career_member_finish, user:, resource: career_member)
+    event = Event.find_by(kind: notification.kind, user:, resource: career_member)
 
     assert { notification }
+    assert { event }
     assert { career_step_member.finished? }
     assert { career_member.finished? }
   end
@@ -61,7 +63,7 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
     end
   end
 
-  test '#next step open source notification' do
+  test '#next step open source notification and event' do
     user = users(:next_step_open_source)
     step = career_steps(:step_one)
     career_step_member = career_step_members(:one_by_user_next_step_open_source)
@@ -71,7 +73,9 @@ class Web::Careers::Steps::MembersControllerTest < ActionDispatch::IntegrationTe
     patch finish_career_step_member_path(@career.slug, step, career_step_member)
 
     notification = Notification.find_by(kind: :next_step_open_source, user:, resource: career_member)
+    event = Event.find_by(kind: notification.kind, user:, resource: career_member)
 
     assert { notification }
+    assert { event }
   end
 end
