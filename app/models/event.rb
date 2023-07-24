@@ -2,6 +2,7 @@
 
 class Event < ApplicationRecord
   extend Enumerize
+  include StateConcern
 
   validates :locale, :kind, presence: true
 
@@ -10,4 +11,13 @@ class Event < ApplicationRecord
 
   enumerize :kind, in: %i[new_career_member next_step_open_source career_member_finish
                           new_answer new_comment_to_resume new_comment_to_answer answer_applied]
+
+  aasm :state, column: :state do
+    state :unsended, initial: true
+    state :sended
+
+    event :mark_as_sended do
+      transitions from: :unsended, to: :sended
+    end
+  end
 end
