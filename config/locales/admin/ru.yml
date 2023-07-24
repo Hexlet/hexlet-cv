@@ -38,7 +38,7 @@ ru:
           restore: Востановить в КТ
         index:
           students: Студенты
-          users_active_career: Проходящие карьерный трек
+          users_active_career: Проходят Карьерный трек
           users_archived_career: Архив
         menu:
           list: Список
