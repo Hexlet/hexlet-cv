@@ -37,3 +37,8 @@ item_eight:
   order: 8
   career: developer
   career_step: step_eight
+
+item_devops_one:
+  order: 1
+  career: devops
+  career_step: step_two

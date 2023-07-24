@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :career do
     name { 'Аналитик' }
     description { Faker::Lorem.paragraph }
-    slug { Faker::Lorem.word }
+    slug { 'analitic' }
     locale { 'ru' }
 
     items_attributes do

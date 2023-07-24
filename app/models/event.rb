@@ -10,7 +10,8 @@ class Event < ApplicationRecord
   belongs_to :resource, polymorphic: true
 
   enumerize :kind, in: %i[new_career_member next_step_open_source career_member_finish
-                          new_answer new_comment_to_resume new_comment_to_answer answer_applied]
+                          new_answer new_comment_to_resume new_comment_to_answer
+                          answer_applied new_resume]
 
   aasm :state, column: :state do
     state :unsended, initial: true

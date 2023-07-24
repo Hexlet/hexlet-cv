@@ -38,6 +38,7 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
   def update
     career = Career.find(params[:id])
     @career = career.becomes(Web::Admin::CareerForm)
+
     if @career.update(params[:career])
       f(:success)
       redirect_to admin_careers_path

@@ -31,3 +31,8 @@ archived_member:
 member_next_step_open_source:
   <<: *DEFAULTS
   user: next_step_open_source
+
+member_devops_one:
+  career: devops
+  state: finished
+  user: one

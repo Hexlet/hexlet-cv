@@ -23,7 +23,7 @@ class Web::Resumes::AnswersController < Web::Resumes::ApplicationController
     form = Web::Resumes::AnswerForm.new(resume_answer_params)
     @answer = Resume::AnswerMutator.create(resource_resume, form.attributes, current_user)
     if @answer.persisted?
-      EventSender.serve!(:new_answer, @answer)
+      EventSender.serve!(:new_answer, @answer, after_transaction: true)
       f(:success)
       redirect_to resume_path(resource_resume)
     else

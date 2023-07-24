@@ -61,3 +61,8 @@ one_by_user_next_step_open_source:
   state: active
   career_member: member_next_step_open_source
   career_step: step_one
+
+one_by_user_one_devops:
+  state: finished
+  career_member: member_devops_one
+  career_step: step_two

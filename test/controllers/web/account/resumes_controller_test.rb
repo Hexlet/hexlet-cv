@@ -32,8 +32,10 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume = Resume.find_by(name: attrs[:name])
+    event = Event.find_by(user: @user, kind: :new_resume, resource: resume)
 
     last_answer = resume.answers.last
+    assert { event }
     assert { resume }
     assert { resume.educations.exists?(description: education_attrs[:description]) }
     assert { resume.works.exists?(company: works_attrs[:company]) }
@@ -53,6 +55,9 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     resume = Resume.find_by(name: attrs[:name])
+    event = Event.find_by(user: @user, kind: :new_resume, resource: resume)
+
+    assert { !event }
     assert { resume.not_evaluated? }
   end
 

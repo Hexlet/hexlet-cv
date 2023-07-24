@@ -1,6 +1,49 @@
+DEFAULTS: &DEFAULTS
+  locale: <%= I18n.locale %>
+  state: unsended
+
 new_career_member_full:
+  <<: *DEFAULTS
   user: full
   resource: member_full (Craeer::Member)
   kind: new_career_member
-  locale: <%= I18n.locale %>
+  
+
+new_career_member_one:
+  <<: *DEFAULTS
+  user: one
+  resource: one_by_user_one_devops (Craeer::Member)
+  kind: new_career_member
+
+next_step_open_source_one:
+  <<: *DEFAULTS
+  user: one
+  resource: one_by_user_one_devops (Craeer::Member)
+  kind: next_step_open_source
+
+career_member_finish_one:
+  <<: *DEFAULTS
+  user: one
+  resource: one_by_user_one_devops (Craeer::Member)
+  kind: career_member_finish
+
+new_answer_two:
+  <<: *DEFAULTS
+  user: two
+  resource: two (Rsume::Answer)
+  kind: new_answer
+  state: sended
+
+new_comment_to_resume_full:
+  <<: *DEFAULTS
+  user: full
+  resource: one_full (Resume::Comment)
+  kind: new_comment_to_resume
+  state: unsended
+
+new_comment_to_answer_two_one_full:
+  <<: *DEFAULTS
+  user: full
+  resource: two_one_full (Resume::Answer::Comment)
+  kind: new_comment_to_answer
   state: unsended

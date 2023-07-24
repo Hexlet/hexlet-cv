@@ -43,13 +43,13 @@ class Web::Admin::CareersControllerTest < ActionDispatch::IntegrationTest
     attrs = FactoryBot.attributes_for :career
     attrs[:items_attributes] = [
       {
-        order: 1,
+        order: 2,
         career_step_id: career_steps(:step_one).id
       }
     ]
     patch admin_career_path(@career), params: { career: attrs }
 
     assert_redirected_to admin_careers_path
-    assert { @career.items.size == 1 }
+    assert { @career.items.size == 2 }
   end
 end

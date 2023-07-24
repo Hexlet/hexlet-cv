@@ -22,6 +22,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     if @resume.save
       change_visibility(@resume)
       OpenAiJob.perform_later(@resume.id)
+      EventSender.serve!(:new_resume, @resume) if @resume.published?
       f(:success)
       redirect_to account_resumes_path
     else
