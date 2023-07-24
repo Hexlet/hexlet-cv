@@ -51,9 +51,12 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     answer = resume.answers.find_by attrs
+    notification = Notification.find_by(user: resume.user, resource: answer, kind: :new_answer)
+    event = Event.find_by(user: answer.user, resource: answer, kind: :new_answer)
 
+    assert { event }
     assert { answer }
-    assert { Notification.find_by(user: resume.user, resource: answer, kind: :new_answer) }
+    assert { notification }
   end
 
   test '#create (validaton errors)' do

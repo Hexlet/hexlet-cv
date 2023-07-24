@@ -34,9 +34,12 @@ class Web::Resumes::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     comment = resume.comments.find_by(attrs)
+    notification = Notification.find_by(user: resume.user, resource: comment, kind: :new_comment)
+    event = Event.find_by(user: comment.user, resource: comment, kind: :new_comment_to_resume)
 
+    assert { event }
     assert { comment }
-    assert { Notification.find_by(user: resume.user, resource: comment, kind: :new_comment) }
+    assert { notification }
   end
 
   test '#create (invalid comment)' do

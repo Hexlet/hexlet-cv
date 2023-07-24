@@ -2,7 +2,7 @@
 
 class EmailSender
   class << self
-    def send_new_answer_mail(answer)
+    def send_new_answer_email(answer)
       user = answer.resume.user
       return unless can_send_email_notification?(user, answer)
 

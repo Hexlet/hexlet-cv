@@ -34,9 +34,12 @@ class Web::Answers::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     comment = answer.comments.find_by attrs
+    notification = Notification.find_by(user: answer.user, resource: comment, kind: :new_answer_comment)
+    event = Event.find_by(user: comment.user, resource: comment, kind: :new_comment_to_answer)
 
+    assert { event }
     assert { comment }
-    assert { Notification.find_by(user: answer.user, resource: comment, kind: :new_answer_comment) }
+    assert { notification }
   end
 
   test '#create (has no notification for himself)' do
