@@ -202,6 +202,7 @@ en:
       careers:
         members:
           career_members:
+            progress: 'Progress:'
             finished_percent: "%{count}%"
             continue_career: Continue
             start_career: Start Career track

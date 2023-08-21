@@ -1,10 +1,12 @@
 - members.each do |member|
   .card.mb-3
     .card-header.p-3.d-flex.justify-content-between
-      .h4.me-3 = member.career.name
+      .h4.me-3.col-5 = member.career.name
       - if member.finished?
         span.bi.bi-check-circle-fill.text-success[aria-label="#{t('.career_track_finished')}"]
       - else
+        .align-self-center.text-end.col-2
+          span = t('.progress')
         .progress.align-self-center.col-4
           .progress-bar[role='progressbar' style="width: #{member.progress_percent}%"; aria-valuenow="#{member.progress_percent}"  aria-valuemin='0' aria-valuemax='100'] = t('.finished_percent', count: member.progress_percent)
 

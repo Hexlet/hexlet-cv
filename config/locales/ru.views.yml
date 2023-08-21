@@ -299,6 +299,7 @@ ru:
       careers:
         members:
           career_members:
+            progress: 'Пройденно:'
             finished_percent: "%{count}%"
             continue_career: Продолжить
             start_career: Начать
