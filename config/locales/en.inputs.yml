@@ -2,3 +2,4 @@ en:
   inputs:
     current_state: Current status
     max_length: "Maximum tag length exceeded: Maximum length %{max_length} characters"
+    invalid_tag: "Invalid tag name %{invalid_tags}"

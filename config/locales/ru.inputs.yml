@@ -2,3 +2,4 @@ ru:
   inputs:
     current_state: Текущий статус
     max_length: "Превышена максимальная длинна тега: Максимальна длинна %{max_length} символов"
+    invalid_tag: "Недопустимое имя тэга %{invalid_tags}"

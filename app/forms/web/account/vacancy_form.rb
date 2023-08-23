@@ -3,6 +3,9 @@
 class Web::Account::VacancyForm < Vacancy
   include ActiveFormModel
 
+  validates :direction_list, direction_list: true
+  validates :direction_list, vacancy_direction_list: true
+
   fields :title,
          :site,
          :position_level,

@@ -4,6 +4,9 @@ class Web::Admin::VacancyForm < Vacancy
   include ActiveFormModel
   extend Enumerize
 
+  validates :direction_list, direction_list: true
+  validates :direction_list, vacancy_direction_list: true
+
   fields :title,
          :site,
          :position_level,
