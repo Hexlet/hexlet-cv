@@ -8,7 +8,7 @@ class RenameTagsVacancy < ActiveRecord::Migration[7.0]
           .where('name ~* ?', '^.+\.(js|php|html)$')
 
     tags.find_each do |tag|
-      new_name = name.tr('.', '-')
+      new_name = tag.name.tr('.', '-')
       tag.name = new_name
       tag.save if tag.valid?
     end
