@@ -46,10 +46,10 @@ Rails.application.routes.draw do
       end
 
       resources :vacancies, only: %i[index show]
-
+      # NOTE: добавил валидацию на дирекшены что бы нельзя было указывать дерекшены типа node.js
       resources :vacancy_filters, only: %i[show] do
         collection do
-          get :search, format: true
+          get :search
         end
       end
       resources :resumes do
