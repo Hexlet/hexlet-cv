@@ -9,7 +9,7 @@ class Web::Admin::CareersController < Web::Admin::ApplicationController
 
   def show
     @career = Career.find(params[:id])
-    @career_steps = @career.steps.distinct
+    @career_steps = @career.steps.ordered.uniq
     @users = @career.users.distinct
   end
 
