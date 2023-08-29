@@ -6,10 +6,10 @@
 
 = content_for :header do
   .d-flex.justify-content-between
-    .m-1
+    .me-2
       = @vacancy.header
     - if current_or_guest_user.admin?
-      .m-1
+      div
         = link_to edit_admin_vacancy_path(@vacancy), class: 'btn btn-primary' do
           span.bi.bi-gear
 
@@ -18,56 +18,56 @@
     = t('.vacancy_archived')
 
 - if @vacancy.position_level?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'title')
     .col-sm-9
       - let link_to(@vacancy.position_level.text, vacancy_filter_path(filter_slug(level: @vacancy.position_level))) do |link|
         | #{link} #{@vacancy}
 
-.row.mb-3
+.row.gy-2.mb-4.mb-sm-3
   .col-sm-3
     b = han('vacancy', 'employment_type')
   .col-sm-9
     = @vacancy.employment_type.text
 
 - if @vacancy.city_name?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'location_of_position')
     .col-sm-9
       - let link_to(@vacancy.city_name.capitalize, vacancy_filter_path(filter_slug(city: @vacancy.city_name))) do |link|
         | #{link}, #{@vacancy.location_of_position.text}
 
-.row.mb-3
+.row.gy-2.mb-4.mb-sm-3
   .col-sm-3
     b = han('vacancy', 'company_name')
   .col-sm-9
     = link_to_if @vacancy.site?, @vacancy.company_name, @vacancy.site, rel: 'noopener', target: '_blank'
 
 - if @vacancy.experience_description?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'experience_description')
     .col-sm-9
       == markdown2html @vacancy.experience_description
 
 - if @vacancy.about_company?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'about_company')
     .col-sm-9
       == markdown2html @vacancy.about_company
 
 - if @vacancy.about_project?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'about_project')
     .col-sm-9
       == markdown2html @vacancy.about_project
 
 - if @vacancy.technologies.any?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'technology_list')
     .col-sm-9.hexlet-cv-content
@@ -75,14 +75,14 @@
 
 - %i[responsibilities_description requirements_description conditions_description].each do |field_name|
   - if @vacancy.send :"#{field_name}?"
-    .row.mb-3
+    .row.gy-2.mb-4.mb-sm-3
       .col-sm-3
         b = han('vacancy', field_name)
       .col-sm-9.hexlet-cv-content
         == markdown2html @vacancy.send :"#{field_name}"
 
 - if @vacancy.salary?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'salary')
     .col-sm-9
@@ -90,27 +90,26 @@
 
 - %i[contact_name contact_phone contact_telegram contact_email].each do |field_name|
   - if @vacancy.send :"#{field_name}?"
-    .row.mb-3
+    .row.gy-2.mb-4.mb-sm-3
       .col-sm-3
         b = han('vacancy', field_name)
       .col-sm-9.text-break
         = @vacancy.send :"#{field_name}"
 
 - if @vacancy.link_for_contact?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'link_for_contact')
     .col-sm-9
       = link_to t('.link_for_contact', title: @vacancy.title), @vacancy.link_for_contact, class: 'text-decoration-none'
 
 - if @vacancy.directions.any?
-  .row.mb-3
+  .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'direction_list')
     .col-sm-9.hexlet-cv-content
       - @vacancy.directions.each do |direction|
-        = link_to direction, vacancy_filter_path(filter_slug(direction: direction.to_s))
-        | &nbsp;
+        = link_to direction, vacancy_filter_path(filter_slug(direction: direction.to_s)), class: 'badge bg-primary bg-opacity-10 text-body py-2 px-3 p-sm-2 mb-3 mb-sm-2 me-3 me-sm-2'
 
 .alert.bg-light.shadow-sm.text-muted = t('.from_hexlet')
 
