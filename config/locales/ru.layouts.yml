@@ -40,6 +40,8 @@ ru:
         sign_out: Выйти
         register: Регистрация
       footer:
+        hexlet_html: Хекслет &copy;
+        hexlet_link: https://ru.hexlet.io
         about: О проекте
         rating: Рейтинг
         source_code: Исходный код

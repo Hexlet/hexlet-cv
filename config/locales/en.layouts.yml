@@ -39,6 +39,8 @@ en:
         sign_out: Sign out
         register: Sign up
       footer:
+        hexlet_html: Hexlet &copy;
+        hexlet_link: https://hexlet.io
         about: About
         rating: Rating
         source_code: Source code

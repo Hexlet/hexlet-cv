@@ -2,7 +2,8 @@ footer.bg-body-tertiary.border-top.py-4.mt-auto
   .container-xl
     .row.justify-content-lg-around
       .col-sm-6.col-md-4.col-lg-auto
-        .fs-4.mb-2 Hexlet &copy;
+        .mb-2
+          = link_to t('.hexlet_html'), t('.hexlet_link'), class: 'text-body text-decoration-none fs-4', target: '_blank', rel: :noopener
         ul.list-unstyled
           li.mb-3 = link_to t('.rating'), users_path
           li.mb-3 = link_to t('.about'), page_path('about')
