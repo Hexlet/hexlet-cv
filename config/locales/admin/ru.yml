@@ -110,6 +110,7 @@ ru:
         new:
           cancel: Отменить
         menu:
+          edit: Редактирование
           new: Новый
           list: Список
         members:

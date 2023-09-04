@@ -2,4 +2,4 @@ ul.nav.nav-tabs.mb-4
   = menu_item t('.list'), admin_careers_path
   = menu_item t('.new'), new_admin_career_path
   - if career
-    = menu_item career.name, edit_admin_career_path(career)
+    = menu_item t('.edit'), edit_admin_career_path(career)
