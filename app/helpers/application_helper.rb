@@ -36,6 +36,10 @@ module ApplicationHelper
     truncate(strip_tags(markdown2html(text)), options)
   end
 
+  def truncate_html(text)
+    text.gsub(/(<([^>]+)>)/, '')
+  end
+
   def active?(path, options = {})
     # raise options.inspect
     if options.key? :active_if

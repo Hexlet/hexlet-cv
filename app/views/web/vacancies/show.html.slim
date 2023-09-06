@@ -50,21 +50,21 @@
     .col-sm-3
       b = han('vacancy', 'experience_description')
     .col-sm-9
-      == markdown2html @vacancy.experience_description
+      == markdown2html(@vacancy.experience_description, escape_html: @vacancy.need_escape_html?)
 
 - if @vacancy.about_company?
   .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'about_company')
     .col-sm-9
-      == markdown2html @vacancy.about_company
+      == markdown2html(@vacancy.about_company, escape_html: @vacancy.need_escape_html?)
 
 - if @vacancy.about_project?
   .row.gy-2.mb-4.mb-sm-3
     .col-sm-3
       b = han('vacancy', 'about_project')
     .col-sm-9
-      == markdown2html @vacancy.about_project
+      == markdown2html(@vacancy.about_project, escape_html: @vacancy.need_escape_html?)
 
 - if @vacancy.technologies.any?
   .row.gy-2.mb-4.mb-sm-3
@@ -79,7 +79,7 @@
       .col-sm-3
         b = han('vacancy', field_name)
       .col-sm-9.hexlet-cv-content
-        == markdown2html @vacancy.send :"#{field_name}"
+        == markdown2html(@vacancy.send(:"#{field_name}"), escape_html: @vacancy.need_escape_html?)
 
 - if @vacancy.salary?
   .row.gy-2.mb-4.mb-sm-3

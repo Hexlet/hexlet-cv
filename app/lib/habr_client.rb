@@ -32,7 +32,7 @@ class HabrClient
 
   def self.request
     url = "#{BASE_URI}/#{METHODS[:vacansies]}"
-    uri = add_params(url, access_token: ACCESS_TOKEN, 's[]': FILTERS[:specializations].to_a.map(&:last), 'qid[]': FILTERS[:qualifications].to_a.map(&:last))
+    uri = add_params(url, access_token: ACCESS_TOKEN, skip_with_salary: 0, skip_company_filled: 0, 's[]': FILTERS[:specializations].to_a.map(&:last), 'qid[]': FILTERS[:qualifications].to_a.map(&:last))
     response = Net::HTTP.get_response(uri, HEADER)
 
     return ServiceResult.fail(JSON.parse(response.body)) unless response.is_a?(Net::HTTPSuccess)
