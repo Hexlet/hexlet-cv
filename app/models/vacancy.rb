@@ -8,9 +8,9 @@ class Vacancy < ApplicationRecord
   include VacancyPresenter
 
   acts_as_taggable_on :technologies, :directions
-  enumerize :employment_type, in: EMPLOYMENT_TYPES, default: 'full-time', predicates: true, scope: true, skip_validations: ->(vacancy) { vacancy.habr? }
-  enumerize :position_level, in: POSITION_LEVELS, default: 'junior', predicates: true, scope: true, skip_validations: ->(vacancy) { vacancy.habr? }
-  enumerize :salary_currency, in: %w[rub usd eur], default: 'rub', skip_validations: ->(vacancy) { vacancy.habr? }
+  enumerize :employment_type, in: EMPLOYMENT_TYPES, default: 'full-time', predicates: true, scope: true
+  enumerize :position_level, in: POSITION_LEVELS, default: 'junior', predicates: true, scope: true
+  enumerize :salary_currency, in: %w[rub usd eur], default: 'rub'
   enumerize :salary_amount_type, in: %w[gross net depends], default: 'net'
   enumerize :location_of_position, in: %w[remote onsite hybrid], default: 'onsite'
   enumerize :locale, in: %i[en ru], default: :ru
