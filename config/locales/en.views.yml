@@ -64,8 +64,8 @@ en:
         education: Education
         add_work: Add
         add_education: Add
-        publish: Post 
-        hide: Draft 
+        publish: Post
+        hide: Draft
         cancel: Discard
       work_fields:
         remove_work: Delete work experience
@@ -218,8 +218,8 @@ en:
             tab_active: Active
             tab_finished: Finished
       vacancies:
-        form:  
-          archive: Archive     
+        form:
+          archive: Archive
           cancel: Cancel
         new:
           header: New vacancy
@@ -278,6 +278,7 @@ en:
         tab_comments: Comments
         user_comments: The comments you leave on other users' summaries
         users_comments: 'Comments from other users on the summary %{user_name}'
+        tab_careers: Career track
         banned: Account was banned
       resumes:
         not_resumes: The user does not have any published resumes
@@ -299,7 +300,7 @@ en:
       answers:
         not_answer: The user did not comment on the resume
       career_members:
-        not_career_members: The user does not participate in the career track 
+        not_career_members: The user does not participate in the career track
     pages:
       about_description: The goal of Hexlet CV is to provide a platform for community where you will receive recommendations on your CV from community members and professional HR.
       about_title: About
