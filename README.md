@@ -41,10 +41,10 @@ make fixtures-load # sometimes, when fixtures were changed
 
 ```sh
 make compose-setup # setup app
-make compose-test # run tests
+make compose-app-test # run tests
 make compose # run server http://localhost:3000
 
-make compose-ci-check # run ci
+make app-ci-check # run ci
 ```
 
 ## Debug in Docker
@@ -58,7 +58,37 @@ or
 make app-debug
 ```
 
-and inser `debugger` in controller
+and insert `debugger` in controller
+
+## Setup in Podman
+
+Dependencies: podman, podman-compose
+
+If you have installed podman-docker, you can use, directly, `make compose-*` commands (except `make app-debug`)
+
+Or explicitly use the `make podman-compose-*` commands.
+
+```sh
+make podman-compose-setup # setup app
+make podman-compose-app-test # run tests
+make podman-compose # run server http://localhost:3000
+
+make podman-compose-app-ci-check
+```
+
+## Debug in Podman
+
+```sh
+podman container ls # watch container
+podman attach [container_id]
+
+or
+
+make podman-compose-app-debug
+
+```
+
+and insert `debugger` in controller
 
 ## Deploy
 
