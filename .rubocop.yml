@@ -18,6 +18,9 @@ Layout/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/ModuleLength:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 

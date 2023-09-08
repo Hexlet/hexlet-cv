@@ -27,12 +27,31 @@ class HabrClient
     qualifications: {
       intern: 1,
       junior: 2
+    },
+    skills: {
+      js: 264,
+      html: 1017,
+      css: 32,
+      react: 1070,
+      java: 1012,
+      php: 1005,
+      typescript: 245,
+      web_dev: 318,
+      nodejs: 12,
+      redux: 1106,
+      python: 446,
+      ruby_on_rails: 1080
     }
+
   }.freeze
 
   def self.request
     url = "#{BASE_URI}/#{METHODS[:vacansies]}"
-    uri = add_params(url, access_token: ACCESS_TOKEN, 's[]': FILTERS[:specializations].to_a.map(&:last), 'qid[]': FILTERS[:qualifications].to_a.map(&:last))
+    uri = add_params(url,
+                     access_token: ACCESS_TOKEN, skip_with_salary: 0,
+                     skip_company_filled: 0,
+                     's[]': FILTERS[:specializations].to_a.map(&:last),
+                     'qid[]': FILTERS[:qualifications].to_a.map(&:last))
     response = Net::HTTP.get_response(uri, HEADER)
 
     return ServiceResult.fail(JSON.parse(response.body)) unless response.is_a?(Net::HTTPSuccess)
