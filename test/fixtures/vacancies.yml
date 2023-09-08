@@ -3,6 +3,7 @@ DEFAULTS: &DEFAULTS
   responsibilities_description: |
     разрабатывать парсеры биржевых данных разрабатывать программы, которые надежно сохраняют биржевые данные во время торгов поддерживать и развивать автоматический пайплайн ежедневной обработки сохранения
   company_name: Company
+  kind: :hr
   creator: full
   locale: <%= I18n.locale %>
   programming_language: php
@@ -54,6 +55,7 @@ depends_salary:
 without_city_name:
   title: Vacancy without city name
   creator: full
+  kind: :hr
   state: published
   locale: <%= I18n.locale %>
   responsibilities_description: |
@@ -63,6 +65,9 @@ without_city_name:
   site: https://ru.hexlet.io
   position_level: junior
   published_at: <%= 1.minute.ago.to_fs(:db) %>
+  salary_amount_type: :net
+  salary_from: 1000
+  salary_to: 2000
 
 archived:
   <<: *DEFAULTS
