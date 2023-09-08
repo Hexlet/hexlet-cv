@@ -20,6 +20,7 @@ class Vacancy < ApplicationRecord
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true
 
   validates :title, presence: true
+  validates :kind, presence: true
   validates :contact_email, 'valid_email_2/email': true
   validates :company_name, presence: true
   validates :responsibilities_description, presence: true
