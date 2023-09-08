@@ -278,6 +278,7 @@ en:
         tab_comments: Comments
         user_comments: The comments you leave on other users' summaries
         users_comments: 'Comments from other users on the summary %{user_name}'
+        tab_careers: Career track
         banned: Account was banned
       resumes:
         not_resumes: The user does not have any published resumes
