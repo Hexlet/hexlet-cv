@@ -20,6 +20,12 @@ namespace :vacancies do
       exist_vacnsy = Vacancy.find_by(external_id: vacancy['id'])
       next if exist_vacnsy
 
+      salary_map = {
+        rur: 'rub',
+        usd: 'usd',
+        eur: 'eur'
+      }
+
       params = {
         external_id: vacancy['id'],
         creator:,
@@ -38,7 +44,7 @@ namespace :vacancies do
         experience_description: vacancy['instructions'],
         employment_type: normalize_employment_type(vacancy['employment_type']),
         position_level: vacancy['qualification']['title']['en'].downcase,
-        salary_currency: vacancy['expanded_salary']['currency'] == 'rur' ? 'rub' : 'usd',
+        salary_currency: salary_map[vacancy['expanded_salary']['currency'].to_sym],
         salary_amount_type: vacancy['expanded_salary']['from'] || vacancy['expanded_salary']['to'] ? 'net' : 'depends',
         location_of_position: vacancy['remote'] ? 'remote' : 'onsite',
         salary_from: vacancy['expanded_salary']['from'],
