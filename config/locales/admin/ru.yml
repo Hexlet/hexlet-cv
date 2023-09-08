@@ -2,11 +2,6 @@
 ru:
   web:
     admin:
-      home:
-        menu:
-          list: Список
-        index:
-          admins: Администраторы
       career_users:
         add_user_form:
           cancel: Отмена
@@ -54,6 +49,7 @@ ru:
           progress: Всего/Пройденно
           show: Профиль пользователя
           no_date: Не завершен
+          archive: Архивировать
       resumes:
         index:
           edit: Редактировать резюме
@@ -85,6 +81,8 @@ ru:
         edit:
           header: Редактирование пользователя
       home:
+        menu:
+          list: Список
         index:
           admins: Администраторы
       careers:
