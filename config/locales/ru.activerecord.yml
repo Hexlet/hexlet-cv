@@ -65,6 +65,7 @@ ru:
         state/read: Прочитано
         state/unread: Непрочитано
       vacancy:
+        kind: тип
         conditions_description: Условия и Бонусы
         requirements_description: Требования
         responsibilities_description: Обязанности

@@ -77,7 +77,7 @@ class Vacancy < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id title state name company_name created_at published_at]
+    %w[id kind title state name company_name created_at published_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

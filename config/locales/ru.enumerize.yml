@@ -44,3 +44,6 @@ ru:
       fluent: Свободно владею
     notification_kind:
       next_step_open_source: Open source
+    kind:
+      habr: Хабр
+      hr: Консультант

@@ -3,6 +3,7 @@
     = f.input :company_name_cont, placeholder: han('vacancy', :company_name), label: false
     = f.input :creator_first_name_or_creator_last_name_or_creator_email_cont, label: false, placeholder: t('.creator')
     = f.input :state_eq, collection: states_for_select(Vacancy), prompt: han('vacancy', :state), include_blank: true, label: false
+    = f.input :kind_eq, collection: Vacancy.kind.options, prompt: han('vacancy', :kind), include_blank: true, label: false
     = f.input :created_at_gteq, as: :date, html5: true, label: t('.created_at_from')
     = f.input :created_at_lteq, as: :date, html5: true, label: t('.created_at_to')
     .col.d-flex.align-self-end
