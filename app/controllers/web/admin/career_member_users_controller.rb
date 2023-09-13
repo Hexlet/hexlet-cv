@@ -15,7 +15,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
                              .per(20)
 
     @users = prepare_data(@active_career_members)
-    @back_to_page = admin_career_member_users_path
+    @back_to_page = admin_career_member_users_path(page: params[:page])
   end
 
   def archived
@@ -25,7 +25,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
                                .per(20)
 
     @users = prepare_data(@archived_career_members)
-    @back_to_page = archived_admin_career_member_users_path
+    @back_to_page = archived_admin_career_member_users_path(page: params[:page])
   end
 
   def finished
