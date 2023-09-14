@@ -64,7 +64,7 @@ class Career::Member < ApplicationRecord
 
   def finished_steps_count
     Rails.cache.fetch("finished_step_count#{id}", expires_in: 1.hour) do
-      career_step_members.finished.count
+      career_step_members.where(career_step: career.steps).finished.count
     end
   end
 
