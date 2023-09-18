@@ -1,4 +1,4 @@
-class UpdateStateToResume < ActiveRecord::Migration[7.0]
+class UpdateStateToResumeUser < ActiveRecord::Migration[7.0]
   def change
     resume = Resume.find_by(id: 3067)
 
