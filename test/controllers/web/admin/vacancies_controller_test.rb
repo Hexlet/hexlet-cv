@@ -65,4 +65,9 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     get admin_vacancies_path(format: :csv)
     assert_response :success
   end
+
+  test '#on_moderate' do
+    get on_moderate_admin_vacancies_path
+    assert_response :success
+  end
 end

@@ -7,6 +7,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
       format.html do
         @q = Vacancy.ransack(query)
         @vacancies = @q.result(distinct: true).page(params[:page])
+        render :index
       end
 
       format.csv do
@@ -61,5 +62,11 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def on_moderate
+    params[:q] ||= {}
+    params[:q][:state_eq] = 'on_moderate'
+    index
   end
 end

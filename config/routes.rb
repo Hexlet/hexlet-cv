@@ -105,7 +105,11 @@ Rails.application.routes.draw do
             patch :restore
           end
         end
-        resources :vacancies, only: %i[index new create edit update]
+        resources :vacancies, only: %i[index new create edit update] do
+          collection do
+            get :on_moderate
+          end
+        end
         resources :careers, only: [] do
           scope module: :careers do
             collection do
