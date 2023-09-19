@@ -57,7 +57,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
     if @vacancy.update(params[:vacancy])
       f(:success)
-      redirect_to admin_vacancies_path
+      redirect_to edit_admin_vacancy_path(@vacancy)
     else
       render :edit, status: :unprocessable_entity
     end
