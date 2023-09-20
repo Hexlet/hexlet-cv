@@ -1,0 +1,9 @@
+= link_to url_for(params.permit!.merge(format: 'csv')) do
+  span.bi.bi-file-earmark-spreadsheet
+    = t('web.admin.vacancies.index.export')
+
+= render 'search_form', q: @q, form_path: on_moderate_admin_vacancies_path, is_state_disabled: true
+
+= render 'vacancies_table'
+
+= paginate @vacancies

@@ -3,32 +3,7 @@
 class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    respond_to do |format|
-      format.html do
-        @q = Vacancy.ransack(query)
-        @vacancies = @q.result(distinct: true).page(params[:page])
-        render :index
-      end
-
-      format.csv do
-        q = Vacancy.includes(:creator).ransack(query)
-        vacancies = q.result(distinct: true)
-
-        headers = %w[id title state creator company_name created_at published_at]
-        send_file_headers!(filename: "vacancies-#{Time.zone.today}.csv")
-        self.response_body = generate_csv(vacancies, headers) do |vacancy|
-          [
-            vacancy.id,
-            vacancy.title,
-            vacancy.aasm(:state).human_state,
-            "#{vacancy.creator.email}(#{vacancy.creator.first_name} #{vacancy.creator.last_name})",
-            vacancy.company_name,
-            l(vacancy.created_at, format: :long),
-            show_date_if(vacancy.published_at, :long)
-          ]
-        end
-      end
-    end
+    index_respond_to(query)
   end
 
   def new
@@ -65,8 +40,37 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def on_moderate
-    params[:q] ||= {}
-    params[:q][:state_eq] = 'on_moderate'
-    index
+    query = { s: 'created_at asc', state_eq: 'on_moderate' }.merge(params.permit![:q] || {})
+    index_respond_to(query)
+  end
+
+  private
+
+  def index_respond_to(query)
+    respond_to do |format|
+      format.html do
+        @q = Vacancy.ransack(query)
+        @vacancies = @q.result(distinct: true).page(params[:page])
+      end
+
+      format.csv do
+        q = Vacancy.includes(:creator).ransack(query)
+        vacancies = q.result(distinct: true)
+
+        headers = %w[id title state creator company_name created_at published_at]
+        send_file_headers!(filename: "vacancies-#{Time.zone.today}.csv")
+        self.response_body = generate_csv(vacancies, headers) do |vacancy|
+          [
+            vacancy.id,
+            vacancy.title,
+            vacancy.aasm(:state).human_state,
+            "#{vacancy.creator.email}(#{vacancy.creator.first_name} #{vacancy.creator.last_name})",
+            vacancy.company_name,
+            l(vacancy.created_at, format: :long),
+            show_date_if(vacancy.published_at, :long)
+          ]
+        end
+      end
+    end
   end
 end
