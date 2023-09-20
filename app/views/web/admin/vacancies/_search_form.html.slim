@@ -1,10 +1,8 @@
 .p-3.mb-3.bg-light
-  - form_path = current_page?(on_moderate_admin_vacancies_path) ? on_moderate_admin_vacancies_path : admin_vacancies_path
   = search_form_for q, default_filter_form_options(url: form_path, html: { class: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-3', novalidate: true }) do |f|
     = f.input :company_name_cont, placeholder: han('vacancy', :company_name), label: false
     = f.input :creator_first_name_or_creator_last_name_or_creator_email_cont, label: false, placeholder: t('.creator')
-    - unless current_page?(on_moderate_admin_vacancies_path)
-      = f.input :state_eq, collection: states_for_select(Vacancy), prompt: han('vacancy', :state), include_blank: true, label: false
+    = f.input :state_eq, collection: states_for_select(Vacancy), prompt: han('vacancy', :state), include_blank: true, label: false, disabled: is_state_disabled
     = f.input :kind_eq, collection: Vacancy.kind.options, prompt: han('vacancy', :kind), include_blank: true, label: false
     = f.input :created_at_gteq, as: :date, html5: true, label: t('.created_at_from')
     = f.input :created_at_lteq, as: :date, html5: true, label: t('.created_at_to')

@@ -2,37 +2,10 @@
     span.bi.bi-file-earmark-spreadsheet
       = t('.export')
 
-= render 'search_form', q: @q
+= render 'search_form', q: @q, form_path: admin_vacancies_path, is_state_disabled: false
 
 = render 'menu'
 
-table.table
-  thead
-    tr
-      th = sort_link(@q, 'id')
-      th = sort_link(@q, 'title')
-      th = sort_link(@q, 'state')
-      th = sort_link(@q, 'creator')
-      th = sort_link(@q, 'company_name')
-      th = sort_link(@q, 'created_at')
-      th = sort_link(@q, 'published_at')
-      td = t('actions')
-  tbody
-    - @vacancies.each do |vacancy|
-      tr
-        td = link_to vacancy.id, edit_admin_vacancy_path(vacancy)
-        td = link_to vacancy, vacancy_path(vacancy)
-        td = vacancy.aasm(:state).human_state
-        td = link_to vacancy.creator, user_path(vacancy.creator)
-        td = vacancy.company_name
-        / td = user.role
-        td = l vacancy.created_at, format: :long
-        td = show_date_if(vacancy.published_at, :long)
-        td
-          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm' do
-              span.bi.bi-eye-fill
-            = link_to edit_admin_vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
-              span.bi.bi-gear-fill
+= render 'vacancies_table'
 
 = paginate @vacancies
