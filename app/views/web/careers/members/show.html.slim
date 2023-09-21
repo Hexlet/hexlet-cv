@@ -16,14 +16,12 @@ ul.nav.nav-tabs.mt-2.mb-4
           = step
 .row.my-1
   .col-lg-8
-    .my-1
-      h3 = @career_step.name
-      .bg-light.rounded.py-2.px-3
-        == markdown2html(@career_step.description)
-    .my-1
-      h4 = t('.tasks')
-      .bg-light.rounded.py-2.px-3
-        == markdown2html(@career_step.tasks_text)
+    .mb-4
+      h3.mb-3 = @career_step.name
+      == markdown2html(@career_step.description)
+    .mb-4
+      h4.mb-3 = t('.tasks')
+      == markdown2html(@career_step.tasks_text)
 
   .col-lg-4
     .text-center.mb-3
