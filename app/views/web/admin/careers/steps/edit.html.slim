@@ -11,6 +11,6 @@
     .col-sm-9
       span
         - @careers.each do |career|
-          = link_to career.name, admin_career_path(career), class: 'badge rounded-pill bg-success me-1'
+          = link_to career.name, admin_career_path(career), class: 'badge rounded-pill bg-success link-light me-1'
 
 = render 'form', step: @step, url: admin_step_path(@step)
