@@ -1,7 +1,7 @@
 - content_for :header do
   = t('.career_track', name: @career.name)
 
-= link_to edit_admin_career_path(@career), class: 'btn btn-primary mb-2' do
+= link_to edit_admin_career_path(@career), class: 'btn btn-primary mb-3' do
   span.bi.bi-gear.me-2
   = t('.edit')
 
@@ -17,7 +17,7 @@
   .col-sm-9
     = @career.slug
 
-.row.mb-3
+.row.mb-5
   .col-sm-3
     b = han('career', 'locale')
   .col-sm-9
