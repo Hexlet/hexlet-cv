@@ -109,7 +109,54 @@ heroku config:set RAILS_LOG_TO_STDOUT=enabled
 heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
-Configure reCAPTCHA for prodaction:
+## Deploy to render.com
+<details><summary>INFO IS HERE</summary>
+
+* Go to https://dashboard.render.com
+* Add New PostgreSQL with YOUR_CUSTOM_NAME_PG and select Region
+* Add New Web Service with link to your repo clone\
+  select:
+    * YOUR_CUSTOM_NAME_CV
+    * same Region
+    * Runtime: Ruby
+    * Build Command - "./bin/render-build.sh"
+    * Start Command - "./bin/render-start.sh"
+* Go to YOUR_CUSTOM_NAME_PG PostgreSQL -> Info and copy `Internal Database URL`
+
+* Go to YOUR_CUSTOM_NAME_CV app -> Environment
+    * Environment Variables, by one\
+      or
+    * Secret Files .env with your settings, based on .env.example
+      * DATABASE_URL
+        ```shell
+        echo "DATABASE_URL=Internal Database URL" >> .env
+        ```
+      * RACK_ENV and RAILS_ENV
+        ```shell
+        echo "RACK_ENV=production" >> .env
+        echo "RAILS_ENV=production" >> .env
+        ```
+      * RAILS_MASTER_KEY
+        ```shell
+        export RAILS_MASTER_KEY="$(ruby -r securerandom -e 'print SecureRandom.hex(16)')"
+        # printf $RAILS_MASTER_KEY > master.key
+        echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
+        ```
+      * CREDENTIALS_CLEAR
+        ```shell
+        echo "CREDENTIALS_CLEAR=1" >> .env
+        ```
+      * SECRET_KEY_BASE
+        ```shell
+        echo "SECRET_KEY_BASE=$(rake secret)" >> .env
+        ```
+
+* You can deploy your app
+</details>
+
+---
+
+Configure reCAPTCHA for production:
 
 * Follow the link [reCAPTCHA](https://www.google.com/recaptcha)
 * Log into Admin Console with your credentials or create a new Google Account in case you don't have one

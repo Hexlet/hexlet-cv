@@ -7,3 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if ENV.key?('RENDER')
+  require_relative 'seeds/render_seeds'
+  render_seeds
+end
