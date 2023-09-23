@@ -44,6 +44,7 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'dry-container'
 gem 'enumerize'
+gem 'faker', require: false
 gem 'flash_rails_messages'
 gem 'geocoder'
 gem 'gon'
@@ -78,7 +79,6 @@ gem 'wkhtmltopdf-binary'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker'
   # Use sqlite3 as the database for Active Record
   gem 'factory_bot_rails'
   gem 'rubocop-performance'
