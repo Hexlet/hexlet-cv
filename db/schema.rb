@@ -71,19 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_153947) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "kind", null: false
-    t.string "locale", null: false
-    t.string "resource_type", null: false
-    t.integer "resource_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "state", null: false
-    t.index ["resource_type", "resource_id"], name: "index_events_on_resource"
-    t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
     t.integer "impressionable_id"
@@ -347,7 +334,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_153947) do
   add_foreign_key "career_members", "users"
   add_foreign_key "career_step_members", "career_members"
   add_foreign_key "career_step_members", "career_steps"
-  add_foreign_key "events", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "resume_answer_comments", "resume_answers", column: "answer_id"
   add_foreign_key "resume_answer_comments", "resumes"
