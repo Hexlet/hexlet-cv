@@ -1,16 +1,16 @@
 table.table
   thead
     tr
-      th = sort_link(@q, 'id')
-      th = sort_link(@q, 'title')
-      th = sort_link(@q, 'state')
-      th = sort_link(@q, 'creator')
-      th = sort_link(@q, 'company_name')
-      th = sort_link(@q, 'created_at')
-      th = sort_link(@q, 'published_at')
+      th = sort_link(q, 'id')
+      th = sort_link(q, 'title')
+      th = sort_link(q, 'state')
+      th = sort_link(q, 'creator')
+      th = sort_link(q, 'company_name')
+      th = sort_link(q, 'created_at')
+      th = sort_link(q, 'published_at')
       td = t('actions')
   tbody
-    - @vacancies.each do |vacancy|
+    - vacancies.each do |vacancy|
       tr
         td = link_to vacancy.id, edit_admin_vacancy_path(vacancy)
         td = link_to vacancy, vacancy_path(vacancy)

@@ -6,6 +6,6 @@
 
 = render 'menu'
 
-= render 'vacancies_table'
+= render 'vacancies_table', q: @q, vacancies: @vacancies
 
 = paginate @vacancies
