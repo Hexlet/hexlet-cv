@@ -13,7 +13,7 @@ app-update-bundle:
 	docker-compose run --rm app bundle update --jobs $(shell nproc)
 
 app-update-npm:
-	docker-compose run --rm web npm upgrade
+	docker-compose run --rm app npm upgrade
 
 app-debug:
 	docker attach --sig-proxy=false --detach-keys="ctrl-c" $(shell docker ps -q --filter publish=3000)
