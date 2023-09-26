@@ -1,0 +1,5 @@
+= render 'search_form', q: @q, form_path: on_moderate_admin_vacancies_path, is_state_disabled: true
+
+= render 'vacancies_table', q: @q, vacancies: @vacancies
+
+= paginate @vacancies

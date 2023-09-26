@@ -74,9 +74,10 @@ ru:
         edit:
           header: Редактирование вакансии
         index:
-          edit: Редактировать вакансию
           no_date: нет даты
           export: Экспортировать вакансии в csv
+        vacancies_table:
+          edit: Редактировать вакансию
       users:
         edit:
           header: Редактирование пользователя

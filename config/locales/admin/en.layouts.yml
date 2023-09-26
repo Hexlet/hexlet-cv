@@ -6,7 +6,9 @@ en:
           admins: Admins
           all_users: Users
           all_resumes: Resumes
-          all_vacancies: Jobs
+          vacancies: Jobs
+          on_moderate: On moderation
+          all_vacancies: All jobs
           all_career_tracks: Career Tracks
           career_track: Career Track
           all_career_steps: Steps

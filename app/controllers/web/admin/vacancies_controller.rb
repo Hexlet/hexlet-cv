@@ -2,7 +2,7 @@
 
 class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def index
-    query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
+    query = query_params({ s: 'created_at desc' })
     respond_to do |format|
       format.html do
         @q = Vacancy.ransack(query)
@@ -61,5 +61,17 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def on_moderate
+    query = query_params({ s: 'created_at asc' })
+    @q = Vacancy.on_moderate.ransack(query)
+    @vacancies = @q.result(distinct: true).page(params[:page])
+  end
+
+  private
+
+  def query_params(default_params = {})
+    default_params.merge(params.permit![:q] || {})
   end
 end

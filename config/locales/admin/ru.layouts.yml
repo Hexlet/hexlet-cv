@@ -7,7 +7,9 @@ ru:
           admins: Администраторы
           all_users: Пользователи
           all_resumes: Резюме
-          all_vacancies: Вакансии
+          vacancies: Вакансии
+          on_moderate: На модерации
+          all_vacancies: Все вакансии
           all_career_tracks: Карьерные треки
           career_track: Карьерный трек
           all_career_steps: Шаги

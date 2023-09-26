@@ -77,6 +77,14 @@ archived:
   salary_to: 2000
   salary_currency: rub
 
+on_moderate:
+  <<: *DEFAULTS
+  title: On moderate vacancy
+  state: on_moderate
+  salary_from: 1000
+  salary_to: 2000
+  salary_currency: rub
+
 over_month_old:
   <<: *DEFAULTS
   title: Фронтендер

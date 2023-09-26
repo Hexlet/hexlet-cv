@@ -8,7 +8,7 @@ en:
         index:
           admins: Administrators
       career_users:
-        add_user_form:  
+        add_user_form:
       career_member_users:
         new:
           add_user: Adding to career track
@@ -77,9 +77,10 @@ en:
         edit:
           header: Job editing
         index:
-          edit: Editing Job
           no_date: no date
           export: Export jobs to csv
+        vacancies_table:
+          edit: Editing Job
       home:
         index:
           admins: Administrators
