@@ -64,7 +64,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def on_moderate
-    query = query_params({ s: 'created_at asc', state_eq: 'on_moderate' })
+    query = query_params({ s: 'created_at asc' })
     @q = Vacancy.on_moderate.ransack(query)
     @vacancies = @q.result(distinct: true).page(params[:page])
   end
