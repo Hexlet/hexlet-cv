@@ -44,7 +44,6 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'dry-container'
 gem 'enumerize'
-gem 'faker', require: false
 gem 'flash_rails_messages'
 gem 'geocoder'
 gem 'gon'
@@ -75,6 +74,10 @@ gem 'validate_url'
 gem 'valid_email2'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+group :development, :staging, :test do
+  gem 'faker'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -115,6 +118,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-group :production do
+group :production, :staging do
   gem 'pg'
 end

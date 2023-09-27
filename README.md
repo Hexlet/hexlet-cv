@@ -126,32 +126,37 @@ heroku config:set EMAIL_FROM=support@hexlet.io
 * Go to YOUR_CUSTOM_NAME_CV app -> Environment
     * Environment Variables, by one\
       or
-    * Secret Files .env with your settings, based on .env.example
+    * Secret Files .env with your settings, based on .env.example and add this variables:
       * DATABASE_URL
         ```shell
         echo "DATABASE_URL=Internal Database URL" >> .env
         ```
       * RACK_ENV and RAILS_ENV
         ```shell
-        echo "RACK_ENV=production" >> .env
-        echo "RAILS_ENV=production" >> .env
+        echo "RACK_ENV=staging" >> .env
+        echo "RAILS_ENV=staging" >> .env
         ```
+      * RENDER_LOAD_FIXTURES to load fixtures
+        ```shell
+        echo "RENDER_LOAD_FIXTURES=1" >> .env
+        ```
+      Generate new master.key if the original is missing
       * RAILS_MASTER_KEY
         ```shell
         export RAILS_MASTER_KEY="$(ruby -r securerandom -e 'print SecureRandom.hex(16)')"
         # printf $RAILS_MASTER_KEY > master.key
         echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
         ```
-      * CREDENTIALS_CLEAR
-        ```shell
-        echo "CREDENTIALS_CLEAR=1" >> .env
-        ```
       * SECRET_KEY_BASE
         ```shell
         echo "SECRET_KEY_BASE=$(rake secret)" >> .env
         ```
+      * CREDENTIALS_CLEAR, to remove original config/credentials.yml.enc on render.com
+        ```shell
+        echo "CREDENTIALS_CLEAR=1" >> .env
+        ```
 
-* You can deploy your app
+* You can deploy app
 </details>
 
 ---

@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-if ENV.key?('RENDER')
-  require_relative 'seeds/render_seeds'
-  render_seeds
+if Rails.env.staging? && ENV['RENDER']&.to_i&.positive? && ENV['RENDER_LOAD_FIXTURES']&.to_i&.positive?
+  require_relative 'seeds/render_load_fixtures'
+  render_load_fixtures
 end

@@ -2,9 +2,10 @@
 
 require 'active_record'
 require 'active_record/fixtures'
+require 'faker'
 
 # rubocop:disable Rails
-def render_seeds
+def render_load_fixtures
   # render.com seeding resolve
   # WARNING: Rails was not able to disable referential integrity.
   # This is most likely caused due to missing permissions.

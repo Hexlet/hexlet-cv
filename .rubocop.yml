@@ -39,6 +39,13 @@ Metrics/PerceivedComplexity:
 Rails:
   Enabled: true
 
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - staging
+    - test
+
 require:
   - rubocop-performance
   - rubocop-rails
