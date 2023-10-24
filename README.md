@@ -127,6 +127,10 @@ heroku config:set EMAIL_FROM=support@hexlet.io
     * Environment Variables, by one\
       or
     * Secret Files .env with your settings, based on .env.example and add this variables:
+      * HOST
+        ```shell
+        echo "HOST=your-app-name.onrender.com" >> .env
+        ```
       * DATABASE_URL
         ```shell
         echo "DATABASE_URL=Internal Database URL" >> .env
@@ -144,16 +148,16 @@ heroku config:set EMAIL_FROM=support@hexlet.io
       * RAILS_MASTER_KEY
         ```shell
         export RAILS_MASTER_KEY="$(ruby -r securerandom -e 'print SecureRandom.hex(16)')"
-        # printf $RAILS_MASTER_KEY > master.key
+        echo $RAILS_MASTER_KEY
+        printf $RAILS_MASTER_KEY > config/master.key
         echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
+        rm config/credentials.yml.enc
+        EDITOR=vim bin/rails credentials:edit # to update config/credentials.yml.enc
+                                              # press :wq+Enter
         ```
-      * SECRET_KEY_BASE
+      * CREDENTIALS_ENC
         ```shell
-        echo "SECRET_KEY_BASE=$(rake secret)" >> .env
-        ```
-      * CREDENTIALS_CLEAR, to remove original config/credentials.yml.enc on render.com
-        ```shell
-        echo "CREDENTIALS_CLEAR=1" >> .env
+        echo "CREDENTIALS_ENC=$(cat config/credentials.yml.enc)" >> .env
         ```
 
 * You can deploy app
