@@ -18,7 +18,7 @@ port ENV.fetch('PORT', 3000)
 #
 environment ENV.fetch('RAILS_ENV', 'development')
 
-if ENV['RENDER']&.to_i&.positive?
+if ENV['RENDER'].present?
   pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
   workers ENV.fetch('WEB_CONCURRENCY', 4)
   preload_app!
