@@ -109,67 +109,7 @@ heroku config:set RAILS_LOG_TO_STDOUT=enabled
 heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
-## Deploy to render.com
-<details><summary>INFO IS HERE</summary>
-
-* Go to https://dashboard.render.com
-* Add New PostgreSQL with YOUR_CUSTOM_NAME_PG and select Region
-* Add New Web Service with link to your repo clone\
-  select:
-    * YOUR_CUSTOM_NAME_CV
-    * same Region
-    * Runtime: Ruby
-    * Build Command - "./bin/render-build.sh"
-    * Start Command - "./bin/render-start.sh" or "bundle exec puma -C config/puma.rb"
-* Go to YOUR_CUSTOM_NAME_PG PostgreSQL -> Info and copy `Internal Database URL`
-
-* Go to YOUR_CUSTOM_NAME_CV app -> Environment
-    * Environment Variables, by one\
-      or
-    * Secret Files .env with your settings, based on .env.example and add this variables:
-      * HOST
-        ```shell
-        echo "HOST=your-app-name.onrender.com" >> .env
-        ```
-      * EMAIL_SPECIAL_USER
-        ```shell
-        echo "EMAIL_SPECIAL_USER=any_existing_email@in_database" >> .env
-        ```
-      * DATABASE_URL
-        ```shell
-        echo "DATABASE_URL=Internal Database URL" >> .env
-        ```
-      * RACK_ENV and RAILS_ENV
-        ```shell
-        echo "RACK_ENV=staging" >> .env
-        echo "RAILS_ENV=staging" >> .env
-        ```
-      * RENDER_LOAD_FIXTURES to load fixtures
-        ```shell
-        echo "RENDER_LOAD_FIXTURES=1" >> .env
-        ```
-      Generate new master.key if the original is missing
-      * RAILS_MASTER_KEY
-        ```shell
-        export RAILS_MASTER_KEY="$(ruby -r securerandom -e 'print SecureRandom.hex(16)')"
-        echo $RAILS_MASTER_KEY
-        printf $RAILS_MASTER_KEY > config/master.key
-        echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
-        rm config/credentials.yml.enc
-        EDITOR=vim bin/rails credentials:edit # to update config/credentials.yml.enc
-                                              # press :wq+Enter
-        ```
-      * CREDENTIALS_ENC
-        ```shell
-        echo "CREDENTIALS_ENC=$(cat config/credentials.yml.enc)" >> .env
-        ```
-
-* You can deploy app
-</details>
-
----
-
-Configure reCAPTCHA for production:
+Configure reCAPTCHA for prodaction:
 
 * Follow the link [reCAPTCHA](https://www.google.com/recaptcha)
 * Log into Admin Console with your credentials or create a new Google Account in case you don't have one
