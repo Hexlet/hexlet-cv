@@ -45,7 +45,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
     if @vacancy.save
       f(:success)
-      redirect_to admin_vacancies_path
+      redirect_to edit_admin_vacancy_path(@vacancy)
     else
       f(:error)
       render :new, status: :unprocessable_entity
