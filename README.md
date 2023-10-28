@@ -119,8 +119,8 @@ heroku config:set EMAIL_FROM=support@hexlet.io
     * YOUR_CUSTOM_NAME_CV
     * same Region
     * Runtime: Ruby
-    * Build Command - "./bin/render-build.sh"
-    * Start Command - "./bin/render-start.sh"
+    * Build Command - `./bin/render-build.sh && RENDER_LOAD_FIXTURES=1 bundle exec rails db:seed`
+    * Start Command - `./bin/render-start.sh` or `bundle exec puma -C config/puma.rb`
 * Go to YOUR_CUSTOM_NAME_PG PostgreSQL -> Info and copy `Internal Database URL`
 
 * Go to YOUR_CUSTOM_NAME_CV app -> Environment
@@ -130,6 +130,10 @@ heroku config:set EMAIL_FROM=support@hexlet.io
       * HOST
         ```shell
         echo "HOST=your-app-name.onrender.com" >> .env
+        ```
+      * EMAIL_SPECIAL_USER
+        ```shell
+        echo "EMAIL_SPECIAL_USER=any_existing_email@in_database" >> .env
         ```
       * DATABASE_URL
         ```shell

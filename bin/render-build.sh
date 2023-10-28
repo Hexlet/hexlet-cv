@@ -14,5 +14,4 @@ npm run build
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
 
-./bin/rails db:prepare
-./bin/rails db:seed
+bundle exec rails db:prepare

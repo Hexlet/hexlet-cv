@@ -19,11 +19,11 @@ def render_load_fixtures
   fixture_path = Rails.root.join('test/fixtures')
 
   fixtures = %w[
+    acts_as_taggable_on/tags
+    acts_as_taggable_on/taggings
     users
     vacancies
     notifications
-    acts_as_taggable_on/tags
-    acts_as_taggable_on/taggings
     careers
     career/members
     career/steps
@@ -40,15 +40,33 @@ def render_load_fixtures
 
   puts '#############'
   puts 'Seeding start'
+
+  longest_table_name = 0
   fixtures.each do |path|
     table = path_to_class(path)
-    next if table.count.positive?
-
-    puts "Seed #{table.name}"
-    ActiveRecord::FixtureSet.create_fixtures(fixture_path, path)
-  rescue StandardError => e
-    puts "#{path}: #{e.full_message}"
+    longest_table_name = table.table_name.size if table.table_name.size > longest_table_name
   end
+
+  ActiveRecord::Base.transaction do
+    fixture_error_foreign = 'Foreign key violations found in your fixture data'
+
+    fixtures.each do |path|
+      table = path_to_class(path)
+      next if table.count.positive?
+
+      printf "%-#{longest_table_name}s", table.table_name
+      fixture_file = "#{fixture_path}/#{path}.yml"
+      ActiveRecord::FixtureSet.create_fixtures(fixture_path, path) if File.exist?(fixture_file)
+      printf "\n"
+    rescue RuntimeError => e
+      if e.full_message.include?(fixture_error_foreign)
+        puts " : #{fixture_error_foreign}, that's ok, on render.com"
+      else
+        puts " : ↓↓↓ REAL ERROR ↓↓↓\n\t\t#{e.full_message}\n\n"
+      end
+    end
+  end
+
   puts 'Seeding stop'
   puts '############'
 end
