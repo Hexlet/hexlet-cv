@@ -26,3 +26,9 @@ table.table
               span.bi.bi-eye-fill
             = link_to edit_admin_vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
               span.bi.bi-gear-fill
+            - if vacancy.may_restore?
+              = link_to restore_admin_vacancy_path(vacancy), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                span.bi.bi-arrow-counterclockwise
+            - elsif vacancy.may_archive?
+              = link_to archive_admin_vacancy_path(vacancy), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                span.bi.bi-trash3

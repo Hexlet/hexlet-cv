@@ -19,7 +19,8 @@ en:
         restore: Restore from archive
       vacancy:
         publish: Publish
-        archive: Archive
+        archive: To archive
+        restore: Restore from archive
         send_to_moderate: Send to moderate
     attributes:
       resume/answer:

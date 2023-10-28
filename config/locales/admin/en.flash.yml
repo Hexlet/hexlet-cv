@@ -41,6 +41,10 @@ en:
             success: Resume updated successfully
             error: Failed to save changes. Please check form fields and try again.
         vacancies:
+          archive:
+            success: Vacancy archived successfully
+          restore:
+            success: Vacancy published successfully
           update:
             success: Job updated successfully
           success: Job created

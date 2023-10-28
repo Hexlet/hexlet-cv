@@ -69,6 +69,20 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     @vacancies = @q.result(distinct: true).page(params[:page])
   end
 
+  def archive
+    vacancy = Vacancy.find params[:id]
+    vacancy.archive!
+    f(:success)
+    redirect_to request.referer
+  end
+
+  def restore
+    vacancy = Vacancy.find params[:id]
+    vacancy.restore!
+    f(:success)
+    redirect_to request.referer
+  end
+
   private
 
   def query_params(default_params = {})
