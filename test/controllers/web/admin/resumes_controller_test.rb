@@ -57,4 +57,9 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     assert { resume.published? }
   end
+
+  test '#export vacancies to csv' do
+    get admin_resumes_path(format: :csv)
+    assert_response :success
+  end
 end
