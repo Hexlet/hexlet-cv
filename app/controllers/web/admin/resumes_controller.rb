@@ -20,7 +20,7 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
             resume.id,
             resume.name,
             resume.aasm(:state).human_state,
-            "#{resume.user.first_name} #{resume.user.last_name}",
+            resume.user.full_name,
             resume.user.email,
             l(resume.created_at, format: :long)
           ]
