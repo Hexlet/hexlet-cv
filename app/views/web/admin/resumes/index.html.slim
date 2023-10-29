@@ -32,10 +32,10 @@ table.table
             = link_to edit_admin_resume_path(resume), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
               span.bi.bi-gear-fill
             - if resume.may_restore?
-              = link_to restore_admin_resume_path(resume), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+              = link_to restore_admin_resume_path(resume, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
                 span.bi.bi-arrow-counterclockwise
             - elsif resume.may_archive?
-              = link_to archive_admin_resume_path(resume), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+              = link_to archive_admin_resume_path(resume, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
                 span.bi.bi-trash3
 
 = paginate @resumes

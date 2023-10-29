@@ -32,13 +32,13 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     resume = Resume.find(params[:id])
     resume.archive!
     f(:success)
-    redirect_to admin_resumes_path(q: { id_eq: resume.id })
+    redirect_to admin_resumes_path(page: params[:page])
   end
 
   def restore
     resume = Resume.find(params[:id])
     resume.restore!
     f(:success)
-    redirect_to admin_resumes_path(q: { id_eq: resume.id })
+    redirect_to admin_resumes_path(page: params[:page])
   end
 end
