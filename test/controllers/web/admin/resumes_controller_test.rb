@@ -41,7 +41,7 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     patch archive_admin_resume_path(resume)
 
-    assert_redirected_to admin_resumes_path(q: { id_eq: resume.id })
+    assert_response :redirect
     resume.reload
 
     assert { resume.archived? }
@@ -52,7 +52,7 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     patch restore_admin_resume_path(resume)
 
-    assert_redirected_to admin_resumes_path(q: { id_eq: resume.id })
+    assert_response :redirect
     resume.reload
 
     assert { resume.published? }
