@@ -27,7 +27,7 @@ Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/
 ```sh
 make setup
 
-or for Apple silicon machine if setup fails with unsupported arch
+# or for Apple silicon machine if setup fails with unsupported arch
 
 make setup-arm64
 
@@ -109,7 +109,7 @@ heroku config:set RAILS_LOG_TO_STDOUT=enabled
 heroku config:set EMAIL_FROM=support@hexlet.io
 ```
 
-Configure reCAPTCHA for prodaction:
+Configure reCAPTCHA for production:
 
 * Follow the link [reCAPTCHA](https://www.google.com/recaptcha)
 * Log into Admin Console with your credentials or create a new Google Account in case you don't have one
