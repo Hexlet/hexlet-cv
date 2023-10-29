@@ -75,14 +75,14 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     vacancy = Vacancy.find params[:id]
     vacancy.archive!
     f(:success)
-    redirect_to params[:go_to]
+    redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
   def restore
     vacancy = Vacancy.find params[:id]
     vacancy.restore!
     f(:success)
-    redirect_to params[:go_to]
+    redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
   private
