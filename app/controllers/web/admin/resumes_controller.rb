@@ -3,8 +3,30 @@
 class Web::Admin::ResumesController < Web::Admin::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @search = Resume.ransack(query)
-    @resumes = @search.result(distinct: true).includes(:user).page(params[:page])
+    respond_to do |format|
+      format.html do
+        @search = Resume.ransack(query)
+        @resumes = @search.result(distinct: true).includes(:user).page(params[:page])
+      end
+
+      format.csv do
+        search = Resume.ransack(query)
+        resumes = search.result(distinct: true).includes(:user)
+
+        headers = %w[id name state user email created_at]
+        send_file_headers!(filename: "resumes-#{Time.zone.today}.csv")
+        self.response_body = generate_csv(resumes, headers) do |resume|
+          [
+            resume.id,
+            resume.name,
+            resume.aasm(:state).human_state,
+            resume.user.full_name,
+            resume.user.email,
+            l(resume.created_at, format: :long)
+          ]
+        end
+      end
+    end
   end
 
   # TODO: сделать возможным просматривать админам архивные и неопубликованные резюме
