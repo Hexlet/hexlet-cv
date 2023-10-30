@@ -79,6 +79,8 @@ en:
         index:
           no_date: no date
           export: Export jobs to csv
+          confirm_archive: Are you sure you want to archive selected vacancy?
+          confirm_restore: Are you sure you want to post your selected vacancy?
         vacancies_table:
           edit: Editing Job
       home:

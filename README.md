@@ -27,7 +27,7 @@ Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/
 ```sh
 make setup
 
-or for Apple silicon machine if setup fails with unsupported arch
+# or for Apple silicon machine if setup fails with unsupported arch
 
 make setup-arm64
 

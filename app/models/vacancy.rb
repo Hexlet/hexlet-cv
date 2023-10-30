@@ -57,6 +57,10 @@ class Vacancy < ApplicationRecord
     event :archive do
       transitions to: :archived
     end
+
+    event :restore do
+      transitions from: %i[archived], to: :on_moderate
+    end
   end
 
   def initialize(attribute = nil)

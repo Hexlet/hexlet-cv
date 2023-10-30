@@ -70,4 +70,26 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     get on_moderate_admin_vacancies_path
     assert_response :success
   end
+
+  test '#archive' do
+    vacancy = vacancies(:one)
+
+    patch archive_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path }
+
+    assert_redirected_to admin_vacancies_path(locale: I18n.locale)
+    vacancy.reload
+
+    assert { vacancy.archived? }
+  end
+
+  test '#restore' do
+    vacancy = vacancies(:archived)
+
+    patch restore_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path }
+
+    assert_redirected_to admin_vacancies_path(locale: I18n.locale)
+    vacancy.reload
+
+    assert { vacancy.on_moderate? }
+  end
 end
