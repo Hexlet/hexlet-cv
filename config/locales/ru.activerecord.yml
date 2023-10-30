@@ -12,6 +12,7 @@ ru:
       vacancy:
         publish: Опубликовать
         archive: Архивировать
+        restore: Восстановить из архива
         send_to_moderate: Отправить на модерацию
 
     models:

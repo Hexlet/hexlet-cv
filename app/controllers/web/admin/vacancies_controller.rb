@@ -5,6 +5,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     query = query_params({ s: 'created_at desc' })
     respond_to do |format|
       format.html do
+        @go_to = admin_vacancies_path
         @q = Vacancy.ransack(query)
         @vacancies = @q.result(distinct: true).page(params[:page])
       end
@@ -65,8 +66,23 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def on_moderate
     query = query_params({ s: 'created_at asc' })
+    @go_to = on_moderate_admin_vacancies_path
     @q = Vacancy.on_moderate.ransack(query)
     @vacancies = @q.result(distinct: true).page(params[:page])
+  end
+
+  def archive
+    vacancy = Vacancy.find params[:id]
+    vacancy.archive!
+    f(:success)
+    redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
+  end
+
+  def restore
+    vacancy = Vacancy.find params[:id]
+    vacancy.restore!
+    f(:success)
+    redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
   private

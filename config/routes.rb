@@ -109,6 +109,10 @@ Rails.application.routes.draw do
           collection do
             get :on_moderate
           end
+          member do
+            patch :archive
+            patch :restore
+          end
         end
         resources :careers, only: [] do
           scope module: :careers do
