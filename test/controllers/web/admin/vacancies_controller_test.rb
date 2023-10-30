@@ -74,7 +74,7 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
   test '#archive' do
     vacancy = vacancies(:one)
 
-    patch archive_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path }
+    patch archive_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path(locale: I18n.locale) }
 
     assert_redirected_to admin_vacancies_path(locale: I18n.locale)
     vacancy.reload
@@ -85,7 +85,7 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
   test '#restore' do
     vacancy = vacancies(:archived)
 
-    patch restore_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path }
+    patch restore_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path(locale: I18n.locale) }
 
     assert_redirected_to admin_vacancies_path(locale: I18n.locale)
     vacancy.reload
