@@ -15,3 +15,4 @@ bundle exec rake assets:precompile
 bundle exec rake assets:clean
 
 bundle exec rails db:prepare
+test -n "$RENDER_LOAD_FIXTURES" && bundle exec rake render_com:load_fixtures
