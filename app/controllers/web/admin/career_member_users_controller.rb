@@ -3,7 +3,11 @@
 class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationController
   before_action only: %i[index archived finished lost] do
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Career::Member.joins(:user, :career).merge(User.permitted).ransack(query)
+    @q = Career::Member.joins(:user, :career)
+                       .merge(User.permitted)
+                       .merge(Career.with_locale)
+                       .ransack(query)
+
     @career_members = @q.result
     @careers = Career.all
   end

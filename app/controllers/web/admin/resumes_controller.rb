@@ -5,12 +5,12 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
     respond_to do |format|
       format.html do
-        @search = Resume.ransack(query)
+        @search = Resume.with_locale.ransack(query)
         @resumes = @search.result(distinct: true).includes(:user).page(params[:page])
       end
 
       format.csv do
-        search = Resume.ransack(query)
+        search = Resume.with_locale.ransack(query)
         resumes = search.result(distinct: true).includes(:user)
 
         headers = %w[id name state user email created_at]

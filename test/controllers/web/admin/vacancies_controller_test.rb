@@ -13,6 +13,11 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#index export csv' do
+    get admin_vacancies_path(format: :csv)
+    assert_response :success
+  end
+
   test '#new' do
     get new_admin_vacancy_path
 

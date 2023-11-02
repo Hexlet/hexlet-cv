@@ -13,6 +13,11 @@ class Web::Admin::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#index export csv' do
+    get admin_resumes_path(format: :csv)
+    assert_response :success
+  end
+
   test '#edit' do
     resume = resumes(:one)
     get edit_admin_resume_path(resume)

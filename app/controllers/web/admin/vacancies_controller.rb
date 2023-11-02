@@ -6,12 +6,12 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     respond_to do |format|
       format.html do
         @go_to = admin_vacancies_path(page: params[:page])
-        @q = Vacancy.ransack(query)
+        @q = Vacancy.with_locale.ransack(query)
         @vacancies = @q.result(distinct: true).page(params[:page])
       end
 
       format.csv do
-        q = Vacancy.includes(:creator).ransack(query)
+        q = Vacancy.with_locale.includes(:creator).ransack(query)
         vacancies = q.result(distinct: true)
 
         headers = %w[id title state creator company_name created_at published_at]
@@ -67,7 +67,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def on_moderate
     query = query_params({ s: 'created_at asc' })
     @go_to = on_moderate_admin_vacancies_path(page: params[:page])
-    @q = Vacancy.on_moderate.ransack(query)
+    @q = Vacancy.with_locale.on_moderate.ransack(query)
     @vacancies = @q.result(distinct: true).page(params[:page])
   end
 

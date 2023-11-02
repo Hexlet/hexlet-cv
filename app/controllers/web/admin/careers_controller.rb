@@ -3,7 +3,7 @@
 class Web::Admin::CareersController < Web::Admin::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Career.ransack(query)
+    @q = Career.with_locale.ransack(query)
     @careers = @q.result
   end
 
