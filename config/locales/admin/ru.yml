@@ -13,10 +13,13 @@ ru:
         search_form:
           careers: Карьерный трек
         finished:
+          export: Экспортировать в csv
           users_finished_career: Закончили КТ
         archived:
+          export: Экспортировать в csv
           users_archived_career: Архивные
         lost:
+          export: Экспортировать в csv
           users_lost_career: Студенты которые давно не учились
         show:
           user_id_html: 'ID: <a href="%{path}">%{id}</a>'
@@ -35,6 +38,7 @@ ru:
           students: Студенты
           users_active_career: Проходят Карьерный трек
           users_archived_career: Архив
+          export: Экспортировать в csv
         menu:
           list: Список
           user_lost_career: Давно не учились

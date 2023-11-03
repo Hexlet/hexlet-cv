@@ -16,6 +16,12 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
     assert_response :success
   end
 
+  test '#index format csv' do
+    get admin_career_member_users_path(format: :csv)
+
+    assert_response :success
+  end
+
   test '#show' do
     user = users(:full)
 
@@ -30,14 +36,32 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
     assert_response :success
   end
 
+  test '#archived fomat csv' do
+    get archived_admin_career_member_users_path(format: :csv)
+
+    assert_response :success
+  end
+
   test '#finished' do
     get finished_admin_career_member_users_path
 
     assert_response :success
   end
 
+  test '#finished format csv' do
+    get finished_admin_career_member_users_path(format: :csv)
+
+    assert_response :success
+  end
+
   test '#lost' do
     get lost_admin_career_member_users_path
+
+    assert_response :success
+  end
+
+  test '#lost format csv' do
+    get lost_admin_career_member_users_path(format: :csv)
 
     assert_response :success
   end

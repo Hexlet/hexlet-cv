@@ -54,8 +54,8 @@ one_by_lost_user_in_career:
   state: active
   career_member: member_lost_user_in_career
   career_step: step_one
-  created_at: <%= 1.week.ago.to_fs(:db) %>
-  updated_at: <%= 1.week.ago.to_fs(:db) %>
+  created_at: <%= 5.week.ago.to_fs(:db) %>
+  updated_at: <%= 5.week.ago.to_fs(:db) %>
 
 one_by_user_next_step_open_source:
   state: active

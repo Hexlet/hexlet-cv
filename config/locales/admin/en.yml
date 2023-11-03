@@ -17,10 +17,13 @@ en:
         search_form:
           careers: Career track
         finished:
+          export: Export to csv
           users_finished_career: Finished CT
         archived:
+          export: Export to csv
           users_archived_career: Archive
         lost:
+          export: Export to csv
           users_lost_career: Lost students
         show:
           user_id_html: 'ID: <a href="%{path}">%{id}</a>'
@@ -39,6 +42,7 @@ en:
           students: Students
           users_active_career: Passing career track
           add_user: Assign a student a career track
+          export: Export to csv
         menu:
           user_lost_career: Lost students
           users_finished_career: Finished CT

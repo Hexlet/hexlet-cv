@@ -9,7 +9,7 @@
         th = sort_link(q, 'user_email')
         th = t('.current_step')
         th = han('career', 'name')
-        th = han('career/member', 'created_at')
+        th = sort_link(q, 'created_at')
         - unless @finished_career_members.nil?
           th = han('career/member', 'finished_at')
         - if show_progress
