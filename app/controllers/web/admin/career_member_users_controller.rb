@@ -23,7 +23,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
       end
 
       format.csv do
-        export_users(scope, file_prefix: 'all_students-')
+        export_users(scope, file_prefix: 'all_students')
       end
     end
   end
@@ -39,7 +39,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
       end
 
       format.csv do
-        export_users(scope, file_prefix: 'archived_students-')
+        export_users(scope, file_prefix: 'archived_students')
       end
     end
   end
@@ -53,7 +53,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
       end
 
       format.csv do
-        export_users(scope, file_prefix: 'finished_students-')
+        export_users(scope, file_prefix: 'finished_students')
       end
     end
   end
@@ -73,7 +73,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
       end
 
       format.csv do
-        export_users(scope, file_prefix: 'lost_student-')
+        export_users(scope, file_prefix: 'lost_student')
       end
     end
   end
