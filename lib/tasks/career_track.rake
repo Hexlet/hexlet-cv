@@ -5,7 +5,7 @@ namespace :career_track do
   task notify_about_lost_students: :environment do
     members = Career::Member.joins(:career_step_members)
                             .active
-                            .merge(Career::Step::Member.active.where(created_at: ..2.weeks.ago))
+                            .merge(Career::Step::Member.active.where(created_at: ..4.weeks.ago))
     abort 'No lost student' if members.empty?
 
     payload = members.map do |member|

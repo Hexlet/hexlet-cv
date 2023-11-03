@@ -46,7 +46,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
                            .active
                            .joins(:career_step_members)
                            .includes(:career_step_members)
-                           .merge(Career::Step::Member.active.where(created_at: ..2.weeks.ago))
+                           .merge(Career::Step::Member.active.where(created_at: ..4.weeks.ago))
                            .page(params[:page])
                            .per(20)
 
