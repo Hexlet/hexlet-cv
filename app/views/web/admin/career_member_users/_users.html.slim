@@ -10,6 +10,7 @@
         th = t('.current_step')
         th = han('career', 'name')
         th = sort_link(q, 'created_at')
+        th = han('career/member', :state)
         - unless @finished_career_members.nil?
           th = han('career/member', 'finished_at')
         - if show_progress
@@ -26,6 +27,7 @@
             td = user[:current_step] || t('.not_started')
             td = render 'careers', careers: user[:careers]
             td = show_date_if(career_member.created_at, :without_time)
+            td = career_member.aasm(:state).human_state
             - unless @finished_career_members.nil?
               td = show_date_if(career_member.finished_at, :without_time)
             - if show_progress

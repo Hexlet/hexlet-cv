@@ -13,7 +13,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   end
 
   def index
-    scope = @career_members.active
+    scope = @career_members
 
     respond_to do |format|
       format.html do
