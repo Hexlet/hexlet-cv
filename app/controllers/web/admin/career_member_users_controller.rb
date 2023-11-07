@@ -129,7 +129,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   end
 
   def export_users(scope, file_prefix: '')
-    headers = %i[full_name email career_name current_step progress last_step_finished_at]
+    headers = %i[full_name email career_name current_step progress last_step_finished_at state]
     send_file_headers!(filename: "#{file_prefix}-#{Time.zone.today}.csv")
     self.response_body = generate_csv(scope, headers) do |member|
       [
@@ -138,7 +138,8 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
         member.career.name,
         member.current_item&.career_step&.name,
         member.progress_by_finished_steps,
-        member.career_step_members.active.order(created_at: :asc).last&.created_at
+        member.career_step_members.active.order(created_at: :asc).last&.created_at,
+        member.aasm(:state).human_state
       ]
     end
   end
