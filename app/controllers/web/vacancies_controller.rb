@@ -9,7 +9,16 @@ class Web::VacanciesController < Web::ApplicationController
     @page = params[:page]
 
     respond_to do |format|
-      format.html
+      format.html do
+        set_meta_tags title: I18n.t('titles.vacancies.base'),
+                      canonical: vacancies_url,
+                      og: {
+                        description: t('.description'),
+                        type: 'website',
+                        title: I18n.t('titles.web.base'),
+                        url: vacancies_url
+                      }
+      end
       format.rss
     end
   end

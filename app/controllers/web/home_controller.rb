@@ -9,11 +9,13 @@ class Web::HomeController < Web::ApplicationController
     @page = params[:page]
     @tags = Resume.directions_tags
 
-    set_meta_tags og: {
-      description: t('.description'),
-      canonical: root_url,
-      type: 'website',
-      url: root_url
-    }
+    set_meta_tags title: t('titles.web.base'),
+                  canonical: root_url,
+                  og: {
+                    description: t('.description'),
+                    type: 'website',
+                    title: t('titles.web.base'),
+                    url: root_url
+                  }
   end
 end

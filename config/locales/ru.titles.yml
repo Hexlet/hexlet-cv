@@ -1,0 +1,10 @@
+ru:
+  titles:
+    web:
+      base: Хекслет
+      pages:
+        about: О сайте
+    users:
+      base: Пользователи
+    vacancies:
+      base: Вакансии

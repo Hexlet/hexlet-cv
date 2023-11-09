@@ -6,3 +6,6 @@ en:
         about: About
     users:
       base: Users
+    vacancies:
+      base: Vacancies
+
