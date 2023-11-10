@@ -1,4 +1,4 @@
 - content_for :header do
   = t('.header')
 
-= render partial: 'web/shared/user_form', locals: { user: current_user, url: account_profile_path }
+= render 'form', user: @user

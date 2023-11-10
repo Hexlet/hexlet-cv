@@ -76,7 +76,7 @@ Rails.application.routes.draw do
         resources :vacancies
         resources :notifications, only: %i[index update]
         resource :newsletters, only: %i[edit update]
-        resource :profile, only: %i[edit update show]
+        resource :profile, only: %i[edit update]
         scope module: :careers do
           resources :members, only: %i[index]
         end

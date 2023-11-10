@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class Web::Account::ProfilesController < Web::Account::ApplicationController
-  def show; end
-
-  def edit; end
+  def edit
+    @user = Web::Account::ProfileForm.find(current_user.id)
+  end
 
   def update
-    user = current_user.becomes(Web::Account::ProfileForm)
-    if user.update(profile_params)
+    @user = current_user.becomes(Web::Account::ProfileForm)
+    if @user.update(profile_params)
       f(:success)
-      redirect_to account_profile_path
+      redirect_to edit_account_profile_path
     else
       f(:error)
       render :edit, status: :unprocessable_entity
@@ -19,6 +19,6 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
   private
 
   def profile_params
-    params.require(:user)
+    params.require(:web_account_profile_form)
   end
 end

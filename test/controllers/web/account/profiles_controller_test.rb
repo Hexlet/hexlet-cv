@@ -15,7 +15,7 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test '#update' do
     attrs = FactoryBot.attributes_for :user
-    patch account_profile_path(@user, locale: I18n.locale), params: { user: attrs }
+    patch account_profile_path(@user, locale: I18n.locale), params: { web_account_profile_form: attrs }
     assert_response :redirect
 
     @user.reload
@@ -23,5 +23,13 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert { @user.first_name == attrs[:first_name] }
     assert { @user.last_name == attrs[:last_name] }
     assert { @user.about == attrs[:about] }
+  end
+
+  test '#update without required attributes' do
+    user = users(:without_last_name_and_first_name)
+    sign_in(user)
+    attrs = FactoryBot.attributes_for :user
+    patch account_profile_path(user, locale: I18n.locale), params: { web_account_profile_form: attrs.except(:last_name, :first_name) }
+    assert_response :unprocessable_entity
   end
 end
