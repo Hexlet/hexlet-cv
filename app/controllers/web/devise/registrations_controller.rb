@@ -7,6 +7,12 @@ class Web::Devise::RegistrationsController < Devise::RegistrationsController
   include GonInit
   include LocaleConcern
 
+  protected
+
+  def build_resource(hash = {})
+    self.resource = Web::UserRegistrationForm.new_with_session(hash, session)
+  end
+
   private
 
   def check_captcha
