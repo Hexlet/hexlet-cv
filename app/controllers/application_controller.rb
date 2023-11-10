@@ -6,6 +6,7 @@ require 'application_responder'
 
 class ApplicationController < ActionController::Base
   before_action :redirect_root_domain
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   self.responder = ApplicationResponder
   respond_to :html, :json
@@ -19,6 +20,14 @@ class ApplicationController < ActionController::Base
   before_action :banned?
   helper_method :current_or_guest_user
   helper_method :f
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) do |user|
+      user.permit(:email, :password, :password_confirmation, :last_name, :first_name)
+    end
+  end
 
   private
 
