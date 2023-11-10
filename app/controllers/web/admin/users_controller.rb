@@ -7,15 +7,15 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
   end
 
   def edit
-    @user = User.find params[:id]
+    @user = Web::Admin::UserForm.find(params[:id])
   end
 
   def update
     user = User.find params[:id]
     @user = user.becomes(Web::Admin::UserForm)
-    if @user.update(params[:user])
+    if @user.update(params[:web_admin_user_form])
       f(:success)
-      redirect_to admin_users_path
+      redirect_to edit_admin_user_path(@user)
     else
       render :edit, status: :unprocessable_entity
     end

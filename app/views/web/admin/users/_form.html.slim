@@ -1,5 +1,5 @@
-= simple_form_for user, url: do |f|
-  - if current_user.admin? && current_user != user
+= simple_form_for user, url: admin_user_path do |f|
+  - if current_user.id != user.id
     .mb-3
       = f.input :state_event, as: :state_event, collection: user.aasm(:state).events(permitted: true)
     .mb-3

@@ -2,6 +2,7 @@
 
 class Web::Account::ProfileForm < User
   include ActiveFormModel
+  include UserPresenter
 
   validates :first_name, :last_name, presence: true
 
