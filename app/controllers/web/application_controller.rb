@@ -12,6 +12,7 @@ class Web::ApplicationController < ApplicationController
   helper_method :last_notifications
   helper_method :last_answers
 
+  before_action :require_last_name_and_first_name!
   before_action :prepare_locale_settings
 
   # before_action do

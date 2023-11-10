@@ -27,4 +27,10 @@ module Auth
     flash[:error] = t('forbidden')
     redirect_to root_path
   end
+
+  def require_last_name_and_first_name!
+    return unless current_or_guest_user.anonimus?
+
+    redirect_to edit_account_profile_path
+  end
 end

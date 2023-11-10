@@ -12,4 +12,8 @@ class Guest
   def banned?
     false
   end
+
+  def anonimus?
+    false
+  end
 end

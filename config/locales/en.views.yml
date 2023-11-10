@@ -237,6 +237,8 @@ en:
         index:
           header: My resumes
       profiles:
+        form:
+          info_for_user: Let's get acquainted =). Please fill in your last name, first name and tell us a little about yourself.
         edit:
           header: Settings
         show:

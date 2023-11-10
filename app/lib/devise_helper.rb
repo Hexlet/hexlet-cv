@@ -15,8 +15,9 @@ module DeviseHelper
     home_path = "#{scope}_root_path"
 
     context = router_name ? send(router_name) : self
-
-    if context.respond_to?(home_path, true)
+    if current_user.anonimus?
+      edit_account_profile_path(locale:)
+    elsif context.respond_to?(home_path, true)
       context.send(home_path)
     elsif context.respond_to?(:root_path)
       context.root_path(locale:)

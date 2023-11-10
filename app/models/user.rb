@@ -87,6 +87,10 @@ class User < ApplicationRecord
     !email_disabled_delivery && !unconfirmed_email && resume_mail_enabled
   end
 
+  def anonimus?
+    last_name.nil? || first_name.nil?
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[first_name last_name email]
   end

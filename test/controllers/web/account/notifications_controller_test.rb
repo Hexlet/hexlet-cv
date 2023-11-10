@@ -13,6 +13,14 @@ class Web::Account::NotificationsControllerTest < ActionDispatch::IntegrationTes
     assert_response :success
   end
 
+  test '#index user anonimus' do
+    user = users(:without_last_name_and_first_name)
+    sign_in(user)
+
+    get account_notifications_url
+    assert_redirected_to edit_account_profile_path
+  end
+
   test '#update' do
     notification = notifications(:resume_comment_one_by_one)
     patch account_notification_path(notification)

@@ -13,6 +13,14 @@ class Web::Account::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '#index user anonimus' do
+    user = users(:without_last_name_and_first_name)
+    sign_in(user)
+
+    get account_vacancies_path
+    assert_redirected_to edit_account_profile_path
+  end
+
   test '#new' do
     get new_account_vacancy_path
     assert_response :success

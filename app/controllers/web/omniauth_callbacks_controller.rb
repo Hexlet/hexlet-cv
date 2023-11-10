@@ -6,7 +6,6 @@ class Web::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     @user = User.from_omniauth(request.env['omniauth.auth'])
     I18n.locale = session[:locale] || I18n.default_locale
-
     if @user.persisted?
       @user.locale = I18n.locale
       @user.save!

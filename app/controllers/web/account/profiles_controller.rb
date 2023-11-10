@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::Account::ProfilesController < Web::Account::ApplicationController
+  skip_before_action :require_last_name_and_first_name!
+
   def edit
     @user = Web::Account::ProfileForm.find(current_user.id)
   end
