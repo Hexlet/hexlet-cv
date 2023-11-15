@@ -1,0 +1,9 @@
+DEFAULTS: &DEFAULTS
+  locale: <%= I18n.locale %>
+  state: unsended
+
+new_career_member_full:
+  <<: *DEFAULTS
+  user: full
+  resource: member_full (Career::Member)
+  kind: new_career_member
