@@ -22,7 +22,8 @@ class EventSenderJob < ApplicationJob
       event_kind: event.kind
     }
 
-    result = N8nClient.send_event(event.kind, payload)
+    client = ApplicationContainer[:n8n_client]
+    result = client.send_event(event.kind, payload)
 
     if result.fail?
       event.mark_as_failed! if event.may_mark_as_failed?
