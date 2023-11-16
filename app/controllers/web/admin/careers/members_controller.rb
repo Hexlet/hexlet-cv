@@ -8,7 +8,7 @@ class Web::Admin::Careers::MembersController < Web::Admin::Careers::ApplicationC
   def create
     @career_member = Career::MemberMutator.create(resource_career, career_member_params)
     if @career_member.persisted?
-      EmailSender.send_new_career_member_email(@career_member)
+      EventSender.serve!(:new_career_member, @career_member)
       f(:success)
       redirect_to admin_career_path(resource_career)
     else
