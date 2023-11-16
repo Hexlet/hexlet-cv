@@ -18,7 +18,7 @@ class EventSenderJob < ApplicationJob
       full_name: user.full_name,
       email: user.email,
       career_name: career.name,
-      career_url: Rails.application.routes.url_helpers.career_member_url(career.slug, event.resource, locale: I18n.locale, host: ENV.fetch('HOST')),
+      career_url: Rails.application.routes.url_helpers.account_members_url(locale: I18n.locale, host: ENV.fetch('HOST')),
       event_kind: event.kind
     }
 
