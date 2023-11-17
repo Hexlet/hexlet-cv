@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_203105) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_17_154953) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
