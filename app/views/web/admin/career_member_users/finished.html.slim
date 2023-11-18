@@ -9,6 +9,9 @@
 
 = render 'menu'
 
+.p-3.mb-3.bg-body-tertiary
+  = t('.filtered_html', users_count: @users_count)
+
 = render 'users', career_members: @finished_career_members, users: @users, q: @q, show_progress: false
 
 = paginate @finished_career_members

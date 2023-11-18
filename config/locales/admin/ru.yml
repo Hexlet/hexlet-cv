@@ -13,12 +13,18 @@ ru:
         search_form:
           careers: Карьерный трек
         finished:
+          filtered_html: |
+            Выбрано студентов законьчивших КТ всего: <span class="fw-bold">%{users_count}</span>
           export: Экспортировать в csv
           users_finished_career: Закончили КТ
         archived:
+          filtered_html: |
+            Выбрано архивных студентов всего: <span class="fw-bold">%{users_count}</span>
           export: Экспортировать в csv
           users_archived_career: Архивные
         lost:
+          filtered_html: |
+            Выбрано потерянных студентов всего: <span class="fw-bold">%{users_count}</span>
           export: Экспортировать в csv
           users_lost_career: Студенты которые давно не учились
         show:
@@ -35,6 +41,8 @@ ru:
           no_date: Нет даты
           restore: Востановить в КТ
         index:
+          filtered_html: |
+            Выбрано студентов всего: <span class="fw-bold">%{users_count}</span>
           students: Студенты
           users_active_career: Проходят Карьерный трек
           users_archived_career: Архив

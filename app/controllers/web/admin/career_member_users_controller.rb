@@ -18,6 +18,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
     respond_to do |format|
       format.html do
+        @users_count = @career_members.size
         @active_career_members = scope.page(params[:page]).per(20)
         @users = prepare_data(@active_career_members)
         @back_to_page = admin_career_member_users_path(page: params[:page])
@@ -34,6 +35,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
     respond_to do |format|
       format.html do
+        @users_count = scope.size
         @archived_career_members = scope.page(params[:page]).per(20)
         @users = prepare_data(@archived_career_members)
         @back_to_page = archived_admin_career_member_users_path(page: params[:page])
@@ -47,8 +49,10 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
   def finished
     scope = @career_members.finished
+
     respond_to do |format|
       format.html do
+        @users_count = scope.size
         @finished_career_members = scope.page(params[:page]).per(20)
         @users = prepare_data(@finished_career_members)
       end
@@ -67,6 +71,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
     respond_to do |format|
       format.html do
+        @users_count = scope.size
         @lost_career_members = scope.page(params[:page]).per(20)
         @users = prepare_data(@lost_career_members)
         @back_to_page = lost_admin_career_member_users_path

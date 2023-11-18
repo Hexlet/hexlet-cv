@@ -17,12 +17,18 @@ en:
         search_form:
           careers: Career track
         finished:
+          filtered_html: |
+            Total students selected: <span class="fw-bold">%{users_count}</span>
           export: Export to csv
           users_finished_career: Finished CT
         archived:
+          filtered_html: |
+            Total students selected: <span class="fw-bold">%{users_count}</span>
           export: Export to csv
           users_archived_career: Archive
         lost:
+          filtered_html: |
+            Total students selected: <span class="fw-bold">%{users_count}</span>
           export: Export to csv
           users_lost_career: Lost students
         show:
@@ -39,6 +45,8 @@ en:
           no_date: No date
           restore: Restore to CT
         index:
+          filtered_html: |
+            Total students selected: <span class="fw-bold">%{users_count}</span>
           students: Students
           users_active_career: Passing career track
           add_user: Assign a student a career track
