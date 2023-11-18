@@ -3,6 +3,9 @@ h3.mb-4.me-3 = t('.users_career')
 = link_to new_admin_career_member_path(@career), class: 'btn btn-primary mb-3' do
   span.bi.bi-lightning-charge.me-2
   = t('.add_user')
+
+= paginate users
+
 table.table
   thead
     tr
@@ -27,3 +30,5 @@ table.table
             - if user.career_members.last.may_archive?
               = link_to archive_admin_career_member_path(career, user.career_members.last), method: :patch, data: { confirm: t('.question') }, class: 'btn btn-outline-danger btn-sm', title: t('.archive') do
                 span.bi.bi.bi-trash3
+
+= paginate users
