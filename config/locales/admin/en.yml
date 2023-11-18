@@ -57,6 +57,7 @@ en:
           progress: All/Finished
           no_date: Not finished
           show: User profile
+          last_satep_finished_at: Last activity date
       resumes:
         index:
           edit: Edit CV

@@ -3,7 +3,8 @@
 class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationController
   before_action only: %i[index archived finished lost] do
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Career::Member.joins(:user, :career)
+    @q = Career::Member.includes(:career_step_members)
+                       .joins(:user, :career)
                        .merge(User.permitted)
                        .merge(Career.with_locale)
                        .ransack(query)
@@ -62,7 +63,6 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
     scope = @career_members
             .active
             .joins(:career_step_members)
-            .includes(:career_step_members)
             .merge(Career::Step::Member.active.where(created_at: ..4.weeks.ago))
 
     respond_to do |format|
@@ -119,12 +119,12 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   def prepare_data(career_members)
     career_members.each_with_object({}) do |member, acc|
       acc[member.id] = {}
-      acc[member.id][:last_name] = member.user.last_name
-      acc[member.id][:first_name] = member.user.first_name
+      acc[member.id][:user] = member.user
       acc[member.id][:email] = member.user.email
       acc[member.id][:careers] = member.user.careers
       acc[member.id][:current_step] = member.current_item&.career_step&.name
       acc[member.id][:progress] = member.progress_by_finished_steps
+      acc[member.id][:last_finished_at] = member.career_step_members.active.order(created_at: :asc).last&.created_at
     end
   end
 
