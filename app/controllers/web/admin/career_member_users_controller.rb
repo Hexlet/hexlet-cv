@@ -120,7 +120,6 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
     career_members.each_with_object({}) do |member, acc|
       acc[member.id] = {}
       acc[member.id][:user] = member.user
-      acc[member.id][:email] = member.user.email
       acc[member.id][:careers] = member.user.careers
       acc[member.id][:current_step] = member.current_item&.career_step&.name
       acc[member.id][:progress] = member.progress_by_finished_steps

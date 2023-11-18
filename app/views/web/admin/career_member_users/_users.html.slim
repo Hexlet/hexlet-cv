@@ -19,7 +19,10 @@
       - career_members.each do |career_member|
         - let users[career_member.id] do |user|
           tr
-            td = link_to user[:user].full_name, user_path(user[:user]), class: 'text-decoration-none'
+            td
+              = link_to user[:user].full_name, user_path(user[:user]), class: 'text-decoration-none'
+              .small.text-body-secondary
+                = user[:user].email
             td
               = user[:current_step] || t('.not_started')
               br
