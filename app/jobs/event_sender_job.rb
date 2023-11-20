@@ -23,7 +23,7 @@ class EventSenderJob < ApplicationJob
     }
 
     client = ApplicationContainer[:n8n_client]
-    result = client.send_event(event.kind, payload)
+    result = client.send_event(:new_career_member, payload)
 
     if result.fail?
       event.mark_as_failed! if event.may_mark_as_failed?
