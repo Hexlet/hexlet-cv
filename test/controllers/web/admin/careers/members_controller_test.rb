@@ -20,8 +20,10 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
 
     member = Career::Member.find_by(user_id: attrs[:user_id])
     notification = Notification.find_by(user: @user, resource: member, kind: :new_career_member)
+    event = Event.find_by(user: @user, resource: member, kind: :new_career_member)
 
     assert { member }
+    assert { event }
     assert { notification }
   end
 
@@ -50,9 +52,12 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
       user_id: @user.id
     }
 
-    assert_emails 1 do
-      post admin_career_members_path(@career), params: { career_member: attrs }
-    end
+    post admin_career_members_path(@career), params: { career_member: attrs }
+
+    member = Career::Member.find_by(user_id: attrs[:user_id])
+    event = Event.find_by(user: @user, resource: member, kind: :new_career_member)
+
+    assert { event.sended? }
   end
 
   test 'with user at disabled email delivery' do
@@ -61,8 +66,11 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
       user_id: user.id
     }
 
-    assert_emails 0 do
-      post admin_career_members_path(@career), params: { career_member: attrs }
-    end
+    post admin_career_members_path(@career), params: { career_member: attrs }
+
+    member = Career::Member.find_by(user_id: attrs[:user_id])
+    event = Event.find_by(user:, resource: member, kind: :new_career_member)
+
+    assert { event.unsended? }
   end
 end
