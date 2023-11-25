@@ -3,8 +3,9 @@
 class Web::Admin::Careers::StepsController < Web::Admin::Careers::ApplicationController
   def index
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Career::Step.with_locale.ransack(query)
-    @steps = @q.result.page(params[:page])
+    @q = Career::Step.includes(:careers).with_locale.ransack(query)
+    @steps = @q.result.page(params[:page]).per(20)
+    @careers = Career.with_locale.all
   end
 
   def show

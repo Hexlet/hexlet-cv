@@ -149,6 +149,7 @@ en:
           edit:
             step: 'Step: %{name}'
           index:
+            career: Career track
             edit: Edit
             show: Show
             action: Actions

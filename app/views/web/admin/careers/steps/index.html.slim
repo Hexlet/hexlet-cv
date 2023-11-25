@@ -1,20 +1,21 @@
 - content_for :header do
   = t('career_steps')
 
+= render 'filter', q: @q, careers: @careers
 = render 'menu'
 
 table.table
   thead
     tr
       th = sort_link(@q, 'name')
-      th = sort_link(@q, 'locale')
+      th = sort_link(@q, 'career_name', t('.career'))
       th = sort_link(@q, 'created_at')
       th = t('.action')
   tbody
     - @steps.each do |step|
       tr
         td = step.name
-        td = step.locale
+        td = step.careers.map(&:name).join('<br/>').html_safe # rubocop:disable Rails/OutputSafety
         td = l step.created_at, format: :short
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
