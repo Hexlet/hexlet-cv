@@ -15,7 +15,7 @@ table.table
     - @steps.each do |step|
       tr
         td = step.name
-        td = step.careers.map(&:name).join('<br/>').html_safe # rubocop:disable Rails/OutputSafety
+        td = step.careers.map(&:name).join(', ')
         td = l step.created_at, format: :short
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
