@@ -96,9 +96,6 @@ ru:
           restore: Вернуть на модерацию
           confirm_archive: Вы уверенны что хотите отправить вакансию в архив
           confirm_restore: Вы уверенны что хотите вернуть вакансию на модерацию
-      users:
-        edit:
-          header: Редактирование пользователя
       home:
         menu:
           list: Список
@@ -175,6 +172,8 @@ ru:
             actions: Действия
             show: Посмотреть
       users:
+        edit:
+          header: Редактирование пользователя
         in_career_path:
           started_at: Начат
           finished_at: Закончен
