@@ -153,7 +153,11 @@ ru:
           form:
             notification: Если требуется студенту отправить уведомление
             cancel: Отменить
+          filter:
+            career: Карьерный трек
+            search: Найти
           index:
+            career: Карьерный трек
             show: Посмотреть
             edit: Редактировать
             action: Действие

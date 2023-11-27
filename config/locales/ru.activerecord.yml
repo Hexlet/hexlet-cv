@@ -51,6 +51,7 @@ ru:
         state/archived: В архиве
         state/finished: Завершен
       career/step:
+        created_at: Дата создания
         name: Название
         description: Описание
         locale: Язык
