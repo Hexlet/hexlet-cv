@@ -15,7 +15,11 @@ table.table
     - @steps.each do |step|
       tr
         td = step.name
-        td = step.careers.map(&:name).join(', ')
+        td
+          .small.mt-auto
+            - step.careers.each do |career|
+              span.badge.bg-success.text-body-tertiary = career.name
+              br
         td = l step.created_at, format: :short
         td
           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
