@@ -10,7 +10,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
                        .ransack(query)
 
     @career_members = @q.result
-    @careers = Career.all
+    @careers = Career.with_locale
   end
 
   def index
