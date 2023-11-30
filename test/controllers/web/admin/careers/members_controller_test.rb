@@ -21,30 +21,42 @@ class Web::Admin::Careers::MembersControllerTest < ActionDispatch::IntegrationTe
     member = Career::Member.find_by(user_id: attrs[:user_id])
     notification = Notification.find_by(user: @user, resource: member, kind: :new_career_member)
     event = Event.find_by(user: @user, resource: member, kind: :new_career_member)
+    version = Career::Member::Version.find_by(item: member, item_type: 'Career::Member', event: 'activate')
 
     assert { member }
     assert { event }
     assert { notification }
+    assert { version }
   end
 
   test '#archive' do
     member = career_members(:member_one)
 
-    patch archive_admin_career_member_path(@career, member)
+    assert_difference -> { member.reload.versions.size } => 1 do
+      patch archive_admin_career_member_path(@career, member)
+    end
 
     assert_redirected_to admin_career_path(@career)
     member.reload
+    version = member.versions.find_by(item_type: 'Career::Member', event: 'archive')
+
     assert { member.archived? }
+    assert { version }
   end
 
   test '#activate' do
     member = career_members(:archived_member)
 
-    patch activate_admin_career_member_path(@career, member)
+    assert_difference -> { member.reload.versions.size } => 1 do
+      patch activate_admin_career_member_path(@career, member)
+    end
 
     assert_redirected_to admin_career_member_users_path
     member.reload
+    version = member.versions.find_by(item_type: 'Career::Member', event: 'activate')
+
     assert { member.active? }
+    assert { version }
   end
 
   test 'new career member email' do

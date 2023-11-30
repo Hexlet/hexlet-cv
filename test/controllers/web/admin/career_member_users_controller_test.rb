@@ -86,10 +86,12 @@ class Web::Admin::CareerMemberUsersControllerTest < ActionDispatch::IntegrationT
 
     notification = Notification.find_by(user: @user, resource: career_member, kind: :new_career_member)
     event = Event.find_by(user: @user, resource: career_member, kind: :new_career_member)
+    version = Career::Member::Version.find_by(item: career_member, item_type: 'Career::Member', event: 'activate')
 
     assert { career_member }
     assert { notification }
     assert { event }
+    assert { version }
   end
 
   test 'new member email' do

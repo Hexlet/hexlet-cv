@@ -12,6 +12,11 @@ class Career::Member < ApplicationRecord
   has_many :career_step_members, class_name: 'Career::Step::Member', inverse_of: :career_member, foreign_key: 'career_member_id', dependent: :destroy
   has_many :events, as: :resource, dependent: :destroy
 
+  has_paper_trail only: %i[state mentor_check_state], on: %i[create update], versions: {
+    class_name: 'Career::Member::Version',
+    scope: -> { order(created_at: :asc) }
+  }
+
   aasm :state, timestamps: true do
     state :active, initial: true
     state :finished
@@ -28,6 +33,17 @@ class Career::Member < ApplicationRecord
     event :archive do
       transitions from: %i[active], to: :archived
     end
+
+    before_all_transactions :update_version_event
+  end
+
+  def initialize(attrs = nil)
+    defaults = {
+      paper_trail_event: 'activate'
+    }
+
+    attrs_with_defaults = attrs ? defaults.merge(attrs) : defaults
+    super(attrs_with_defaults)
   end
 
   def can_show_step_body?(item)
@@ -67,6 +83,10 @@ class Career::Member < ApplicationRecord
     Rails.cache.fetch("finished_step_count#{id}", expires_in: 1.hour) do
       career_step_members.where(career_step: career.steps).finished.count
     end
+  end
+
+  def update_version_event
+    self.paper_trail_event = aasm(:state).current_event.to_s.tr('!', '')
   end
 
   def self.ransackable_attributes(_auth_object = nil)

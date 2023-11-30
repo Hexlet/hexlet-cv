@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_17_154953) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_162228) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_154953) do
     t.index ["career_id", "career_step_id"], name: "index_career_items_on_career_id_and_career_step_id", unique: true
     t.index ["career_id", "order"], name: "index_career_items_on_career_id_and_order", unique: true
     t.index ["career_step_id"], name: "index_career_items_on_career_step_id"
+  end
+
+  create_table "career_member_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_career_member_versions_on_item_type_and_item_id"
   end
 
   create_table "career_members", force: :cascade do |t|
