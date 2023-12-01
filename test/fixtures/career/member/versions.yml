@@ -1,0 +1,28 @@
+---
+DEFAULTS: &DEFAULTS
+  item_type: "Career::Member"
+  item: $LABEL
+  event: activate
+
+member_one:
+  <<: *DEFAULTS
+  created_at: <%= Date.today - 10.days %>
+
+member_full:
+  <<: *DEFAULTS
+  created_at: <%= Date.today - 10.days %>
+
+member_one_archive:
+  <<: *DEFAULTS
+  item: member_one
+  event: archive
+  created_at: <%= Date.today - 3.days %>
+
+member_full_finish:
+  <<: *DEFAULTS
+  item: member_full
+  event: finish
+  created_at: <%= Date.today - 3.days %>
+
+
+
