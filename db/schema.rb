@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_124808) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_125741) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -213,9 +213,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_124808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
-    t.text "summary"
-    t.text "skills_description"
-    t.string "github_url"
+    t.text "summary", null: false
+    t.text "skills_description", null: false
+    t.string "github_url", null: false
     t.text "awards_description"
     t.string "english_fluency"
     t.integer "impressions_count", default: 0
