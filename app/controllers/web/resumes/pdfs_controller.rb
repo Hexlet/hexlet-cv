@@ -12,7 +12,7 @@ class Web::Resumes::PdfsController < Web::Resumes::ApplicationController
 
     @user = resource_resume.user
     @resume_contact_information = resource_resume
-                                  .serializable_hash
+                                  .serializable_hash(except: %i[hexlet_url awards_description])
                                   .deep_symbolize_keys
                                   .slice(:city, :contact_telegram, :contact_phone, :contact_email, :contact)
     @resume_educations = resource_resume.educations.web
