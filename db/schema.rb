@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_162228) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_124808) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -208,7 +208,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_162228) do
 
   create_table "resumes", force: :cascade do |t|
     t.string "state"
-    t.string "name"
+    t.string "name", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
