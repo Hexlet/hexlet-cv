@@ -32,7 +32,7 @@ class ResumeAutoAnswerService
       resume_content = resume
                        .serializable_hash
                        .deep_symbolize_keys
-                       .slice(:name, :summary, :skills_description, :awards_description, :contact_phone, :contact_email)
+                       .slice(:name, :summary, :skills_description, :contact_phone, :contact_email)
                        .values
                        .join('\n')
       work_content = resume.works.reduce('') do |acc, work|

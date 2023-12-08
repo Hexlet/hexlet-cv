@@ -14,7 +14,6 @@ class Web::Account::ResumeForm < Resume
     contact_telegram summary
     skills_description
     summary
-    awards_description
     english_fluency
     city
     relocation

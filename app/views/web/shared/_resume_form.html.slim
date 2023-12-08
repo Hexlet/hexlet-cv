@@ -10,7 +10,7 @@
     = f.input :relocation, selected: resume.relocation
   - if resume.locale_ru?
     .mb-3
-      = f.input :english_fluency, required: true
+      = f.input :english_fluency
   h3 = t('.contacts')
   a.btn.btn-primary.btn-sm[data-bs-toggle="collapse" href="#collapse-contacts" role="button" aria-expanded="false"]
     span.bi.bi-patch-plus.me-1
@@ -37,8 +37,6 @@
       = f.input :summary, input_html: { rows: 10 }
     .mb-3
       = f.input :skills_description, input_html: { rows: 5 }
-    .mb-3
-      = f.input :awards_description, input_html: { rows: 5 }
   .mb-3
     = f.input :skill_list, input_html: { value: f.object.skill_list.to_s }
   .mb-3

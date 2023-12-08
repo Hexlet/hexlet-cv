@@ -14,7 +14,6 @@ class Web::Admin::ResumeForm < Resume
     locale
     summary
     skills_description
-    awards_description
     english_fluency
     city
     relocation

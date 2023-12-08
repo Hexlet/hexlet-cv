@@ -30,12 +30,6 @@
     b = han('resume', 'skills_description')
   .col-sm-9.hexlet-cv-content
     == markdown2html @resume.skills_description
-- if @resume.awards_description?
-  .row.mb-3
-    .col-sm-3
-      b = han('resume', 'awards_description')
-    .col-sm-9.hexlet-cv-content
-      == markdown2html @resume.awards_description
 - if @resume.locale == 'ru'
   .row
     .col-sm-3

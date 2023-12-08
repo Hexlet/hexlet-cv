@@ -5,7 +5,7 @@ class Resume < ApplicationRecord
   extend Enumerize
   extend TagResumePresenter
 
-  deprecate :hexlet_url
+  deprecate :hexlet_url, :awards_description
 
   has_paper_trail
   is_impressionable counter_cache: true
@@ -17,7 +17,6 @@ class Resume < ApplicationRecord
   enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], scope: true, predicates: { prefix: true }
 
   validates :name, presence: true
-  validates :english_fluency, presence: true, if: -> { locale_ru? }
   validates :github_url, presence: true
   validates :summary, presence: true, length: { minimum: 200 }
   validates :skills_description, presence: true

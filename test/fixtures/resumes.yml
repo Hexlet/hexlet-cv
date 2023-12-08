@@ -8,7 +8,6 @@ DEFAULTS: &DEFAULTS
   contact_email: $LABEL@email.com
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
   evaluated_ai_state: not_evaluated
@@ -19,7 +18,6 @@ one:
   user: one
   english_fluency: read
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 2
 
@@ -27,7 +25,6 @@ two:
   <<: *DEFAULTS
   user: two
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 3
 
@@ -55,8 +52,6 @@ full:
     В основном работаю со стеком Ruby/Rails, но имел дело и с другими фреймворками (Phoenix, Django, Laravel), но уровень владения/экспертизы в них очень поверхностен. Редактор у меня Vim, 10 пальцевая слепая печать прилагается.
 
     Так имел опыт с такими [инструментами](/) как Ansible, Docker, Terraform, разворачивал инфраструктуры на AWS
-  awards_description: |
-    Курсы Backend/Frontend JS Software Engineer на Hexlet
   summary: |
     Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
   answers_count: 1
@@ -65,7 +60,6 @@ one_archived:
   <<: *DEFAULTS
   user: one
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: archived
   contact_email: one@email.com
@@ -74,7 +68,6 @@ one_evaluated_failed:
   <<: *DEFAULTS
   user: one
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   evaluated_ai_state: failed
   contact_email: one@email.com
