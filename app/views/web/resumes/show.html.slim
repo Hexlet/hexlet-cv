@@ -3,28 +3,16 @@
     resume: @resume, educations: @resume_educations, works: @resume_works
 
 = content_for :header do
-  .d-flex.justify-content-between
+  .d-flex.justify-content-center
     .m-1
-      = @resume
+      = link_to @resume.user.full_name, user_path(@resume.user)
     - if current_or_guest_user.admin?
       .m-1
-        = link_to edit_admin_resume_path(@resume), class: 'btn btn-primary' do
+        = link_to edit_admin_resume_path(@resume), class: 'btn btn-outline-primary' do
           span.bi.bi-gear
 
-/ .d-flex.mb-3.text-muted
-/   .d-flex.me-4
-/     .me-2= t('.published')
-/     .fw-light
-/       = distance_of_time_in_words_to_now @resume.created_at
-/   .d-flex.me-4
-/     .me-2= t('.views')
-/     .fw-light= 3
-/   .d-flex.me-4
-/     .me-2= t('.answers')
-/     .fw-light= 3
-/   .d-flex.me-4
-/     .me-2= t('.likes')
-/     .fw-light= 3
+h3.text-center = @resume
+
 - if @resume.archived?
   .alert.alert-warning = t('.archived')
 

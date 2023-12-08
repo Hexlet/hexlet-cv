@@ -161,7 +161,8 @@ en:
           header: Edit the recommendation
       information:
         basic: Basic
-        work: Work
+        contacts: Contacts
+        work: Experience
         education: Education
         current: To present
         contact: Contact

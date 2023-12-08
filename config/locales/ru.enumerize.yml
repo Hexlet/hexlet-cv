@@ -4,10 +4,10 @@ ru:
       ru: Русский
       en: Английский
     relocation:
-      another_country: Готов только в другую страну
-      another_city: Готов только в рамках страны проживания
-      another_city_country: Готов
-      not_ready: Не готов
+      another_country: Готов к релокации в другую страну
+      another_city: Готов к релокации в рамках страны проживания
+      another_city_country: Готов к релокации
+      not_ready: Не готов релоцироваться
       not_specified: Не указано
     salary_amount_type:
       gross: До вычетов
@@ -37,11 +37,11 @@ ru:
       middle: Мидл
       senior: Сеньор
     english_fluency:
-      dont_know: Не знаю
-      basic: Начальные знания
-      read: Читаю профессиональную литературу
-      pass_interview: Могу проходить интервью
-      fluent: Свободно владею
+      dont_know: Не знаю английский язык
+      basic: Начальные знания английского языка
+      read: Читаю профессиональную литературу на английском языке
+      pass_interview: Могу проходить интервью на английском языке
+      fluent: Свободно владею на английским языком
     notification_kind:
       next_step_open_source: Open source
     kind:
