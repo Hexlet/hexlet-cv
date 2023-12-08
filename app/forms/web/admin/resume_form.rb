@@ -19,6 +19,8 @@ class Web::Admin::ResumeForm < Resume
     relocation
     skill_list
     direction_list
+    about_me
+    projects
   ]
 
   nested_attrs = {

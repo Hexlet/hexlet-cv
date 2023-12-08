@@ -60,7 +60,7 @@ en:
         name: CV title
         user: Name/Surname/Email
       resume_form:
-        work: Work Experience
+        work: Experience
         education: Education
         add_work: Add
         add_education: Add
@@ -70,6 +70,7 @@ en:
         contacts: Contacts
         main: Main
         add: Add
+        additionally: Additionally 
       work_fields:
         remove_work: Delete work experience
       education_fields:

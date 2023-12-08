@@ -8,6 +8,8 @@ DEFAULTS: &DEFAULTS
   contact_email: $LABEL@email.com
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
+  projects: <%= Faker::Lorem.paragraph %>
+  about_me: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
   evaluated_ai_state: not_evaluated
@@ -48,6 +50,14 @@ full:
   <<: *DEFAULTS
   user: full
   name: Инженер-Программист
+  about_me: Хороший программист
+  projects: |
+    ## Barin Games:
+
+    ### Получил навыки работы:
+
+    - npm пакетный менаджер
+    - babel
   skills_description: |
     В основном работаю со стеком Ruby/Rails, но имел дело и с другими фреймворками (Phoenix, Django, Laravel), но уровень владения/экспертизы в них очень поверхностен. Редактор у меня Vim, 10 пальцевая слепая печать прилагается.
 
