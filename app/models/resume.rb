@@ -10,9 +10,9 @@ class Resume < ApplicationRecord
 
   acts_as_taggable_on :skills, :directions
 
-  enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent]
-  enumerize :locale, in: %i[en ru], default: :ru
-  enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], default: :not_specified
+  enumerize :english_fluency, in: %i[dont_know basic read pass_interview fluent], scope: true, predicates: { prefix: true }
+  enumerize :locale, in: I18n.available_locales
+  enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], scope: true, predicates: { prefix: true }
 
   validates :name, presence: true
   validates :english_fluency, presence: true, if: -> { locale_ru? }
@@ -79,7 +79,8 @@ class Resume < ApplicationRecord
 
   def initialize(attribute = nil)
     defaults = {
-      locale: I18n.locale
+      locale: I18n.locale,
+      relocation: :not_specified
     }
 
     attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
