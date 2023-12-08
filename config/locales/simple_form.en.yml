@@ -82,13 +82,12 @@ en:
         skill_list: |
           Specify your skills. This tag field will help HR consultants and employers find your CV faster. Here you can specify your stack of technologies, for example: ajax, docker, Postgresql etc.
         relocation: Specify whether you're ready to relocate
-        hexlet_url: "link to your Hexlet account: https://ru.hexlet.io/u/mokevnin"
         github_url: "link to your GitHub account: https://github.com/mokevnin"
         contact: Here you can specify additional contacts - for example, links to social networks
         contact_phone: "Your phone: +1 935 555 55 55"
         contact_email: "Your email: example@test.com"
         contact_telegram: "Your Telegram: https://tlgg.ru/Kiril or @Kiril"
-        name: PHP programmer, Android developer, ...
+        name: The position you are applying for
         educations:
           description: Level of education, Field of study, College or University
         works:

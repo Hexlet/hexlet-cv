@@ -42,11 +42,7 @@
       b = han('resume', 'english_fluency')
     .col-sm-9
       = @resume.english_fluency.text
-.row.mt-3.mb-4
-  .col-sm-3
-    b = han('resume', 'hexlet')
-  .col-sm-9
-    = link_to @resume.hexlet_url, @resume.hexlet_url, target: '_blank', rel: :noopener
+
 .row.mt-3.mb-4
   .col-sm-3
     b = han('resume', 'github')

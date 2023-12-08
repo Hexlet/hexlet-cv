@@ -5,6 +5,8 @@ class Resume < ApplicationRecord
   extend Enumerize
   extend TagResumePresenter
 
+  deprecate :hexlet_url
+
   has_paper_trail
   is_impressionable counter_cache: true
 

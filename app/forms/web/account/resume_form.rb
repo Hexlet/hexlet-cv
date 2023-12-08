@@ -7,7 +7,6 @@ class Web::Account::ResumeForm < Resume
 
   attrs = %i[
     name
-    hexlet_url
     github_url
     contact
     contact_email

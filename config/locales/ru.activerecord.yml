@@ -111,11 +111,10 @@ ru:
         name: Имя
         company: компания
       resume:
-        name: Название
+        name: Позиция
         summary: Описание
         city: Город
         relocation: Готовность к релокации
-        hexlet_url: Hexlet
         github_url: GitHub
         contact: Дополнительные контакты
         contact_phone: Телефон

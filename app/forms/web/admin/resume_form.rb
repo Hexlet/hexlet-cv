@@ -6,7 +6,6 @@ class Web::Admin::ResumeForm < Resume
   attrs = %i[
     state_event
     name
-    hexlet_url
     github_url
     contact
     contact_email

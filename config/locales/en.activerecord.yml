@@ -121,9 +121,8 @@ en:
       resume:
         city: City
         relocation: Willing to relocate
-        name: Desired Job Title
+        name: Position
         summary: Description
-        hexlet_url: Hexlet
         github_url: GitHub
         contact: Additional contacts
         contact_phone: Phone

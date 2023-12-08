@@ -67,6 +67,9 @@ en:
         publish: Post
         hide: Draft
         cancel: Discard
+        contacts: Contacts
+        main: Main
+        add: Add
       work_fields:
         remove_work: Delete work experience
       education_fields:

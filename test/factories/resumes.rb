@@ -5,7 +5,6 @@ FactoryBot.define do
     name { Faker::Job.title }
     summary
     skills_description
-    hexlet_url
     github_url
     contact
     contact_email { 'test@emil.com' }

@@ -169,6 +169,9 @@ ru:
         publish: Опубликовать
         hide: В черновик
         cancel: Отмена
+        contacts: Контактная информация
+        main: Основное
+        add: Добавить
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:

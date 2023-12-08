@@ -38,13 +38,6 @@
       .col-12.lead
         = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
 
-      - if resource_resume.hexlet_url?
-        .col-12
-          h2.my-4 = han('resume', 'hexlet')
-          hr.w-100
-        .col-12.lead
-          = link_to resource_resume.hexlet_url, resource_resume.hexlet_url, target: '_blank', rel: 'noopener'
-
       - @resume_contact_information.each do |field, content|
         - if content.present?
           .col-12

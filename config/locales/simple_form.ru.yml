@@ -83,13 +83,12 @@ ru:
         skill_list: |
           Укажите ваши навыки. Это поле тегов поможет быстрее находить ваше резюме HR-консультантам и работодателям. Здесь можно указать ваш полный стек, например: ajax, docker, Postgresql и тд.
         relocation: Укажите вашу готовность к релокации
-        hexlet_url: 'Ссылка на профиль: https://ru.hexlet.io/u/mokevnin'
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
         contact: Здесь можно указать дополнительные контакты - например ссылки на социальные сети
         contact_phone: "Ваш телефон: +7 906 777 77 77"
         contact_email: "Ваша почта email@example.ru"
         contact_telegram: 'Ваш телеграм: https://tlgg.ru/Kiril или @Kiril'
-        name: PHP-программист, Android-разработчик, ...
+        name:  Должность, на которую вы претендуете
         experience_description: *markdown_tips
         about_company: *markdown_tips
         about_project: *markdown_tips
