@@ -41,7 +41,7 @@
   .collapse[id="collapse-additionally"]
     .mb-3
       = f.input :relocation, selected: resume.relocation
-    - if resume.locale_ru?
+    - if resume.locale == 'ru'
       .mb-3
         = f.input :english_fluency
     .mb-3

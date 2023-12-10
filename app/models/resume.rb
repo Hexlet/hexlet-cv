@@ -101,7 +101,8 @@ class Resume < ApplicationRecord
     %w[directions user skills answers]
   end
 
-  def locale_ru?
-    locale == 'ru'
+  def contact_information
+    serializable_hash(only: %i[city contact_telegram contact_phone contact_email contact])
+      .deep_symbolize_keys
   end
 end
