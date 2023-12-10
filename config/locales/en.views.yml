@@ -198,8 +198,8 @@ en:
           header: Edit comment
       pdfs:
         base:
-          basic: Basic
-          work: Work
+          summary: Summary
+          work: Expiriens
           education: Education
           current: Current
     account:

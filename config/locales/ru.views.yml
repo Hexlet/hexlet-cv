@@ -295,8 +295,9 @@ ru:
           header: Редактирование комментария
       pdfs:
         base:
-          basic: Основное
-          work: Работа
+          contacts: Контакты
+          summary: Описание
+          work: Опыт
           education: Образование
           current: по настоящее время
     account:

@@ -5,7 +5,7 @@
         h1.text-center.display-4.mb-2 = @user
         h2.text-center.lead = resource_resume
       .col-12
-        h2.my-4 = t('.basic')
+        h2.my-4 = t('.summary')
         hr.w-100
 
       .col-sm-9.hexlet-cv-content.lead
@@ -17,33 +17,39 @@
       .col-12.hexlet-cv-content.lead
         == markdown2html resource_resume.skills_description
 
-      - if resource_resume.english_fluency?
+      - if resource_resume.projects
         .col-12
-          h2.my-4.me-3 = han('resume', 'english_fluency')
+          h2.my-4 = han('resume', 'projects')
           hr.w-100
-        .col-12.lead
-          = resource_resume.english_fluency.text
+        .col-12.hexlet-cv-content.lead
+          == markdown2html resource_resume.projects
 
       .col-12
-        h2.my-4 = han('resume', 'github')
+        h2.my-4 = han('resume', 'about_me')
         hr.w-100
-      .col-12.lead
-        = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
+      .col-12.hexlet-cv-content.lead
+        - if resource_resume.relocation && !resource_resume.relocation_not_specified?
+          = resource_resume.relocation_text
+          br
+        - if resource_resume.locale == 'ru' && resource_resume.english_fluency
+          = resource_resume.english_fluency.text
+          br
+        == markdown2html resource_resume.about_me
 
-      - @resume_contact_information.each do |field, content|
-        - if content.present?
-          .col-12
-            h2.my-4 = han('resume', field)
-            hr.w-100
-          .col-12.lead
-            = content
-
-      - if resource_resume.relocation?
-        .col-12
-          h2.my-4 = han('resume', 'relocation')
-          hr.w-100
-        .col-12.lead
-          = resource_resume.relocation.text
+      h2.my-4 = t('.contacts')
+      hr.w-100
+        .row.mt-3.mb-4
+          .col-sm-3
+            b = han('resume', 'github')
+          .col-sm-9
+            = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
+        - @resume_contact_information.each do |field, content|
+          - if content.present?
+            .row.mt-3.mb-4
+              .col-sm-3
+                b = han('resume', field)
+              .col-sm-9
+                 = content
 
       - if @resume_works.any?
         .col-12
