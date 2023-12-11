@@ -36,21 +36,6 @@
           br
         == markdown2html resource_resume.about_me
 
-      h2.my-4 = t('.contacts')
-      hr.w-100
-        .row.mt-3.mb-4
-          .col-sm-3
-            b = han('resume', 'github')
-          .col-sm-9
-            = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
-        - @resume_contact_information.each do |field, content|
-          - if content.present?
-            .row.mt-3.mb-4
-              .col-sm-3
-                b = han('resume', field)
-              .col-sm-9
-                 = content
-
       - if @resume_works.any?
         .col-12
           h2.my-4 = t('.work')
@@ -88,3 +73,18 @@
               - elsif education.end_date
                 | &nbsp;-&nbsp;
                 = education.end_date.to_formatted_s(:month_and_year)
+
+      h2.my-4 = t('.contacts')
+      hr.w-100
+        .row.mt-3.mb-4
+          .col-sm-3
+            b = han('resume', 'github')
+          .col-sm-9
+            = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
+        - @resume_contact_information.each do |field, content|
+          - if content.present?
+            .row.mt-3.mb-4
+              .col-sm-3
+                b = han('resume', field)
+              .col-sm-9
+                 = content
