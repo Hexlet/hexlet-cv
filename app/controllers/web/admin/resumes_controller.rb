@@ -43,7 +43,7 @@ class Web::Admin::ResumesController < Web::Admin::ApplicationController
     @resume = resume.becomes(Web::Admin::ResumeForm)
     if @resume.update(params[:resume])
       f(:success)
-      redirect_to admin_resumes_path
+      redirect_to edit_admin_resume_path(@resume)
     else
       f(:error)
       render :edit, status: :unprocessable_entity
