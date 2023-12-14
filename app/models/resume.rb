@@ -100,9 +100,4 @@ class Resume < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     %w[directions user skills answers]
   end
-
-  def contact_information
-    serializable_hash(only: %i[city contact_telegram contact_phone contact_email contact])
-      .deep_symbolize_keys
-  end
 end

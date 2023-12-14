@@ -2,18 +2,39 @@
   h2.my-4.me-3 = t('.contacts')
   hr.my-auto.w-100
 
+- if @resume.contact_email
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact_email')
+    .col-sm-9
+      = @resume.contact_email
+
+- if @resume.contact_phone
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact_phone')
+    .col-sm-9
+      = @resume.contact_phone
+
 .row.mt-3.mb-4
   .col-sm-3
     b = han('resume', 'github')
   .col-sm-9
     = link_to @resume.github_url, @resume.github_url, target: '_blank', rel: :noopener
-  - @resume_contact_information.each do |field, content|
-    - if content.present?
-      .row.mt-3.mb-4
-        .col-sm-3
-          b = han('resume', field)
-        .col-sm-9
-            = content
+
+- if @resume.contact_telegram
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact_telegram')
+    .col-sm-9
+      = @resume.contact_telegram
+
+- if @resume.contact
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact')
+    .col-sm-9
+      = @resume.contact_telegram
 
 .d-flex
   hr.my-auto.w-100
@@ -85,4 +106,8 @@
     - if @resume.locale == 'ru' && @resume.english_fluency
       = @resume.english_fluency.text
       br
+    - if @resume.city
+      = "#{han('resume', 'city')} #{@resume.city}"
+      br
+
     == markdown2html @resume.about_me

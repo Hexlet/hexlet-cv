@@ -113,7 +113,7 @@ ru:
       resume:
         name: Позиция
         summary: Описание
-        city: Город
+        city: Проживаю в городе
         relocation: Готовность к релокации
         github_url: GitHub
         contact: Дополнительные контакты

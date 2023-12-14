@@ -11,7 +11,6 @@ class Web::Resumes::PdfsController < Web::Resumes::ApplicationController
     end
 
     @user = resource_resume.user
-    @resume_contact_information = resource_resume.contact_information
     @resume_educations = resource_resume.educations.web
     @resume_works = resource_resume.works.web
 
