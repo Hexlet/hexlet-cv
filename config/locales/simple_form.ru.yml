@@ -91,8 +91,8 @@ ru:
         experience_description: *markdown_tips
         about_company: *markdown_tips
         about_project: *markdown_tips
-        about_me: *markdown_tips
-        projects: Укажите проекты в которых вы участвовали(Учебные или opensource)
+        about_my_self: *markdown_tips
+        project_descriptions: Укажите проекты в которых вы участвовали(Учебные или opensource)
         educations:
           description: Специальность, учебное заведение, ...
         works:

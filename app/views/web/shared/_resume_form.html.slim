@@ -33,7 +33,7 @@
     .mb-3
       = f.input :skills_description, input_html: { rows: 5 }
     .mb-3
-      = f.input :projects, as: :text, input_html: { rows: 10 }
+      = f.input :project_descriptions, as: :text, input_html: { rows: 10 }
   h3 = t('.additionally')
   a.btn.btn-primary.btn-sm[data-bs-toggle="collapse" href="#collapse-additionally" role="button" aria-expanded="false"]
     span.bi.bi-patch-plus.me-1
@@ -45,7 +45,7 @@
       .mb-3
         = f.input :english_fluency
     .mb-3
-      = f.input :about_me, input_html: { rows: 10 }
+      = f.input :about_my_self, input_html: { rows: 10 }
     .mb-3
       = f.input :skill_list, input_html: { value: f.object.skill_list.to_s }
     .mb-3

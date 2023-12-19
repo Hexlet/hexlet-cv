@@ -8,8 +8,8 @@ FactoryBot.define do
     github_url
     contact
     contact_email { 'test@emil.com' }
-    projects
-    about_me
+    project_descriptions
+    about_my_self
     english_fluency { :fluent }
 
     works_attributes do
