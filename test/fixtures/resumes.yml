@@ -6,6 +6,7 @@ DEFAULTS: &DEFAULTS
   contact_telegram: '@$LABEL'
   name: Resume Name $LABEL
   locale: <%= I18n.locale %>
+  contact_email: $LABEL@email.com
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
   awards_description: <%= Faker::Lorem.paragraph %>
@@ -34,15 +35,18 @@ two:
 one_without_answer:
   <<: *DEFAULTS
   user: one
+  contact_email: one@email.com
 
 full_without_answers:
   <<: *DEFAULTS
   user: full
+  contact_email: full@email.com
 
 full_draft:
   <<: *DEFAULTS
   state: draft
   user: full
+  contact_email: full@email.com
 
 full:
   <<: *DEFAULTS
@@ -65,6 +69,7 @@ one_archived:
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: archived
+  contact_email: one@email.com
 
 one_evaluated_failed:
   <<: *DEFAULTS
@@ -73,3 +78,4 @@ one_evaluated_failed:
   awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   evaluated_ai_state: failed
+  contact_email: one@email.com

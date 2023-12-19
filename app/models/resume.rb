@@ -21,6 +21,7 @@ class Resume < ApplicationRecord
   validates :skills_description, presence: true
   validates :contact_email, 'valid_email_2/email': true
   validates :contact_phone, phone: true
+  validates :contact_email, presence: true
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy

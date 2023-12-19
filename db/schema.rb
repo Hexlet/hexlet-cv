@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_19_213533) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_19_215718) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -226,7 +226,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_19_213533) do
     t.string "city"
     t.string "relocation"
     t.string "contact_phone"
-    t.string "contact_email"
+    t.string "contact_email", null: false
     t.string "contact_telegram"
     t.boolean "evaluated_ai"
     t.string "evaluated_ai_state"

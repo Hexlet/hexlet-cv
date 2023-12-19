@@ -8,6 +8,7 @@ FactoryBot.define do
     hexlet_url
     github_url
     contact
+    contact_email { 'test@emil.com' }
     awards_description
     english_fluency { :fluent }
 
