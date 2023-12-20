@@ -109,5 +109,5 @@
     - if @resume.city
       = "#{han('resume', 'city')} #{@resume.city}"
       br
-
-    == markdown2html @resume.about_my_self
+    - if @resume.about_my_self
+      == markdown2html @resume.about_my_self

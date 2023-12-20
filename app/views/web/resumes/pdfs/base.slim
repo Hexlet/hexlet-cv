@@ -112,5 +112,5 @@
         - if resource_resume.city
           = resource_resume.city
           br
-
-        == markdown2html resource_resume.about_my_self
+        - if resource_resume.about_my_self
+          == markdown2html resource_resume.about_my_self
