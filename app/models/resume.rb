@@ -7,6 +7,8 @@ class Resume < ApplicationRecord
 
   mark_as_outdated :hexlet_url, :awards_description
 
+  self.ignored_columns += %w[about_my_self project_descriptions]
+
   has_paper_trail
   is_impressionable counter_cache: true
 
