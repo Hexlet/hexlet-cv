@@ -162,13 +162,17 @@ ru:
         name: Название резюме
         user: Имя/Фамилия/Почта
       resume_form:
-        work: Опыт работы
+        work: Опыт
         education: Образование
         add_work: Добавить опыт работы
         add_education: Добавить образование
         publish: Опубликовать
         hide: В черновик
         cancel: Отмена
+        contacts: Контактная информация
+        main: Основное
+        add: Заполнить
+        additionally: Дополнительно
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:
@@ -258,8 +262,8 @@ ru:
         edit:
           header: Редактирование рекомендации
       information:
-        basic: Основное
-        work: Работа
+        contacts: Контакты
+        work: Опыт
         education: Образование
         current: по настоящее время
         contact: Контакт
@@ -291,8 +295,9 @@ ru:
           header: Редактирование комментария
       pdfs:
         base:
-          basic: Основное
-          work: Работа
+          contacts: Контакты
+          summary: Описание
+          work: Опыт
           education: Образование
           current: по настоящее время
     account:

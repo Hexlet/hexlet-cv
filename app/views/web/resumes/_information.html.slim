@@ -1,25 +1,44 @@
 .d-flex
-  h2.my-4.me-3 = t('.basic')
+  h2.my-4.me-3 = t('.contacts')
   hr.my-auto.w-100
 
-- if @resume.user.first_name?
-  .row.mb-3
+- if @resume.contact_email
+  .row.mt-3.mb-4
     .col-sm-3
-      b = han('user', 'name')
+      b = han('resume', 'contact_email')
     .col-sm-9
-      = link_to @resume.user, user_path(@resume.user)
-- if @resume.city
-  .row.mb-3
+      = @resume.contact_email
+
+- if @resume.contact_phone
+  .row.mt-3.mb-4
     .col-sm-3
-      b = han('resume', 'city')
-    .col-sm-9.hexlet-cv-content
-      == markdown2html @resume.city
-- if @resume.relocation
-  .row.mb-3
+      b = han('resume', 'contact_phone')
+    .col-sm-9
+      = @resume.contact_phone
+
+.row.mt-3.mb-4
+  .col-sm-3
+    b = han('resume', 'github')
+  .col-sm-9
+    = link_to @resume.github_url, @resume.github_url, target: '_blank', rel: :noopener
+
+- if @resume.contact_telegram
+  .row.mt-3.mb-4
     .col-sm-3
-      b = han('resume', 'relocation')
-    .col-sm-9.hexlet-cv-content
-      == markdown2html @resume.relocation_text
+      b = han('resume', 'contact_telegram')
+    .col-sm-9
+      = @resume.contact_telegram
+
+- if @resume.contact
+  .row.mt-3.mb-4
+    .col-sm-3
+      b = han('resume', 'contact')
+    .col-sm-9
+      = @resume.contact_telegram
+
+.d-flex
+  hr.my-auto.w-100
+
 .row.mb-3
   .col-sm-3
     b = han('resume', 'summary')
@@ -30,49 +49,12 @@
     b = han('resume', 'skills_description')
   .col-sm-9.hexlet-cv-content
     == markdown2html @resume.skills_description
-- if @resume.awards_description?
+- if @resume.project_descriptions
   .row.mb-3
     .col-sm-3
-      b = han('resume', 'awards_description')
+      b = han('resume', 'project_descriptions')
     .col-sm-9.hexlet-cv-content
-      == markdown2html @resume.awards_description
-- if @resume.locale == 'ru'
-  .row
-    .col-sm-3
-      b = han('resume', 'english_fluency')
-    .col-sm-9
-      = @resume.english_fluency.text
-.row.mt-3.mb-4
-  .col-sm-3
-    b = han('resume', 'hexlet')
-  .col-sm-9
-    = link_to @resume.hexlet_url, @resume.hexlet_url, target: '_blank', rel: :noopener
-.row.mt-3.mb-4
-  .col-sm-3
-    b = han('resume', 'github')
-  .col-sm-9
-    = link_to @resume.github_url, @resume.github_url, target: '_blank', rel: :noopener
-- if @resume.contact
-  .row.mt-3.mb-4
-    .col-sm-3
-      b = han('resume', 'contact_phone')
-    .col-sm-9
-      = @resume.contact_phone
-  .row.mt-3.mb-4
-    .col-sm-3
-      b = han('resume', 'contact_email')
-    .col-sm-9
-      = @resume.contact_email
-  .row.mt-3.mb-4
-    .col-sm-3
-      b = han('resume', 'contact_telegram')
-    .col-sm-9
-      = @resume.contact_telegram
-  .row.mt-3.mb-4
-    .col-sm-3
-      b = han('resume', 'contact')
-    .col-sm-9
-      = @resume.contact
+      == markdown2html @resume.project_descriptions
 
 - if @resume_works.any?
   .d-flex
@@ -110,3 +92,22 @@
         - elsif education.end_date
           | &nbsp;-&nbsp;
           = education.end_date.to_formatted_s(:month_and_year)
+
+.d-flex
+  hr.my-auto.w-100
+
+.row.mb-3
+  .col-sm-3
+      b = han('resume', 'about_my_self')
+  .col-sm-9.hexlet-cv-content
+    - if @resume.relocation && !@resume.relocation_not_specified?
+      = @resume.relocation_text
+      br
+    - if @resume.locale == 'ru' && @resume.english_fluency
+      = @resume.english_fluency.text
+      br
+    - if @resume.city
+      = "#{han('resume', 'city')} #{@resume.city}"
+      br
+
+    == markdown2html @resume.about_my_self

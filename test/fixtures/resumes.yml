@@ -1,5 +1,4 @@
 DEFAULTS: &DEFAULTS
-  hexlet_url: https://ru.hexlet.io/u/$LABEL
   github_url: https://github.com/$LABEL
   contact: $LABEL@email.com
   contact_phone: +7 999 999 99 99
@@ -9,7 +8,8 @@ DEFAULTS: &DEFAULTS
   contact_email: $LABEL@email.com
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
+  project_descriptions: <%= Faker::Lorem.paragraph %>
+  about_my_self: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
   evaluated_ai_state: not_evaluated
@@ -20,7 +20,6 @@ one:
   user: one
   english_fluency: read
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 2
 
@@ -28,7 +27,6 @@ two:
   <<: *DEFAULTS
   user: two
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 3
 
@@ -52,12 +50,22 @@ full:
   <<: *DEFAULTS
   user: full
   name: Инженер-Программист
+  about_my_self: Хороший программист
+  project_descriptions: |
+    Выполненные проекты:
+    1. Игры разума - набор из пяти консольных игр, выполняющих математические операции.
+    Стек технологий: JavaScript, Node.js, ESLint, Git, Github
+    2. Вычислитель отличий - программа, определяющая разницу между двумя структурами данных (файлами формата json или yaml)
+    Стек технологий: JavaScript, Node.js, ESLint, Jest, commander.js, Lodash
+    3. RSS агрегатор - сервис, умеющий опрашивать RSS-ленты сайтов на наличие новых постов, отображать их в удобном виде, отмечать прочитанные и подгружать новые посты.
+    Стек технологий: Java Script, Bootstrap, Webpack, Axios, i18next, оn-change, Yup
+    4. Чат (Slack) - аналог чат-мессенджера, работающего в реальном времени с функциями: регистрации и авторизации, создания, удаления и переименования каналов, возможностью создания и получения сообщений в каналах.
+    Стек технологий: Java Script, React / React Hooks, Redux / Redux Toolkit, React-Bootstrap, WebSocket(socket.io), Axios, Formik, i18next, Yup, React-toastify, Leo-profanity
+
   skills_description: |
     В основном работаю со стеком Ruby/Rails, но имел дело и с другими фреймворками (Phoenix, Django, Laravel), но уровень владения/экспертизы в них очень поверхностен. Редактор у меня Vim, 10 пальцевая слепая печать прилагается.
 
     Так имел опыт с такими [инструментами](/) как Ansible, Docker, Terraform, разворачивал инфраструктуры на AWS
-  awards_description: |
-    Курсы Backend/Frontend JS Software Engineer на Hexlet
   summary: |
     Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
   answers_count: 1
@@ -66,7 +74,6 @@ one_archived:
   <<: *DEFAULTS
   user: one
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: archived
   contact_email: one@email.com
@@ -75,7 +82,6 @@ one_evaluated_failed:
   <<: *DEFAULTS
   user: one
   skills_description: <%= Faker::Lorem.paragraph %>
-  awards_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   evaluated_ai_state: failed
   contact_email: one@email.com

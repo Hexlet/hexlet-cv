@@ -6,43 +6,57 @@
     .mb-3 = f.submit class: 'btn btn-primary'
   .mb-3
     = f.input :name
-  .mb-3
-    = f.input :city
-  .mb-3
-    = f.input :relocation, selected: resume.relocation
-  - if @resume.locale_ru?
+  h3 = t('.contacts')
+  a.btn.btn-primary.btn-sm[data-bs-toggle="collapse" href="#collapse-contacts" role="button" aria-expanded="false"]
+    span.bi.bi-patch-plus.me-1
+      = t('.add')
+  .collapse[id="collapse-contacts"]
     .mb-3
-      = f.input :english_fluency, required: true
-  .mb-3
-    = f.input :hexlet_url
-  .mb-3
-    = f.input :github_url
-  .mb-3
-    = f.input :contact_phone
-  .mb-3
-    = f.input :contact_email
-  .mb-3
-    = f.input :contact_telegram
-  .mb-3
-    = f.input :contact
-  .mb-3
-    = f.input :summary, input_html: { rows: 10 }
-  .mb-3
-    = f.input :skills_description, input_html: { rows: 5 }
-  .mb-3
-    = f.input :awards_description, input_html: { rows: 5 }
-  .mb-3
-    = f.input :skill_list, input_html: { value: f.object.skill_list.to_s }
-  .mb-3
-    = f.input :direction_list, input_html: { value: f.object.direction_list.to_s }
-  .mb-3
-    h3 = t('.work')
-    #works
-      = link_to_add_association t('.add_work'), f, :works, id: 'addWork', partial: 'web/shared/work_fields',
-            'data-association-insertion-node' => '#addWork',
-            'data-association-insertion-method' => 'after'
-      = f.simple_fields_for :works, resume_works do |work|
-        = render 'web/shared/work_fields', f: work
+      = f.input :contact_phone
+    .mb-3
+      = f.input :contact_email
+    .mb-3
+      = f.input :github_url
+    .mb-3
+      = f.input :contact_telegram
+    .mb-3
+      = f.input :contact
+    .mb-3
+      = f.input :city
+  h3 = t('.main')
+  a.btn.btn-primary.btn-sm[data-bs-toggle="collapse" href="#collapse-main" role="button" aria-expanded="false"]
+    span.bi.bi-patch-plus.me-1
+      = t('.add')
+  .collapse[id="collapse-main"]
+    .mb-3
+      = f.input :summary, input_html: { rows: 10 }
+    .mb-3
+      = f.input :skills_description, input_html: { rows: 5 }
+    .mb-3
+      = f.input :project_descriptions, as: :text, input_html: { rows: 10 }
+  h3 = t('.additionally')
+  a.btn.btn-primary.btn-sm[data-bs-toggle="collapse" href="#collapse-additionally" role="button" aria-expanded="false"]
+    span.bi.bi-patch-plus.me-1
+      = t('.add')
+  .collapse[id="collapse-additionally"]
+    .mb-3
+      = f.input :relocation, selected: resume.relocation
+    - if resume.locale == 'ru'
+      .mb-3
+        = f.input :english_fluency
+    .mb-3
+      = f.input :about_my_self, input_html: { rows: 10 }
+    .mb-3
+      = f.input :skill_list, input_html: { value: f.object.skill_list.to_s }
+    .mb-3
+      = f.input :direction_list, input_html: { value: f.object.direction_list.to_s }
+  h3 = t('.work')
+  #works
+    = link_to_add_association t('.add_work'), f, :works, id: 'addWork', partial: 'web/shared/work_fields',
+          'data-association-insertion-node' => '#addWork',
+          'data-association-insertion-method' => 'after'
+    = f.simple_fields_for :works, resume_works do |work|
+      = render 'web/shared/work_fields', f: work
   .mb-3
     h3 = t('.education')
     #educations

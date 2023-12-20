@@ -76,23 +76,23 @@ ru:
       resume:
         summary: *markdown_tips
         skills_description: *markdown_tips
-        awards_description: *markdown_tips
         city: Укажите город вашего проживания
         direction_list: |
           Укажите ваше направление. Здесь нужно указывать только то, про что можно сказать X-разработчик, например: Java-разработчик. Максимальная длина 40 символов. Тэги разделяйте запятыми.
         skill_list: |
           Укажите ваши навыки. Это поле тегов поможет быстрее находить ваше резюме HR-консультантам и работодателям. Здесь можно указать ваш полный стек, например: ajax, docker, Postgresql и тд.
         relocation: Укажите вашу готовность к релокации
-        hexlet_url: 'Ссылка на профиль: https://ru.hexlet.io/u/mokevnin'
         github_url: 'Ссылка на профиль: https://github.com/mokevnin'
         contact: Здесь можно указать дополнительные контакты - например ссылки на социальные сети
         contact_phone: "Ваш телефон: +7 906 777 77 77"
         contact_email: "Ваша почта email@example.ru"
         contact_telegram: 'Ваш телеграм: https://tlgg.ru/Kiril или @Kiril'
-        name: PHP-программист, Android-разработчик, ...
+        name:  Должность, на которую вы претендуете
         experience_description: *markdown_tips
         about_company: *markdown_tips
         about_project: *markdown_tips
+        about_my_self: *markdown_tips
+        project_descriptions: Укажите проекты в которых вы участвовали(Учебные или opensource)
         educations:
           description: Специальность, учебное заведение, ...
         works:

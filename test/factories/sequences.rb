@@ -29,16 +29,12 @@ FactoryBot.define do
     Faker::Lorem.paragraph_by_chars(number: 200)
   end
 
-  sequence :description, aliases: %i[skills_description awards_description] do |_n|
+  sequence :description, aliases: %i[skills_description about_my_self project_descriptions] do |_n|
     Faker::Lorem.paragraph_by_chars(number: 300)
   end
 
   sequence :summary do |_n|
     Faker::Lorem.paragraph_by_chars(number: 300)
-  end
-
-  sequence :hexlet_url do |n|
-    "https://ru.hexlet.io/u/#{n}"
   end
 
   sequence :github_url do |n|

@@ -11,10 +11,6 @@ class Web::Resumes::PdfsController < Web::Resumes::ApplicationController
     end
 
     @user = resource_resume.user
-    @resume_contact_information = resource_resume
-                                  .serializable_hash
-                                  .deep_symbolize_keys
-                                  .slice(:city, :contact_telegram, :contact_phone, :contact_email, :contact)
     @resume_educations = resource_resume.educations.web
     @resume_works = resource_resume.works.web
 

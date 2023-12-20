@@ -6,7 +6,6 @@ class Web::Admin::ResumeForm < Resume
   attrs = %i[
     state_event
     name
-    hexlet_url
     github_url
     contact
     contact_email
@@ -15,12 +14,13 @@ class Web::Admin::ResumeForm < Resume
     locale
     summary
     skills_description
-    awards_description
     english_fluency
     city
     relocation
     skill_list
     direction_list
+    about_my_self
+    project_descriptions
   ]
 
   nested_attrs = {

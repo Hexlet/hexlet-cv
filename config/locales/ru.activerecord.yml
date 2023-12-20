@@ -111,11 +111,10 @@ ru:
         name: Имя
         company: компания
       resume:
-        name: Название
+        name: Позиция
         summary: Описание
-        city: Город
+        city: Проживаю в городе
         relocation: Готовность к релокации
-        hexlet_url: Hexlet
         github_url: GitHub
         contact: Дополнительные контакты
         contact_phone: Телефон
@@ -123,7 +122,6 @@ ru:
         contact_telegram: Телеграм
         english_fluency: Владение английским
         skills_description: Навыки
-        awards_description: Награды, Сертификаты
         locale: Язык
         state_event: Состояние
         state: Статус
@@ -132,6 +130,8 @@ ru:
         state/archived: В архиве
         skill_list: Тэги навыков
         direction_list: Направление
+        project_descriptions: Описания проектов
+        about_my_self: О себе
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения

@@ -7,7 +7,6 @@ class Web::Account::ResumeForm < Resume
 
   attrs = %i[
     name
-    hexlet_url
     github_url
     contact
     contact_email
@@ -15,12 +14,13 @@ class Web::Account::ResumeForm < Resume
     contact_telegram summary
     skills_description
     summary
-    awards_description
     english_fluency
     city
     relocation
     skill_list
     direction_list
+    about_my_self
+    project_descriptions
   ]
 
   nested_attrs = {

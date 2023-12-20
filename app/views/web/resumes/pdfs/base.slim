@@ -4,8 +4,45 @@
       .col-12
         h1.text-center.display-4.mb-2 = @user
         h2.text-center.lead = resource_resume
+
+      h2.my-4 = t('.contacts')
+      hr.w-100
+        - if resource_resume.contact_email
+          .row.mt-3.mb-4
+            .col-sm-3
+              b = han('resume', 'contact_email')
+            .col-sm-9
+              = resource_resume.contact_email
+
+        - if resource_resume.contact_phone
+          .row.mt-3.mb-4
+            .col-sm-3
+              b = han('resume', 'contact_phone')
+            .col-sm-9
+              = resource_resume.contact_phone
+
+        .row.mt-3.mb-4
+          .col-sm-3
+            b = han('resume', 'github')
+          .col-sm-9
+            = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
+
+        - if resource_resume.contact_telegram
+          .row.mt-3.mb-4
+            .col-sm-3
+              b = han('resume', 'contact_telegram')
+            .col-sm-9
+              = resource_resume.contact_telegram
+
+        - if resource_resume.contact
+          .row.mt-3.mb-4
+            .col-sm-3
+              b = han('resume', 'contact')
+            .col-sm-9
+              = resource_resume.contact
+
       .col-12
-        h2.my-4 = t('.basic')
+        h2.my-4 = t('.summary')
         hr.w-100
 
       .col-sm-9.hexlet-cv-content.lead
@@ -17,48 +54,12 @@
       .col-12.hexlet-cv-content.lead
         == markdown2html resource_resume.skills_description
 
-      - if resource_resume.awards_description?
+      - if resource_resume.project_descriptions
         .col-12
-          h2.my-4 = han('resume', 'awards_description')
+          h2.my-4 = han('resume', 'project_descriptions')
           hr.w-100
-
         .col-12.hexlet-cv-content.lead
-          == markdown2html resource_resume.awards_description
-
-      - if resource_resume.english_fluency?
-        .col-12
-          h2.my-4.me-3 = han('resume', 'english_fluency')
-          hr.w-100
-        .col-12.lead
-          = resource_resume.english_fluency.text
-
-      .col-12
-        h2.my-4 = han('resume', 'github')
-        hr.w-100
-      .col-12.lead
-        = link_to resource_resume.github_url, resource_resume.github_url, target: '_blank', rel: 'noopener'
-
-      - if resource_resume.hexlet_url?
-        .col-12
-          h2.my-4 = han('resume', 'hexlet')
-          hr.w-100
-        .col-12.lead
-          = link_to resource_resume.hexlet_url, resource_resume.hexlet_url, target: '_blank', rel: 'noopener'
-
-      - @resume_contact_information.each do |field, content|
-        - if content.present?
-          .col-12
-            h2.my-4 = han('resume', field)
-            hr.w-100
-          .col-12.lead
-            = content
-
-      - if resource_resume.relocation?
-        .col-12
-          h2.my-4 = han('resume', 'relocation')
-          hr.w-100
-        .col-12.lead
-          = resource_resume.relocation.text
+          == markdown2html resource_resume.project_descriptions
 
       - if @resume_works.any?
         .col-12
@@ -97,3 +98,19 @@
               - elsif education.end_date
                 | &nbsp;-&nbsp;
                 = education.end_date.to_formatted_s(:month_and_year)
+
+      .col-12
+        h2.my-4 = han('resume', 'about_my_self')
+        hr.w-100
+      .col-12.hexlet-cv-content.lead
+        - if resource_resume.relocation && !resource_resume.relocation_not_specified?
+          = resource_resume.relocation_text
+          br
+        - if resource_resume.locale == 'ru' && resource_resume.english_fluency
+          = resource_resume.english_fluency.text
+          br
+        - if resource_resume.city
+          = resource_resume.city
+          br
+
+        == markdown2html resource_resume.about_my_self

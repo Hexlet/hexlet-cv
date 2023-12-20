@@ -119,11 +119,10 @@ en:
         end_date: To
         current: To present
       resume:
-        city: City
+        city: live in the city
         relocation: Willing to relocate
-        name: Desired Job Title
+        name: Position
         summary: Description
-        hexlet_url: Hexlet
         github_url: GitHub
         contact: Additional contacts
         contact_phone: Phone
@@ -131,7 +130,6 @@ en:
         contact_telegram: Telegram
         english_fluency: English fluency
         skills_description: Skills
-        awards_description: Awards, Certificates
         locale: Language
         state_event: State
         state: Status
@@ -140,6 +138,8 @@ en:
         state/archived: Archived
         skill_list: Skill tags
         direction_list: Direction
+        project_descriptions: Project descriptions
+        about_my_self: About me
     errors:
       models:
         resume:

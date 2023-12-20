@@ -30,9 +30,9 @@ class ResumeAutoAnswerService
 
     def prepare_resume(resume)
       resume_content = resume
-                       .serializable_hash
+                       .serializable_hash(except: %i[hexlet_url awards_description])
                        .deep_symbolize_keys
-                       .slice(:name, :summary, :skills_description, :awards_description, :contact_phone, :contact_email)
+                       .slice(:name, :summary, :project_descriptions, :about_my_self, :skills_description, :contact_phone, :contact_email)
                        .values
                        .join('\n')
       work_content = resume.works.reduce('') do |acc, work|
