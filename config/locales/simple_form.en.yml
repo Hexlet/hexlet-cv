@@ -73,9 +73,9 @@ en:
       career:
         description: *markdown_tips
       resume:
-        project_descriptions: Indicate the projects in which you participated
+        projects_description: Indicate the projects in which you participated
         summary: *markdown_tips
-        about_my_self: *markdown_tips
+        about_myself: *markdown_tips
         skills_description: *markdown_tips
         city: Specify the city of your residence
         direction_list: |

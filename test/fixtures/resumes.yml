@@ -8,8 +8,8 @@ DEFAULTS: &DEFAULTS
   contact_email: $LABEL@email.com
   english_fluency: fluent
   skills_description: <%= Faker::Lorem.paragraph %>
-  project_descriptions: <%= Faker::Lorem.paragraph %>
-  about_my_self: <%= Faker::Lorem.paragraph %>
+  projects_description: <%= Faker::Lorem.paragraph %>
+  about_myself: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: published
   evaluated_ai_state: not_evaluated
@@ -50,8 +50,8 @@ full:
   <<: *DEFAULTS
   user: full
   name: Инженер-Программист
-  about_my_self: Хороший программист
-  project_descriptions: |
+  about_myself: Хороший программист
+  projects_description: |
     Выполненные проекты:
     1. Игры разума - набор из пяти консольных игр, выполняющих математические операции.
     Стек технологий: JavaScript, Node.js, ESLint, Git, Github

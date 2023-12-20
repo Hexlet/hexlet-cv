@@ -49,12 +49,12 @@
     b = han('resume', 'skills_description')
   .col-sm-9.hexlet-cv-content
     == markdown2html @resume.skills_description
-- if @resume.project_descriptions
+- if @resume.projects_description
   .row.mb-3
     .col-sm-3
-      b = han('resume', 'project_descriptions')
+      b = han('resume', 'projects_description')
     .col-sm-9.hexlet-cv-content
-      == markdown2html @resume.project_descriptions
+      == markdown2html @resume.projects_description
 
 - if @resume_works.any?
   .d-flex
@@ -98,7 +98,7 @@
 
 .row.mb-3
   .col-sm-3
-      b = han('resume', 'about_my_self')
+      b = han('resume', 'about_myself')
   .col-sm-9.hexlet-cv-content
     - if @resume.relocation && !@resume.relocation_not_specified?
       = @resume.relocation_text
@@ -109,5 +109,5 @@
     - if @resume.city
       = "#{han('resume', 'city')} #{@resume.city}"
       br
-    - if @resume.about_my_self
-      == markdown2html @resume.about_my_self
+    - if @resume.about_myself
+      == markdown2html @resume.about_myself

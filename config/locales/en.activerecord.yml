@@ -138,8 +138,8 @@ en:
         state/archived: Archived
         skill_list: Skill tags
         direction_list: Direction
-        project_descriptions: Project descriptions
-        about_my_self: About me
+        projects_description: Project descriptions
+        about_myself: About me
     errors:
       models:
         resume:

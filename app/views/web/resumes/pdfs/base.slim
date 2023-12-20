@@ -54,12 +54,12 @@
       .col-12.hexlet-cv-content.lead
         == markdown2html resource_resume.skills_description
 
-      - if resource_resume.project_descriptions
+      - if resource_resume.projects_description
         .col-12
-          h2.my-4 = han('resume', 'project_descriptions')
+          h2.my-4 = han('resume', 'projects_description')
           hr.w-100
         .col-12.hexlet-cv-content.lead
-          == markdown2html resource_resume.project_descriptions
+          == markdown2html resource_resume.projects_description
 
       - if @resume_works.any?
         .col-12
@@ -100,7 +100,7 @@
                 = education.end_date.to_formatted_s(:month_and_year)
 
       .col-12
-        h2.my-4 = han('resume', 'about_my_self')
+        h2.my-4 = han('resume', 'about_myself')
         hr.w-100
       .col-12.hexlet-cv-content.lead
         - if resource_resume.relocation && !resource_resume.relocation_not_specified?
@@ -112,5 +112,5 @@
         - if resource_resume.city
           = resource_resume.city
           br
-        - if resource_resume.about_my_self
-          == markdown2html resource_resume.about_my_self
+        - if resource_resume.about_myself
+          == markdown2html resource_resume.about_myself

@@ -130,8 +130,8 @@ ru:
         state/archived: В архиве
         skill_list: Тэги навыков
         direction_list: Направление
-        project_descriptions: Описания проектов
-        about_my_self: О себе
+        projects_description: Описания проектов
+        about_myself: О себе
       resume/answer:
         content: Ответ
         applying_state/pending: Ожидает подтверждения
