@@ -34,7 +34,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary
                   .fw-bold = current_user
                   = current_user.email
               .dropdown-divider
-              - if current_or_guest_user.admin?
+              - if current_user_or_guest.admin?
                 li = link_to t('.admin'), admin_root_path, class: 'dropdown-item'
 
               li = link_to t('.profile'), user_path(current_user), class: 'dropdown-item'

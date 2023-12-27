@@ -6,7 +6,7 @@
   .d-flex.justify-content-center
     .m-1
       = link_to @resume.user.full_name, user_path(@resume.user)
-    - if current_or_guest_user.admin?
+    - if current_user_or_guest.admin?
       .m-1
         = link_to edit_admin_resume_path(@resume), class: 'btn btn-outline-primary' do
           span.bi.bi-gear

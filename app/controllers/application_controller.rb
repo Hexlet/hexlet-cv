@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   include DeviseHelper
 
   before_action :banned?
-  helper_method :current_or_guest_user
+  helper_method :current_user_or_guest
   helper_method :f
 
   protected

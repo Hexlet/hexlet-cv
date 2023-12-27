@@ -12,7 +12,7 @@ module Web
         return
       end
 
-      unless current_or_guest_user.guest?
+      unless current_user_or_guest.guest?
         current_user.locale = locale
         current_user.save!
       end

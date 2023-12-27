@@ -8,7 +8,7 @@
   .d-flex.justify-content-between
     .me-2
       = @vacancy.header
-    - if current_or_guest_user.admin?
+    - if current_user_or_guest.admin?
       div
         = link_to edit_admin_vacancy_path(@vacancy), class: 'btn btn-primary' do
           span.bi.bi-gear

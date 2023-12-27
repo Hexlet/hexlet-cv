@@ -2,7 +2,7 @@
 
 module Auth
   def banned?
-    if current_or_guest_user.banned? # rubocop:disable Style/GuardClause
+    if current_user_or_guest.banned? # rubocop:disable Style/GuardClause
       sign_out current_user
       flash[:error] = t('.banned')
       redirect_to root_path
@@ -13,12 +13,12 @@ module Auth
     Guest.new
   end
 
-  def current_or_guest_user
+  def current_user_or_guest
     current_user || guest_user
   end
 
   def admin_signed_in?
-    current_or_guest_user.admin?
+    current_user_or_guest.admin?
   end
 
   def authenticate_admin!
@@ -29,7 +29,7 @@ module Auth
   end
 
   def require_last_name_and_first_name!
-    return unless current_or_guest_user.anonimus?
+    return unless current_user_or_guest.anonimus?
 
     redirect_to edit_account_profile_path
   end
