@@ -2,10 +2,16 @@
 
 class Web::HomeController < Web::ApplicationController
   def index
-    form = Web::Resumes::SearchForm.new(params[:q])
+    query = { s: 'id desc' }.merge(params.permit![:q] || {})
+    sanitize_query = if current_user_or_guest.admin?
+                       query
+                     else
+                       query.except('answers_count_eq', 'answers_count_in', 'answers_user_id_eq')
+                     end
+    form = Web::Resumes::SearchForm.new(sanitize_query)
     @bot = AiBotHelper.ai_bot_user
-    @q = Resume.web.with_locale.ransack(form.to_h)
-    @resumes = @q.result(distinct: true).includes(:user, :skills).page(params[:page]).order(id: :desc)
+    @search = Resume.web.with_locale.ransack(form.to_h)
+    @resumes = @search.result(distinct: true).includes(:user, :skills).page(params[:page])
     @page = params[:page]
     @tags = Resume.directions_tags
 
