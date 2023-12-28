@@ -30,6 +30,10 @@ class Resume::Answer < ApplicationRecord
     user_id == user.id
   end
 
+  def tota_ai_author?
+    user.email == ENV.fetch('EMAIL_SPECIAL_USER')
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[user_id]
   end

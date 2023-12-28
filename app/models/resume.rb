@@ -93,6 +93,10 @@ class Resume < ApplicationRecord
     name
   end
 
+  def author?(user)
+    user_id == user.id
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id answers_count created_at impressions_count name state]
   end

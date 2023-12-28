@@ -64,12 +64,13 @@ h3.text-center = @resume
   h3.mb-3 = t('.recomendations')
 
   - @resume_answers.each do |answer|
-    = render partial: 'web/shared/answer', object: answer, locals: { current_user_likes_by_answer_id: @current_user_likes_by_answer_id }
+    - next if answer.tota_ai_author? && !answer.author?(current_user_or_guest) && !@resume.author?(current_user_or_guest) && !current_user_or_guest.admin?
+    = render 'web/shared/answer', answer:, current_user_likes_by_answer_id: @current_user_likes_by_answer_id
 
 - if user_signed_in?
   - if @current_user_answer
     .text-center.lead = t('.answer_exists')
   - else
-    = render partial: 'web/shared/answer_form', locals: { answer: @answer, url: resume_answers_path(@resume) }
+    = render 'web/shared/answer_form', answer: @answer, url: resume_answers_path(@resume)
 - else
   = render 'answer_requires'
