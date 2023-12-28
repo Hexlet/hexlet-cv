@@ -54,6 +54,7 @@ ru:
           users_finished_career: Закончили КТ
           users_archived_career: Архив
         users:
+          archived_at: Заархивирован
           current_step: Текущий шаг
           not_started: Не стартовал
           confirm: Вы уверенны что хотите убрать пользоваеля из карьерного трека

@@ -9,7 +9,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
                        .merge(Career.with_locale)
                        .ransack(query)
 
-    @career_members = @q.result
+    @career_members = @q.result(distinct: true)
     @careers = Career.with_locale
   end
 
@@ -31,12 +31,15 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   end
 
   def archived
-    scope = @career_members.archived
+    scope = @career_members.includes(:versions).archived
 
     respond_to do |format|
       format.html do
         @users_count = scope.size
         @archived_career_members = scope.page(params[:page]).per(20)
+        @versions_by_member_id = @archived_career_members.each_with_object({}) do |member, acc|
+          acc[member.id] = member.versions.with_event(:archive).order(created_at: :asc).last
+        end
         @users = prepare_data(@archived_career_members)
         @back_to_page = archived_admin_career_member_users_path(page: params[:page])
       end
@@ -123,12 +126,14 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
 
   def prepare_data(career_members)
     career_members.each_with_object({}) do |member, acc|
+      members = member.career_step_members
+      last_finished_or_active_step = members.active.order(created_at: :asc).last || members.finished.order(created_at: :asc).last
       acc[member.id] = {}
       acc[member.id][:user] = member.user
       acc[member.id][:careers] = member.user.careers
       acc[member.id][:current_step] = member.current_item&.career_step&.name
       acc[member.id][:progress] = member.progress_by_finished_steps
-      acc[member.id][:last_finished_at] = member.career_step_members.active.order(created_at: :asc).last&.created_at
+      acc[member.id][:last_finished_or_active_step] = last_finished_or_active_step&.created_at
     end
   end
 

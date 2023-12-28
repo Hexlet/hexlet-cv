@@ -58,6 +58,7 @@ en:
           list: List
           new: Assign a student a career track
         users:
+          archived_at: Archived at
           current_step: Current step
           not_started: Not started
           confirm: Are you sure you want to remove the user from the career track?

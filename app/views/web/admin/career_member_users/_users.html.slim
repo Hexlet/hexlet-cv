@@ -9,7 +9,9 @@
         th = sort_link(q, :created_at)
         th = han('career/member', :state)
         th = t('.last_satep_finished_at')
-        - unless @finished_career_members.nil?
+        - if @archived_career_members.present?
+          th = sort_link(q, :versions_created_at, t('.archived_at'))
+        - if @finished_career_members.present?
           th = sort_link(q, :finished_at)
         - if show_progress
           th = t('.progress')
@@ -29,8 +31,10 @@
               = render 'careers', careers: user[:careers]
             td = show_date_if(career_member.created_at, :without_time)
             td = career_member.aasm(:state).human_state
-            td = show_date_if(user[:last_finished_at], :without_time)
-            - unless @finished_career_members.nil?
+            td = show_date_if(user[:last_finished_or_active_step], :without_time)
+            - if @archived_career_members.present?
+              td = l @versions_by_member_id[career_member.id].created_at, format: :without_time
+            - if @finished_career_members.present?
               td = show_date_if(career_member.finished_at, :without_time)
             - if show_progress
               td = user[:progress]

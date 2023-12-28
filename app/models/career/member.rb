@@ -94,6 +94,6 @@ class Career::Member < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[user career]
+    %w[user career versions]
   end
 end

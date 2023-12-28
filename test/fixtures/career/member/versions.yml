@@ -24,5 +24,10 @@ member_full_finish:
   event: finish
   created_at: <%= Date.today - 3.days %>
 
+archived_member:
+  <<: *DEFAULTS
+  event: archive
+  created_at: <%= Date.today - 10.days %>
+
 
 
