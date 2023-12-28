@@ -1,7 +1,6 @@
 .fs-4.mb-3 = t('.title')
 
 - last_answers.each do |answer|
-  - next if answer.tota_ai_author? && !answer.author?(current_user_or_guest) && !answer.resume.author?(current_user_or_guest) && !current_user_or_guest.admin?
   .mb-4
     .fw-bolder = link_to answer.resume, resume_path(answer.resume, anchor: "answer-#{answer.id}")
     .small

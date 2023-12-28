@@ -33,7 +33,7 @@
             td = career_member.aasm(:state).human_state
             td = show_date_if(user[:last_finished_or_active_step], :without_time)
             - if @archived_career_members.present?
-              td = l @versions_by_member_id[career_member.id].created_at, format: :without_time
+              td = show_date_if(@versions_by_member_id[career_member.id]&.created_at, :without_time)
             - if @finished_career_members.present?
               td = show_date_if(career_member.finished_at, :without_time)
             - if show_progress
