@@ -8,8 +8,4 @@ class Career::Member::Version < PaperTrail::Version
   enumerize :event, in: %i[activate archive finish], scope: true, predicates: true
 
   validates :item, :event, :item_type, presence: true
-
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[created_at]
-  end
 end

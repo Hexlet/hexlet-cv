@@ -10,7 +10,7 @@
         th = han('career/member', :state)
         th = t('.last_satep_finished_at')
         - if @archived_career_members.present?
-          th = sort_link(q, :versions_created_at, t('.archived_at'))
+          th = t('.archived_at')
         - if @finished_career_members.present?
           th = sort_link(q, :finished_at)
         - if show_progress
