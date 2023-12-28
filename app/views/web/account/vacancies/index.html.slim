@@ -1,5 +1,7 @@
 - content_for :header do
   = t('.header')
+.mb-3
+  = link_to t('.resume'), root_path
 
 - @vacancies.each do |vacancy|
   .card.mb-3

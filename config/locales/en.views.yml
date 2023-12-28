@@ -167,7 +167,7 @@ en:
         contact: Contact
       show:
         apply: Apply
-        add_a_comment: Add a comment
+        add_a_comment: Add a comment/link to vacancy
         comments: Comments
         recomendations: Recommendations
         answer_exists: You've already left the recommendation
@@ -188,7 +188,7 @@ en:
         requires: This action requires
         sign_in: sign in
       answer_requires:
-        write_answer: Sign in to write an answer
+        write_answer: Sign in to suggest a position to a candidate or leave a comment
         sign_up: Sign up
         sign_in: Sign in
       comments:
@@ -231,6 +231,7 @@ en:
           header: Edit vacancy
           vacancy_archived: Vacancy is archived
         index:
+          resume: Look for candidates in the Resume section
           header: My vacancies
       resumes:
         new:

@@ -156,7 +156,7 @@ ru:
     shared:
       answer:
         apply: Принять
-        add_a_comment: Добавить комментарий
+        add_a_comment: Добавить комментарий/ссылку на вакансию
       resume_filter:
         directions: Выберите направление
         name: Название резюме
@@ -285,7 +285,7 @@ ru:
         requires: Для этого действия нужно
         sign_in: войти
       answer_requires:
-        write_answer: Войдите на сайт, чтобы написать ответ
+        write_answer: Войдите, чтобы предложить вакансию кандидату или оставить комментарий
         sign_up: Регистрация
         sign_in: Вход
       comments:
@@ -329,6 +329,7 @@ ru:
           header: Редактирование вакансии
           vacancy_archived: Вакансия в архиве
         index:
+          resume: Ищите кандидатов в разделе Резюме
           header: Мои вакансии
       resumes:
         new:
