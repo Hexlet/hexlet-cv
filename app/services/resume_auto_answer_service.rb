@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+require 'redcarpet/render_strip'
+
 class ResumeAutoAnswerService
   class << self
     def evaluate_resume(resume)
       client = ApplicationContainer[:open_ai_helper]
       resume_summary = prepare_resume(resume)
-      response_recommendation = client.send_content(I18n.t('open_ai_command.evaluate_resume'), resume_summary)
-      response_covering_letter = client.send_content(I18n.t('open_ai_command.write_cover_letter'), resume_summary)
-      response_edited_text = client.send_content(I18n.t('open_ai_command.edit_text'), resume_summary)
+      plain_text = sanitize_text(resume_summary)
+      response_recommendation = client.send_content(I18n.t('open_ai_command.evaluate_resume'), plain_text)
+      response_covering_letter = client.send_content(I18n.t('open_ai_command.write_cover_letter'), plain_text)
+      response_edited_text = client.send_content(I18n.t('open_ai_command.edit_text'), plain_text)
 
       content_recommendation = response_recommendation.dig('choices', 0, 'message', 'content')
       content_covering_letter = response_covering_letter.dig('choices', 0, 'message', 'content')
@@ -47,6 +50,12 @@ class ResumeAutoAnswerService
       end
       "#{resume_content}\n#{work_content}\n#{education_content}"
     end
+
+    def sanitize_text(text)
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
+      plain_text = markdown.render(text)
+      plain_text.gsub(/(\n|\\n)/, '')
+    end
   end
-  private_class_method :prepare_resume
+  private_class_method :prepare_resume, :sanitize_text
 end
