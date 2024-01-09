@@ -17,12 +17,15 @@ backend:
 setup-heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
 
-setup: setup-heroku setup-app
+setup:
+	make setup-heroku || true
+	make setup-heroku-arm64 || true
+	make setup-app
 
 setup-heroku-arm64:
 	arch -x86_64 /bin/zsh -c 'curl https://cli-assets.heroku.com/install.sh | sh'
 
-setup-arm64: setup-heroku-arm64 setup-app
+# setup-arm64: setup-heroku-arm64 setup-app
 
 setup-app:
 	cp -n .env.example .env || true
