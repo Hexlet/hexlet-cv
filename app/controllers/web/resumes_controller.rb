@@ -2,6 +2,7 @@
 
 class Web::ResumesController < Web::ApplicationController
   impressionist actions: [:show]
+  redirect_actions_when_not_founded_to -> { root_path }, only: :show, if: -> { browser.bot? }
 
   def index
     @resumes = Resume.web.with_locale.order(id: :desc)

@@ -5,6 +5,7 @@ class Web::ApplicationController < ApplicationController
   include Flash
   include GonInit
   include LocaleConcern
+  include SeoRedirectConcern
   # include Title
 
   # helper_method :title

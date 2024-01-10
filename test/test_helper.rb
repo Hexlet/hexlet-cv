@@ -42,3 +42,12 @@ end
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 end
+
+# NOTE: устанавливаем глобально для всех тестов user agent
+# Так мы сможем тестировать сценарии как с обычным пользователем так и с ботами
+class Rack::Request
+  def initialize(env)
+    env['HTTP_USER_AGENT'] ||= 'Mozilla'
+    super
+  end
+end
