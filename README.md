@@ -41,7 +41,7 @@ make fixtures-load # sometimes, when fixtures were changed
 
 ```sh
 make compose-setup # setup app
-make compose-app-test # run tests
+make compose app-test # run tests
 make compose # run server http://localhost:3000
 
 make app-ci-check # run ci
