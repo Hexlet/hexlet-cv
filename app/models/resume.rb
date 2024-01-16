@@ -17,12 +17,12 @@ class Resume < ApplicationRecord
   enumerize :relocation, in: %i[not_specified another_country another_city another_city_country not_ready], scope: true, predicates: { prefix: true }
 
   validates :name, presence: true
-  validates :github_url, presence: true
-  validates :summary, presence: true, length: { minimum: 200 }
-  validates :skills_description, presence: true
+  validates :github_url, presence: true, unless: :draft?
+  validates :summary, length: { minimum: 200 }, presence: true, unless: :draft?
+  validates :skills_description, presence: true, unless: :draft?
+  validates :contact_email, presence: true, unless: :draft?
   validates :contact_email, 'valid_email_2/email': true
   validates :contact_phone, phone: true
-  validates :contact_email, presence: true
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy
