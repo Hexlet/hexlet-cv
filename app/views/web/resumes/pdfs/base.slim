@@ -72,6 +72,8 @@
             span.me-2
               | ,
             span.lead = work.company
+            .text-muted
+            = work.company_description
             .lead.text-muted.mt-1.mb-2
               = work.begin_date.to_formatted_s(:month_and_year)
               - if work.current

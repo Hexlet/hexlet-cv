@@ -106,6 +106,7 @@ en:
         state/banned: Banned
       resume/work:
         company: Company
+        company_description: About company
         position: Job title
         begin_date: From
         end_date: To
