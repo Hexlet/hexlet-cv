@@ -50,7 +50,9 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create and to draft' do
-    attrs = FactoryBot.attributes_for :resume
+    attrs = {
+      name: 'Ruby developer'
+    }
 
     params = {
       hide: true,
