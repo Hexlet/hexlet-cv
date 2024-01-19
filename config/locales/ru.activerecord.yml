@@ -130,7 +130,7 @@ ru:
         state/archived: В архиве
         skill_list: Тэги навыков
         direction_list: Направление
-        projects_description: Описания проектов
+        projects_description: Описание проектов
         about_myself: О себе
       resume/answer:
         content: Ответ
