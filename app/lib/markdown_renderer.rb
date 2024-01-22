@@ -6,7 +6,7 @@ class MarkdownRenderer < Redcarpet::Render::HTML
 
   def initialize(extensions = {})
     @extensions = extensions.merge(link_attributes: { target: '_blank' })
-    super @extensions
+    super(@extensions)
   end
 
   def block_html(raw_html)

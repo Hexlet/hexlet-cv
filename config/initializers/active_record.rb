@@ -24,7 +24,7 @@ module OutdatedAttributes
 
     def rewrite_outdated_setters
       outdated_attributes.each do |attribute|
-        define_method "#{attribute}=" do |_value|
+        define_method :"#{attribute}=" do |_value|
           raise "Attribute #{attribute} for class '#{self.class}' was marked as outdated"
         end
       end

@@ -38,7 +38,7 @@ class EmailSender
 
       return unless user.can_send_email?
 
-      CareerMemberMailer.with(career_member:, user:).public_send("#{notification_kind}_email").deliver_later
+      CareerMemberMailer.with(career_member:, user:).public_send(:"#{notification_kind}_email").deliver_later
     end
 
     private

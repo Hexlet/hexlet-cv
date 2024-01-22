@@ -7,7 +7,7 @@ class EventSenderJob < ApplicationJob
 
   def perform(event_id)
     event = Event.find(event_id)
-    public_send("process_#{event.kind}_created", event)
+    public_send(:"process_#{event.kind}_created", event)
   end
 
   def process_new_career_member_created(event)

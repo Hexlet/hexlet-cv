@@ -19,7 +19,7 @@ class NotificationsHelper
     def message(notification)
       raise [notification, notification.user].inspect unless notification.resource
 
-      params = send("#{notification.kind}_params", notification.resource)
+      params = send(:"#{notification.kind}_params", notification.resource)
       I18n.t("#{notification.kind}_html", scope: [:notifications], **params)
     end
 

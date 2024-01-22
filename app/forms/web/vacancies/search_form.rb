@@ -25,7 +25,7 @@ class Web::Vacancies::SearchForm
 
   def search_params
     params = ATTRIBUTES.map do |attr_name|
-      value = instance_variable_get("@#{attr_name}")
+      value = instance_variable_get(:"@#{attr_name}")
 
       [attr_name, value]
     end
