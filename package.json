@@ -16,7 +16,7 @@
     "@sentry/browser": "^7.34.0",
     "@sentry/tracing": "^7.34.0",
     "@toast-ui/editor": "^3.2.1",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.10.3",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^5.0.0",

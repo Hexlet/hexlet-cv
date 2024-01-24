@@ -3,9 +3,12 @@ $link-decoration: none;
 
 @import 'bootstrap/scss/bootstrap';
 @import 'select2';
-@import 'select2-bootstrap-5-theme';
+// @import 'select2-bootstrap-5-theme';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import "swiper/css/bundle";
+// хак чтобы select2-bootstrap  не конфликтовал с новым bootstrap
+$s2bs5-border-color: $border-color;
+@import "select2-bootstrap-5-theme/src/include-all";
 
 
 
