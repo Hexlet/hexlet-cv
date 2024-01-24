@@ -1,5 +1,7 @@
 - content_for :header do
   = t('.header')
+  = link_to resume_path(@resume), class: 'btn btn-outline-primary btn-sm ms-1' do
+    span.bi.bi-eye-fill
 
 = render 'web/shared/resume_form', resume: @resume, url: admin_resume_path(@resume),
   resume_educations: @resume_educations, resume_works: @resume_works, can_update: ResumePolicy.new(current_user, @resume).update_state?
