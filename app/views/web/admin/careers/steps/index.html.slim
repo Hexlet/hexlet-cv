@@ -18,7 +18,7 @@ table.table
         td
           .small.mt-auto
             - step.careers.each do |career|
-              span.badge.bg-success.text-body-tertiary = career.name
+              span.badge.bg-success = career.name
               br
         td = l step.created_at, format: :short
         td

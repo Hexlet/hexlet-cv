@@ -12,7 +12,7 @@ const editorRun = () => {
         initialEditType: 'markdown',
         previewStyle: 'tab',
         usageStatistics: false,
-        initialValue: el.value.replace(/(\r?\n){2,}/g, '$1'),
+        initialValue: el.value.replace(/(\r?\n){6,}/g, '$1'),
         /* eslint-disable no-param-reassign */
         events: {
           keyup(_, e) {
