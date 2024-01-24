@@ -6,6 +6,7 @@ class Resume::Work < ApplicationRecord
   belongs_to :resume
 
   validates :company, presence: true
+  validates :company_description, length: { maximum: 200 }
   validates :position, presence: true
   validates :begin_date, presence: true
   validates :description, presence: true

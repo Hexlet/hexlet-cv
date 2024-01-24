@@ -140,6 +140,7 @@ ru:
         content: Описание
       resume/work:
         company: Компания
+        company_description: О компании
         position: Должность
         begin_date: Дата начала
         end_date: Дата конца

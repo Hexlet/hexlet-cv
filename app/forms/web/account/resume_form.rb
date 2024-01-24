@@ -25,7 +25,7 @@ class Web::Account::ResumeForm < Resume
 
   nested_attrs = {
     educations_attributes: %i[description begin_date end_date current _destroy id],
-    works_attributes: %i[company position description begin_date end_date current _destroy id]
+    works_attributes: %i[company company_description position description begin_date end_date current _destroy id]
   }
 
   fields(*attrs, **nested_attrs)
