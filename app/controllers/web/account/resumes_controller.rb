@@ -19,8 +19,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
 
-    if @resume.save
-      change_visibility(@resume)
+    if @resume.save && change_visibility(@resume)
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
@@ -33,8 +32,7 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def update
     resume = current_user.resumes.find params[:id]
     @resume = resume.becomes(Web::Account::ResumeForm)
-    if @resume.update(params[:resume])
-      change_visibility(@resume)
+    if @resume.update(params[:resume]) && change_visibility(@resume)
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
@@ -49,7 +47,8 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   private
 
   def change_visibility(resume)
-    resume.publish! if params[:publish]
+    return resume.publish! if params[:publish]
+
     resume.hide! if params[:hide]
   end
 end

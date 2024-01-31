@@ -43,6 +43,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     last_answer = resume.answers.last
     assert { resume }
+    assert { resume.published? }
     assert { resume.educations.exists?(description: education_attrs[:description]) }
     assert { resume.works.exists?(company: works_attrs[:company]) }
     assert { resume.evaluated? }
@@ -70,7 +71,12 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume = resumes(:one_evaluated_failed)
     attrs = FactoryBot.attributes_for(:resume)
 
-    patch account_resume_path(resume), params: { resume: attrs }
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    patch(account_resume_path(resume), params:)
 
     assert_response :redirect
     resume.reload
@@ -92,7 +98,13 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     work_attrs = FactoryBot.attributes_for 'resume/work'
     attrs = FactoryBot.attributes_for(:resume,
                                       works_attributes: { work.id => work.attributes.merge(company: work_attrs[:company]) })
-    patch account_resume_path(resume), params: { resume: attrs }
+
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    patch(account_resume_path(resume), params:)
     assert_response :redirect
 
     resume.reload
@@ -134,7 +146,12 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     attrs = FactoryBot.attributes_for :resume
     attrs[:direction_list] = 'Ruby-dveloper'
 
-    post account_resumes_path, params: { resume: attrs }
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    post(account_resumes_path, params:)
     assert_response :redirect
 
     resume = Resume.find_by(name: attrs[:name])
@@ -145,7 +162,12 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     attrs = FactoryBot.attributes_for :resume
     attrs[:direction_list] = 'Ruby' * 40
 
-    post account_resumes_path, params: { resume: attrs }
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    post(account_resumes_path, params:)
     assert_response :unprocessable_entity
 
     resume = Resume.find_by(name: attrs[:name])
