@@ -21,26 +21,29 @@ two:
 full_1:
   resume: full
   company: Hexlet
+  company_description: Лучшая школа программирования по версии пользователей Хабра
   position: Junior Software Engineer
   begin_date: 2015-09-07
   end_date: 2019-09-07
   description: |
-    Разработка и поддержка образовательной онлайн платформы Hexlet
+    Разрабатывал и поддерживал образовательные онлайн-платформы Hexlet, CodeBasics
 
 full_2:
   resume: full
   company: Paygety
+  company_description: Компания, разрабатывающая сервис по обмену криптовалюты в Европе
   position: Software Engineer
   begin_date: 2019-09-03
   end_date: 2019-09-07
   description: |
-    Разработка и поддержка сервиса по обмену криптовалюты Paygety
+    Разрабатывал новый функционал, поддерживал платформу, помогал онбордить новых сотрудников
 
 full_3:
   resume: full
   company: datarockets
+  company_description: Аутсорс-компания, предоставляющая решения для бизнеса
   position: Software Engineer
   begin_date: 2018-02-07
   end_date: 2019-09-07
   description: |
-    Разработка веб-приложений разной сложности под ключ, в основном работаю на стеке Ruby/Rails
+    Участвовал в разработке нескольких проектов "под ключ", в основном на стеке Ruby/Rails
