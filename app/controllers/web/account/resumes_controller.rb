@@ -32,7 +32,14 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
   def update
     resume = current_user.resumes.find params[:id]
     @resume = resume.becomes(Web::Account::ResumeForm)
-    if @resume.update(params[:resume]) && change_visibility(@resume)
+
+    if params[:publish]
+      @result = ResumeMutator.publish!(@resume, params[:resume])
+    elsif params[:hide]
+      @result = ResumeMutator.to_draft!(@resume, params[:resume])
+    end
+
+    if @result
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
