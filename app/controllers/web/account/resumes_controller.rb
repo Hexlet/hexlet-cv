@@ -19,7 +19,8 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     @resume = Web::Account::ResumeForm.new(params[:resume])
     @resume.user = current_user
 
-    if @resume.save && change_visibility(@resume)
+    change_state(@resume)
+    if @resume.save
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
@@ -33,13 +34,8 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
     resume = current_user.resumes.find params[:id]
     @resume = resume.becomes(Web::Account::ResumeForm)
 
-    if params[:publish]
-      @result = ResumeMutator.publish!(@resume, params[:resume])
-    elsif params[:hide]
-      @result = ResumeMutator.to_draft!(@resume, params[:resume])
-    end
-
-    if @result
+    change_state(@resume)
+    if @resume.update(params[:resume])
       OpenAiJob.perform_later(@resume.id)
       f(:success)
       redirect_to account_resumes_path
@@ -53,9 +49,11 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   private
 
-  def change_visibility(resume)
-    return resume.publish! if params[:publish]
-
-    resume.hide! if params[:hide]
+  def change_state(resume)
+    if params[:publish]
+      resume.publish
+    else
+      resume.hide
+    end
   end
 end
