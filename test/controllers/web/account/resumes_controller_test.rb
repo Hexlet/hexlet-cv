@@ -63,7 +63,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     post(account_resumes_path, params:)
     assert_response :redirect
 
-    resume = Resume.find_by(name: attrs[:name])
+    resume = Resume.find_by(attrs)
     assert { resume.not_evaluated? }
   end
 
@@ -80,7 +80,7 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     post(account_resumes_path, params:)
     assert_response :unprocessable_entity
 
-    resume = Resume.find_by(name: attrs[:name])
+    resume = Resume.find_by(attrs)
     assert { !resume }
   end
 
