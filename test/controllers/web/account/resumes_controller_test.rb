@@ -67,6 +67,23 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     assert { resume.not_evaluated? }
   end
 
+  test '#create unfilled and fail to publish' do
+    attrs = {
+      name: 'Ruby developer'
+    }
+
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    post(account_resumes_path, params:)
+    assert_response :unprocessable_entity
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { !resume }
+  end
+
   test '#update evaluated_ai_state failed' do
     resume = resumes(:one_evaluated_failed)
     attrs = FactoryBot.attributes_for(:resume)
