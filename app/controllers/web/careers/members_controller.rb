@@ -18,7 +18,7 @@ class Web::Careers::MembersController < Web::Careers::ApplicationController
 
     item_index = params[:step].to_i - 1
 
-    if @career_items[item_index] && resource_member.can_show_step_body?(@career_items[item_index])
+    if @career_items[item_index] && policy(resource_member).can_show_step_body?(@career_items[item_index])
       @career_items[item_index]
     else
       @career_items.first

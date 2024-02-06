@@ -2,6 +2,6 @@
 
 class Career::Step::MemberPolicy < ApplicationPolicy
   def finish?
-    @user && @record.user == @user
+    @user && (@record.user == @user || @user.admin?)
   end
 end
