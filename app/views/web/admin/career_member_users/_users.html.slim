@@ -25,6 +25,7 @@
               = link_to user[:user].full_name, user_path(user[:user]), class: 'text-decoration-none'
               .small.text-body-secondary
                 = user[:user].email
+              = link_to career_member.id, career_member_path(career_member.career.slug, career_member.id)
             td
               = user[:current_step] || t('.not_started')
               br
