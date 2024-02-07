@@ -13,7 +13,7 @@ class Web::ResumesController < Web::ApplicationController
   end
 
   def show
-    @resume = Resume.web.find(params[:id])
+    @resume = Resume.web.with_locale.find(params[:id])
     authorize @resume
 
     @resume_answers = @resume.answers
