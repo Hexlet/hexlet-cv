@@ -78,6 +78,7 @@ gem 'wkhtmltopdf-binary'
 
 group :development, :staging, :test do
   gem 'faker'
+  gem 'annotate'
 end
 
 group :development, :test do

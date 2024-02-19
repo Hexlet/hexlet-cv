@@ -73,6 +73,9 @@ lint-style:
 linter-code-fix:
 	bundle exec rubocop -A
 
+editor-setup:
+	bundle exec annotate --models
+
 deploy:
 	git push heroku main
 
