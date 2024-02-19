@@ -267,6 +267,8 @@ ru:
         education: Образование
         current: по настоящее время
         contact: Контакт
+        available_contacts_html: |
+          Контакты доступны после <a href="%{sign_in}">входа</a> на сайт
       show:
         apply: Применить
         add_a_comment: Добавить комментарий

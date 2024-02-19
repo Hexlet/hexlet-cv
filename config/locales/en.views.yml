@@ -165,6 +165,8 @@ en:
         education: Education
         current: To present
         contact: Contact
+        available_contacts_html: |
+          Contacts are available after <a href="%{sign_in}">signing in</a>
       show:
         apply: Apply
         add_a_comment: Add a comment/link to vacancy

@@ -1,8 +1,12 @@
-- unless current_user_or_guest.guest?
-  .d-flex
-    h2.my-4.me-3 = t('.contacts')
-    hr.my-auto.w-100
+.d-flex
+  h2.my-4.me-3 = t('.contacts')
+  hr.my-auto.w-100
 
+- if current_user_or_guest.guest?
+  .alert.alert-primary.mb-4
+    = t('.available_contacts_html', sign_in: new_user_session_path)
+
+- else
   - if @resume.contact_email
     .row.mt-3.mb-4
       .col-sm-3
