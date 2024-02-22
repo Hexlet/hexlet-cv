@@ -78,7 +78,6 @@ gem 'wkhtmltopdf-binary'
 
 group :development, :staging, :test do
   gem 'faker'
-  gem 'annotate'
 end
 
 group :development, :test do
@@ -93,6 +92,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'ruby-lsp-rails'
   gem 'yard'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

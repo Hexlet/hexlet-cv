@@ -44,3 +44,6 @@ app-rails:
 
 app-make:
 	docker-compose run --rm app make $(T)
+
+app-editor-setup:
+	docker-compose run --rm app make editor-setup

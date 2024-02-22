@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: career_steps
+#
+#  id                :integer          not null, primary key
+#  description       :text             not null
+#  locale            :string           not null
+#  name              :string           not null
+#  notification_kind :string
+#  review_needed     :boolean
+#  tasks_text        :text             not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
 class Career::Step < ApplicationRecord
   extend Enumerize
   include Career::StepRepository

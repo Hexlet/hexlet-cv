@@ -44,3 +44,6 @@ podman-compose-app-rails:
 
 podman-compose-app-make:
 	podman-compose run --rm app make $(T)
+
+podman-compose-app-editor-setup:
+	podman-compose run --rm make editor-setup
