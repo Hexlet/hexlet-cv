@@ -1,6 +1,11 @@
 .card.shadow-sm
-  .card-body.d-flex
-    .lead.me-auto.my-auto = t('.write_answer')
-    .my-1
-      = link_to t('.sign_in'), new_user_session_path, class: 'btn btn-primary btn-lg m-2'
-      = link_to t('.sign_up'), new_user_registration_path, class: 'btn btn-primary btn-lg ms-2'
+  .card-body
+    .row.align-items-center
+      .col-lg-8.col-xl-7
+        .lead.me-auto.my-auto = t('.write_answer')
+      .col-lg-4.col-xl-5
+        .row.row-cols-1.row-cols-sm-2.row-cols-lg-1.row-cols-xl-2.mt-2.mt-lg-0.gy-2
+          .col
+            = link_to t('.sign_in'), new_user_session_path, class: 'btn btn-primary fs-5 w-100'
+          .col
+            = link_to t('.sign_up'), new_user_registration_path, class: 'btn btn-primary fs-5 w-100'
