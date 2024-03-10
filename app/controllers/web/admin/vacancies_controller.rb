@@ -3,16 +3,15 @@
 class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def index
     query = query_params({ s: 'created_at desc' })
+    scope = Vacancy.includes(:creator).with_locale
+    @q = scope.ransack(query)
     respond_to do |format|
       format.html do
         @go_to = admin_vacancies_path(page: params[:page])
-        @q = Vacancy.with_locale.ransack(query)
         @vacancies = @q.result(distinct: true).page(params[:page])
       end
-
       format.csv do
-        q = Vacancy.with_locale.includes(:creator).ransack(query)
-        vacancies = q.result(distinct: true)
+        vacancies = @q.result(distinct: true)
 
         headers = %w[id title state creator company_name created_at published_at]
         send_file_headers!(filename: "vacancies-#{Time.zone.today}.csv")
