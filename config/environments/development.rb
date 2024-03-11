@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = false
+    Bullet.bullet_logger = true
+    Bullet.console = false
+    Bullet.rails_logger = true
+    Bullet.sentry = true
+    Bullet.add_footer = false
+  end
+
   config.logger = ActiveSupport::Logger.new($stdout)
   # Settings specified here will take precedence over those in config/application.rb.
 

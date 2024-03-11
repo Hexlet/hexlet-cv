@@ -108,6 +108,9 @@ GEM
       popper_js (>= 2.11.8, < 3)
     browser (5.3.1)
     builder (3.2.4)
+    bullet (7.1.6)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.3)
     capybara (3.40.0)
       addressable
@@ -280,6 +283,8 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
+    nokogiri (1.16.2-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-darwin)
@@ -499,6 +504,7 @@ GEM
     sorbet (0.5.11284)
       sorbet-static (= 0.5.11284)
     sorbet-runtime (0.5.11284)
+    sorbet-static (0.5.11284-aarch64-linux)
     sorbet-static (0.5.11284-universal-darwin)
     sorbet-static (0.5.11284-x86_64-linux)
     spring (4.1.3)
@@ -509,6 +515,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.2-aarch64-linux)
     sqlite3 (1.7.2-arm64-darwin)
     sqlite3 (1.7.2-x86_64-darwin)
     sqlite3 (1.7.2-x86_64-linux)
@@ -523,6 +530,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    uniform_notifier (1.16.0)
     uri (0.13.0)
     valid_email2 (5.2.1)
       activemodel (>= 3.2)
@@ -556,6 +564,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-22
   arm64-darwin-23
   x86_64-darwin-21
@@ -570,6 +579,7 @@ DEPENDENCIES
   bootsnap
   bootstrap
   browser
+  bullet
   byebug
   capybara
   cocoon
