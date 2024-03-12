@@ -3,7 +3,8 @@
 class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def index
     query = query_params({ s: 'created_at desc' })
-    @q = Vacancy.with_locale.includes(:creator).ransack(query)
+    scope = Vacancy.includes(:creator).with_locale
+    @q = scope.ransack(query)
     respond_to do |format|
       format.html do
         @go_to = admin_vacancies_path(page: params[:page])
