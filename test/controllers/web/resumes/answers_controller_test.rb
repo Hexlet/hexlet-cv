@@ -44,6 +44,7 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
   test '#create' do
     resume = resumes(:full_without_answers)
     attrs = FactoryBot.attributes_for 'resume/answer'
+
     post resume_answers_path(resume), params: { resume_answer: attrs }
 
     # TODO: fix after update controller
@@ -51,8 +52,10 @@ class Web::Resumes::AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
 
     answer = resume.answers.find_by attrs
+    resume.reload
 
     assert { answer }
+    assert { resume.answers_count == 1 }
     assert { Notification.find_by(user: resume.user, resource: answer, kind: :new_answer) }
   end
 
