@@ -25,7 +25,7 @@ Bundler.require(*Rails.groups)
 impressionist_dir = Gem::Specification.find_by_name('impressionist').gem_dir
 require File.join(impressionist_dir, '/app/controllers/impressionist_controller.rb')
 
-Dotenv::Railtie.load
+Dotenv::Rails.load
 
 module HexletCv
   class Application < Rails::Application
