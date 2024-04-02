@@ -14,8 +14,9 @@ class Web::UsersController < Web::ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_resume_answers = @user.resume_answers.web
-    @user_resume_answers_likes_count = @user.resume_answers.sum('likes_count')
+    resume_answers = @user.resume_answers
+    @user_resume_answers = resume_answers.web
+    @user_resume_answers_likes_count = resume_answers.sum('likes_count')
     @user_resumes = @user.resumes.web
     @user_resume_comments = @user.resume_comments.web.joins(:resume).merge(Resume.web)
     @career_members = @user.career_members.includes(:career, :career_step_members).without_archive_members
