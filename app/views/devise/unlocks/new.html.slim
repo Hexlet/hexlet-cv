@@ -6,5 +6,5 @@ h2
   .form-inputs
     = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
   .form-actions
-    = f.button :submit, t('.resend_unlock_instructions')
+    = f.button :submit, t('.resend_unlock_instructions'), class: 'btn-primary'
 = render 'devise/shared/links'

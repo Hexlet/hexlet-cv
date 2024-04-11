@@ -8,5 +8,5 @@ h2
       value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
       input_html: { autocomplete: 'email' }
   .form-actions
-    = f.button :submit, t('.resend_confirmation_instructions')
+    = f.button :submit, t('.resend_confirmation_instructions'), class: 'btn-primary'
 = render 'devise/shared/links'

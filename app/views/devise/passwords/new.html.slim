@@ -5,5 +5,5 @@ h2
   .form-inputs
     = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
   .form-actions
-    = f.button :submit, t('.send_me_reset_password_instructions')
+    = f.button :submit, t('.send_me_reset_password_instructions'), class: 'btn-primary'
 = render 'devise/shared/links'
