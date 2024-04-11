@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include UserRepository
   include UserPresenter
 
-  validates :email, 'valid_email_2/email': true
+  validates :email, 'valid_email_2/email': true, if: :email_required?
 
   # https://github.com/heartcombo/devise/wiki/How-To:-Add-an-Admin-Role
   enumerize :role, in: %i[user admin], default: :user, predicates: true, scope: true
@@ -32,6 +32,7 @@ class User < ApplicationRecord
   aasm :state, column: :state do
     state :permitted, initial: true
     state :banned
+    state :removed
 
     event :ban do
       transitions from: %i[permitted], to: :banned
@@ -39,6 +40,10 @@ class User < ApplicationRecord
 
     event :unban do
       transitions from: %i[banned], to: :permitted
+    end
+
+    event :remove do
+      transitions to: :removed
     end
   end
 
@@ -97,6 +102,13 @@ class User < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[resumes careers career_members]
+  end
+
+  protected
+
+  # NOTE: override Devise method
+  def email_required?
+    !removed?
   end
 
   # NOTE: https://github.com/plataformatec/devise#activejob-integration

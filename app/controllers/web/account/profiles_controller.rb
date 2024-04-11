@@ -18,6 +18,16 @@ class Web::Account::ProfilesController < Web::Account::ApplicationController
     end
   end
 
+  def destroy
+    UserService.remove!(current_user)
+    sign_out
+    f(:success)
+    redirect_to root_path
+  rescue StandardError
+    f(:error)
+    redirect_to edit_account_profile_path
+  end
+
   private
 
   def profile_params
