@@ -8,6 +8,9 @@ en:
         profiles:
           update:
             success: Data updated
+          destroy:
+            success: Your account has been deleted
+            error: Failed to delete account. Please reach out to our support team via support@hexlet.io
         resumes:
           update:
             success: Resume updated

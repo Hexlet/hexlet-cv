@@ -7,6 +7,9 @@ ru:
           update:
             success: Данные обновлены
             error: Не удалось обновить данные
+          destroy:
+            success: Ваш аккаунт удалён
+            error: Не удалось удалить аккаунт. Обратитесь в поддержку support@hexlet.io
         resumes:
           update:
             success: Резюме обновлено
