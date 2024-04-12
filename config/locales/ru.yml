@@ -134,4 +134,8 @@ ru:
       Описание: %{description}
   unsubscribe: Вы получили это письмо, потому что зарегистрировались на Хекслет Cv. Если хотите, можно
   settings: отписаться
-      
+  devise:
+    confirmations:
+      new:
+        resend_activation_instructions: Выслать повторно письмо с активацией
+        resend_confirmation_instructions: Выслать письмо повторно
