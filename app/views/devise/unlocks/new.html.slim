@@ -4,7 +4,8 @@ h2
   = f.error_notification message: t('devise.correct_errors')
   = f.full_error :unlock_token
   .form-inputs
-    = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
-  .form-actions
+    .mb-3
+      = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
+  .form-actions.mb-3
     = f.button :submit, t('.resend_unlock_instructions'), class: 'btn-primary'
 = render 'devise/shared/links'

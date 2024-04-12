@@ -3,7 +3,8 @@ h2
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
   = f.error_notification message: t('devise.correct_errors')
   .form-inputs
-    = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
-  .form-actions
+    .mb-3
+      = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
+  .form-actions.mb-3
     = f.button :submit, t('.send_me_reset_password_instructions'), class: 'btn-primary'
 = render 'devise/shared/links'
