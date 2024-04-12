@@ -137,5 +137,5 @@ ru:
   devise:
     confirmations:
       new:
-        resend_activation_instructions: Выслать повторно письмо с активацией
+        resend_confirmation_title: Выслать повторно письмо с активацией
         resend_confirmation_instructions: Выслать письмо повторно

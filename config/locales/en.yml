@@ -131,5 +131,5 @@ en:
   devise:
     confirmations:
       new:
-        resend_activation_instructions: Resend confirmation instructions
+        resend_confirmation_title: Resend confirmation instructions
         resend_confirmation_instructions: Resend confirmation email
