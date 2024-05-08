@@ -52,7 +52,14 @@ hr.my-auto
   .col-sm-3
     b = han('resume', 'skills_description')
   .col-sm-9.hexlet-cv-content
-    == markdown2html @resume.skills_description
+    - if @resume.skills_description.nil?
+      == markdown2html @resume.skills_description_old
+    - else
+      .row
+        - @resume.skills_description.split("\n")[0..9].each_slice(5) do |skills_slice|
+          .col-6
+            - skills_slice.each do |skill|
+              li = skill[0..24]
 - if @resume.projects_description
   .row.mb-3
     .col-sm-3

@@ -173,6 +173,8 @@ ru:
         main: Основное
         add: Заполнить
         additionally: Дополнительно
+        skill_description_new_requirements: 'Для повышения читаемости навыков, мы изменили требования по заполнению.'
+        skill_description_prev_input: 'Ваш предыдущий ввод'
       work_fields:
         remove_work: Удалить опыт работы
       education_fields:
