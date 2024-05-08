@@ -59,7 +59,7 @@ class Resume < ApplicationRecord
   validates :name, presence: true
   validates :github_url, presence: true, unless: :draft?
   validates :summary, length: { minimum: 200 }, presence: true, unless: :draft?
-  # validates :skills_description, length: { maximum: 250 }, presence: true, unless: :draft?
+  validates :skills_description, length: { maximum: 250 }, presence: true, unless: :draft?
   validates :skills_description, presence: true, unless: :draft?
   validates :contact_email, presence: true, unless: :draft?
   validates :contact_email, 'valid_email_2/email': true
