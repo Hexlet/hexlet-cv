@@ -39,7 +39,7 @@
 #  user_id  (user_id => users.id)
 #
 DEFAULTS: &DEFAULTS
-  github_url: https://github.com/$LABEL
+  github_url: "https://github.com/$LABEL"
   contact: $LABEL@email.com
   contact_phone: +7 999 999 99 99
   contact_telegram: '@$LABEL'
@@ -47,7 +47,7 @@ DEFAULTS: &DEFAULTS
   locale: <%= I18n.locale %>
   contact_email: $LABEL@email.com
   english_fluency: fluent
-  skills_description: <%= Array.new(10) { Faker::ProgrammingLanguage.name }.join('\n') %>
+  skills_description: <%= Array.new(10) { Faker::Hobby.activity }.join("\n").dump %>
   projects_description: <%= Faker::Lorem.paragraph %>
   about_myself: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
@@ -59,14 +59,12 @@ one:
   <<: *DEFAULTS
   user: one
   english_fluency: read
-  skills_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 2
 
 two:
   <<: *DEFAULTS
   user: two
-  skills_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   answers_count: 3
 
@@ -102,18 +100,17 @@ full:
     4. Чат (Slack) - аналог чат-мессенджера, работающего в реальном времени с функциями: регистрации и авторизации, создания, удаления и переименования каналов, возможностью создания и получения сообщений в каналах.
     Стек технологий: Java Script, React / React Hooks, Redux / Redux Toolkit, React-Bootstrap, WebSocket(socket.io), Axios, Formik, i18next, Yup, React-toastify, Leo-profanity
 
-  skills_description: |
-    В основном работаю со стеком Ruby/Rails, но имел дело и с другими фреймворками (Phoenix, Django, Laravel), но уровень владения/экспертизы в них очень поверхностен. Редактор у меня Vim, 10 пальцевая слепая печать прилагается.
+  # skills_description: |
+    # В основном работаю со стеком Ruby/Rails, но имел дело и с другими фреймворками (Phoenix, Django, Laravel), но уровень владения/экспертизы в них очень поверхностен. Редактор у меня Vim, 10 пальцевая слепая печать прилагается.
 
-    Так имел опыт с такими [инструментами](/) как Ansible, Docker, Terraform, разворачивал инфраструктуры на AWS
-  summary: |
-    Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
+    # Так имел опыт с такими [инструментами](/) как Ansible, Docker, Terraform, разворачивал инфраструктуры на AWS
+  # summary: |
+    # Программист-самоучка, избравший путь постоянного самосовершенствования. Ценю красивый и лаконичный код, люблю функциональное программирование (великая троица map, filter, reduce). Орудую такими языками как JS, Ruby, PHP, Python, Elixir, Clojure (в разной степени мастерства, конечно). Восхищаюсь семейством LISP языков, настолько, что пишу свой интерпретатор LISP на Elixir как пет проект. В настоящий момент углубляюсь в ОС Unix, чтобы в дальнейшем улучшить навыки DevOps.
   answers_count: 1
 
 one_archived:
   <<: *DEFAULTS
   user: one
-  skills_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   state: archived
   contact_email: one@email.com
@@ -121,7 +118,6 @@ one_archived:
 one_evaluated_failed:
   <<: *DEFAULTS
   user: one
-  skills_description: <%= Faker::Lorem.paragraph %>
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   evaluated_ai_state: failed
   contact_email: one@email.com

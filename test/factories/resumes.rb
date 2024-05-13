@@ -44,7 +44,7 @@ FactoryBot.define do
   factory :resume do
     name { Faker::Job.title }
     summary
-    skills_description
+    skills_description { Array.new(10) { Faker::Hobby.activity }.join("\n") }
     github_url
     contact
     contact_email { 'test@emil.com' }
