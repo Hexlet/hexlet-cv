@@ -48,4 +48,14 @@ class Web::Account::ProfilesControllerTest < ActionDispatch::IntegrationTest
     patch account_profile_path(user, locale: I18n.locale), params: { web_account_profile_form: attrs }
     assert_response :redirect
   end
+
+  test 'destroy' do
+    delete account_profile_path
+    assert_response :redirect
+
+    @user.reload
+
+    assert { @user.removed? }
+    # TODO: add signed out checking
+  end
 end

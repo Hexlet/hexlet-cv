@@ -2,3 +2,6 @@
   = t('.header')
 
 = render 'form', user: @user
+
+.mt-5
+  = link_to t('.remove'), account_profile_path, class: 'btn btn-danger', method: :delete, data: { confirm: t('.confirm_remove') }

@@ -128,3 +128,8 @@ en:
       Description: %{description}
   unsubscribe: You have received this email because you have registered for Hexlet Cv. If you want, you can
   settings: settings
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_title: Resend confirmation instructions
+        resend_confirmation_instructions: Resend confirmation email
