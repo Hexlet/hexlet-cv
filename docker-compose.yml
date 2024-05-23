@@ -11,7 +11,7 @@ services:
       - ~/.bash_history:/root/.bash_history
       - .:/app
     ports:
-      - "3000:3000"
+      - "4000:3000"
     depends_on:
       - frontend
     stdin_open: true
