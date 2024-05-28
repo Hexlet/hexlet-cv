@@ -190,4 +190,28 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
     resume = Resume.find_by(name: attrs[:name])
     assert { !resume }
   end
+
+  test '#create fail with invalid skills_description format' do
+    attrs = FactoryBot.attributes_for :resume
+    attrs[:skills_description] = "Too_many_skills\n" * 15
+
+    params = {
+      publish: true,
+      resume: attrs
+    }
+
+    post(account_resumes_path, params:)
+    assert_response :unprocessable_entity
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { !resume }
+
+    attrs[:skills_description] = 'Invalid_skill_lenght' * 2
+
+    post(account_resumes_path, params:)
+    assert_response :unprocessable_entity
+
+    resume = Resume.find_by(name: attrs[:name])
+    assert { !resume }
+  end
 end

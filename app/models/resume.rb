@@ -44,6 +44,7 @@ class Resume < ApplicationRecord
   include StateConcern
   extend Enumerize
   extend TagResumePresenter
+  include ResumePresenter
 
   mark_as_outdated :hexlet_url, :awards_description
 
@@ -60,10 +61,10 @@ class Resume < ApplicationRecord
   validates :github_url, presence: true, unless: :draft?
   validates :summary, length: { minimum: 200 }, presence: true, unless: :draft?
   validates :skills_description, length: { maximum: 250 }, presence: true, unless: :draft?
-  validates :skills_description, presence: true, unless: :draft?
   validates :contact_email, presence: true, unless: :draft?
   validates :contact_email, 'valid_email_2/email': true
   validates :contact_phone, phone: true
+  validate :skills_description_valid_format, unless: :draft?
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy
@@ -128,6 +129,12 @@ class Resume < ApplicationRecord
 
     attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
     super(attrs_with_defaults)
+  end
+
+  def skills_description_valid_format
+    return unless skills.size > 10 || skills.any? { |element| element.size > 25 }
+
+    errors.add(:skills_description)
   end
 
   def to_s

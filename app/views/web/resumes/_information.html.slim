@@ -56,7 +56,7 @@ hr.my-auto
       == markdown2html @resume.skills_description_old
     - else
       .row
-        - @resume.skills_description.split("\n")[0..9].each_slice(5) do |skills_slice|
+        - @resume.skills.each_slice(5) do |skills_slice|
           .col-6
             - skills_slice.each do |skill|
               li = skill[0..24]

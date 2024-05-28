@@ -161,10 +161,12 @@ ru:
       models:
         resume:
           attributes:
+            skills_description:
+              invalid: имеют не верный формат
             contact_email:
               invalid: имеет не верный формат
             contact_phone:
-              invalid: имеет неверное формат
+              invalid: имеет не верный формат
         resume/answer/like:
           attributes:
             user:
