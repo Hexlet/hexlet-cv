@@ -50,9 +50,7 @@
   .mb-3
     = f.input :direction_list, input_html: { value: f.object.direction_list.to_s }
   .row.mt-5
-    .col-sm.d-flex.mb-3
-      .me-3 = f.button :submit, class: 'btn-primary'
-      - if local_assigns.fetch(:show_archive_button, false)
-        .me-3 = f.button :submit, t('.archive'), data: { confirm: t('confirm') }, class: 'btn-outline-primary', name: 'archive'
-    .col-sm.d-flex.justify-content-end.mb-3
+    .col-auto.d-flex.mb-3
+      = f.button :submit, class: 'btn-primary'
+    .col-auto.mb-3
       = link_to t('.cancel'), url_for(:back), class: 'btn btn-outline-secondary'

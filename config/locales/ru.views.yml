@@ -324,6 +324,7 @@ ru:
       vacancies:
         form: 
           archive: В архив
+          send_to_moderate: На модерацию
           cancel: Отмена
         new:
           header: Новая вакансия
@@ -333,6 +334,10 @@ ru:
         index:
           resume: Ищите кандидатов в разделе Резюме
           header: Мои вакансии
+        actions: 
+          archive: В архив
+          send_to_moderate: На модерацию
+          additional_actions: Дополнительные действия
       resumes:
         new:
           info_for_user: Обращаем ваше внимание если вы планируете искать работу в России и СНГ, создавайте резюме в русскоязычной версии сайта
