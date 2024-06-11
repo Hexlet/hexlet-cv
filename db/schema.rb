@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_19_100332) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_08_043924) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -215,7 +215,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_100332) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.text "summary"
-    t.text "skills_description"
+    t.text "skills_description_old"
     t.string "github_url"
     t.text "awards_description"
     t.string "english_fluency"
@@ -233,6 +233,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_100332) do
     t.string "evaluated_ai_state"
     t.text "projects_description"
     t.text "about_myself"
+    t.text "skills_description", limit: 250
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 

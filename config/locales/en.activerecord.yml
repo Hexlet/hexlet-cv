@@ -145,6 +145,8 @@ en:
       models:
         resume:
           attributes:
+            skills_description:
+              invalid: is not in the correct format
             contact_email:
               invalid: is not in the correct format
             contact_phone:
