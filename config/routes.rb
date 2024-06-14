@@ -73,7 +73,12 @@ Rails.application.routes.draw do
 
       namespace :account do
         resources :resumes
-        resources :vacancies
+        resources :vacancies do
+          member do
+            patch :archive
+            patch :send_to_moderate
+          end
+        end
         resources :notifications, only: %i[index update]
         resource :newsletters, only: %i[edit update]
         resource :profile, only: %i[edit update destroy]

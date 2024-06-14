@@ -105,7 +105,7 @@ class Vacancy < ApplicationRecord
     end
 
     event :archive do
-      transitions to: :archived
+      transitions from: %i[idle on_moderate published], to: :archived
     end
 
     event :restore do

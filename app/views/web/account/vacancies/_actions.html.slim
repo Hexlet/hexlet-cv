@@ -1,0 +1,6 @@
+.fs-5 = t('.additional_actions')
+.row.mt-3
+    .col-auto.d-flex.mb-3
+        .me-3 = link_to t('.archive'), archive_account_vacancy_path(vacancy), method: :patch, class: class_names('btn btn-success', disabled: !vacancy.may_archive?), data: { confirm: 'Are you sure?' }
+    .col-auto.mb-3
+        .me-3 = link_to t('.send_to_moderate'), send_to_moderate_account_vacancy_path(vacancy), method: :patch, class: class_names('btn btn-danger', disabled: !vacancy.may_send_to_moderate?), data: { confirm: 'Are you sure?' }
