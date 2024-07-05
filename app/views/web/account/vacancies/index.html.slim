@@ -1,7 +1,11 @@
 - content_for :header do
   = t('.header')
-.mb-3
-  = link_to t('.resume'), root_path
+
+.mb-3.d-flex.justify-content-between
+  div
+    = link_to t('.resume'), root_path
+  div
+    = sort_link(@search, :created_at, class: 'dropdown-item py-2 py-sm-1')
 
 - @vacancies.each do |vacancy|
   .card.mb-3
