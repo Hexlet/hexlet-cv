@@ -21,7 +21,7 @@
           data: { confirm: t('confirm'), params: { event: :apply }.to_param },
           method: :patch,
           class: 'badge bg-success p-1',
-          title: t('.title_apply')
+          title: t('.apply')
       - elsif answer.applied?
           span.text-success = answer.aasm(:applying).human_state
       - elsif answer.pending?
