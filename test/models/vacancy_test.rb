@@ -7,6 +7,7 @@
 #  id                           :integer          not null, primary key
 #  about_company                :string
 #  about_project                :string
+#  cancelation_reason           :string
 #  city_name                    :string
 #  company_name                 :string
 #  conditions_description       :text

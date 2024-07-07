@@ -97,4 +97,30 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert { vacancy.on_moderate? }
   end
+
+  test '#cancele' do
+    vacancy = vacancies(:on_moderate)
+
+    attrs = vacancy.attributes.merge(state_event: :cancele, cancelation_reason: :high_requirements)
+
+    patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
+
+    assert_response :redirect
+    vacancy.reload
+
+    assert { vacancy.canceled? }
+  end
+
+  test '#cancele with invalid params' do
+    vacancy = vacancies(:on_moderate)
+
+    attrs = vacancy.attributes.merge(state_event: :cancele)
+
+    patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
+
+    assert_response :unprocessable_entity
+    vacancy.reload
+
+    assert { vacancy.on_moderate? }
+  end
 end

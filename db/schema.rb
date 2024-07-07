@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_19_100332) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -338,6 +338,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_100332) do
     t.datetime "published_at", precision: nil
     t.integer "external_id"
     t.string "kind", null: false
+    t.string "cancelation_reason"
     t.index ["country_id"], name: "index_vacancies_on_country_id"
     t.index ["creator_id"], name: "index_vacancies_on_creator_id"
     t.index ["external_id"], name: "index_vacancies_on_external_id"
