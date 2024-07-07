@@ -22,6 +22,7 @@ en:
         archive: To archive
         restore: Restore from archive
         send_to_moderate: Send to moderate
+        canceled: Canceled
     attributes:
       resume/answer:
         content: Answer
@@ -86,6 +87,7 @@ en:
         state/on_moderate: On moderate
         state/published: Published
         state/archived: Archived
+        state/canceled: Canceled
         name: Name
         company: Company
       notification:
