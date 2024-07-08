@@ -89,6 +89,7 @@ en:
         state/published: Published
         state/archived: Archived
         state/canceled: Canceled
+        cancelation_reason: Cancelation reason
         name: Name
         company: Company
       notification:

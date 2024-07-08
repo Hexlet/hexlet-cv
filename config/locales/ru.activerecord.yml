@@ -111,9 +111,10 @@ ru:
         state/published: Опубликована
         state/archived: В архиве
         state/on_moderate: На модерации
-        state/canceled: Отклонено
+        state/canceled: Отклонена
         name: Имя
         company: компания
+        cancelation_reason: Причина отклонения
       resume:
         name: Позиция
         summary: Описание
