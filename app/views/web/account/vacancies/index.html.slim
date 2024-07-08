@@ -11,6 +11,9 @@
         - if policy(vacancy).update?
           = link_to edit_account_vacancy_path(vacancy) do
             span.bi.bi-pencil-square.text-muted
+      - if vacancy.canceled?
+        span.ms-3
+          = t('.reason', cancelation: vacancy.cancelation_reason_text)
     .card-body
       h5.card-title
         = link_to vacancy, vacancy_path(vacancy)
