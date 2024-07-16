@@ -99,6 +99,7 @@ en:
           confirm_restore: Are you sure you want to post your selected vacancy?
         vacancies_table:
           edit: Editing Job
+          canceled: Canceled
       home:
         index:
           admins: Administrators

@@ -26,14 +26,12 @@ table.table
               span.bi.bi-eye-fill
             = link_to edit_admin_vacancy_path(vacancy), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
               span.bi.bi-gear-fill
-            a.btn.btn-outline-warning.btn-sm[data-bs-toggle="collapse" href="#collapse-#{vacancy.id}" role="button" aria-expanded="false"]
-              span.bi.bi-x-circle
+            - if vacancy.may_cancele?
+              = link_to new_cancelation_admin_vacancy_path(vacancy), class: 'btn btn-outline-warning btn-sm', title: t('.canceled') do
+                span.bi.bi-x-circle
             - if vacancy.may_restore?
               = link_to restore_admin_vacancy_path(vacancy, go_to: @go_to), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
                 span.bi.bi-arrow-counterclockwise
             - elsif vacancy.may_archive?
               = link_to archive_admin_vacancy_path(vacancy, go_to: @go_to), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
                 span.bi.bi-trash3
-        .collapse[id="collapse-#{vacancy.id}"]
-          .mb-2.m-4
-            = render 'cancelation_form', vacancy:, url: admin_vacancy_path(vacancy, go_to: on_moderate_admin_vacancies_path)
