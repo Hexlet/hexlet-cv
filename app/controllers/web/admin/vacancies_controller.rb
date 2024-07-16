@@ -32,16 +32,20 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def new
-    @vacancy = Web::Admin::VacancyForm.new
+    @vacancy = vacancy_form.new
   end
 
   def edit
-    vacancy = Vacancy.find params[:id]
-    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
+    @vacancy = resource_vacancy.becomes(vacancy_form)
+  end
+
+  def new_cancelation
+    @go_to = params[:go_to]
+    @vacancy = resource_vacancy.becomes(vacancy_form)
   end
 
   def create
-    @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
+    @vacancy = vacancy_form.new(params[:vacancy])
     @vacancy.creator = current_user
 
     if @vacancy.save
@@ -54,8 +58,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def update
-    vacancy = Vacancy.find params[:id]
-    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
+    @vacancy = resource_vacancy.becomes(vacancy_form)
     if @vacancy.update(params[:vacancy])
       f(:success)
       redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
@@ -72,15 +75,13 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def archive
-    vacancy = Vacancy.find params[:id]
-    vacancy.archive!
+    resource_vacancy.archive!
     f(:success)
     redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
   def restore
-    vacancy = Vacancy.find params[:id]
-    vacancy.restore!
+    resource_vacancy.restore!
     f(:success)
     redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
@@ -89,5 +90,13 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def query_params(default_params = {})
     default_params.merge(params.permit![:q] || {})
+  end
+
+  def resource_vacancy
+    @resource_vacancy ||= Vacancy.find params[:id]
+  end
+
+  def vacancy_form
+    Web::Admin::VacancyForm
   end
 end

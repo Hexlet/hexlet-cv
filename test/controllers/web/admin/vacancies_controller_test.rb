@@ -100,7 +100,7 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
   test '#cancele' do
     vacancy = vacancies(:on_moderate)
-    go_to = on_moderate_admin_vacancies_path
+    go_to = new_cancelation_admin_vacancy_path(vacancy)
 
     attrs = vacancy.attributes.merge(state_event: :cancele, cancelation_reason: :high_requirements)
 
