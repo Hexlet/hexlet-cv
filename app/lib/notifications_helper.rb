@@ -85,5 +85,18 @@ class NotificationsHelper
         career_path: career_member_path(career.slug, resource, locale: I18n.locale)
       }
     end
+
+    def vacancy_publish_params(resource)
+      {
+        vacancy_path: vacancy_path(resource, locale: I18n.locale)
+      }
+    end
+
+    def vacancy_cancel_params(resource)
+      {
+        vacancy_path: vacancy_path(resource, locale: I18n.locale),
+        cancelation_reason: resource.cancelation_reason_text
+      }
+    end
   end
 end

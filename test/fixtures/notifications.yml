@@ -61,4 +61,16 @@ career_member_full_by_full:
   state: unread
   kind: new_career_member
 
+vacancy_publish_one:
+  user: full
+  resource: one (Vacancy)
+  state: unread
+  kind: vacancy_publish
+
+vacancy_cancel_one:
+  user: one
+  resource: canceled (Vacancy)
+  state: unread
+  kind: vacancy_cancel
+
 # FIXME: add likes to resume and answers

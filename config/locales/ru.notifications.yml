@@ -10,3 +10,5 @@ ru:
     next_step_open_source_html:  |
       Первая половина <a href="%{career_path}" class="fw-bolder">Карьерного трека</a> позади! Впереди очень важный шаг - Участие в Open Source проектах<br>
       <a href="https://ru.hexlet.io/blog/posts/kak-vybrat-svoy-pervyy-open-sors-proekt-instruktsiya-ot-heksleta class="fw-bolder">Как выбрать свой первый опенсорс проект</a>
+    vacancy_publish_html: Ваша <a href="%{vacancy_path}" class="fw-bolder">вакансия</a> опубликована
+    vacancy_cancel_html: Ваша <a href="%{vacancy_path}" class="fw-bolder">вакансия</a> отклонена по причине %{cancelation_reason}
