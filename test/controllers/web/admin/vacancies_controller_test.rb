@@ -124,4 +124,12 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert { vacancy.on_moderate? }
   end
+
+  test '#new_cancelation_reason' do
+    vacancy = vacancies(:on_moderate)
+
+    get new_cancelation_admin_vacancy_path(vacancy)
+
+    assert_response :success
+  end
 end

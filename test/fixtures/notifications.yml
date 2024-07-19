@@ -71,6 +71,6 @@ vacancy_cancel_one:
   user: one
   resource: canceled (Vacancy)
   state: unread
-  kind: vacancy_cancel
+  kind: vacancy_cancele
 
 # FIXME: add likes to resume and answers
