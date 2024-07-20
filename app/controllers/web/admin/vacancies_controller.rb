@@ -59,7 +59,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def update
     @vacancy = resource_vacancy.becomes(vacancy_form)
-    if @vacancy.update(params[:vacancy])
+    if vacancy_service.call(@vacancy, params[:vacancy]).success?
       f(:success)
       redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
     else
@@ -98,5 +98,9 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def vacancy_form
     Web::Admin::VacancyForm
+  end
+
+  def vacancy_service
+    Admin::VacancyService
   end
 end
