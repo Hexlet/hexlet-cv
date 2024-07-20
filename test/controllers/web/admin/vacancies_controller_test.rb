@@ -55,13 +55,16 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
   test '#publish' do
     vacancy = vacancies(:archived)
-    attrs = vacancy.attributes.merge state_event: :publish
+    state_event = :publish
+    attrs = vacancy.attributes.merge(state_event:)
     previous_published_at = vacancy.published_at
     patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
     assert_response :redirect
 
     vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: "vacancy_#{state_event}")
 
+    assert { notification }
     assert { vacancy.published_at? }
     assert { vacancy.published_at != previous_published_at }
   end
@@ -101,14 +104,16 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
   test '#cancele' do
     vacancy = vacancies(:on_moderate)
     go_to = new_cancelation_admin_vacancy_path(vacancy)
-
-    attrs = vacancy.attributes.merge(state_event: :cancele, cancelation_reason: :high_requirements)
+    state_event = :cancele
+    attrs = vacancy.attributes.merge(state_event:, cancelation_reason: :high_requirements)
 
     patch admin_vacancy_path(vacancy), params: { vacancy: attrs, go_to: }
 
     assert_redirected_to go_to
     vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: "vacancy_#{state_event}")
 
+    assert { notification }
     assert { vacancy.canceled? }
   end
 
