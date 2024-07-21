@@ -12,7 +12,7 @@ class Web::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     @resume.reload
     assert_response :success
-    assert { @resume.impressions_count.zero? }
+    assert { @resume.impressions_count == 1 }
   end
 
   test '#show from boot' do

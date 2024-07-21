@@ -15,7 +15,7 @@ class Web::ResumesController < Web::ApplicationController
     @resume = Resume.web.with_locale.find(params[:id])
     authorize @resume
 
-    impressionist(@resume) if add_view?
+    impressionist(@resume) if inc_view_counter?
 
     @resume_answers = @resume.answers
                              .web
@@ -39,8 +39,8 @@ class Web::ResumesController < Web::ApplicationController
     }
   end
 
-  def add_view?
-    return false unless current_user
+  def inc_view_counter?
+    return true unless current_user
 
     !@resume.author?(current_user) && !@resume.impressions.exists?(user_id: current_user.id)
   end
