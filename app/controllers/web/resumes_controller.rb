@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Web::ResumesController < Web::ApplicationController
-  impressionist actions: [:show]
   redirect_actions_when_not_founded_to -> { root_path }, only: :show, if: -> { browser.bot? }
 
   def index
@@ -15,6 +14,8 @@ class Web::ResumesController < Web::ApplicationController
   def show
     @resume = Resume.web.with_locale.find(params[:id])
     authorize @resume
+
+    impressionist(@resume) if inc_view_counter?
 
     @resume_answers = @resume.answers
                              .web
@@ -36,5 +37,11 @@ class Web::ResumesController < Web::ApplicationController
       type: 'article',
       url: resume_url(@resume)
     }
+  end
+
+  def inc_view_counter?
+    return true unless current_user
+
+    !@resume.author?(current_user) && !@resume.impressions.exists?(user_id: current_user.id)
   end
 end
