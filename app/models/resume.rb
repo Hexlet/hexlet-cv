@@ -4,32 +4,33 @@
 #
 # Table name: resumes
 #
-#  id                   :integer          not null, primary key
-#  about_myself         :text
-#  answers_count        :integer          default(0), not null
-#  awards_description   :text
-#  city                 :string
-#  contact              :string
-#  contact_email        :string
-#  contact_phone        :string
-#  contact_telegram     :string
-#  english_fluency      :string
-#  evaluated_ai         :boolean
-#  evaluated_ai_state   :string
-#  github_url           :string
-#  hexlet_url           :string
-#  impressions_count    :integer          default(0)
-#  locale               :string
-#  name                 :string           not null
-#  projects_description :text
-#  relocation           :string
-#  skills_description   :text
-#  state                :string
-#  summary              :text
-#  url                  :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  user_id              :integer          not null
+#  id                     :integer          not null, primary key
+#  about_myself           :text
+#  answers_count          :integer          default(0), not null
+#  awards_description     :text
+#  city                   :string
+#  contact                :string
+#  contact_email          :string
+#  contact_phone          :string
+#  contact_telegram       :string
+#  english_fluency        :string
+#  evaluated_ai           :boolean
+#  evaluated_ai_state     :string
+#  github_url             :string
+#  hexlet_url             :string
+#  impressions_count      :integer          default(0)
+#  locale                 :string
+#  name                   :string           not null
+#  projects_description   :text
+#  relocation             :string
+#  skills_description     :text(250)
+#  skills_description_old :text
+#  state                  :string
+#  summary                :text
+#  url                    :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  user_id                :integer          not null
 #
 # Indexes
 #
@@ -43,6 +44,7 @@ class Resume < ApplicationRecord
   include StateConcern
   extend Enumerize
   extend TagResumePresenter
+  include ResumePresenter
 
   mark_as_outdated :hexlet_url, :awards_description
 
@@ -58,10 +60,11 @@ class Resume < ApplicationRecord
   validates :name, presence: true
   validates :github_url, presence: true, unless: :draft?
   validates :summary, length: { minimum: 200 }, presence: true, unless: :draft?
-  validates :skills_description, presence: true, unless: :draft?
+  validates :skills_description, length: { maximum: 250 }, presence: true, unless: :draft?
   validates :contact_email, presence: true, unless: :draft?
   validates :contact_email, 'valid_email_2/email': true
   validates :contact_phone, phone: true
+  validate :skills_description_valid_format, unless: :draft?
 
   belongs_to :user
   has_many :answers, inverse_of: :resume, dependent: :destroy
@@ -126,6 +129,12 @@ class Resume < ApplicationRecord
 
     attrs_with_defaults = attribute ? defaults.merge(attribute) : defaults
     super(attrs_with_defaults)
+  end
+
+  def skills_description_valid_format
+    return unless skills.size > 10 || skills.any? { |element| element.size > 25 }
+
+    errors.add(:skills_description)
   end
 
   def to_s

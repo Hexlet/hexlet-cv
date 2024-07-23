@@ -76,7 +76,7 @@ en:
         projects_description: Indicate the projects in which you participated
         summary: *markdown_tips
         about_myself: *markdown_tips
-        skills_description: *markdown_tips
+        skills_description: 'One skill per line, no more than 10, skill length 25 characters max'
         city: Specify the city of your residence
         direction_list: |
           Specify your direction. Here you need to specify only what you can say about the X-developer, for example: Java-developer. The maximum length is 40 characters. Separate tags with commas.

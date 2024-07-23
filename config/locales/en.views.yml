@@ -70,7 +70,9 @@ en:
         contacts: Contacts
         main: Main
         add: Add
-        additionally: Additionally 
+        additionally: Additionally
+        skill_description_new_requirements: 'To improve the skills readability, we have changed the filling requirements'
+        skill_description_prev_input: 'Your previous input'
       work_fields:
         remove_work: Delete work experience
       education_fields:
