@@ -14,6 +14,7 @@ ru:
         archive: Архивировать
         restore: Восстановить из архива
         send_to_moderate: Отправить на модерацию
+        cancel: Отклонить
 
     models:
       career: Карьерный трек
@@ -108,8 +109,10 @@ ru:
         state/published: Опубликована
         state/archived: В архиве
         state/on_moderate: На модерации
+        state/canceled: Отклонена
         name: Имя
         company: компания
+        cancelation_reason: Причина отклонения
       resume:
         name: Позиция
         summary: Описание

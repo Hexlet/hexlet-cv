@@ -35,7 +35,8 @@ class Web::Admin::VacancyForm < Vacancy
          :technology_list,
          :direction_list,
          :employment_type,
-         :state_event
+         :state_event,
+         :cancelation_reason
 
   enumerize :salary_amount_type, in: %w[gross net depends]
 
