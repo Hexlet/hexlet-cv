@@ -15,7 +15,7 @@ ru:
         archive: Архивировать
         restore: Восстановить из архива
         send_to_moderate: Отправить на модерацию
-        cancele: Отклонить
+        cancel: Отклонить
 
     models:
       career: Карьерный трек

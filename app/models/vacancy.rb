@@ -88,7 +88,7 @@ class Vacancy < ApplicationRecord
                         unless: -> { salary_amount_type == :depends || salary_from&.positive? }
   validates :salary_currency, presence: true
   # validates :programming_language, presence: true
-  validate :cancelation_reason_presence
+  validates :cancelation_reason, presence: true, if: -> { canceled? || state_event == 'cancel' }
 
   belongs_to :creator, class_name: 'User'
   belongs_to :country, optional: true
@@ -116,7 +116,7 @@ class Vacancy < ApplicationRecord
       transitions from: %i[archived], to: :on_moderate
     end
 
-    event :cancele do
+    event :cancel do
       transitions from: %i[on_moderate], to: :canceled
     end
   end
@@ -149,9 +149,5 @@ class Vacancy < ApplicationRecord
 
   def need_escape_html?
     !habr?
-  end
-
-  def cancelation_reason_presence
-    errors.add(:cancelation_reason, I18n.t('cancelation_reason_present')) if state_event == 'cancele' && cancelation_reason.nil?
   end
 end

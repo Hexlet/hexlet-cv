@@ -144,7 +144,7 @@ canceled:
   salary_from: 1000
   salary_to: 2000
   salary_currency: rub
-  cancelation_reason:  stack_irrelevant
+  cancelation_reason: stack_irrelevant
 
 over_month_old:
   <<: *DEFAULTS

@@ -92,7 +92,7 @@ class NotificationsHelper
       }
     end
 
-    def vacancy_cancele_params(resource)
+    def vacancy_cancel_params(resource)
       {
         vacancy_path: vacancy_path(resource, locale: I18n.locale),
         cancelation_reason: resource.cancelation_reason_text

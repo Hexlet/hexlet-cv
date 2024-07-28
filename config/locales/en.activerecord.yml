@@ -23,7 +23,7 @@ en:
         archive: To archive
         restore: Restore from archive
         send_to_moderate: Send to moderate
-        canceled: Canceled
+        cancele: Canceled
     attributes:
       resume/answer:
         content: Answer

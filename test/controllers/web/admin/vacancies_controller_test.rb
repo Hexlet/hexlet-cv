@@ -103,15 +103,14 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
   test '#cancele' do
     vacancy = vacancies(:on_moderate)
-    go_to = new_cancelation_admin_vacancy_path(vacancy)
-    state_event = :cancele
-    attrs = vacancy.attributes.merge(state_event:, cancelation_reason: :high_requirements)
+    go_to = on_moderate_admin_vacancies_path
+    attrs = vacancy.attributes.merge(cancelation_reason: :high_requirements)
 
-    patch admin_vacancy_path(vacancy), params: { vacancy: attrs, go_to: }
+    patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs, go_to: }
 
     assert_redirected_to go_to
     vacancy.reload
-    notification = Notification.find_by(resource: vacancy, kind: "vacancy_#{state_event}")
+    notification = Notification.find_by(resource: vacancy, kind: :vacancy_cancel)
 
     assert { notification }
     assert { vacancy.canceled? }
@@ -119,10 +118,9 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
   test '#cancele with invalid params' do
     vacancy = vacancies(:on_moderate)
+    attrs = vacancy.attributes
 
-    attrs = vacancy.attributes.merge(state_event: :cancele)
-
-    patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
+    patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs }
 
     assert_response :unprocessable_entity
     vacancy.reload
