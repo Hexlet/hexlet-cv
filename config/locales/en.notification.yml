@@ -11,5 +11,5 @@ en:
       The first half of the <a href="%{career_path}" class="fw-bolder">Career Track</a> is over! A very important step lies ahead - Participation in Open Source projects<br>
       <a href="https://ru.hexlet.io/blog/posts/kak-vybrat-svoy-pervyy-open-sors-proekt-instruktsiya-ot-heksleta class="fw-bolder">How to choose your first open source project</a>
     vacancy_publish_html: Your <a href="%{vacancy_path}" class="fw-bolder">vacancy</a> has been published
-    vacancy_cancele_html: Your <a href="%{vacancy_path}" class="fw-bolder">vacancy</a> was rejected due to %{cancelation_reason}
+    vacancy_cancel_html: Your <a href="%{vacancy_path}" class="fw-bolder">vacancy</a> was rejected due to %{cancelation_reason}
 

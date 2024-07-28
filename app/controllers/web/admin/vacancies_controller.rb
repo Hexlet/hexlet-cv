@@ -32,20 +32,20 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def new
-    @vacancy = vacancy_form.new
+    @vacancy = Web::Admin::VacancyForm.new
   end
 
   def edit
-    @vacancy = resource_vacancy.becomes(vacancy_form)
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
   end
 
   def new_cancelation
     @go_to = params[:go_to]
-    @vacancy = resource_vacancy.becomes(vacancy_form)
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
   end
 
   def create
-    @vacancy = vacancy_form.new(params[:vacancy])
+    @vacancy = Web::Admin::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
 
     if @vacancy.save
@@ -58,8 +58,8 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def update
-    @vacancy = resource_vacancy.becomes(vacancy_form)
-    if vacancy_service.call(@vacancy, params[:vacancy]).success?
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
+    if Admin::VacancyMutator.update!(@vacancy, params.permit![:vacancy])
       f(:success)
       redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
     else
@@ -86,6 +86,19 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
     redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
+  def cancel
+    vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
+    @vacancy = Admin::VacancyMutator.cancel!(vacancy, params.permit![:vacancy])
+
+    if @vacancy.canceled?
+      f(:success)
+      redirect_to params[:go_to] || new_cancelation_admin_vacancy_path(@vacancy)
+    else
+      f(:error)
+      render :new_cancelation, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def query_params(default_params = {})
@@ -94,13 +107,5 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def resource_vacancy
     @resource_vacancy ||= Vacancy.find params[:id]
-  end
-
-  def vacancy_form
-    Web::Admin::VacancyForm
-  end
-
-  def vacancy_service
-    Admin::VacancyService
   end
 end

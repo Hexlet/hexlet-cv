@@ -36,7 +36,7 @@ class Notification < ApplicationRecord
     career_member_finish
     next_step_open_source
     vacancy_publish
-    vacancy_cancele
+    vacancy_cancel
   ].freeze
 
   enumerize :kind, in: NOTIFICATION_KIND
