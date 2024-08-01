@@ -14,7 +14,7 @@
 #  current_sign_in_ip        :string
 #  email                     :string
 #  email_disabled_delivery   :boolean
-#  encrypted_password        :string           default(""), not null
+#  encrypted_password        :string
 #  failed_attempts           :integer          default(0), not null
 #  first_name                :string
 #  last_name                 :string

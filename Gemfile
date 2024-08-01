@@ -88,7 +88,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'slim_lint'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do

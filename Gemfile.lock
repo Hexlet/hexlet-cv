@@ -519,9 +519,7 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.0.3-arm64-darwin)
-    sqlite3 (2.0.3-x86_64-darwin)
-    sqlite3 (2.0.3-x86_64-linux-gnu)
+    sqlite3 (1.7.3-x86_64-linux)
     stringio (3.1.1)
     strscan (3.1.0)
     temple (0.10.3)
@@ -642,7 +640,7 @@ DEPENDENCIES
   sorbet
   spring
   sprockets-rails
-  sqlite3
+  sqlite3 (~> 1.4)
   terser
   translit
   tzinfo-data

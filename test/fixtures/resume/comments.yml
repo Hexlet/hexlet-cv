@@ -14,7 +14,6 @@
 #  index_resume_comments_on_resume_id  (resume_id)
 #  index_resume_comments_on_user_id    (user_id)
 #
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 DEFAULTS: &DEFAULTS
   content: |
     Voluptatem aspernatur sed. Et sunt perspiciatis. Voluptatem at sunt. Et ullam aut. Et dolor quia. Velit iusto pariatur. Esse facilis enim.
