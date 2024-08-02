@@ -17,7 +17,7 @@ Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/
 
 ## System requirements
 
-* Ruby >= 3.2.2
+* Ruby >= 3.3.0
 * Node.js >= 19.0.0
 * SQLite3
 * [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)

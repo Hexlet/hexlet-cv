@@ -653,7 +653,7 @@ DEPENDENCIES
   yard
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.4p94
 
 BUNDLED WITH
    2.4.1
