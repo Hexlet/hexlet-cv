@@ -74,10 +74,10 @@ gem 'translit'
 gem 'validate_url'
 gem 'valid_email2'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 
 group :development, :staging, :test do
   gem 'faker'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :development, :test do
@@ -122,4 +122,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :production, :staging do
   gem 'pg'
+  gem 'wkhtmltopdf-heroku'
 end
