@@ -2,7 +2,7 @@
 
 require 'active_record'
 require 'active_record/fixtures'
-require 'faker'
+require 'faker' if Rails.env.staging?
 
 namespace :render_com do
   desc 'Seed database with fixtures for render.com'
