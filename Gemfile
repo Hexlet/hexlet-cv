@@ -88,7 +88,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'slim_lint'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -96,7 +96,7 @@ group :development do
   gem 'ruby-lsp-rails'
   gem 'yard'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'html2slim'
+  gem 'html2slim', github: 'slim-template/html2slim'
   gem 'i18n-debug'
   gem 'listen'
   gem 'web-console'
