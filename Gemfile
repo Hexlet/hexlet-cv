@@ -122,7 +122,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :production, :staging do
   gem 'pg'
-
 end
 
 group :production do
