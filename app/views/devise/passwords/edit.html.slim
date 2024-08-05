@@ -4,11 +4,11 @@ h2
   = f.error_notification message: t('devise.correct_errors')
   = f.input :reset_password_token, as: :hidden
   = f.full_error :reset_password_token
-  .form-inputs
+  .form-inputs.mb-3
     = f.input :password, label: t('.new_password'), required: true, autofocus: true,
       hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
       input_html: { autocomplete: 'new-password' }
     = f.input :password_confirmation, label: t('.confirm_new_password'), required: true, input_html: { autocomplete: 'new-password' }
-  .form-actions
-    = f.button :submit, t('.change_my_password')
+  .form-actions.mb-3
+    = f.button :submit, t('.change_my_password'), class: 'btn-primary'
 = render 'devise/shared/links'
