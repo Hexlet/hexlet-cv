@@ -35,7 +35,6 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     authorize @vacancy
     vacancy = @vacancy.becomes(Web::Account::VacancyForm)
     if vacancy.update(params[:vacancy])
-      change_visibility(@vacancy)
       f(:success)
       redirect_to account_vacancies_path
     else
@@ -45,11 +44,15 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     end
   end
 
-  def destroy; end
-
-  private
-
-  def change_visibility(vacancy)
-    vacancy.archive! if params[:archive]
+  def archive
+    vacancy = current_user.vacancies.find params[:id]
+    vacancy.archive!
   end
+
+  def send_to_moderate
+    vacancy = current_user.vacancies.find params[:id]
+    vacancy.send_to_moderate!
+  end
+
+  def destroy; end
 end

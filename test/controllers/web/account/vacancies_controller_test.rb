@@ -36,10 +36,24 @@ class Web::Account::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert { vacancy }
   end
 
-  test '#edit' do
-    vacancy = vacancies(:one)
-    get edit_account_vacancy_path(vacancy)
+  test '#archive' do
+    vacancy = vacancies(:state_idle)
+    patch archive_account_vacancy_path(vacancy)
     assert_response :success
+
+    vacancy.reload
+
+    assert { vacancy.archived? }
+  end
+
+  test '#send_to_moderate' do
+    vacancy = vacancies(:state_idle)
+    patch send_to_moderate_account_vacancy_path(vacancy)
+    assert_response :success
+
+    vacancy.reload
+
+    assert { vacancy.on_moderate? }
   end
 
   test 'can not edit a posted job' do

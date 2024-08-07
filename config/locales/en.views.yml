@@ -226,6 +226,7 @@ en:
       vacancies:
         form:
           archive: Archive
+          send_to_moderate: Send to moderate
           cancel: Cancel
         new:
           header: New vacancy
@@ -235,6 +236,10 @@ en:
         index:
           resume: Look for candidates in the Resume section
           header: My vacancies
+        actions: 
+          archive: Archive
+          send_to_moderate: Send to moderate
+          additional_actions: Additional actions
       resumes:
         new:
           info_for_user: Please note that if you plan to look for a job abroad, create a resume in the English version of the site
