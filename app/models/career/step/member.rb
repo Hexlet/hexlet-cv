@@ -36,7 +36,7 @@ class Career::Step::Member < ApplicationRecord
     state :finished
 
     event :finish do
-      transitions from: :active, to: :finished
+      transitions to: :finished
     end
   end
 end

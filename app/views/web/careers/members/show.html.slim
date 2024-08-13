@@ -25,7 +25,8 @@ ul.nav.nav-tabs.mt-2.mb-4
 
   .col-lg-4
     .text-center.mb-3
-      - if @career_step_member.finished?
+      / NOTE: чиним ситуацию, если у пользователя пройдены все шаги, но он почему то не закончил карьерный трек
+      - if @career_step_member.finished? && recource_member.finished?
         span.text-success.h4
           = t('.step_finished')
       - else
