@@ -87,7 +87,7 @@ class Career::Member < ApplicationRecord
 
     last_finished_item = career_items.with_finished_step_members(self).last
 
-    return next_item(last_finished_item) || career_items.first if last_finished_item
+    return next_item(last_finished_item) || last_finished_item if last_finished_item
 
     career_items.first
   end
