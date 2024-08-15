@@ -5,7 +5,7 @@ module UserRepository
 
   included do
     scope :ordered, -> { order(id: :desc) }
-    scope :web, -> { ordered.permitted }
+    scope :web, -> { permitted }
     scope :with_career_members, lambda {
                                   joins(:career_members)
                                     .where('EXISTS (:career_member)',
