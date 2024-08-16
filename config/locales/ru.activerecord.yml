@@ -4,6 +4,7 @@ ru:
       user:
         ban: Забанить
         unban: Разбанить
+        remove: Удалить
       resume:
         publish: Опубликовать
         hide: В черновик
@@ -36,6 +37,7 @@ ru:
         state: Статус
         state/permitted: Активен
         state/banned: Забанен
+        state/removed: Удален
       career:
         name: Название
         description: Описание

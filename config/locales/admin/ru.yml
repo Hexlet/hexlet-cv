@@ -63,6 +63,7 @@ ru:
           show: Профиль пользователя
           no_date: Нет даты
           archive: Архивировать
+          restore: Восстановить
           last_satep_finished_at: Дата последней активности
       resumes:
         index:

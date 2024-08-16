@@ -66,6 +66,8 @@ en:
           progress: All/Finished
           no_date: Not finished
           show: User profile
+          restore: Restore
+          archive: Archive
           last_satep_finished_at: Last activity date
       resumes:
         index:

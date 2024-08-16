@@ -12,6 +12,7 @@ en:
       user:
         ban: Ban
         unban: Unban
+        remove: Remove
       resume:
         publish: Publish
         hide: Draft
@@ -104,6 +105,7 @@ en:
         state: State
         state/permitted: Active
         state/banned: Banned
+        state/removed: Removed
       resume/work:
         company: Company
         company_description: About company
