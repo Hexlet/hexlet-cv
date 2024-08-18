@@ -27,8 +27,6 @@ class Admin::VacancyMutator
       end
 
       true
-    rescue ActiveRecord::RecordInvalid
-      false
     end
   end
 end
