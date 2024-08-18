@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::VacancyMutator
-  NOTIFIED_EVENTS = %w[publish].freeze
-
   class << self
     def cancel!(vacancy, params = {})
       user = vacancy.creator
@@ -14,22 +12,18 @@ class Admin::VacancyMutator
         user.notifications.create!(kind: :vacancy_cancel, resource: vacancy)
       end
 
-      vacancy
+      vacancy.canceled?
     end
 
     def update!(vacancy, params = {})
-      event = params[:state_event]
-
-      if event.nil? || NOTIFIED_EVENTS.exclude?(event)
-        vacancy.update!(params)
-        return true
-      end
-
       user = vacancy.creator
+      vacancy_was_not_published = !vacancy.published?
 
       ActiveRecord::Base.transaction do
         vacancy.update!(params)
-        user.notifications.create!(kind: "vacancy_#{event}", resource: vacancy)
+        if params[:state_event] == 'publish' && vacancy_was_not_published
+          user.notifications.create!(kind: :vacancy_publish, resource: vacancy)
+        end
       end
 
       true

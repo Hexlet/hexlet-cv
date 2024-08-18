@@ -26,7 +26,7 @@ class Notification < ApplicationRecord
   include AASM
   extend Enumerize
 
-  NOTIFICATION_KIND = %i[
+  KINDS_NOTIFICATION = %i[
     new_answer
     new_comment
     new_answer_like
@@ -39,7 +39,7 @@ class Notification < ApplicationRecord
     vacancy_cancel
   ].freeze
 
-  enumerize :kind, in: NOTIFICATION_KIND
+  enumerize :kind, in: KINDS_NOTIFICATION
 
   validates :resource_type, presence: true
 

@@ -87,10 +87,11 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def cancel
-    vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
-    @vacancy = Admin::VacancyMutator.cancel!(vacancy, params.permit![:vacancy])
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
 
-    if @vacancy.canceled?
+    canceled = Admin::VacancyMutator.cancel!(@vacancy, params.permit![:vacancy])
+
+    if canceled
       f(:success)
       redirect_to params[:go_to] || new_cancelation_admin_vacancy_path(@vacancy)
     else
