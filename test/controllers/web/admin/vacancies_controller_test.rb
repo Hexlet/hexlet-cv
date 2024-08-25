@@ -124,7 +124,9 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: :vacancy_cancel)
 
+    assert { !notification }
     assert { vacancy.on_moderate? }
   end
 
