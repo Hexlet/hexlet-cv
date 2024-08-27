@@ -149,7 +149,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
         member.finished_at,
         member.current_item&.career_step&.name,
         member.progress_by_finished_steps,
-        member.career_step_members.where(state: :finished).or(member.career_step_members.where(state: :active)).order(created_at: :asc).last&.created_at,
+        member.career_step_members.finished.order(created_at: :asc).last&.created_at || member.career_step_members.active.order(created_at: :asc).last&.created_at,
         member.aasm(:state).human_state
       ]
     end
