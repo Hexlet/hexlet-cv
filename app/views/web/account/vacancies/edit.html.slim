@@ -5,4 +5,5 @@
   .alert.alert-secondary
     = t('.vacancy_archived')
 
-= render 'form', vacancy: @vacancy, url: account_vacancy_path(@vacancy), show_archive_button: !@vacancy.archived?
+= render 'form', vacancy: @vacancy, url: account_vacancy_path(@vacancy)
+= render 'actions', vacancy: @vacancy, url: account_vacancy_path(@vacancy)

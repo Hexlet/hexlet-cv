@@ -3,5 +3,7 @@ ru:
     submit:
       create: Создать
       update: Изменить
+      archive: Архивировать
+      send_to_moderate: Отправить на модерацию
       web_lead_form:
         create: Получить консультацию
