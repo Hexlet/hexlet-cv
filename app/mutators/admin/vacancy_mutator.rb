@@ -7,6 +7,8 @@ class Admin::VacancyMutator
       cancelation_reason = params[:cancelation_reason]
       vacancy.assign_attributes(cancelation_reason:)
 
+      vacancy.save and return vacancy if vacancy.canceled?
+
       if vacancy.cancel!
         user.notifications.create!(kind: :vacancy_cancel, resource: vacancy)
       end
@@ -16,9 +18,9 @@ class Admin::VacancyMutator
 
     def update(vacancy, params = {})
       user = vacancy.creator
-      may_create_notification = params[:state_event] == 'publish' && !vacancy.published?
+      change_to_published = params[:state_event] == 'publish' && !vacancy.published?
 
-      if vacancy.update(params) && may_create_notification
+      if vacancy.update(params) && change_to_published
         user.notifications.create!(kind: :vacancy_publish, resource: vacancy)
       end
 

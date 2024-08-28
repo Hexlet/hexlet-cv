@@ -66,7 +66,7 @@ class Vacancy < ApplicationRecord
   enumerize :location_of_position, in: %w[remote onsite hybrid], default: 'onsite'
   enumerize :locale, in: %i[en ru], default: :ru
   enumerize :kind, in: %i[hr habr], predicates: true, scope: true
-  enumerize :cancelation_reason, in: %i[high_requirements stack_irrelevant low_wage vacancy_competitors education_requires], predicates: true, scope: true
+  enumerize :cancelation_reason, in: %i[high_requirements stack_irrelevant low_wage vacancy_competitors education_required], predicates: true, scope: true
   # Ex:- scope :active, -> {where(:active => true)}
   # enumerize :programming_language, in: PROGRAMMING_LANGAUGES, default: 'full-time', predicates: true, scope: true
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true

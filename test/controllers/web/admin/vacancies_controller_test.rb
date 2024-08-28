@@ -137,4 +137,17 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test '#cancel already canceled' do
+    vacancy = vacancies(:canceled)
+    attrs = vacancy.attributes.merge(cancelation_reason: :high_requirements)
+
+    assert_no_difference -> { Notification.count } do
+      patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs }
+    end
+    assert_redirected_to new_cancelation_admin_vacancy_path(vacancy)
+    vacancy.reload
+
+    assert { vacancy.high_requirements? }
+  end
 end

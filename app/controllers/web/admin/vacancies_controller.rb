@@ -59,14 +59,14 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
 
   def update
     vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
-    @vacancy = Admin::VacancyMutator.update(vacancy, params.permit![:vacancy])
+    @vacancy = Admin::VacancyMutator.update(vacancy, params[:vacancy])
 
-    if @vacancy.previous_changes.present?
-      f(:success)
-      redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
-    else
+    if @vacancy.invalid?
       f(:error, now: true, values: { messages: @vacancy.errors.messages })
       render :edit, status: :unprocessable_entity
+    else
+      f(:success)
+      redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
     end
   end
 
@@ -92,7 +92,7 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   def cancel
     vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
 
-    @vacancy = Admin::VacancyMutator.cancel!(vacancy, params.permit![:vacancy])
+    @vacancy = Admin::VacancyMutator.cancel!(vacancy, params[:vacancy])
 
     if @vacancy.canceled?
       f(:success)
