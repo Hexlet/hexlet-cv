@@ -3,11 +3,11 @@
 class Admin::VacancyMutator
   class << self
     def cancel!(vacancy, params = {})
+      return vacancy if vacancy.canceled?
+
       user = vacancy.creator
       cancelation_reason = params[:cancelation_reason]
       vacancy.assign_attributes(cancelation_reason:)
-
-      vacancy.save and return vacancy if vacancy.canceled?
 
       if vacancy.cancel!
         user.notifications.create!(kind: :vacancy_cancel, resource: vacancy)

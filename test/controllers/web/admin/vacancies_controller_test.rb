@@ -148,6 +148,6 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_cancelation_admin_vacancy_path(vacancy)
     vacancy.reload
 
-    assert { vacancy.high_requirements? }
+    assert { !vacancy.high_requirements? }
   end
 end
