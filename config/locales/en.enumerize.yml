@@ -38,3 +38,9 @@ en:
       fluent: Speak fluently
     notification_kind:
       next_step_open_source: Open source
+    cancelation_reason:
+      high_requirements: high requirements for work experience
+      stack_irrelevant: non-revenant technology stack
+      low_wage: wages too low
+      vacancy_competitors: competitors' vacancy
+      education_required: requires compulsory higher education or to be a university student

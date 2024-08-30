@@ -39,8 +39,11 @@ en:
             success: Resume published successfully
           update:
             success: Resume updated successfully
-            error: Failed to save changes. Please check form fields and try again.
+            error: "Failed to update job vacancy. Please correct errors in the form: %{messages}"
         vacancies:
+          cancel:
+            success: Vacancy canceled successfull
+            error: "Failed to decline the job. Please correct errors in the form: %{messages}"
           archive:
             success: Vacancy archived successfully
           restore:

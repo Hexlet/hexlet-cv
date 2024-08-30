@@ -36,12 +36,16 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def edit
-    vacancy = Vacancy.find params[:id]
-    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
+  end
+
+  def new_cancelation
+    @go_to = params[:go_to]
+    @vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
   end
 
   def create
-    @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
+    @vacancy = Web::Admin::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
 
     if @vacancy.save
@@ -54,13 +58,15 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def update
-    vacancy = Vacancy.find params[:id]
-    @vacancy = vacancy.becomes(Web::Admin::VacancyForm)
-    if @vacancy.update(params[:vacancy])
-      f(:success)
-      redirect_to edit_admin_vacancy_path(@vacancy)
-    else
+    vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
+    @vacancy = Admin::VacancyMutator.update(vacancy, params[:vacancy])
+
+    if @vacancy.invalid?
+      f(:error, now: true, values: { messages: @vacancy.errors.messages })
       render :edit, status: :unprocessable_entity
+    else
+      f(:success)
+      redirect_to params[:go_to] || edit_admin_vacancy_path(@vacancy)
     end
   end
 
@@ -72,22 +78,38 @@ class Web::Admin::VacanciesController < Web::Admin::ApplicationController
   end
 
   def archive
-    vacancy = Vacancy.find params[:id]
-    vacancy.archive!
+    resource_vacancy.archive!
     f(:success)
     redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
   end
 
   def restore
-    vacancy = Vacancy.find params[:id]
-    vacancy.restore!
+    resource_vacancy.restore!
     f(:success)
     redirect_to params[:go_to] || admin_vacancies_path(page: params[:page])
+  end
+
+  def cancel
+    vacancy = resource_vacancy.becomes(Web::Admin::VacancyForm)
+
+    @vacancy = Admin::VacancyMutator.cancel!(vacancy, params[:vacancy])
+
+    if @vacancy.canceled?
+      f(:success)
+      redirect_to params[:go_to] || new_cancelation_admin_vacancy_path(@vacancy)
+    else
+      f(:error, now: true, values: { messages: @vacancy.errors.messages })
+      render :new_cancelation, status: :unprocessable_entity
+    end
   end
 
   private
 
   def query_params(default_params = {})
     default_params.merge(params.permit![:q] || {})
+  end
+
+  def resource_vacancy
+    @resource_vacancy ||= Vacancy.find params[:id]
   end
 end

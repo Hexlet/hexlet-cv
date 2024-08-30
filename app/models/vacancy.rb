@@ -7,6 +7,7 @@
 #  id                           :integer          not null, primary key
 #  about_company                :string
 #  about_project                :string
+#  cancelation_reason           :string
 #  city_name                    :string
 #  company_name                 :string
 #  conditions_description       :text
@@ -65,6 +66,7 @@ class Vacancy < ApplicationRecord
   enumerize :location_of_position, in: %w[remote onsite hybrid], default: 'onsite'
   enumerize :locale, in: %i[en ru], default: :ru
   enumerize :kind, in: %i[hr habr], predicates: true, scope: true
+  enumerize :cancelation_reason, in: %i[high_requirements stack_irrelevant low_wage vacancy_competitors education_required], predicates: true, scope: true
   # Ex:- scope :active, -> {where(:active => true)}
   # enumerize :programming_language, in: PROGRAMMING_LANGAUGES, default: 'full-time', predicates: true, scope: true
   # enumerize :country_name, in: COUNTRIES, default: :user, predicates: true, scope: true
@@ -86,6 +88,7 @@ class Vacancy < ApplicationRecord
                         unless: -> { salary_amount_type == :depends || salary_from&.positive? }
   validates :salary_currency, presence: true
   # validates :programming_language, presence: true
+  validates :cancelation_reason, presence: true, if: -> { canceled? || state_event == 'cancel' }
 
   belongs_to :creator, class_name: 'User'
   belongs_to :country, optional: true
@@ -95,13 +98,14 @@ class Vacancy < ApplicationRecord
     state :on_moderate
     state :published
     state :archived
+    state :canceled
 
     event :publish do
       transitions to: :published
     end
 
     event :send_to_moderate do
-      transitions from: :idle, to: :on_moderate
+      transitions from: %i[idle canceled], to: :on_moderate
     end
 
     event :archive do
@@ -110,6 +114,10 @@ class Vacancy < ApplicationRecord
 
     event :restore do
       transitions from: %i[archived], to: :on_moderate
+    end
+
+    event :cancel do
+      transitions from: %i[on_moderate], to: :canceled
     end
   end
 

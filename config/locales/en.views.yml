@@ -235,6 +235,7 @@ en:
         index:
           resume: Look for candidates in the Resume section
           header: My vacancies
+          cancelation_reason: "Reason: %{reason}"
       resumes:
         new:
           info_for_user: Please note that if you plan to look for a job abroad, create a resume in the English version of the site

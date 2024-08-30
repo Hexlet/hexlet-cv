@@ -110,8 +110,10 @@ Rails.application.routes.draw do
             get :on_moderate
           end
           member do
+            get :new_cancelation
             patch :archive
             patch :restore
+            patch :cancel
           end
         end
         resources :careers, only: [] do

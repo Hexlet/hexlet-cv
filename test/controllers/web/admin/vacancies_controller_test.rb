@@ -55,13 +55,16 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
   test '#publish' do
     vacancy = vacancies(:archived)
-    attrs = vacancy.attributes.merge state_event: :publish
+    state_event = :publish
+    attrs = vacancy.attributes.merge(state_event:)
     previous_published_at = vacancy.published_at
     patch admin_vacancy_path(vacancy), params: { vacancy: attrs }
     assert_response :redirect
 
     vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: "vacancy_#{state_event}")
 
+    assert { notification }
     assert { vacancy.published_at? }
     assert { vacancy.published_at != previous_published_at }
   end
@@ -96,5 +99,55 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
     vacancy.reload
 
     assert { vacancy.on_moderate? }
+  end
+
+  test '#cancele' do
+    vacancy = vacancies(:on_moderate)
+    go_to = on_moderate_admin_vacancies_path
+    attrs = vacancy.attributes.merge(cancelation_reason: :high_requirements)
+
+    patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs, go_to: }
+
+    assert_redirected_to go_to
+    vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: :vacancy_cancel)
+
+    assert { notification }
+    assert { vacancy.canceled? }
+  end
+
+  test '#cancele with invalid params' do
+    vacancy = vacancies(:on_moderate)
+    attrs = vacancy.attributes
+
+    patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs }
+
+    assert_response :unprocessable_entity
+    vacancy.reload
+    notification = Notification.find_by(resource: vacancy, kind: :vacancy_cancel)
+
+    assert { !notification }
+    assert { vacancy.on_moderate? }
+  end
+
+  test '#new_cancelation_reason' do
+    vacancy = vacancies(:on_moderate)
+
+    get new_cancelation_admin_vacancy_path(vacancy)
+
+    assert_response :success
+  end
+
+  test '#cancel already canceled' do
+    vacancy = vacancies(:canceled)
+    attrs = vacancy.attributes.merge(cancelation_reason: :high_requirements)
+
+    assert_no_difference -> { Notification.count } do
+      patch cancel_admin_vacancy_path(vacancy), params: { vacancy: attrs }
+    end
+    assert_redirected_to new_cancelation_admin_vacancy_path(vacancy)
+    vacancy.reload
+
+    assert { !vacancy.high_requirements? }
   end
 end

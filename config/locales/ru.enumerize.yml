@@ -47,3 +47,9 @@ ru:
     kind:
       habr: Хабр
       hr: Консультант
+    cancelation_reason:
+      high_requirements: высокие требования к опыту работы
+      stack_irrelevant: нерелевантный стек технологий
+      low_wage: слишком низкая заработная плата
+      vacancy_competitors: вакансия конкурентов
+      education_required: требуется обязательное высшее образование или быть студентом ВУЗа
