@@ -94,7 +94,7 @@ class Vacancy < ApplicationRecord
   belongs_to :country, optional: true
 
   aasm :state, column: :state, timestamps: true do
-    state :idle
+    state :idle, initial: true
     state :on_moderate
     state :published
     state :archived
@@ -106,6 +106,10 @@ class Vacancy < ApplicationRecord
 
     event :send_to_moderate do
       transitions from: %i[idle canceled], to: :on_moderate
+    end
+
+    event :send_to_draft do
+      transitions to: :idle
     end
 
     event :archive do
