@@ -120,13 +120,22 @@ without_city_name:
   salary_from: 1000
   salary_to: 2000
 
-archived:
+archived_full:
   <<: *DEFAULTS
-  title: Archeved vacancy
+  title: Archeved vacancy full
   state: archived
   salary_from: 1000
   salary_to: 2000
   salary_currency: rub
+
+archived_one:
+  <<: *DEFAULTS
+  title: Archeved vacancy one
+  state: archived
+  salary_from: 1000
+  salary_to: 2000
+  salary_currency: rub
+  creator: one
 
 on_moderate:
   <<: *DEFAULTS
