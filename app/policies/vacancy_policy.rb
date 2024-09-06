@@ -6,6 +6,6 @@ class VacancyPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.admin? || !@record.published?
+    @user.admin? || (!@record.published? && !@record.archived?)
   end
 end

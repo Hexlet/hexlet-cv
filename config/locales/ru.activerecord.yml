@@ -16,6 +16,7 @@ ru:
         restore: Восстановить из архива
         send_to_moderate: Отправить на модерацию
         cancel: Отклонить
+        send_to_draft: В черновик
 
     models:
       career: Карьерный трек
