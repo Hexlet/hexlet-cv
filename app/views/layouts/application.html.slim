@@ -27,3 +27,5 @@ html.h-100 lang="#{I18n.locale}"
                 = render 'layouts/shared/last_answers'
 
     = render 'layouts/shared/footer'
+- if Rails.env.production?
+  = render 'layouts/deps/typos'
