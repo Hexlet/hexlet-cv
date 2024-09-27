@@ -70,7 +70,7 @@ en:
         contacts: Contacts
         main: Main
         add: Add
-        additionally: Additionally 
+        additionally: Additionally
       work_fields:
         remove_work: Delete work experience
       education_fields:
@@ -109,34 +109,34 @@ en:
           position_level:
             default:
               title: |
-                Vacancies for %{position_level} %{direction} developers %{city_description}, work, fresh vacancies
+                Vacancies for %{position_level}-developers for %{direction} %{city_description}, work, fresh vacancies
               header: |
-                Vacancies for %{position_level} %{direction} developers %{city_description}
+                Vacancies for %{position_level}-developers for %{direction} %{city_description}
               description: |
-                Actual vacancies for %{position_level} %{direction} developers %{city_description}. Работа для %{position_level}-programmers, compilation from the editors of Hexlet CV
+                Actual vacancies for %{position_level}-developers for %{direction} %{city_description}. Работа для %{position_level}-programmers, compilation from the editors of Hexlet CV
             intern:
               title: |
-                Internships for Junior %{direction} developers %{city_description}, work, fresh vacancies
+                Internships for Junior-developers for %{direction} %{city_description}, work, fresh vacancies
               header: |
-                Internships for Junior %{direction} developers %{city_description}
+                Internships for Junior-developers for %{direction} %{city_description}
               description: |
-                Actual internships for Junior %{direction} developers %{city_description}. Internship for Junior developers, a compilation from the editors of Hexlet CV
+                Actual internships for Junior-developers for %{direction} %{city_description}. Internship for Junior developers, a compilation from the editors of Hexlet CV
 
           city_name:
             title: |
-              Vacancies for %{direction} developers %{city_description}
+              Vacancies by direction %{direction} %{city_description}
             header: |
-              Vacancies for %{direction} developers %{city_description}
+              Vacancies by direction %{direction} %{city_description}
             description: |
-              Actual vacancies %{direction} developers and programmers %{city_description}
+              Actual vacancies by direction %{direction} %{city_description}
 
           direction:
             title: |
-              Vacancies for %{direction} developers
+              Vacancies by direction %{direction}
             header: |
-              Vacancies for %{direction} developers
+              Vacancies by direction %{direction}
             description: |
-              Actual vacancies for %{direction} developers. Work for %{direction}-programmers, compilation from the editors of Hexlet CV
+              Actual vacancies by direction %{direction}. Work by direction %{direction}, compilation from the editors of Hexlet CV
     vacancies:
       show:
         title: "Vacancy %{body}"
@@ -332,7 +332,7 @@ en:
           <summary>Cover letter</summary>
           %{letter}
         </details>
-        
+
         <details>
           <summary>Improved resume</summary>
           %{edit_text}
