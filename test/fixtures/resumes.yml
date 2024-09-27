@@ -124,3 +124,28 @@ one_evaluated_failed:
   summary: <%= Faker::Lorem.paragraph_by_chars(number: 400) %>
   evaluated_ai_state: failed
   contact_email: one@email.com
+
+full_en:
+  <<: *DEFAULTS
+  user: full
+  locale: en
+  name: Software engineer
+  about_myself: Good programmer
+  projects_description: |
+    Completed projects:
+    1. Mind Games - a set of five console games that perform mathematical operations.
+    Tech stack: JavaScript, Node.js, ESLint, Git, Github
+    2. Difference calculator - a program that determines the difference between two data structures (files in json or yaml format)
+    Tech stack: JavaScript, Node.js, ESLint, Jest, commander.js, Lodash
+    3. RSS aggregator - a service that can query RSS feeds of sites for new posts, display them in a convenient form, mark read and load new posts.
+    Stack of technologies: Java Script, Bootstrap, Webpack, Axios, i18next, on-change, Yup
+    4. Chat (Slack) - an analogue of a chat messenger, working in real time with the following functions: registration and authorization, creation, deletion and renaming of channels, the ability to create and receive messages in channels.
+    Stack of technologies: Java Script, React / React Hooks, Redux / Redux Toolkit, React-Bootstrap, WebSocket (socket.io), Axios, Formik, i18next, Yup, React-toastify, Leo-profanity
+
+  skills_description: |
+    I mainly work with the Ruby/Rails stack, but I have also dealt with other frameworks (Phoenix, Django, Laravel), but my level of proficiency/expertise in them is very superficial. My editor is Vim, 10-finger touch typing is included.
+
+    So I had experience with such [tools](/) as Ansible, Docker, Terraform, deployed infrastructures on AWS
+  summary: |
+    A self-taught programmer who has chosen the path of constant self-improvement. I value beautiful and concise code, I love functional programming (the great trinity of map, filter, reduce). I work with languages ​​such as JS, Ruby, PHP, Python, Elixir, Clojure (to varying degrees of skill, of course). I admire the LISP family of languages, so much so that I am writing my own LISP interpreter in Elixir as a pet project. At the moment, I am delving into Unix OS in order to further improve my DevOps skills.
+  answers_count: 1

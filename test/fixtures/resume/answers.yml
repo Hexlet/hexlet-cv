@@ -73,3 +73,8 @@ special_answer:
     </details>
   user: special
   resume: full_without_answers
+
+two_full_en:
+  <<: *DEFAULTS
+  resume: full_en
+  user: full
