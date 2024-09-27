@@ -21,6 +21,7 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
     @vacancy = Web::Account::VacancyForm.new(params[:vacancy])
     @vacancy.creator = current_user
 
+    change_visibility(@vacancy)
     if @vacancy.save
       f(:success)
       redirect_to account_vacancies_path
@@ -31,15 +32,14 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   end
 
   def update
-    @vacancy = current_user.vacancies.find params[:id]
-    authorize @vacancy
-    vacancy = @vacancy.becomes(Web::Account::VacancyForm)
-    if vacancy.update(params[:vacancy])
-      change_visibility(@vacancy)
+    vacancy = current_user.vacancies.find params[:id]
+    authorize vacancy
+    @vacancy = vacancy.becomes(Web::Account::VacancyForm)
+    change_visibility(@vacancy)
+    if @vacancy.update(params[:vacancy])
       f(:success)
       redirect_to account_vacancies_path
     else
-      @vacancy = vacancy.becomes(Vacancy)
       f(:error)
       render :edit, status: :unprocessable_entity
     end
@@ -50,6 +50,10 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   private
 
   def change_visibility(vacancy)
-    vacancy.archive! if params[:archive]
+    if params[:on_moderate]
+      vacancy.send_to_moderate
+    else
+      vacancy.send_to_draft
+    end
   end
 end
