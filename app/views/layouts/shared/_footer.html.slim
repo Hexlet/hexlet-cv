@@ -12,9 +12,10 @@ footer.bg-body-tertiary.border-top.py-4.mt-auto
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.help')
         ul.list-unstyled
-          li.mb-3 = link_to t('.success_stories'), 'https://ru.hexlet.io/blog/categories/success', target: '_blank', rel: :noopener
-          li.mb-3 = link_to t('.test_assigments'), 'https://github.com/Hexlet/ru-test-assignments', target: '_blank', rel: :noopener
-          li = link_to t('.employment_course'), 'https://ru.hexlet.io/courses/employment', target: '_blank', rel: :noopener
+          li.mb-3 = link_to t('.success_stories'), "https://#{I18n.locale}.hexlet.io/blog/categories/success", target: '_blank', rel: :noopener
+          - locale_prefix = I18n.locale.to_s == 'en' ? '' : 'ru-'
+          li.mb-3 = link_to t('.test_assigments'), "https://github.com/Hexlet/#{locale_prefix}test-assignments", target: '_blank', rel: :noopener
+          li = link_to t('.employment_course'), "https://#{I18n.locale}.hexlet.io/courses/employment", target: '_blank', rel: :noopener
       .col-sm-6.col-md-4.col-lg-auto
         .fs-4.mb-2 = t('.additionally')
         ul.list-unstyled
