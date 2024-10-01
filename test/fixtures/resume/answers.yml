@@ -2,14 +2,15 @@
 #
 # Table name: resume_answers
 #
-#  id             :integer          not null, primary key
-#  applying_state :string
-#  content        :text
-#  likes_count    :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  resume_id      :integer          not null
-#  user_id        :integer          not null
+#  id               :integer          not null, primary key
+#  applying_state   :string
+#  content          :text
+#  likes_count      :integer
+#  publishing_state :string           default("published")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  resume_id        :integer          not null
+#  user_id          :integer          not null
 #
 # Indexes
 #

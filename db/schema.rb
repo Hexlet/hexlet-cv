@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_30_104633) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -165,6 +165,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
     t.datetime "updated_at", null: false
     t.integer "likes_count"
     t.string "applying_state"
+    t.string "publishing_state", default: "published"
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
     t.index ["user_id", "resume_id"], name: "index_resume_answers_on_user_id_and_resume_id", unique: true
     t.index ["user_id"], name: "index_resume_answers_on_user_id"

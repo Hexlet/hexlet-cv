@@ -1,0 +1,14 @@
+table.table
+  thead
+    tr
+      th = 'id'
+      th = 'resume'
+      th = 'user'
+      th = 'content'
+  tbody
+    - @resumes_comments.each do |comment|
+      tr
+        td = comment.id
+        td = link_to comment.resume.name, resume_path(comment.resume)
+        td = comment.user.email
+        td = comment.content

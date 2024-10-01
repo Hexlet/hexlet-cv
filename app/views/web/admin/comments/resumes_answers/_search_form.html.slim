@@ -1,0 +1,8 @@
+.p-3.mb-3.bg-light
+  = search_form_for q, default_filter_form_options(url: url_for) do |f|
+    = f.input :resume_name_cont, placeholder: han('resume', :name), label: false
+    = f.input :user_email_cont, placeholder: han('user', :email), label: false
+    = f.input :publishing_state_eq, as: :select, collection: states_for_select(Resume::Answer, :publishing), label: false
+    .col.d-flex.align-self-end
+      = f.button :submit, class: 'btn-primary me-2 flex-grow-1'
+      = link_to t('reset'), url_for, class: 'btn btn-outline-primary'

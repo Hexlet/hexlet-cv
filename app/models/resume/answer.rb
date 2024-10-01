@@ -4,14 +4,15 @@
 #
 # Table name: resume_answers
 #
-#  id             :integer          not null, primary key
-#  applying_state :string
-#  content        :text
-#  likes_count    :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  resume_id      :integer          not null
-#  user_id        :integer          not null
+#  id               :integer          not null, primary key
+#  applying_state   :string
+#  content          :text
+#  likes_count      :integer
+#  publishing_state :string           default("published")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  resume_id        :integer          not null
+#  user_id          :integer          not null
 #
 # Indexes
 #
@@ -46,6 +47,19 @@ class Resume::Answer < ApplicationRecord
     end
   end
 
+  aasm :publishing, column: :publishing_state do
+    state :published, initial: true
+    state :archived
+
+    event :archive do
+      transitions from: :published, to: :archived
+    end
+
+    event :restore do
+      transitions from: :archived, to: :published
+    end
+  end
+
   def to_s
     content
   end
@@ -59,6 +73,10 @@ class Resume::Answer < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[user_id]
+    %w[id user_id publishing_state created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[comments likes notifications resume user]
   end
 end
