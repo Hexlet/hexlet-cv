@@ -45,4 +45,12 @@ class Resume::Answer::Comment < ApplicationRecord
   def author?(user)
     user_id == user.id
   end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[answer answer_user notifications resume user]
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[answer_id answer_user_id content created_at id id_value resume_id updated_at user_id]
+  end
 end

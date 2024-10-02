@@ -1,45 +1,152 @@
 = render 'search_form', q: @search
 
-table.table
-  thead
-    tr
-      th = sort_link(@search, 'id')
-      th = sort_link(@search, 'comment_id')
-      th = sort_link(@search, 'resume_name')
-      th = sort_link(@search, 'user_email')
-      th = sort_link(@search, 'content')
-      th = sort_link(@search, 'publishing_state')
-      th = sort_link(@search, 'created_at')
-      th = t('actions')
-  tbody
-    - @resumes_answers.each do |answer|
-      tr.table-light
-        td = link_to answer.id, resume_path(answer.resume, anchor: "answer-#{answer.id}")
-        td = answer.comments.count
-        td = link_to answer.resume.name, resume_path(answer.resume)
-        td = link_to answer.user.email, user_path(answer.user)
-        td = answer.content
-        td = answer.publishing_state
-        td = l(answer.created_at, format: :short)
-        td
-          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-            = link_to edit_admin_resumes_answer_path(answer), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
-              span.bi.bi-gear-fill
-            - if answer.may_restore?
-              = link_to restore_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
-                span.bi.bi-arrow-counterclockwise
-            - elsif answer.may_archive?
-              = link_to archive_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
-                span.bi.bi-trash3
-      - answer.comments.each do |comment|
-        tr
-          td
-          td = link_to comment.id, resume_path(answer.resume, anchor: "answer_comment-#{comment.id}")
-          td
-          td = link_to comment.user.email, user_path(comment.user.email)
-          td = comment.content
-          td
-          td = l(answer.created_at, format: :short)
-          td
+- @resumes_answers.each do |answer|
+  .card.mb-2
+    .card-body
+      .row
+        .col-3
+          .row
+            .col-4
+              strong ID:
+            .col-8
+              = link_to answer.id, resume_path(answer.resume, anchor: "answer-#{answer.id}")
+          .row
+            .col-4
+              strong Resume:
+            .col-8
+              = link_to answer.resume.name, resume_path(answer.resume)
+          .row
+            .col-4
+              strong Comments:
+            .col-8
+              = answer.comments.count
+          .row
+            .col-4
+              strong User:
+            .col-8
+              = link_to answer.user.email, user_path(answer.user)
+        .col-7
+          .row
+            == markdown2html answer.content, details: true
+        .col-2
+          .row
+            .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+              = link_to edit_admin_resumes_answer_path(answer), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+                span.bi.bi-gear-fill
+              - if answer.may_restore?
+                = link_to restore_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                  span.bi.bi-arrow-counterclockwise
+              - elsif answer.may_archive?
+                = link_to archive_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                  span.bi.bi-trash3
+
+/ table.table
+/   thead
+/     tr
+/       th = 'info'
+/       th = 'content'
+/       th = t('actions')
+/   tbody
+/     - @resumes_answers.each do |answer|
+/       tr
+/         td
+/           .row
+/             .row
+/               .col
+/                 strong ID:
+/               .col
+/                 = link_to answer.id, resume_path(answer.resume, anchor: "answer-#{answer.id}")
+/             .row
+/               .col
+/                 strong Resume:
+/               .col
+/                 = link_to answer.resume.name, resume_path(answer.resume)
+/             .row
+/               .col
+/                 strong Comments:
+/               .col
+/                 = answer.comments.count
+/             .row
+/               .col
+/                 strong User:
+/               .col
+/                 = link_to answer.user.email, user_path(answer.user)
+/             .row
+/               .col
+/                 strong Created:
+/               .col
+/                 = l(answer.created_at, format: :long)
+/             .row
+/               .col
+/                 strong Published:
+/               .col
+/                 = answer.publishing_state
+/             .row
+/               .col colspan="2"
+/                 - if answer.comments.any?
+/                   button.w-100 class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#comments-#{answer.id}" aria-expanded="false" aria-controls="comments-#{answer.id}"
+/                     span.bi.bi-chat-dots-fill
+/                     span = t('show_comments', count: answer.comments.count)
+/         td == markdown2html answer.content, details: true
+/         td
+/           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+/             = link_to edit_admin_resumes_answer_path(answer), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+/               span.bi.bi-gear-fill
+/             - if answer.may_restore?
+/               = link_to restore_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+/                 span.bi.bi-arrow-counterclockwise
+/             - elsif answer.may_archive?
+/               = link_to archive_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+/                 span.bi.bi-trash3
+/       tr.collapse(id="comments-#{answer.id}")
+/         td.colspan-3
+/           - if answer.comments.any?
+/             ul
+/               - answer.comments.each do |comment|
+/                 li = "#{comment.user.email}: #{comment.content}"
+/           - else
+/             p No comments available
+
+/ table.table
+/   thead
+/     tr
+/       th = sort_link(@search, 'id')
+/       th = sort_link(@search, 'comment_id')
+/       th = sort_link(@search, 'resume_name')
+/       th = sort_link(@search, 'user_email')
+/       th = sort_link(@search, 'content')
+/       th = sort_link(@search, 'publishing_state')
+/       th = sort_link(@search, 'created_at')
+/       th = t('actions')
+/   tbody
+/     - @resumes_answers.each do |answer|
+/       tr.table-light
+/         td = link_to answer.id, resume_path(answer.resume, anchor: "answer-#{answer.id}")
+/         td = answer.comments.count
+/         td = link_to answer.resume.name, resume_path(answer.resume)
+/         td = link_to answer.user.email, user_path(answer.user)
+/         td = answer.content
+/         td = answer.publishing_state
+/         td = l(answer.created_at, format: :short)
+/         td
+/           .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+/             = link_to edit_admin_resumes_answer_path(answer), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+/               span.bi.bi-gear-fill
+/             - if answer.may_restore?
+/               = link_to restore_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+/                 span.bi.bi-arrow-counterclockwise
+/             - elsif answer.may_archive?
+/               = link_to archive_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+/                 span.bi.bi-trash3
+/       - answer.comments.each do |comment|
+/         tr
+/           td
+/           td = link_to comment.id, resume_path(answer.resume, anchor: "answer_comment-#{comment.id}")
+/           td
+/           td = link_to comment.user.email, user_path(comment.user.email)
+/           td = comment.content
+/           td
+/           td = l(answer.created_at, format: :short)
+/           td
 
 = paginate @resumes_answers
