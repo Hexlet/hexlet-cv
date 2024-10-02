@@ -74,6 +74,9 @@ en:
           index:
             confirm_archive: Are you sure you want to archive answer?
             confirm_restore: Are you sure you want to restore answer?
+          search_form:
+            created_at_from: 'Creation date from:'
+            created_at_to: 'By:'
       resumes:
         index:
           edit: Edit CV

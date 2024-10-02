@@ -70,6 +70,9 @@ ru:
           index:
             confirm_archive: Вы уверенны что хотите архивировать ответ?
             confirm_restore: Вы уверенны что хотите восстановить ответ?
+          search_form:
+            created_at_from: "Дата создания с:"
+            created_at_to: "по:"
       resumes:
         index:
           edit: Редактировать резюме
