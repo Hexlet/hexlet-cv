@@ -4,6 +4,7 @@ table.table
   thead
     tr
       th = sort_link(@search, 'id')
+      th = sort_link(@search, 'comment_id')
       th = sort_link(@search, 'resume_name')
       th = sort_link(@search, 'user_email')
       th = sort_link(@search, 'content')
@@ -12,8 +13,9 @@ table.table
       th = t('actions')
   tbody
     - @resumes_answers.each do |answer|
-      tr
+      tr.table-light
         td = link_to answer.id, resume_path(answer.resume, anchor: "answer-#{answer.id}")
+        td = answer.comments.count
         td = link_to answer.resume.name, resume_path(answer.resume)
         td = link_to answer.user.email, user_path(answer.user)
         td = answer.content
@@ -31,10 +33,13 @@ table.table
                 span.bi.bi-trash3
       - answer.comments.each do |comment|
         tr
-          td = comment.id
-          td = '-'
-          td = comment.user.email
+          td
+          td = link_to comment.id, resume_path(answer.resume, anchor: "answer_comment-#{comment.id}")
+          td
+          td = link_to comment.user.email, user_path(comment.user.email)
           td = comment.content
-          td = '-'
-          td = comment.created_at
-          td = '-'
+          td
+          td = l(answer.created_at, format: :short)
+          td
+
+= paginate @resumes_answers

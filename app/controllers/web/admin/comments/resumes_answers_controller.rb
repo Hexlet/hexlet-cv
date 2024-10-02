@@ -23,18 +23,15 @@ class Web::Admin::Comments::ResumesAnswersController < Web::Admin::Comments::App
   def archive
     return unless @answer.may_archive?
 
-    if @answer.archive!
-      f(:success)
-    else
-      f(:error)
-    end
-
+    @answer.archive!
+    f(:success)
     redirect_to admin_resumes_answers_path
   end
 
   def restore
-    @answer.restore! if @answer.may_restore?
+    return unless @answer.may_restore?
 
+    @answer.restore!
     f(:success)
     redirect_to admin_resumes_answers_path
   end
