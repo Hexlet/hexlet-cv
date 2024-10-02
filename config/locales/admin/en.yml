@@ -69,6 +69,11 @@ en:
           restore: Restore
           archive: Archive
           last_satep_finished_at: Last activity date
+      comments:
+        resumes_answers:
+          index:
+            confirm_archive: Are you sure you want to archive answer?
+            confirm_restore: Are you sure you want to restore answer?
       resumes:
         index:
           edit: Edit CV

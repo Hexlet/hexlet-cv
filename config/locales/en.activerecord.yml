@@ -29,6 +29,8 @@ en:
         content: Answer
         applying_state/pending: Awaiting confirmation
         applying_state/applied: Changes applied
+        publishing_state/published: Published
+        publishing_state/archived: Archived
       resume/job:
         content: Description
       resume/comment:

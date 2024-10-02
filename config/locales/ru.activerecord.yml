@@ -139,8 +139,11 @@ ru:
         about_myself: О себе
       resume/answer:
         content: Ответ
+        publishing_state: Опубликован?
         applying_state/pending: Ожидает подтверждения
         applying_state/applied: Изменения внесены
+        publishing_state/published: Опубликован
+        publishing_state/archived: В архиве
       resume/job:
         content: Описание
       resume/work:

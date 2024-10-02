@@ -7,6 +7,9 @@ ru:
           admins: Администраторы
           all_users: Пользователи
           all_resumes: Резюме
+          comments: Комментарии
+          resume_comments: Комментарии к резюме
+          resume_answers: Ответы на резюме
           vacancies: Вакансии
           on_moderate: На модерации
           all_vacancies: Все вакансии

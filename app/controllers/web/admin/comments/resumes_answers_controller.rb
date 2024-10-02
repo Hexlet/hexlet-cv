@@ -12,20 +12,31 @@ class Web::Admin::Comments::ResumesAnswersController < Web::Admin::Comments::App
 
   def update
     if @answer.update(answer_params)
+      f(:success)
       redirect_to admin_resumes_answers_path
     else
-      render :edit
+      f(:error)
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def archive
-    @answer.archive! if @answer.may_archive?
-    redirect_to admin_resumes_answers_path, notice: t('.success')
+    return unless @answer.may_archive?
+
+    if @answer.archive!
+      f(:success)
+    else
+      f(:error)
+    end
+
+    redirect_to admin_resumes_answers_path
   end
 
   def restore
     @answer.restore! if @answer.may_restore?
-    redirect_to admin_resumes_answers_path, notice: t('.success')
+
+    f(:success)
+    redirect_to admin_resumes_answers_path
   end
 
   private
@@ -35,6 +46,6 @@ class Web::Admin::Comments::ResumesAnswersController < Web::Admin::Comments::App
   end
 
   def answer_params
-    params.require(:resume_answer)
+    params.require(:resume_answer).permit(:content)
   end
 end

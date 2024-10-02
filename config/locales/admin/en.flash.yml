@@ -40,6 +40,17 @@ en:
           update:
             success: Resume updated successfully
             error: "Failed to update job vacancy. Please correct errors in the form: %{messages}"
+        comments:
+          resumes_answers:
+            archive:
+              success: Answer on resume successfully archived
+              error: Failed to archive answer
+            restore:
+              success: Answer on resume successfully restored
+              error: Failed to restore answer
+            update:
+              success: Answer on resume successfully updated
+              error: Failed to update answer
         vacancies:
           cancel:
             success: Vacancy canceled successfull

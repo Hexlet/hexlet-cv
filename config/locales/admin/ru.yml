@@ -29,7 +29,7 @@ ru:
           users_lost_career: Студенты которые давно не учились
         show:
           user_id_html: 'ID: <a href="%{path}">%{id}</a>'
-          email: 'email: %{email}'
+          email: "email: %{email}"
           last_activity_at: Последняя активность
           progress: Прогресс
           current_step: Текущий шаг
@@ -65,6 +65,11 @@ ru:
           archive: Архивировать
           restore: Восстановить
           last_satep_finished_at: Дата последней активности
+      comments:
+        resumes_answers:
+          index:
+            confirm_archive: Вы уверенны что хотите архивировать ответ?
+            confirm_restore: Вы уверенны что хотите восстановить ответ?
       resumes:
         index:
           edit: Редактировать резюме
@@ -83,8 +88,8 @@ ru:
           new: Новая вакансия
         search_form:
           creator: имя/фамилия/почта
-          created_at_from: 'Дата создания с:'
-          created_at_to: 'по:'
+          created_at_from: "Дата создания с:"
+          created_at_to: "по:"
         new:
           new_vacancy: Новая вакансия
         edit:
@@ -122,7 +127,7 @@ ru:
         show:
           edit: Редактировать
           users_career: Студенты проходящие карьерный трек
-          career_track: 'Карьерный трек: %{name}'
+          career_track: "Карьерный трек: %{name}"
           steps: Шаги карьерного трека
         new:
           cancel: Отменить
@@ -151,8 +156,8 @@ ru:
           no_date: Не завершен
         steps:
           edit:
-            step: 'Шаг: %{name}'
-            attached_careers: 'Связанные карьерные треки:'
+            step: "Шаг: %{name}"
+            attached_careers: "Связанные карьерные треки:"
           form:
             notification: Если требуется студенту отправить уведомление
             cancel: Отменить
@@ -200,4 +205,3 @@ ru:
           edit: Редактировать
         show:
           step: Шаг карьерного трека
-
