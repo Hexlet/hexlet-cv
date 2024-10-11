@@ -157,6 +157,7 @@ ru:
       answer:
         apply: Принять
         add_a_comment: Добавить комментарий/ссылку на вакансию
+        archived_comment: Комментарий был удален %{deleted_at} администратором и более недоступен.
       resume_filter:
         directions: Выберите направление
         name: Название резюме
@@ -322,7 +323,7 @@ ru:
             tab_active: Активные
             tab_finished: Пройденные
       vacancies:
-        form: 
+        form:
           archive: В архив
           cancel: Отмена
         new:

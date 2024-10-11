@@ -138,8 +138,11 @@ ru:
         projects_description: Описание проектов
         about_myself: О себе
       resume/answer:
+        user: Пользователь
+        likes_count: Количество лайков
         content: Ответ
         publishing_state: Опубликован?
+        applying_state: Подтвержден?
         applying_state/pending: Ожидает подтверждения
         applying_state/applied: Изменения внесены
         publishing_state/published: Опубликован

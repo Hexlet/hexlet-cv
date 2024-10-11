@@ -7,9 +7,11 @@ class Web::Admin::Comments::ResumesAnswersCommentsController < Web::Admin::Comme
 
   def update
     if @comment.update(comment_params)
+      f(:success)
       redirect_to admin_resumes_answers_path
     else
-      render :edit
+      f(:error)
+      render :edit, status: :unprocessable_entity
     end
   end
 

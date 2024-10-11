@@ -67,10 +67,21 @@ ru:
           last_satep_finished_at: Дата последней активности
       comments:
         resumes_answers:
-          index:
+          answer_card:
             confirm_archive: Вы уверенны что хотите архивировать ответ?
             confirm_restore: Вы уверенны что хотите восстановить ответ?
             answer_for: "Ответ к %{resume}"
+            edit: Редактировать ответ
+            archive: Архивировать ответ
+            restore: Восстановить ответ
+            show_comments:
+              one: Показать %{count} комментарий
+              few: Показать %{count} комментария
+              many: Показать %{count} комментариев
+              other: Показать %{count} комментариев
+          menu:
+            all: Все
+            archived: Архивированные
           search_form:
             created_at_from: "Дата создания с:"
             created_at_to: "по:"

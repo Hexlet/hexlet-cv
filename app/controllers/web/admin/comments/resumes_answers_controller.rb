@@ -36,6 +36,11 @@ class Web::Admin::Comments::ResumesAnswersController < Web::Admin::Comments::App
     redirect_to admin_resumes_answers_path
   end
 
+  def archived
+    @search = Resume::Answer.web.includes(comments: :user).where(publishing_state: 'archived').ransack(params[:q])
+    @resumes_answers = @search.result(sort: 'created_at desc').page(params[:page])
+  end
+
   private
 
   def set_answer

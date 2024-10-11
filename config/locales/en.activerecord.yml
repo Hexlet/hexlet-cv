@@ -27,6 +27,9 @@ en:
     attributes:
       resume/answer:
         content: Answer
+        likes_count: Likes count
+        applying_state: Applied?
+        publishing_state: Published?
         applying_state/pending: Awaiting confirmation
         applying_state/applied: Changes applied
         publishing_state/published: Published

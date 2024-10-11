@@ -71,10 +71,19 @@ en:
           last_satep_finished_at: Last activity date
       comments:
         resumes_answers:
-          index:
+          answer_card:
             confirm_archive: Are you sure you want to archive answer?
             confirm_restore: Are you sure you want to restore answer?
             answer_for: "Answer for %{resume}"
+            edit: Edit answer
+            archive: Archive answer
+            restore: Restore answer
+            show_comments:
+              one: Show %{count} comment
+              other: Show %{count} comments
+          menu:
+            all: All
+            archived: Archived
           search_form:
             created_at_from: 'Creation date from:'
             created_at_to: 'By:'

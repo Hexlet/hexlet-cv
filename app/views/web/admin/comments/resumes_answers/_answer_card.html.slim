@@ -1,0 +1,48 @@
+.card.mb-2
+  .card-header.bg-white
+    .row
+      .col-3
+        .fw-bold = link_to "##{answer.id}", resume_path(answer.resume, anchor: "answer-#{answer.id}")
+      .col-7
+        = link_to t('.answer_for', resume: answer.resume.name), resume_path(answer.resume)
+      .col-2
+        .d-flex.align-items-end.flex-column
+          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+            = link_to edit_admin_resumes_answer_path(answer), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+              span.bi.bi-gear-fill
+            - if answer.may_restore?
+              = link_to restore_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                span.bi.bi-arrow-counterclockwise
+            - elsif answer.may_archive?
+              = link_to archive_admin_resumes_answer_path(answer, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                span.bi.bi-trash3
+  .card-body
+    .row
+      .col-3
+        .row#info
+          .mb-2
+            strong.me-1 User:
+            = link_to "#{answer.user.first_name} #{answer.user.last_name}", user_path(answer.user)
+          .mb-2
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:email)}:"
+            = link_to answer.user.email, user_path(answer.user)
+          .mb-2
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:created_at)}:"
+            = l(answer.created_at, format: :short)
+          .mb-2
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:likes_count)}:"
+            = answer.likes_count
+          .mb-2
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:applying_state)}:"
+            = answer.applying_state
+          .mb-2
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:publishing_state)}:"
+            = answer.publishing_state
+        .d-flex.align-items-start.flex-column#show-comment
+          - if answer.comments.any?
+            button class="btn btn-outline-primary btn-sm mt-auto" type="button" data-bs-toggle="collapse" data-bs-target="#comments-#{answer.id}" aria-expanded="false" aria-controls="comments-#{answer.id}"
+              span.me-1.bi.bi-chat-dots-fill
+              span = t('.show_comments', count: answer.comments.count)
+      .col
+        .row
+          == markdown2html answer.content, details: true

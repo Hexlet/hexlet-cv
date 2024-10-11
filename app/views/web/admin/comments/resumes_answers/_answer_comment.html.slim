@@ -1,0 +1,41 @@
+.row
+  .col-3
+  .col-9
+    - answer.comments.each do |comment|
+      .card.mb-2.collapse(id="comments-#{answer.id}")
+        .card-header
+          .row
+            .col-4
+              .fw-bold = link_to "##{comment.id}", resume_path(answer.resume, anchor: "answer_comment-#{comment.id}")
+            .col-6
+              = link_to t('.answer_comment_for', resume: answer.id), resume_path(answer.resume)
+            .col-2
+              .d-flex.align-items-end.flex-column
+                .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+                  = link_to edit_admin_resumes_answers_comment_path(comment), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+                    span.bi.bi-gear-fill
+                  - if answer.may_restore?
+                    = link_to restore_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                      span.bi.bi-arrow-counterclockwise
+                  - elsif answer.may_archive?
+                    = link_to archive_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                      span.bi.bi-trash3
+        .card-body
+          .row
+            .col-4
+              .row#info
+                .mb-2
+                  strong.me-1 = "#{Resume::Answer::Comment.human_attribute_name(:user)}:"
+                  = link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user)
+                .mb-2
+                  strong.me-1 = "#{Resume::Answer::Comment.human_attribute_name(:email)}:"
+                  = link_to comment.user.email, user_path(comment.user)
+                .mb-2
+                  strong.me-1 = "#{Resume::Answer::Comment.human_attribute_name(:created_at)}:"
+                  = l(comment.created_at, format: :short)
+                / .mb-2
+                /   strong.me-1 = "#{Resume::Answer.human_attribute_name(:publishing_state)}:"
+                /   = comment.publishing_state
+            .col
+              .row
+                == markdown2html comment.content, details: true

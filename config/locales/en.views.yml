@@ -70,7 +70,7 @@ en:
         contacts: Contacts
         main: Main
         add: Add
-        additionally: Additionally 
+        additionally: Additionally
       work_fields:
         remove_work: Delete work experience
       education_fields:
@@ -79,6 +79,7 @@ en:
         add_a_comment: Add a comment
         apply: Apply
         title_apply: Apply recommendations
+        archived_comment: The comment was deleted %{deleted_at} and is no longer available.
       empty_list:
         empty: Empty
       links_guides:
@@ -332,7 +333,7 @@ en:
           <summary>Cover letter</summary>
           %{letter}
         </details>
-        
+
         <details>
           <summary>Improved resume</summary>
           %{edit_text}
