@@ -157,8 +157,11 @@ ru:
       answer:
         apply: Принять
         add_a_comment: Добавить комментарий/ссылку на вакансию
+        archived_answer_header: Ответ недоступен
+        archived_answer_body: Ответ был удален %{deleted_at} администратором и более недоступен.
         archived_comment_header: Комментарий недоступен
         archived_comment_body: Комментарий был удален %{deleted_at} администратором и более недоступен.
+        closed_conversation: Дальнейшее обсуждение недоступно
       resume_filter:
         directions: Выберите направление
         name: Название резюме

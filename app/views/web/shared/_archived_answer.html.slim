@@ -1,0 +1,35 @@
+.card.mb-5(id="answer-#{answer.id}")
+  .card-header.d-flex.py-3.bg-white
+    .me-auto.d-flex
+      span.fw-bold.text-decoration-line-through = answer.user
+      span.mx-2.fw-light
+        .text-muted = distance_of_time_in_words_to_now(answer.created_at)
+  .card-body.d-flex
+    .w-100
+      .hexlet-cv-content.mb-3
+        h3.muted.text-center = t('web.shared.answer.archived_answer_header')
+        .text-muted.text-center = t('web.shared.answer.archived_answer_body', deleted_at: l(answer.updated_at, format: :long))
+      - if answer.comments.web.any?
+        - answer.comments.web.each do |comment|
+          hr.mb-4
+          .d-flex(id="answer_comment-#{comment.id}")
+            .me-auto
+              span.me-2.hexlet-cv-content.hexlet-cv-inline-paragraph
+                == markdown2html comment.content
+              span.small
+                - if comment.user
+                  span.me-1
+                    = link_to comment.user, user_path(comment.user)
+                = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "answer_comment-#{comment.id}"), class: 'text-muted'
+            - if comment.user == current_user
+              .d-flex
+                .me-2
+                  = link_to edit_answer_comment_path(answer, comment)
+                    span.bi.bi-pen-fill.text-secondary
+                div
+                  = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
+                    span.bi.bi-x-lg.text-secondary
+      hr.mb-4
+      .text-muted
+        i.bi.bi-lock.me-1
+        = t('web.shared.answer.closed_conversation')
