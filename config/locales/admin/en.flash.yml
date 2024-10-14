@@ -51,6 +51,16 @@ en:
             update:
               success: Answer on resume successfully updated
               error: Failed to update answer
+          resumes_comments:
+            archive:
+              success: Comment for resume successfully archived
+              error: Failed to archive comment
+            restore:
+              success: Comment for resume successfully restored
+              error: Failed to restore comment
+            update:
+              success: Comment for resume successfully updated
+              error: Failed to update comment
         vacancies:
           cancel:
             success: Vacancy canceled successfull

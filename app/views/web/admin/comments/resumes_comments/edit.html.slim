@@ -1,0 +1,3 @@
+= simple_form_for @comment, url: admin_resumes_comment_path(@comment) do |f|
+  = f.input :content, input_html: { rows: 12 }
+  .mt-2 = f.button :submit, class: 'btn btn-success'

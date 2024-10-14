@@ -2,12 +2,13 @@
 #
 # Table name: resume_comments
 #
-#  id         :integer          not null, primary key
-#  content    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  resume_id  :integer
-#  user_id    :integer
+#  id               :integer          not null, primary key
+#  content          :string
+#  publishing_state :string           default("published")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  resume_id        :integer
+#  user_id          :integer
 #
 # Indexes
 #

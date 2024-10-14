@@ -70,6 +70,14 @@ en:
           archive: Archive
           last_satep_finished_at: Last activity date
       comments:
+        resumes_comments:
+          comment_card:
+            confirm_archive: Are you sure you want to archive comment?
+            confirm_restore: Are you sure you want to restore comment?
+            comment_for: "Comment for %{resume}"
+            edit: Edit comment
+            archive: Archive comment
+            restore: Restore comment
         resumes_answers:
           answer_card:
             confirm_archive: Are you sure you want to archive answer?
@@ -90,6 +98,9 @@ en:
           search_button: Search
           publishing_state_select: Publishing state
           applying_state_select: Applied state
+        menu:
+          all: All
+          archived: Archived
       resumes:
         index:
           edit: Edit CV

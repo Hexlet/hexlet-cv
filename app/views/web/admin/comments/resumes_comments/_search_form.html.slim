@@ -2,8 +2,7 @@
   = search_form_for q, default_filter_form_options(url: url_for) do |f|
     = f.input :resume_name_cont, placeholder: han('resume', :name), label: false
     = f.input :user_email_cont, placeholder: han('user', :email), label: false
-    = f.input :content_cont, placeholder: han('Resume::Answer', :content), label: false
-    = f.input :applying_state_eq, as: :select, collection: states_for_select(Resume::Answer, :applying), label: false, include_blank: t('applying_state_select', scope: 'web.admin.comments.search_form')
+    = f.input :content_cont, placeholder: han('Resume::Comment', :content), label: false
     = f.input :created_at_gteq, as: :date, html5: true,
     label: t('created_at_from', scope: 'web.admin.comments.search_form')
     = f.input :created_at_lteq, as: :date, html5: true,

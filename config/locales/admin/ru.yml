@@ -66,6 +66,14 @@ ru:
           restore: Восстановить
           last_satep_finished_at: Дата последней активности
       comments:
+        resumes_comments:
+          comment_card:
+            confirm_archive: Вы уверенны что хотите архивировать комментарий?
+            confirm_restore: Вы уверенны что хотите восстановить комментарий?
+            comment_for: "Комментарий к %{resume}"
+            edit: Редактировать комментарий
+            archive: Архивировать комментарий
+            restore: Восстановить комментарий
         resumes_answers:
           answer_card:
             confirm_archive: Вы уверенны что хотите архивировать ответ?
@@ -88,6 +96,9 @@ ru:
           search_button: Поиск
           publishing_state_select: Опубликован?
           applying_state_select: Подтврежден?
+        menu:
+          all: Все
+          archived: Архивированные
       resumes:
         index:
           edit: Редактировать резюме
