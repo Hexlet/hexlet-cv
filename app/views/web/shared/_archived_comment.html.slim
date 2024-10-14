@@ -1,0 +1,10 @@
+.d-flex(id="comment-#{comment.id}")
+  .me-auto
+    span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+      .text-muted.text-center = t('web.shared.answer.archived_comment_header')
+      .text-muted.text-center = t('web.shared.answer.archived_comment_body', deleted_at: l(comment.updated_at, format: :long))
+    span.small
+      - if comment.user
+        span.text-decoration-line-through.me-1
+          = comment.user
+      span.text-muted = l(comment.created_at, format: :long_schema)

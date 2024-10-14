@@ -49,24 +49,10 @@
             == markdown2html answer.content
         - if answer.comments.web.any?
           - answer.comments.web.each do |comment|
-            hr.mb-4
-            .d-flex(id="answer_comment-#{comment.id}")
-              .me-auto
-                span.me-2.hexlet-cv-content.hexlet-cv-inline-paragraph
-                  == markdown2html comment.content
-                span.small
-                  - if comment.user
-                    span.me-1
-                      = link_to comment.user, user_path(comment.user)
-                  = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "answer_comment-#{comment.id}"), class: 'text-muted'
-              - if comment.user == current_user
-                .d-flex
-                  .me-2
-                    = link_to edit_answer_comment_path(answer, comment)
-                      span.bi.bi-pen-fill.text-secondary
-                  div
-                    = link_to answer_comment_path(answer, comment), method: :delete, data: { confirm: t('confirm') } do
-                      span.bi.bi-x-lg.text-secondary
+            - if comment.archived?
+              = render 'web/shared/archived_comment', comment:
+            -else
+              = render 'web/shared/resume_answer_comment', comment:, answer:
         hr.mb-4
         a.d-block.text-muted(href="#new_answer_comment-#{answer.id}" data-bs-toggle='collapse')
           = t('.add_a_comment')
