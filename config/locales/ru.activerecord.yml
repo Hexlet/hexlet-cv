@@ -147,6 +147,8 @@ ru:
         applying_state/applied: Изменения внесены
         publishing_state/published: Опубликован
         publishing_state/archived: В архиве
+        created_at: Дата создания
+        updated_at: Дата обновления
       resume/job:
         content: Описание
       resume/work:

@@ -34,6 +34,8 @@ en:
         applying_state/applied: Changes applied
         publishing_state/published: Published
         publishing_state/archived: Archived
+        created_at: Creation date
+        updated_at: Update date
       resume/job:
         content: Description
       resume/comment:

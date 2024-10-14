@@ -79,7 +79,8 @@ en:
         add_a_comment: Add a comment
         apply: Apply
         title_apply: Apply recommendations
-        archived_comment: The comment was deleted %{deleted_at} and is no longer available.
+        archived_comment_header: Comment is unavailable
+        archived_comment_body: The comment was deleted %{deleted_at} and is no longer available.
       empty_list:
         empty: Empty
       links_guides:

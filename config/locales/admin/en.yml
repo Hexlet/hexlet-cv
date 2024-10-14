@@ -84,9 +84,12 @@ en:
           menu:
             all: All
             archived: Archived
-          search_form:
-            created_at_from: 'Creation date from:'
-            created_at_to: 'By:'
+        search_form:
+          created_at_from: 'Creation date from:'
+          created_at_to: 'By:'
+          search_button: Search
+          publishing_state_select: Publishing state
+          applying_state_select: Applied state
       resumes:
         index:
           edit: Edit CV

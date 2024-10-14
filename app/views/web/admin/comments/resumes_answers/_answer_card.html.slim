@@ -21,7 +21,7 @@
       .col-3
         .row#info
           .mb-2
-            strong.me-1 User:
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:user)}:"
             = link_to "#{answer.user.first_name} #{answer.user.last_name}", user_path(answer.user)
           .mb-2
             strong.me-1 = "#{Resume::Answer.human_attribute_name(:email)}:"
@@ -30,14 +30,14 @@
             strong.me-1 = "#{Resume::Answer.human_attribute_name(:created_at)}:"
             = l(answer.created_at, format: :short)
           .mb-2
-            strong.me-1 = "#{Resume::Answer.human_attribute_name(:likes_count)}:"
-            = answer.likes_count
+            strong.me-1 = "#{Resume::Answer.human_attribute_name(:updated_at)}:"
+            = l(answer.updated_at, format: :short)
           .mb-2
             strong.me-1 = "#{Resume::Answer.human_attribute_name(:applying_state)}:"
-            = answer.applying_state
+            = state_for_render(Resume::Answer, :applying, answer.applying_state)
           .mb-2
             strong.me-1 = "#{Resume::Answer.human_attribute_name(:publishing_state)}:"
-            = answer.publishing_state
+            = state_for_render(Resume::Answer, :publishing, answer.publishing_state)
         .d-flex.align-items-start.flex-column#show-comment
           - if answer.comments.any?
             button class="btn btn-outline-primary btn-sm mt-auto" type="button" data-bs-toggle="collapse" data-bs-target="#comments-#{answer.id}" aria-expanded="false" aria-controls="comments-#{answer.id}"

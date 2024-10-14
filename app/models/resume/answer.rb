@@ -73,7 +73,7 @@ class Resume::Answer < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id content user_id publishing_state created_at]
+    %w[id content user_id publishing_state applying_state created_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

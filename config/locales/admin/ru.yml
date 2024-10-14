@@ -82,9 +82,12 @@ ru:
           menu:
             all: Все
             archived: Архивированные
-          search_form:
-            created_at_from: "Дата создания с:"
-            created_at_to: "по:"
+        search_form:
+          created_at_from: "Дата создания с:"
+          created_at_to: "по:"
+          search_button: Поиск
+          publishing_state_select: Опубликован?
+          applying_state_select: Подтврежден?
       resumes:
         index:
           edit: Редактировать резюме

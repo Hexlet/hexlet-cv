@@ -31,7 +31,8 @@
     - if answer.publishing_state == 'archived'
       .w-100
         .hexlet-cv-content.mb-3
-          .text-muted.text-center = t('.archived_comment', deleted_at: l(answer.updated_at, format: :long))
+          h3.muted.text-center = t('.archived_comment_header')
+          .text-muted.text-center = t('.archived_comment_body', deleted_at: l(answer.updated_at, format: :long))
         - if answer.comments.web.any?
           - answer.comments.web.each do |comment|
             hr.mb-4
