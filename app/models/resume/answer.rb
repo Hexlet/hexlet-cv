@@ -27,11 +27,14 @@
 class Resume::Answer < ApplicationRecord
   include AASM
   include Resume::AnswerRepository
+
+  counter_culture :resume
+
   # FIXME: add unique index
   validates :resume, uniqueness: { scope: :user }
   validates :content, presence: true, length: { minimum: 10 }
 
-  belongs_to :resume, counter_cache: true
+  belongs_to :resume
   belongs_to :user
   has_many :likes, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Like'
   has_many :comments, dependent: :destroy, inverse_of: :answer, class_name: 'Resume::Answer::Comment'
