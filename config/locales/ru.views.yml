@@ -211,34 +211,32 @@ ru:
           position_level:
             default:
               title: |
-                Вакансии для %{position_level}-разработчиков по направлению %{direction} %{city_description}, работа, свежие вакансии
+                Вакансии по запросу: %{position_level} %{direction} %{city_description}
               header: |
-                Вакансии для %{position_level}-разработчиков по направлению %{direction} %{city_description}
+                Вакансии по запросу: %{position_level} %{direction} %{city_description}
               description: |
-                Актуальные вакансии для %{position_level}-разработчиков по направлению %{direction} %{city_description}. Работа для %{position_level}-программистов, подборка от редакции Hexlet CV
+                %{vacancy_count} открытых вакансий на работу %{position_level} %{direction} %{city_description}. Работа для %{position_level}, подборка от редакции Hexlet CV. Лучшие предложения на cv.hexlet.io
             intern:
               title: |
-                Стажировки для Джуниор-разработчиков по направлению %{direction} %{city_description}, работа, свежие вакансии
+                Стажировки по запросу: Джуниор %{direction} %{city_description}
               header: |
-                Стажировки для Джуниор-разработчиков по направлению %{direction} %{city_description}
+                Стажировки по запросу: Джуниор %{direction} %{city_description}
               description: |
-                Актуальные стажировки для Джуниор-разработчиков по направлению %{direction} %{city_description}. Стажировка для Джуниор разработчиков, подборка от редакции Hexlet CV
-
+                %{vacancy_count} открытых стажировок для Джуниор %{direction} %{city_description}. Стажировка для Джуниор, подборка от редакции Hexlet CV. Лучшие предложения на cv.hexlet.io
           city_name:
             title: |
-              Вакансии по направлению %{direction} %{city_description}
+              Вакансии по запросу: %{direction} %{city_description}
             header: |
-              Вакансии по направлению %{direction} %{city_description}
+              Вакансии по запросу: %{direction} %{city_description}
             description: |
-              Актуальные вакансии по направлению %{direction} %{city_description}
-
+              %{vacancy_count} открытых вакансий на работу %{direction} %{city_description}. Подборка от редакции Hexlet CV. Лучшие предложения на cv.hexlet.io
           direction:
             title: |
-              Вакансии по направлению %{direction}
+              Вакансии по запросу: %{direction}
             header: |
-              Вакансии по направлению %{direction}
+              Вакансии по запросу: %{direction}
             description: |
-              Актуальные вакансии по направлению %{direction}. Работа по направлению %{direction}, подборка от редакции Hexlet CV
+              %{vacancy_count} открытых вакансий на работу %{direction}. Работа по направлению %{direction}, подборка от редакции Hexlet CV. Лучшие предложения на cv.hexlet.io
     vacancies:
       show:
         title: "Вакансия %{body}"
