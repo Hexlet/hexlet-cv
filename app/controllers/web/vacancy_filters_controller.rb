@@ -37,7 +37,7 @@ class Web::VacancyFiltersController < Web::ApplicationController
 
     @header = t(".options.#{main_key}.#{level_key}.header", default: :"#{default_prefix}.header", **options_for_header)
     @title = t(".options.#{main_key}.#{level_key}.title", default: :"#{default_prefix}.title", **options_for_header)
-    @description = t(".options.#{main_key}.#{level_key}.description", default: :"#{default_prefix}.description", **options_for_header)
+    @description = t(".options.#{main_key}.#{level_key}.description", vacancy_count: scope.distinct.count, default: :"#{default_prefix}.description", **options_for_header)
 
     @vacancy_search_form = Web::Vacancies::SearchForm.new(prepare_options_for_search_form(@options))
     @tags = Vacancy.directions_tags
