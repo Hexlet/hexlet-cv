@@ -226,6 +226,8 @@ en:
         form:
           archive: Archive
           cancel: Cancel
+          idle: Draft
+          on_moderate: On moderate
         new:
           header: New vacancy
         edit:

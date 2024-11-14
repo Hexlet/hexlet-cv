@@ -54,7 +54,7 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#publish' do
-    vacancy = vacancies(:archived)
+    vacancy = vacancies(:archived_one)
     state_event = :publish
     attrs = vacancy.attributes.merge(state_event:)
     previous_published_at = vacancy.published_at
@@ -91,7 +91,7 @@ class Web::Admin::VacanciesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#restore' do
-    vacancy = vacancies(:archived)
+    vacancy = vacancies(:archived_one)
 
     patch restore_admin_vacancy_path(vacancy), params: { go_to: admin_vacancies_path(locale: I18n.locale) }
 

@@ -256,6 +256,8 @@ ru:
         form:
           archive: В архив
           cancel: Отмена
+          idle: Черновик
+          on_moderate: На модерацию
         new:
           header: Новая вакансия
         edit:
