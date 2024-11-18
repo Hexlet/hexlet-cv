@@ -8,17 +8,17 @@
             .col-4
               .fw-bold = link_to "##{comment.id}", resume_path(answer.resume, anchor: "answer_comment-#{comment.id}")
             .col-6
-              = link_to t('.answer_comment_for', resume: answer.id), resume_path(answer.resume)
+              = link_to t('.answer_comment_for', resume: answer.id), resume_path(answer.resume, anchor: "answer-#{answer.id}")
             .col-2
               .d-flex.align-items-end.flex-column
                 .btn-group[role='group' aria-label="#{t('action_buttons')}"]
-                  = link_to edit_admin_resumes_answers_comment_path(comment), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+                  = link_to edit_admin_resumes_answers_comment_path(comment), class: 'btn btn-outline-primary btn-sm', title: t('.edit', answer: answer.id) do
                     span.bi.bi-gear-fill
-                  - if answer.may_restore?
-                    = link_to restore_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                  - if comment.may_restore?
+                    = link_to restore_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore', answer: answer.id) }, title: t('.restore', answer: answer.id) do
                       span.bi.bi-arrow-counterclockwise
-                  - elsif answer.may_archive?
-                    = link_to archive_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                  - elsif comment.may_archive?
+                    = link_to archive_admin_resumes_answers_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive', answer: answer.id) }, title: t('.archive', answer: answer.id) do
                       span.bi.bi-trash3
         .card-body
           .row

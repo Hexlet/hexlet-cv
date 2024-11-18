@@ -15,9 +15,21 @@ class Web::Admin::Comments::ResumesAnswersCommentsController < Web::Admin::Comme
     end
   end
 
-  def archive; end
+  def archive
+    return unless @comment.may_archive?
 
-  def restore; end
+    @comment.archive!
+    f(:success)
+    redirect_to admin_resumes_answers_path
+  end
+
+  def restore
+    return unless @comment.may_restore?
+
+    @comment.restore!
+    f(:success)
+    redirect_to admin_resumes_answers_path
+  end
 
   private
 
