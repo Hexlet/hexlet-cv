@@ -4,14 +4,15 @@
 #
 # Table name: resume_answer_comments
 #
-#  id             :integer          not null, primary key
-#  content        :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  answer_id      :integer          not null
-#  answer_user_id :integer          not null
-#  resume_id      :integer          not null
-#  user_id        :integer          not null
+#  id               :integer          not null, primary key
+#  content          :string
+#  publishing_state :string           default("published")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  answer_id        :integer          not null
+#  answer_user_id   :integer          not null
+#  resume_id        :integer          not null
+#  user_id          :integer          not null
 #
 # Indexes
 #
@@ -28,6 +29,7 @@
 #  user_id         (user_id => users.id)
 #
 class Resume::Answer::Comment < ApplicationRecord
+  include AASM
   validates :content, presence: true, length: { minimum: 10, maximum: 400 }
 
   belongs_to :resume
@@ -37,6 +39,19 @@ class Resume::Answer::Comment < ApplicationRecord
   has_many :notifications, as: :resource, dependent: :destroy
 
   include Resume::Answer::CommentRepository
+
+  aasm :publishing, column: :publishing_state do
+    state :published, initial: true
+    state :archived
+
+    event :archive do
+      transitions from: :published, to: :archived
+    end
+
+    event :restore do
+      transitions from: :archived, to: :published
+    end
+  end
 
   def to_s
     content
