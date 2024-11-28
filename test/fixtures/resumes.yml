@@ -149,3 +149,9 @@ full_en:
   summary: |
     A self-taught programmer who has chosen the path of constant self-improvement. I value beautiful and concise code, I love functional programming (the great trinity of map, filter, reduce). I work with languages ​​such as JS, Ruby, PHP, Python, Elixir, Clojure (to varying degrees of skill, of course). I admire the LISP family of languages, so much so that I am writing my own LISP interpreter in Elixir as a pet project. At the moment, I am delving into Unix OS in order to further improve my DevOps skills.
   answers_count: 1
+
+one_draft:
+  <<: *DEFAULTS
+  state: draft
+  user: one
+  contact_email: one@email.com

@@ -8,6 +8,9 @@
       span.ms-3
         = link_to edit_account_resume_path(resume) do
           span.bi.bi-pencil-square.text-muted
+      span.ms-3
+        = link_to preview_account_resume_path(resume) do
+          span.bi.bi-eye-fill.text-muted
     .card-body
       h5.card-title
         = link_to_unless resume.draft?, resume, resume_path(resume)
