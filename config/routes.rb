@@ -72,11 +72,15 @@ Rails.application.routes.draw do
       end
 
       namespace :account do
-        resources :resumes
         resources :vacancies
         resources :notifications, only: %i[index update]
         resource :newsletters, only: %i[edit update]
         resource :profile, only: %i[edit update destroy]
+        resources :resumes do
+          member do
+            get :preview
+          end
+        end
         scope module: :careers do
           resources :members, only: %i[index]
         end
