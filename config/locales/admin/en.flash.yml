@@ -44,23 +44,33 @@ en:
           resumes_answers:
             archive:
               success: Answer on resume successfully archived
-              error: Failed to archive answer
+              error: "Failed to archive answer, errors occurred: %{errors}"
             restore:
               success: Answer on resume successfully restored
-              error: Failed to restore answer
+              error: "Failed to restore answer, errors occurred: %{errors}"
             update:
               success: Answer on resume successfully updated
-              error: Failed to update answer
+              error: "Failed to update answer, errors occurred: %{errors}"
           resumes_comments:
             archive:
               success: Comment for resume successfully archived
-              error: Failed to archive comment
+              error: "Failed to archive comment, errors occurred: %{errors}"
             restore:
               success: Comment for resume successfully restored
-              error: Failed to restore comment
+              error: "Failed to restore comment, errors occurred: %{errors}"
             update:
               success: Comment for resume successfully updated
-              error: Failed to update comment
+              error: "Failed to update comment, errors occurred: %{errors}"
+          resumes_answers_comments:
+            archive:
+              success: Comment for answer successfully archived
+              error: "Failed to archive comment for answer, errors occurred: %{errors}"
+            restore:
+              success: Comment for answer successfully restored
+              error: "Failed to restore answers comment, errors occurred: %{errors}"
+            update:
+              success: Comment for answer successfully updated
+              error: "Failed to update comment for answer, errors occurred: %{errors}"
         vacancies:
           cancel:
             success: Vacancy canceled successfull

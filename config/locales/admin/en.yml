@@ -89,6 +89,13 @@ en:
             show_comments:
               one: Show %{count} comment
               other: Show %{count} comments
+          answer_comment:
+            answer_comment_for: "Comment for answer #%{answer}"
+            edit: "Edit comment for answer #%{answer}"
+            archive: "Archive comment for answer #%{answer}"
+            restore: "Restore comment for answer #%{answer}"
+            confirm_restore: "Are you sure you want to restore comment for answer #%{answer}?"
+            confirm_archive: "Are you sure you want to archive comment for answer #%{answer}?"
           menu:
             all: All
             archived: Archived
