@@ -69,6 +69,45 @@ en:
           restore: Restore
           archive: Archive
           last_satep_finished_at: Last activity date
+      comments:
+        resumes_comments:
+          comment_card:
+            confirm_archive: Are you sure you want to archive comment?
+            confirm_restore: Are you sure you want to restore comment?
+            comment_for: "Comment for %{resume}"
+            edit: Edit comment
+            archive: Archive comment
+            restore: Restore comment
+        resumes_answers:
+          answer_card:
+            confirm_archive: Are you sure you want to archive answer?
+            confirm_restore: Are you sure you want to restore answer?
+            answer_for: "Answer for %{resume}"
+            edit: Edit answer
+            archive: Archive answer
+            restore: Restore answer
+            show_comments:
+              one: Show %{count} comment
+              other: Show %{count} comments
+          answer_comment:
+            answer_comment_for: "Comment for answer #%{answer}"
+            edit: "Edit comment for answer #%{answer}"
+            archive: "Archive comment for answer #%{answer}"
+            restore: "Restore comment for answer #%{answer}"
+            confirm_restore: "Are you sure you want to restore comment for answer #%{answer}?"
+            confirm_archive: "Are you sure you want to archive comment for answer #%{answer}?"
+          menu:
+            all: All
+            archived: Archived
+        search_form:
+          created_at_from: 'Creation date from:'
+          created_at_to: 'By:'
+          search_button: Search
+          publishing_state_select: Publishing state
+          applying_state_select: Applied state
+        menu:
+          all: All
+          archived: Archived
       resumes:
         index:
           edit: Edit CV

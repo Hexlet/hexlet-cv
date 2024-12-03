@@ -1,0 +1,37 @@
+.card.mb-2
+  .card-header.bg-white
+    .row
+      .col-3
+        .fw-bold = link_to "##{comment.id}", resume_path(comment.resume, anchor: "comment-#{comment.id}")
+      .col-7
+        = link_to t('.comment_for', resume: comment.resume.name), resume_path(comment.resume)
+      .col-2
+        .d-flex.align-items-end.flex-column
+          .btn-group[role='group' aria-label="#{t('action_buttons')}"]
+            = link_to edit_admin_resumes_comment_path(comment), class: 'btn btn-outline-primary btn-sm', title: t('.edit') do
+              span.bi.bi-gear-fill
+            - if comment.may_restore?
+              = link_to restore_admin_resumes_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-success btn-sm', data: { confirm: t('.confirm_restore') }, title: t('.restore') do
+                span.bi.bi-arrow-counterclockwise
+            - elsif comment.may_archive?
+              = link_to archive_admin_resumes_comment_path(comment, page: params[:page]), method: :patch, class: 'btn btn-outline-danger btn-sm', data: { confirm: t('.confirm_archive') }, title: t('.archive') do
+                span.bi.bi-trash3
+  .card-body
+    .row
+      .col-3
+        .row#info
+          .mb-2
+            strong.me-1 = "#{Resume::Comment.human_attribute_name(:user)}:"
+            = link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user)
+          .mb-2
+            strong.me-1 = "#{Resume::Comment.human_attribute_name(:email)}:"
+            = link_to comment.user.email, user_path(comment.user)
+          .mb-2
+            strong.me-1 = "#{Resume::Comment.human_attribute_name(:created_at)}:"
+            = l(comment.created_at, format: :short)
+          .mb-2
+            strong.me-1 = "#{Resume::Comment.human_attribute_name(:updated_at)}:"
+            = l(comment.updated_at, format: :short)
+      .col
+        .row
+          == markdown2html comment.content, details: true

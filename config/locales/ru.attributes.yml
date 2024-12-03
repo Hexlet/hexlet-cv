@@ -1,3 +1,6 @@
 ru:
   attributes:
     created_at: Дата создания
+    updated_at: Дата обновления
+    user: Пользователь
+    publishing_state: Ст. публикации

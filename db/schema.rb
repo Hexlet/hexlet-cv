@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_18_100206) do
   create_table "career_items", force: :cascade do |t|
     t.integer "order"
     t.integer "career_id", null: false
@@ -139,6 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "publishing_state", default: "published"
     t.index ["answer_id"], name: "index_resume_answer_comments_on_answer_id"
     t.index ["answer_user_id"], name: "index_resume_answer_comments_on_answer_user_id"
     t.index ["resume_id"], name: "index_resume_answer_comments_on_resume_id"
@@ -165,6 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
     t.datetime "updated_at", null: false
     t.integer "likes_count"
     t.string "applying_state"
+    t.string "publishing_state", default: "published"
     t.index ["resume_id"], name: "index_resume_answers_on_resume_id"
     t.index ["user_id", "resume_id"], name: "index_resume_answers_on_user_id_and_resume_id", unique: true
     t.index ["user_id"], name: "index_resume_answers_on_user_id"
@@ -176,6 +178,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_200834) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "publishing_state", default: "published"
     t.index ["resume_id"], name: "index_resume_comments_on_resume_id"
     t.index ["user_id"], name: "index_resume_comments_on_user_id"
   end

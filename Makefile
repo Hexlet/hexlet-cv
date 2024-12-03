@@ -25,7 +25,7 @@ setup:
 setup-heroku-arm64:
 	arch -x86_64 /bin/zsh -c 'curl https://cli-assets.heroku.com/install.sh | sh'
 
-# setup-arm64: setup-heroku-arm64 setup-app
+setup-arm64: setup-heroku-arm64 setup-app
 
 setup-app:
 	cp -n .env.example .env || true

@@ -99,6 +99,33 @@ Rails.application.routes.draw do
             get :lost
           end
         end
+        scope module: :comments do
+          resources :resumes_comments do
+            member do
+              patch :archive
+              patch :restore
+            end
+            collection do
+              get :archived
+            end
+          end
+          resources :resumes_answers do
+            member do
+              patch :archive
+              patch :restore
+            end
+            collection do
+              get :archived
+            end
+          end
+          resources :resumes_answers_comments do
+            member do
+              patch :archive
+              patch :restore
+            end
+          end
+        end
+
         resources :resumes, only: %i[index edit update] do
           member do
             patch :archive
