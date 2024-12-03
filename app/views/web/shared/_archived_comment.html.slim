@@ -1,8 +1,9 @@
-.d-flex(id="comment-#{comment.id}")
+hr.mb-4
+.(id="comment-#{comment.id}")
   .me-auto
-    span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
-      .text-muted.text-center = t('web.shared.answer.archived_comment_header')
-      .text-muted.text-center = t('web.shared.answer.archived_comment_body', deleted_at: l(comment.updated_at, format: :long))
+    span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph.text-center
+      .text-muted = t('web.shared.answer.archived_comment_header')
+      .text-muted = t('web.shared.answer.archived_comment_body', deleted_at: l(comment.updated_at, format: :long))
     span.small
       - if comment.user
         span.text-decoration-line-through.me-1
