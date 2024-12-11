@@ -3,8 +3,7 @@
 class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationController
   before_action only: %i[index archived finished lost] do
     query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
-    @q = Career::Member.includes(:career_step_members)
-                       .joins(:user, :career)
+    @q = Career::Member.joins(:user, :career)
                        .merge(User.permitted)
                        .merge(Career.with_locale)
                        .ransack(query)
@@ -31,7 +30,7 @@ class Web::Admin::CareerMemberUsersController < Web::Admin::ApplicationControlle
   end
 
   def archived
-    scope = @career_members.includes(:versions).archived
+    scope = @career_members.archived
 
     respond_to do |format|
       format.html do
