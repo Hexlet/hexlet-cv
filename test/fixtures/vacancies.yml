@@ -160,3 +160,10 @@ over_month_old:
   title: Фронтендер
   salary_to: 2000
   published_at: <%= 2.month.ago.to_fs(:db) %>
+
+draft_full:
+  <<: *DEFAULTS
+  title: Draft
+  state: idle
+  salary_from: 1000
+  salary_to: 2000

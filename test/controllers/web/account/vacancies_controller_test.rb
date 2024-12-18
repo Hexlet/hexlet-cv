@@ -105,4 +105,19 @@ class Web::Account::VacanciesControllerTest < ActionDispatch::IntegrationTest
 
     assert { published_vacancy.title != attrs[:title] }
   end
+
+  test '#send_to_moderate' do
+    vacancy = vacancies(:draft_full)
+    attrs = FactoryBot.attributes_for(:vacancy)
+    params = {
+      on_moderate: true,
+      vacancy: attrs
+    }
+
+    patch(account_vacancy_path(vacancy), params:)
+    vacancy.reload
+
+    assert_redirected_to account_vacancies_path
+    assert { vacancy.on_moderate? }
+  end
 end
