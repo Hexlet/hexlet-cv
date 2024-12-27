@@ -5,7 +5,9 @@ require 'test_helper'
 class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
+    @other_user = users(:two)
     sign_in(@user)
+    @draft_resume = resumes(:one_draft)
   end
 
   test '#index' do
@@ -189,5 +191,20 @@ class Web::Account::ResumesControllerTest < ActionDispatch::IntegrationTest
 
     resume = Resume.find_by(name: attrs[:name])
     assert { !resume }
+  end
+
+  test '#preview for draft resume' do
+    get preview_account_resume_path(@draft_resume)
+    assert_response :success
+    assert_select 'h1', @user.full_name
+    assert_select 'h3', @draft_resume.name
+  end
+
+  test '#preview for resume not owned by user' do
+    sign_out(@user)
+    sign_in(@other_user)
+    assert_raises ActiveRecord::RecordNotFound do
+      get preview_account_resume_path(@draft_resume)
+    end
   end
 end

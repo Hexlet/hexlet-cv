@@ -47,6 +47,17 @@ class Web::Account::ResumesController < Web::Account::ApplicationController
 
   def destroy; end
 
+  def preview
+    @resume = current_user.resumes.find(params[:id])
+    @resume_educations = @resume.educations.web
+    @resume_works = @resume.works.web
+    if @resume.draft?
+      render :preview
+    else
+      redirect_to account_resumes_path, alert: t('.not_accessible')
+    end
+  end
+
   private
 
   def change_state(resume)
