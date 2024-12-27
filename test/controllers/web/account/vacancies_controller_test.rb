@@ -53,6 +53,32 @@ class Web::Account::VacanciesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test 'can not edit a archived job' do
+    user = users(:one)
+    archived_vacancy = vacancies(:archived_one)
+    sign_out @hr
+    sign_in user
+
+    get edit_account_vacancy_path(archived_vacancy)
+
+    assert_redirected_to root_path
+  end
+
+  test 'can not update archived job' do
+    attrs = FactoryBot.attributes_for :vacancy
+    user = users(:one)
+    archived_vacancy = vacancies(:archived_one)
+    sign_out @hr
+    sign_in user
+
+    patch account_vacancy_path(archived_vacancy), params: { vacancy: attrs }
+    assert_response :redirect
+
+    archived_vacancy.reload
+
+    assert { archived_vacancy.title != attrs[:title] }
+  end
+
   test '#update' do
     attrs = FactoryBot.attributes_for :vacancy
     vacancy = vacancies(:one)
@@ -78,5 +104,20 @@ class Web::Account::VacanciesControllerTest < ActionDispatch::IntegrationTest
     published_vacancy.reload
 
     assert { published_vacancy.title != attrs[:title] }
+  end
+
+  test '#send_to_moderate' do
+    vacancy = vacancies(:draft_full)
+    attrs = FactoryBot.attributes_for(:vacancy)
+    params = {
+      on_moderate: true,
+      vacancy: attrs
+    }
+
+    patch(account_vacancy_path(vacancy), params:)
+    vacancy.reload
+
+    assert_redirected_to account_vacancies_path
+    assert { vacancy.on_moderate? }
   end
 end

@@ -24,6 +24,7 @@ en:
         restore: Restore from archive
         send_to_moderate: Send to moderate
         cancel: Cancel
+        send_to_draft: To draft
     attributes:
       resume/answer:
         content: Answer
