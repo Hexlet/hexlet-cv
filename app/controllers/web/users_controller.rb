@@ -27,7 +27,6 @@ class Web::UsersController < Web::ApplicationController
         acc[member.id][:career_slug] = member.career.slug
         acc[member.id][:finished_steps_count] = member.finished_steps_count
         acc[member.id][:career_progress] = member.progress_by_finished_steps
-        acc[member.id][:career_progress] = member.progress_by_finished_steps
         acc[member.id][:finished_steps] = member.career_step_members.finished.map { |step_member| step_member.career_step.name }
       end
     end
