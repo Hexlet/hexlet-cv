@@ -4,7 +4,8 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   after_action :verify_authorized, only: %i[edit update]
 
   def index
-    @vacancies = current_user.vacancies.with_locale
+    @q = current_user.vacancies.with_locale.ransack(params[:q])
+    @vacancies = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def new
