@@ -4,7 +4,9 @@ class Web::Account::VacanciesController < Web::Account::ApplicationController
   after_action :verify_authorized, only: %i[edit update]
 
   def index
-    @vacancies = current_user.vacancies.with_locale
+    query = { s: 'created_at desc' }.merge(params.permit![:q] || {})
+    @search = current_user.vacancies.with_locale.ransack(query)
+    @vacancies = @search.result
   end
 
   def new
