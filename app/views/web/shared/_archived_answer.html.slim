@@ -1,0 +1,21 @@
+.card.mb-5(id="answer-#{answer.id}")
+  .card-header.d-flex.py-3.bg-white
+    .me-auto.d-flex
+      span.fw-bold.text-decoration-line-through = answer.user
+      span.mx-2.fw-light
+        .text-muted = distance_of_time_in_words_to_now(answer.created_at)
+  .card-body.d-flex
+    .w-100
+      .hexlet-cv-content.mb-3
+        h3.muted.text-center = t('web.shared.answer.archived_answer_header')
+        .text-muted.text-center = t('web.shared.answer.archived_answer_body', deleted_at: l(answer.updated_at, format: :long))
+      - if answer.comments.web.any?
+        - answer.comments.web.each do |comment|
+          - if comment.archived?
+            = render 'web/shared/archived_comment', comment:
+          -else
+            = render 'web/shared/resume_answer_comment', comment:, answer:
+      hr.mb-4
+      .text-muted
+        i.bi.bi-lock.me-1
+        = t('web.shared.answer.closed_conversation')

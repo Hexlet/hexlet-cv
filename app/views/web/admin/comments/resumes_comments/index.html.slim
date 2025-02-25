@@ -1,0 +1,8 @@
+= render 'search_form', q: @search
+
+= render 'menu'
+
+- @resumes_comments.each do |comment|
+  = render 'comment_card', comment:
+
+= paginate @resumes_comments

@@ -1,0 +1,10 @@
+= render 'search_form', q: @search
+
+= render 'menu'
+
+- @resumes_answers.each do |answer|
+  = render 'answer_card', answer:
+  - if answer.comments.any?
+    = render 'answer_comment', answer:
+
+= paginate @resumes_answers

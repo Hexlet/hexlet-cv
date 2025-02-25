@@ -1,0 +1,18 @@
+.d-flex(id="comment-#{comment.id}")
+  .me-auto
+    span.me-1.hexlet-cv-content.hexlet-cv-inline-paragraph
+      == markdown2html comment.content
+    span.small
+      - if comment.user
+        span.me-1
+          = link_to comment.user, user_path(comment.user)
+      = link_to l(comment.created_at, format: :long_schema), url_for(anchor: "comment-#{comment.id}"), class: 'text-muted'
+  - if comment.user == current_user
+    .d-flex
+      .me-2
+        = link_to edit_resume_comment_path(@resume, comment)
+          span.bi.bi-pen-fill.text-secondary
+
+      div
+        = link_to resume_comment_path(@resume, comment), method: :delete, data: { confirm: t('confirm') } do
+          span.bi.bi-x-lg.text-secondary
