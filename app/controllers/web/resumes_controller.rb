@@ -4,8 +4,12 @@ class Web::ResumesController < Web::ApplicationController
   redirect_actions_when_not_founded_to -> { root_path }, only: :show, if: -> { browser.bot? }
 
   def index
-    @resumes = Resume.web.with_locale.order(id: :desc)
-
+    @resumes = if params[:sort] == "popular"
+                 Resume.web.with_locale.order(views_count: :desc) # sorting by views
+               else
+                 Resume.web.with_locale.order(id: :desc) # standard sorting
+               end
+  
     respond_to do |format|
       format.rss
     end
