@@ -16,7 +16,7 @@ class Web::Vacancies::SearchForm
   end
 
   def city
-    return @city.capitalize if @city.respond_to?(:capitalize)
+    return @city.tr('_', '-').capitalize.capitalize if @city.respond_to?(:gsub) && @city.respond_to?(:capitalize)
 
     @city
   end
