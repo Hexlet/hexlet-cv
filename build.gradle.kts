@@ -99,7 +99,7 @@ spotless {
         removeUnusedImports()
         eclipse().sortMembersEnabled(true)
         formatAnnotations()
-        indentWithSpaces(4)
+        leadingTabsToSpaces(4)
     }
 }
 

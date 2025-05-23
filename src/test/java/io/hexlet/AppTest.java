@@ -3,14 +3,14 @@
  */
 package io.hexlet;
 
-import org.junit.jupiter.api.Test;
-
-import io.hexlet.cv.App;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+import io.hexlet.cv.App;
+import org.junit.jupiter.api.Test;
+
 class AppTest {
-    @Test void appHasAGreeting() {
+    @Test
+    void appHasAGreeting() {
         var obj = new App();
         // assertNotNull(obj.getGreeting(), "app should have a greeting");
     }

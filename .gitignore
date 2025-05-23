@@ -56,3 +56,4 @@ build
 .classpath
 .factorypath
 .settings
+.class
