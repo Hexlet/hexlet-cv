@@ -5,7 +5,7 @@ plugins {
     application
     jacoco
     checkstyle
-    alias(libs.plugins.lombok)
+    // alias(libs.plugins.lombok)
     alias(libs.plugins.versions)
     alias(libs.plugins.spotless)
     alias(libs.plugins.spring.boot)
@@ -24,16 +24,6 @@ application {
 
 repositories {
     mavenCentral()
-}
-
-testing {
-    suites {
-        // Configure the built-in test suite
-        val test by getting(JvmTestSuite::class) {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter("5.12.1")
-        }
-    }
 }
 
 dependencies {
