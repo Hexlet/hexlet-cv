@@ -44,6 +44,8 @@ doc
 .idea/
 app/assets/builds/
 
+bin
+
 # Ignore Gradle project-specific cache directory
 .gradle
 .project
