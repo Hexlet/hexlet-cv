@@ -4,8 +4,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     jacoco
-    checkstyle
-    // alias(libs.plugins.lombok)
+        //   checkstyle
+    alias(libs.plugins.lombok)
     alias(libs.plugins.versions)
     alias(libs.plugins.spotless)
     alias(libs.plugins.spring.boot)
@@ -24,6 +24,7 @@ application {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") } // нужен для inertia4j
 }
 
 dependencies {
@@ -61,6 +62,11 @@ dependencies {
     testImplementation(platform(libs.junitBom))
     testImplementation(libs.junitJupiter)
     testRuntimeOnly(libs.junitPlatformLauncher)
+
+    // Inertia4J
+    implementation(libs.inertia4jSpring)
+    // implementation(libs.inertia4jSpringStarter)
+
 }
 
 tasks.test {
