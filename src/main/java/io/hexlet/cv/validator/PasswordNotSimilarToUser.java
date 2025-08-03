@@ -5,16 +5,15 @@ import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 import java.lang.annotation.RetentionPolicy;
-
+import java.lang.annotation.Target;
 
 @Documented
 @Constraint(validatedBy = PasswordNotSimilarToUserValidator.class)
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordNotSimilarToUser {
-    String message() default "Пароль слишком простой — не должен совпадать с email или именем";
     Class<?>[] groups() default {};
+    String message() default "Пароль слишком простой — не должен совпадать с email или именем";
     Class<? extends Payload>[] payload() default {};
 }

@@ -4,6 +4,7 @@ import io.hexlet.cv.dto.registration.RegInputDTO;
 import io.hexlet.cv.dto.registration.RegOutputDTO;
 import io.hexlet.cv.exception.UserAlreadyExistsException;
 import io.hexlet.cv.mapper.RegistrationMapper;
+import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,18 +22,18 @@ public class UserService {
 
     public RegOutputDTO registration(RegInputDTO inputDTO) {
 
-        userRepository.findByEmail(inputDTO.getEmail())
-                .ifPresent(user -> {
-                    throw new UserAlreadyExistsException(user.getEmail());
-                });
+        userRepository.findByEmail(inputDTO.getEmail()).ifPresent(user -> {
+            throw new UserAlreadyExistsException(user.getEmail());
+        });
 
         var newUserData = registrationMapper.map(inputDTO);
 
         // шифруем пароль
         newUserData.setEncryptedPassword(encoder.encode(inputDTO.getPassword()));
-        newUserData.setRole("candidate");
+        newUserData.setRole(RoleType.CANDIDATE);
 
         userRepository.save(newUserData);
+
         return registrationMapper.map(newUserData);
     }
 }

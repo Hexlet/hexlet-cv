@@ -94,7 +94,9 @@ spotless {
         importOrder()
         removeUnusedImports()
         eclipse().sortMembersEnabled(true)
-        formatAnnotations()
+       // убрал форматирование аннотаций так как при выстраивании в одну строку строка
+       // получается слишком длинной и конфликтует в checkstyle
+       // formatAnnotations()
         leadingTabsToSpaces(4)
     }
 }

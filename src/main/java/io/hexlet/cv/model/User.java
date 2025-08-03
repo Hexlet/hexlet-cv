@@ -1,7 +1,10 @@
 package io.hexlet.cv.model;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import io.hexlet.cv.converter.RoleTypeConverter;
+import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -24,14 +27,19 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @Email(message = "Wrong email") @NotBlank(message = "Email is required") private String email;
+    @Email(message = "Укажите корректный email-адрес")
+    @NotBlank(message = "Email обязателен")
+    private String email;
 
     private String encryptedPassword;
 
-    @NotBlank(message = "First name is required") private String firstName;
+    @NotBlank(message = "Имя обязательно")
+    private String firstName;
 
-    @NotBlank(message = "Last name is required") private String lastName;
+    @NotBlank(message = "Фамилия обязательна")
+    private String lastName;
 
-    // Roles: candidate, recruiter, admin, assistant_ai, career_coach, guest
-    private String role;
+    @Column(nullable = false)
+    @Convert(converter = RoleTypeConverter.class)
+    private RoleType role;
 }
