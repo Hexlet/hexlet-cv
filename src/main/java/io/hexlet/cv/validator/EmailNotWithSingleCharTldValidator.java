@@ -7,12 +7,14 @@ public class EmailNotWithSingleCharTldValidator implements ConstraintValidator<E
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
-        if (email == null || !email.contains("."))
+        if (email == null || !email.contains(".")) {
             return true;
+        }
 
         int lastDotIndex = email.lastIndexOf('.');
-        if (lastDotIndex == -1 || lastDotIndex == email.length() - 1)
+        if (lastDotIndex == -1 || lastDotIndex == email.length() - 1) {
             return true;
+        }
 
         String tld = email.substring(lastDotIndex + 1);
         return tld.length() >= 2;

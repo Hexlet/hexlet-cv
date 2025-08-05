@@ -11,11 +11,6 @@ public class RegOutputDTO {
     private String email;
     private String firstName;
     private String lastName;
-
     private String role;
-/*
-    public String getRole() {
-        return role != null ? role.toLowerCase() : null;
-    }
-*/
+    private String token;
 }

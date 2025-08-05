@@ -30,10 +30,15 @@ public class UserService {
 
         // шифруем пароль
         newUserData.setEncryptedPassword(encoder.encode(inputDTO.getPassword()));
+        // роль по умолчанию
         newUserData.setRole(RoleType.CANDIDATE);
 
         userRepository.save(newUserData);
+        var retDTO = registrationMapper.map(newUserData);
+        // генерация токена
+        var token = "тут выдается токен";
+        retDTO.setToken(token);
 
-        return registrationMapper.map(newUserData);
+        return retDTO;
     }
 }

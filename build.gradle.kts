@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     jacoco
-        //   checkstyle
+    checkstyle
     alias(libs.plugins.lombok)
     alias(libs.plugins.versions)
     alias(libs.plugins.spotless)
@@ -55,6 +55,7 @@ dependencies {
 
     // DB
     runtimeOnly(libs.h2)
+    implementation(libs.postgresql);
 
     // Tests
     testImplementation(libs.springBootStarterTest)
@@ -93,9 +94,11 @@ spotless {
     java {
         importOrder()
         removeUnusedImports()
-        eclipse().sortMembersEnabled(true)
-       // убрал форматирование аннотаций так как при выстраивании в одну строку строка
-       // получается слишком длинной и конфликтует в checkstyle
+// убрал так как методы выстраивает в цепочки и конфликтует в checkstyle
+// в комментариях рушит отступы заменя на *
+        //eclipse().sortMembersEnabled(true)
+// убрал форматирование аннотаций так как при выстраивании в одну строку
+// строка получается слишком длинной и конфликтует в checkstyle
        // formatAnnotations()
         leadingTabsToSpaces(4)
     }

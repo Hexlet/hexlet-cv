@@ -10,20 +10,12 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(uses = {
-        JsonNullableMapper.class}, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+    JsonNullableMapper.class}, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy
+        .IGNORE, componentModel = MappingConstants.ComponentModel
+        .SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public abstract class RegistrationMapper {
-    // @Autowired
-    // private BCryptPasswordEncoder encoder;
-
-    // @Mapping(target = "encryptedPassword", source = "password")
     public abstract User map(RegInputDTO dto);
 
     @Mapping(target = "role", expression = "java(user.getRole().name().toLowerCase())")
     public abstract RegOutputDTO map(User user);
-
-    // @BeforeMapping
-    // public void encryptPassword(RegInputDTO data) {
-    // var password = data.getPassword();
-    // data.setPassword(encoder.encode(password));
-    // }
 }

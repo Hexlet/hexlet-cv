@@ -12,6 +12,7 @@ shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow-plugin"
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
 
+
 [versions]
 
 spring-boot-version = "3.5.0"
@@ -42,6 +43,8 @@ inertia4j-spring = "1.0.4"
 #inertia4j-starter = "1.0.2"
 #inertia4j-spring-adapter = "1.2.0"
 #inertia4j-spring-thymeleaf = "1.2.0"
+
+postgresql = "42.7.3"
 
 
 [libraries]
@@ -81,6 +84,7 @@ mapstructProcessor = { module = "org.mapstruct:mapstruct-processor", version.ref
 
 # Database
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 # JUnit
 junitBom = { module = "org.junit:junit-bom", version.ref = "junit-bom" }

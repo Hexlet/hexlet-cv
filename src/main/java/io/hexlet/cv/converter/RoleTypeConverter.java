@@ -1,8 +1,8 @@
 package io.hexlet.cv.converter;
 
+import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import io.hexlet.cv.model.enums.RoleType;
 
 @Converter(autoApply = true)
 public class RoleTypeConverter implements AttributeConverter<RoleType, String> {

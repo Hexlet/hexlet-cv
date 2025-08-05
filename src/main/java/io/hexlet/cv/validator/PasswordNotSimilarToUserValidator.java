@@ -8,12 +8,14 @@ public class PasswordNotSimilarToUserValidator implements ConstraintValidator<Pa
 
     @Override
     public boolean isValid(RegInputDTO dto, ConstraintValidatorContext context) {
-        if (dto == null)
+        if (dto == null) {
             return true;
+        }
 
         String password = dto.getPassword();
-        if (password == null)
+        if (password == null) {
             return true;
+        }
 
         String email = dto.getEmail() != null ? dto.getEmail().toLowerCase() : "";
         String firstName = dto.getFirstName() != null ? dto.getFirstName().toLowerCase() : "";
