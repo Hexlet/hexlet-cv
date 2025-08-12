@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev  # "prod" если продакшен
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    output:
+ #     ansi:
+ #       enabled: always
+
+#  rsa:
+#    private-key: classpath:certs/private.pem
+#    public-key: classpath:certs/public.pem
+
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-exception: false
+
