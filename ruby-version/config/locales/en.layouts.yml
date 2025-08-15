@@ -51,10 +51,10 @@ en:
         employment_course: Employment course
         code_basics: Code Basics
         code_battle: Codebattle
-        guides: Hexlet guides
+        hexlet: Hexlet
         recommended_books: Recommended books
         test_assigments: Test assignments
         additionally: Additionally
         books_link: https://hexlet.io/pages/recommended-books
-        guides_link: https://guides.hexlet.io/
+        hexlet_link: https://hexlet.io/
         basics_link: https://code-basics.com/

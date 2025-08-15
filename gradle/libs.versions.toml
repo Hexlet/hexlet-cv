@@ -3,20 +3,22 @@
 
 [plugins]
 
+
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot-version" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-version" }
-# lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugin" }
 shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow-plugin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
+
 
 [versions]
 
 spring-boot-version = "3.5.0"
 spring-security-test-version = "6.5.0"
 spring-dependency-version = "1.1.7"
-# lombok-plugin = "8.13.1"
+lombok-plugin = "8.14"
 versions-plugin = "0.52.0"
 shadow-plugin = "8.1.1"
 sonarqube-plugin = "6.2.0.5505"
@@ -37,7 +39,17 @@ junit-bom = "5.12.2"
 ##     ⬆ = "5.13.0-M3"
 ##     ⬆ = "5.13.0-RC1"
 
+inertia4j-spring = "1.0.4"
+#inertia4j-starter = "1.0.2"
+#inertia4j-spring-adapter = "1.2.0"
+#inertia4j-spring-thymeleaf = "1.2.0"
+
+postgresql = "42.7.3"
+
+
 [libraries]
+# Lombok
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok-plugin" }
 
 # Spring Boot
 springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot-version" }
@@ -72,8 +84,15 @@ mapstructProcessor = { module = "org.mapstruct:mapstruct-processor", version.ref
 
 # Database
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 # JUnit
 junitBom = { module = "org.junit:junit-bom", version.ref = "junit-bom" }
 junitJupiter = { module = "org.junit.jupiter:junit-jupiter" }
 junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher" }
+
+# Inertia4J
+inertia4jSpring = { module = "io.github.inertia4j:inertia4j-spring", version.ref = "inertia4j-spring" }
+#inertia4jSpringStarter = { module = "dev.inertia4j:spring-boot-starter", version.ref = "inertia4j-starter" }
+#inertia4jSpringAdapter = { module = "dev.inertia4j:inertia4j-spring-adapter", version.ref = "inertia4j-spring-adapter" }
+#inertia4jSpringThymeleaf = { module = "dev.inertia4j:inertia4j-spring-thymeleaf", version.ref = "inertia4j-spring-thymeleaf" }
