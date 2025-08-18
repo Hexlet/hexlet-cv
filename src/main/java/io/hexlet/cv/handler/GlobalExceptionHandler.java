@@ -1,6 +1,7 @@
 package io.hexlet.cv.handler;
 
 import io.hexlet.cv.handler.exception.InvalidPasswordException;
+import io.hexlet.cv.handler.exception.MatchingPasswordsException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -111,5 +112,10 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = Map.of("error", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("errors", errors));
+    }
+
+    @ExceptionHandler(MatchingPasswordsException.class)
+    public ResponseEntity<String> handleMatchingPasswordsException(MatchingPasswordsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }
