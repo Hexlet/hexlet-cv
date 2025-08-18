@@ -8,12 +8,16 @@ import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import io.hexlet.cv.dto.user.UserPasswordDto;
+import io.hexlet.cv.handler.exception.MatchingPasswordsException;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
+    public String passwordChange(UserPasswordDto userPasswordDto) {
+        //сравнение старого пароля на корректность//
     private UserRepository userRepository;
 
     private RegistrationMapper registrationMapper;
@@ -40,5 +44,15 @@ public class UserService {
         retDTO.setToken(token);
 
         return retDTO;
+    }
+        public String passwordChange(UserPasswordDto userPasswordDto) {
+            //сравнение старого пароля на корректность//
+
+            if (!userPasswordDto.getNewPassword().equals(
+                userPasswordDto.getRepeatNewPassword())) {
+            throw new MatchingPasswordsException("passwords must match");
+        } else {
+            return "";//Сохранение в репозиторий//
+        }
     }
 }
