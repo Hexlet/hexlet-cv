@@ -1,13 +1,14 @@
 package io.hexlet.cv.validator;
 
-import io.hexlet.cv.dto.registration.RegInputDTO;
+import io.hexlet.cv.dto.user.RegistrationRequestDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class PasswordNotSimilarToUserValidator implements ConstraintValidator<PasswordNotSimilarToUser, RegInputDTO> {
+public class PasswordNotSimilarToUserValidator
+        implements ConstraintValidator<PasswordNotSimilarToUser, RegistrationRequestDTO> {
 
     @Override
-    public boolean isValid(RegInputDTO dto, ConstraintValidatorContext context) {
+    public boolean isValid(RegistrationRequestDTO dto, ConstraintValidatorContext context) {
         if (dto == null) {
             return true;
         }

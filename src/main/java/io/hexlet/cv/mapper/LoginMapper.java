@@ -1,7 +1,6 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
-import io.hexlet.cv.dto.user.RegistrationResponseDTO;
+import io.hexlet.cv.dto.user.LoginResponseDTO;
 import io.hexlet.cv.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,9 +12,8 @@ import org.mapstruct.ReportingPolicy;
     JsonNullableMapper.class}, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy
         .IGNORE, componentModel = MappingConstants.ComponentModel
         .SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public abstract class RegistrationMapper {
-    public abstract User map(RegistrationRequestDTO dto);
+public abstract class LoginMapper {
 
     @Mapping(target = "role", expression = "java(user.getRole().name().toLowerCase())")
-    public abstract RegistrationResponseDTO map(User user);
+    public abstract LoginResponseDTO map(User user);
 }
