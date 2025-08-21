@@ -13,14 +13,14 @@ deps-update:
 	./gradlew refreshVersions
 
 ci-setup:
-    echo "Updating packages..."
-    sudo apt-get update -y
+	echo "Updating packages..."
+	sudo apt-get update -y
 
-    echo "Setting up Java..."
-    sudo apt-get install -y openjdk-17-jdk
+	echo "Setting up Java..."
+	sudo apt-get install -y openjdk-17-jdk
 
     # Установить Maven/Gradle (если проект на Gradle, можно пропустить)
-    echo "Setting up Gradle..."
-    sudo apt-get install -y gradle
+	echo "Setting up Gradle..."
+	sudo apt-get install -y gradle
 
 .PHONY: test
