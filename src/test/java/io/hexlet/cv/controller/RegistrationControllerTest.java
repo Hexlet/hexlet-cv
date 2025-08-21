@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.cv.dto.registration.RegInputDTO;
+import io.hexlet.cv.dto.user.RegistrationRequestDTO;
 import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
@@ -59,16 +59,15 @@ public class RegistrationControllerTest {
                 .apply(springSecurity()).build();
     }
 
-    // если все поля валидные то создастся пользователь -----------------
     @Test
     public void testCreateUser() throws Exception {
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("test@gmail.com");
         data.setPassword("test_password");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
         mockMvc.perform(request).andExpect(status().isCreated());
@@ -80,27 +79,26 @@ public class RegistrationControllerTest {
         assertNotNull(user.getId());
     }
 
-    // email одноразовый------------
     @Test
     public void testDisposableEmail() throws Exception {
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("test@sharklasers.com");
         data.setPassword("test_pass_123");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.errors.email").value("Запрещено использовать одноразовые email"));
+                .andExpect(jsonPath("$.errors.email")
+                        .value("Запрещено использовать одноразовые email"));
     }
 
-    // если юзер уже есть в базе, email не уникальный- то 409 ------------
     @Test
     public void testEmailPresentInDB() throws Exception {
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("test@gmail.com");
         data.setPassword("test_password123");
         data.setFirstName("firstName");
@@ -112,48 +110,45 @@ public class RegistrationControllerTest {
 
         userRepository.save(newUserData);
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
         mockMvc.perform(request).andExpect(status().isConflict());
     }
 
-    // проверим что вообще отвечает MainPageController - потом можно убрать
     @Test
     public void testIndex() throws Exception {
         mockMvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse();
     }
 
-    // email несуществующий домен------------
     @Test
     public void testNonExistentEmail() throws Exception {
-        var data = new RegInputDTO();
-        data.setEmail("test@gmail.su");
+        var data = new RegistrationRequestDTO();
+        data.setEmail("test@goopmal.com");
         data.setPassword("test_pass_123");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.errors.email").value("Домен в email не существует"));
     }
 
-    // email введен неправильно ------------
     @Test
     public void testNotCorrectEmail() throws Exception {
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("testgmail.com");
         data.setPassword("test_pass_123");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.errors.email").value("Укажите корректный email-адрес"));
     }
@@ -181,38 +176,37 @@ public class RegistrationControllerTest {
     }
 */
 
-    // если пароль менее 8 символов - невалидный пароль ------------
     @Test
     public void testNotValidShortPassword() throws Exception {
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("test@gmail.com");
         data.setPassword("test_p");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.errors.password").value("Пароль должен быть не менее 8 символов"));
     }
 
-    // если пароль похож на имя фамилию email - то 400 ------------
     @Test
     public void testSimplePassword() throws Exception {
         // имя совпадает
-        var data = new RegInputDTO();
+        var data = new RegistrationRequestDTO();
         data.setEmail("test@gmail.com");
         data.setPassword("firstName");
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        var request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.errors.password")
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.errors.password")
                         .value("Пароль слишком простой — не должен совпадать с email или именем"));
 
         // фамилия совпадает
@@ -221,10 +215,10 @@ public class RegistrationControllerTest {
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.errors.password")
                         .value("Пароль слишком простой — не должен совпадать с email или именем"));
         // email совпадает
@@ -233,10 +227,10 @@ public class RegistrationControllerTest {
         data.setFirstName("firstName");
         data.setLastName("lastName");
 
-        request = post("/users/registration").contentType(MediaType.APPLICATION_JSON)
+        request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isBadRequest())
+        mockMvc.perform(request).andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.errors.password")
                         .value("Пароль слишком простой — не должен совпадать с email или именем"));
     }
