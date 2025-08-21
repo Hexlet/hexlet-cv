@@ -19,8 +19,10 @@ ci-setup:
 	echo "Setting up Java..."
 	sudo apt-get install -y openjdk-17-jdk
 
-    # Установить Maven/Gradle (если проект на Gradle, можно пропустить)
 	echo "Setting up Gradle..."
 	sudo apt-get install -y gradle
+
+check:
+	./gradlew clean test
 
 .PHONY: test
