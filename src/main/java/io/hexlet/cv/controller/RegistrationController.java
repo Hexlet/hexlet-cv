@@ -3,7 +3,7 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.registration.RegInputDTO;
 import io.hexlet.cv.dto.registration.RegOutputDTO;
-import io.hexlet.cv.exception.UserAlreadyExistsException;
+import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.service.UserService;
 import jakarta.validation.Valid;
 import java.util.Map;
