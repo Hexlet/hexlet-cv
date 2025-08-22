@@ -2,11 +2,15 @@ package io.hexlet.cv.service;
 
 import io.hexlet.cv.dto.registration.RegInputDTO;
 import io.hexlet.cv.dto.registration.RegOutputDTO;
-import io.hexlet.cv.exception.UserAlreadyExistsException;
+import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
+import io.hexlet.cv.handler.exception.WrongPasswordException;
 import io.hexlet.cv.mapper.RegistrationMapper;
+import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import io.hexlet.cv.dto.user.UserPasswordDto;
 import io.hexlet.cv.handler.exception.MatchingPasswordsException;
@@ -16,8 +20,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService {
 
-    public String passwordChange(UserPasswordDto userPasswordDto) {
-        //сравнение старого пароля на корректность//
     private UserRepository userRepository;
 
     private RegistrationMapper registrationMapper;
@@ -45,14 +47,23 @@ public class UserService {
 
         return retDTO;
     }
-        public String passwordChange(UserPasswordDto userPasswordDto) {
-            //сравнение старого пароля на корректность//
 
-            if (!userPasswordDto.getNewPassword().equals(
+    public void passwordChange(UserPasswordDto userPasswordDto) {
+        User user = userRepository.findByEmail(getCurrentUsername()).get();
+        if (!encoder.matches(userPasswordDto.getOldPassword(), user.getEncryptedPassword())) {
+            throw new WrongPasswordException("incorrect password entered");
+        } else if (!userPasswordDto.getNewPassword().equals(
                 userPasswordDto.getRepeatNewPassword())) {
             throw new MatchingPasswordsException("passwords must match");
         } else {
-            return "";//Сохранение в репозиторий//
+            user.setEncryptedPassword(encoder.encode(userPasswordDto.getNewPassword()));
+            userRepository.save(user);
+            System.out.println("password change success");
         }
+    }
+
+    public String getCurrentUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
     }
 }
