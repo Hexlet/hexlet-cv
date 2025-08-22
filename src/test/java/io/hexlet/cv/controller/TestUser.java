@@ -37,6 +37,9 @@ class TestUser {
     private UserRepository userRepository;
 
     @Mock
+    private RegistrationMapper registrationMapper;
+
+    @Mock
     private BCryptPasswordEncoder encoder;
 
     @InjectMocks

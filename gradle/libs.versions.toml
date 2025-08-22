@@ -51,9 +51,6 @@ postgresql = "42.7.3"
 # Lombok
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok-plugin" }
 
-# Lombok
-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok-plugin" }
-
 # Spring Boot
 springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot-version" }
 springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot-version" }
