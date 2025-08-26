@@ -35,6 +35,8 @@ dependencies {
     implementation(libs.springBootStarterActuator)
     implementation(libs.springBootStarterSecurity)
     implementation(libs.springBootStarterOauth2ResourceServer)
+    implementation(libs.springBootStarterMail)
+    implementation(libs.springBootStarterFreeMarker)
     implementation(libs.springBootDevtools)
     implementation(libs.springBootConfigProcessor)
 
@@ -48,6 +50,7 @@ dependencies {
     implementation(libs.instancioJunit)
     implementation(libs.jsonunitAssertj)
     implementation(libs.guava)
+    implementation(libs.dotenv)
 
     // MapStruct
     implementation(libs.mapstruct)
