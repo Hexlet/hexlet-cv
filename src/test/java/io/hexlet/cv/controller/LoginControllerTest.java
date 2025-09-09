@@ -1,8 +1,10 @@
 package io.hexlet.cv.controller;
 
+import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,9 +45,6 @@ public class LoginControllerTest {
     @Autowired
     private ObjectMapper om;
 
-    //@Autowired
-    //private RegistrationMapper registrationMapper;
-
     @Autowired
     private BCryptPasswordEncoder encoder;
 
@@ -85,7 +84,7 @@ public class LoginControllerTest {
         var request = post("/ru/users/sign_in").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isOk())
+        mockMvc.perform(request).andExpect(status().isSeeOther())
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
                         Matchers.hasItem(Matchers.containsString("access_token"))))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
@@ -122,4 +121,59 @@ public class LoginControllerTest {
                 .andExpect(jsonPath("$.errors.password")
                         .value("Неверный пароль"));
     }
+
+    // Inertia тесты ---------
+    @Test
+    void testInertiaBadPasswordUser() throws Exception {
+        var dto = new LoginRequestDTO();
+        dto.setEmail(userData.getEmail());
+        dto.setPassword("another_password");
+
+        mockMvc.perform(post("/ru/users/sign_in")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto))
+                        .header("X-Inertia", "true")
+                        .header("Referer", "/ru/users/sign_in"))
+                .andExpect(status().isSeeOther())
+                .andExpect(header().string("Location", "/ru/users/sign_in"))
+                .andExpect(flash().attributeExists("errors"))
+                .andExpect(flash().attribute("errors", hasKey("password")))
+                .andReturn();
+    }
+
+    @Test
+    void testInertiaBadEmailUser() throws Exception {
+        var dto = new LoginRequestDTO();
+        dto.setEmail("new_email@yandex.ru");
+        dto.setPassword(testPassword);
+
+        mockMvc.perform(post("/ru/users/sign_in")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto))
+                        .header("X-Inertia", "true")
+                        .header("Referer", "/ru/users/sign_in"))
+                .andExpect(status().isSeeOther())
+                .andExpect(header().string("Location", "/ru/users/sign_in"))
+                .andExpect(flash().attributeExists("errors"))
+                .andExpect(flash().attribute("errors", hasKey("email")))
+                .andReturn();
+    }
+
+    @Test
+    void testInertiaLoginUser() throws Exception {
+        var dto = new LoginRequestDTO();
+        dto.setEmail(userData.getEmail());
+        dto.setPassword(testPassword);
+
+        mockMvc.perform(post("/ru/users/sign_in")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto))
+                        .header("X-Inertia", "true")
+                        .header("Referer", "/ru/users/sign_in"))
+                .andExpect(status().isSeeOther())
+                .andExpect(header().string("Location", "/ru/dashboard"))
+                .andExpect(flash().attributeCount(0)) // никаких флэшей не передается
+                .andReturn();
+    }
+
 }
