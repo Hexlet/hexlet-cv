@@ -13,14 +13,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.cv.dto.user.LoginRequestDTO;
 import io.hexlet.cv.dto.user.RegistrationRequestDTO;
 import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import java.nio.charset.StandardCharsets;
-
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
