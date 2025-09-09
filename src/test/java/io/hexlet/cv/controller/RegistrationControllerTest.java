@@ -13,18 +13,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.hexlet.cv.dto.user.LoginRequestDTO;
 import io.hexlet.cv.dto.user.RegistrationRequestDTO;
 import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import java.nio.charset.StandardCharsets;
+
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -381,7 +385,7 @@ public class RegistrationControllerTest {
     }
 
     @Test
-    void testInertiaRegistrationUser() throws Exception {
+    void testInertiaRegistrationUserCookies() throws Exception {
         var dto = new RegistrationRequestDTO();
         dto.setEmail("test@gmail.com");
         dto.setPassword("test_password");
@@ -395,7 +399,10 @@ public class RegistrationControllerTest {
                         .header("Referer", "/ru/users/sign_up"))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/ru/dashboard"))
-                .andExpect(flash().attributeCount(0)) // никаких флэшей не передается
-                .andReturn();
+                .andExpect(flash().attributeCount(0))
+                .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
+                        Matchers.hasItem(Matchers.containsString("access_token"))))
+                .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
+                        Matchers.hasItem(Matchers.containsString("refresh_token"))));
     }
 }
