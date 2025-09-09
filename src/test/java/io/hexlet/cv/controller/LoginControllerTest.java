@@ -160,7 +160,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    void testInertiaLoginUser() throws Exception {
+    void testInertiaLoginUserCookies() throws Exception {
         var dto = new LoginRequestDTO();
         dto.setEmail(userData.getEmail());
         dto.setPassword(testPassword);
@@ -172,8 +172,11 @@ public class LoginControllerTest {
                         .header("Referer", "/ru/users/sign_in"))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/ru/dashboard"))
-                .andExpect(flash().attributeCount(0)) // никаких флэшей не передается
-                .andReturn();
+                .andExpect(flash().attributeCount(0))
+                .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
+                        Matchers.hasItem(Matchers.containsString("access_token"))))
+                .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
+                        Matchers.hasItem(Matchers.containsString("refresh_token"))));
     }
 
 }
