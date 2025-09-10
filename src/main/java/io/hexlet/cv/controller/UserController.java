@@ -26,9 +26,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(path = "/password")
-    public ResponseEntity<?> getChangeAccountPassword(@Valid @RequestBody UserPasswordDto userPasswordDto) {
-        ResponseEntity<?> response = inertia.render(
-                "/users/password", Map.of("password", userPasswordDto));
+    public ResponseEntity<?> getChangeAccountPassword() {
+        ResponseEntity<?> response = inertia.render("/users/password");
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(response.getHeaders())
                 .body(response.getBody());
@@ -36,15 +35,7 @@ public class UserController {
 
     @PatchMapping(path = "/password")
     public ResponseEntity<?> ChangeAccountPassword(@Valid @RequestBody UserPasswordDto userPasswordDto) {
-        try {
-            userService.passwordChange(userPasswordDto);
-        } catch (MatchingPasswordsException | WrongPasswordException e) {
-            ResponseEntity<?> response = inertia.render("/users/password",
-                    Map.of("password", userPasswordDto, "exception", e.getMessage()));
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .headers(response.getHeaders())
-                    .body(response.getBody());
-        }
+        userService.passwordChange(userPasswordDto);
         ResponseEntity<?> response = inertia.render("/users");
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(response.getHeaders())
