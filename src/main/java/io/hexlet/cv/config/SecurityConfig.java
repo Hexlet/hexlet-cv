@@ -51,10 +51,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/", "/{locale}/").permitAll()
-                        .requestMatchers("/{locale}/users/sign_up").permitAll()
-                        .requestMatchers("/{locale}/users/sign_in").permitAll()
-                        .requestMatchers("/{locale}/users").permitAll()
+                        .requestMatchers("/", "/ru", "/en").permitAll()
+                        .requestMatchers("/ru/users/sign_in", "/en/users/sign_in").permitAll()
+                        .requestMatchers("/ru/users/sign_out", "/en/users/sign_out").permitAll()
+                        .requestMatchers("/ru/users/sign_up", "/en/users/sign_up").permitAll()
+                        .requestMatchers("/ru/users", "/en/users").permitAll()
 
                         .anyRequest().authenticated())
                 .sessionManagement(
