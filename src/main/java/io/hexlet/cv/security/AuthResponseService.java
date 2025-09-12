@@ -28,4 +28,18 @@ public class AuthResponseService {
                 .header(HttpHeaders.LOCATION, "/" + locale + "/dashboard")
                 .build();
     }
+
+    public ResponseEntity<Void> logoutSuccess(String locale,
+                                              HttpServletResponse response) {
+
+        var expiredAccess = tokenCookieService.buildExpiredAccessCookie();
+        var expiredRefresh = tokenCookieService.buildExpiredRefreshCookie();
+
+        response.addHeader(HttpHeaders.SET_COOKIE, expiredAccess.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, expiredRefresh.toString());
+
+        return ResponseEntity.status(HttpStatus.SEE_OTHER)
+                .header(HttpHeaders.LOCATION, "/" + locale)
+                .build();
+    }
 }
