@@ -1,4 +1,4 @@
-package io.hexlet.cv.exception;
+package io.hexlet.cv.handler.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

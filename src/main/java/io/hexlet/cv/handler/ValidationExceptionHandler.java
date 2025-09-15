@@ -1,4 +1,4 @@
-package io.hexlet.cv.exception;
+package io.hexlet.cv.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
