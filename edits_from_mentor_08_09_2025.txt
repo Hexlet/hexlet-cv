@@ -1,0 +1,21 @@
+форма регистрации —     GET /{locale}/users/sign_up,
+создание пользователя — POST /{locale}/users (не POST /users/sign_up),
+форма логина —          GET /{locale}/users/sign_in,
+вход —                  POST /{locale}/users/sign_in,
+выход —                 DELETE /{locale}/users/sign_out;
+
+
+Потому что REST-логика: создание ресурса user — это POST /users, а не POST /users/sign_up.
+Inertia не диктует пути — важны коды и редиректы. Оставляем формы на GET, сабмиты на POST/DELETE
+
+- Да, по Inertia делаем так:
+на GET /{locale}/users/sign_up рендерим компонент Users/SignUp (только форма + errors из flash),
+а после POST /{locale}/users при успешной проверке не возвращаем render,
+а делаем PRG-редирект (302/303) на, например, GET /{locale}/dashboard,
+где уже рендерится Users/Dashboard с пропсами user (минимальный профиль),
+locale и любыми welcome-данными — так фронту удобно и нет повторной отправки формы при refresh;
+при валидационных ошибках оставляем текущий поток: 422/flash + редирект обратно на sign_up,
+чтобы Users/SignUp получил errors; для логина то же самое:
+GET/POST /{locale}/users/sign_in → при успехе редирект на dashboard,
+при ошибках — назад на sign_in;
+куки с токенами ставим в ответ на POST до редиректа.
