@@ -415,8 +415,7 @@ GEM
       railties (>= 5.2)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.4)
-      strscan
+    rexml (3.4.2)
     rubocop (1.65.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -523,7 +522,6 @@ GEM
     sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
     stringio (3.1.1)
-    strscan (3.1.0)
     temple (0.10.3)
     terser (1.2.3)
       execjs (>= 0.3.0, < 3)
