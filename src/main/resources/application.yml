@@ -15,6 +15,27 @@ spring:
 #    private-key: classpath:certs/private.pem
 #    public-key: classpath:certs/public.pem
 
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+    debug: true
+
+  freemarker:
+#    template-loader-path: classpath:/templates/email/
+    charset: UTF-8
+    suffix: .ftl
+
 server:
   error:
     include-message: never

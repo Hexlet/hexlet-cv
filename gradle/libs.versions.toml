@@ -24,6 +24,7 @@ shadow-plugin = "8.1.1"
 sonarqube-plugin = "6.2.0.5505"
 spotless-plugin = "7.0.3"
 guava = "33.4.8-jre"
+dotenv ="3.2.0"
 
 jackson-databind-nullable = "0.2.6"
 springdoc-openapi-ui = "2.8.8"
@@ -59,6 +60,8 @@ springBootStarterActuator = { module = "org.springframework.boot:spring-boot-sta
 springBootStarterSecurity = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot-version" }
 springBootStarterOauth2ResourceServer = { module = "org.springframework.boot:spring-boot-starter-oauth2-resource-server", version.ref = "spring-boot-version" }
 springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot-version" }
+springBootStarterMail = { module = "org.springframework.boot:spring-boot-starter-mail", version.ref = "spring-boot-version" }
+springBootStarterFreeMarker = { module = "org.springframework.boot:spring-boot-starter-freemarker", version.ref = "spring-boot-version" }
 springBootDevtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot-version" }
 springBootConfigProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot-version" }
 
@@ -77,6 +80,7 @@ datafaker = { module = "net.datafaker:datafaker", version.ref = "datafaker" }
 instancioJunit = { module = "org.instancio:instancio-junit", version.ref = "instancio-junit" }
 jsonunitAssertj = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref = "jsonunit-assertj" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+dotenv = { module = "io.github.cdimascio:dotenv-java", version.ref = "dotenv" }
 
 # MapStruct
 mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
