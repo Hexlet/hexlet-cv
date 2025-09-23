@@ -1,9 +1,9 @@
 package io.hexlet.cv.dto.user;
 
 import io.hexlet.cv.validator.NotInTop10K;
+import io.hexlet.cv.validator.RepeatPasswordNotMatchPassword;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RepeatPasswordNotMatchPassword
 public class UserPasswordDto {
     @NotBlank(message = "Old password required")
     private String oldPassword;
