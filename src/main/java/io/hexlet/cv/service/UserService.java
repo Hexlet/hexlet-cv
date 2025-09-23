@@ -55,11 +55,8 @@ public class UserService {
                 new UserNotFoundException("user not found"));
         if (!encoder.matches(userPasswordDto.getOldPassword(), user.getEncryptedPassword())) {
             throw new WrongPasswordException("incorrect password entered");
-        } else if (!userPasswordDto.getNewPassword().equals(
-                userPasswordDto.getRepeatNewPassword())) {
-            throw new MatchingPasswordsException("passwords must match");
         } else if (userPasswordDto.getOldPassword().equals(userPasswordDto.getNewPassword())) {
-            throw new WrongPasswordException("incorrect password entered");
+            throw new MatchingPasswordsException("The new password must not match the old one");
         } else {
             user.setEncryptedPassword(encoder.encode(userPasswordDto.getNewPassword()));
             userRepository.save(user);
