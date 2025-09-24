@@ -1,4 +1,4 @@
-package io.hexlet.cv.dto.registration;
+package io.hexlet.cv.dto.user;
 
 import io.hexlet.cv.validator.EmailDomainViaDnsApi;
 import io.hexlet.cv.validator.EmailNotWithSingleCharTld;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @PasswordNotSimilarToUser
-public class RegInputDTO {
+public class RegistrationRequestDTO {
     @NotBlank(message = "Email обязателен")
     @Email(message = "Укажите корректный email-адрес")
     @EmailNotWithSingleCharTld

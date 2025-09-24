@@ -12,3 +12,17 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+app:
+  security:
+    cookie:
+      access:
+        httpOnly: false
+        secure: false
+        sameSite: None          # можно откуда угодно
+        maxAgeSeconds: 900       # 15 минут
+      refresh:
+        httpOnly: false
+        secure: false
+        sameSite: None
+        maxAgeSeconds: 2592000   # 30 дней

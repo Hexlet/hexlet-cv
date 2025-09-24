@@ -27,7 +27,8 @@ public class EmailDomainViaDnsApiValidator implements ConstraintValidator<EmailD
         try {
             String url = "https://cloudflare-dns.com/dns-query?name=" + domain + "&type=MX";
 
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).header("Accept", "application/dns-json")
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url))
+                    .header("Accept", "application/dns-json")
                     .GET().build();
 
             HttpResponse<String> response = HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
