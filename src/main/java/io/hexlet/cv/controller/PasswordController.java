@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/users")
 @AllArgsConstructor
-public class UserController {
+public class PasswordController {
 
     private final Inertia inertia;
     private final UserService userService;
