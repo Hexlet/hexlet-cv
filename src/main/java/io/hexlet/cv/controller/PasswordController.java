@@ -2,7 +2,7 @@ package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.user.UserPasswordDto;
-import io.hexlet.cv.service.UserService;
+import io.hexlet.cv.service.PasswordService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Map;
 
 @Controller
 @RequestMapping("/users")
@@ -22,7 +21,7 @@ import java.util.Map;
 public class PasswordController {
 
     private final Inertia inertia;
-    private final UserService userService;
+    private final PasswordService passwordService;
 
     @GetMapping(path = "/password")
     public ResponseEntity<?> getChangeAccountPassword() {
@@ -34,7 +33,7 @@ public class PasswordController {
 
     @PatchMapping(path = "/password")
     public ResponseEntity<?> ChangeAccountPassword(@Valid @RequestBody UserPasswordDto userPasswordDto) {
-        userService.passwordChange(userPasswordDto);
+        passwordService.passwordChange(userPasswordDto);
         return ResponseEntity.status(HttpStatus.SEE_OTHER)
                 .header(HttpHeaders.LOCATION, "/users")
                 .build();
