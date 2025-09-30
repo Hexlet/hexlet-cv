@@ -11,9 +11,9 @@ spring:
  #     ansi:
  #       enabled: always
 
-#  rsa:
-#    private-key: classpath:certs/private.pem
-#    public-key: classpath:certs/public.pem
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
 
 server:
   error:
@@ -21,3 +21,19 @@ server:
     include-binding-errors: never
     include-exception: false
 
+app:
+  security:
+    cookie:
+      access:
+        httpOnly: true
+        secure: true
+        sameSite: Strict  # только прямые
+        maxAgeSeconds: 900       # 15 минут
+      refresh:
+        httpOnly: true
+        secure: true
+        sameSite: Lax # можно с других сайтов
+        maxAgeSeconds: 2592000   # 30 дней
+    jwt:
+      access-token-validity-seconds: 900        # 15 минут
+      refresh-token-validity-seconds: 2592000   # 30 дней
