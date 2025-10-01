@@ -2,6 +2,10 @@ spring:
   profiles:
     active: dev  # "prod" если продакшен
 
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
   jpa:
     show-sql: true
     generate-ddl: true

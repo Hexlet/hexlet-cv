@@ -1,7 +1,7 @@
 package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationRequestDTO;
 import io.hexlet.cv.security.AuthResponseService;
 import io.hexlet.cv.security.TokenService;
 import io.hexlet.cv.service.FlashPropsService;

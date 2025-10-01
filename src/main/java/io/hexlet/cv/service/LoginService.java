@@ -1,7 +1,7 @@
 package io.hexlet.cv.service;
 
-import io.hexlet.cv.dto.user.LoginRequestDTO;
-import io.hexlet.cv.dto.user.LoginResponseDTO;
+import io.hexlet.cv.dto.user.auth.LoginRequestDTO;
+import io.hexlet.cv.dto.user.auth.LoginResponseDTO;
 import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.mapper.LoginMapper;

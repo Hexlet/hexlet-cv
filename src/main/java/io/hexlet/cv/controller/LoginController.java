@@ -1,7 +1,7 @@
 package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
-import io.hexlet.cv.dto.user.LoginRequestDTO;
+import io.hexlet.cv.dto.user.auth.LoginRequestDTO;
 import io.hexlet.cv.security.AuthResponseService;
 import io.hexlet.cv.security.TokenService;
 import io.hexlet.cv.service.FlashPropsService;
@@ -32,6 +32,8 @@ public class LoginController {
     public ResponseEntity<?> signInForm(@PathVariable String locale,
                                         HttpServletRequest request) {
 
+
+
         var props = flashPropsService.buildProps(locale, request);
 
         return inertia.render("Users/SignIn", props);
@@ -41,6 +43,8 @@ public class LoginController {
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO loginDTO,
                                    @PathVariable String locale,
                                    HttpServletResponse response) {
+
+
 
         loginService.login(loginDTO);
         var tokens = tokenService.authenticateAndGenerate(

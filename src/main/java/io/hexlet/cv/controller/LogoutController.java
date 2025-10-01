@@ -16,6 +16,7 @@ public class LogoutController {
     @PostMapping("/{locale}/users/sign_out")
     public ResponseEntity<Void> logout(@PathVariable String locale,
                                        HttpServletResponse response) {
+
         return authResponseService.logoutSuccess(locale, response);
     }
 }

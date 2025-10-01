@@ -1,6 +1,6 @@
 package io.hexlet.cv.validator;
 
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationRequestDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
