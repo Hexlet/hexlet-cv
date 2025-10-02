@@ -1,8 +1,7 @@
 package io.hexlet.cv.controller;
 
-import static org.hamcrest.Matchers.hasKey;
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
