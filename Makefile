@@ -25,4 +25,7 @@ ci-setup:
 check:
 	./gradlew clean test
 
+lint:
+	./gradlew checkstyleMain checkstyleTest
+
 .PHONY: test
