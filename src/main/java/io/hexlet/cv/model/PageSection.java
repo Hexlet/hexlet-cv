@@ -36,7 +36,7 @@ public class PageSection {
     private String title;
     private String content;
 
-    @NotNull(message = "Необходимо указать, включена ли секция")
+    @NotNull(message = "Статус активности секции обязателен")
     private boolean active;
 
     @CreatedDate
