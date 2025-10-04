@@ -17,15 +17,6 @@ public class PageSectionService {
     private final PageSectionRepository repository;
     private final PageSectionMapper mapper;
 
-    public void setActivenessById(Long id, boolean isActive) {
-
-        var model = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция с id %d не найдена", id)));
-
-        model.setActive(isActive);
-        repository.save(model);
-    }
-
     public List<PageSectionDTO> findAll() {
         return repository.findAll().stream()
             .map(mapper::map)
