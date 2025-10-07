@@ -23,6 +23,18 @@ public class PageSectionService {
             .toList();
     }
 
+    public List<PageSectionDTO> findByPageKey(String key) {
+
+        var model = repository.findByPageKey(key)
+            .orElseThrow(() -> new ResourceNotFoundException(String.format(
+                "Секции страницы \"%s\" не найдены", key)
+            ));
+
+        return repository.findAll().stream()
+            .map(mapper::map)
+            .toList();
+    }
+
     public PageSectionDTO findById(Long id) {
 
         var model = repository.findById(id)
@@ -31,7 +43,7 @@ public class PageSectionService {
         return mapper.map(model);
     }
 
-    public PageSectionDTO findByKey(String key) {
+    public PageSectionDTO findBySectionKey(String key) {
 
         var model = repository.findBySectionKey(key)
             .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция \"%s\" не найдена", key)));
@@ -41,7 +53,7 @@ public class PageSectionService {
 
     public PageSectionDTO create(PageSectionCreateDTO dto) {
 
-        // По умолчанию секция включена, если не указано другое
+        // По умолчанию секция включена, если не указано иное
         dto.setActive(dto.getActive() != null ? dto.getActive() : true);
 
         var model = mapper.map(dto);

@@ -29,7 +29,12 @@ public class PageSection {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Техническое название обязательно")
+    // "main", "profile" и др.
+    @NotBlank(message = "Техническое название страницы с секцией обязательно")
+    private String pageKey;
+
+    // "about_us", "team", "pricing" и др.
+    @NotBlank(message = "Техническое название секции обязательно")
     @Column(unique = true)
     private String sectionKey;
 
