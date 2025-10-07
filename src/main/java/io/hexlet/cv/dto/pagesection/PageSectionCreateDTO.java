@@ -14,6 +14,6 @@ public class PageSectionCreateDTO {
     private String title;
     private String content;
 
-    // Можно не указывать, включена ли секция - сервис при преобразовании сущности установит true по умолчанию
+    // Можно не указывать, включена ли секция - маппер установит true по умолчанию
     private Boolean active;
 }

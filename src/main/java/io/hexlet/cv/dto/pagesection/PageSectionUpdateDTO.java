@@ -14,6 +14,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 @AllArgsConstructor
 public class PageSectionUpdateDTO {
 
+    @NotBlank(message = "Техническое название страницы с секцией обязательно")
+    private JsonNullable<String> pageKey;
+
     @NotBlank(message = "Техническое название обязательно")
     private JsonNullable<String> sectionKey;
 

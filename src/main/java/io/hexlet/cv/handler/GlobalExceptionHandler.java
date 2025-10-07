@@ -4,6 +4,7 @@ import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
+import jakarta.persistence.EntityExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,15 @@ public class GlobalExceptionHandler {
 
         // Обработка обычного запроса
         return ResponseEntity.status(status).body(Map.of("errors", errors));
+    }
+
+    @ExceptionHandler(EntityExistsException.class)
+    public Object handleEntityExistsException(EntityExistsException ex,
+                                              HttpServletRequest request,
+                                              RedirectAttributes redirectAttributes) {
+
+        Map<String, String> errors = Map.of("error", ex.getMessage());
+        return commonHandle(errors, request, redirectAttributes, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

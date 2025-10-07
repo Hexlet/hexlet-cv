@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class PageSectionDTO {
     private Long id;
+    private String pageKey;
     private String sectionKey;
     private String title;
     private String content;
