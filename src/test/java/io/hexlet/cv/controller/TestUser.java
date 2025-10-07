@@ -3,10 +3,9 @@ package io.hexlet.cv.controller;
 import io.hexlet.cv.dto.user.UserPasswordDto;
 import io.hexlet.cv.handler.exception.MatchingPasswordsException;
 import io.hexlet.cv.handler.exception.WrongPasswordException;
-import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.repository.UserRepository;
-import io.hexlet.cv.service.UserService;
+import io.hexlet.cv.service.PasswordService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +39,7 @@ class TestUser {
     private BCryptPasswordEncoder encoder;
 
     @InjectMocks
-    private UserService userService;
+    private PasswordService passwordService;
 
     private User user;
 
@@ -69,7 +68,7 @@ class TestUser {
                 .thenReturn(true);
         when(encoder.encode("New_password")).thenReturn("Encrypted_new_password");
 
-        userService.passwordChange(userPasswordDto);
+        passwordService.passwordChange(userPasswordDto);
 
         assertEquals("Encrypted_new_password", user.getEncryptedPassword());
         verify(userRepository).save(user);
@@ -85,7 +84,7 @@ class TestUser {
                 .thenReturn(false);
 
         assertThrows(WrongPasswordException.class, () -> {
-           userService.passwordChange(userPasswordDto);
+           passwordService.passwordChange(userPasswordDto);
         });
 
         verify(userRepository, never()).save(any());
@@ -101,7 +100,7 @@ class TestUser {
                 .thenReturn(true);
 
         assertThrows(MatchingPasswordsException.class, () -> {
-            userService.passwordChange(userPasswordDto);
+            passwordService.passwordChange(userPasswordDto);
         });
 
         verify(userRepository, never()).save(any());
