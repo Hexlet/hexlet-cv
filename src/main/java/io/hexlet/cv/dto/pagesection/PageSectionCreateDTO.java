@@ -8,7 +8,12 @@ import lombok.Setter;
 @Setter
 public class PageSectionCreateDTO {
 
-    @NotBlank(message = "Техническое название обязательно")
+    // "main", "profile" и др.
+    @NotBlank(message = "Техническое название страницы с секцией обязательно")
+    private String pageKey;
+
+    // "about_us", "team", "pricing" и др.
+    @NotBlank(message = "Техническое название секции обязательно")
     private String sectionKey;
 
     private String title;

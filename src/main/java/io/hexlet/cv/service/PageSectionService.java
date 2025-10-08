@@ -26,13 +26,7 @@ public class PageSectionService {
 
     public List<PageSectionDTO> findByPageKey(String key) {
 
-        var models = repository.findByPageKey(key);
-
-        if (models.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("Секции страницы \"%s\" не найдены", key));
-        }
-
-        return models.stream()
+        return repository.findByPageKey(key).stream()
             .map(mapper::map)
             .toList();
     }
@@ -53,11 +47,19 @@ public class PageSectionService {
         return mapper.map(model);
     }
 
-    public PageSectionDTO createForPage(String pageKey, PageSectionCreateDTO dto) {
+    public PageSectionDTO findById(Long id) {
 
-        if (repository.existsByPageKeyAndSectionKey(pageKey, dto.getSectionKey())) {
+        var model = repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция с id %d не найдена", id)));
+
+        return mapper.map(model);
+    }
+
+    public PageSectionDTO create(PageSectionCreateDTO dto) {
+
+        if (repository.existsByPageKeyAndSectionKey(dto.getPageKey(), dto.getSectionKey())) {
             throw new EntityExistsException(
-                String.format("Секция \"%s\" на странице \"%s\" уже существует", dto.getSectionKey(), pageKey)
+                String.format("Секция \"%s\" на странице \"%s\" уже существует", dto.getSectionKey(), dto.getPageKey())
             );
         }
 
@@ -67,9 +69,29 @@ public class PageSectionService {
         }
 
         var model = mapper.map(dto);
-        model.setPageKey(pageKey);
         repository.save(model);
         return mapper.map(model);
+    }
+
+    public PageSectionDTO updateById(Long id, PageSectionUpdateDTO dto) {
+
+        var model = repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция с id %d не найдена", id)));
+
+        var mbDuplicate = repository.findByPageKeyAndSectionKey(dto.getPageKey().get(), dto.getSectionKey().get());
+        if (mbDuplicate.isPresent() && id != mbDuplicate.get().getId()) {
+            throw new EntityExistsException(
+                String.format("Секция \"%s\" на странице \"%s\" уже существует", dto.getSectionKey(), dto.getPageKey())
+            );
+        }
+
+        mapper.update(dto, model);
+        repository.save(model);
+        return mapper.map(model);
+    }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 
     public PageSectionDTO updateByPageKeyAndSectionKey(String pageKey, String sectionKey, PageSectionUpdateDTO dto) {
@@ -97,26 +119,4 @@ public class PageSectionService {
     public void deleteByPageKeyAndSectionKey(String pageKey, String sectionKey) {
         repository.deleteByPageKeyAndSectionKey(pageKey, sectionKey);
     }
-
-//    public PageSectionDTO findById(Long id) {
-//
-//        var model = repository.findById(id)
-//            .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция с id %d не найдена", id)));
-//
-//        return mapper.map(model);
-//    }
-//
-//    public PageSectionDTO updateById(PageSectionUpdateDTO dto, Long id) {
-//
-//        var model = repository.findById(id)
-//            .orElseThrow(() -> new ResourceNotFoundException(String.format("Секция с id %d не найдена", id)));
-//
-//        mapper.update(dto, model);
-//        repository.save(model);
-//        return mapper.map(model);
-//    }
-//
-//    public void deleteById(Long id) {
-//        repository.deleteById(id);
-//    }
 }

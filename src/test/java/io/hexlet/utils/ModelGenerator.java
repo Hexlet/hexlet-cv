@@ -24,6 +24,7 @@ public class ModelGenerator {
 
     @PostConstruct
     private void init() {
+
         userModel = Instancio.of(User.class)
             .ignore(Select.field(User::getId))
             .supply(Select.field(User::getEmail), () -> faker.internet().emailAddress())
@@ -35,11 +36,8 @@ public class ModelGenerator {
 
         pageSectionModel = Instancio.of(PageSection.class)
             .ignore(Select.field(PageSection::getId))
-
-            // Оба технических названия устанавливаются в рамках класса теста
-            .ignore(Select.field(PageSection::getPageKey))
-            .ignore(Select.field(PageSection::getSectionKey))
-
+            .ignore(Select.field(PageSection::getPageKey)) // Техническое название страницы указывается в тестах
+            .supply(Select.field(PageSection::getSectionKey), () -> faker.internet().slug())
             .supply(Select.field(PageSection::getTitle), () -> faker.name().title())
             .supply(Select.field(PageSection::getContent), () -> faker.lorem().characters(0, 200))
             .supply(Select.field(PageSection::isActive), () -> true) // Включённость по умолчанию

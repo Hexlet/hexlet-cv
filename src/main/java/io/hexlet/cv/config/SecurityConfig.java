@@ -57,7 +57,7 @@ public class SecurityConfig {
                         .requestMatchers("/ru/users/sign_up", "/en/users/sign_up").permitAll()
                         .requestMatchers("/ru/users", "/en/users").permitAll()
 
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(
