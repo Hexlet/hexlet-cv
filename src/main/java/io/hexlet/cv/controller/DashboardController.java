@@ -23,6 +23,16 @@ public class DashboardController {
         Map<String, Object> props = new HashMap<>();
         props.put("locale", locale);
 
+        var session = request.getSession(false);
+        if (session != null) {
+            var flash = (Map<String, String>) session.getAttribute("flash");
+            if (flash != null) {
+                props.put("flash", flash);
+                // удаляем flash
+                session.removeAttribute("flash");
+            }
+        }
+
         // тут что у нас должно отдаваться и происходить на dashboard
         // и тут возвращаем какую-то страницу типа Dashboard/Index - во фронте виднее будет
 

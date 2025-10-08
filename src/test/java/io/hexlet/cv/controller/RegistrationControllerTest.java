@@ -1,7 +1,6 @@
 package io.hexlet.cv.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -76,7 +75,7 @@ public class RegistrationControllerTest {
         var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isSeeOther());
+        mockMvc.perform(request).andExpect(status().isFound());
 
         var user = userRepository.findByEmail(data.getEmail()).orElse(null);
         assertThat(user).isNotNull();
@@ -268,13 +267,12 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                // что у нас редирект на этот путь идет
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                // и что во флэш атрибутах должна приходить ошибка по дублированию email - значить флэши проходят
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("email")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.email").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
     }
 
 
@@ -292,13 +290,12 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                // и что во флэш атрибутах должна приходить ошибка по дублированию
-                // password - значить флэши проходят
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("password")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.password").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
     }
 
     @Test
@@ -314,11 +311,15 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("password")))
-                .andReturn();
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.password").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
+
+
     }
 
     @Test
@@ -334,11 +335,12 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("email")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.email").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
     }
 
     @Test
@@ -354,11 +356,12 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("email")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.email").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
     }
 
     @Test
@@ -374,11 +377,12 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_up"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("email")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.email").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users"));
     }
 
     @Test
@@ -394,7 +398,7 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/ru/dashboard"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,

@@ -1,6 +1,5 @@
 package io.hexlet.cv.controller;
 
-import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -84,7 +83,7 @@ public class LoginControllerTest {
         var request = post("/ru/users/sign_in").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isSeeOther())
+        mockMvc.perform(request).andExpect(status().isFound())
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
                         Matchers.hasItem(Matchers.containsString("access_token"))))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
@@ -134,11 +133,13 @@ public class LoginControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_in"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_in"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("password")))
-                .andReturn();
+                .andExpect(status().isOk())
+
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.password").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users/sign_in"));
     }
 
     @Test
@@ -152,11 +153,12 @@ public class LoginControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_in"))
-                .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/users/sign_in"))
-                .andExpect(flash().attributeExists("errors"))
-                .andExpect(flash().attribute("errors", hasKey("email")))
-                .andReturn();
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.component").value("Users/Register"))
+                .andExpect(jsonPath("$.props.locale").value("ru"))
+                .andExpect(jsonPath("$.props.flash.errors").exists())
+                .andExpect(jsonPath("$.props.flash.errors.email").isNotEmpty())
+                .andExpect(jsonPath("$.url").value("/ru/users/sign_in"));
     }
 
     @Test
@@ -170,7 +172,7 @@ public class LoginControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_in"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/ru/dashboard"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,

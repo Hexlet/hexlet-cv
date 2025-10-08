@@ -1,11 +1,13 @@
 package io.hexlet.cv.handler;
 
+import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,10 +15,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 @ControllerAdvice
+@AllArgsConstructor
 public class GlobalExceptionHandler {
+
+    private Inertia inertia;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleValidation(MethodArgumentNotValidException ex,
@@ -29,14 +34,13 @@ public class GlobalExceptionHandler {
             errors.put(error.getField(), error.getDefaultMessage());
         }
         // если заголовок "X-Inertia: true" то это Inertia
-        if ("true".equals(request.getHeader("X-Inertia"))) {
-            redirectAttributes.addFlashAttribute("errors", errors);
-            String referer = request.getHeader("Referer");
 
-            RedirectView redirectView = new RedirectView(referer != null ? referer : "/");
-            redirectView.setHttp10Compatible(false);
-            redirectView.setStatusCode(HttpStatus.SEE_OTHER);
-            return redirectView;
+        if ("true".equals(request.getHeader("X-Inertia"))) {
+            Map<String, Object> props = new HashMap<>();
+            props.put("locale", request.getParameter("locale") != null ? request.getParameter("locale") : "ru");
+            props.put("flash", Map.of("errors", errors)); // во flash
+
+            return inertia.render("Users/Register", props);
         }
 
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -51,15 +55,13 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = Map.of("email", ex.getMessage());
 
         if ("true".equals(request.getHeader("X-Inertia"))) {
-            redirectAttributes.addFlashAttribute("errors", errors);
-            String referer = request.getHeader("Referer");
+            Map<String, Object> props = new HashMap<>();
+            props.put("locale", request.getParameter("locale") != null ? request.getParameter("locale") : "ru");
+            props.put("flash", Map.of("errors", errors)); // во flash
 
-            RedirectView redirectView = new RedirectView(referer != null ? referer : "/");
-            redirectView.setHttp10Compatible(false);
-            redirectView.setStatusCode(HttpStatus.SEE_OTHER);
-            return redirectView;
+            return inertia.render("Users/Register", props);
         }
-
+        //   если не Inertia
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Map.of("errors", errors));
     }
@@ -72,13 +74,11 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = Map.of("email", ex.getMessage());
 
         if ("true".equals(request.getHeader("X-Inertia"))) {
-            redirectAttributes.addFlashAttribute("errors", errors);
-            String referer = request.getHeader("Referer");
+            Map<String, Object> props = new HashMap<>();
+            props.put("locale", request.getParameter("locale") != null ? request.getParameter("locale") : "ru");
+            props.put("flash", Map.of("errors", errors)); // во flash
 
-            RedirectView redirectView = new RedirectView(referer != null ? referer : "/");
-            redirectView.setHttp10Compatible(false);
-            redirectView.setStatusCode(HttpStatus.SEE_OTHER);
-            return redirectView;
+            return inertia.render("Users/Register", props);
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -92,15 +92,15 @@ public class GlobalExceptionHandler {
 
         Map<String, String> errors = Map.of("password", ex.getMessage());
 
-        if ("true".equals(request.getHeader("X-Inertia"))) {
-            redirectAttributes.addFlashAttribute("errors", errors);
-            String referer = request.getHeader("Referer");
 
-            RedirectView redirectView = new RedirectView(referer != null ? referer : "/");
-            redirectView.setHttp10Compatible(false);
-            redirectView.setStatusCode(HttpStatus.SEE_OTHER);
-            return redirectView;
+        if ("true".equals(request.getHeader("X-Inertia"))) {
+            Map<String, Object> props = new HashMap<>();
+            props.put("locale", request.getParameter("locale") != null ? request.getParameter("locale") : "ru");
+            props.put("flash", Map.of("errors", errors)); // во flash
+
+            return inertia.render("Users/Register", props);
         }
+
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Map.of("errors", errors));
     }
