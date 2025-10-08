@@ -61,6 +61,11 @@ public class PageSectionService {
             );
         }
 
+        // По умолчанию секция включена, если не указано иное
+        if (dto.getActive() == null) {
+            dto.setActive(true);
+        }
+
         var model = mapper.map(dto);
         model.setPageKey(pageKey);
         repository.save(model);
