@@ -1,11 +1,9 @@
 package io.hexlet.cv.dto.pagesection;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class PageSectionCreateDTO {
 
     // "main", "profile" и др.

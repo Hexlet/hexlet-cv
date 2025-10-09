@@ -14,8 +14,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
-
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -45,8 +43,8 @@ public class PageSection {
     private boolean active;
 
     @CreatedDate
-    private LocalDateTime createdAt;
+    private String createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private String updatedAt;
 }

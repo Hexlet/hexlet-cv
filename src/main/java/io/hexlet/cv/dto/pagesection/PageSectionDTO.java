@@ -1,7 +1,8 @@
 package io.hexlet.cv.dto.pagesection;
 
-import java.time.LocalDateTime;
+import lombok.Data;
 
+@Data
 public class PageSectionDTO {
     private Long id;
     private String pageKey;
@@ -9,6 +10,6 @@ public class PageSectionDTO {
     private String title;
     private String content;
     private boolean active;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String createdAt;
+    private String updatedAt;
 }
