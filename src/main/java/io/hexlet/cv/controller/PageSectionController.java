@@ -7,7 +7,6 @@ import io.hexlet.cv.service.PageSectionService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/api/pages/sections")
 public class PageSectionController {
@@ -28,9 +29,11 @@ public class PageSectionController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PageSectionDTO> getAll() {
+    public List<PageSectionDTO> getAll(
+        @RequestParam(required = false) String page,
+        @RequestParam(required = false) Boolean active) {
 
-        return pageSectionService.findAll();
+        return pageSectionService.findAllOnPage(page, active);
     }
 
     @GetMapping("/{id}")

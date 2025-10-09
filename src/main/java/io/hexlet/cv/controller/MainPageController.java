@@ -33,7 +33,7 @@ public class MainPageController {
 
         var actualLocale = validateAndGetLocale(locale);
 
-        var sections = pageSectionService.findActiveByPageKey(PAGE_KEY);
+        var sections = pageSectionService.findAllOnPage(PAGE_KEY, true);
 
         Map<String, Object> props = Map.of(
             "locale", actualLocale,

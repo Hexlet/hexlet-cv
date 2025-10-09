@@ -24,22 +24,33 @@ public class PageSectionService {
             .toList();
     }
 
-    public List<PageSectionDTO> findByPageKey(String key) {
+    public List<PageSectionDTO> findAllOnPage(String pageKey, Boolean isActive) {
 
-        return repository.findByPageKey(key).stream()
-            .map(mapper::map)
-            .toList();
-    }
+        if (pageKey != null && isActive != null) {
+            return repository.findByPageKeyAndActive(pageKey, isActive).stream()
+                .map(mapper::map)
+                .toList();
 
-    public List<PageSectionDTO> findActiveByPageKey(String key) {
-        return repository.findByPageKeyAndActiveTrue(key).stream()
-            .map(mapper::map)
-            .toList();
+        } else if (pageKey != null) {
+            return repository.findByPageKey(pageKey).stream()
+                .map(mapper::map)
+                .toList();
+
+        } else if (isActive != null) {
+            return repository.findByActive(isActive).stream()
+                .map(mapper::map)
+                .toList();
+
+        } else {
+            return repository.findAll().stream()
+                .map(mapper::map)
+                .toList();
+        }
     }
 
     public PageSectionDTO findByPageKeyAndSectionKey(String pageKey, String sectionKey) {
 
-        var model = repository.findBySectionKey(sectionKey)
+        var model = repository.findByPageKeyAndSectionKey(pageKey, sectionKey)
             .orElseThrow(() -> new ResourceNotFoundException(
                 String.format("Секция \"%s\" на странице \"%s\" не найдена", pageKey, sectionKey)
             ));
