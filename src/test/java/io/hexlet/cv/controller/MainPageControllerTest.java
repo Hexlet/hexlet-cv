@@ -38,6 +38,7 @@ public class MainPageControllerTest {
 
     private PageSection section1;
     private PageSection section2;
+    private PageSection section3;
 
     private final String PAGE_KEY = "main";
 
@@ -48,12 +49,17 @@ public class MainPageControllerTest {
 
         section1 = Instancio.of(modelGenerator.getPageSectionModel()).create();
         section2 = Instancio.of(modelGenerator.getPageSectionModel()).create();
+        section3 = Instancio.of(modelGenerator.getPageSectionModel()).create();
 
         section1.setPageKey(PAGE_KEY);
         section2.setPageKey(PAGE_KEY);
+        section3.setPageKey(PAGE_KEY);
+
+        section3.setActive(false);
 
         pageSectionRepository.save(section1);
         pageSectionRepository.save(section2);
+        pageSectionRepository.save(section3);
     }
 
     @Test
@@ -67,6 +73,7 @@ public class MainPageControllerTest {
         assertThat(response.getContentAsString())
             .contains(PAGE_KEY)
             .contains(section1.getSectionKey())
-            .contains(section2.getSectionKey());
+            .contains(section2.getSectionKey())
+            .doesNotContain(section3.getSectionKey());
     }
 }
