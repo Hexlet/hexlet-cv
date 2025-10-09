@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hexlet.cv.mapper.PageSectionMapper;
 import io.hexlet.cv.model.PageSection;
 import io.hexlet.cv.repository.PageSectionRepository;
-import io.hexlet.utils.ModelGenerator;
+import io.hexlet.cv.utils.ModelGenerator;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
