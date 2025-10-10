@@ -9,6 +9,9 @@ run:
 test:
 	./gradlew test
 
+report:
+	./gradlew test jacocoTestReport
+
 deps-update:
 	./gradlew refreshVersions
 

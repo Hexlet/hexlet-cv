@@ -40,7 +40,7 @@ public class MainPageControllerTest {
     private PageSection section2;
     private PageSection section3;
 
-    private final String PAGE_KEY = "main";
+    private static final String PAGE_KEY = "main";
 
     @BeforeEach
     public void setUp() {

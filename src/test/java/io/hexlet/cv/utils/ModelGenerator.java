@@ -18,7 +18,7 @@ public class ModelGenerator {
     private Model<User> userModel;
     private Model<PageSection> pageSectionModel;
 
-    private final Faker FAKER = new Faker();
+    private static final Faker FAKER = new Faker();
 
     @PostConstruct
     private void init() {

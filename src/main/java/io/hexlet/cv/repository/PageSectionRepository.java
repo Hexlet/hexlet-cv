@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface PageSectionRepository extends JpaRepository<PageSection, Long> {
+    Optional<PageSection> findBySectionKey(String sectionKey);
     Optional<PageSection> findByPageKeyAndSectionKey(String pageKey, String sectionKey);
     List<PageSection> findByPageKey(String key);
     List<PageSection> findByPageKeyAndActive(String key, Boolean isActive);
