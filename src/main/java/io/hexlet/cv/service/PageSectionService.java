@@ -48,16 +48,6 @@ public class PageSectionService {
         }
     }
 
-    public PageSectionDTO findByPageKeyAndSectionKey(String pageKey, String sectionKey) {
-
-        var model = repository.findByPageKeyAndSectionKey(pageKey, sectionKey)
-            .orElseThrow(() -> new ResourceNotFoundException(
-                String.format("Секция \"%s\" на странице \"%s\" не найдена", pageKey, sectionKey)
-            ));
-
-        return mapper.map(model);
-    }
-
     public PageSectionDTO findById(Long id) {
 
         var model = repository.findById(id)
@@ -105,29 +95,39 @@ public class PageSectionService {
         repository.deleteById(id);
     }
 
-    public PageSectionDTO updateByPageKeyAndSectionKey(String pageKey, String sectionKey, PageSectionUpdateDTO dto) {
-
-        var model = repository.findByPageKeyAndSectionKey(pageKey, sectionKey)
-            .orElseThrow(() -> new ResourceNotFoundException(
-                String.format("Секция \"%s\" на странице \"%s\" не найдена", sectionKey, pageKey)
-            ));
-
-        var newSectionKey = dto.getSectionKey().get();
-
-        if (!newSectionKey.equals(model.getSectionKey())
-            && repository.existsByPageKeyAndSectionKey(pageKey, newSectionKey)) {
-
-            throw new EntityExistsException(
-                String.format("Секция \"%s\" на странице \"%s\" уже существует", newSectionKey, pageKey)
-            );
-        }
-
-        mapper.update(dto, model);
-        repository.save(model);
-        return mapper.map(model);
-    }
-
-    public void deleteByPageKeyAndSectionKey(String pageKey, String sectionKey) {
-        repository.deleteByPageKeyAndSectionKey(pageKey, sectionKey);
-    }
+//    public PageSectionDTO findByPageKeyAndSectionKey(String pageKey, String sectionKey) {
+//
+//        var model = repository.findByPageKeyAndSectionKey(pageKey, sectionKey)
+//            .orElseThrow(() -> new ResourceNotFoundException(
+//                String.format("Секция \"%s\" на странице \"%s\" не найдена", pageKey, sectionKey)
+//            ));
+//
+//        return mapper.map(model);
+//    }
+//
+//    public PageSectionDTO updateByPageKeyAndSectionKey(String pageKey, String sectionKey, PageSectionUpdateDTO dto) {
+//
+//        var model = repository.findByPageKeyAndSectionKey(pageKey, sectionKey)
+//            .orElseThrow(() -> new ResourceNotFoundException(
+//                String.format("Секция \"%s\" на странице \"%s\" не найдена", sectionKey, pageKey)
+//            ));
+//
+//        var newSectionKey = dto.getSectionKey().get();
+//
+//        if (!newSectionKey.equals(model.getSectionKey())
+//            && repository.existsByPageKeyAndSectionKey(pageKey, newSectionKey)) {
+//
+//            throw new EntityExistsException(
+//                String.format("Секция \"%s\" на странице \"%s\" уже существует", newSectionKey, pageKey)
+//            );
+//        }
+//
+//        mapper.update(dto, model);
+//        repository.save(model);
+//        return mapper.map(model);
+//    }
+//
+//    public void deleteByPageKeyAndSectionKey(String pageKey, String sectionKey) {
+//        repository.deleteByPageKeyAndSectionKey(pageKey, sectionKey);
+//    }
 }
