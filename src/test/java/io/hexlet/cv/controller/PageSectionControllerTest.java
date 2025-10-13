@@ -68,7 +68,8 @@ public class PageSectionControllerTest {
     @Test
     public void testGetAll() throws Exception {
 
-        var response = mockMvc.perform(get("/api/pages/sections"))
+        var response = mockMvc.perform(get("/api/pages/sections")
+                .header("X-Inertia", "true"))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse();
@@ -89,6 +90,7 @@ public class PageSectionControllerTest {
         pageSectionRepository.save(section3);
 
         var response = mockMvc.perform(get("/api/pages/sections")
+                .header("X-Inertia", "true")
                 .param("page", section1.getPageKey())
                 .param("active", String.valueOf(section2.isActive())))
             .andExpect(status().isOk())
@@ -104,15 +106,16 @@ public class PageSectionControllerTest {
     @Test
     public void testGet() throws Exception {
 
-        var response = mockMvc.perform(get("/api/pages/sections/" + section1.getId()))
+        var response = mockMvc.perform(get("/api/pages/sections/" + section1.getId())
+                .header("X-Inertia", "true"))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse();
 
         assertThatJson(response.getContentAsString()).and(
-            v -> v.node("id").isEqualTo(section1.getId()),
-            v -> v.node("pageKey").isEqualTo(section1.getPageKey()),
-            v -> v.node("sectionKey").isEqualTo(section1.getSectionKey())
+            v -> v.node("props.pageSections[0].id").isEqualTo(section1.getId()),
+            v -> v.node("props.pageSections[0].pageKey").isEqualTo(section1.getPageKey()),
+            v -> v.node("props.pageSections[0].sectionKey").isEqualTo(section1.getSectionKey())
         );
     }
 
@@ -129,9 +132,10 @@ public class PageSectionControllerTest {
         dto.setActive(section1.isActive());
 
         var response = mockMvc.perform(post("/api/pages/sections")
+                .header("X-Inertia", "true")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(dto)))
-            .andExpect(status().isCreated());
+            .andExpect(status().isFound());
 
         var section = assertDoesNotThrow(() ->
             pageSectionRepository.findBySectionKey(dto.getSectionKey()).orElseThrow());
@@ -157,9 +161,10 @@ public class PageSectionControllerTest {
         var oldContent = section1.getContent();
 
         var response = mockMvc.perform(put("/api/pages/sections/" + section1.getId())
+                .header("X-Inertia", "true")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(dto)))
-            .andExpect(status().isOk());
+            .andExpect(status().isSeeOther());
 
         var section = assertDoesNotThrow(() ->
             pageSectionRepository.findById(section1.getId()).orElseThrow());
@@ -175,8 +180,9 @@ public class PageSectionControllerTest {
     @Test
     public void testDelete() throws Exception {
 
-        mockMvc.perform(delete("/api/pages/sections/" + section1.getId()))
-            .andExpect(status().isNoContent());
+        mockMvc.perform(delete("/api/pages/sections/" + section1.getId())
+                .header("X-Inertia", "true"))
+            .andExpect(status().isSeeOther());
 
         assertThat(pageSectionRepository.existsById(section1.getId())).isFalse();
         assertThat(pageSectionRepository.existsById(section2.getId())).isTrue();

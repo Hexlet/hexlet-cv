@@ -63,9 +63,25 @@ public class MainPageControllerTest {
     }
 
     @Test
+    public void testFirstRequest() throws Exception {
+
+        // Запрос без заголовка "X-Inertia"
+        var response = mockMvc.perform(get("/"))
+            .andExpect(status().isOk())
+            .andReturn()
+            .getResponse();
+
+        assertThat(response.getContentAsString())
+            .contains(PAGE_KEY)
+            .contains(section1.getSectionKey())
+            .contains(section2.getSectionKey())
+            .doesNotContain(section3.getSectionKey());
+    }
+
+    @Test
     public void testIndex() throws Exception {
 
-        var response = mockMvc.perform(get("/"))
+        var response = mockMvc.perform(get("/").header("X-Inertia", "true"))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse();
