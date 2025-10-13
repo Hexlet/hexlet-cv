@@ -29,7 +29,7 @@ public class MainPageController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> index(@PathVariable(required = false) String locale) {
+    public ResponseEntity<String> index(@PathVariable(required = false) String locale) {
 
         var actualLocale = validateAndGetLocale(locale);
 
@@ -40,7 +40,7 @@ public class MainPageController {
             "pageSections", sections
         );
 
-        return ResponseEntity.ok(inertia.render("Home/Index", props));
+        return inertia.render("Home/Index", props);
     }
 
     private String validateAndGetLocale(String locale) {
