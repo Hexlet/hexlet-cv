@@ -5,7 +5,9 @@ import io.hexlet.cv.config.JwtProperties;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Component;
@@ -15,10 +17,12 @@ public class JWTUtils {
 
     @Autowired
     private final JwtEncoder encoder;
+    private final JwtDecoder decoder;
     private final JwtProperties jwtProperties;
 
-    public JWTUtils(JwtEncoder encoder, JwtProperties jwtProperties) {
+    public JWTUtils(JwtEncoder encoder, JwtDecoder decoder, JwtProperties jwtProperties) {
         this.encoder = encoder;
+        this.decoder = decoder;
         this.jwtProperties = jwtProperties;
     }
 
@@ -44,5 +48,9 @@ public class JWTUtils {
                 .claim("type", "refresh") // можно явно указать тип
                 .build();
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
+
+    public Jwt decode(String token) {
+        return decoder.decode(token);
     }
 }
