@@ -46,6 +46,8 @@ public class User implements UserDetails {
     @Convert(converter = RoleTypeConverter.class)
     private RoleType role;
 
+    private String about;
+
 //-----  под авторизацию -----
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
