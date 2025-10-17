@@ -1,6 +1,7 @@
 package io.hexlet.cv.security;
 
 import io.hexlet.cv.util.JWTUtils;
+import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +16,22 @@ public class TokenService {
 
     public Tokens authenticateAndGenerate(String email, String password) {
         var authentication = new UsernamePasswordAuthenticationToken(email, password);
-        authenticationManager.authenticate(authentication);
+        // authenticationManager.authenticate(authentication);
+
+
+        var result = authenticationManager.authenticate(authentication);
+        /*
+        var roles = result.getAuthorities().stream()
+                .map(a -> a.getAuthority())
+                .toList();
+
+
+         System.out.println("");
+        System.out.println("");
+        System.out.println("Logged in as " + email + " with roles: " + roles);
+        System.out.println("");
+        System.out.println("");
+*/
 
         var accessToken = jwtUtils.generateAccessToken(email);
         var refreshToken = jwtUtils.generateRefreshToken(email);

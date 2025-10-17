@@ -24,6 +24,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -148,7 +149,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.getRole().name()));
     }
 
     @Override
@@ -182,154 +184,3 @@ public class User implements UserDetails {
     }
 }
 
-/*
-@Entity
-@Getter
-@Setter
-@Table(
-        name = "users",
-        indexes = {
-                @Index(name = "idx_users_email", columnList = "email", unique = true),
-                @Index(name = "idx_users_confirmation_token", columnList = "confirmation_token", unique = true),
-                @Index(name = "idx_users_reset_password_token", columnList = "reset_password_token", unique = true),
-                @Index(name = "idx_users_unlock_token", columnList = "unlock_token", unique = true)
-        }
-)
-@EntityListeners(AuditingEntityListener.class)
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-
-   // @Column(nullable = false, unique = true)
-   // @Email(message = "Укажите корректный email-адрес")
-    @NotBlank(message = "Email обязателен")
-    private String email;
-
-    private String encryptedPassword;
-
-    @NotBlank(message = "Имя обязательно")
-    private String firstName;
-
-    @NotBlank(message = "Фамилия обязательна")
-    private String lastName;
-
-    @Column(nullable = false)
-    @Convert(converter = RoleTypeConverter.class)
-    private RoleType role;
-
-    // -----
-
-    private String resetPasswordToken;
-    private LocalDateTime resetPasswordSentAt;
-    private LocalDateTime rememberCreatedAt;
-
-    private Integer signInCount;
-    private LocalDateTime currentSignInAt;
-    private LocalDateTime lastSignInAt;
-    private String currentSignInIp;
-    private String lastSignInIp;
-
-    private String confirmationToken;
-    private LocalDateTime confirmedAt;
-    private LocalDateTime confirmationSentAt;
-    private String unconfirmedEmail;
-    private Integer failedAttempts;
-    private String unlockToken;
-    private LocalDateTime lockedAt;
-    private String provider;
-    private String uid;
-    private Integer resumeAnswerLikesCount;
-
-    private String about;
-    private Boolean resumeMailEnabled;
-    private Boolean bouncedEmail;
-    private Boolean markedAsSpam;
-    private Boolean emailDisabledDelivery;
-
-    private String state;
-    private String locale;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-
-
-
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Resume> resumes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<ResumeAnswer> resumeAnswers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<ResumeAnswerLike> resumeAnswerLikes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<ResumeAnswerComment> resumeAnswerComments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "answerUser", fetch = FetchType.LAZY)
-    private List<ResumeAnswerComment> commentsAddressedToUser = new ArrayList<>();
-
-    @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
-    private List<Vacancy> createdVacancies = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Event> events = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Notification> notifications = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Impression> impressions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<CareerMember> careerMemberships = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<ResumeComment> resumeComments = new ArrayList<>();
-
-
-//-----  под авторизацию -----
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public String getPassword() {
-        return encryptedPassword;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
-}
-
-
- */

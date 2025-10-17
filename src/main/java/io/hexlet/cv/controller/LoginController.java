@@ -47,6 +47,9 @@ public class LoginController {
 
 
         loginService.login(loginDTO);
+
+
+
         var tokens = tokenService.authenticateAndGenerate(
                 loginDTO.getEmail(),
                 loginDTO.getPassword()
