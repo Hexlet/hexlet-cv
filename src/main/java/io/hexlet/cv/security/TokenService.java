@@ -1,7 +1,6 @@
 package io.hexlet.cv.security;
 
 import io.hexlet.cv.util.JWTUtils;
-import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -3,8 +3,6 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.service.FlashPropsService;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,7 @@ public class DashboardController {
                                        HttpServletRequest request) {
 
 
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
 
         return inertia.render("Dashboard/Index", props);
     }

@@ -2,15 +2,11 @@ package io.hexlet.cv.util;
 
 
 import io.hexlet.cv.config.JwtProperties;
+import io.hexlet.cv.repository.UserRepository;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import io.hexlet.cv.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.internal.build.AllowNonPortable;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;

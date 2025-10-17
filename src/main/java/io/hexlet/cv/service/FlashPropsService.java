@@ -15,7 +15,7 @@ public class FlashPropsService {
         var flash = RequestContextUtils.getInputFlashMap(request);
 
         if (flash != null && !flash.isEmpty()) {
-                props.put("flash", flash);
+            props.put("flash", flash);
         }
 
         props.put("locale", locale);

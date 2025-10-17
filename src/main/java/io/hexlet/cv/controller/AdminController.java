@@ -22,76 +22,75 @@ public class AdminController {
     private final FlashPropsService flashPropsService;
 
     @GetMapping()
-    public ResponseEntity<?> AdminHomeController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminHomeController(@PathVariable("locale") String locale,
                                                  HttpServletRequest request) {
 
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Index", props);
     }
 
     @GetMapping("/marketing")
-    public ResponseEntity<?> AdminMarketingController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminMarketingController(@PathVariable("locale") String locale,
                                                       HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Marketing/Index", props);
     }
 
     @GetMapping("/webinars")
-    public ResponseEntity<?> AdminWebinarsController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminWebinarsController(@PathVariable("locale") String locale,
                                                      HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Webinars/Index", props);
     }
 
     @GetMapping("/knowledgebase")
-    public ResponseEntity<?> AdminKnowledgebaseController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminKnowledgebaseController(@PathVariable("locale") String locale,
                                                           HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Knowledgebase/Index", props);
 
     }
 
     @GetMapping("/interview")
-    public ResponseEntity<?> AdminInterviewController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminInterviewController(@PathVariable("locale") String locale,
                                                       HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Interview/Index", props);
 
     }
 
     @GetMapping("/grading")
-    public ResponseEntity<?> AdminGradingController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminGradingController(@PathVariable("locale") String locale,
                                                     HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Grading/Index", props);
     }
 
     @GetMapping("/programs")
-    public ResponseEntity<?> AdminProgramsController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminProgramsController(@PathVariable("locale") String locale,
                                                      HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Programs/Index", props);
     }
 
     @GetMapping("/users")
-    public ResponseEntity<?> AdminUsersController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminUsersController(@PathVariable("locale") String locale,
                                                   HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Users/Index", props);
     }
 
     @GetMapping("/settings")
-    public ResponseEntity<?> AdminSettingsController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminSettingsController(@PathVariable("locale") String locale,
                                                      HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Settings/Index", props);
     }
 
     @GetMapping("/admin/help")
-    public ResponseEntity<?> AdminHelpController(@PathVariable("locale") String locale,
+    public ResponseEntity<?> adminHelpController(@PathVariable("locale") String locale,
                                                  HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);;
+        var props = flashPropsService.buildProps(locale, request);
         return inertia.render("Admin/Help/Index", props);
     }
 }
-
