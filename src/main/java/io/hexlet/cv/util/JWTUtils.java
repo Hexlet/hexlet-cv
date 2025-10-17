@@ -19,20 +19,13 @@ public class JWTUtils {
     private final JwtEncoder encoder;
     private final JwtProperties jwtProperties;
 
-    private final UserRepository userRepository; // нужен доступ к роли
+    private final UserRepository userRepository;
 
-    /*
-    public JWTUtils(JwtEncoder encoder, JwtProperties jwtProperties, UserRepository userRepository) {
-        this.encoder = encoder;
-        this.jwtProperties = jwtProperties;
-        this.userRepository = userRepository;
-    }
-*/
 
     public String generateAccessToken(String username) {
 
         var user = userRepository.findByEmail(username).orElseThrow();
-        var role = user.getRole().name(); // например ADMIN
+        var role = user.getRole().name();
 
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()
@@ -52,7 +45,7 @@ public class JWTUtils {
                 .issuedAt(now)
                 .expiresAt(now.plus(jwtProperties.getRefreshTokenValiditySeconds(), ChronoUnit.SECONDS))
                 .subject(username)
-                .claim("type", "refresh") // можно явно указать тип
+                .claim("type", "refresh")
                 .build();
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
