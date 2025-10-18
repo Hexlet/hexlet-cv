@@ -1,9 +1,13 @@
 package io.hexlet.cv.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-
-import jakarta.servlet.http.Cookie;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -86,50 +85,3 @@ class AdminControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 }
-
-
-
-
-/*
-
-package io.hexlet.cv.controller;
-
-
-
-
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@SpringBootTest
-@AutoConfigureMockMvc
-public class AdminControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-
-
-    @Test
-    @WithMockUser(roles = "ADMIN")
-    void testAdminEnterToPanel() throws Exception {
-        mockMvc.perform(get("/ru/admin").header("X-Inertia", "true"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @WithMockUser(roles = "CANDIDATE")
-    void testCandidateEnterToPanel() throws Exception {
-        mockMvc.perform(get("/ru/admin").header("X-Inertia", "true"))
-                .andExpect(status().isForbidden());
-    }
-}
- */
-

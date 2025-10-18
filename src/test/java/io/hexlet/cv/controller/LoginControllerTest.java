@@ -84,7 +84,7 @@ public class LoginControllerTest {
         var request = post("/ru/users/sign_in").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isSeeOther())
+        mockMvc.perform(request).andExpect(status().isFound())
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
                         Matchers.hasItem(Matchers.containsString("access_token"))))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
@@ -170,7 +170,7 @@ public class LoginControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_in"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/ru/dashboard"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,

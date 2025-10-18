@@ -76,7 +76,7 @@ public class RegistrationControllerTest {
         var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isSeeOther());
+        mockMvc.perform(request).andExpect(status().isFound());
 
         var user = userRepository.findByEmail(data.getEmail()).orElse(null);
         assertThat(user).isNotNull();
@@ -394,7 +394,7 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/ru/dashboard"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,
