@@ -7,12 +7,11 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.ArticleMapper;
 import io.hexlet.cv.repository.ArticleRepository;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
@@ -53,8 +52,12 @@ public class ArticleService {
 
         if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
             var newStatus = updateDTO.getIsPublished().get();
+            article.setIsPublished(newStatus);
+
             if (newStatus && article.getPublishedAt() == null) {
                 article.setPublishedAt(LocalDateTime.now());
+            } else if (!newStatus) {
+                article.setPublishedAt(null);
             }
         }
         articleMapper.update(updateDTO, article);
@@ -86,13 +89,6 @@ public class ArticleService {
 
     public List<ArticleDTO> getHomepageArticles() {
         return articleRepository.findByShowOnHomepageTrueOrderByDisplayOrderAsc()
-                .stream()
-                .map(articleMapper::map)
-                .collect(Collectors.toList());
-    }
-
-    public List<ArticleDTO> getArticleForHomeComponent(String componentId) {
-        return articleRepository.findByHomeComponentIdOrderByDisplayOrderAsc(componentId)
                 .stream()
                 .map(articleMapper::map)
                 .collect(Collectors.toList());
