@@ -1,5 +1,15 @@
 package io.hexlet.cv.controller;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.hexlet.cv.model.User;
@@ -8,6 +18,7 @@ import io.hexlet.cv.model.marketing.Story;
 import io.hexlet.cv.repository.StoryRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,18 +30,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -202,6 +201,27 @@ public class StoryControllerTest {
     public void testGetHomeComponents() throws Exception {
         mockMvc.perform(get("/ru/admin/marketing/home-components")
                         .header("X-Inertia", "true"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testToggleStoryHomepage() throws Exception {
+        mockMvc.perform(post("/ru/admin/marketing/stories/{id}/toggle-homepage", testStory.getId())
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testUpdateStoryDisplayOrder() throws Exception {
+        String json = "{\"display_order\": 5}";
+
+        mockMvc.perform(put("/ru/admin/marketing/stories/{id}/display-order", testStory.getId())
+                        .header("X-Inertia", "true")
+                        .contentType("application/json")
+                        .content(json))
+                .andDo(print())
                 .andExpect(status().isOk());
     }
 }

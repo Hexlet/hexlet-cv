@@ -3,9 +3,10 @@ package io.hexlet.cv.controller;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -17,6 +18,7 @@ import io.hexlet.cv.model.marketing.Article;
 import io.hexlet.cv.repository.ArticleRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -87,7 +89,7 @@ public class ArticleControllerTest {
         testArticle.setShowOnHomepage(true);
         testArticle.setHomeComponentId("877");
         testArticle.setDisplayOrder(1);
-        //testArticle.setPublishedAt(LocalDateTime.now());
+        testArticle.setPublishedAt(LocalDateTime.now());
 
         testArticle = articleRepository.save(testArticle);
 
@@ -137,11 +139,11 @@ public class ArticleControllerTest {
     @WithMockUser(roles = "ADMIN")
     public void testCreateArticle() throws Exception {
         String articleJson = """
-        {
-            "title": "New Article",
-            "content": "New content"
-        }
-    """;
+                    {
+                        "title": "New Article",
+                        "content": "New content"
+                    }
+                """;
 
         mockMvc.perform(post("/ru/admin/marketing/articles")
                         .header("X-Inertia", "true")
@@ -156,5 +158,26 @@ public class ArticleControllerTest {
         mockMvc.perform(delete("/ru/admin/marketing/articles/{id}", testArticle.getId())
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testToggleArticleHomepage() throws Exception {
+        mockMvc.perform(post("/ru/admin/marketing/articles/{id}/toggle-homepage", testArticle.getId())
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testUpdateArticleDisplayOrder() throws Exception {
+        String json = "{\"display_order\": 5}";
+
+        mockMvc.perform(put("/ru/admin/marketing/articles/{id}/display-order", testArticle.getId())
+                        .header("X-Inertia", "true")
+                        .contentType("application/json")
+                        .content(json))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }
