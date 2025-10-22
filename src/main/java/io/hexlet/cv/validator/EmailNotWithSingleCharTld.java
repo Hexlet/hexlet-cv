@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EmailNotWithSingleCharTld {
     Class<?>[] groups() default {};
-    String message() default "TLD email должен содержать как минимум 2 символа";
+    String message() default "{email.tld.minSize}";
+
     Class<? extends Payload>[] payload() default {};
 }

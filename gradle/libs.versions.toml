@@ -46,6 +46,9 @@ inertia4j-spring = "1.0.4"
 
 postgresql = "42.7.3"
 
+jackson-jsr310 = "2.18.2"
+
+
 
 [libraries]
 # Lombok
@@ -96,3 +99,6 @@ inertia4jSpring = { module = "io.github.inertia4j:inertia4j-spring", version.ref
 #inertia4jSpringStarter = { module = "dev.inertia4j:spring-boot-starter", version.ref = "inertia4j-starter" }
 #inertia4jSpringAdapter = { module = "dev.inertia4j:inertia4j-spring-adapter", version.ref = "inertia4j-spring-adapter" }
 #inertia4jSpringThymeleaf = { module = "dev.inertia4j:inertia4j-spring-thymeleaf", version.ref = "inertia4j-spring-thymeleaf" }
+
+# Jackson JSR310
+jacksonDatatypeJsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson-jsr310" }

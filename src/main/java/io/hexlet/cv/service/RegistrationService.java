@@ -1,7 +1,7 @@
 package io.hexlet.cv.service;
 
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
-import io.hexlet.cv.dto.user.RegistrationResponseDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationRequestDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationResponseDTO;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.enums.RoleType;

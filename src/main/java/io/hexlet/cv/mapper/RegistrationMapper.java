@@ -1,7 +1,7 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
-import io.hexlet.cv.dto.user.RegistrationResponseDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationRequestDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationResponseDTO;
 import io.hexlet.cv.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

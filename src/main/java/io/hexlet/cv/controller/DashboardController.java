@@ -1,9 +1,8 @@
 package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
+import io.hexlet.cv.service.FlashPropsService;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,16 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DashboardController {
 
     private final Inertia inertia;
+    private final FlashPropsService flashPropsService;
 
     @GetMapping("/{locale}/dashboard")
     public ResponseEntity<?> dashboard(@PathVariable String locale,
                                        HttpServletRequest request) {
 
-        Map<String, Object> props = new HashMap<>();
-        props.put("locale", locale);
 
-        // тут что у нас должно отдаваться и происходить на dashboard
-        // и тут возвращаем какую-то страницу типа Dashboard/Index - во фронте виднее будет
+        var props = flashPropsService.buildProps(locale, request);
 
         return inertia.render("Dashboard/Index", props);
     }
