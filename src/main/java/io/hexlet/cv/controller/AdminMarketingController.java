@@ -3,15 +3,16 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.marketing.ArticleCreateDTO;
 import io.hexlet.cv.dto.marketing.ArticleUpdateDTO;
+import io.hexlet.cv.dto.marketing.ReviewCreateDTO;
+import io.hexlet.cv.dto.marketing.ReviewUpdateDTO;
 import io.hexlet.cv.dto.marketing.StoryCreateDTO;
 import io.hexlet.cv.dto.marketing.StoryUpdateDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.service.ArticleService;
+import io.hexlet.cv.service.ReviewService;
 import io.hexlet.cv.service.StoryService;
 import jakarta.validation.Valid;
-
 import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class AdminMarketingController {
     private final Inertia inertia;
     private final ArticleService articleService;
     private final StoryService storyService;
-    // private final ReviewService reviewService;
+    private final ReviewService reviewService;
     // private final TeamService teamService;
     // private final PricingService pricingService;
 
@@ -64,6 +65,17 @@ public class AdminMarketingController {
                 ));
     }
 
+    @GetMapping("/reviews")
+    public ResponseEntity<String> reviewsIndex(@PathVariable String locale) {
+        var reviews = reviewService.getAllReviews();
+        return inertia.render("Marketing/Reviews/Index",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "reviews",
+                        "reviews", reviews
+                ));
+    }
+
     @GetMapping
     public ResponseEntity<String> index(@PathVariable String locale,
                                         @RequestParam String section) {
@@ -87,12 +99,12 @@ public class AdminMarketingController {
                         ));
             }
             case "reviews" -> {
-                // var reviews = reviewService.getAllReviews();
+                var reviews = reviewService.getAllReviews();
                 yield inertia.render("Marketing/Reviews/Index",
                         Map.of(
                                 "locale", locale,
-                                "activeSection", "reviews"
-                                // "reviews", reviews
+                                "activeSection", "reviews",
+                                "reviews", reviews
                         ));
             }
             case "team" -> {
@@ -137,6 +149,16 @@ public class AdminMarketingController {
                 ));
     }
 
+    // GET /ru/admin/marketing/reviews/create - форма создания отзыва
+    @GetMapping("/reviews/create")
+    public ResponseEntity<String> createReviewForm(@PathVariable String locale) {
+        return inertia.render("Marketing/Reviews/Create",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "reviews"
+                ));
+    }
+
     // GET /ru/admin/marketing/articles/{id}/edit - форма редактирования статьи
     @GetMapping("/articles/{id}/edit")
     public ResponseEntity<String> editArticleForm(@PathVariable String locale,
@@ -163,6 +185,19 @@ public class AdminMarketingController {
                 ));
     }
 
+    // GET /ru/admin/marketing/reviews/{id}/edit - форма редактирования отзыва
+    @GetMapping("/reviews/{id}/edit")
+    public ResponseEntity<String> editReviewForm(@PathVariable String locale,
+                                                 @PathVariable Long id) {
+        var review = reviewService.getReviewById(id);
+        return inertia.render("Marketing/Reviews/Edit",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "reviews",
+                        "review", review
+                ));
+    }
+
     // POST /ru/admin/marketing/articles - создание статьи
     @PostMapping("/articles")
     public ResponseEntity<String> createArticle(@PathVariable String locale,
@@ -177,6 +212,14 @@ public class AdminMarketingController {
                                               @Valid @RequestBody StoryCreateDTO createDTO) {
         storyService.createStory(createDTO);
         return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
+    }
+
+    // POST /ru/admin/marketing/reviews - создание отзыва
+    @PostMapping("/reviews")
+    public ResponseEntity<String> createReview(@PathVariable String locale,
+                                               @Valid @RequestBody ReviewCreateDTO createDTO) {
+        reviewService.createReview(createDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
     }
 
     // PUT /ru/admin/marketing/articles/{id} - обновление статьи
@@ -197,6 +240,15 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing/stories/" + id + "/edit");
     }
 
+    // PUT /ru/admin/marketing/reviews/{id} - обновление отзыва
+    @PutMapping("/reviews/{id}")
+    public ResponseEntity<String> updateReview(@PathVariable String locale,
+                                               @PathVariable Long id,
+                                               @Valid @RequestBody ReviewUpdateDTO updateDTO) {
+        reviewService.updateReview(id, updateDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing/reviews/" + id + "/edit");
+    }
+
     // DELETE /ru/admin/marketing/articles/{id} - удаление статьи
     @DeleteMapping("/articles/{id}")
     public ResponseEntity<String> deleteArticle(@PathVariable String locale,
@@ -211,6 +263,14 @@ public class AdminMarketingController {
                                               @PathVariable Long id) {
         storyService.deleteStory(id);
         return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
+    }
+
+    // DELETE /ru/admin/marketing/reviews/{id} - удаление отзыва
+    @DeleteMapping("/reviews/{id}")
+    public ResponseEntity<String> deleteReview(@PathVariable String locale,
+                                               @PathVariable Long id) {
+        reviewService.deleteReview(id);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
     }
 
     // POST /ru/admin/marketing/articles/{id}/toggle-publish - переключение публикации статьи
@@ -229,18 +289,82 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
     }
 
+    // POST /ru/admin/marketing/reviews/{id}/toggle-publish - переключение публикации отзыва
+    @PostMapping("/reviews/{id}/toggle-publish")
+    public ResponseEntity<String> togglePublishReview(@PathVariable String locale,
+                                                      @PathVariable Long id) {
+        reviewService.togglePublish(id);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
+    }
+
     // GET /ru/admin/marketing/home-components - управление компонентами главной страницы
     @GetMapping("/home-components")
     public ResponseEntity<String> homeComponents(@PathVariable String locale) {
         var articles = articleService.getHomepageArticles();
         var stories = storyService.getHomeStories();
+        var reviews = reviewService.getHomepageReviews();
 
         return inertia.render("Marketing/HomeComponents/Index",
                 Map.of(
                         "locale", locale,
                         "activeSection", "home-components",
                         "articles", articles,
-                        "stories", stories
+                        "stories", stories,
+                        "reviews", reviews
                 ));
+    }
+
+    // POST /ru/admin/marketing/articles/{id}/toggle-homepage - переключение отображения на главной
+    @PostMapping("/articles/{id}/toggle-homepage")
+    public ResponseEntity<String> toggleArticleHomepage(@PathVariable String locale,
+                                                        @PathVariable Long id) {
+        articleService.toggleArticleHomepageVisibility(id);
+        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
+    }
+
+    // POST /ru/admin/marketing/stories/{id}/toggle-homepage - переключение отображения на главной
+    @PostMapping("/stories/{id}/toggle-homepage")
+    public ResponseEntity<String> toggleStoryHomepage(@PathVariable String locale,
+                                                      @PathVariable Long id) {
+        storyService.toggleStoryHomepageVisibility(id);
+        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
+    }
+
+    // POST /ru/admin/marketing/reviews/{id}/toggle-homepage - переключение отображения на главной
+    @PostMapping("/reviews/{id}/toggle-homepage")
+    public ResponseEntity<String> toggleReviewHomepage(@PathVariable String locale,
+                                                       @PathVariable Long id) {
+        reviewService.toggleReviewHomepageVisibility(id);
+        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
+    }
+
+    // PUT /ru/admin/marketing/articles/{id}/display-order - обновление порядка отображения
+    @PutMapping("/articles/{id}/display-order")
+    public ResponseEntity<String> updateArticleDisplayOrder(@PathVariable String locale,
+                                                            @PathVariable Long id,
+                                                            @RequestBody Map<String, Integer> request) {
+        Integer displayOrder = request.get("display_order");
+        articleService.updateArticleDisplayOrder(id, displayOrder);
+        return ResponseEntity.ok().build();
+    }
+
+    // PUT /ru/admin/marketing/stories/{id}/display-order - обновление порядка отображения
+    @PutMapping("/stories/{id}/display-order")
+    public ResponseEntity<String> updateStoryDisplayOrder(@PathVariable String locale,
+                                                          @PathVariable Long id,
+                                                          @RequestBody Map<String, Integer> request) {
+        Integer displayOrder = request.get("display_order");
+        storyService.updateStoryDisplayOrder(id, displayOrder);
+        return ResponseEntity.ok().build();
+    }
+
+    // PUT /ru/admin/marketing/reviews/{id}/display-order - обновление порядка отображения
+    @PutMapping("/reviews/{id}/display-order")
+    public ResponseEntity<String> updateReviewDisplayOrder(@PathVariable String locale,
+                                                           @PathVariable Long id,
+                                                           @RequestBody Map<String, Integer> request) {
+        Integer displayOrder = request.get("display_order");
+        reviewService.updateReviewDisplayOrder(id, displayOrder);
+        return ResponseEntity.ok().build();
     }
 }

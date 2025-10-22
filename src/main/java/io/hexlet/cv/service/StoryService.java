@@ -7,12 +7,11 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.StoryMapper;
 import io.hexlet.cv.repository.StoryRepository;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
@@ -92,5 +91,21 @@ public class StoryService {
                 .stream()
                 .map(storyMapper::map)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void updateStoryDisplayOrder(Long id, Integer displayOrder) {
+        var story = storyRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Story not found"));
+        story.setDisplayOrder(displayOrder);
+        storyRepository.save(story);
+    }
+
+    @Transactional
+    public void toggleStoryHomepageVisibility(Long id) {
+        var story = storyRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Story not found"));
+        story.setShowOnHomepage(!story.getShowOnHomepage());
+        storyRepository.save(story);
     }
 }

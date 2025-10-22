@@ -93,4 +93,20 @@ public class ArticleService {
                 .map(articleMapper::map)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void updateArticleDisplayOrder(Long id, Integer displayOrder) {
+        var article = articleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        article.setDisplayOrder(displayOrder);
+        articleRepository.save(article);
+    }
+
+    @Transactional
+    public void toggleArticleHomepageVisibility(Long id) {
+        var article = articleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        article.setShowOnHomepage(!article.getShowOnHomepage());
+        articleRepository.save(article);
+    }
 }
