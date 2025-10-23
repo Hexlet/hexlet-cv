@@ -25,26 +25,34 @@ public class PageSection {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     // "main", "profile" и др.
     @NotBlank(message = "Техническое название страницы с секцией обязательно")
+    @Column(name = "pageKey")
     private String pageKey;
 
     // "about_us", "team", "pricing" и др.
     @NotBlank(message = "Техническое название секции обязательно")
-    @Column(unique = true)
+    @Column(name = "sectionKey", unique = true)
     private String sectionKey;
 
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "content")
     private String content;
 
     @NotNull(message = "Статус активности секции обязателен")
+    @Column(name = "active")
     private boolean active;
 
     @CreatedDate
+    @Column(name = "createdAt")
     private String createdAt;
 
     @LastModifiedDate
+    @Column(name = "updatedAt")
     private String updatedAt;
 }
