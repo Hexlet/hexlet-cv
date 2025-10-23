@@ -136,7 +136,7 @@ GEM
       activesupport (>= 4.2)
     crass (1.0.6)
     csv (3.3.0)
-    date (3.3.4)
+    date (3.4.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -285,7 +285,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.4.1)
       uri
-    net-imap (0.4.14)
+    net-imap (0.4.20)
       date
       net-protocol
     net-pop (0.1.2)
