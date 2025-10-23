@@ -9,6 +9,9 @@ run:
 test:
 	./gradlew test
 
+report:
+	./gradlew test jacocoTestReport
+
 deps-update:
 	./gradlew refreshVersions
 
@@ -24,5 +27,8 @@ ci-setup:
 
 check:
 	./gradlew clean test
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
 .PHONY: test
