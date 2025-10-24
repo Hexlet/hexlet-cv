@@ -7,10 +7,13 @@ import io.hexlet.cv.dto.marketing.ReviewCreateDTO;
 import io.hexlet.cv.dto.marketing.ReviewUpdateDTO;
 import io.hexlet.cv.dto.marketing.StoryCreateDTO;
 import io.hexlet.cv.dto.marketing.StoryUpdateDTO;
+import io.hexlet.cv.dto.marketing.TeamCreateDTO;
+import io.hexlet.cv.dto.marketing.TeamUpdateDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.service.ArticleService;
 import io.hexlet.cv.service.ReviewService;
 import io.hexlet.cv.service.StoryService;
+import io.hexlet.cv.service.TeamService;
 import jakarta.validation.Valid;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -34,7 +37,7 @@ public class AdminMarketingController {
     private final ArticleService articleService;
     private final StoryService storyService;
     private final ReviewService reviewService;
-    // private final TeamService teamService;
+    private final TeamService teamService;
     // private final PricingService pricingService;
 
     // GET /ru/admin/marketing?section=articles - список статей
@@ -64,7 +67,7 @@ public class AdminMarketingController {
                         "stories", stories
                 ));
     }
-
+    // GET /ru/admin/marketing/reviews - список отзывов (для тестов)
     @GetMapping("/reviews")
     public ResponseEntity<String> reviewsIndex(@PathVariable String locale) {
         var reviews = reviewService.getAllReviews();
@@ -73,6 +76,18 @@ public class AdminMarketingController {
                         "locale", locale,
                         "activeSection", "reviews",
                         "reviews", reviews
+                ));
+    }
+
+    // GET /ru/admin/marketing/team - список членов команды
+    @GetMapping("/team")
+    public ResponseEntity<String> teamIndex(@PathVariable String locale) {
+        var team = teamService.getAllTeamMembers();
+        return inertia.render("Marketing/Team/Index",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "team",
+                        "team", team
                 ));
     }
 
@@ -108,12 +123,12 @@ public class AdminMarketingController {
                         ));
             }
             case "team" -> {
-                // var team = teamService.getAllTeamMembers();
+                var team = teamService.getAllTeamMembers();
                 yield inertia.render("Marketing/Team/Index",
                         Map.of(
                                 "locale", locale,
-                                "activeSection", "team"
-                                // "team", team
+                                "activeSection", "team",
+                                "team", team
                         ));
             }
             case "pricing" -> {
@@ -159,6 +174,16 @@ public class AdminMarketingController {
                 ));
     }
 
+    // GET /ru/admin/marketing/team/create - форма создания команды
+    @GetMapping("/team/create")
+    public ResponseEntity<String> createTeamForm(@PathVariable String locale) {
+        return inertia.render("Marketing/Team/Create",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "team"
+                ));
+    }
+
     // GET /ru/admin/marketing/articles/{id}/edit - форма редактирования статьи
     @GetMapping("/articles/{id}/edit")
     public ResponseEntity<String> editArticleForm(@PathVariable String locale,
@@ -198,6 +223,19 @@ public class AdminMarketingController {
                 ));
     }
 
+    // GET /ru/admin/marketing/team/{id}/edit - форма редактирования команды
+    @GetMapping("/team/{id}/edit")
+    public ResponseEntity<String> editTeamForm(@PathVariable String locale,
+                                               @PathVariable Long id) {
+        var teamMember = teamService.getTeamMemberById(id);
+        return inertia.render("Marketing/Team/Edit",
+                Map.of(
+                        "locale", locale,
+                        "activeSection", "team",
+                        "teamMember", teamMember
+                ));
+    }
+
     // POST /ru/admin/marketing/articles - создание статьи
     @PostMapping("/articles")
     public ResponseEntity<String> createArticle(@PathVariable String locale,
@@ -220,6 +258,14 @@ public class AdminMarketingController {
                                                @Valid @RequestBody ReviewCreateDTO createDTO) {
         reviewService.createReview(createDTO);
         return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
+    }
+
+    // POST /ru/admin/marketing/team - создание члена команды
+    @PostMapping("/team")
+    public ResponseEntity<String> createTeamMember(@PathVariable String locale,
+                                                   @Valid @RequestBody TeamCreateDTO createDTO) {
+        teamService.createTeamMember(createDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
     }
 
     // PUT /ru/admin/marketing/articles/{id} - обновление статьи
@@ -249,6 +295,15 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing/reviews/" + id + "/edit");
     }
 
+    // PUT /ru/admin/marketing/team/{id} - обновление члена команды
+    @PutMapping("/team/{id}")
+    public ResponseEntity<String> updateTeamMember(@PathVariable String locale,
+                                                   @PathVariable Long id,
+                                                   @Valid @RequestBody TeamUpdateDTO updateDTO) {
+        teamService.updateTeamMember(id, updateDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing/team/" + id + "/edit");
+    }
+
     // DELETE /ru/admin/marketing/articles/{id} - удаление статьи
     @DeleteMapping("/articles/{id}")
     public ResponseEntity<String> deleteArticle(@PathVariable String locale,
@@ -271,6 +326,14 @@ public class AdminMarketingController {
                                                @PathVariable Long id) {
         reviewService.deleteReview(id);
         return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
+    }
+
+    // DELETE /ru/admin/marketing/team/{id} - удаление члена команды
+    @DeleteMapping("/team/{id}")
+    public ResponseEntity<String> deleteTeamMember(@PathVariable String locale,
+                                                   @PathVariable Long id) {
+        teamService.deleteTeamMember(id);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
     }
 
     // POST /ru/admin/marketing/articles/{id}/toggle-publish - переключение публикации статьи
@@ -297,12 +360,21 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
     }
 
+    // POST /ru/admin/marketing/team/{id}/toggle-publish - переключение публикации команды
+    @PostMapping("/team/{id}/toggle-publish")
+    public ResponseEntity<String> togglePublishTeam(@PathVariable String locale,
+                                                    @PathVariable Long id) {
+        teamService.togglePublish(id);
+        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
+    }
+
     // GET /ru/admin/marketing/home-components - управление компонентами главной страницы
     @GetMapping("/home-components")
     public ResponseEntity<String> homeComponents(@PathVariable String locale) {
         var articles = articleService.getHomepageArticles();
-        var stories = storyService.getHomeStories();
+        var stories = storyService.getHomepageStories();
         var reviews = reviewService.getHomepageReviews();
+        var team = teamService.getHomepageTeamMembers();
 
         return inertia.render("Marketing/HomeComponents/Index",
                 Map.of(
@@ -310,7 +382,8 @@ public class AdminMarketingController {
                         "activeSection", "home-components",
                         "articles", articles,
                         "stories", stories,
-                        "reviews", reviews
+                        "reviews", reviews,
+                        "team", team
                 ));
     }
 
@@ -335,6 +408,14 @@ public class AdminMarketingController {
     public ResponseEntity<String> toggleReviewHomepage(@PathVariable String locale,
                                                        @PathVariable Long id) {
         reviewService.toggleReviewHomepageVisibility(id);
+        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
+    }
+
+    // POST /ru/admin/marketing/team/{id}/toggle-homepage - переключение отображения на главной
+    @PostMapping("/team/{id}/toggle-homepage")
+    public ResponseEntity<String> toggleTeamHomepage(@PathVariable String locale,
+                                                     @PathVariable Long id) {
+        teamService.toggleTeamMemberHomepageVisibility(id);
         return inertia.redirect("/" + locale + "/admin/marketing/home-components");
     }
 
@@ -365,6 +446,16 @@ public class AdminMarketingController {
                                                            @RequestBody Map<String, Integer> request) {
         Integer displayOrder = request.get("display_order");
         reviewService.updateReviewDisplayOrder(id, displayOrder);
+        return ResponseEntity.ok().build();
+    }
+
+    // PUT /ru/admin/marketing/team/{id}/display-order - обновление порядка отображения
+    @PutMapping("/team/{id}/display-order")
+    public ResponseEntity<String> updateTeamDisplayOrder(@PathVariable String locale,
+                                                         @PathVariable Long id,
+                                                         @RequestBody Map<String, Integer> request) {
+        Integer displayOrder = request.get("display_order");
+        teamService.updateTeamMemberDisplayOrder(id, displayOrder);
         return ResponseEntity.ok().build();
     }
 }
