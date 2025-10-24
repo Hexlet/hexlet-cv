@@ -56,7 +56,7 @@ public class SecurityConfig {
                         .requestMatchers("/ru/users/sign_out", "/en/users/sign_out").permitAll()
                         .requestMatchers("/ru/users/sign_up", "/en/users/sign_up").permitAll()
                         .requestMatchers("/ru/users", "/en/users").permitAll()
-
+                        //.requestMatchers("/api/cabinet/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
