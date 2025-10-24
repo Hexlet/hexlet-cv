@@ -52,11 +52,11 @@ ru:
         employment_course: Курс по трудоустройству
         code_basics: Основы программирования
         code_battle: КодБатл (Игра для прокачки)
-        hexlet: Хекслет
+        guides: Гайды для программистов
         recommended_books: Рекомендуемые книги
         test_assigments: Тестовые задания
         additionally: Дополнительно
         books_link: https://ru.hexlet.io/pages/recommended-books
-        hexlet_link: https://ru.hexlet.io/
+        guides_link: https://guides.hexlet.io/ru/
         basics_link: https://code-basics.com/ru
     application:

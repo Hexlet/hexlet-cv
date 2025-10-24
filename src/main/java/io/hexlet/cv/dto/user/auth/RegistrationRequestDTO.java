@@ -1,4 +1,4 @@
-package io.hexlet.cv.dto.user;
+package io.hexlet.cv.dto.user.auth;
 
 import io.hexlet.cv.validator.EmailDomainViaDnsApi;
 import io.hexlet.cv.validator.EmailNotWithSingleCharTld;
@@ -15,21 +15,21 @@ import lombok.Setter;
 @Getter
 @PasswordNotSimilarToUser
 public class RegistrationRequestDTO {
-    @NotBlank(message = "Email обязателен")
-    @Email(message = "Укажите корректный email-адрес")
+    @NotBlank(message = "{email.notBlank}")
+    @Email(message = "{email.invalid}")
     @EmailNotWithSingleCharTld
     @NotInDisposableEmailDomains
     @EmailDomainViaDnsApi
     private String email;
 
-    @NotBlank(message = "Пароль обязателен")
-    @Size(min = 8, message = "Пароль должен быть не менее 8 символов")
+    @NotBlank(message = "{password.notBlank}")
+    @Size(min = 8, message = "{password.minSize}")
     @NotInTop10K
     private String password;
 
-    @NotBlank(message = "Имя обязательно")
+    @NotBlank(message = "{user.firstName.notBlank}")
     private String firstName;
 
-    @NotBlank(message = "Фамилия обязательна")
+    @NotBlank(message = "{user.lastName.notBlank}")
     private String lastName;
 }

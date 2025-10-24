@@ -11,14 +11,14 @@ import lombok.Setter;
 public class TeamCreateDTO {
     @NotBlank(message = "Имя обязательно")
     @JsonProperty("first_name")
-    private String firsName;
+    private String firstName;
 
     @NotBlank(message = "Фамилия обязательно")
     @JsonProperty("last_name")
     private String lastName;
 
     @NotBlank(message = "Роль на сайте обязательна")
-    @JsonProperty("site_rile")
+    @JsonProperty("site_role")
     private String siteRole;
 
     @NotBlank(message = "Системная роль обязательна")

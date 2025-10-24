@@ -19,7 +19,7 @@ public class TeamDTO {
         return firstName + " " + lastName;
     }
 
-    @JsonProperty("size_role")
+    @JsonProperty("site_role")
     private String siteRole;
 
     @JsonProperty("system_role")
@@ -33,6 +33,9 @@ public class TeamDTO {
 
     @JsonProperty("show_on_homepage")
     private Boolean showOnHomepage;
+
+    @JsonProperty("display_order")
+    private Integer displayOrder;
 
     @JsonProperty("published_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")

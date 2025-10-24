@@ -30,7 +30,7 @@ public class LogoutControllerTest {
                         .with(csrf())
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_out"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().is3xxRedirection())
                 .andExpect(header().string("Location", "/ru"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,

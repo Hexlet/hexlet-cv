@@ -69,6 +69,9 @@ dependencies {
     implementation(libs.inertia4jSpring)
     // implementation(libs.inertia4jSpringStarter)
 
+    // Jackson JSR310 для поддержки LocalDateTime
+    implementation(libs.jacksonDatatypeJsr310)
+
 }
 
 tasks.test {

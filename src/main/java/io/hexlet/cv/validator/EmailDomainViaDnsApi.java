@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EmailDomainViaDnsApi {
     Class<?>[] groups() default {};
-    String message() default "Домен в email не существует";
+    String message() default "{email.domain.not.exists}";
     Class<? extends Payload>[] payload() default {};
 }

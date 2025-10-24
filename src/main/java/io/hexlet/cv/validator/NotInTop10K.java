@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotInTop10K {
     Class<?>[] groups() default {};
-    String message() default "Слишком распространённый пароль";
+    String message() default "{password.top10k}";
     Class<? extends Payload>[] payload() default {};
 }
