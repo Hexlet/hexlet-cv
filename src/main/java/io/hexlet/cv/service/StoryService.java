@@ -86,7 +86,7 @@ public class StoryService {
         return storyMapper.map(savedStory);
     }
 
-    public List<StoryDTO> getHomeStories() {
+    public List<StoryDTO> getHomepageStories() {
         return storyRepository.findByShowOnHomepageTrueOrderByDisplayOrderAsc()
                 .stream()
                 .map(storyMapper::map)
