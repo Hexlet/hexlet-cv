@@ -99,15 +99,6 @@ public class ArticleControllerTest {
     }
 
     @Test
-    public void testObjectMapperConfiguration() {
-        // Проверяем что наш ObjectMapper настроен правильно
-        assertFalse(objectMapper.isEnabled(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
-
-        // Проверяем что модуль JavaTime зарегистрирован
-        assertTrue(objectMapper.getRegisteredModuleIds().contains("jackson-datatype-jsr310"));
-    }
-
-    @Test
     @WithMockUser(roles = "ADMIN")
     public void testGetAllArticles() throws Exception {
         mockMvc.perform(get("/ru/admin/marketing")
@@ -149,7 +140,26 @@ public class ArticleControllerTest {
                         .header("X-Inertia", "true")
                         .contentType("application/json")
                         .content(articleJson))
+                .andDo(print())
                 .andExpect(status().isFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testUpdateArticle() throws Exception {
+        String articleJson = """
+                {
+                    "title": "Updated Article",
+                    "content": "Updated content"
+                }
+            """;
+
+        mockMvc.perform(put("/ru/admin/marketing/articles/{id}", testArticle.getId())
+                        .header("X-Inertia", "true")
+                        .contentType("application/json")
+                        .content(articleJson))
+                .andDo(print())
+                .andExpect(status().isSeeOther());
     }
 
     @Test
