@@ -15,9 +15,13 @@ import io.hexlet.cv.service.ReviewService;
 import io.hexlet.cv.service.StoryService;
 import io.hexlet.cv.service.TeamService;
 import jakarta.validation.Valid;
+
+import java.util.HashMap;
 import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +30,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/{locale}/admin/marketing")
 @AllArgsConstructor
+@RequestMapping("/{locale}/admin/marketing")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminMarketingController {
 
     private final Inertia inertia;
@@ -40,422 +44,267 @@ public class AdminMarketingController {
     private final TeamService teamService;
     // private final PricingService pricingService;
 
-    // GET /ru/admin/marketing?section=articles - список статей
-    // GET /ru/admin/marketing?section=stories - список историй
-    // GET /ru/admin/marketing?section=reviews - список отзывов
-
-    // GET /ru/admin/marketing/articles - список статей (для тестов)
-    @GetMapping("/articles")
-    public ResponseEntity<String> articlesIndex(@PathVariable String locale) {
-        var articles = articleService.getAllArticles();
-        return inertia.render("Marketing/Articles/Index",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "articles",
-                        "articles", articles
-                ));
-    }
-
-    // GET /ru/admin/marketing/stories - список историй (для тестов)
-    @GetMapping("/stories")
-    public ResponseEntity<String> storiesIndex(@PathVariable String locale) {
-        var stories = storyService.getAllStories();
-        return inertia.render("Marketing/Stories/Index",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "stories",
-                        "stories", stories
-                ));
-    }
-    // GET /ru/admin/marketing/reviews - список отзывов (для тестов)
-    @GetMapping("/reviews")
-    public ResponseEntity<String> reviewsIndex(@PathVariable String locale) {
-        var reviews = reviewService.getAllReviews();
-        return inertia.render("Marketing/Reviews/Index",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "reviews",
-                        "reviews", reviews
-                ));
-    }
-
-    // GET /ru/admin/marketing/team - список членов команды
-    @GetMapping("/team")
-    public ResponseEntity<String> teamIndex(@PathVariable String locale) {
-        var team = teamService.getAllTeamMembers();
-        return inertia.render("Marketing/Team/Index",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "team",
-                        "team", team
-                ));
-    }
-
-    @GetMapping
+    @GetMapping("/{section}")
     public ResponseEntity<String> index(@PathVariable String locale,
-                                        @RequestParam String section) {
+                                        @PathVariable String section) {
+
+        Map<String, Object> baseProps = Map.of(
+                "locale", locale,
+                "activeMainSection", "marketing", // Для выделения "Маркетинг" в левом меню
+                "activeSubSection", section        // Для выделения подраздела
+        );
+
         return switch (section) {
             case "articles" -> {
                 var articles = articleService.getAllArticles();
-                yield inertia.render("Marketing/Articles/Index",
-                        Map.of(
-                                "locale", locale,
-                                "activeSection", "articles",
-                                "articles", articles
-                        ));
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "articles", articles,
+                        "pageTitle", "Статьи"
+                ));
+                yield inertia.render("Admin/Marketing/Articles/Index", props);
             }
             case "stories" -> {
                 var stories = storyService.getAllStories();
-                yield inertia.render("Marketing/Stories/Index",
-                        Map.of(
-                                "locale", locale,
-                                "activeSection", "stories",
-                                "stories", stories
-                        ));
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "stories", stories,
+                        "pageTitle", "Истории"
+                ));
+                yield inertia.render("Admin/Marketing/Stories/Index", props);
             }
             case "reviews" -> {
                 var reviews = reviewService.getAllReviews();
-                yield inertia.render("Marketing/Reviews/Index",
-                        Map.of(
-                                "locale", locale,
-                                "activeSection", "reviews",
-                                "reviews", reviews
-                        ));
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "reviews", reviews,
+                        "pageTitle", "Отзывы"
+                ));
+                yield inertia.render("Admin/Marketing/Reviews/Index", props);
             }
             case "team" -> {
                 var team = teamService.getAllTeamMembers();
-                yield inertia.render("Marketing/Team/Index",
-                        Map.of(
-                                "locale", locale,
-                                "activeSection", "team",
-                                "team", team
-                        ));
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "team", team,
+                        "pageTitle", "Команда"
+                ));
+                yield inertia.render("Admin/Marketing/Team/Index", props);
             }
             case "pricing" -> {
                 // var pricing = pricingService.getPricing();
-                yield inertia.render("Marketing/Pricing/Index",
-                        Map.of(
-                                "locale", locale,
-                                "activeSection", "pricing"
-                                // "pricing", pricing
-                        ));
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "pageTitle", "Цены"
+                        // "pricing", pricing
+                ));
+                yield inertia.render("Admin/Marketing/Pricing/Index", props);
+            }
+            case "home-components" -> {
+                var articles = articleService.getHomepageArticles();
+                var stories = storyService.getHomepageStories();
+                var reviews = reviewService.getHomepageReviews();
+                var team = teamService.getHomepageTeamMembers();
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.putAll(Map.of(
+                        "articles", articles,
+                        "stories", stories,
+                        "reviews", reviews,
+                        "team", team,
+                        "pageTitle", "Компоненты главной"
+                ));
+                yield inertia.render("Admin/Marketing/HomeComponents/Index", props);
             }
             default -> throw new ResourceNotFoundException("Section not found");
         };
     }
 
-    // GET /ru/admin/marketing/articles/create - форма создания статьи
-    @GetMapping("/articles/create")
-    public ResponseEntity<String> createArticleForm(@PathVariable String locale) {
-        return inertia.render("Marketing/Articles/Create",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "articles"
-                ));
+    @GetMapping("/")
+    public ResponseEntity<String> defaultSection(@PathVariable String locale) {
+        return inertia.redirect("/" + locale + "/admin/marketing/articles");
     }
 
-    // GET /ru/admin/marketing/stories/create - форма создания истории
-    @GetMapping("/stories/create")
-    public ResponseEntity<String> createStoryForm(@PathVariable String locale) {
-        return inertia.render("Marketing/Stories/Create",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "stories"
-                ));
+    @GetMapping("/{section}/create")
+    public ResponseEntity<String> createForm(@PathVariable String locale,
+                                             @PathVariable String section) {
+        Map<String, Object> props = Map.of(
+                "locale", locale,
+                "activeMainSection", "marketing",
+                "activeSubSection", section
+        );
+
+        return switch (section) {
+            case "articles" -> inertia.render("Admin/Marketing/Articles/Create", props);
+            case "stories" -> inertia.render("Admin/Marketing/Stories/Create", props);
+            case "reviews" -> inertia.render("Admin/Marketing/Reviews/Create", props);
+            case "team" -> inertia.render("Admin/Marketing/Team/Create", props);
+            default -> throw new ResourceNotFoundException("Create form not found for section: " + section);
+        };
     }
 
-    // GET /ru/admin/marketing/reviews/create - форма создания отзыва
-    @GetMapping("/reviews/create")
-    public ResponseEntity<String> createReviewForm(@PathVariable String locale) {
-        return inertia.render("Marketing/Reviews/Create",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "reviews"
-                ));
+    @GetMapping("/{section}/{id}/edit")
+    public ResponseEntity<String> editForm(@PathVariable String locale,
+                                           @PathVariable String section,
+                                           @PathVariable Long id) {
+        Map<String, Object> baseProps = Map.of(
+                "locale", locale,
+                "activeMainSection", "marketing",
+                "activeSubSection", section
+        );
+
+        return switch (section) {
+            case "articles" -> {
+                var article = articleService.getArticleById(id);
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.put("article", article);
+                yield inertia.render("Admin/Marketing/Articles/Edit", props);
+            }
+            case "stories" -> {
+                var story = storyService.getStoryById(id);
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.put("story", story);
+                yield inertia.render("Admin/Marketing/Stories/Edit", props);
+            }
+            case "reviews" -> {
+                var review = reviewService.getReviewById(id);
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.put("review", review);
+                yield inertia.render("Admin/Marketing/Reviews/Edit", props);
+            }
+            case "team" -> {
+                var teamMember = teamService.getTeamMemberById(id);
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.put("teamMember", teamMember);
+                yield inertia.render("Admin/Marketing/Team/Edit", props);
+            }
+            default -> throw new ResourceNotFoundException("Edit form not found for section: " + section);
+        };
     }
 
-    // GET /ru/admin/marketing/team/create - форма создания команды
-    @GetMapping("/team/create")
-    public ResponseEntity<String> createTeamForm(@PathVariable String locale) {
-        return inertia.render("Marketing/Team/Create",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "team"
-                ));
-    }
-
-    // GET /ru/admin/marketing/articles/{id}/edit - форма редактирования статьи
-    @GetMapping("/articles/{id}/edit")
-    public ResponseEntity<String> editArticleForm(@PathVariable String locale,
-                                                  @PathVariable Long id) {
-        var article = articleService.getArticleById(id);
-        return inertia.render("Marketing/Articles/Edit",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "articles",
-                        "article", article
-                ));
-    }
-
-    // GET /ru/admin/marketing/stories/{id}/edit - форма редактирования истории
-    @GetMapping("/stories/{id}/edit")
-    public ResponseEntity<String> editStoryForm(@PathVariable String locale,
-                                                @PathVariable Long id) {
-        var story = storyService.getStoryById(id);
-        return inertia.render("Marketing/Stories/Edit",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "stories",
-                        "story", story
-                ));
-    }
-
-    // GET /ru/admin/marketing/reviews/{id}/edit - форма редактирования отзыва
-    @GetMapping("/reviews/{id}/edit")
-    public ResponseEntity<String> editReviewForm(@PathVariable String locale,
-                                                 @PathVariable Long id) {
-        var review = reviewService.getReviewById(id);
-        return inertia.render("Marketing/Reviews/Edit",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "reviews",
-                        "review", review
-                ));
-    }
-
-    // GET /ru/admin/marketing/team/{id}/edit - форма редактирования команды
-    @GetMapping("/team/{id}/edit")
-    public ResponseEntity<String> editTeamForm(@PathVariable String locale,
-                                               @PathVariable Long id) {
-        var teamMember = teamService.getTeamMemberById(id);
-        return inertia.render("Marketing/Team/Edit",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "team",
-                        "teamMember", teamMember
-                ));
-    }
-
-    // POST /ru/admin/marketing/articles - создание статьи
+    // Создание статьи
     @PostMapping("/articles")
     public ResponseEntity<String> createArticle(@PathVariable String locale,
                                                 @Valid @RequestBody ArticleCreateDTO createDTO) {
         articleService.createArticle(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=articles");
+        return inertia.redirect("/" + locale + "/admin/marketing/articles");
     }
 
-    // POST /ru/admin/marketing/stories - создание истории
+    // Создание истории
     @PostMapping("/stories")
     public ResponseEntity<String> createStory(@PathVariable String locale,
                                               @Valid @RequestBody StoryCreateDTO createDTO) {
         storyService.createStory(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
+        return inertia.redirect("/" + locale + "/admin/marketing/stories");
     }
 
-    // POST /ru/admin/marketing/reviews - создание отзыва
+    // Создание отзыва
     @PostMapping("/reviews")
     public ResponseEntity<String> createReview(@PathVariable String locale,
                                                @Valid @RequestBody ReviewCreateDTO createDTO) {
         reviewService.createReview(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
+        return inertia.redirect("/" + locale + "/admin/marketing/reviews");
     }
 
-    // POST /ru/admin/marketing/team - создание члена команды
+    // Создание члена команды
     @PostMapping("/team")
     public ResponseEntity<String> createTeamMember(@PathVariable String locale,
                                                    @Valid @RequestBody TeamCreateDTO createDTO) {
         teamService.createTeamMember(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
+        return inertia.redirect("/" + locale + "/admin/marketing/team");
     }
 
-    // PUT /ru/admin/marketing/articles/{id} - обновление статьи
     @PutMapping("/articles/{id}")
     public ResponseEntity<String> updateArticle(@PathVariable String locale,
                                                 @PathVariable Long id,
                                                 @Valid @RequestBody ArticleUpdateDTO updateDTO) {
         articleService.updateArticle(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/articles/" + id + "/edit");
+        return inertia.redirect("/" + locale + "/admin/marketing/articles");
     }
 
-    // PUT /ru/admin/marketing/stories/{id} - обновление истории
     @PutMapping("/stories/{id}")
     public ResponseEntity<String> updateStory(@PathVariable String locale,
                                               @PathVariable Long id,
                                               @Valid @RequestBody StoryUpdateDTO updateDTO) {
         storyService.updateStory(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/stories/" + id + "/edit");
+        return inertia.redirect("/" + locale + "/admin/marketing/stories");
     }
 
-    // PUT /ru/admin/marketing/reviews/{id} - обновление отзыва
     @PutMapping("/reviews/{id}")
     public ResponseEntity<String> updateReview(@PathVariable String locale,
                                                @PathVariable Long id,
                                                @Valid @RequestBody ReviewUpdateDTO updateDTO) {
         reviewService.updateReview(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/reviews/" + id + "/edit");
+        return inertia.redirect("/" + locale + "/admin/marketing/reviews");
     }
 
-    // PUT /ru/admin/marketing/team/{id} - обновление члена команды
     @PutMapping("/team/{id}")
     public ResponseEntity<String> updateTeamMember(@PathVariable String locale,
                                                    @PathVariable Long id,
                                                    @Valid @RequestBody TeamUpdateDTO updateDTO) {
         teamService.updateTeamMember(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/team/" + id + "/edit");
+        return inertia.redirect("/" + locale + "/admin/marketing/team");
     }
 
-    // DELETE /ru/admin/marketing/articles/{id} - удаление статьи
-    @DeleteMapping("/articles/{id}")
-    public ResponseEntity<String> deleteArticle(@PathVariable String locale,
+    @DeleteMapping("/{section}/{id}")
+    public ResponseEntity<String> delete(@PathVariable String locale,
+                                         @PathVariable String section,
+                                         @PathVariable Long id) {
+        switch (section) {
+            case "articles" -> articleService.deleteArticle(id);
+            case "stories" -> storyService.deleteStory(id);
+            case "reviews" -> reviewService.deleteReview(id);
+            case "team" -> teamService.deleteTeamMember(id);
+            default -> throw new ResourceNotFoundException("Section not found: " + section);
+        }
+
+        return inertia.redirect("/" + locale + "/admin/marketing/" + section);
+    }
+
+    @PostMapping("/{section}/{id}/toggle-publish")
+    public ResponseEntity<String> togglePublish(@PathVariable String locale,
+                                                @PathVariable String section,
                                                 @PathVariable Long id) {
-        articleService.deleteArticle(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=articles");
+        switch (section) {
+            case "articles" -> articleService.togglePublish(id);
+            case "stories" -> storyService.togglePublish(id);
+            case "reviews" -> reviewService.togglePublish(id);
+            case "team" -> teamService.togglePublish(id);
+            default -> throw new ResourceNotFoundException("Section not found: " + section);
+        }
+
+        return inertia.redirect("/" + locale + "/admin/marketing/" + section);
     }
 
-    // DELETE /ru/admin/marketing/stories/{id} - удаление истории
-    @DeleteMapping("/stories/{id}")
-    public ResponseEntity<String> deleteStory(@PathVariable String locale,
-                                              @PathVariable Long id) {
-        storyService.deleteStory(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
-    }
+    @PostMapping("/{section}/{id}/toggle-homepage")
+    public ResponseEntity<String> toggleHomepage(@PathVariable String locale,
+                                                 @PathVariable String section,
+                                                 @PathVariable Long id) {
+        switch (section) {
+            case "articles" -> articleService.toggleArticleHomepageVisibility(id);
+            case "stories" -> storyService.toggleStoryHomepageVisibility(id);
+            case "reviews" -> reviewService.toggleReviewHomepageVisibility(id);
+            case "team" -> teamService.toggleTeamMemberHomepageVisibility(id);
+            default -> throw new ResourceNotFoundException("Section not found: " + section);
+        }
 
-    // DELETE /ru/admin/marketing/reviews/{id} - удаление отзыва
-    @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<String> deleteReview(@PathVariable String locale,
-                                               @PathVariable Long id) {
-        reviewService.deleteReview(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
-    }
-
-    // DELETE /ru/admin/marketing/team/{id} - удаление члена команды
-    @DeleteMapping("/team/{id}")
-    public ResponseEntity<String> deleteTeamMember(@PathVariable String locale,
-                                                   @PathVariable Long id) {
-        teamService.deleteTeamMember(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
-    }
-
-    // POST /ru/admin/marketing/articles/{id}/toggle-publish - переключение публикации статьи
-    @PostMapping("/articles/{id}/toggle-publish")
-    public ResponseEntity<String> togglePublishArticle(@PathVariable String locale,
-                                                       @PathVariable Long id) {
-        articleService.togglePublish(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=articles");
-    }
-
-    // POST /ru/admin/marketing/stories/{id}/toggle-publish - переключение публикации истории
-    @PostMapping("/stories/{id}/toggle-publish")
-    public ResponseEntity<String> togglePublishStory(@PathVariable String locale,
-                                                     @PathVariable Long id) {
-        storyService.togglePublish(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=stories");
-    }
-
-    // POST /ru/admin/marketing/reviews/{id}/toggle-publish - переключение публикации отзыва
-    @PostMapping("/reviews/{id}/toggle-publish")
-    public ResponseEntity<String> togglePublishReview(@PathVariable String locale,
-                                                      @PathVariable Long id) {
-        reviewService.togglePublish(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=reviews");
-    }
-
-    // POST /ru/admin/marketing/team/{id}/toggle-publish - переключение публикации команды
-    @PostMapping("/team/{id}/toggle-publish")
-    public ResponseEntity<String> togglePublishTeam(@PathVariable String locale,
-                                                    @PathVariable Long id) {
-        teamService.togglePublish(id);
-        return inertia.redirect("/" + locale + "/admin/marketing?section=team");
-    }
-
-    // GET /ru/admin/marketing/home-components - управление компонентами главной страницы
-    @GetMapping("/home-components")
-    public ResponseEntity<String> homeComponents(@PathVariable String locale) {
-        var articles = articleService.getHomepageArticles();
-        var stories = storyService.getHomepageStories();
-        var reviews = reviewService.getHomepageReviews();
-        var team = teamService.getHomepageTeamMembers();
-
-        return inertia.render("Marketing/HomeComponents/Index",
-                Map.of(
-                        "locale", locale,
-                        "activeSection", "home-components",
-                        "articles", articles,
-                        "stories", stories,
-                        "reviews", reviews,
-                        "team", team
-                ));
-    }
-
-    // POST /ru/admin/marketing/articles/{id}/toggle-homepage - переключение отображения на главной
-    @PostMapping("/articles/{id}/toggle-homepage")
-    public ResponseEntity<String> toggleArticleHomepage(@PathVariable String locale,
-                                                        @PathVariable Long id) {
-        articleService.toggleArticleHomepageVisibility(id);
         return inertia.redirect("/" + locale + "/admin/marketing/home-components");
     }
 
-    // POST /ru/admin/marketing/stories/{id}/toggle-homepage - переключение отображения на главной
-    @PostMapping("/stories/{id}/toggle-homepage")
-    public ResponseEntity<String> toggleStoryHomepage(@PathVariable String locale,
-                                                      @PathVariable Long id) {
-        storyService.toggleStoryHomepageVisibility(id);
-        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
-    }
-
-    // POST /ru/admin/marketing/reviews/{id}/toggle-homepage - переключение отображения на главной
-    @PostMapping("/reviews/{id}/toggle-homepage")
-    public ResponseEntity<String> toggleReviewHomepage(@PathVariable String locale,
-                                                       @PathVariable Long id) {
-        reviewService.toggleReviewHomepageVisibility(id);
-        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
-    }
-
-    // POST /ru/admin/marketing/team/{id}/toggle-homepage - переключение отображения на главной
-    @PostMapping("/team/{id}/toggle-homepage")
-    public ResponseEntity<String> toggleTeamHomepage(@PathVariable String locale,
-                                                     @PathVariable Long id) {
-        teamService.toggleTeamMemberHomepageVisibility(id);
-        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
-    }
-
-    // PUT /ru/admin/marketing/articles/{id}/display-order - обновление порядка отображения
-    @PutMapping("/articles/{id}/display-order")
-    public ResponseEntity<String> updateArticleDisplayOrder(@PathVariable String locale,
-                                                            @PathVariable Long id,
-                                                            @RequestBody Map<String, Integer> request) {
+    @PutMapping("/{section}/{id}/display-order")
+    public ResponseEntity<String> updateDisplayOrder(@PathVariable String locale,
+                                                     @PathVariable String section,
+                                                     @PathVariable Long id,
+                                                     @RequestBody Map<String, Integer> request) {
         Integer displayOrder = request.get("display_order");
-        articleService.updateArticleDisplayOrder(id, displayOrder);
-        return ResponseEntity.ok().build();
-    }
 
-    // PUT /ru/admin/marketing/stories/{id}/display-order - обновление порядка отображения
-    @PutMapping("/stories/{id}/display-order")
-    public ResponseEntity<String> updateStoryDisplayOrder(@PathVariable String locale,
-                                                          @PathVariable Long id,
-                                                          @RequestBody Map<String, Integer> request) {
-        Integer displayOrder = request.get("display_order");
-        storyService.updateStoryDisplayOrder(id, displayOrder);
-        return ResponseEntity.ok().build();
-    }
+        switch (section) {
+            case "articles" -> articleService.updateArticleDisplayOrder(id, displayOrder);
+            case "stories" -> storyService.updateStoryDisplayOrder(id, displayOrder);
+            case "reviews" -> reviewService.updateReviewDisplayOrder(id, displayOrder);
+            case "team" -> teamService.updateTeamMemberDisplayOrder(id, displayOrder);
+            default -> throw new ResourceNotFoundException("Section not found: " + section);
+        }
 
-    // PUT /ru/admin/marketing/reviews/{id}/display-order - обновление порядка отображения
-    @PutMapping("/reviews/{id}/display-order")
-    public ResponseEntity<String> updateReviewDisplayOrder(@PathVariable String locale,
-                                                           @PathVariable Long id,
-                                                           @RequestBody Map<String, Integer> request) {
-        Integer displayOrder = request.get("display_order");
-        reviewService.updateReviewDisplayOrder(id, displayOrder);
-        return ResponseEntity.ok().build();
-    }
-
-    // PUT /ru/admin/marketing/team/{id}/display-order - обновление порядка отображения
-    @PutMapping("/team/{id}/display-order")
-    public ResponseEntity<String> updateTeamDisplayOrder(@PathVariable String locale,
-                                                         @PathVariable Long id,
-                                                         @RequestBody Map<String, Integer> request) {
-        Integer displayOrder = request.get("display_order");
-        teamService.updateTeamMemberDisplayOrder(id, displayOrder);
         return ResponseEntity.ok().build();
     }
 }
