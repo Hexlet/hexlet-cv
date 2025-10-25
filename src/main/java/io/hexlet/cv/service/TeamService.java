@@ -6,13 +6,12 @@ import io.hexlet.cv.dto.marketing.TeamUpdateDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.TeamMapper;
 import io.hexlet.cv.repository.TeamRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -56,8 +55,8 @@ public class TeamService {
         var team = teamRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Team member not found"));
 
-        if (updateDTO.getIsPublished() != null) {
-            var newStatus = updateDTO.getIsPublished();
+        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
+            var newStatus = updateDTO.getIsPublished().get();
             team.setIsPublished(newStatus);
 
             if (newStatus && team.getPublishedAt() == null) {

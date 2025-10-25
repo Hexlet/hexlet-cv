@@ -56,8 +56,8 @@ public class ReviewService {
         var review = reviewRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
 
-        if (updateDTO.getIsPublished() != null) {
-            var newStatus = updateDTO.getIsPublished();
+        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
+            var newStatus = updateDTO.getIsPublished().get();
             review.setIsPublished(newStatus);
 
             if (newStatus && review.getPublishedAt() == null) {

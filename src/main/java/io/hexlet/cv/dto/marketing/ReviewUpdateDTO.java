@@ -4,25 +4,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 @Setter
 public class ReviewUpdateDTO {
     @NotBlank(message = "Автор обязателен")
-    private String author;
+    private JsonNullable<String> author;
 
     @NotBlank(message = "Содержание обязательно")
-    private String content;
+    private JsonNullable<String> content;
 
     @JsonProperty("avatar_url")
-    private String avatarUrl;
+    private JsonNullable<String> avatarUrl;
 
     @JsonProperty("is_published")
-    private Boolean isPublished;
+    private JsonNullable<Boolean> isPublished;
 
     @JsonProperty("show_on_homepage")
-    private Boolean showOnHomepage;
+    private JsonNullable<Boolean> showOnHomepage;
 
     @JsonProperty("display_order")
-    private Integer displayOrder;
+    private JsonNullable<Integer> displayOrder;
 }

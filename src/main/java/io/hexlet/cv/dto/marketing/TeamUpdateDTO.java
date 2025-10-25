@@ -4,35 +4,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 @Setter
 public class TeamUpdateDTO {
     @NotBlank(message = "Имя обязательно")
     @JsonProperty("first_name")
-    private String firstName;
+    private JsonNullable<String> firstName;
 
     @NotBlank(message = "Фамилия обязательна")
     @JsonProperty("last_name")
-    private String lastName;
+    private JsonNullable<String> lastName;
 
     @NotBlank(message = "Роль на сайте обязательна")
     @JsonProperty("site_role")
-    private String siteRole;
+    private JsonNullable<String> siteRole;
 
     @NotBlank(message = "Системная роль обязательна")
     @JsonProperty("system_role")
-    private String systemRole;
+    private JsonNullable<String> systemRole;
 
     @JsonProperty("avatar_url")
-    private String avatarUrl;
+    private JsonNullable<String> avatarUrl;
 
     @JsonProperty("is_published")
-    private Boolean isPublished;
+    private JsonNullable<Boolean> isPublished;
 
-    @JsonProperty("show_homepage")
-    private Boolean showHomepage;
+    @JsonProperty("show_on_homepage")
+    private JsonNullable<Boolean> showHomepage;
 
     @JsonProperty("display_order")
-    private Integer displayOrder;
+    private JsonNullable<Integer> displayOrder;
 }

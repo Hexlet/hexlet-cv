@@ -50,8 +50,11 @@ public class StoryService {
     public StoryDTO updateStory(Long id, StoryUpdateDTO updateDTO) {
         var story = storyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Story not found"));
-        if (updateDTO.getIsPublished() != null) {
-            var newStatus = updateDTO.getIsPublished();
+
+        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
+            var newStatus = updateDTO.getIsPublished().get();
+            story.setIsPublished(newStatus);
+
             if (newStatus && story.getPublishedAt() == null) {
                 story.setPublishedAt(LocalDateTime.now());
             } else if (!newStatus) {
