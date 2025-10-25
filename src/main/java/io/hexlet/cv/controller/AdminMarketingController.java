@@ -3,6 +3,8 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.marketing.ArticleCreateDTO;
 import io.hexlet.cv.dto.marketing.ArticleUpdateDTO;
+import io.hexlet.cv.dto.marketing.PricingCreateDTO;
+import io.hexlet.cv.dto.marketing.PricingUpdateDTO;
 import io.hexlet.cv.dto.marketing.ReviewCreateDTO;
 import io.hexlet.cv.dto.marketing.ReviewUpdateDTO;
 import io.hexlet.cv.dto.marketing.StoryCreateDTO;
@@ -11,14 +13,13 @@ import io.hexlet.cv.dto.marketing.TeamCreateDTO;
 import io.hexlet.cv.dto.marketing.TeamUpdateDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.service.ArticleService;
+import io.hexlet.cv.service.PricingPlanService;
 import io.hexlet.cv.service.ReviewService;
 import io.hexlet.cv.service.StoryService;
 import io.hexlet.cv.service.TeamService;
 import jakarta.validation.Valid;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,7 +43,7 @@ public class AdminMarketingController {
     private final StoryService storyService;
     private final ReviewService reviewService;
     private final TeamService teamService;
-    // private final PricingService pricingService;
+    private final PricingPlanService pricingPlanService;
 
     @GetMapping("/{section}")
     public ResponseEntity<String> index(@PathVariable String locale,
@@ -92,11 +93,11 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Team/Index", props);
             }
             case "pricing" -> {
-                // var pricing = pricingService.getPricing();
+                var pricing = pricingPlanService.getAllPricing();
                 Map<String, Object> props = new HashMap<>(baseProps);
                 props.putAll(Map.of(
-                        "pageTitle", "Цены"
-                        // "pricing", pricing
+                        "pageTitle", "Тарифы и скидки",
+                        "pricing", pricing
                 ));
                 yield inertia.render("Admin/Marketing/Pricing/Index", props);
             }
@@ -138,6 +139,7 @@ public class AdminMarketingController {
             case "stories" -> inertia.render("Admin/Marketing/Stories/Create", props);
             case "reviews" -> inertia.render("Admin/Marketing/Reviews/Create", props);
             case "team" -> inertia.render("Admin/Marketing/Team/Create", props);
+            case "pricing" -> inertia.render("Admin/Marketing/Pricing/Create", props);
             default -> throw new ResourceNotFoundException("Create form not found for section: " + section);
         };
     }
@@ -177,6 +179,12 @@ public class AdminMarketingController {
                 props.put("teamMember", teamMember);
                 yield inertia.render("Admin/Marketing/Team/Edit", props);
             }
+            case "pricing" -> {
+                var pricing = pricingPlanService.getPricingById(id);
+                Map<String, Object> props = new HashMap<>(baseProps);
+                props.put("pricing", pricing);
+                yield inertia.render("Admin/Marketing/Pricing/Edit", props);
+            }
             default -> throw new ResourceNotFoundException("Edit form not found for section: " + section);
         };
     }
@@ -213,6 +221,13 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing/team");
     }
 
+    @PostMapping("/pricing")
+    public ResponseEntity<String> createPricing(@PathVariable String locale,
+                                                @Valid @RequestBody PricingCreateDTO createDTO) {
+        pricingPlanService.createPricing(createDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing/pricing");
+    }
+
     @PutMapping("/articles/{id}")
     public ResponseEntity<String> updateArticle(@PathVariable String locale,
                                                 @PathVariable Long id,
@@ -245,6 +260,14 @@ public class AdminMarketingController {
         return inertia.redirect("/" + locale + "/admin/marketing/team");
     }
 
+    @PutMapping("/pricing/{id}")
+    public ResponseEntity<String> updatePricing(@PathVariable String locale,
+                                                @PathVariable Long id,
+                                                @Valid @RequestBody PricingUpdateDTO updateDTO) {
+        pricingPlanService.updatePricing(id, updateDTO);
+        return inertia.redirect("/" + locale + "/admin/marketing/pricing");
+    }
+
     @DeleteMapping("/{section}/{id}")
     public ResponseEntity<String> delete(@PathVariable String locale,
                                          @PathVariable String section,
@@ -254,6 +277,7 @@ public class AdminMarketingController {
             case "stories" -> storyService.deleteStory(id);
             case "reviews" -> reviewService.deleteReview(id);
             case "team" -> teamService.deleteTeamMember(id);
+            case "pricing" -> pricingPlanService.deletePricing(id);
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
