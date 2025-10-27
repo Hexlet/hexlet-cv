@@ -30,4 +30,4 @@ $ cd hexlet-cv
 
 [![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv)
 
-This repository is created and maintained by the team and community of the educational project [*Hexlet*](https://ru.hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv).
+This repository is created and maintained by the team and community of the educational project [*Hexlet*](https://ru.hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-cv)
