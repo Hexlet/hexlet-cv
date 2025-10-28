@@ -39,10 +39,10 @@ public abstract class InterviewMapper {
     @Mapping(target = "speaker", source = "userInterviewSummary", qualifiedByName = "summaryToSpeaker")
     public abstract Interview map(InterviewDTO dto);
 
-    @Mapping(target = "speaker", expression = "java(mapSpeakerForUpdate(dto.getSpeakerId()))")
+    @Mapping(target = "speaker", ignore = true)
     @Mapping(target = "videoLink", expression = "java(mapVideoLinkForUpdate(dto.getVideoLink()))")
     @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished()))")
-    public abstract void update(InterviewUpdateDTO dto, @MappingTarget Interview model);
+    public abstract void updateBasicFields(InterviewUpdateDTO dto, @MappingTarget Interview model);
 
     @Named("speakerIdToSpeaker")
     public User speakerIdToSpeaker(Long speakerId) {
@@ -90,20 +90,6 @@ public abstract class InterviewMapper {
                         "Cannot convert id from summary to User."));
     }
 
-    protected User mapSpeakerForUpdate(JsonNullable<Long> speakerId) {
-        if (speakerId == null || !speakerId.isPresent()) {
-            return null;
-        }
-
-        Long id = speakerId.get();
-        if (id == null) {
-            return null;
-        }
-
-        return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found."));
-    }
-
     protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink) {
         if (videoLink == null || !videoLink.isPresent()) {
             return null;
@@ -124,5 +110,20 @@ public abstract class InterviewMapper {
         }
 
         return value;
+    }
+
+    public void updateInterview(InterviewUpdateDTO dto, Interview interview) {
+        updateBasicFields(dto, interview);
+
+        if (dto.getSpeakerId() != null && dto.getSpeakerId().isPresent()) {
+            Long speakerIdValue = dto.getSpeakerId().get();
+            if (speakerIdValue == null) {
+                interview.setSpeaker(null);
+            } else {
+                User speaker = userRepository.findById(speakerIdValue)
+                        .orElseThrow(() -> new UserNotFoundException("Speaker not found"));
+                interview.setSpeaker(speaker);
+            }
+        }
     }
 }
