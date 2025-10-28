@@ -1,0 +1,128 @@
+package io.hexlet.cv.mapper;
+
+import io.hexlet.cv.dto.interview.InterviewCreateDTO;
+import io.hexlet.cv.dto.interview.InterviewDTO;
+import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
+import io.hexlet.cv.dto.interview.UserInterviewSummary;
+import io.hexlet.cv.handler.exception.UserNotFoundException;
+import io.hexlet.cv.model.Interview;
+import io.hexlet.cv.model.User;
+import io.hexlet.cv.repository.UserRepository;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.ReportingPolicy;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Mapper(
+        uses = {JsonNullableMapper.class, ReferenceMapper.class},
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.IGNORE
+)
+public abstract class InterviewMapper {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Mapping(target = "speaker", source = "speakerId", qualifiedByName = "speakerIdToSpeaker")
+    @Mapping(target = "videoLink", source = "videoLink", qualifiedByName = "defaultVideoLink")
+    @Mapping(target = "isPublished", source = "isPublished", qualifiedByName = "defaultIsPublished")
+    public abstract Interview map(InterviewCreateDTO dto);
+
+    @Mapping(target = "userInterviewSummary", source = "speaker", qualifiedByName = "speakerToSummary")
+    public abstract InterviewDTO map(Interview model);
+
+    @Mapping(target = "speaker", source = "userInterviewSummary", qualifiedByName = "summaryToSpeaker")
+    public abstract Interview map(InterviewDTO dto);
+
+    @Mapping(target = "speaker", expression = "java(mapSpeakerForUpdate(dto.getSpeakerId()))")
+    @Mapping(target = "videoLink", expression = "java(mapVideoLinkForUpdate(dto.getVideoLink()))")
+    @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished()))")
+    public abstract void update(InterviewUpdateDTO dto, @MappingTarget Interview model);
+
+    @Named("speakerIdToSpeaker")
+    public User speakerIdToSpeaker(Long speakerId) {
+        if (speakerId == null) {
+            return null;
+        }
+        return userRepository.findById(speakerId)
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerId + " not found. " +
+                        "Cannot convert speaker id to User."));
+    }
+
+    @Named("defaultVideoLink")
+    public String defaultVideoLink(String videoLink) {
+        return videoLink != null ? videoLink : "";
+    }
+
+    @Named("defaultIsPublished")
+    public Boolean defaultPublished(Boolean published) {
+        return published != null ? published : false;
+    }
+
+    @Named("speakerToSummary")
+    public UserInterviewSummary speakerToSummary(User speaker) {
+        UserInterviewSummary result = new UserInterviewSummary();
+
+        if (speaker == null) {
+            return null;
+        } else {
+            result.setId(speaker.getId());
+            result.setFirstName(speaker.getFirstName());
+            result.setLastname(speaker.getLastName());
+        }
+
+        return result;
+    }
+
+    @Named("summaryToSpeaker")
+    public User summaryToSpeaker(UserInterviewSummary summary) {
+        if (summary == null) {
+            return null;
+        }
+
+        return userRepository.findById(summary.getId())
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + summary.getId() + " not found. " +
+                        "Cannot convert id from summary to User."));
+    }
+
+    protected User mapSpeakerForUpdate(JsonNullable<Long> speakerId) {
+        if (speakerId == null || !speakerId.isPresent()) {
+            return null;
+        }
+
+        Long id = speakerId.get();
+        if (id == null) {
+            return null;
+        }
+
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found."));
+    }
+
+    protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink) {
+        if (videoLink == null || !videoLink.isPresent()) {
+            return null;
+        }
+
+        String link = videoLink.get();
+        return link != null ? link : "";
+    }
+
+    protected Boolean mapIsPublishedForUpdate(JsonNullable<Boolean> published) {
+        if (published == null || !published.isPresent()) {
+            return null;
+        }
+
+        Boolean value = published.get();
+        if (value == null) {
+            throw new IllegalArgumentException("IsPublished flag in interview cannot be set to null");
+        }
+
+        return value;
+    }
+}
