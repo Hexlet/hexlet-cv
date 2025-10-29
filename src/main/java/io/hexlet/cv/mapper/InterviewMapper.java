@@ -3,7 +3,7 @@ package io.hexlet.cv.mapper;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
-import io.hexlet.cv.dto.interview.UserInterviewSummary;
+import io.hexlet.cv.dto.user.UserDTO;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.model.User;
@@ -65,22 +65,23 @@ public abstract class InterviewMapper {
     }
 
     @Named("speakerToSummary")
-    public UserInterviewSummary speakerToSummary(User speaker) {
-        UserInterviewSummary result = new UserInterviewSummary();
+    public UserDTO speakerToSummary(User speaker) {
+        UserDTO result = new UserDTO();
 
         if (speaker == null) {
             return null;
         } else {
+            result.setEmail(speaker.getEmail());
             result.setId(speaker.getId());
             result.setFirstName(speaker.getFirstName());
-            result.setLastname(speaker.getLastName());
+            result.setLastName(speaker.getLastName());
         }
 
         return result;
     }
 
     @Named("summaryToSpeaker")
-    public User summaryToSpeaker(UserInterviewSummary summary) {
+    public User summaryToSpeaker(UserDTO summary) {
         if (summary == null) {
             return null;
         }
