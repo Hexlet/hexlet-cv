@@ -20,7 +20,10 @@ public class AdminWebinarService {
     public void createWebinar(WebinarDTO webinar) {
 
         webinarRepository.findFirstByWebinarNameOrWebinarDateOrWebinarRegLinkOrWebinarRecordLink(
-                    webinar.getName(), webinar.getStartDate(), webinar.getRegistrationUrl(), webinar.getRecordUrl()
+                webinar.getWebinarName(),
+                webinar.getWebinarDate(),
+                webinar.getWebinarRegLink(),
+                webinar.getWebinarRecordLink()
         ).ifPresent( webenarIs -> {
                     throw new WebinarAlreadyExistsException("Вебинар с таким именем уже существует");
        //     if (webenarIs.getWebinarName() != null) {

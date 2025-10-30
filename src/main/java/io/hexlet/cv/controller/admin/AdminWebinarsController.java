@@ -1,5 +1,6 @@
 package io.hexlet.cv.controller.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.admin.WebinarDTO;
 import io.hexlet.cv.repository.WebinarRepository;
@@ -25,10 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+
 @Controller
 @AllArgsConstructor
-@RequestMapping("/{locale}/admin/webinars")
-@PreAuthorize("hasRole('ADMIN')")
+@RequestMapping("/admin/webinars")
+// @PreAuthorize("hasRole('ADMIN')")
 public class AdminWebinarsController {
 
     private final Inertia inertia;
@@ -52,11 +54,27 @@ public class AdminWebinarsController {
         Pageable pageable = PageRequest.of(page, size);
         var allWebinars = webinarRepository.findAll(pageable);
 
+        var webinarsList = allWebinars.getContent().stream()
+                .map(webinar -> {
+                    WebinarDTO dto = new WebinarDTO();
+                    dto.setId(webinar.getId());
+                    dto.setWebinarName(webinar.getWebinarName());
+                    dto.setWebinarDate(webinar.getWebinarDate());
+                    dto.setWebinarRegLink(webinar.getWebinarRegLink());
+                    dto.setWebinarRecordLink(webinar.getWebinarRecordLink());
+                    dto.setFeature(webinar.isFeature());
+                    dto.setPublicated(webinar.isPublicated());
+                    return dto;
+                })
+                .toList();
+
         props.put("currentPage", allWebinars.getNumber());
         props.put("totalPages", allWebinars.getTotalPages());
         props.put("totalItems", allWebinars.getTotalElements());
 
-        props.put("webinars", allWebinars);
+
+
+        props.put("webinars", webinarsList);
 
         return inertia.render("Admin/Webinars/Index", props);
     }
