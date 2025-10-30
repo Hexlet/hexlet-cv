@@ -7,10 +7,9 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.PageSectionMapper;
 import io.hexlet.cv.repository.PageSectionRepository;
 import jakarta.persistence.EntityExistsException;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor

@@ -2,6 +2,8 @@ package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.service.PageSectionService;
+import java.util.Map;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.util.Map;
-import java.util.Set;
 
 @Controller
 @AllArgsConstructor
