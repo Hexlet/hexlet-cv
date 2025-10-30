@@ -1,4 +1,4 @@
-package io.hexlet.cv.model.marketing;
+package io.hexlet.cv.model.admin.marketing;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,35 +17,33 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Getter
 @Setter
-@Table(name = "marketing_reviews")
+@Table(name = "marketing_stories")
 @EntityListeners(AuditingEntityListener.class)
-public class Review {
+public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String author;
+    private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String content;
+
+    private String imageUrl;
 
     @Column(nullable = false)
     private Boolean isPublished = false;
 
     private LocalDateTime publishedAt;
 
-    @Column(nullable = false)
     private Boolean showOnHomepage = false;
-
     private Integer displayOrder = 0;
-
-    @Column(name = "avatar_url")
-    private String avatarUrl;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private LocalDateTime updateAt;
+
 }

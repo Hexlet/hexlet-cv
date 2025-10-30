@@ -1,4 +1,4 @@
-package io.hexlet.cv.model.marketing;
+package io.hexlet.cv.model.admin.marketing;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

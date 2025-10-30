@@ -1,4 +1,4 @@
-package io.hexlet.cv.model.marketing;
+package io.hexlet.cv.model.admin.marketing;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,45 +17,35 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Getter
 @Setter
-@Table(name = "marketing_team")
+@Table(name = "marketing_reviews")
 @EntityListeners(AuditingEntityListener.class)
-public class Team {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String firstName;
+    private String author;
 
-    @Column(nullable = false)
-    private String lastName;
-
-    @Column(nullable = false)
-    private String siteRole;
-
-    @Column(nullable = false)
-    private String systemRole;
-
-    @Column(name = "avatar_url")
-    private String avatarUrl;
-
-    @Column(nullable = false)
-    private Boolean showOnHomepage;
-
-    private Integer displayOrder;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
 
     @Column(nullable = false)
     private Boolean isPublished = false;
 
     private LocalDateTime publishedAt;
 
+    @Column(nullable = false)
+    private Boolean showOnHomepage = false;
+
+    private Integer displayOrder = 0;
+
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
 }
