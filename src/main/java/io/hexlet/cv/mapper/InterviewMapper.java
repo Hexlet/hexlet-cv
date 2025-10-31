@@ -33,10 +33,10 @@ public abstract class InterviewMapper {
     @Mapping(target = "isPublished", source = "isPublished", qualifiedByName = "defaultIsPublished")
     public abstract Interview map(InterviewCreateDTO dto);
 
-    @Mapping(target = "userInterviewSummary", source = "speaker", qualifiedByName = "speakerToSummary")
+    @Mapping(target = "speaker", source = "speaker", qualifiedByName = "speakerModelToSpeakerDTO")
     public abstract InterviewDTO map(Interview model);
 
-    @Mapping(target = "speaker", source = "userInterviewSummary", qualifiedByName = "summaryToSpeaker")
+    @Mapping(target = "speaker", source = "speaker", qualifiedByName = "speakerDTOToSpeakerModel")
     public abstract Interview map(InterviewDTO dto);
 
     @Mapping(target = "speaker", ignore = true)
@@ -64,7 +64,7 @@ public abstract class InterviewMapper {
         return published != null ? published : false;
     }
 
-    @Named("speakerToSummary")
+    @Named("speakerModelToSpeakerDTO")
     public UserDTO speakerToSummary(User speaker) {
         UserDTO result = new UserDTO();
 
@@ -80,15 +80,15 @@ public abstract class InterviewMapper {
         return result;
     }
 
-    @Named("summaryToSpeaker")
-    public User summaryToSpeaker(UserDTO summary) {
-        if (summary == null) {
+    @Named("speakerDTOToSpeakerModel")
+    public User summaryToSpeaker(UserDTO speakerFromDTO) {
+        if (speakerFromDTO == null) {
             return null;
         }
 
-        return userRepository.findById(summary.getId())
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + summary.getId() + " not found. " +
-                        "Cannot convert id from summary to User."));
+        return userRepository.findById(speakerFromDTO.getId())
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerFromDTO.getId() + " not found. " +
+                        "Cannot convert id from speakerFromDTO to User."));
     }
 
     protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink) {
