@@ -22,9 +22,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "webinars",
         indexes = {
-                @Index(name = "idx_webinar_name", columnList = "webinar_name"),
-                @Index(name = "idx_webinar_link", columnList = "webinar_reg_link"),
-                @Index(name = "idx_webinar_date", columnList = "webinar_date")
+            @Index(name = "idx_webinar_name", columnList = "webinar_name"),
+            @Index(name = "idx_webinar_link", columnList = "webinar_reg_link"),
+            @Index(name = "idx_webinar_date", columnList = "webinar_date")
         })
 @Getter
 @Setter
@@ -38,7 +38,7 @@ public class Webinar {
     @NotBlank
     private String webinarName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime webinarDate;
 
     private String webinarRegLink;

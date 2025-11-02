@@ -68,6 +68,7 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.CONFLICT);
     }
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleValidation(MethodArgumentNotValidException ex,
                                    HttpServletRequest request,
