@@ -25,8 +25,6 @@ public class AdminWebinarService {
     private final WebinarRepository webinarRepository;
     private final AdminWebinarMapper adminWebinarMapper;
 
-
-    @Transactional
     public Map<String, Object> indexSearchWebinar(Pageable pageable, String searchStr) {
 
         Map<String, Object> props = new HashMap<>();
