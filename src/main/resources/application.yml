@@ -1,23 +1,77 @@
 spring:
-  profiles:
-    active: dev  # "prod" если продакшен
-
+  config:
+    activate:
+      on-profile: dev  # "prod" если продакшен
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
       ddl-auto: update
-    output:
- #     ansi:
- #       enabled: always
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:h2:file:./devdb;DB_CLOSE_ON_EXIT=FALSE  # ✅ Файловая БД для dev
+    username: sa
+    password:
+    h2:
+      console:
+        enabled: true
+        path: /h2-console  # для доступа к H2 консоли в dev
+  #mail:
+    #host: smtp.gmail.com
+    #port: 587
+    #username: ${SMTP_USERNAME:test@example.com}  # используй переменные окружения
+    #password: ${SMTP_PASSWORD:password}
+    #properties:
+      #mail:
+        #smtp:
+          #auth: true
+          #starttls:
+            #enable: true
+        #debug: true  # для отладки
+
+jackson:
+  serialization:
+    write-dates-as-timestamps: false
+
+#     ansi:
+#       enabled: always
 
 #  rsa:
 #    private-key: classpath:certs/private.pem
 #    public-key: classpath:certs/public.pem
 
 server:
+  port: 8080
   error:
     include-message: never
     include-binding-errors: never
     include-exception: false
+
+app:
+  blacklists:
+    common-passwords: "blacklists/10k-most-common.txt"
+    disposable-domains: "blacklists/disposable_email_blocklist.conf"
+  security:
+    cookie:
+      access:
+        httpOnly: true
+        secure: true
+        sameSite: Strict  # только прямые
+        maxAgeSeconds: 900       # 15 минут
+      refresh:
+        httpOnly: true
+        secure: true
+        sameSite: Lax # можно с других сайтов
+        maxAgeSeconds: 2592000   # 30 дней
+
+logging:
+  level:
+    io.hexlet.cv: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#jwt:
+  #access-token-validity-seconds: 900        # 15 минут
+  #refresh-token-validity-seconds: 2592000   # 30 дней
 

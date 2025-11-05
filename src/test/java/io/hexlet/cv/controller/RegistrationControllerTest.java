@@ -107,7 +107,7 @@ public class RegistrationControllerTest {
         data.setLastName("lastName");
 
         var newUserData = registrationMapper.map(data);
-        newUserData.setEncryptedPassword("123456");
+//        newUserData.setEncryptedPassword("123456");
         newUserData.setRole(RoleType.CANDIDATE);
 
         userRepository.save(newUserData);

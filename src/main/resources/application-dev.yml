@@ -1,6 +1,9 @@
 spring:
+  mail:
+    host: localhost
+    port: 8080
   datasource:
-    url: jdbc:h2:mem:project
+    url: jdbc:h2:mem:project;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password:

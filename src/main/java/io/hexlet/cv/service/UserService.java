@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UserRepository userRepository;
-
     private RegistrationMapper registrationMapper;
-
     private BCryptPasswordEncoder encoder;
 
     public RegOutputDTO registration(RegInputDTO inputDTO) {
@@ -26,19 +24,34 @@ public class UserService {
             throw new UserAlreadyExistsException(user.getEmail());
         });
 
-        var newUserData = registrationMapper.map(inputDTO);
+        // ✅ Вариант 1: Используем сеттеры (проще)
+        var newUser = registrationMapper.map(inputDTO);
+        newUser.setPassword(encoder.encode(inputDTO.getPassword())); // ✅ правильный сеттер
+        newUser.setRole(RoleType.CANDIDATE); // ✅ правильный сеттер
+        newUser.setEnabled(true);
 
-        // шифруем пароль
-        newUserData.setEncryptedPassword(encoder.encode(inputDTO.getPassword()));
-        // роль по умолчанию
-        newUserData.setRole(RoleType.CANDIDATE);
+        userRepository.save(newUser);
+        var retDTO = registrationMapper.map(newUser);
 
-        userRepository.save(newUserData);
-        var retDTO = registrationMapper.map(newUserData);
-        // генерация токена
+        // TODO: реализовать генерацию токена (JWT или другой)
         var token = "тут выдается токен";
         retDTO.setToken(token);
 
         return retDTO;
+
+//        var newUserData = registrationMapper.map(inputDTO);
+//
+//        // шифруем пароль
+//        newUserData.setEncryptedPassword(encoder.encode(inputDTO.getPassword()));
+//        // роль по умолчанию
+//        newUserData.setRole(RoleType.CANDIDATE);
+//
+//        userRepository.save(newUserData);
+//        var retDTO = registrationMapper.map(newUserData);
+//        // генерация токена
+//        var token = "тут выдается токен";
+//        retDTO.setToken(token);
+//
+//        return retDTO;
     }
 }

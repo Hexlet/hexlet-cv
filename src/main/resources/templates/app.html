@@ -1,13 +1,39 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV App</title>
 </head>
 <body>
-<div id="app" data-page='@PageObject@'></div>
-<!-- <script type="module" src="/src/main.tsx"></script> -->
+<div id="app" data-page="@page@"></div>
+
+<script>
+    // Debug чтобы проверить что данные приходят
+    document.addEventListener('DOMContentLoaded', function() {
+        const app = document.getElementById('app');
+        const pageJson = app.getAttribute('data-page');
+        console.log('🎯 Inertia data:', pageJson);
+
+        if (pageJson && pageJson !== '@page@') {
+            try {
+                const pageData = JSON.parse(pageJson);
+                console.log('Parsed:', pageData);
+
+                // Простой рендеринг
+                app.innerHTML = `
+                    <h1>${pageData.component}</h1>
+                    <pre>${JSON.stringify(pageData.props, null, 2)}</pre>
+                    <a href="/auth/login">Login</a> |
+                    <a href="/auth/register">Register</a>
+                `;
+            } catch (e) {
+                console.error('JSON parse error:', e);
+            }
+        } else {
+            console.log('❌ No data from server');
+        }
+    });
+</script>
 </body>
 </html>

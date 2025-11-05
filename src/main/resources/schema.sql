@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    token VARCHAR(36) NOT NULL UNIQUE,
+    user_id BIGINT NOT NULL,
+    expiry_date TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);

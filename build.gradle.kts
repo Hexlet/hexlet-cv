@@ -63,10 +63,27 @@ dependencies {
     testImplementation(platform(libs.junitBom))
     testImplementation(libs.junitJupiter)
     testRuntimeOnly(libs.junitPlatformLauncher)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.mockito.junit.jupiter)
+
+    //testImplementation(libs.javafaker)
 
     // Inertia4J
     implementation(libs.inertia4jSpring)
     // implementation(libs.inertia4jSpringStarter)
+
+    // 📧 Email (добавить)
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
+    // 🎯 Thymeleaf для email шаблонов (добавить)
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    //JWT
+    // implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    //runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    //runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+    implementation("org.flywaydb:flyway-core")
 
 }
 
@@ -85,9 +102,9 @@ tasks.test {
 }
 
 tasks.jacocoTestReport {
-    reports {
-        xml.required.set(true)
-    }
+    //reports {
+    //    xml.required.set(true)
+    //}
 }
 
 spotless {
@@ -106,9 +123,7 @@ spotless {
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(24)
-    }
+    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 // sonar {
