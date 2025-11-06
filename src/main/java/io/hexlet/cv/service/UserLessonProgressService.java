@@ -93,13 +93,4 @@ public class UserLessonProgressService {
 
         userProgramProgressRepository.save(programProgress);
     }
-
-    @Transactional
-    public void updateTimeSpent(Long progressId, Integer minutes) {
-        var progress = userLessonProgressRepository.findById(progressId)
-                .orElseThrow(() -> new ResourceNotFoundException(PROGRESS_NOT_FOUND + progressId));
-
-        progress.setTimeSpentMinutes(progress.getTimeSpentMinutes() + minutes);
-        userLessonProgressRepository.save(progress);
-    }
 }
