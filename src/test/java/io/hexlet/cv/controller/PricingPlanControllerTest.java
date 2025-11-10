@@ -199,7 +199,7 @@ public class PricingPlanControllerTest {
     }
 
     @Test
-    void testUpdatePricing_AsAdmin() throws Exception {
+    void testUpdatePricingAsAdmin() throws Exception {
         String updatePricingJson = """
                 {
                     "name": "Обновленное название",
@@ -259,7 +259,7 @@ public class PricingPlanControllerTest {
     }
 
     @Test
-    void testInvalidSection_NotFound() throws Exception {
+    void testInvalidSectionNotFound() throws Exception {
         mockMvc.perform(get("/ru/admin/marketing/invalid-section")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))

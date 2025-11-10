@@ -4,8 +4,11 @@ import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
+import io.hexlet.cv.handler.exception.WebinarAlreadyExistsException;
 import jakarta.persistence.EntityExistsException;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,9 +17,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -58,6 +58,17 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.NOT_FOUND);
     }
 
+
+    @ExceptionHandler(WebinarAlreadyExistsException.class)
+    public Object handleWebinarAlreadyExistsException(WebinarAlreadyExistsException ex,
+                                                      HttpServletRequest request,
+                                                      RedirectAttributes redirectAttributes) {
+
+        Map<String, String> errors = Map.of("error", ex.getMessage());
+        return commonHandle(errors, request, redirectAttributes, HttpStatus.CONFLICT);
+    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleValidation(MethodArgumentNotValidException ex,
                                    HttpServletRequest request,
@@ -89,6 +100,7 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.UNAUTHORIZED);
     }
 
+
     @ExceptionHandler(InvalidPasswordException.class)
     public Object handleInvalidPasswordException(InvalidPasswordException ex,
                                                  HttpServletRequest request,
@@ -97,6 +109,7 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = Map.of("password", ex.getMessage());
         return commonHandle(errors, request, redirectAttributes, HttpStatus.UNAUTHORIZED);
     }
+
 
 // это просто ошибки все остальное
     @ExceptionHandler(Exception.class)
