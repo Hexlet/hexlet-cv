@@ -40,8 +40,8 @@ public abstract class InterviewMapper {
     public abstract Interview map(InterviewDTO dto);
 
     @Mapping(target = "speaker", ignore = true)
-    @Mapping(target = "videoLink", expression = "java(mapVideoLinkForUpdate(dto.getVideoLink()))")
-    @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished()))")
+    @Mapping(target = "videoLink", expression = "java(mapVideoLinkForUpdate(dto.getVideoLink(), model.getVideoLink()))")
+    @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished(), model.getIsPublished()))")
     public abstract void updateBasicFields(InterviewUpdateDTO dto, @MappingTarget Interview model);
 
     @Named("speakerIdToSpeaker")
@@ -91,18 +91,21 @@ public abstract class InterviewMapper {
                         "Cannot convert id from speakerFromDTO to User."));
     }
 
-    protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink) {
+    protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink, String currentVideoLink) {
         if (videoLink == null || !videoLink.isPresent()) {
-            return null;
+            return currentVideoLink;
         }
 
         String link = videoLink.get();
-        return link != null ? link : "";
+        if (link == null) {
+            throw new IllegalArgumentException("VideoLink cannot be null");
+        }
+        return link;
     }
 
-    protected Boolean mapIsPublishedForUpdate(JsonNullable<Boolean> published) {
+    protected Boolean mapIsPublishedForUpdate(JsonNullable<Boolean> published, Boolean currentIsPublished) {
         if (published == null || !published.isPresent()) {
-            return null;
+            return currentIsPublished;
         }
 
         Boolean value = published.get();
@@ -113,6 +116,7 @@ public abstract class InterviewMapper {
         return value;
     }
 
+    //оставляем без изменения
     public void updateInterview(InterviewUpdateDTO dto, Interview interview) {
         updateBasicFields(dto, interview);
 
