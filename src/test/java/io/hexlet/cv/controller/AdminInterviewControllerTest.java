@@ -12,7 +12,8 @@ import io.hexlet.cv.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -39,7 +40,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(AdminInterviewController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
 class AdminInterviewControllerTest {
 
@@ -68,6 +70,10 @@ class AdminInterviewControllerTest {
                     props.put("locale", locale);
                     return props;
                 });
+
+        // Настраиваем поведение Inertia для всех тестов
+        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
+        when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
     }
 
     @Test
@@ -79,9 +85,7 @@ class AdminInterviewControllerTest {
                 createInterviewDTO(2L, "Interview 2")
         ));
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(interviewService.getAll(any(Pageable.class))).thenReturn(interviewPage);
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview", locale))
@@ -100,9 +104,7 @@ class AdminInterviewControllerTest {
                 createInterviewDTO(1L, "Java Programming Interview")
         ));
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(interviewService.search(eq(searchWord), any(Pageable.class))).thenReturn(interviewPage);
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview", locale)
@@ -119,9 +121,7 @@ class AdminInterviewControllerTest {
         Long interviewId = 1L;
         InterviewDTO interviewDTO = createInterviewDTO(interviewId, "Test Interview");
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(interviewService.findById(interviewId)).thenReturn(interviewDTO);
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId))
@@ -139,9 +139,7 @@ class AdminInterviewControllerTest {
                 createUserDTO(1L, "john@test.com", "John", "Doe")
         );
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(userService.getPotentialInterviewSpeakers()).thenReturn(speakers);
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview/create", locale))
@@ -157,7 +155,6 @@ class AdminInterviewControllerTest {
         String locale = "ru";
 
         when(interviewService.create(any(InterviewCreateDTO.class))).thenReturn(createInterviewDTO(1L, "New Interview"));
-        when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
 
         // when & then
         mockMvc.perform(post("/{locale}/admin/interview/create", locale)
@@ -181,10 +178,8 @@ class AdminInterviewControllerTest {
         InterviewDTO interviewDTO = createInterviewDTO(interviewId, "Test Interview");
         List<UserDTO> speakers = List.of(createUserDTO(1L, "john@test.com", "John", "Doe"));
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(interviewService.findById(interviewId)).thenReturn(interviewDTO);
         when(userService.getPotentialInterviewSpeakers()).thenReturn(speakers);
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview/{id}/edit", locale, interviewId))
@@ -203,7 +198,6 @@ class AdminInterviewControllerTest {
 
         when(interviewService.update(any(InterviewUpdateDTO.class), eq(interviewId)))
                 .thenReturn(createInterviewDTO(interviewId, "Updated Interview"));
-        when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
 
         // when & then
         mockMvc.perform(put("/{locale}/admin/interview/{id}/edit", locale, interviewId)
@@ -226,7 +220,6 @@ class AdminInterviewControllerTest {
         Long interviewId = 1L;
 
         doNothing().when(interviewService).delete(interviewId);
-        when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
 
         // when & then
         mockMvc.perform(delete("/{locale}/admin/interview/{id}", locale, interviewId))
@@ -242,10 +235,8 @@ class AdminInterviewControllerTest {
         String locale = "ru";
         Long interviewId = 999L;
 
-        when(flashPropsService.buildProps(anyString(), any())).thenReturn(new HashMap<>());
         when(interviewService.findById(interviewId))
                 .thenThrow(new ResourceNotFoundException("Interview not found"));
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId))
