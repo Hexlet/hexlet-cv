@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotInDisposableEmailDomains {
     Class<?>[] groups() default {};
-    String message() default "Запрещено использовать одноразовые email";
+    String message() default "{email.disposable}";
     Class<? extends Payload>[] payload() default {};
 }

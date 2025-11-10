@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.instancioJunit)
     implementation(libs.jsonunitAssertj)
     implementation(libs.guava)
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
 
     // MapStruct
     implementation(libs.mapstruct)
@@ -67,6 +68,9 @@ dependencies {
     // Inertia4J
     implementation(libs.inertia4jSpring)
     // implementation(libs.inertia4jSpringStarter)
+
+    // Jackson JSR310 для поддержки LocalDateTime
+    implementation(libs.jacksonDatatypeJsr310)
 
 }
 

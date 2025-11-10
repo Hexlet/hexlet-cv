@@ -1,8 +1,7 @@
 package io.hexlet.cv.controller;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.cv.dto.user.RegistrationRequestDTO;
+import io.hexlet.cv.dto.user.auth.RegistrationRequestDTO;
 import io.hexlet.cv.mapper.RegistrationMapper;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
@@ -77,13 +76,13 @@ public class RegistrationControllerTest {
         var request = post("/ru/users").contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(data));
 
-        mockMvc.perform(request).andExpect(status().isSeeOther());
+        mockMvc.perform(request).andExpect(status().isFound());
 
         var user = userRepository.findByEmail(data.getEmail()).orElse(null);
-        assertNotNull(user);
+        assertThat(user).isNotNull();
         assertThat(user.getFirstName()).isEqualTo(data.getFirstName());
         assertThat(user.getLastName()).isEqualTo(data.getLastName());
-        assertNotNull(user.getId());
+        assertThat(user.getId()).isNotNull();
     }
 
     @Test
@@ -395,7 +394,7 @@ public class RegistrationControllerTest {
                         .content(om.writeValueAsString(dto))
                         .header("X-Inertia", "true")
                         .header("Referer", "/ru/users/sign_up"))
-                .andExpect(status().isSeeOther())
+                .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/ru/dashboard"))
                 .andExpect(flash().attributeCount(0))
                 .andExpect(header().stringValues(HttpHeaders.SET_COOKIE,

@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordNotSimilarToUser {
     Class<?>[] groups() default {};
-    String message() default "Пароль слишком простой — не должен совпадать с email или именем";
+    String message() default "{password.notSimilar}";
     Class<? extends Payload>[] payload() default {};
 }
