@@ -6,10 +6,10 @@ import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openapitools.jackson.nullable.JsonNullable;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
@@ -20,22 +20,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
-@DataJpaTest
+@SpringBootTest
 class InterviewMapperTest {
-
-    private InterviewMapper interviewMapper;
 
     @MockBean
     private UserRepository userRepository;
 
-    @BeforeEach
-    void setUp() {
-        interviewMapper = new InterviewMapperImpl();
-        // Устанавливаем репозиторий через reflection
-        org.springframework.test.util.ReflectionTestUtils.setField(
-                interviewMapper, "userRepository", userRepository
-        );
-    }
+    @Autowired
+    private InterviewMapper interviewMapper;
 
     @Test
     void map_InterviewCreateDTO_To_Interview_WithOnlyTitle() {
