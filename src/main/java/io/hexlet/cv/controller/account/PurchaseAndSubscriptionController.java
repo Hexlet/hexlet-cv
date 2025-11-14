@@ -2,15 +2,18 @@ package io.hexlet.cv.controller.account;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.service.PurchaseAndSubscriptionService;
+import io.hexlet.cv.util.UserUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 @Controller
@@ -20,16 +23,18 @@ public class PurchaseAndSubscriptionController {
 
     private final Inertia inertia;
     private final PurchaseAndSubscriptionService service;
+    private final UserUtils userUtils;
 
-
-    @GetMapping("/{userId}/purchase")
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/purchase")
     public Object index(@RequestParam(defaultValue = "0") int page,
                         @RequestParam(defaultValue = "10") int size,
-                        @PathVariable Long userId,
                         HttpServletRequest request) {
 
+        var userId = userUtils.currentUserId();
+
         Pageable pageable = PageRequest.of(page, size);
-        var props = service.indexPurchSubs(userId, pageable);
+        var props = service.indexPurchSubs(userId.get(), pageable);
 
         var flash = RequestContextUtils.getInputFlashMap(request);
         if (flash != null && !flash.isEmpty()) {

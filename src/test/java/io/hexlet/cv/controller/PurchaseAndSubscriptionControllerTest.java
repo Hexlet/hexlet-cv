@@ -10,6 +10,8 @@ import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.model.enums.StatePurchSubsType;
 import io.hexlet.cv.repository.PurchSubsRepository;
 import io.hexlet.cv.repository.UserRepository;
+import io.hexlet.cv.util.JWTUtils;
+import jakarta.servlet.http.Cookie;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
@@ -34,6 +37,17 @@ public class PurchaseAndSubscriptionControllerTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JWTUtils jwtUtils;
+
+    private User testUser;
+    private static final String CANDIDATE_EMAIL = "candidate_user@example.com";
+    private String candidateToken;
+
+
 
     @AfterEach
     public void cleanUp() {
@@ -43,23 +57,23 @@ public class PurchaseAndSubscriptionControllerTest {
 
     @BeforeEach
     public void setUp() {
-        userRepository.deleteAll();
-        subsRepo.deleteAll();
+        cleanUp();
+
+        testUser = new User();
+        testUser.setEmail(CANDIDATE_EMAIL);
+        testUser.setEncryptedPassword(passwordEncoder.encode("candidate_password"));
+        testUser.setRole(RoleType.CANDIDATE);
+        testUser = userRepository.save(testUser);
+
+        candidateToken = jwtUtils.generateAccessToken(CANDIDATE_EMAIL);
     }
 
     @Test
-    public void testIndex() throws Exception {
+    public void testAuthorizedIndex() throws Exception {
 
-        var user = new User();
-        user.setEmail("test@google.com");
-        user.setFirstName("testFirstName");
-        user.setLastName("testLastName");
-        user.setEncryptedPassword("123456");
-        user.setRole(RoleType.CANDIDATE);
-        var saved = userRepository.save(user);
 
         PurchSubs subs = new PurchSubs();
-        subs.setUser(saved);
+        subs.setUser(testUser);
         subs.setOrderNum("#A-1042");
         subs.setItemName("Test subscription");
         subs.setPurchasedAt(LocalDate.parse("2020-10-10", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -68,13 +82,24 @@ public class PurchaseAndSubscriptionControllerTest {
         subs.setBillUrl("https://www.google.com");
         subsRepo.save(subs);
 
-        var mvcResult = mockMvc.perform(get("/account/" + saved.getId() + "/purchase")
+        var mvcResult = mockMvc.perform(get("/account/purchase")
+                        .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String json = mvcResult.getResponse().getContentAsString();
         assertThat(json).contains(subs.getItemName());
+
+    }
+
+    @Test
+    public void testUnAuthorizedIndex() throws Exception {
+
+        mockMvc.perform(get("/account/purchase")
+                        .header("X-Inertia", "true"))
+                .andExpect(status().is(401))
+                .andReturn();
 
     }
 }
