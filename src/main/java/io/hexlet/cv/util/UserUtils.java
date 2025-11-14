@@ -45,13 +45,19 @@ public class UserUtils {
 
     public boolean isAuthor(long userId) {
         var auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) return false;
+        if (auth == null || !auth.isAuthenticated()) {
+            return false;
+        }
 
         var principal = auth.getPrincipal();
-        if (principal instanceof String s && "anonymousUser".equals(s)) return false;
+        if (principal instanceof String s && "anonymousUser".equals(s)) {
+            return false;
+        }
 
         var currentEmail = auth.getName();
-        if (currentEmail == null) return false;
+        if (currentEmail == null) {
+            return false;
+        }
 
         return userRepository.findById(userId)
                 .map(User::getEmail)
