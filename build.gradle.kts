@@ -48,7 +48,7 @@ dependencies {
     implementation(libs.instancioJunit)
     implementation(libs.jsonunitAssertj)
     implementation(libs.guava)
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
+    // implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
 
     // MapStruct
     implementation(libs.mapstruct)
