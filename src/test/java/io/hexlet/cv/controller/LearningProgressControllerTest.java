@@ -152,16 +152,18 @@ public class LearningProgressControllerTest {
         lessonProgress.setLesson(testLesson);
         lessonProgress.setProgramProgress(testProgramProgress);
         lessonProgress.setStartedAt(LocalDateTime.now());
-        userLessonProgressRepository.save(lessonProgress);
+        lessonProgress.setIsCompleted(false);
+        lessonProgress = userLessonProgressRepository.save(lessonProgress);
 
-        mockMvc.perform(post("/account/my-progress/lesson/" + testLesson.getId() + "/complete")
+        mockMvc.perform(post("/account/my-progress/lesson/" + lessonProgress.getId() + "/complete")
                         .param("programProgressId", testProgramProgress.getId().toString())
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().is3xxRedirection());
 
         Optional<UserLessonProgress> completedLesson = userLessonProgressRepository
-                .findByUserIdAndLessonId(testUser.getId(), testLesson.getId());
+                .findById(lessonProgress.getId());
+
         assertThat(completedLesson).isPresent();
         assertThat(completedLesson.get().getCompletedAt()).isNotNull();
         assertThat(completedLesson.get().getIsCompleted()).isTrue();
