@@ -4,11 +4,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import io.hexlet.cv.model.User;
+import io.hexlet.cv.model.admin.marketing.Team;
 import io.hexlet.cv.model.enums.RoleType;
-import io.hexlet.cv.model.marketing.Team;
 import io.hexlet.cv.repository.TeamRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;

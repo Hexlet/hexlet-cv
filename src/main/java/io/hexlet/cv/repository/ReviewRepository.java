@@ -1,6 +1,6 @@
 package io.hexlet.cv.repository;
 
-import io.hexlet.cv.model.marketing.Review;
+import io.hexlet.cv.model.admin.marketing.Review;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

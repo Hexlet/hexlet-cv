@@ -3,7 +3,7 @@ package io.hexlet.cv.mapper;
 import io.hexlet.cv.dto.marketing.ArticleCreateDTO;
 import io.hexlet.cv.dto.marketing.ArticleDTO;
 import io.hexlet.cv.dto.marketing.ArticleUpdateDTO;
-import io.hexlet.cv.model.marketing.Article;
+import io.hexlet.cv.model.admin.marketing.Article;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
