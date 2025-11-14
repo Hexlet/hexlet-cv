@@ -1,6 +1,5 @@
 package io.hexlet.cv.controller;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -195,7 +194,7 @@ public class LearningProgressControllerTest {
     }
 
     @Test
-    void testCompletedLessonsCount() throws Exception {
+    void testCompletedLessonsCount() {
         UserLessonProgress lesson1 = new UserLessonProgress();
         lesson1.setUser(testUser);
         lesson1.setLesson(testLesson);
@@ -224,5 +223,20 @@ public class LearningProgressControllerTest {
         var completedCount = userLessonProgressRepository
                 .countCompletedLessonsByProgramProgressId(testProgramProgress.getId());
         assertThat(completedCount).isEqualTo(2L);
+    }
+
+    @Test
+    void testGetProgressWithoutAuthentication() throws Exception {
+        mockMvc.perform(get("/account/my-progress")
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void testGetProgressWithAuthentication() throws Exception {
+        mockMvc.perform(get("/account/my-progress")
+                        .cookie(new Cookie("access_token", candidateToken))
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isOk());
     }
 }

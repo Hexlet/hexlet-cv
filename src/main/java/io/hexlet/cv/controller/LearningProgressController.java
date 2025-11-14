@@ -3,18 +3,16 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.learning.UserLessonProgressDTO;
 import io.hexlet.cv.dto.learning.UserProgramProgressDTO;
-import io.hexlet.cv.model.User;
 import io.hexlet.cv.service.UserLessonProgressService;
 import io.hexlet.cv.service.UserProgramProgressService;
 import io.hexlet.cv.util.UserUtils;
-
 import java.util.List;
 import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,11 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/account/my-progress")
+@PreAuthorize("isAuthenticated()")
 public class LearningProgressController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserLessonProgressService.class);
@@ -36,29 +34,11 @@ public class LearningProgressController {
     private final UserLessonProgressService userLessonProgressService;
     private final UserUtils userUtils;
 
-
-    private User getAuthenticatedUser() {
-        try {
-            User user = userUtils.getCurrentUser();
-            if (user == null) {
-                LOGGER.error("[CONTROLLER] Пользователь не аутентифицирован");
-                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
-            }
-            LOGGER.trace("[CONTROLLER] Аутентифицированный пользователь: {} (ID: {})", user.getEmail(),
-                    user.getId());
-            return user;
-
-        } catch (Exception e) {
-            LOGGER.error("[CONTROLLER] Ошибка при получении пользователя: {}", e.getMessage());
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Ошибка аутентификации");
-        }
-    }
-
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public Object getProgress() {
         LOGGER.debug("Get progress request");
-        var user = getAuthenticatedUser();
+        var user = userUtils.getCurrentUser();
 
         List<UserProgramProgressDTO> progress = userProgramProgressService.getUserProgress(user.getId());
 
@@ -74,10 +54,10 @@ public class LearningProgressController {
         return inertia.render("Learning/MyProgress/Index", props);
     }
 
-    @GetMapping("/my-progress/program/{programProgressId}/lessons")
+    @GetMapping("/program/{programProgressId}/lessons")
     @ResponseStatus(HttpStatus.OK)
     public Object getLessonProgress(@PathVariable Long programProgressId) {
-        var user = getAuthenticatedUser();
+        var user = userUtils.getCurrentUser();
         LOGGER.debug("[CONTROLLER] Получение уроков для programProgressId: {}, пользователь: {}",
                 programProgressId, user.getEmail());
 
@@ -98,7 +78,7 @@ public class LearningProgressController {
     @PostMapping("/program/start")
     @ResponseStatus(HttpStatus.CREATED)
     public Object startProgram(@RequestParam Long programId) {
-        var user = getAuthenticatedUser();
+        var user = userUtils.getCurrentUser();
         LOGGER.debug("[CONTROLLER] Старт программы {} пользователем {}", programId, user.getEmail());
 
         userProgramProgressService.startProgram(user.getId(), programId);
@@ -110,7 +90,7 @@ public class LearningProgressController {
     public Object startLesson(@RequestParam Long programProgressId,
                               @RequestParam Long lessonId) {
 
-        var user = getAuthenticatedUser();
+        var user = userUtils.getCurrentUser();
         LOGGER.debug("[CONTROLLER] Старт урока {} в программе {} пользователем {}",
                 lessonId, programProgressId, user.getEmail());
 
