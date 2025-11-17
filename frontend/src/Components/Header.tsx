@@ -1,4 +1,4 @@
-import { Group, Button, Divider, ThemeIcon, Text } from '@mantine/core'
+import { Group, Button, Divider, ThemeIcon, Text, Anchor } from '@mantine/core'
 
 const links = [
   { link: '#', label: 'Коммерческий опыт' },
@@ -13,36 +13,50 @@ const links = [
   { link: '#', label: 'Сообщество' },
 ]
 
-export default function Header() {
+export default function Header(): JSX.Element {
 
   const items = links.map((link): JSX.Element => (
-    <Button
+    <Anchor
       key={link.label}
-      onClick={(event) => event.preventDefault()}
+      href={link.link}
       variant="transparent"
+      underline="never"
       size='md'
-      color="white"
+      c="white"
+      fw={500}
     >
       {link.label}
-    </Button>
+    </Anchor>
   ))
 
   return (
     <header>
       <Group py={10} justify="center" gap={70} bg='black'>
-        <Group gap="xs">
-          <ThemeIcon variant="white" size="lg" radius="md">
-            <Text color='black' size='md' fw={500}>
-              X
+        <Anchor
+          key='Home'
+          href='/'  // В данный момент ссылка на главную страницу
+          variant="transparent"
+          underline="never"
+          size='md'
+          c="white"
+          fw={500}
+        >
+          <Group gap="xs">
+            <ThemeIcon variant="white" size="lg" radius="md">
+              <Text c='black' size='md' fw={500}>
+                X
+              </Text>
+            </ThemeIcon>
+            <Text c='white' size='md' fw={700} lh={1.1}>
+              Hexlet <br /> Карьера
             </Text>
-          </ThemeIcon>
-          <Text color='white' size='md' fw={700} lh={1.1}>
-            Hexlet <br /> Карьера
-          </Text>
-        </Group>
-        <Group gap="xs">
-          {items}
-        </Group>
+          </Group>
+        </Anchor>
+        <nav>
+          <Group gap="xl">
+            {items}
+          </Group>
+        </nav>
         <Button variant="default" size='md'>
           <Text size='md' lh={1.1}>
             Попробывать <br /> бесплатно

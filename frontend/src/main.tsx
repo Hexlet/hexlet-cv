@@ -6,10 +6,10 @@ import '@mantine/core/styles.css'
 
 createInertiaApp({
   resolve: (name) => {
-    console.log("Inertia ищет компонент:", name);
+    console.log("Inertia ищет компонент:", name) // Для облегчения отладки inertia компонентов
     const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true })
-    const pagePath = `./Pages/${name}.tsx`;
-    return pages[pagePath];
+    const pagePath = `./Pages/${name}.tsx`
+    return pages[pagePath]
   },
   setup({ el, App, props }) {
     createRoot(el).render(

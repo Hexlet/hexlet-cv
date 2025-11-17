@@ -1,4 +1,4 @@
-import { Group, Button, Divider, ThemeIcon, Text } from '@mantine/core'
+import { Group, Anchor, Divider, ThemeIcon, Text } from '@mantine/core'
 
 const links = [
   { link: '#', label: 'Коммерческий опыт' },
@@ -13,18 +13,20 @@ const links = [
   { link: '#', label: 'Сообщество' },
 ]
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
 
   const items = links.map((link): JSX.Element => (
-    <Button
+    <Anchor
       key={link.label}
-      onClick={(event) => event.preventDefault()}
+      href={link.link}
       variant="transparent"
+      underline="never"
       size='md'
-      color="white"
+      c="white"
+      fw={500}
     >
       {link.label}
-    </Button>
+    </Anchor>
   ))
 
   return (
@@ -41,7 +43,7 @@ export default function Footer() {
             © 2025 Hexlet Карьера
           </Text>
         </Group>
-        <Group gap={0}>
+        <Group gap='xl'>
           {items}
         </Group>
       </Group>
