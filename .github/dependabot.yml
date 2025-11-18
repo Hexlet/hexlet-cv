@@ -14,19 +14,6 @@ updates:
     groups:
       gha-minor-and-patch:
         update-types: [minor, patch]
-  # Ruby (Bundler)
-  - package-ecosystem: bundler
-    directory: /ruby-version
-    schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: chore(deps-bundler)
-    labels: [deps, ruby]
-    groups:
-      bundler-minor-and-patch:
-        update-types: [minor, patch]
   # Gradle (Java)
   - package-ecosystem: gradle
     directory: /
