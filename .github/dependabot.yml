@@ -1,0 +1,63 @@
+---
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps-actions)
+    labels: [deps, ci]
+    groups:
+      gha-minor-and-patch:
+        update-types: [minor, patch]
+  # Gradle (Java)
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps-gradle)
+    labels: [deps, java]
+    groups:
+      gradle-minor-and-patch:
+        update-types: [minor, patch]
+  # npm PROD (dependencies)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    versioning-strategy: increase
+    commit-message:
+      prefix: chore(deps-npm:prod)
+    labels: [deps, js, ts, prod]
+    allow:
+      - dependency-type: production
+    groups:
+      npm-prod-minor-and-patch:
+        update-types: [minor, patch]
+  # npm DEV (devDependencies)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    versioning-strategy: increase
+    commit-message:
+      prefix: chore(deps-npm:dev)
+    labels: [deps, js, ts, dev]
+    allow:
+      - dependency-type: development
+    groups:
+      npm-dev-minor-and-patch:
+        update-types: [minor, patch]
+      npm-dev-major:
+        update-types: [major]
