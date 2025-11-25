@@ -3,7 +3,6 @@ import {
   Text,
   Avatar,
   Paper,
-  useMantineTheme,
 } from '@mantine/core'
 import { motion } from 'framer-motion'
 
@@ -13,7 +12,6 @@ interface UserBadgeProps {
 }
 
 const UserBadge: FC<UserBadgeProps> = ({ name, role }) => {
-  const theme = useMantineTheme()
 
   return (        
     <Paper 
@@ -21,7 +19,7 @@ const UserBadge: FC<UserBadgeProps> = ({ name, role }) => {
       p="xs"
       withBorder
       shadow="sm"
-      bg={theme.colors.dark[6]}
+      bg='dark.6'
       component={motion.div}
       whileHover={{
         scale: 1.02,
