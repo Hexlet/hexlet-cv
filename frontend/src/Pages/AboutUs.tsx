@@ -7,24 +7,21 @@ import {
   Group,
   Stack,
   Badge,
-  useMantineTheme,
 } from '@mantine/core'
 import { motion } from 'framer-motion'
 import UserBadge from './components/UserBadge'
 
 const AboutUs = () => {
-  const theme = useMantineTheme()
-
   return (
-    <Container size="lg" py="xl">
+    <Container size="lg" py="xs">
       <Group justify="center" mb="xs">
         <Stack gap="xs" align="center">
-          <Badge color={theme.colors.teal[9]} mb={0} size='lg'>
-            <Text size='xs' c='lime'>
+          <Badge color='teal.9' mb={0} size='lg'>
+            <Text size='xs' c='lime' fw='bold'>
                 О нас
             </Text>
           </Badge>
-          <Title order={1} fw={900} ta="center">
+          <Title order={1} fw={900} ta="center" c='white'>
             Наша команда
           </Title>
         </Stack>
@@ -51,18 +48,16 @@ const AboutUs = () => {
         <Card
           radius="lg"
           p="xl"
-          bg={theme.colors.dark[6]}
+          bg='dark.6'
         >
           <Group justify="center">
             <Stack gap="md" align="center">
               <Text size='xl' c='dimmed'>
                 ИИ-помощник
-              </Text>
-              
+              </Text>  
               <Title order={3} ta="center" c='white'>
                 Тота ИИ — агент-ускоритель карьеры
               </Title>
-              
               <Text ta="center" size="lg" c='dimmed'>
                 Помогает с резюме, откликами, перепиской с рекрутерами 
                 и подготовкой к собеседованиям.
