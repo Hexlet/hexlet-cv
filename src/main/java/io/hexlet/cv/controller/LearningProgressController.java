@@ -6,11 +6,11 @@ import io.hexlet.cv.dto.learning.UserProgramProgressDTO;
 import io.hexlet.cv.service.UserLessonProgressService;
 import io.hexlet.cv.service.UserProgramProgressService;
 import io.hexlet.cv.util.UserUtils;
-import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -36,47 +36,64 @@ public class LearningProgressController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public Object getProgress() {
+    public Object getProgress(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size) {
         LOGGER.debug("Get progress request");
         var user = userUtils.getCurrentUser();
 
-        List<UserProgramProgressDTO> progress = userProgramProgressService.getUserProgress(user.getId());
+        Page<UserProgramProgressDTO> progressPage = userProgramProgressService.getUserProgress(user.getId(),
+                page, size);
 
         Map<String, Object> props = Map.of(
-                "progress", progress,
+                "progress", progressPage.getContent(),
+                "pagination", Map.of(
+                        "currentPage", progressPage.getNumber(),
+                        "totalPages", progressPage.getTotalPages(),
+                        "totalElements", progressPage.getTotalElements(),
+                        "pageSize", size
+                ),
                 "pageTitle", "Мое обучение",
                 "activeMainSection", "account",
                 "activeSubSection", "my-progress"
         );
 
-        LOGGER.debug("[CONTROLLER] Рендеринг страницы Learning/MyProgress/Index с {} свойствами",
-                props.size());
+        LOGGER.debug("[CONTROLLER] Рендеринг страницы Learning/MyProgress/Index с {} "
+                        + "программами и пагинацией",
+                progressPage.getContent().size());
         return inertia.render("Learning/MyProgress/Index", props);
     }
 
     @GetMapping("/program/{programProgressId}/lessons")
     @ResponseStatus(HttpStatus.OK)
-    public Object getLessonProgress(@PathVariable Long programProgressId) {
+    public Object getLessonProgress(@PathVariable Long programProgressId,
+                                    @RequestParam(defaultValue = "0") int page,
+                                    @RequestParam(defaultValue = "10") int size) {
         var user = userUtils.getCurrentUser();
         LOGGER.debug("[CONTROLLER] Получение уроков для programProgressId: {}, пользователь: {}",
                 programProgressId, user.getEmail());
 
-        List<UserLessonProgressDTO> lessonsProgress = userLessonProgressService
-                .getLessonProgress(user.getId(), programProgressId);
+        Page<UserLessonProgressDTO> lessonsProgressPage = userLessonProgressService
+                .getLessonProgress(user.getId(), programProgressId, page, size);
         Map<String, Object> props = Map.of(
-                "lessonsProgress", lessonsProgress,
+                "lessonsProgress", lessonsProgressPage.getContent(),
+                "pagination", Map.of(
+                        "currentPage", lessonsProgressPage.getNumber(),
+                        "totalPages", lessonsProgressPage.getTotalPages(),
+                        "totalElements", lessonsProgressPage.getTotalElements(),
+                        "pageSize", size
+                ),
                 "programProgressId", programProgressId,
                 "pageTitle", "Уроки программы",
                 "activeMainSection", "account",
                 "activeSubSection", "my-progress"
         );
 
-        LOGGER.debug("[CONTROLLER] Рендеринг страницы Lessons с {} свойствами", props.size());
+        LOGGER.debug("[CONTROLLER] Рендеринг страницы Lessons с {} уроками и пагинацией",
+                lessonsProgressPage.getContent().size());
         return inertia.render("Learning/MyProgress/Lessons", props);
     }
 
     @PostMapping("/program/start")
-    @ResponseStatus(HttpStatus.CREATED)
     public Object startProgram(@RequestParam Long programId) {
         var user = userUtils.getCurrentUser();
         LOGGER.debug("[CONTROLLER] Старт программы {} пользователем {}", programId, user.getEmail());
@@ -86,7 +103,6 @@ public class LearningProgressController {
     }
 
     @PostMapping("/lesson/start")
-    @ResponseStatus(HttpStatus.CREATED)
     public Object startLesson(@RequestParam Long programProgressId,
                               @RequestParam Long lessonId) {
 
@@ -100,7 +116,6 @@ public class LearningProgressController {
     }
 
     @PostMapping("/lesson/{lessonProgressId}/complete")
-    @ResponseStatus(HttpStatus.OK)
     public Object completeLesson(@PathVariable Long lessonProgressId,
                                  @RequestParam Long programProgressId) {
         userLessonProgressService.completeLesson(lessonProgressId);
@@ -108,7 +123,6 @@ public class LearningProgressController {
     }
 
     @PostMapping("/program/{programProgressId}/complete")
-    @ResponseStatus(HttpStatus.OK)
     public Object completeProgram(@PathVariable Long programProgressId) {
         userProgramProgressService.completeProgram(programProgressId);
         return inertia.redirect("/account/my-progress");

@@ -28,6 +28,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -115,12 +116,70 @@ public class LearningProgressControllerTest {
     }
 
     @Test
+    void testCandidateAccessMyProgressWithPagination() throws Exception {
+        MvcResult result = mockMvc.perform(get("/account/my-progress")
+                        .param("page", "0")
+                        .param("size", "5")
+                        .cookie(new Cookie("access_token", candidateToken))
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("progress");
+        assertThat(content).contains("pagination");
+    }
+
+    @Test
+    void testGetLessonProgressWithPagination() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            Lesson lesson = new Lesson();
+            lesson.setTitle("Test Lesson " + i);
+            lesson.setContent("Test Lesson Content " + i);
+            lesson.setProgram(testProgram);
+            lesson.setOrderNumber(i + 2);
+            lesson = lessonRepository.save(lesson);
+
+            UserLessonProgress lessonProgress = new UserLessonProgress();
+            lessonProgress.setUser(testUser);
+            lessonProgress.setLesson(lesson);
+            lessonProgress.setProgramProgress(testProgramProgress);
+            lessonProgress.setStartedAt(LocalDateTime.now());
+            lessonProgress.setIsCompleted(i % 2 == 0);
+            userLessonProgressRepository.save(lessonProgress);
+        }
+
+        MvcResult result = mockMvc.perform(get("/account/my-progress/program/{programProgressId}/lessons",
+                        testProgramProgress.getId())
+                        .param("page", "0")
+                        .param("size", "2")
+                        .cookie(new Cookie("access_token", candidateToken))
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("lessonsProgress");
+        assertThat(content).contains("pagination");
+    }
+
+    @Test
+    void testGetLessonProgressWithDefaultPagination() throws Exception {
+        mockMvc.perform(get("/account/my-progress/program/{programProgressId}/lessons",
+                        testProgramProgress.getId())
+                        .cookie(new Cookie("access_token", candidateToken))
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isOk());
+    }
+
+
+    @Test
     void testStartProgram() throws Exception {
         mockMvc.perform(post("/account/my-progress/program/start")
                         .param("programId", testProgram.getId().toString())
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isFound());
 
         Optional<UserProgramProgress> progress = userProgramProgressRepository
                 .findByUserIdAndProgramId(testUser.getId(), testProgram.getId());
@@ -135,7 +194,7 @@ public class LearningProgressControllerTest {
                         .param("lessonId", testLesson.getId().toString())
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isFound());
 
         Optional<UserLessonProgress> lessonProgress = userLessonProgressRepository
                 .findByUserIdAndLessonId(testUser.getId(), testLesson.getId());
@@ -159,7 +218,7 @@ public class LearningProgressControllerTest {
                         .param("programProgressId", testProgramProgress.getId().toString())
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isFound());
 
         Optional<UserLessonProgress> completedLesson = userLessonProgressRepository
                 .findById(lessonProgress.getId());
@@ -172,11 +231,11 @@ public class LearningProgressControllerTest {
 
     @Test
     void testCompleteProgram() throws Exception {
-        mockMvc.perform(post("/account/my-progress/program/" + testProgram.getId() + "/complete")
+        mockMvc.perform(post("/account/my-progress/program/" + testProgramProgress.getId() + "/complete")
                         .param("programProgressId", testProgramProgress.getId().toString())
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isFound());
 
         Optional<UserProgramProgress> completedProgram = userProgramProgressRepository
                 .findByUserIdAndProgramId(testUser.getId(), testProgram.getId());

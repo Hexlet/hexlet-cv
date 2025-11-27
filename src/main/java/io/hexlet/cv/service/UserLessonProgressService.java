@@ -9,9 +9,11 @@ import io.hexlet.cv.repository.UserLessonProgressRepository;
 import io.hexlet.cv.repository.UserProgramProgressRepository;
 import io.hexlet.cv.repository.UserRepository;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,12 +30,12 @@ public class UserLessonProgressService {
     private final LessonRepository lessonRepository;
     private final UserRepository userRepository;
 
-    public List<UserLessonProgressDTO> getLessonProgress(Long userId, Long programProgressId) {
-        List<UserLessonProgress> progressList = userLessonProgressRepository.findByProgramProgressId(programProgressId);
+    public Page<UserLessonProgressDTO> getLessonProgress(Long userId, Long programProgressId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("startedAt").descending());
+        Page<UserLessonProgress> progressPage = userLessonProgressRepository
+                .findByProgramProgressId(programProgressId, pageable);
 
-        return progressList.stream()
-                .map(userLessonProgressMapper::toDTO)
-                .collect(Collectors.toList());
+        return progressPage.map(userLessonProgressMapper::toDTO);
     }
 
     @Transactional
@@ -84,6 +86,7 @@ public class UserLessonProgressService {
                 userLessonProgressRepository.countCompletedLessonsByProgramProgressId(programProgressId);
 
         programProgress.setCompletedLessons(completedLessonsCount.intValue());
+        programProgress.setLastActivityAt(LocalDateTime.now());
 
         int totalLessons = programProgress.getProgram().getLessons().size();
         if (completedLessonsCount == totalLessons) {

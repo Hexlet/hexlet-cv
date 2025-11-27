@@ -9,9 +9,11 @@ import io.hexlet.cv.repository.UserProgramProgressRepository;
 import io.hexlet.cv.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,16 +25,15 @@ public class UserProgramProgressService {
     private final UserRepository userRepository;
     private final ProgramRepository programRepository;
 
-    public List<UserProgramProgressDTO> getUserProgress(Long userId) {
-        List<UserProgramProgress> progressList = programProgressRepository.findByUserId(userId);
+    public Page<UserProgramProgressDTO> getUserProgress(Long userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("startedAt").descending());
+        Page<UserProgramProgress> progressPage = programProgressRepository.findByUserId(userId, pageable);
 
-        return progressList.stream()
-                .map(progress -> {
-                    UserProgramProgressDTO dto = programProgressMapper.toDTO(progress);
-                    dto.setProgressPercentage(calculateProgressPercentage(progress));
-                    return dto;
-                })
-                .collect(Collectors.toList());
+        return progressPage.map(progress -> {
+            var dto = programProgressMapper.toDTO(progress);
+            dto.setProgressPercentage(calculateProgressPercentage(progress));
+            return dto;
+        });
     }
 
     @Transactional
