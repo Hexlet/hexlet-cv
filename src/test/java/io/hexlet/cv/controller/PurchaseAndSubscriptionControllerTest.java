@@ -5,16 +5,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import io.hexlet.cv.model.User;
-import io.hexlet.cv.model.account.PurchSubs;
+import io.hexlet.cv.model.account.PurchaseAndSubscription;
+import io.hexlet.cv.model.enums.ProductType;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.model.enums.StatePurchSubsType;
-import io.hexlet.cv.repository.PurchSubsRepository;
+import io.hexlet.cv.model.webinars.Webinar;
+import io.hexlet.cv.repository.PurchaseAndSubscriptionRepository;
 import io.hexlet.cv.repository.UserRepository;
+import io.hexlet.cv.repository.WebinarRepository;
 import io.hexlet.cv.util.JWTUtils;
 import jakarta.servlet.http.Cookie;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,10 +35,13 @@ public class PurchaseAndSubscriptionControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private PurchSubsRepository subsRepo;
+    private PurchaseAndSubscriptionRepository subsRepo;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private WebinarRepository webinarRepo;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -71,16 +77,29 @@ public class PurchaseAndSubscriptionControllerTest {
     @Test
     public void testAuthorizedIndex() throws Exception {
 
+        Webinar webinar = new Webinar();
+        webinar.setWebinarName("Тестовый вебинар");
+        webinar.setWebinarDate(LocalDateTime.now().plusDays(1));
+        webinar.setWebinarRegLink("https://testlink.ru/reg");
+        webinar.setPublicated(true);
+        webinar.setFeature(false);
+        webinarRepo.save(webinar);
 
-        PurchSubs subs = new PurchSubs();
-        subs.setUser(testUser);
-        subs.setOrderNum("#A-1042");
-        subs.setItemName("Test subscription");
-        subs.setPurchasedAt(LocalDate.parse("2020-10-10", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        subs.setAmount(BigDecimal.valueOf(12345, 2));
-        subs.setState(StatePurchSubsType.ACTIVE);
-        subs.setBillUrl("https://www.google.com");
-        subsRepo.save(subs);
+
+        PurchaseAndSubscription purchase = new PurchaseAndSubscription();
+        purchase.setUser(testUser);
+        purchase.setOrderNum("#A-1001");
+        purchase.setItemName("Вебинар: " + webinar.getWebinarName());
+        purchase.setPurchasedAt(LocalDate.now());
+        purchase.setAmount(BigDecimal.valueOf(12345, 2));
+        purchase.setState(StatePurchSubsType.ACTIVE);
+        purchase.setBillUrl("https://bills.ru/bill/A-1001");
+        purchase.setProductType(ProductType.WEBINAR);
+        purchase.setReferenceId(webinar.getId());
+        purchase.setWebinar(webinar);
+
+        subsRepo.save(purchase);
+
 
         var mvcResult = mockMvc.perform(get("/account/purchase")
                         .cookie(new Cookie("access_token", candidateToken))
@@ -89,7 +108,7 @@ public class PurchaseAndSubscriptionControllerTest {
                 .andReturn();
 
         String json = mvcResult.getResponse().getContentAsString();
-        assertThat(json).contains(subs.getItemName());
+        assertThat(json).contains(purchase.getItemName());
 
     }
 

@@ -1,7 +1,7 @@
 package io.hexlet.cv.mapper;
 
 import io.hexlet.cv.dto.admin.WebinarDTO;
-import io.hexlet.cv.model.admin.Webinar;
+import io.hexlet.cv.model.webinars.Webinar;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

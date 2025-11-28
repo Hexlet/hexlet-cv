@@ -11,8 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hexlet.cv.dto.admin.WebinarDTO;
 import io.hexlet.cv.model.User;
-import io.hexlet.cv.model.admin.Webinar;
 import io.hexlet.cv.model.enums.RoleType;
+import io.hexlet.cv.model.webinars.Webinar;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.repository.WebinarRepository;
 import io.hexlet.cv.util.JWTUtils;

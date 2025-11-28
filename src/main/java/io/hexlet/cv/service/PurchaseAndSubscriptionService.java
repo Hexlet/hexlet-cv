@@ -1,7 +1,7 @@
 package io.hexlet.cv.service;
 
 import io.hexlet.cv.mapper.PurchSubsMapper;
-import io.hexlet.cv.repository.PurchSubsRepository;
+import io.hexlet.cv.repository.PurchaseAndSubscriptionRepository;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PurchaseAndSubscriptionService {
 
-    private final PurchSubsRepository subsRepository;
+    private final PurchaseAndSubscriptionRepository subsRepository;
     private final PurchSubsMapper mapper;
 
     public Map<String, Object> indexPurchSubs(Long userId, Pageable pageable) {

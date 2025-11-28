@@ -3,7 +3,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.converter.RoleTypeConverter;
-import io.hexlet.cv.model.account.PurchSubs;
+import io.hexlet.cv.model.account.PurchaseAndSubscription;
 import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Convert;
@@ -96,7 +96,7 @@ public class User implements UserDetails {
     private String locale;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<PurchSubs> purchases = new ArrayList<>();
+    private List<PurchaseAndSubscription> purchases = new ArrayList<>();
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")

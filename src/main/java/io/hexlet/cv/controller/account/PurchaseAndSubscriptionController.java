@@ -29,7 +29,7 @@ public class PurchaseAndSubscriptionController {
                         @RequestParam(defaultValue = "10") int size,
                         HttpServletRequest request) {
 
-        var userId = userUtils.currentUserId();
+        var userId = userUtils.currentUserId();  // id юзера который залогинился
 
         Pageable pageable = PageRequest.of(page, size);
         var props = service.indexPurchSubs(userId.get(), pageable);

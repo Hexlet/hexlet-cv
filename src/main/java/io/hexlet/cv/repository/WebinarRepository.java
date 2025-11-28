@@ -1,6 +1,6 @@
 package io.hexlet.cv.repository;
 
-import io.hexlet.cv.model.admin.Webinar;
+import io.hexlet.cv.model.webinars.Webinar;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

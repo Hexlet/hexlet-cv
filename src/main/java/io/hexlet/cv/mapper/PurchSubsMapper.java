@@ -1,7 +1,7 @@
 package io.hexlet.cv.mapper;
 
 import io.hexlet.cv.dto.account.PurchSubsDTO;
-import io.hexlet.cv.model.account.PurchSubs;
+import io.hexlet.cv.model.account.PurchaseAndSubscription;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -16,5 +16,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public abstract class PurchSubsMapper {
     @Mapping(target = "userId", source = "user.id")
-    public abstract PurchSubsDTO toDto(PurchSubs entity);
+    public abstract PurchSubsDTO toDto(PurchaseAndSubscription entity);
 }

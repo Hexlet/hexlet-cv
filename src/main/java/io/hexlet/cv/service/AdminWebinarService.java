@@ -4,7 +4,7 @@ import io.hexlet.cv.dto.admin.WebinarDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.WebinarAlreadyExistsException;
 import io.hexlet.cv.mapper.AdminWebinarMapper;
-import io.hexlet.cv.model.admin.Webinar;
+import io.hexlet.cv.model.webinars.Webinar;
 import io.hexlet.cv.repository.WebinarRepository;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
@@ -77,7 +77,7 @@ public class AdminWebinarService {
         props.put("totalPages", allWebinars.getTotalPages());
         props.put("totalItems", allWebinars.getTotalElements());
 
-        props.put("webinars", allWebinars);
+        props.put("webinars", allWebinars.getContent());
 
         return props;
     }

@@ -4,7 +4,9 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.User;
+import io.hexlet.cv.model.enums.ProductType;
 import io.hexlet.cv.model.enums.StatePurchSubsType;
+import io.hexlet.cv.model.webinars.Webinar;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -35,10 +37,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class PurchSubs {
+public class PurchaseAndSubscription {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -61,16 +64,25 @@ public class PurchSubs {
     @NotNull
     private StatePurchSubsType state;
 
-    private String billUrl; // сслылка на файл со счетом или на сторонний ресурс банка и тд.
+    private String billUrl; // ссылка на файл со счетом или на сторонний ресурс банка и тд.
 
 
+    // Полиморфная связь
+    @NotNull
+    private ProductType productType;
+    @NotNull
+    private Long referenceId;  // id вебинара, курса, подписки и тд
 
 
-   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    // чтобы сразу был доступ в вебинароам, потом еще добавим другие варианты, что модно купить
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "webinar_id")
+    private Webinar webinar;
+
+
     @CreatedDate
     private LocalDateTime createdAt;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 }
