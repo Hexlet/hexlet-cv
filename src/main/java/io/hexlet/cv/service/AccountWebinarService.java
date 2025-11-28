@@ -1,13 +1,7 @@
+
+/*
 package io.hexlet.cv.service;
 
-import io.hexlet.cv.model.account.PurchaseAndSubscription;
-import io.hexlet.cv.model.enums.ProductType;
-import io.hexlet.cv.repository.PurchaseAndSubscriptionRepository;
-import java.util.HashMap;
-import java.util.Map;
-import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
@@ -32,3 +26,6 @@ public class AccountWebinarService {
 
     }
 }
+
+
+ */

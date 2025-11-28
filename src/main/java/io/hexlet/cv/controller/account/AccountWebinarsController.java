@@ -1,5 +1,4 @@
 /*
-
 package io.hexlet.cv.controller.account;
 
 
@@ -21,13 +20,7 @@ public class AccountWebinarsController {
 
         var userId = userUtils.currentUserId();  // id юзера который залогинился
 
-        var props = new HashMap<String, Object>();
         Pageable pageable = PageRequest.of(page, size);
-
-        */
-
-
-        /*
         var props = service.indexWebinars(userId.get(), pageable);
 
         var flash = RequestContextUtils.getInputFlashMap(request);
@@ -35,12 +28,8 @@ public class AccountWebinarsController {
             props.put("flash", flash);
         }
 
-         */
 
-/*
-
-        return inertia.render("Account/Purchase/Index", props);
+        return inertia.render("Account/Webinars/Index", props);
     }
 }
-
- */
+*/
