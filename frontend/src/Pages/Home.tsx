@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react'
 import { Container, Button, Group, Title } from '@mantine/core'
-import AboutUs from './AboutUs'
+import OurTeam from './OurTeam'
+
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
           </Button>
         </Group>
       </Container>
-      <AboutUs />
+      <OurTeam />
     </>
   )
 }
