@@ -158,7 +158,7 @@ class AccountWebinarsControllerTest {
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/Account/Webinars/Index"));
+                .andExpect(header().string("Location", "/account/webinars"));
 
 
         var subs = subsRepo.findFirstByUserId(testUser.getId());
@@ -196,7 +196,7 @@ class AccountWebinarsControllerTest {
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/Account/Webinars/Index"));
+                .andExpect(header().string("Location", "/account/webinars"));
 
         var event = eventRepo.findFirstByUserId(testUser.getId());
         assertThat(event).isPresent();
