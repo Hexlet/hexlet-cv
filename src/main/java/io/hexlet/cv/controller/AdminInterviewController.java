@@ -54,82 +54,48 @@ public class AdminInterviewController {
                                         @RequestParam(defaultValue = "30") int size,
                                         HttpServletRequest request) {
 
-        try {
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
+        Map<String, Object> props = flashPropsService.buildProps(locale, request);
 
-            int safeSize = Math.min(size, MAX_INTERVIEWS_ON_PAGE);
-            Pageable pageable = PageRequest.of(page, safeSize, Sort.by("createdAt").descending());
+        int safeSize = Math.min(size, MAX_INTERVIEWS_ON_PAGE);
+        Pageable pageable = PageRequest.of(page, safeSize, Sort.by("createdAt").descending());
 
-            Page<InterviewDTO> interviewPage = StringUtils.hasText(interviewSearchWord)
-                    ? interviewService.search(interviewSearchWord, pageable)
-                    : interviewService.getAll(pageable);
+        Page<InterviewDTO> interviewPage = StringUtils.hasText(interviewSearchWord)
+                ? interviewService.search(interviewSearchWord, pageable)
+                : interviewService.getAll(pageable);
 
-            props.putAll(Map.of(
-                    "interviews", interviewPage.getContent(),
-                    "searchQuery", interviewSearchWord != null ? interviewSearchWord : "",
-                    "pagination", Map.of(
-                            "currentPage", interviewPage.getNumber(),
-                            "totalPages", interviewPage.getTotalPages(),
-                            "totalItems", interviewPage.getTotalElements(),
-                            "pageSize", safeSize,
-                            "hasPrevious", interviewPage.hasPrevious(),
-                            "hasNext", interviewPage.hasNext()
-                    ),
-                    "pageTitle", StringUtils.hasText(interviewSearchWord)
-                            ? "Результаты поиска: " + interviewSearchWord
-                            : "Список интервью"
-            ));
+        props.putAll(Map.of(
+                "interviews", interviewPage.getContent(),
+                "searchQuery", interviewSearchWord != null ? interviewSearchWord : "",
+                "pagination", Map.of(
+                        "currentPage", interviewPage.getNumber(),
+                        "totalPages", interviewPage.getTotalPages(),
+                        "totalItems", interviewPage.getTotalElements(),
+                        "pageSize", safeSize,
+                        "hasPrevious", interviewPage.hasPrevious(),
+                        "hasNext", interviewPage.hasNext()
+                ),
+                "pageTitle", StringUtils.hasText(interviewSearchWord)
+                        ? "Результаты поиска: " + interviewSearchWord
+                        : "Список интервью"
+        ));
 
-            return inertia.render("Admin/Interviews/Index", props);
-
-        } catch (Exception e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "interviews", List.of(),
-                    "searchQuery", interviewSearchWord != null ? interviewSearchWord : "",
-                    "pagination", Map.of(
-                            "currentPage", 0,
-                            "totalPages", 0,
-                            "totalItems", 0,
-                            "pageSize", size,
-                            "hasPrevious", false,
-                            "hasNext", false
-                    ),
-                    "pageTitle", "Ошибка загрузки списка интервью",
-                    "error", "Не удалось загрузить список интервью"
-            ));
-
-            return inertia.render("Admin/Interviews/Index", props);
-        }
+        return inertia.render("Admin/Interviews/Index", props);
     }
 
     @GetMapping("/create")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> createForm(@PathVariable("locale") String locale,
                                              HttpServletRequest request) {
-        try {
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
 
-            props.putAll(Map.of(
-                    "availableSpeakers", availableSpeakers,
-                    "pageTitle", "Создание интервью"
-            ));
+        Map<String, Object> props = flashPropsService.buildProps(locale, request);
+        List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
 
-            return inertia.render("Admin/Interviews/Create", props);
+        props.putAll(Map.of(
+                "availableSpeakers", availableSpeakers,
+                "pageTitle", "Создание интервью"
+        ));
 
-        } catch (Exception e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "availableSpeakers", List.of(),
-                    "pageTitle", "Ошибка загрузки",
-                    "error", "Не удалось загрузить форму создания"
-            ));
-
-            return inertia.render("Admin/Interviews/Create", props);
-        }
+        return inertia.render("Admin/Interviews/Create", props);
     }
 
     @PostMapping("/create")
@@ -137,18 +103,11 @@ public class AdminInterviewController {
     public ResponseEntity<String> createInterview(@PathVariable("locale") String locale,
                                                   @Valid @RequestBody InterviewCreateDTO createDTO,
                                                   RedirectAttributes redirectAttributes) {
-        try {
-            interviewService.create(createDTO);
-            redirectAttributes.addFlashAttribute("success", "Интервью успешно создано");
 
-            return inertia.redirect("/" + locale + "/admin/interview");
+        interviewService.create(createDTO);
+        redirectAttributes.addFlashAttribute("success", "Интервью успешно создано");
 
-        } catch (Exception e) {
-
-            redirectAttributes.addFlashAttribute("error", "Ошибка при создании интервью: " + e.getMessage());
-
-            return inertia.redirect("/" + locale + "/admin/interview/create");
-        }
+        return inertia.redirect("/" + locale + "/admin/interview");
     }
 
     @GetMapping("/{id}")
@@ -156,38 +115,16 @@ public class AdminInterviewController {
     public ResponseEntity<String> show(@PathVariable("locale") String locale,
                                        @PathVariable Long id,
                                        HttpServletRequest request) {
-        try {
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            InterviewDTO interviewDTO = interviewService.findById(id);
 
-            props.putAll(Map.of(
-                    "interview", interviewDTO,
-                    "pageTitle", "Просмотр интервью"
-            ));
+        Map<String, Object> props = flashPropsService.buildProps(locale, request);
+        InterviewDTO interviewDTO = interviewService.findById(id);
 
-            return inertia.render("Admin/Interviews/Show", props);
+        props.putAll(Map.of(
+                "interview", interviewDTO,
+                "pageTitle", "Просмотр интервью"
+        ));
 
-        } catch (ResourceNotFoundException e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "pageTitle", "Интервью не найдено",
-                    "error", "Запрашиваемое интервью не существует или было удалено",
-                    "interviewId", id
-            ));
-
-            return inertia.render("Error/InterviewNotFound", props);
-
-        } catch (Exception e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "pageTitle", "Ошибка загрузки",
-                    "error", "Не удалось загрузить интервью"
-            ));
-
-            return inertia.render("Admin/Interviews/Show", props);
-        }
+        return inertia.render("Admin/Interviews/Show", props);
     }
 
     @GetMapping("/{id}/edit")
@@ -195,42 +132,18 @@ public class AdminInterviewController {
     public ResponseEntity<String> editForm(@PathVariable("locale") String locale,
                                            @PathVariable Long id,
                                            HttpServletRequest request) {
-        try {
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            InterviewDTO interviewDTO = interviewService.findById(id);
-            List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
 
-            props.putAll(Map.of(
-                    "interview", interviewDTO,
-                    "availableSpeakers", availableSpeakers,
-                    "pageTitle", "Редактирование интервью"
-            ));
+        Map<String, Object> props = flashPropsService.buildProps(locale, request);
+        InterviewDTO interviewDTO = interviewService.findById(id);
+        List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
 
-            return inertia.render("Admin/Interviews/Edit", props);
+        props.putAll(Map.of(
+                "interview", interviewDTO,
+                "availableSpeakers", availableSpeakers,
+                "pageTitle", "Редактирование интервью"
+        ));
 
-        } catch (ResourceNotFoundException e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "pageTitle", "Интервью не найдено",
-                    "error", "Не удалось найти интервью для редактирования",
-                    "interviewId", id
-            ));
-
-            return inertia.render("Error/InterviewNotFound", props);
-
-        } catch (Exception e) {
-
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            props.putAll(Map.of(
-                    "interview", null,
-                    "availableSpeakers", List.of(),
-                    "pageTitle", "Ошибка загрузки",
-                    "error", "Не удалось загрузить форму редактирования"
-            ));
-
-            return inertia.render("Admin/Interviews/Edit", props);
-        }
+        return inertia.render("Admin/Interviews/Edit", props);
     }
 
     @PutMapping("/{id}/edit")
@@ -239,22 +152,11 @@ public class AdminInterviewController {
                                        @PathVariable Long id,
                                        @Valid @RequestBody InterviewUpdateDTO updateDTO,
                                        RedirectAttributes redirectAttributes) {
-        try {
-            interviewService.update(updateDTO, id);
-            redirectAttributes.addFlashAttribute("success", "Интервью успешно обновлено");
 
-            return inertia.redirect("/" + locale + "/admin/interview/" + id);
+        interviewService.update(updateDTO, id);
+        redirectAttributes.addFlashAttribute("success", "Интервью успешно обновлено");
 
-        } catch (ResourceNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", "Интервью не найдено");
-
-            return inertia.redirect("/" + locale + "/admin/interview");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Ошибка при обновлении: " + e.getMessage());
-
-            return inertia.redirect("/" + locale + "/admin/interview/" + id + "/edit");
-        }
+        return inertia.redirect("/" + locale + "/admin/interview/" + id);
     }
 
     @DeleteMapping("/{id}")
@@ -262,21 +164,10 @@ public class AdminInterviewController {
     public ResponseEntity<String> delete(@PathVariable String locale,
                                          @PathVariable Long id,
                                          RedirectAttributes redirectAttributes) {
-        try {
-            interviewService.delete(id);
-            redirectAttributes.addFlashAttribute("success", "Интервью успешно удалено");
 
-            return inertia.redirect("/" + locale + "/admin/interview");
+        interviewService.delete(id);
+        redirectAttributes.addFlashAttribute("success", "Интервью успешно удалено");
 
-        } catch (ResourceNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", "Интервью не найдено");
-
-            return inertia.redirect("/" + locale + "/admin/interview");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Ошибка при удалении: " + e.getMessage());
-
-            return inertia.redirect("/" + locale + "/admin/interview");
-        }
+        return inertia.redirect("/" + locale + "/admin/interview");
     }
 }
