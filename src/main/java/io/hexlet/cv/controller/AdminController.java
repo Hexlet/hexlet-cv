@@ -51,14 +51,6 @@ public class AdminController {
 
     }
 
-    @GetMapping("/interview")
-    public ResponseEntity<?> adminInterviewController(@PathVariable("locale") String locale,
-                                                      HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);
-        return inertia.render("Admin/Interview/Index", props);
-
-    }
-
     @GetMapping("/grading")
     public ResponseEntity<?> adminGradingController(@PathVariable("locale") String locale,
                                                     HttpServletRequest request) {
