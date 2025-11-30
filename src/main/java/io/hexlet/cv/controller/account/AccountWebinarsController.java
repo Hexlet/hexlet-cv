@@ -56,7 +56,7 @@ public class AccountWebinarsController {
         service.registrationUserToWebinar(userId.get(), webinarId);
 
         redirectAttributes.addFlashAttribute("success", "webinar.registered.success");
-        return inertia.redirect("/Account/Webinars/Index");
+        return inertia.redirect("/account/webinars");
 
     }
 
@@ -68,6 +68,6 @@ public class AccountWebinarsController {
         service.addWebinarToCalendar(userId.get(), webinarId);
 
         redirectAttributes.addFlashAttribute("success", "webinar.add.success");
-        return inertia.redirect("/Account/Webinars/Index");
+        return inertia.redirect("/account/webinars");
     }
 }
