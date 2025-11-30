@@ -53,4 +53,6 @@ public interface WebinarRepository extends JpaRepository<Webinar, Long>  {
     Optional<Webinar> findFirstByOrderByIdAsc();
 
     List<Webinar> findAllByIdInOrderByWebinarDateAsc(Iterable<Long> webinarIds);
+
+    Webinar findFirstBy();
 }

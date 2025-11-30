@@ -56,7 +56,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Profile("dev")
 @AllArgsConstructor
-public class DataInitializer {
+public class UserDataInitializer {
 
     private final UserRepository userRepository;
     private final ResumeRepository resumeRepository;
@@ -83,7 +83,7 @@ public class DataInitializer {
     private final PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void initializeData() {
+    public void initData() {
         if (userRepository.count() > 0) {
             return;
         }
