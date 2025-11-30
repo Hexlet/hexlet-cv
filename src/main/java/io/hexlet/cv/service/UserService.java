@@ -3,11 +3,10 @@ package io.hexlet.cv.service;
 import io.hexlet.cv.dto.user.UserDTO;
 import io.hexlet.cv.mapper.UserMapper;
 import io.hexlet.cv.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

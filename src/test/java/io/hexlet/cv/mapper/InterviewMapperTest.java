@@ -1,24 +1,23 @@
 package io.hexlet.cv.mapper;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
+
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.repository.UserRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class InterviewMapperTest {
@@ -30,7 +29,7 @@ class InterviewMapperTest {
     private InterviewMapper interviewMapper;
 
     @Test
-    void map_InterviewCreateDTO_To_Interview_WithOnlyTitle() {
+    void mapInterviewCreateDTOToInterviewWithOnlyTitle() {
         // given
         InterviewCreateDTO createDTO = new InterviewCreateDTO();
         createDTO.setTitle("Test Interview");
@@ -49,7 +48,7 @@ class InterviewMapperTest {
     }
 
     @Test
-    void map_InterviewCreateDTO_To_Interview_WithSpeaker() {
+    void mapInterviewCreateDTOToInterviewWithSpeaker() {
         // given
         User speaker = new User();
         speaker.setId(1L);
@@ -79,7 +78,7 @@ class InterviewMapperTest {
     }
 
     @Test
-    void map_InterviewCreateDTO_WithNonExistentSpeaker_ShouldThrowException() {
+    void mapInterviewCreateDTOWithNonExistentSpeakerShouldThrowException() {
         // given
         when(userRepository.findById(999L)).thenReturn(Optional.empty());
 
@@ -96,7 +95,7 @@ class InterviewMapperTest {
     }
 
     @Test
-    void updateInterview_ShouldUpdateOnlySpecifiedFields() {
+    void updateInterviewShouldUpdateOnlySpecifiedFields() {
         // given
         User speaker = new User();
         speaker.setId(1L);

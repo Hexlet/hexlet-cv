@@ -1,5 +1,18 @@
 package io.hexlet.cv.controller;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
@@ -9,6 +22,9 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.service.FlashPropsService;
 import io.hexlet.cv.service.InterviewService;
 import io.hexlet.cv.service.UserService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +38,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyMap;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -77,7 +76,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void index_ShouldReturnInterviewsList() throws Exception {
+    void indexShouldReturnInterviewsList() throws Exception {
         // given
         String locale = "ru";
         Page<InterviewDTO> interviewPage = new PageImpl<>(List.of(
@@ -96,7 +95,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void index_WithSearchByTitle_ShouldReturnFilteredResults() throws Exception {
+    void indexWithSearchByTitleShouldReturnFilteredResults() throws Exception {
         // given
         String locale = "ru";
         String searchWord = "java";
@@ -115,7 +114,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void show_ShouldReturnInterview() throws Exception {
+    void showShouldReturnInterview() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 1L;
@@ -132,7 +131,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void createForm_ShouldReturnFormWithSpeakers() throws Exception {
+    void createFormShouldReturnFormWithSpeakers() throws Exception {
         // given
         String locale = "ru";
         List<UserDTO> speakers = List.of(
@@ -150,11 +149,12 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void createInterview_ShouldCreateAndRedirect() throws Exception {
+    void createInterviewShouldCreateAndRedirect() throws Exception {
         // given
         String locale = "ru";
 
-        when(interviewService.create(any(InterviewCreateDTO.class))).thenReturn(createInterviewDTO(1L, "New Interview"));
+        when(interviewService.create(any(InterviewCreateDTO.class))).thenReturn(createInterviewDTO(1L,
+                "New Interview"));
 
         // when & then
         mockMvc.perform(post("/{locale}/admin/interview/create", locale)
@@ -171,7 +171,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void editForm_ShouldReturnEditForm() throws Exception {
+    void editFormShouldReturnEditForm() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 1L;
@@ -191,7 +191,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void edit_ShouldUpdateAndRedirect() throws Exception {
+    void editShouldUpdateAndRedirect() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 1L;
@@ -214,7 +214,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void delete_ShouldDeleteAndRedirect() throws Exception {
+    void deleteShouldDeleteAndRedirect() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 1L;
@@ -230,7 +230,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
-    void show_WhenInterviewNotFound_ShouldReturnErrorPage() throws Exception {
+    void showWhenInterviewNotFoundShouldReturnErrorPage() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 999L;

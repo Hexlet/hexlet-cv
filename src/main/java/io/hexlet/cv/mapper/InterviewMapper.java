@@ -41,7 +41,8 @@ public abstract class InterviewMapper {
 
     @Mapping(target = "speaker", ignore = true)
     @Mapping(target = "videoLink", expression = "java(mapVideoLinkForUpdate(dto.getVideoLink(), model.getVideoLink()))")
-    @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished(), model.getIsPublished()))")
+    @Mapping(target = "isPublished", expression = "java(mapIsPublishedForUpdate(dto.getIsPublished(),"
+            + "model.getIsPublished()))")
     public abstract void updateBasicFields(InterviewUpdateDTO dto, @MappingTarget Interview model);
 
     @Named("speakerIdToSpeaker")
@@ -50,8 +51,8 @@ public abstract class InterviewMapper {
             return null;
         }
         return userRepository.findById(speakerId)
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerId + " not found. " +
-                        "Cannot convert speaker id to User."));
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerId
+                        + " not found. " + "Cannot convert speaker id to User."));
     }
 
     @Named("defaultVideoLink")
@@ -87,8 +88,8 @@ public abstract class InterviewMapper {
         }
 
         return userRepository.findById(speakerFromDTO.getId())
-                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerFromDTO.getId() + " not found. " +
-                        "Cannot convert id from speakerFromDTO to User."));
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + speakerFromDTO.getId()
+                        + " not found. " + "Cannot convert id from speakerFromDTO to User."));
     }
 
     protected String mapVideoLinkForUpdate(JsonNullable<String> videoLink, String currentVideoLink) {
