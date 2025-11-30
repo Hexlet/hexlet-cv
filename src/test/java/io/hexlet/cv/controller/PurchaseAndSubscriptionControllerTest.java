@@ -59,6 +59,7 @@ public class PurchaseAndSubscriptionControllerTest {
     public void cleanUp() {
         userRepository.deleteAll();
         subsRepo.deleteAll();
+        webinarRepo.deleteAll();
     }
 
     @BeforeEach
@@ -96,7 +97,7 @@ public class PurchaseAndSubscriptionControllerTest {
         purchase.setBillUrl("https://bills.ru/bill/A-1001");
         purchase.setProductType(ProductType.WEBINAR);
         purchase.setReferenceId(webinar.getId());
-        purchase.setWebinar(webinar);
+       // purchase.setWebinar(webinar);
 
         subsRepo.save(purchase);
 

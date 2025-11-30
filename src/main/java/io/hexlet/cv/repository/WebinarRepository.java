@@ -2,6 +2,7 @@ package io.hexlet.cv.repository;
 
 import io.hexlet.cv.model.webinars.Webinar;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,4 +51,6 @@ public interface WebinarRepository extends JpaRepository<Webinar, Long>  {
 
     Optional<Webinar> findFirstByWebinarName(String name);
     Optional<Webinar> findFirstByOrderByIdAsc();
+
+    List<Webinar> findAllByIdInOrderByWebinarDateAsc(Iterable<Long> webinarIds);
 }

@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
 
         // Обработка обычного запроса
         return ResponseEntity.status(status).body(Map.of("errors", errors));
+
     }
 
     @ExceptionHandler(EntityExistsException.class)

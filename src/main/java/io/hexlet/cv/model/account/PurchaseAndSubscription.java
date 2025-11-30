@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.ProductType;
 import io.hexlet.cv.model.enums.StatePurchSubsType;
-import io.hexlet.cv.model.webinars.Webinar;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -60,7 +59,6 @@ public class PurchaseAndSubscription {
     @NotNull
     private BigDecimal amount; // Сумма
 
-    // @Convert(converter = PurchSubsTypeConverter.class)
     @NotNull
     private StatePurchSubsType state;
 
@@ -74,10 +72,10 @@ public class PurchaseAndSubscription {
     private Long referenceId;  // id вебинара, курса, подписки и тд
 
 
-    // чтобы сразу был доступ в вебинароам, потом еще добавим другие варианты, что модно купить
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "webinar_id")
-    private Webinar webinar;
+
+   // @ManyToOne(fetch = FetchType.LAZY)
+   // @JoinColumn(name = "webinar_id")
+   // private Webinar webinar;
 
 
     @CreatedDate

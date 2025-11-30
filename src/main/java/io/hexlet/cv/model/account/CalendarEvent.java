@@ -1,11 +1,9 @@
-package io.hexlet.cv.model.user;
+package io.hexlet.cv.model.account;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.hexlet.cv.converter.RoleTypeConverter;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.CalendarEventType;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -47,11 +45,10 @@ public class CalendarEvent {
     // полиморфная связь
     private Long referenceId;
 
-    @Convert(converter = RoleTypeConverter.class)
+
     private CalendarEventType eventType;
 
 
-    @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startAt;
 
@@ -60,11 +57,11 @@ public class CalendarEvent {
 
 
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 

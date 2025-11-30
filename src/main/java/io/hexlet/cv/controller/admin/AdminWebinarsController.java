@@ -2,9 +2,7 @@ package io.hexlet.cv.controller.admin;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.admin.WebinarDTO;
-import io.hexlet.cv.repository.WebinarRepository;
 import io.hexlet.cv.service.AdminWebinarService;
-import io.hexlet.cv.service.FlashPropsService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -30,8 +28,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class AdminWebinarsController {
 
     private final Inertia inertia;
-    private final FlashPropsService flashPropsService;
-    private final WebinarRepository webinarRepository;
+   // private final FlashPropsService flashPropsService;
+  //  private final WebinarRepository webinarRepository;
     private final AdminWebinarService adminWebinarService;
 
     @GetMapping("")

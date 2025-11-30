@@ -3,19 +3,14 @@ package io.hexlet.cv.model.webinars;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.hexlet.cv.model.account.PurchaseAndSubscription;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -52,8 +47,8 @@ public class Webinar {
     private boolean feature;
     private boolean publicated;
 
-    @OneToMany(mappedBy = "webinar", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PurchaseAndSubscription> subscription = new HashSet<>();
+    // @OneToMany(mappedBy = "webinar", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private Set<PurchaseAndSubscription> subscription = new HashSet<>();
 
 
 
