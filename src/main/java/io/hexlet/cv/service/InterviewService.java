@@ -3,7 +3,7 @@ package io.hexlet.cv.service;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
-import io.hexlet.cv.handler.exception.ResourceNotFoundException;
+import io.hexlet.cv.handler.exception.InterviewNotFoundException;
 import io.hexlet.cv.mapper.InterviewMapper;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.repository.InterviewRepository;
@@ -35,7 +35,7 @@ public class InterviewService {
 
     public InterviewDTO findById(Long id) {
         Interview foundInterview = interviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Interview with id: " + id + " not found."));
+                .orElseThrow(() -> new InterviewNotFoundException("Interview with id: " + id + " not found."));
 
         return interviewMapper.map(foundInterview);
     }
@@ -50,7 +50,7 @@ public class InterviewService {
 
     public InterviewDTO update(InterviewUpdateDTO updateDTO, Long id) {
         Interview model = interviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Interview with id: " + id + " not found."));
+                .orElseThrow(() -> new InterviewNotFoundException("Interview with id: " + id + " not found."));
         interviewMapper.updateInterview(updateDTO, model);
         interviewRepository.save(model);
         InterviewDTO dto = interviewMapper.map(model);
