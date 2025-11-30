@@ -1,16 +1,13 @@
 package io.hexlet.cv.initializer;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.webinars.Webinar;
 import io.hexlet.cv.repository.WebinarRepository;
 import jakarta.annotation.PostConstruct;
-import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 @Profile("dev")

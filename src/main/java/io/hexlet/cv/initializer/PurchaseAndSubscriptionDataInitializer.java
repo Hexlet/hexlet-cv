@@ -7,13 +7,12 @@ import io.hexlet.cv.repository.PurchaseAndSubscriptionRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.repository.WebinarRepository;
 import jakarta.annotation.PostConstruct;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Component
 @Profile("dev")
