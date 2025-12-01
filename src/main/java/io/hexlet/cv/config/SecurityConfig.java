@@ -1,6 +1,11 @@
 package io.hexlet.cv.config;
 
 import io.hexlet.cv.service.CustomUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -21,11 +26,6 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -41,9 +41,23 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/**", "/*/admin/**", "/*/admin/").hasRole("ADMIN")
+                        .requestMatchers("/account/purchase").authenticated()
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // обработка ошибок безопасности
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((req, res, e) -> {       // ADDED: 401 вместо 500
+                            res.setContentType("application/json");
+                            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            res.getWriter().write("{\"errors\":{\"error\":\"Unauthorized\"}}");
+                        })
+                        .accessDeniedHandler((req, res, e) -> {            // ADDED: 403 вместо 500
+                            res.setContentType("application/json");
+                            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            res.getWriter().write("{\"errors\":{\"error\":\"Access Denied\"}}");
+                        })
+                )
                 .oauth2ResourceServer(rs -> rs
                         .bearerTokenResolver(cookieTokenResolver)
                         .jwt(jwt -> jwt
