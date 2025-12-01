@@ -5,7 +5,7 @@ import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
 import io.hexlet.cv.dto.user.UserDTO;
-import io.hexlet.cv.handler.exception.ResourceNotFoundException;
+import io.hexlet.cv.handler.exception.InterviewNotFoundException;
 import io.hexlet.cv.service.FlashPropsService;
 import io.hexlet.cv.service.InterviewService;
 import io.hexlet.cv.service.UserService;
@@ -37,7 +37,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/{locale}/admin/interview")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminInterviewController {
     private final Inertia inertia;
     private final FlashPropsService flashPropsService;
@@ -48,7 +48,7 @@ public class AdminInterviewController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> index(@PathVariable("locale") String locale,
+    public ResponseEntity<?> index(@PathVariable("locale") String locale,
                                         @RequestParam(required = false) String interviewSearchWord,
                                         @RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "30") int size,
@@ -84,7 +84,7 @@ public class AdminInterviewController {
 
     @GetMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> createForm(@PathVariable("locale") String locale,
+    public ResponseEntity<?> createForm(@PathVariable("locale") String locale,
                                              HttpServletRequest request) {
 
         Map<String, Object> props = flashPropsService.buildProps(locale, request);
@@ -100,7 +100,7 @@ public class AdminInterviewController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createInterview(@PathVariable("locale") String locale,
+    public ResponseEntity<?> createInterview(@PathVariable("locale") String locale,
                                                   @Valid @RequestBody InterviewCreateDTO createDTO,
                                                   RedirectAttributes redirectAttributes) {
 
@@ -112,62 +112,120 @@ public class AdminInterviewController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> show(@PathVariable("locale") String locale,
+    public ResponseEntity<?> show(@PathVariable("locale") String locale,
                                        @PathVariable Long id,
                                        HttpServletRequest request) {
+        try {
+            Map<String, Object> props = flashPropsService.buildProps(locale, request);
+            InterviewDTO interviewDTO = interviewService.findById(id);
 
-        Map<String, Object> props = flashPropsService.buildProps(locale, request);
-        InterviewDTO interviewDTO = interviewService.findById(id);
+            props.putAll(Map.of(
+                    "interview", interviewDTO,
+                    "pageTitle", "Просмотр интервью"
+            ));
 
-        props.putAll(Map.of(
-                "interview", interviewDTO,
-                "pageTitle", "Просмотр интервью"
-        ));
+            return inertia.render("Admin/Interviews/Show", props);
+        } catch (InterviewNotFoundException ex) {
+            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
-        return inertia.render("Admin/Interviews/Show", props);
+            errorProps.put("status", 404);
+            errorProps.put("message", ex.getMessage());
+            errorProps.put("interviewId", id);
+            errorProps.put("locale", locale);
+
+            ResponseEntity<?> inertiaResponse = inertia.render("Error/InterviewNotFound", errorProps);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .headers(inertiaResponse.getHeaders())
+                    .body(inertiaResponse.getBody());
+        }
     }
 
     @GetMapping("/{id}/edit")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> editForm(@PathVariable("locale") String locale,
+    public ResponseEntity<?> editForm(@PathVariable("locale") String locale,
                                            @PathVariable Long id,
                                            HttpServletRequest request) {
+        try {
+            Map<String, Object> props = flashPropsService.buildProps(locale, request);
+            InterviewDTO interviewDTO = interviewService.findById(id);
+            List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
 
-        Map<String, Object> props = flashPropsService.buildProps(locale, request);
-        InterviewDTO interviewDTO = interviewService.findById(id);
-        List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
+            props.putAll(Map.of(
+                    "interview", interviewDTO,
+                    "availableSpeakers", availableSpeakers,
+                    "pageTitle", "Редактирование интервью"
+            ));
 
-        props.putAll(Map.of(
-                "interview", interviewDTO,
-                "availableSpeakers", availableSpeakers,
-                "pageTitle", "Редактирование интервью"
-        ));
+            return inertia.render("Admin/Interviews/Edit", props);
+        } catch (InterviewNotFoundException ex) {
+            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
-        return inertia.render("Admin/Interviews/Edit", props);
+            errorProps.put("status", 404);
+            errorProps.put("message", ex.getMessage());
+            errorProps.put("interviewId", id);
+            errorProps.put("locale", locale);
+
+            ResponseEntity<?> inertiaResponse = inertia.render("Error/InterviewNotFound", errorProps);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .headers(inertiaResponse.getHeaders())
+                    .body(inertiaResponse.getBody());
+        }
     }
 
     @PutMapping("/{id}/edit")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> edit(@PathVariable("locale") String locale,
-                                       @PathVariable Long id,
-                                       @Valid @RequestBody InterviewUpdateDTO updateDTO,
-                                       RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> edit(@PathVariable("locale") String locale,
+                                  @PathVariable Long id,
+                                  @Valid @RequestBody InterviewUpdateDTO updateDTO,
+                                  HttpServletRequest request,
+                                  RedirectAttributes redirectAttributes) {
+        try {
+            interviewService.update(updateDTO, id);
+            redirectAttributes.addFlashAttribute("success", "Интервью успешно обновлено");
 
-        interviewService.update(updateDTO, id);
-        redirectAttributes.addFlashAttribute("success", "Интервью успешно обновлено");
+            return inertia.redirect("/" + locale + "/admin/interview/" + id);
+        } catch (InterviewNotFoundException ex) {
+            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
-        return inertia.redirect("/" + locale + "/admin/interview/" + id);
+            errorProps.put("status", 404);
+            errorProps.put("message", ex.getMessage());
+            errorProps.put("interviewId", id);
+            errorProps.put("locale", locale);
+
+            ResponseEntity<?> inertiaResponse = inertia.render("Error/InterviewNotFound", errorProps);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .headers(inertiaResponse.getHeaders())
+                    .body(inertiaResponse.getBody());
+        }
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> delete(@PathVariable String locale,
-                                         @PathVariable Long id,
-                                         RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> delete(@PathVariable("locale") String locale,
+                                    @PathVariable Long id,
+                                    HttpServletRequest request,
+                                    RedirectAttributes redirectAttributes) {
+        try {
+            interviewService.delete(id);
+            redirectAttributes.addFlashAttribute("success", "Интервью успешно удалено");
 
-        interviewService.delete(id);
-        redirectAttributes.addFlashAttribute("success", "Интервью успешно удалено");
+            return inertia.redirect("/" + locale + "/admin/interview");
+        } catch (InterviewNotFoundException ex) {
+            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
-        return inertia.redirect("/" + locale + "/admin/interview");
+            errorProps.put("status", 404);
+            errorProps.put("message", ex.getMessage());
+            errorProps.put("interviewId", id);
+            errorProps.put("locale", locale);
+
+            ResponseEntity<?> inertiaResponse = inertia.render("Error/InterviewNotFound", errorProps);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .headers(inertiaResponse.getHeaders())
+                    .body(inertiaResponse.getBody());
+        }
     }
 }
