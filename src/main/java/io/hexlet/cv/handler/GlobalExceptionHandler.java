@@ -1,6 +1,5 @@
 package io.hexlet.cv.handler;
 
-import io.hexlet.cv.handler.exception.InterviewNotFoundException;
 import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
@@ -54,14 +53,6 @@ public class GlobalExceptionHandler {
                                                   HttpServletRequest request,
                                                   RedirectAttributes redirectAttributes) {
 
-        Map<String, String> errors = Map.of("error", ex.getMessage());
-        return commonHandle(errors, request, redirectAttributes, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(InterviewNotFoundException.class)
-    public Object handleInterviewNotFound(InterviewNotFoundException ex,
-                                          HttpServletRequest request,
-                                          RedirectAttributes redirectAttributes) {
         Map<String, String> errors = Map.of("error", ex.getMessage());
         return commonHandle(errors, request, redirectAttributes, HttpStatus.NOT_FOUND);
     }
