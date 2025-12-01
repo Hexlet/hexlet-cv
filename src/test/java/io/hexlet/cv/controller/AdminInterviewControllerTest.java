@@ -1,24 +1,11 @@
 package io.hexlet.cv.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyMap;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
 import io.hexlet.cv.dto.user.UserDTO;
-import io.hexlet.cv.handler.exception.ResourceNotFoundException;
+import io.hexlet.cv.handler.exception.InterviewNotFoundException;
 import io.hexlet.cv.service.FlashPropsService;
 import io.hexlet.cv.service.InterviewService;
 import io.hexlet.cv.service.UserService;
@@ -38,10 +25,21 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@WithMockUser(authorities = "ADMIN")
 class AdminInterviewControllerTest {
 
     @Autowired
@@ -61,7 +59,6 @@ class AdminInterviewControllerTest {
 
     @BeforeEach
     void setUp() {
-        // Настраиваем поведение FlashPropsService для всех тестов
         when(flashPropsService.buildProps(anyString(), any()))
                 .thenAnswer(invocation -> {
                     String locale = invocation.getArgument(0);
@@ -70,12 +67,12 @@ class AdminInterviewControllerTest {
                     return props;
                 });
 
-        // Настраиваем поведение Inertia для всех тестов
         when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
         when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void indexShouldReturnInterviewsList() throws Exception {
         // given
         String locale = "ru";
@@ -87,7 +84,8 @@ class AdminInterviewControllerTest {
         when(interviewService.getAll(any(Pageable.class))).thenReturn(interviewPage);
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview", locale))
+        mockMvc.perform(get("/{locale}/admin/interview", locale)
+                        .header("X-Inertia", "true"))
                 .andExpect(status().isOk());
 
         verify(interviewService).getAll(any(Pageable.class));
@@ -95,6 +93,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void indexWithSearchByTitleShouldReturnFilteredResults() throws Exception {
         // given
         String locale = "ru";
@@ -107,6 +106,7 @@ class AdminInterviewControllerTest {
 
         // when & then
         mockMvc.perform(get("/{locale}/admin/interview", locale)
+                        .header("X-Inertia", "true")
                         .param("interviewSearchWord", searchWord))
                 .andExpect(status().isOk());
 
@@ -114,6 +114,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void showShouldReturnInterview() throws Exception {
         // given
         String locale = "ru";
@@ -123,7 +124,8 @@ class AdminInterviewControllerTest {
         when(interviewService.findById(interviewId)).thenReturn(interviewDTO);
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId))
+        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId)
+                        .header("X-Inertia", "true"))
                 .andExpect(status().isOk());
 
         verify(interviewService).findById(interviewId);
@@ -131,6 +133,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void createFormShouldReturnFormWithSpeakers() throws Exception {
         // given
         String locale = "ru";
@@ -141,7 +144,8 @@ class AdminInterviewControllerTest {
         when(userService.getPotentialInterviewSpeakers()).thenReturn(speakers);
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/create", locale))
+        mockMvc.perform(get("/{locale}/admin/interview/create", locale)
+                        .header("X-Inertia", "true"))
                 .andExpect(status().isOk());
 
         verify(userService).getPotentialInterviewSpeakers();
@@ -149,6 +153,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void createInterviewShouldCreateAndRedirect() throws Exception {
         // given
         String locale = "ru";
@@ -158,6 +163,7 @@ class AdminInterviewControllerTest {
 
         // when & then
         mockMvc.perform(post("/{locale}/admin/interview/create", locale)
+                        .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                     {
@@ -171,6 +177,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void editFormShouldReturnEditForm() throws Exception {
         // given
         String locale = "ru";
@@ -182,7 +189,8 @@ class AdminInterviewControllerTest {
         when(userService.getPotentialInterviewSpeakers()).thenReturn(speakers);
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/{id}/edit", locale, interviewId))
+        mockMvc.perform(get("/{locale}/admin/interview/{id}/edit", locale, interviewId)
+                        .header("X-Inertia", "true"))
                 .andExpect(status().isOk());
 
         verify(interviewService).findById(interviewId);
@@ -191,6 +199,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void editShouldUpdateAndRedirect() throws Exception {
         // given
         String locale = "ru";
@@ -201,6 +210,7 @@ class AdminInterviewControllerTest {
 
         // when & then
         mockMvc.perform(put("/{locale}/admin/interview/{id}/edit", locale, interviewId)
+                        .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                     {
@@ -214,6 +224,7 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void deleteShouldDeleteAndRedirect() throws Exception {
         // given
         String locale = "ru";
@@ -222,7 +233,8 @@ class AdminInterviewControllerTest {
         doNothing().when(interviewService).delete(interviewId);
 
         // when & then
-        mockMvc.perform(delete("/{locale}/admin/interview/{id}", locale, interviewId))
+        mockMvc.perform(delete("/{locale}/admin/interview/{id}", locale, interviewId)
+                        .header("X-Inertia", "true"))
                 .andExpect(status().isFound());
 
         verify(interviewService).delete(interviewId);
@@ -230,19 +242,44 @@ class AdminInterviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void showWhenInterviewNotFoundShouldReturnErrorPage() throws Exception {
         // given
         String locale = "ru";
         Long interviewId = 999L;
 
         when(interviewService.findById(interviewId))
-                .thenThrow(new ResourceNotFoundException("Interview not found"));
+                .thenThrow(new InterviewNotFoundException("Interview with id: " + interviewId + " not found."));
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId))
-                .andExpect(status().isOk());
+        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId)
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isNotFound());
 
         verify(inertia).render(eq("Error/InterviewNotFound"), anyMap());
+    }
+
+    @Test
+    @WithMockUser(username = "admin@example.com", roles = {"CANDIDATE"})
+    void accessAsNonAdminShouldBeForbidden() throws Exception {
+        // given
+        String locale = "ru";
+
+        // when & then
+        mockMvc.perform(get("/{locale}/admin/interview", locale)
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void accessWithoutAuthShouldBeUnauthorized() throws Exception {
+        // given
+        String locale = "ru";
+
+        // when & then
+        mockMvc.perform(get("/{locale}/admin/interview", locale)
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isUnauthorized());
     }
 
     private InterviewDTO createInterviewDTO(Long id, String title) {
@@ -254,7 +291,10 @@ class AdminInterviewControllerTest {
         return dto;
     }
 
-    private UserDTO createUserDTO(Long id, String email, String firstName, String lastName) {
+    private UserDTO createUserDTO(Long id,
+                                  String email,
+                                  String firstName,
+                                  String lastName) {
         UserDTO dto = new UserDTO();
         dto.setId(id);
         dto.setEmail(email);
