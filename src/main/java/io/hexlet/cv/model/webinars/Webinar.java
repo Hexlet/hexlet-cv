@@ -47,16 +47,9 @@ public class Webinar {
     private boolean feature;
     private boolean publicated;
 
-    // @OneToMany(mappedBy = "webinar", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private Set<PurchaseAndSubscription> subscription = new HashSet<>();
-
-
-
-    // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 }

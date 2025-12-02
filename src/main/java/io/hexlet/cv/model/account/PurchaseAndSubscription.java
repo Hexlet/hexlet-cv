@@ -5,7 +5,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.ProductType;
-import io.hexlet.cv.model.enums.StatePurchSubsType;
+import io.hexlet.cv.model.enums.StatePurchaseSubscriptionType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -29,7 +29,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(
-        name = "purch_subs",
+        name = "Purchase_Subscription",
         indexes = { @Index(name = "idx_purch_user_purchased", columnList = "userId, purchasedAt") }
 )
 @Getter
@@ -47,36 +47,37 @@ public class PurchaseAndSubscription {
     private User user;
 
     @NotNull
-    private String orderNum;  // Номер заказа типа #A-1042
+    private String orderNum;
 
     @NotNull
-    private String itemName;  // название товара/подписки и тд
+    private String itemName;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate purchasedAt;   // наверное это дата с какого числа подписка или дат когда куплено
+    private LocalDate purchasedAt;
 
     @Column(precision = 15, scale = 2)
     @NotNull
-    private BigDecimal amount; // Сумма
+    private BigDecimal amount;
 
     @NotNull
-    private StatePurchSubsType state;
+    private StatePurchaseSubscriptionType state;
 
-    private String billUrl; // ссылка на файл со счетом или на сторонний ресурс банка и тд.
+    private String billUrl;
 
-
-    // Полиморфная связь
+    /**
+     * ID связанного ресурса (вебинара, курса и т.д.), зависит от {@link #productType}.
+     *
+     * <b>Полиморфная связь</b>: значение интерпретируется по типу события:
+     * <ul>
+     *   <li>{@link ProductType#WEBINAR} → ID вебинара</li>
+     *   <li>{@link ProductType#COURSE} → ID курса</li>
+     * </ul>
+     *
+     */
     @NotNull
     private ProductType productType;
     @NotNull
-    private Long referenceId;  // id вебинара, курса, подписки и тд
-
-
-
-   // @ManyToOne(fetch = FetchType.LAZY)
-   // @JoinColumn(name = "webinar_id")
-   // private Webinar webinar;
-
+    private Long referenceId;
 
     @CreatedDate
     private LocalDateTime createdAt;

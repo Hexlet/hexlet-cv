@@ -1,6 +1,6 @@
 package io.hexlet.cv.service;
 
-import io.hexlet.cv.dto.admin.WebinarDTO;
+import io.hexlet.cv.dto.admin.WebinarDto;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.WebinarAlreadyExistsException;
 import io.hexlet.cv.mapper.AdminWebinarMapper;
@@ -83,9 +83,9 @@ public class AdminWebinarService {
     }
 
     @Transactional
-    public void createWebinar(WebinarDTO webinar) {
+    public void createWebinar(WebinarDto webinar) {
 
-    // модно потом переделать чтобы в одном исключении приходили все совпадения
+    // можно потом переделать чтобы в одном исключении приходили все совпадения
         if (webinarRepository.existsByWebinarName(webinar.getWebinarName())) {
             throw new WebinarAlreadyExistsException("webinar.nameExists");
         }
@@ -103,7 +103,7 @@ public class AdminWebinarService {
     }
 
     @Transactional
-    public void updateWebinar(Long id, WebinarDTO webinar) {
+    public void updateWebinar(Long id, WebinarDto webinar) {
 
         var webinarToUpdate = webinarRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("error.webinarNotFound")

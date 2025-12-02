@@ -8,7 +8,7 @@ import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.account.PurchaseAndSubscription;
 import io.hexlet.cv.model.enums.ProductType;
 import io.hexlet.cv.model.enums.RoleType;
-import io.hexlet.cv.model.enums.StatePurchSubsType;
+import io.hexlet.cv.model.enums.StatePurchaseSubscriptionType;
 import io.hexlet.cv.model.webinars.Webinar;
 import io.hexlet.cv.repository.PurchaseAndSubscriptionRepository;
 import io.hexlet.cv.repository.UserRepository;
@@ -93,7 +93,7 @@ public class PurchaseAndSubscriptionControllerTest {
         purchase.setItemName("Вебинар: " + webinar.getWebinarName());
         purchase.setPurchasedAt(LocalDate.now());
         purchase.setAmount(BigDecimal.valueOf(12345, 2));
-        purchase.setState(StatePurchSubsType.ACTIVE);
+        purchase.setState(StatePurchaseSubscriptionType.ACTIVE);
         purchase.setBillUrl("https://bills.ru/bill/A-1001");
         purchase.setProductType(ProductType.WEBINAR);
         purchase.setReferenceId(webinar.getId());

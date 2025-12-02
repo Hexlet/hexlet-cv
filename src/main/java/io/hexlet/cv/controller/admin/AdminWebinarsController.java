@@ -1,7 +1,7 @@
 package io.hexlet.cv.controller.admin;
 
 import io.github.inertia4j.spring.Inertia;
-import io.hexlet.cv.dto.admin.WebinarDTO;
+import io.hexlet.cv.dto.admin.WebinarDto;
 import io.hexlet.cv.service.AdminWebinarService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -28,8 +28,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class AdminWebinarsController {
 
     private final Inertia inertia;
-   // private final FlashPropsService flashPropsService;
-  //  private final WebinarRepository webinarRepository;
+
     private final AdminWebinarService adminWebinarService;
 
     @GetMapping("")
@@ -52,7 +51,7 @@ public class AdminWebinarsController {
 
 
     @PostMapping("/create")
-    public Object createWebinar(@RequestBody WebinarDTO webinarDTO,
+    public Object createWebinar(@RequestBody WebinarDto webinarDTO,
                                             RedirectAttributes redirectAttributes)  {
 
 
@@ -65,7 +64,7 @@ public class AdminWebinarsController {
 
     @PutMapping("/{id}/update")
     public Object updateWebinar(@PathVariable Long id,
-                                 @RequestBody WebinarDTO webinarDTO,
+                                 @RequestBody WebinarDto webinarDTO,
                                  RedirectAttributes redirectAttributes)  {
 
         adminWebinarService.updateWebinar(id, webinarDTO);
@@ -76,7 +75,7 @@ public class AdminWebinarsController {
 
     @DeleteMapping("/{id}/delete")
     public Object deleteWebinar(@PathVariable Long id,
-                                            RedirectAttributes redirectAttributes)  {
+                                RedirectAttributes redirectAttributes)  {
 
         adminWebinarService.deleteWebinar(id);
         redirectAttributes.addFlashAttribute("success", "delete.success");

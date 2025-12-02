@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class PurchaseAndSubscriptionController {
         var props = service.indexPurchSubs(userId.get(), pageable);
 
         var flash = RequestContextUtils.getInputFlashMap(request);
-        if (flash != null && !flash.isEmpty()) {
+        if (!ObjectUtils.isEmpty(flash)) {
             props.put("flash", flash);
         }
 

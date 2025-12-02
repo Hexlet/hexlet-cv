@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class WebinarDTO {
+public class WebinarDto {
     private Long id;
 
     @NotBlank

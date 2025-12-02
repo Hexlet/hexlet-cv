@@ -1,4 +1,3 @@
-
 package io.hexlet.cv.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -9,7 +9,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.hexlet.cv.dto.admin.WebinarDTO;
+import io.hexlet.cv.controller.builders.WebinarTestBuilder;
+import io.hexlet.cv.dto.admin.WebinarDto;
+import io.hexlet.cv.mapper.AdminWebinarMapper;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.enums.RoleType;
 import io.hexlet.cv.model.webinars.Webinar;
@@ -17,7 +19,6 @@ import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.repository.WebinarRepository;
 import io.hexlet.cv.util.JWTUtils;
 import jakarta.servlet.http.Cookie;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -52,6 +53,9 @@ public class AdminWebinarsControllerTest {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Autowired
+    private AdminWebinarMapper adminWebinarMapper;
+
     private String adminToken;
 
     private static final String ADMIN_EMAIL = "admin@example.com";
@@ -78,47 +82,41 @@ public class AdminWebinarsControllerTest {
 
         adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
 
-
-        Webinar w001 = new Webinar();
-
-        w001.setWebinarName("Webinar 0001");
-        w001.setWebinarRegLink("http://example_reg001.com");
-        w001.setWebinarRecordLink("http://example_record002.com");
-        w001.setWebinarDate(
-                LocalDateTime.parse("2001-01-02 14:30", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+        webinarRepository.save(
+                WebinarTestBuilder.aWebinar()
+                        .withName("Webinar 0001")
+                        .withDate("2001-01-02 14:30")
+                                //,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                        .withRegLink("http://example_reg001.com")
+                        .build()
         );
-        webinarRepository.save(w001);
 
-        Webinar w002 = new Webinar();
-        w002.setWebinarName("Webinar 0002");
-        w002.setWebinarRegLink("http://example_reg003.com");
-        w002.setWebinarRecordLink("http://example_record004.com");
-        w002.setWebinarDate(
-                LocalDateTime.parse("2022-08-13 20:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+        webinarRepository.save(
+                WebinarTestBuilder.aWebinar()
+                        .withName("Webinar 0002")
+                        .withDate("2022-08-13 20:00")
+                        .withRegLink("http://example_reg003.com")
+                        .build()
         );
-        webinarRepository.save(w002);
-
-
     }
 
     @Test
     public void testCreateWebinar() throws Exception {
-
-        WebinarDTO dto = new WebinarDTO();
-        dto.setWebinarName("Test name");
-        dto.setWebinarRegLink("https://test_reglink.org");
-        dto.setWebinarRecordLink("https://test_recordlink.org");
-        dto.setWebinarDate(
-                LocalDateTime.parse("2025-10-11 12:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-        );
-        dto.setFeature(true);
-        dto.setPublicated(true);
-
+//given
+        var webinar = WebinarTestBuilder.aWebinar()
+                .withName("Webinar 123")
+                .withRegLink("http://example_new-reg.com")
+                .withRecordLink("http://example_new-reg.com")
+                .withDate("2025-10-11 12:00")
+                .build();
+        WebinarDto dto = adminWebinarMapper.map(webinar);
+//when
         mockMvc.perform(post("/admin/webinars/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(om.writeValueAsString(dto)))
+//then
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/Admin/Webinars/Index"));
 
@@ -133,26 +131,24 @@ public class AdminWebinarsControllerTest {
 
     @Test
     public void testUpdateWebinar() throws Exception {
-
+//given
         Webinar existing = webinarRepository.findFirstByOrderByIdAsc()
                 .orElseThrow(() -> new IllegalStateException("Нет записей в БД"));
 
-        WebinarDTO dto = new WebinarDTO();
-        dto.setWebinarName("Test update name");
-        dto.setWebinarRegLink("https://test_reglink_update.org");
-        dto.setWebinarRecordLink("https://test_recordlink_update.org");
-        dto.setWebinarDate(LocalDateTime.parse("2001-01-01 01:00",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-        dto.setFeature(true);
-        dto.setPublicated(true);
-
-        String endpoint = "/admin/webinars/" + existing.getId() + "/update";
-
-        mockMvc.perform(put(endpoint)
+        var webinar = WebinarTestBuilder.aWebinar()
+                .withName("Webinar 123")
+                .withRegLink("http://example_new-reg.com")
+                .withRecordLink("http://example_new-reg.com")
+                .withDate("2025-10-11 12:00")
+                .build();
+        WebinarDto dto = adminWebinarMapper.map(webinar);
+//when
+        mockMvc.perform(put("/admin/webinars/" + existing.getId() + "/update")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(om.writeValueAsString(dto)))
+//then
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/Admin/Webinars/Index"));
 
@@ -169,13 +165,13 @@ public class AdminWebinarsControllerTest {
 
     @Test
     public void testDeleteWebinar() throws Exception {
+//given
         List<Webinar> existing = webinarRepository.findAll();
-
-        String endpoint = "/admin/webinars/" + existing.get(0).getId() + "/delete";
-
-        mockMvc.perform(delete(endpoint)
+//when
+        mockMvc.perform(delete("/admin/webinars/" + existing.get(0).getId() + "/delete")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
+//then
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/Admin/Webinars/Index"));
 
@@ -184,17 +180,17 @@ public class AdminWebinarsControllerTest {
 
     @Test
     public void testSearchByNameWebinars() throws Exception {
-
+//given
         List<Webinar> existing = webinarRepository.findAll();
-
 
         String expectedName = existing.get(0).getWebinarName();
         String searchStr = existing.get(0).getWebinarName().substring(5);
-
+//when
         var mvcResult = mockMvc.perform(get("/admin/webinars")
                         .param("search", searchStr)
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
+//then
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -205,14 +201,16 @@ public class AdminWebinarsControllerTest {
 
     @Test
     public void testSearchByDateWebinars() throws Exception {
+//given
         List<Webinar> existing = webinarRepository.findAll();
 
         String expectedDate = existing.get(1).getWebinarDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-
+//when
         var mvcResult = mockMvc.perform(get("/admin/webinars")
                         .param("search", expectedDate)
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
+//then
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -223,16 +221,16 @@ public class AdminWebinarsControllerTest {
 
     @Test
     public void testSearchByUrlWebinars() throws Exception {
+//given
         List<Webinar> existing = webinarRepository.findAll();
 
-        String expectedDate = existing.get(0).getWebinarRegLink();
-
         String searchStr = existing.get(0).getWebinarRegLink().substring(15);
-
+//when
         var mvcResult = mockMvc.perform(get("/admin/webinars")
                         .param("search", searchStr)
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
+//then
                 .andExpect(status().isOk())
                 .andReturn();
 

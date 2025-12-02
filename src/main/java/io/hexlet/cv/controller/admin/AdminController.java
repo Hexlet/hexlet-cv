@@ -36,15 +36,6 @@ public class AdminController {
         return inertia.render("Admin/Marketing/Index", props);
     }
 
-    /*
-    @GetMapping("/webinars")
-    public ResponseEntity<?> adminWebinarsController(@PathVariable("locale") String locale,
-                                                     HttpServletRequest request) {
-        var props = flashPropsService.buildProps(locale, request);
-        return inertia.render("Admin/Webinars/Index", props);
-    }
-*/
-
     @GetMapping("/knowledgebase")
     public ResponseEntity<?> adminKnowledgebaseController(@PathVariable("locale") String locale,
                                                           HttpServletRequest request) {

@@ -1,6 +1,6 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.admin.WebinarDTO;
+import io.hexlet.cv.dto.admin.WebinarDto;
 import io.hexlet.cv.model.webinars.Webinar;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,9 +17,9 @@ import org.mapstruct.ReportingPolicy;
 )
 public abstract class AdminWebinarMapper {
 
-    public abstract Webinar map(WebinarDTO dto);
-    public abstract WebinarDTO map(Webinar webinar);
+    public abstract Webinar map(WebinarDto dto);
+    public abstract WebinarDto map(Webinar webinar);
 
     @Mapping(target = "id", ignore = true)
-    public abstract void update(WebinarDTO dto, @MappingTarget Webinar model);
+    public abstract void update(WebinarDto dto, @MappingTarget Webinar model);
 }

@@ -41,11 +41,17 @@ public class CalendarEvent {
 
     private String description;
 
-    // id вебирана или встречи и тд зависит от eventType
-    // полиморфная связь
+    /**
+     * ID связанного ресурса (вебинара, встречи и т.д.), зависит от {@link #eventType}.
+     *
+     * <b>Полиморфная связь</b>: значение интерпретируется по типу события:
+     * <ul>
+     *   <li>{@link CalendarEventType#WEBINAR} → ID вебинара</li>
+     *   <li>{@link CalendarEventType#MEETING} → ID встречи</li>
+     * </ul>
+     *
+     */
     private Long referenceId;
-
-
     private CalendarEventType eventType;
 
 
@@ -55,15 +61,9 @@ public class CalendarEvent {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime finishAt;
 
-
-
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-
 }

@@ -26,7 +26,6 @@ public class GlobalExceptionHandler {
                                 RedirectAttributes redirectAttributes,
                                 HttpStatus status) {
 
-        // Обработка AJAX-запроса (Inertia)
         if ("true".equals(request.getHeader("X-Inertia"))) {
             redirectAttributes.addFlashAttribute("errors", errors);
             String referer = request.getHeader("Referer");
@@ -36,9 +35,7 @@ public class GlobalExceptionHandler {
             return redirectView;
         }
 
-        // Обработка обычного запроса
         return ResponseEntity.status(status).body(Map.of("errors", errors));
-
     }
 
     @ExceptionHandler(EntityExistsException.class)
@@ -59,7 +56,6 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.NOT_FOUND);
     }
 
-
     @ExceptionHandler(WebinarAlreadyExistsException.class)
     public Object handleWebinarAlreadyExistsException(WebinarAlreadyExistsException ex,
                                                       HttpServletRequest request,
@@ -68,7 +64,6 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = Map.of("error", ex.getMessage());
         return commonHandle(errors, request, redirectAttributes, HttpStatus.CONFLICT);
     }
-
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object handleValidation(MethodArgumentNotValidException ex,
@@ -101,7 +96,6 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.UNAUTHORIZED);
     }
 
-
     @ExceptionHandler(InvalidPasswordException.class)
     public Object handleInvalidPasswordException(InvalidPasswordException ex,
                                                  HttpServletRequest request,
@@ -111,8 +105,6 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.UNAUTHORIZED);
     }
 
-
-// это просто ошибки все остальное
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleAll(Exception ex) {
         Map<String, String> errors = Map.of("error", ex.getMessage());

@@ -1,6 +1,6 @@
 package io.hexlet.cv.dto.account;
 
-import io.hexlet.cv.model.enums.StatePurchSubsType;
+import io.hexlet.cv.model.enums.StatePurchaseSubscriptionType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PurchSubsDTO {
+public class PurchaseSubscriptionDto {
 
     private Long id;
     private Long userId;
@@ -18,6 +18,6 @@ public class PurchSubsDTO {
     private String itemName;
     private LocalDate purchasedAt;
     private BigDecimal amount;
-    private StatePurchSubsType state;
+    private StatePurchaseSubscriptionType state;
     private String billUrl;
 }
