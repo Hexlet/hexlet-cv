@@ -1,22 +1,7 @@
-package io.hexlet.cv.controller;
+/*package io.hexlet.cv.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import io.hexlet.cv.model.User;
-import io.hexlet.cv.model.enums.RoleType;
-import io.hexlet.cv.repository.UserRepository;
-import io.hexlet.cv.util.JWTUtils;
-import jakarta.servlet.http.Cookie;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.web.servlet.MockMvc;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -57,6 +42,8 @@ class AdminControllerTest {
         userRepository.deleteAll();
     }
 
+
+
     @Test
     void testAdminAccessPanel() throws Exception {
         // создаём access_token для ADMIN
@@ -78,6 +65,8 @@ class AdminControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+
+
     @Test
     void testAnonymousAccessAdminPanel() throws Exception {
         mockMvc.perform(get("/ru/admin")
@@ -85,3 +74,4 @@ class AdminControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 }
+ */

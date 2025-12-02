@@ -1,13 +1,32 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App</title>
+    <!-- <meta name="csrf-token" content=""> -->
+
+    <!-- Vite HMR клиент  -->
+    <script type="module" src="http://localhost:5173/@vite/client"></script>
+
+    <!-- React Refresh preamble -->
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+    <!-- Entry point main.tsx -->
+    <script type="module" src="http://localhost:5173/main.tsx"></script>
+
+    <title>Hexlet CV</title>
 </head>
-<body>
-<div id="app" data-page='@PageObject@'></div>
-<!-- <script type="module" src="/src/main.tsx"></script> -->
+
+<body class="bg-light">
+<!-- Контейнер для React-приложения -->
+<div id="app" data-page="@PageObject@"></div>
+
 </body>
 </html>

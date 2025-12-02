@@ -1,4 +1,4 @@
-package io.hexlet.cv.component;
+package io.hexlet.cv.initializer;
 
 import io.hexlet.cv.model.Career;
 import io.hexlet.cv.model.CareerItem;
@@ -49,12 +49,14 @@ import jakarta.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("dev")
 @AllArgsConstructor
-public class DataInitializer {
+public class UserDataInitializer {
 
     private final UserRepository userRepository;
     private final ResumeRepository resumeRepository;
@@ -81,7 +83,7 @@ public class DataInitializer {
     private final PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void initializeData() {
+    public void initData() {
         if (userRepository.count() > 0) {
             return;
         }

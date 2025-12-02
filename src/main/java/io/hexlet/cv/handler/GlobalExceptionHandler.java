@@ -4,6 +4,7 @@ import io.hexlet.cv.handler.exception.InvalidPasswordException;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.handler.exception.UserAlreadyExistsException;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
+import io.hexlet.cv.handler.exception.WebinarAlreadyExistsException;
 import jakarta.persistence.EntityExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -25,7 +26,6 @@ public class GlobalExceptionHandler {
                                 RedirectAttributes redirectAttributes,
                                 HttpStatus status) {
 
-        // Обработка AJAX-запроса (Inertia)
         if ("true".equals(request.getHeader("X-Inertia"))) {
             redirectAttributes.addFlashAttribute("errors", errors);
             String referer = request.getHeader("Referer");
@@ -35,7 +35,6 @@ public class GlobalExceptionHandler {
             return redirectView;
         }
 
-        // Обработка обычного запроса
         return ResponseEntity.status(status).body(Map.of("errors", errors));
     }
 
@@ -55,6 +54,15 @@ public class GlobalExceptionHandler {
 
         Map<String, String> errors = Map.of("error", ex.getMessage());
         return commonHandle(errors, request, redirectAttributes, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(WebinarAlreadyExistsException.class)
+    public Object handleWebinarAlreadyExistsException(WebinarAlreadyExistsException ex,
+                                                      HttpServletRequest request,
+                                                      RedirectAttributes redirectAttributes) {
+
+        Map<String, String> errors = Map.of("error", ex.getMessage());
+        return commonHandle(errors, request, redirectAttributes, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -97,7 +105,6 @@ public class GlobalExceptionHandler {
         return commonHandle(errors, request, redirectAttributes, HttpStatus.UNAUTHORIZED);
     }
 
-// это просто ошибки все остальное
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleAll(Exception ex) {
         Map<String, String> errors = Map.of("error", ex.getMessage());

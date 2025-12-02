@@ -18,7 +18,6 @@ group = "io.hexlet.blog"
 version = "1.0-SNAPSHOT"
 
 application {
-    // mainClass.set("io.hexlet.blog.Application")
     mainClass = "io.hexlet.cv.App"
 }
 
@@ -48,7 +47,6 @@ dependencies {
     implementation(libs.instancioJunit)
     implementation(libs.jsonunitAssertj)
     implementation(libs.guava)
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
 
     // MapStruct
     implementation(libs.mapstruct)
@@ -67,11 +65,9 @@ dependencies {
 
     // Inertia4J
     implementation(libs.inertia4jSpring)
-    // implementation(libs.inertia4jSpringStarter)
 
     // Jackson JSR310 для поддержки LocalDateTime
     implementation(libs.jacksonDatatypeJsr310)
-
 }
 
 tasks.test {
@@ -98,27 +94,12 @@ spotless {
     java {
         importOrder()
         removeUnusedImports()
-// убрал так как методы выстраивает в цепочки и конфликтует в checkstyle
-// в комментариях рушит отступы заменя на *
-        //eclipse().sortMembersEnabled(true)
-// убрал форматирование аннотаций так как при выстраивании в одну строку
-// строка получается слишком длинной и конфликтует в checkstyle
-       // formatAnnotations()
         leadingTabsToSpaces(4)
     }
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(24)
     }
 }
-
-// sonar {
-//     properties {
-//         property("sonar.projectKey", "hexlet-boilerplates_java-package")
-//         property("sonar.organization", "hexlet-boilerplates")
-//         property("sonar.host.url", "https://sonarcloud.io")
-//     }
-// }
