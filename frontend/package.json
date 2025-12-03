@@ -17,6 +17,7 @@
     "@mantine/form": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
     "add": "^2.0.6",
+    "motion": "^12.23.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^7.7.1"
