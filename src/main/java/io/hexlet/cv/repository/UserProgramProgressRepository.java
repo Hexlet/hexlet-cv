@@ -13,4 +13,6 @@ public interface UserProgramProgressRepository extends JpaRepository<UserProgram
     Page<UserProgramProgress> findByUserId(Long userId, Pageable pageable);
 
     Optional<UserProgramProgress> findByUserIdAndProgramId(Long userId, Long programId);
+
+    boolean existsByUserIdAndProgramId(Long userId, Long programId);
 }
