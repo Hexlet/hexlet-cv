@@ -1,40 +1,37 @@
 package io.hexlet.cv.dto.learning;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class UserLessonProgressDTO {
     private Long id;
 
-    @NotNull(message = "Статус завершения не может быть пустым")
-    @JsonProperty("is_completed")
+    @NotNull(message = "The completion status cannot be empty.")
     private Boolean isCompleted;
 
-    @NotNull(message = "Время начала не может быть пустым")
-    @JsonProperty("started_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    @NotNull(message = "The start time cannot be empty")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startedAt;
 
-    @JsonProperty("completed_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime completedAt;
 
-    @PositiveOrZero(message = "Потраченное время не может быть отрицательным")
+    @PositiveOrZero(message = "The time spent cannot be negative")
     private Integer timeSpentMinutes;
 
     private Long lessonId;
     private Long programProgressId;
     private Long userId;
 
-    @NotBlank(message = "Название урока не может быть пустым")
-    @JsonProperty("lesson_title")
+    @NotBlank(message = "The lesson title cannot be empty")
     private String lessonTitle;
 }
