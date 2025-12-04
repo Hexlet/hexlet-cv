@@ -17,6 +17,8 @@ public abstract class UserProgramProgressMapper {
 
     @Mapping(target = "programTitle", source = "program.title")
     @Mapping(target = "lastLessonTitle", source = "lastLesson.title")
-    @Mapping(target = "totalLessons", expression = "java(progress.getProgram().getLessons().size())")
-    public abstract UserProgramProgressDTO toDTO(UserProgramProgress progress);
+    @Mapping(target = "totalLessons", ignore = true)
+    @Mapping(target = "progressPercentage", ignore = true)
+    @Mapping(target = "completedLessons", ignore = true)
+    public abstract UserProgramProgressDTO toDto(UserProgramProgress progress);
 }

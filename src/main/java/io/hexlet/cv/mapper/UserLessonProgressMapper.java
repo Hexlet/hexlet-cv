@@ -16,5 +16,5 @@ import org.mapstruct.ReportingPolicy;
 public abstract class UserLessonProgressMapper {
 
     @Mapping(target = "lessonTitle", source = "lesson.title")
-    public abstract UserLessonProgressDTO toDTO(UserLessonProgress progress);
+    public abstract UserLessonProgressDTO toDto(UserLessonProgress progress);
 }
