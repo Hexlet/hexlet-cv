@@ -21,6 +21,7 @@ import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @AllArgsConstructor
@@ -46,6 +48,7 @@ public class AdminMarketingController {
     private final PricingPlanService pricingPlanService;
 
     @GetMapping("/{section}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> index(@PathVariable String locale,
                                         @PathVariable String section) {
 
@@ -121,11 +124,13 @@ public class AdminMarketingController {
     }
 
     @GetMapping("/")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> defaultSection(@PathVariable String locale) {
         return inertia.redirect("/" + locale + "/admin/marketing/articles");
     }
 
     @GetMapping("/{section}/create")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> createForm(@PathVariable String locale,
                                              @PathVariable String section) {
         Map<String, Object> props = Map.of(
@@ -145,6 +150,7 @@ public class AdminMarketingController {
     }
 
     @GetMapping("/{section}/{id}/edit")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> editForm(@PathVariable String locale,
                                            @PathVariable String section,
                                            @PathVariable Long id) {
@@ -191,6 +197,7 @@ public class AdminMarketingController {
 
     // Создание статьи
     @PostMapping("/articles")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> createArticle(@PathVariable String locale,
                                                 @Valid @RequestBody ArticleCreateDTO createDTO) {
         articleService.createArticle(createDTO);
@@ -199,6 +206,7 @@ public class AdminMarketingController {
 
     // Создание истории
     @PostMapping("/stories")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> createStory(@PathVariable String locale,
                                               @Valid @RequestBody StoryCreateDTO createDTO) {
         storyService.createStory(createDTO);
@@ -207,6 +215,7 @@ public class AdminMarketingController {
 
     // Создание отзыва
     @PostMapping("/reviews")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> createReview(@PathVariable String locale,
                                                @Valid @RequestBody ReviewCreateDTO createDTO) {
         reviewService.createReview(createDTO);
@@ -215,6 +224,7 @@ public class AdminMarketingController {
 
     // Создание члена команды
     @PostMapping("/team")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> createTeamMember(@PathVariable String locale,
                                                    @Valid @RequestBody TeamCreateDTO createDTO) {
         teamService.createTeamMember(createDTO);
@@ -222,6 +232,7 @@ public class AdminMarketingController {
     }
 
     @PostMapping("/pricing")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> createPricing(@PathVariable String locale,
                                                 @Valid @RequestBody PricingCreateDTO createDTO) {
         pricingPlanService.createPricing(createDTO);
@@ -229,6 +240,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/articles/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> updateArticle(@PathVariable String locale,
                                                 @PathVariable Long id,
                                                 @Valid @RequestBody ArticleUpdateDTO updateDTO) {
@@ -237,6 +249,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/stories/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> updateStory(@PathVariable String locale,
                                               @PathVariable Long id,
                                               @Valid @RequestBody StoryUpdateDTO updateDTO) {
@@ -245,6 +258,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/reviews/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> updateReview(@PathVariable String locale,
                                                @PathVariable Long id,
                                                @Valid @RequestBody ReviewUpdateDTO updateDTO) {
@@ -253,6 +267,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/team/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> updateTeamMember(@PathVariable String locale,
                                                    @PathVariable Long id,
                                                    @Valid @RequestBody TeamUpdateDTO updateDTO) {
@@ -261,6 +276,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/pricing/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> updatePricing(@PathVariable String locale,
                                                 @PathVariable Long id,
                                                 @Valid @RequestBody PricingUpdateDTO updateDTO) {
@@ -269,6 +285,7 @@ public class AdminMarketingController {
     }
 
     @DeleteMapping("/{section}/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> delete(@PathVariable String locale,
                                          @PathVariable String section,
                                          @PathVariable Long id) {
@@ -285,6 +302,7 @@ public class AdminMarketingController {
     }
 
     @PostMapping("/{section}/{id}/toggle-publish")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> togglePublish(@PathVariable String locale,
                                                 @PathVariable String section,
                                                 @PathVariable Long id) {
@@ -300,6 +318,7 @@ public class AdminMarketingController {
     }
 
     @PostMapping("/{section}/{id}/toggle-homepage")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> toggleHomepage(@PathVariable String locale,
                                                  @PathVariable String section,
                                                  @PathVariable Long id) {
@@ -315,6 +334,7 @@ public class AdminMarketingController {
     }
 
     @PutMapping("/{section}/{id}/display-order")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> updateDisplayOrder(@PathVariable String locale,
                                                      @PathVariable String section,
                                                      @PathVariable Long id,

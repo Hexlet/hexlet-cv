@@ -1,6 +1,6 @@
 package io.hexlet.cv.repository;
 
-import io.hexlet.cv.model.marketing.PricingPlan;
+import io.hexlet.cv.model.admin.marketing.PricingPlan;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

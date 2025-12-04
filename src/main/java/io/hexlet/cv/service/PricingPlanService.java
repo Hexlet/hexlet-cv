@@ -5,7 +5,7 @@ import io.hexlet.cv.dto.marketing.PricingDTO;
 import io.hexlet.cv.dto.marketing.PricingUpdateDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.PricingMapper;
-import io.hexlet.cv.model.marketing.PricingPlan;
+import io.hexlet.cv.model.admin.marketing.PricingPlan;
 import io.hexlet.cv.repository.PricingPlanRepository;
 import java.util.List;
 import java.util.stream.Collectors;
