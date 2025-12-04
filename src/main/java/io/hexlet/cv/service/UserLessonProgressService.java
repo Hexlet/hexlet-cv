@@ -8,8 +8,10 @@ import io.hexlet.cv.repository.LessonRepository;
 import io.hexlet.cv.repository.UserLessonProgressRepository;
 import io.hexlet.cv.repository.UserProgramProgressRepository;
 import io.hexlet.cv.repository.UserRepository;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,24 +20,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class UserLessonProgressService {
-    private static final String LESSON_NOT_FOUND = "Урок не найден с id: ";
-    private static final String USER_NOT_FOUND = "Пользователь не найден с id: ";
-    private static final String PROGRESS_NOT_FOUND = "Прогресс не найден с id: ";
+    private static final int DEFAULT_PAGE_SIZE = 10;
+    private static final int MAX_PAGE_SIZE = 100;
 
     private final UserLessonProgressRepository userLessonProgressRepository;
     private final UserProgramProgressRepository userProgramProgressRepository;
     private final UserLessonProgressMapper userLessonProgressMapper;
     private final LessonRepository lessonRepository;
     private final UserRepository userRepository;
+    private final Clock clock;
 
     public Page<UserLessonProgressDTO> getLessonProgress(Long userId, Long programProgressId, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("startedAt").descending());
-        Page<UserLessonProgress> progressPage = userLessonProgressRepository
-                .findByProgramProgressId(programProgressId, pageable);
+        log.debug("Getting lessons for programProgress {}", programProgressId);
 
-        return progressPage.map(userLessonProgressMapper::toDTO);
+        Pageable pageable = PageRequest.of(
+                Math.max(page, 0),
+                size <= 0 ? DEFAULT_PAGE_SIZE : Math.min(size, MAX_PAGE_SIZE),
+                Sort.by(Sort.Direction.DESC, UserLessonProgress.FIELD_STARTED_AT)
+        );
+
+        return userLessonProgressRepository.findByUserIdAndProgramProgressId(userId, programProgressId, pageable)
+                .map(userLessonProgressMapper::toDto);
     }
 
     @Transactional
@@ -45,21 +53,24 @@ public class UserLessonProgressService {
         }
 
         var user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_NOT_FOUND + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("user.not.found" + userId));
 
         var lesson = lessonRepository.findById(lessonId)
-                .orElseThrow(() -> new ResourceNotFoundException(LESSON_NOT_FOUND + lessonId));
-        var programProgress = userProgramProgressRepository.findById(programProgressId)
-                .orElseThrow(() -> new ResourceNotFoundException("Прогресс программы не найден с id: "
+                .orElseThrow(() -> new ResourceNotFoundException("lesson.not.found" + lessonId));
+        var userProgramProgress = userProgramProgressRepository.findById(programProgressId)
+                .orElseThrow(() -> new ResourceNotFoundException("program.progress.not.found"
                         + programProgressId));
 
-        var progress = new UserLessonProgress();
-        progress.setUser(user);
-        progress.setLesson(lesson);
-        progress.setProgramProgress(programProgress);
-        progress.setStartedAt(LocalDateTime.now());
-        progress.setIsCompleted(false);
-        progress.setTimeSpentMinutes(0);
+        LocalDateTime now = LocalDateTime.now(clock);
+        var progress = UserLessonProgress.builder()
+                .user(user)
+                .lesson(lesson)
+                .programProgress(userProgramProgress)
+                .startedAt(now)
+                .isCompleted(false)
+                .timeSpentMinutes(0)
+                .build();
+
 
         userLessonProgressRepository.save(progress);
     }
@@ -67,10 +78,11 @@ public class UserLessonProgressService {
     @Transactional
     public void completeLesson(Long progressId) {
         var progress = userLessonProgressRepository.findById(progressId)
-                .orElseThrow(() -> new ResourceNotFoundException(PROGRESS_NOT_FOUND + progressId));
+                .orElseThrow(() -> new ResourceNotFoundException("lesson.progress.not.found" + progressId));
 
+        LocalDateTime now = LocalDateTime.now(clock);
         progress.setIsCompleted(true);
-        progress.setCompletedAt(LocalDateTime.now());
+        progress.setCompletedAt(now);
 
         userLessonProgressRepository.save(progress);
 
@@ -79,14 +91,15 @@ public class UserLessonProgressService {
 
     private void updateProgramProgress(Long programProgressId) {
         var programProgress = userProgramProgressRepository.findById(programProgressId)
-                .orElseThrow(() -> new ResourceNotFoundException("Прогресс программы не найден: "
+                .orElseThrow(() -> new ResourceNotFoundException("program.progress.not.found"
                         + programProgressId));
 
         Long completedLessonsCount =
                 userLessonProgressRepository.countCompletedLessonsByProgramProgressId(programProgressId);
 
+        LocalDateTime now = LocalDateTime.now(clock);
         programProgress.setCompletedLessons(completedLessonsCount.intValue());
-        programProgress.setLastActivityAt(LocalDateTime.now());
+        programProgress.setLastActivityAt(now);
 
         int totalLessons = programProgress.getProgram().getLessons().size();
         if (completedLessonsCount == totalLessons) {
