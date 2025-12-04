@@ -100,7 +100,7 @@ public class LearningProgressControllerTest {
         testLesson.setOrderNumber(1);
         testLesson = lessonRepository.save(testLesson);
 
-        testProgramProgress = new UserProgramProgress();
+        testProgramProgress =  new UserProgramProgress();
         testProgramProgress.setUser(testUser);
         testProgramProgress.setProgram(testProgram);
         testProgramProgress.setStartedAt(LocalDateTime.now());
@@ -256,14 +256,14 @@ public class LearningProgressControllerTest {
 
     @Test
     void testCompletedLessonsCount() {
-        UserLessonProgress lesson1 = new UserLessonProgress();
-        lesson1.setUser(testUser);
-        lesson1.setLesson(testLesson);
-        lesson1.setProgramProgress(testProgramProgress);
-        lesson1.setStartedAt(LocalDateTime.now());
-        lesson1.setCompletedAt(LocalDateTime.now());
-        lesson1.setIsCompleted(true);
-        userLessonProgressRepository.save(lesson1);
+        UserLessonProgress userLessonProgress = new UserLessonProgress();
+        userLessonProgress.setUser(testUser);
+        userLessonProgress.setLesson(testLesson);
+        userLessonProgress.setProgramProgress(testProgramProgress);
+        userLessonProgress.setStartedAt(LocalDateTime.now());
+        userLessonProgress.setCompletedAt(LocalDateTime.now());
+        userLessonProgress.setIsCompleted(true);
+        userLessonProgressRepository.save(userLessonProgress);
 
         var testLesson2 = new Lesson();
         testLesson2.setTitle("Test Lesson 2");
@@ -272,14 +272,14 @@ public class LearningProgressControllerTest {
         testLesson2.setOrderNumber(2);
         testLesson2 = lessonRepository.save(testLesson2);
 
-        var lesson2 = new UserLessonProgress();
-        lesson2.setUser(testUser);
-        lesson2.setLesson(testLesson2);
-        lesson2.setProgramProgress(testProgramProgress);
-        lesson2.setStartedAt(LocalDateTime.now());
-        lesson2.setCompletedAt(LocalDateTime.now());
-        lesson2.setIsCompleted(true);
-        userLessonProgressRepository.save(lesson2);
+        var userLessonProgress1 = new UserLessonProgress();
+        userLessonProgress1.setUser(testUser);
+        userLessonProgress1.setLesson(testLesson2);
+        userLessonProgress1.setProgramProgress(testProgramProgress);
+        userLessonProgress1.setStartedAt(LocalDateTime.now());
+        userLessonProgress1.setCompletedAt(LocalDateTime.now());
+        userLessonProgress1.setIsCompleted(true);
+        userLessonProgressRepository.save(userLessonProgress1);
 
         var completedCount = userLessonProgressRepository
                 .countCompletedLessonsByProgramProgressId(testProgramProgress.getId());
