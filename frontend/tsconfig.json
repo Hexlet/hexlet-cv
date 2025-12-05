@@ -1,7 +1,22 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2020",
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@config/*": ["src/app/config/*"],
+      "@pages/*": ["src/pages/*"],
+      "@shared/*": ["src/shared/*"],
+      "@features/*": ["src/features/*"],
+      "@entities/*": ["src/entities/*"],
+      "@widgets/*": ["src/widgets/*"],
+      "@providers/*": ["src/app/providers/*"],
+      "@inertia/*": ["src/app/providers/inertia/*"],
+      "@ui/*": ["src/app/providers/ui/*"],
+      "@i18n/*": ["src/app/providers/i18n/*"],
+    },
+    "jsx": "react-jsx",
+  },
 }
