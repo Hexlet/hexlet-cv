@@ -1,4 +1,4 @@
-package io.hexlet.cv.converter;
+package io.hexlet.cv.model.converter;
 
 import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.AttributeConverter;
