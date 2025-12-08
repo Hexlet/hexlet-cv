@@ -2,7 +2,7 @@ package io.hexlet.cv.model;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.hexlet.cv.converter.RoleTypeConverter;
+import io.hexlet.cv.model.converter.RoleTypeConverter;
 import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Convert;
