@@ -4,14 +4,12 @@ import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
-import io.hexlet.cv.dto.user.UserDTO;
 import io.hexlet.cv.handler.exception.InterviewNotFoundException;
 import io.hexlet.cv.service.FlashPropsService;
 import io.hexlet.cv.service.InterviewService;
 import io.hexlet.cv.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,13 +43,15 @@ public class AdminInterviewController {
     private final InterviewService interviewService;
 
     private static final int MAX_INTERVIEWS_ON_PAGE = 100;
+    private static final String DEFAULT_PAGE_TO_SHOW = "0";
+    private static final String DEFAULT_NUMBER_OF_INTERVIEW_ON_PAGE = "30";
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> index(@PathVariable("locale") String locale,
                                         @RequestParam(required = false) String interviewSearchWord,
-                                        @RequestParam(defaultValue = "0") int page,
-                                        @RequestParam(defaultValue = "30") int size,
+                                        @RequestParam(defaultValue = DEFAULT_PAGE_TO_SHOW) int page,
+                                        @RequestParam(defaultValue = DEFAULT_NUMBER_OF_INTERVIEW_ON_PAGE) int size,
                                         HttpServletRequest request) {
 
         Map<String, Object> props = flashPropsService.buildProps(locale, request);
@@ -82,22 +82,6 @@ public class AdminInterviewController {
         return inertia.render("Admin/Interviews/Index", props);
     }
 
-    @GetMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> createForm(@PathVariable("locale") String locale,
-                                             HttpServletRequest request) {
-
-        Map<String, Object> props = flashPropsService.buildProps(locale, request);
-        List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
-
-        props.putAll(Map.of(
-                "availableSpeakers", availableSpeakers,
-                "pageTitle", "Создание интервью"
-        ));
-
-        return inertia.render("Admin/Interviews/Create", props);
-    }
-
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<?> createInterview(@PathVariable("locale") String locale,
@@ -125,39 +109,6 @@ public class AdminInterviewController {
             ));
 
             return inertia.render("Admin/Interviews/Show", props);
-        } catch (InterviewNotFoundException ex) {
-            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
-
-            errorProps.put("status", 404);
-            errorProps.put("message", ex.getMessage());
-            errorProps.put("interviewId", id);
-            errorProps.put("locale", locale);
-
-            ResponseEntity<?> inertiaResponse = inertia.render("Error/InterviewNotFound", errorProps);
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .headers(inertiaResponse.getHeaders())
-                    .body(inertiaResponse.getBody());
-        }
-    }
-
-    @GetMapping("/{id}/edit")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> editForm(@PathVariable("locale") String locale,
-                                           @PathVariable Long id,
-                                           HttpServletRequest request) {
-        try {
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
-            InterviewDTO interviewDTO = interviewService.findById(id);
-            List<UserDTO> availableSpeakers = userService.getPotentialInterviewSpeakers();
-
-            props.putAll(Map.of(
-                    "interview", interviewDTO,
-                    "availableSpeakers", availableSpeakers,
-                    "pageTitle", "Редактирование интервью"
-            ));
-
-            return inertia.render("Admin/Interviews/Edit", props);
         } catch (InterviewNotFoundException ex) {
             Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
