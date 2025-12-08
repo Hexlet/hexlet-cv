@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class InterviewConverter {
     private final UserRepository userRepository;
 
-    public Interview map(InterviewCreateDTO dto) {
+    public Interview convertCreateDtoToEntity(InterviewCreateDTO dto) {
         Interview model = new Interview();
         User userFromDto = speakerIdToSpeaker(dto.getSpeakerId());
 
@@ -30,20 +30,21 @@ public class InterviewConverter {
         return model;
     }
 
-    public InterviewDTO map(Interview model) {
-        InterviewDTO dto = new InterviewDTO();
+    public InterviewDTO convertEntityToDto(Interview model) {
         UserDTO userDTO = speakerToSummary(model.getSpeaker());
 
-        dto.setId(model.getId());
-        dto.setTitle(model.getTitle());
-        dto.setSpeaker(userDTO);
-        dto.setVideoLink(model.getVideoLink());
-        dto.setIsPublished(model.getIsPublished());
+        InterviewDTO dto = InterviewDTO.builder()
+                .id(model.getId())
+                .title(model.getTitle())
+                .speaker(userDTO)
+                .videoLink(model.getVideoLink())
+                .isPublished(model.getIsPublished())
+                .build();
 
         return dto;
     }
 
-    public Interview map(InterviewDTO dto) {
+    public Interview convertDtoToEntity(InterviewDTO dto) {
         Interview model = new Interview();
         User user = summaryToSpeaker(dto.getSpeaker());
 
@@ -56,20 +57,21 @@ public class InterviewConverter {
         return model;
     }
 
-    public void updateBasicFields(InterviewUpdateDTO dto, Interview model) {
+    public void updateEntityWithUpdateDto(InterviewUpdateDTO dto, Interview model) {
         if (dto.getTitle() != null && dto.getTitle().isPresent()) {
             String titleFromUpdateDto = dto.getTitle().get();
             if (titleFromUpdateDto == null) {
-                throw new IllegalArgumentException("Title in InterviewUpdateDTO canno be null");
+                throw new IllegalArgumentException("Title in InterviewUpdateDTO cannot be null");
             }
             model.setTitle(titleFromUpdateDto);
         }
         if (dto.getSpeakerId() != null && dto.getSpeakerId().isPresent()) {
             Long speakerIdFromDto = dto.getSpeakerId().get();
             model.setSpeaker(
-                    speakerIdFromDto != null ?
-                            userRepository.findById(speakerIdFromDto)
-                                    .orElseThrow(() -> new ResourceNotFoundException("User with id " + speakerIdFromDto + " not found."))
+                    speakerIdFromDto != null
+                            ? userRepository.findById(speakerIdFromDto)
+                                    .orElseThrow(() -> new ResourceNotFoundException("User with id "
+                                            + speakerIdFromDto + " not found."))
                             : null);
         }
         if (dto.getVideoLink() != null && dto.getVideoLink().isPresent()) {
@@ -88,7 +90,6 @@ public class InterviewConverter {
         }
     }
 
-    // нужно
     public User speakerIdToSpeaker(Long speakerId) {
         if (speakerId == null) {
             return null;
@@ -98,7 +99,6 @@ public class InterviewConverter {
                         + " not found. " + "Cannot convert speaker id to User."));
     }
 
-    //нужно
     public UserDTO speakerToSummary(User speaker) {
         UserDTO result = new UserDTO();
 
@@ -114,9 +114,8 @@ public class InterviewConverter {
         return result;
     }
 
-    //нужно
     public User summaryToSpeaker(UserDTO speakerFromDTO) {
-        if (speakerFromDTO == null) {
+        if (speakerFromDTO == null || speakerFromDTO.getId() == null) {
             return null;
         }
 
