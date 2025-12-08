@@ -4,7 +4,7 @@ import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
 import io.hexlet.cv.handler.exception.InterviewNotFoundException;
-import io.hexlet.cv.mapper.InterviewMapper;
+import io.hexlet.cv.mapper.InterviewConverter;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.repository.InterviewRepository;
 import io.hexlet.cv.specification.InterviewSpecification;
@@ -18,32 +18,32 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InterviewService {
     private final InterviewRepository interviewRepository;
-    private final InterviewMapper interviewMapper;
+    private final InterviewConverter interviewConverter;
     private final InterviewSpecification interviewSpecification;
 
     public Page<InterviewDTO> getAll(Pageable pageable) {
         return interviewRepository.findAll(pageable)
-                .map(interviewMapper::map);
+                .map(interviewConverter::convertEntityToDto);
     }
 
     public Page<InterviewDTO> search(String searchWord, Pageable pageable) {
         Specification<Interview> spec = interviewSpecification.build(searchWord);
 
         return interviewRepository.findAll(spec, pageable)
-                .map(interviewMapper::map);
+                .map(interviewConverter::convertEntityToDto);
     }
 
     public InterviewDTO findById(Long id) {
         Interview foundInterview = interviewRepository.findById(id)
                 .orElseThrow(() -> new InterviewNotFoundException("Interview with id: " + id + " not found."));
 
-        return interviewMapper.map(foundInterview);
+        return interviewConverter.convertEntityToDto(foundInterview);
     }
 
     public InterviewDTO create(InterviewCreateDTO createDTO) {
-        Interview model = interviewMapper.map(createDTO);
+        Interview model = interviewConverter.convertCreateDtoToEntity(createDTO);
         interviewRepository.save(model);
-        InterviewDTO dto = interviewMapper.map(model);
+        InterviewDTO dto = interviewConverter.convertEntityToDto(model);
 
         return dto;
     }
@@ -51,9 +51,9 @@ public class InterviewService {
     public InterviewDTO update(InterviewUpdateDTO updateDTO, Long id) {
         Interview model = interviewRepository.findById(id)
                 .orElseThrow(() -> new InterviewNotFoundException("Interview with id: " + id + " not found."));
-        interviewMapper.updateInterview(updateDTO, model);
+        interviewConverter.updateEntityWithUpdateDto(updateDTO, model);
         interviewRepository.save(model);
-        InterviewDTO dto = interviewMapper.map(model);
+        InterviewDTO dto = interviewConverter.convertEntityToDto(model);
 
         return dto;
     }
