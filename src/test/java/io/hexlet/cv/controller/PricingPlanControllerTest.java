@@ -11,8 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import io.hexlet.cv.model.User;
+import io.hexlet.cv.model.admin.marketing.PricingPlan;
 import io.hexlet.cv.model.enums.RoleType;
-import io.hexlet.cv.model.marketing.PricingPlan;
 import io.hexlet.cv.repository.PricingPlanRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
@@ -199,7 +199,7 @@ public class PricingPlanControllerTest {
     }
 
     @Test
-    void testUpdatePricing_AsAdmin() throws Exception {
+    void testUpdatePricingAsAdmin() throws Exception {
         String updatePricingJson = """
                 {
                     "name": "Обновленное название",
@@ -259,7 +259,7 @@ public class PricingPlanControllerTest {
     }
 
     @Test
-    void testInvalidSection_NotFound() throws Exception {
+    void testInvalidSectionNotFound() throws Exception {
         mockMvc.perform(get("/ru/admin/marketing/invalid-section")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
