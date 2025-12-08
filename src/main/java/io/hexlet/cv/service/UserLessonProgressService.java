@@ -1,8 +1,8 @@
 package io.hexlet.cv.service;
 
+import io.hexlet.cv.converter.ProgressDtoConverter;
 import io.hexlet.cv.dto.learning.UserLessonProgressDTO;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
-import io.hexlet.cv.mapper.UserLessonProgressMapper;
 import io.hexlet.cv.model.learning.UserLessonProgress;
 import io.hexlet.cv.repository.LessonRepository;
 import io.hexlet.cv.repository.UserLessonProgressRepository;
@@ -23,27 +23,27 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @AllArgsConstructor
 public class UserLessonProgressService {
-    private static final int DEFAULT_PAGE_SIZE = 10;
-    private static final int MAX_PAGE_SIZE = 100;
 
     private final UserLessonProgressRepository userLessonProgressRepository;
     private final UserProgramProgressRepository userProgramProgressRepository;
-    private final UserLessonProgressMapper userLessonProgressMapper;
+    private final ProgressDtoConverter progressDtoConverter;
     private final LessonRepository lessonRepository;
     private final UserRepository userRepository;
     private final Clock clock;
 
-    public Page<UserLessonProgressDTO> getLessonProgress(Long userId, Long programProgressId, int page, int size) {
-        log.debug("Getting lessons for programProgress {}", programProgressId);
+    public Page<UserLessonProgressDTO> getLessonProgress(Long userId, Long programProgressId, Pageable pageable) {
+        log.debug("Getting lessons for user{}, programProgress {} (pageable={})", userId, programProgressId, pageable);
 
-        Pageable pageable = PageRequest.of(
-                Math.max(page, 0),
-                size <= 0 ? DEFAULT_PAGE_SIZE : Math.min(size, MAX_PAGE_SIZE),
+        Pageable sortedPageable = pageable.getSort().isSorted()
+                ? pageable
+                : PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
                 Sort.by(Sort.Direction.DESC, UserLessonProgress.FIELD_STARTED_AT)
         );
 
-        return userLessonProgressRepository.findByUserIdAndProgramProgressId(userId, programProgressId, pageable)
-                .map(userLessonProgressMapper::toDto);
+        return userLessonProgressRepository.findByUserIdAndProgramProgressId(userId, programProgressId, sortedPageable)
+                .map(progressDtoConverter::convertLessonProgress);
     }
 
     @Transactional
