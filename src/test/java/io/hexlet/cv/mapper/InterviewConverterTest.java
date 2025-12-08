@@ -56,7 +56,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertCreateDtoToEntity_shouldConvertAllFields() {
+    void convertCreateDtoToEntityShouldConvertAllFields() {
         // given
         InterviewCreateDTO createDTO = new InterviewCreateDTO();
         createDTO.setTitle(TEST_INTERVIEW_TITLE);
@@ -77,7 +77,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertCreateDtoToEntity_withoutSpeaker_shouldSetNull() {
+    void convertCreateDtoToEntityWithoutSpeakerShouldSetNull() {
         // given
         InterviewCreateDTO createDTO = new InterviewCreateDTO();
         createDTO.setTitle(TEST_INTERVIEW_TITLE);
@@ -96,7 +96,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertCreateDtoToEntity_withDefaultValues_shouldUseDefaults() {
+    void convertCreateDtoToEntityWithDefaultValuesShouldUseDefaults() {
         // given
         // speakerId, videoLink, isPublished не установлены - будут дефолты из DTO
         InterviewCreateDTO createDTO = new InterviewCreateDTO();
@@ -115,7 +115,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertEntityToDto_shouldConvertAllFields() {
+    void convertEntityToDtoShouldConvertAllFields() {
         // given
         Interview interview = Interview.builder()
                 //изменить
@@ -140,7 +140,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertEntityToDto_withoutSpeaker_shouldSetNull() {
+    void convertEntityToDtoWithoutSpeakerShouldSetNull() {
         // given
         Interview interview = Interview.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -162,7 +162,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertDtoToEntity_shouldConvertAllFields() {
+    void convertDtoToEntityShouldConvertAllFields() {
         // given
         InterviewDTO dto = InterviewDTO.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -186,7 +186,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void convertDtoToEntity_withoutSpeaker_shouldSetNull() {
+    void convertDtoToEntityWithoutSpeakerShouldSetNull() {
         // given
         InterviewDTO dto = InterviewDTO.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -208,7 +208,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldUpdateAllFields() {
+    void updateEntityWithUpdateDtoShouldUpdateAllFields() {
         // given
         Interview interview = Interview.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -237,7 +237,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldUpdateOnlyProvidedFields() {
+    void updateEntityWithUpdateDtoShouldUpdateOnlyProvidedFields() {
         // given
         Interview interview = Interview.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -266,7 +266,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldRemoveSpeakerWhenNull() {
+    void updateEntityWithUpdateDtoShouldRemoveSpeakerWhenNull() {
         // given
         Interview interview = Interview.builder()
                 .id(TEST_INTERVIEW_ID)
@@ -289,7 +289,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldThrowWhenTitleIsNull() {
+    void updateEntityWithUpdateDtoShouldThrowWhenTitleIsNull() {
         // given
         Interview interview = new Interview();
         InterviewUpdateDTO updateDTO = new InterviewUpdateDTO();
@@ -303,7 +303,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldThrowWhenVideoLinkIsNull() {
+    void updateEntityWithUpdateDtoShouldThrowWhenVideoLinkIsNull() {
         // given
         Interview interview = new Interview();
         InterviewUpdateDTO updateDTO = new InterviewUpdateDTO();
@@ -317,7 +317,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void updateEntityWithUpdateDto_shouldThrowWhenIsPublishedIsNull() {
+    void updateEntityWithUpdateDtoShouldThrowWhenIsPublishedIsNull() {
         // given
         Interview interview = new Interview();
         InterviewUpdateDTO updateDTO = new InterviewUpdateDTO();
@@ -331,7 +331,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void speakerIdToSpeaker_shouldReturnUserWhenExists() {
+    void speakerIdToSpeakerShouldReturnUserWhenExists() {
         // given
         when(userRepository.findById(1L)).thenReturn(Optional.of(testUser));
 
@@ -343,7 +343,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void speakerIdToSpeaker_shouldReturnNullWhenSpeakerIdIsNull() {
+    void speakerIdToSpeakerShouldReturnNullWhenSpeakerIdIsNull() {
         // when
         User result = interviewConverter.speakerIdToSpeaker(null);
 
@@ -352,7 +352,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void speakerIdToSpeaker_shouldThrowWhenUserNotFound() {
+    void speakerIdToSpeakerShouldThrowWhenUserNotFound() {
         // given
         when(userRepository.findById(999L)).thenReturn(Optional.empty());
 
@@ -363,7 +363,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void speakerToSummary_shouldConvertUserToDTO() {
+    void speakerToSummaryShouldConvertUserToDTO() {
         // when
         UserDTO result = interviewConverter.speakerToSummary(testUser);
 
@@ -375,7 +375,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void speakerToSummary_shouldReturnNullWhenSpeakerIsNull() {
+    void speakerToSummaryShouldReturnNullWhenSpeakerIsNull() {
         // when
         UserDTO result = interviewConverter.speakerToSummary(null);
 
@@ -384,7 +384,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void summaryToSpeaker_shouldConvertDTOToUser() {
+    void summaryToSpeakerShouldConvertDTOToUser() {
         // given
         when(userRepository.findById(TEST_USER_ID)).thenReturn(Optional.of(testUser));
 
@@ -396,7 +396,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void summaryToSpeaker_shouldReturnNullWhenDTOIsNull() {
+    void summaryToSpeakerShouldReturnNullWhenDTOIsNull() {
         // when
         User result = interviewConverter.summaryToSpeaker(null);
 
@@ -405,7 +405,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void summaryToSpeaker_shouldReturnNullWhenDTOIdIsNull() {
+    void summaryToSpeakerShouldReturnNullWhenDTOIdIsNull() {
         // given
         UserDTO dto = new UserDTO();
         dto.setId(null);
@@ -418,7 +418,7 @@ class InterviewConverterTest {
     }
 
     @Test
-    void summaryToSpeaker_shouldThrowWhenUserNotFound() {
+    void summaryToSpeakerShouldThrowWhenUserNotFound() {
         // given
         when(userRepository.findById(999L)).thenReturn(Optional.empty());
 
