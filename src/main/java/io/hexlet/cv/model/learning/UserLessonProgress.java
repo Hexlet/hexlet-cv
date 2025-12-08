@@ -38,10 +38,13 @@ public class UserLessonProgress {
     private Long id;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean isCompleted = false;
 
     private LocalDateTime startedAt;
     private LocalDateTime completedAt;
+
+    @Builder.Default
     private Integer timeSpentMinutes = 0;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")

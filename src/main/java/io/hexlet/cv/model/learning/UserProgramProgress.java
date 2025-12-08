@@ -38,9 +38,11 @@ public class UserProgramProgress {
     private Long id;
 
     @Column(nullable = false)
+    @Builder.Default
     private Integer completedLessons = 0;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean isCompleted = false;
 
     private LocalDateTime startedAt;
