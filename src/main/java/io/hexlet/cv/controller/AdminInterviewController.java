@@ -73,10 +73,7 @@ public class AdminInterviewController {
                         "pageSize", safeSize,
                         "hasPrevious", interviewPage.hasPrevious(),
                         "hasNext", interviewPage.hasNext()
-                ),
-                "pageTitle", StringUtils.hasText(interviewSearchWord)
-                        ? "Результаты поиска: " + interviewSearchWord
-                        : "Список интервью"
+                )
         ));
 
         return inertia.render("Admin/Interviews/Index", props);
@@ -103,13 +100,14 @@ public class AdminInterviewController {
             Map<String, Object> props = flashPropsService.buildProps(locale, request);
             InterviewDTO interviewDTO = interviewService.findById(id);
 
-            props.putAll(Map.of(
-                    "interview", interviewDTO,
-                    "pageTitle", "Просмотр интервью"
-            ));
+            props.put(
+                    "interview", interviewDTO
+            );
 
             return inertia.render("Admin/Interviews/Show", props);
+
         } catch (InterviewNotFoundException ex) {
+
             Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
             errorProps.put("status", 404);
@@ -126,7 +124,7 @@ public class AdminInterviewController {
     }
 
     @PutMapping("/{id}/edit")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.SEE_OTHER)
     public ResponseEntity<?> edit(@PathVariable("locale") String locale,
                                   @PathVariable Long id,
                                   @Valid @RequestBody InterviewUpdateDTO updateDTO,
@@ -137,7 +135,9 @@ public class AdminInterviewController {
             redirectAttributes.addFlashAttribute("success", "Интервью успешно обновлено");
 
             return inertia.redirect("/" + locale + "/admin/interview/" + id);
+
         } catch (InterviewNotFoundException ex) {
+
             Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
             errorProps.put("status", 404);
@@ -154,7 +154,7 @@ public class AdminInterviewController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.SEE_OTHER)
     public ResponseEntity<?> delete(@PathVariable("locale") String locale,
                                     @PathVariable Long id,
                                     HttpServletRequest request,
@@ -164,7 +164,9 @@ public class AdminInterviewController {
             redirectAttributes.addFlashAttribute("success", "Интервью успешно удалено");
 
             return inertia.redirect("/" + locale + "/admin/interview");
+
         } catch (InterviewNotFoundException ex) {
+
             Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
 
             errorProps.put("status", 404);
