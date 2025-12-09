@@ -1,4 +1,4 @@
-package io.hexlet.cv.mapper;
+package io.hexlet.cv.converter;
 
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
