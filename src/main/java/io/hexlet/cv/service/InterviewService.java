@@ -1,10 +1,10 @@
 package io.hexlet.cv.service;
 
+import io.hexlet.cv.converter.InterviewConverter;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
 import io.hexlet.cv.handler.exception.InterviewNotFoundException;
-import io.hexlet.cv.mapper.InterviewConverter;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.repository.InterviewRepository;
 import io.hexlet.cv.specification.InterviewSpecification;
