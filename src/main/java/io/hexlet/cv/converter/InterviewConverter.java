@@ -39,12 +39,13 @@ public class InterviewConverter {
                 .speaker(userDTO)
                 .videoLink(model.getVideoLink())
                 .isPublished(model.getIsPublished())
+                .createdAt(model.getCreatedAt())
                 .build();
 
         return dto;
     }
 
-    public Interview convertDtoToEntity(InterviewDTO dto) {
+    /*public Interview convertDtoToEntity(InterviewDTO dto) {
         Interview model = new Interview();
         User user = summaryToSpeaker(dto.getSpeaker());
 
@@ -55,7 +56,7 @@ public class InterviewConverter {
         model.setIsPublished(dto.getIsPublished());
 
         return model;
-    }
+    }*/
 
     public void updateEntityWithUpdateDto(InterviewUpdateDTO dto, Interview model) {
         if (dto.getTitle() != null && dto.getTitle().isPresent()) {
