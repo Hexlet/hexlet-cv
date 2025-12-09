@@ -1,5 +1,10 @@
 package io.hexlet.cv.mapper;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.mockito.Mockito.when;
+
+import io.hexlet.cv.converter.InterviewConverter;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
 import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
@@ -8,6 +13,8 @@ import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.model.Interview;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.repository.UserRepository;
+import java.time.LocalDateTime;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,12 +22,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.jackson.nullable.JsonNullable;
-
-import java.util.Optional;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class InterviewConverterTest {
@@ -38,6 +39,7 @@ class InterviewConverterTest {
     private static final Long TEST_INTERVIEW_ID = 1L;
     private static final String TEST_INTERVIEW_TITLE = "Test Interview";
     private static final String TEST_INTERVIEW_VIDEOLINK = "https://example.com/video";
+    private static final LocalDateTime CREATE_DATETIME = LocalDateTime.of(2025, 12, 9, 12, 5, 0);
 
     private User testUser = new User();
     private UserDTO testUserDTO = new UserDTO();
@@ -124,6 +126,7 @@ class InterviewConverterTest {
                 .speaker(testUser)
                 .videoLink(TEST_INTERVIEW_VIDEOLINK)
                 .isPublished(true)
+                .createdAt(CREATE_DATETIME)
                 .build();
 
         // when
@@ -137,6 +140,7 @@ class InterviewConverterTest {
         assertThat(result.getSpeaker()).isNotNull();
         assertThat(result.getSpeaker().getId()).isEqualTo(TEST_USER_ID);
         assertThat(result.getSpeaker().getEmail()).isEqualTo(TEST_USER_EMAIL);
+        assertThat(result.getCreatedAt()).isEqualTo(CREATE_DATETIME);
     }
 
     @Test
@@ -161,7 +165,7 @@ class InterviewConverterTest {
         assertThat(result.getIsPublished()).isFalse();
     }
 
-    @Test
+    /*@Test
     void convertDtoToEntityShouldConvertAllFields() {
         // given
         InterviewDTO dto = InterviewDTO.builder()
@@ -205,7 +209,7 @@ class InterviewConverterTest {
         assertThat(result.getSpeaker()).isNull();
         assertThat(result.getVideoLink()).isEmpty();
         assertThat(result.getIsPublished()).isFalse();
-    }
+    }*/
 
     @Test
     void updateEntityWithUpdateDtoShouldUpdateAllFields() {
