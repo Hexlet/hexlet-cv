@@ -1,45 +1,35 @@
 package io.hexlet.cv.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyMap;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import io.github.inertia4j.spring.Inertia;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hexlet.cv.dto.interview.InterviewCreateDTO;
-import io.hexlet.cv.dto.interview.InterviewDTO;
 import io.hexlet.cv.dto.interview.InterviewUpdateDTO;
-import io.hexlet.cv.dto.user.UserDTO;
-import io.hexlet.cv.handler.exception.InterviewNotFoundException;
-import io.hexlet.cv.service.FlashPropsService;
-import io.hexlet.cv.service.InterviewService;
-import io.hexlet.cv.service.UserService;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.hexlet.cv.model.Interview;
+import io.hexlet.cv.model.User;
+import io.hexlet.cv.model.enums.RoleType;
+import io.hexlet.cv.repository.InterviewRepository;
+import io.hexlet.cv.repository.UserRepository;
+import io.hexlet.cv.util.JWTUtils;
+import jakarta.servlet.http.Cookie;
+import java.time.LocalDateTime;
+import java.util.Optional;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -48,324 +38,352 @@ class AdminInterviewControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private Inertia inertia;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-    @MockBean
-    private FlashPropsService flashPropsService;
+    @Autowired
+    private UserRepository userRepository;
 
-    @MockBean
-    private UserService userService;
+    @Autowired
+    private InterviewRepository interviewRepository;
 
-    @MockBean
-    private InterviewService interviewService;
+    @Autowired
+    private JWTUtils jwtUtils;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    private static final String ADMIN_EMAIL = "admin@example.com";
+    private static final String ADMIN_PASSWORD = "admin_password";
+    private static final String ADMIN_FIRSTNAME = "Admin";
+    private static final String ADMIN_LASTNAME = "User";
+    private static final String SPEAKER_EMAIL = "speaker@example.com";
+    private static final String SPEAKER_PASSWORD = "speaker_password";
+    private static final String SPEAKER_FIRSTNAME = "John";
+    private static final String SPEAKER_LASTNAME = "Doe";
+
+    private static final String TEST_INTERVIEW_TITLE = "Initial Test Interview";
+    private static final String TEST_INTERVIEW_VIDEOLINK = "https://example.com/initial";
+
+    private String adminToken;
+    private User adminUser;
+    private User testSpeaker;
+    private Interview testInterview;
+
+    @AfterEach
+    void cleanUp() {
+        interviewRepository.deleteAll();
+        userRepository.deleteAll();
+    }
 
     @BeforeEach
     void setUp() {
-        when(flashPropsService.buildProps(anyString(), any()))
-                .thenAnswer(invocation -> {
-                    String locale = invocation.getArgument(0);
-                    Map<String, Object> props = new HashMap<>();
-                    props.put("locale", locale);
-                    return props;
-                });
+        cleanUp();
 
-        when(inertia.render(anyString(), anyMap())).thenReturn(ResponseEntity.ok("OK"));
-        when(inertia.redirect(anyString())).thenReturn(ResponseEntity.status(302).build());
+        // Создаем админа
+        adminUser = new User();
+        adminUser.setEmail(ADMIN_EMAIL);
+        adminUser.setEncryptedPassword(passwordEncoder.encode(ADMIN_PASSWORD));
+        adminUser.setRole(RoleType.ADMIN);
+        adminUser.setFirstName(ADMIN_FIRSTNAME);
+        adminUser.setLastName(ADMIN_LASTNAME);
+        adminUser = userRepository.save(adminUser);
+
+        adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+
+        // Создаем спикера для тестов
+        testSpeaker = new User();
+        testSpeaker.setEmail(SPEAKER_EMAIL);
+        testSpeaker.setEncryptedPassword(passwordEncoder.encode(SPEAKER_PASSWORD));
+        testSpeaker.setRole(RoleType.CANDIDATE);
+        testSpeaker.setFirstName(SPEAKER_FIRSTNAME);
+        testSpeaker.setLastName(SPEAKER_LASTNAME);
+        testSpeaker = userRepository.save(testSpeaker);
+
+        // Создаем тестовое интервью
+        testInterview = Interview.builder()
+                .title(TEST_INTERVIEW_TITLE)
+                .speaker(testSpeaker)
+                .videoLink(TEST_INTERVIEW_VIDEOLINK)
+                .isPublished(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+        testInterview = interviewRepository.save(testInterview);
     }
 
-    //CREATE WITHOUT SPEAKER
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldCreateInterviewWithoutSpeaker() throws Exception {
         // given
-        String locale = "ru";
-
-        InterviewDTO createdInterview = createInterviewDTO(1L, "Interview without speaker");
-        // явно null
-        createdInterview.setSpeaker(null);
-
-        when(interviewService.create(any(InterviewCreateDTO.class)))
-                .thenReturn(createdInterview);
+        InterviewCreateDTO createDTO = new InterviewCreateDTO();
+        createDTO.setTitle("Interview without speaker");
+        createDTO.setVideoLink("https://example.com/video1");
+        createDTO.setIsPublished(true);
+        // speakerId не устанавливаем он будет null
 
         // when & then
-        mockMvc.perform(post("/{locale}/admin/interview/create", locale)
+        mockMvc.perform(post("/ru/admin/interview/create")
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                            {
-                                "title": "Interview without speaker",
-                                "videoLink": "https://example.com/video1",
-                                "isPublished": true
-                            }
-                            """))
-                // 302 - успешное создание
+                        .content(objectMapper.writeValueAsString(createDTO)))
                 .andExpect(status().isFound());
 
-        verify(interviewService).create(argThat(dto ->
-                dto.getTitle().equals("Interview without speaker")
-                        && dto.getSpeakerId() == null
-        ));
+        // Проверяем, что интервью создалось в БД
+        Optional<Interview> createdInterview = interviewRepository
+                .findByTitle("Interview without speaker");
+        assertThat(createdInterview).isPresent();
+        assertThat(createdInterview.get().getSpeaker()).isNull();
+        assertThat(createdInterview.get().getIsPublished()).isTrue();
     }
 
-    //CREATE WITH SPEAKER
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldCreateInterviewWithSpeaker() throws Exception {
         // given
-        String locale = "ru";
-
-        UserDTO speaker = createUserDTO(5L, "speaker@test.com", "John", "Doe");
-        InterviewDTO createdInterview = createInterviewDTO(2L, "Interview with speaker");
-        createdInterview.setSpeaker(speaker);
-
-        when(interviewService.create(any(InterviewCreateDTO.class)))
-                .thenReturn(createdInterview);
+        InterviewCreateDTO createDTO = new InterviewCreateDTO();
+        createDTO.setTitle("Interview with speaker");
+        createDTO.setSpeakerId(testSpeaker.getId());
+        createDTO.setVideoLink("https://example.com/video2");
+        createDTO.setIsPublished(false);
 
         // when & then
-        mockMvc.perform(post("/{locale}/admin/interview/create", locale)
+        mockMvc.perform(post("/ru/admin/interview/create")
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                            {
-                                "title": "Interview with speaker",
-                                "speakerId": 5,
-                                "videoLink": "https://example.com/video2",
-                                "isPublished": false
-                            }
-                            """))
+                        .content(objectMapper.writeValueAsString(createDTO)))
                 .andExpect(status().isFound());
 
-        verify(interviewService).create(argThat(dto ->
-                dto.getTitle().equals("Interview with speaker")
-                        && dto.getSpeakerId() == 5L
-        ));
+        // Проверяем в БД
+        Optional<Interview> createdInterview = interviewRepository
+                .findByTitle("Interview with speaker");
+        assertThat(createdInterview).isPresent();
+        assertThat(createdInterview.get().getSpeaker().getId())
+                .isEqualTo(testSpeaker.getId());
+        assertThat(createdInterview.get().getIsPublished()).isFalse();
     }
 
-    //EDIT
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldUpdateInterviewTitleAndSpeaker() throws Exception {
         // given
-        String locale = "ru";
-        Long interviewId = 1L;
+        // Создаем нового спикера
+        User newSpeaker = new User();
+        newSpeaker.setEmail("new_speaker@example.com");
+        newSpeaker.setEncryptedPassword(passwordEncoder.encode("password"));
+        newSpeaker.setRole(RoleType.CANDIDATE);
+        newSpeaker.setFirstName("Jane");
+        newSpeaker.setLastName("Smith");
+        newSpeaker = userRepository.save(newSpeaker);
 
-        // Обновленное интервью с новым спикером
-        UserDTO newSpeaker = createUserDTO(10L, "new@test.com", "New", "Speaker");
-        InterviewDTO updatedInterview = createInterviewDTO(interviewId, "Updated Title");
-        updatedInterview.setSpeaker(newSpeaker);
-
-        when(interviewService.update(any(InterviewUpdateDTO.class), eq(interviewId)))
-                .thenReturn(updatedInterview);
+        InterviewUpdateDTO updateDTO = new InterviewUpdateDTO();
+        updateDTO.setTitle(JsonNullable.of("Updated Title"));
+        updateDTO.setSpeakerId(JsonNullable.of(newSpeaker.getId()));
+        updateDTO.setVideoLink(JsonNullable.of("https://example.com/updated"));
+        updateDTO.setIsPublished(JsonNullable.of(false));
 
         // when & then
-        mockMvc.perform(put("/{locale}/admin/interview/{id}/edit", locale, interviewId)
+        mockMvc.perform(put("/ru/admin/interview/{id}/edit", testInterview.getId())
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                            {
-                                "title": "Updated Title",
-                                "speakerId": 10
-                            }
-                            """))
-                .andExpect(status().isFound());
+                        .content(objectMapper.writeValueAsString(updateDTO)))
+                .andExpect(status().isSeeOther());
 
-        verify(interviewService).update(argThat(dto ->
-                dto.getTitle().get().equals("Updated Title")
-                        && dto.getSpeakerId().get() == 10L
-        ), eq(interviewId));
+        // Проверяем обновление в БД
+        Optional<Interview> updatedInterview = interviewRepository
+                .findById(testInterview.getId());
+        assertThat(updatedInterview).isPresent();
+        assertThat(updatedInterview.get().getTitle()).isEqualTo("Updated Title");
+        assertThat(updatedInterview.get().getSpeaker().getId())
+                .isEqualTo(newSpeaker.getId());
+        assertThat(updatedInterview.get().getIsPublished()).isFalse();
     }
 
-    //REMOVE SPEAKER
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldRemoveSpeakerFromInterview() throws Exception {
         // given
-        String locale = "ru";
-        Long interviewId = 1L;
+        InterviewUpdateDTO updateDTO = new InterviewUpdateDTO();
+        // Будем явно удалять спикера
+        updateDTO.setSpeakerId(JsonNullable.of(null));
 
-        InterviewDTO updatedInterview = createInterviewDTO(interviewId, "Interview without speaker now");
-        updatedInterview.setSpeaker(null);
-
-        when(interviewService.update(any(InterviewUpdateDTO.class), eq(interviewId)))
-                .thenReturn(updatedInterview);
-
-        mockMvc.perform(put("/{locale}/admin/interview/{id}/edit", locale, interviewId)
+        // when & then
+        mockMvc.perform(put("/ru/admin/interview/{id}/edit", testInterview.getId())
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                            {
-                                "speakerId": null
-                            }
-                            """))
-                .andExpect(status().isFound());
+                        .content(objectMapper.writeValueAsString(updateDTO)))
+                .andExpect(status().isSeeOther());
 
-        verify(interviewService).update(argThat(dto ->
-                dto.getSpeakerId().get() == null
-        ), eq(interviewId));
+        // Проверяем в БД
+        Optional<Interview> updatedInterview = interviewRepository
+                .findById(testInterview.getId());
+        assertThat(updatedInterview).isPresent();
+        assertThat(updatedInterview.get().getSpeaker()).isNull();
     }
 
-    //DELETE
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldDeleteInterview() throws Exception {
         // given
-        String locale = "ru";
-        Long interviewId = 1L;
-
-        doNothing().when(interviewService).delete(interviewId);
+        Long interviewId = testInterview.getId();
 
         // when & then
-        mockMvc.perform(delete("/{locale}/admin/interview/{id}", locale, interviewId)
+        mockMvc.perform(delete("/ru/admin/interview/{id}", interviewId)
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().isFound());
+                .andExpect(status().isSeeOther());
 
-        verify(interviewService).delete(interviewId);
+        // Проверяем, что интервью удалено из БД
+        Optional<Interview> deletedInterview = interviewRepository
+                .findById(interviewId);
+        assertThat(deletedInterview).isEmpty();
     }
 
-    //SEARCH INTERVIEW
-
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldFindInterviewsBySearchWord() throws Exception {
         // given
-        String locale = "ru";
-        String searchWord = "java";
+        // Создаем еще интервью для поиска
+        Interview javaInterview = Interview.builder()
+                .title("Java Programming Interview")
+                .speaker(testSpeaker)
+                .videoLink("https://example.com/java")
+                .isPublished(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+        interviewRepository.save(javaInterview);
 
-        List<InterviewDTO> javaInterviews = List.of(
-                createInterviewDTO(1L, "Java Programming Interview"),
-                createInterviewDTO(2L, "Advanced Java Concepts")
-        );
-        Page<InterviewDTO> searchResult = new PageImpl<>(javaInterviews);
-
-        when(interviewService.search(eq(searchWord), any(Pageable.class)))
-                .thenReturn(searchResult);
+        Interview pythonInterview = Interview.builder()
+                .title("Python for Beginners")
+                .speaker(null)
+                .videoLink("https://example.com/python")
+                .isPublished(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+        interviewRepository.save(pythonInterview);
 
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview", locale)
+        MvcResult result = mockMvc.perform(get("/ru/admin/interview")
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
-                        .param("interviewSearchWord", searchWord))
-                .andExpect(status().isOk());
+                        .param("interviewSearchWord", "java"))
+                .andExpect(status().isOk())
+                .andReturn();
 
-        verify(interviewService).search(eq("java"), any(Pageable.class));
+        String content = result.getResponse().getContentAsString();
+        // Проверяем, что возвращаются корректные данные
+        assertThat(content).contains("Java Programming Interview");
+        assertThat(content).contains(testSpeaker.getFirstName());
     }
 
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
-    void shouldFindOnlyOneInterviewWhenSearchingForPython() throws Exception {
-        // given
-        String locale = "ru";
-        String searchWord = "python";
-
-        List<InterviewDTO> pythonInterviews = List.of(
-                createInterviewDTO(3L, "Python for Beginners")
-        );
-        Page<InterviewDTO> searchResult = new PageImpl<>(pythonInterviews);
-
-        when(interviewService.search(eq(searchWord), any(Pageable.class)))
-                .thenReturn(searchResult);
-
-        // when & then
-        mockMvc.perform(get("/{locale}/admin/interview", locale)
-                        .header("X-Inertia", "true")
-                        .param("interviewSearchWord", searchWord))
-                .andExpect(status().isOk());
-
-        verify(interviewService).search(eq("python"), any(Pageable.class));
-    }
-
-    @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
-    void shouldReturnAllInterviewsWhenSearchWordIsEmpty() throws Exception {
-        // given
-        String locale = "ru";
-        String searchWord = "";
-
-        List<InterviewDTO> allInterviews = List.of(
-                createInterviewDTO(1L, "Java Programming Interview"),
-                createInterviewDTO(2L, "Advanced Java Concepts"),
-                createInterviewDTO(3L, "Python for Beginners")
-        );
-        Page<InterviewDTO> allResults = new PageImpl<>(allInterviews);
-
-        when(interviewService.getAll(any(Pageable.class)))
-                .thenReturn(allResults);
-
-        // when & then
-        mockMvc.perform(get("/{locale}/admin/interview", locale)
-                        .header("X-Inertia", "true")
-                        .param("interviewSearchWord", searchWord))
-                .andExpect(status().isOk());
-
-        // Проверяем что вызван getAll, а не search
-        verify(interviewService).getAll(any(Pageable.class));
-        verify(interviewService, never()).search(anyString(), any(Pageable.class));
-    }
-
-    //GET BY ID
-
-    @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldGetInterviewById() throws Exception {
-        // given
-        String locale = "ru";
-        Long interviewId = 1L;
-
-        UserDTO speaker = createUserDTO(5L, "speaker@test.com", "John", "Doe");
-        InterviewDTO interview = createInterviewDTO(interviewId, "Test Interview");
-        interview.setSpeaker(speaker);
-
-        when(interviewService.findById(interviewId)).thenReturn(interview);
-
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId)
+        MvcResult result = mockMvc.perform(get("/ru/admin/interview/{id}", testInterview.getId())
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
 
-        verify(interviewService).findById(interviewId);
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("Initial Test Interview");
+        assertThat(content).contains(testSpeaker.getFirstName());
     }
 
     @Test
-    @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void shouldReturnNotFoundForNonExistentInterview() throws Exception {
-        // given
-        String locale = "ru";
-        Long interviewId = 999L;
-
-        when(interviewService.findById(interviewId))
-                .thenThrow(new InterviewNotFoundException("Interview not found"));
-
         // when & then
-        mockMvc.perform(get("/{locale}/admin/interview/{id}", locale, interviewId)
+        mockMvc.perform(get("/ru/admin/interview/999999")
+                        .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isNotFound());
-
-        verify(interviewService).findById(interviewId);
     }
 
-    //ВСПОМОГАТЕЛЬНЫЕ
+    @Test
+    void shouldReturnAllInterviewsWhenSearchWordIsEmpty() throws Exception {
+        // given
+        // Создаем несколько интервью
+        for (int i = 1; i <= 3; i++) {
+            Interview interview = Interview.builder()
+                    .title("Interview " + i)
+                    .speaker(i % 2 == 0 ? testSpeaker : null)
+                    .videoLink("https://example.com/video" + i)
+                    .isPublished(true)
+                    .createdAt(LocalDateTime.now())
+                    .build();
+            interviewRepository.save(interview);
+        }
 
-    private InterviewDTO createInterviewDTO(Long id, String title) {
-        InterviewDTO dto = InterviewDTO.builder()
-                .id(id)
-                .title(title)
-                .videoLink("")
-                .isPublished(false)
-                .build();
-        return dto;
+        // when & then
+        MvcResult result = mockMvc.perform(get("/ru/admin/interview")
+                        .cookie(new Cookie("access_token", adminToken))
+                        .header("X-Inertia", "true")
+                        // Пустой поиск
+                        .param("interviewSearchWord", ""))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        // Должны видеть все интервью (1 изначальное + 3 новых = 4)
+        assertThat(content).contains("Initial Test Interview");
+        assertThat(content).contains("Interview 1");
+        assertThat(content).contains("Interview 3");
     }
 
-    private UserDTO createUserDTO(Long id, String email, String firstName, String lastName) {
-        UserDTO dto = new UserDTO();
-        dto.setId(id);
-        dto.setEmail(email);
-        dto.setFirstName(firstName);
-        dto.setLastName(lastName);
-        return dto;
+    @Test
+    void shouldPaginateInterviews() throws Exception {
+        // given
+        // Создаем больше интервью, чем помещается на страницу
+        for (int i = 1; i <= 15; i++) {
+            Interview interview = Interview.builder()
+                    .title("Interview Page " + i)
+                    .speaker(testSpeaker)
+                    .videoLink("https://example.com/page" + i)
+                    .isPublished(true)
+                    .createdAt(LocalDateTime.now())
+                    .build();
+            interviewRepository.save(interview);
+        }
+
+        // when & then - запросим вторую страницу
+        MvcResult result = mockMvc.perform(get("/ru/admin/interview")
+                        .cookie(new Cookie("access_token", adminToken))
+                        .header("X-Inertia", "true")
+                        // Вторая страница (нумерация с 0)
+                        .param("page", "1")
+                        // 5 элементов на странице
+                        .param("size", "5"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        // Проверяем, что возвращаются данные пагинации
+        assertThat(content).contains("\"currentPage\":1");
+        // общее количество страниц
+        assertThat(content).contains("\"totalPages\":");
+    }
+
+    @Test
+    void shouldNotAllowAccessWithoutAdminRole() throws Exception {
+        // given
+        // Создаем пользователя с ролью CANDIDATE
+        User candidate = new User();
+        candidate.setEmail("candidate@example.com");
+        candidate.setEncryptedPassword(passwordEncoder.encode("password"));
+        candidate.setRole(RoleType.CANDIDATE);
+        candidate = userRepository.save(candidate);
+
+        String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
+
+        // when & then - кандидат не должен иметь доступ
+        mockMvc.perform(get("/ru/admin/interview")
+                        .cookie(new Cookie("access_token", candidateToken))
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void shouldNotAllowAccessWithoutAuthentication() throws Exception {
+        // when & then - доступ без токена должен быть запрещен
+        mockMvc.perform(get("/ru/admin/interview")
+                        .header("X-Inertia", "true"))
+                .andExpect(status().isUnauthorized());
     }
 }
