@@ -5,8 +5,11 @@ import {
   Grid,
   Button,
 } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 
 export const AboutUs = () => {
+  const { t } = useTranslation();
+  
   return (
     <Container size="lg" my="lg" py="xs">
       <Grid>
@@ -14,19 +17,19 @@ export const AboutUs = () => {
           md: 7 }}>
           <Container mr="lg" pl={0}>
             <Text fz="3.2rem" c="white" fw={700} lh={1}>
-              Найти работу в IT легче, чем ты думаешь
+              {t('homePage.aboutUs.title')}
             </Text>
             <Text c="white" size="lg" my="md">
-              С Hexlet Карьерой ты получаешь офферы быстрее - за недели, а не месяцы. 
+              {t('homePage.aboutUs.description')}
             </Text>
             <Button radius="md" w="fit-content">
               <Text c="white" size="md">
-                Попробовать бесплатно
+                {t('homePage.aboutUs.buttons.tryFree')}
               </Text>
             </Button>
             <Button radius="md" color="none" w="fit-content">
               <Text c="white" size="md">
-                Начать с проектов →
+                {t('homePage.aboutUs.buttons.startWithProjects')}
               </Text>
             </Button>
           </Container>
