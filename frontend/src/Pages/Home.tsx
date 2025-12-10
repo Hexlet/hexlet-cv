@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react'
-import { Container, Button, Group, Title } from '@mantine/core'
+import { Container, Button, Group, Title, Text } from '@mantine/core'
 
 export default function Home() {
   return (
@@ -16,6 +16,8 @@ export default function Home() {
           Регистрация
         </Button>
       </Group>
+         <Text mt="xl" size="sm" c="dimmed">
+      </Text>
     </Container>
   )
 }

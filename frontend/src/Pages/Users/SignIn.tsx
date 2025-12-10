@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useForm, Link } from '@inertiajs/react'
 import { Container, Title, TextInput, PasswordInput, Button, Alert, Group } from '@mantine/core'
+import ResetPasswordModal from './ResetPasswordModal'
 
 export default function SignIn() {
   const [loginError, setLoginError] = useState<string | null>(null)
+  const [resetModalOpened, setResetModalOpened] = useState(false)
   const form = useForm({
     email: '',
     password: '',
@@ -30,6 +32,7 @@ export default function SignIn() {
   }
 
   return (
+     <>
     <Container size="sm" mt="xl">
       <Title order={2} ta="center">
         Вход
@@ -47,6 +50,16 @@ export default function SignIn() {
           value={form.data.password}
           onChange={(e) => form.setData('password', e.currentTarget.value)}
         />
+           <Group justify="flex-end" mt="xs">
+            <Button 
+              variant="subtle" 
+              size="sm" 
+              onClick={() => setResetModalOpened(true)}
+            >
+              Забыли пароль?
+            </Button>
+          </Group>
+
         {loginError && (
           <Alert color="red" mt="sm">
             {loginError}
@@ -62,5 +75,11 @@ export default function SignIn() {
         </Group>
       </form>
     </Container>
+
+     <ResetPasswordModal 
+        opened={resetModalOpened}
+        onClose={() => setResetModalOpened(false)}
+      />
+    </>
   )
 }
