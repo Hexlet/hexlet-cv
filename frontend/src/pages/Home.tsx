@@ -76,15 +76,15 @@ const sample = (
     </Group>
   </SimpleGrid>
 )
+// Конец компонента-пустышки
 
 export default function Index({ pageSections }: IndexProps) {
   const theme = useMantineTheme()
   console.log(`Page sections:`, pageSections)
 
+  // Начало компонента-пустышки для демонстрации пропса pageSections (Потом удалить)
   const repeatCount = 5 // Колличество повторений примера inertia компонента
-
   const repeatedSamples = []
-
   for (let i = 0; i < repeatCount; i++) {
     repeatedSamples.push(
       <div key={i}>
@@ -92,9 +92,18 @@ export default function Index({ pageSections }: IndexProps) {
       </div>
     )
   }
+  // Конец компонента-пустышки
 
   return (
-    <Stack mih="100vh" bg={getGradient({ deg: 135, from: 'black', to: '#00031a' }, theme)} justify="space-between">
+    <Stack
+      mih="100vh"
+      bg={getGradient({
+        deg: 135,
+        from: 'black',
+        to: '#00031a',
+      }, theme)}
+      justify="space-between"
+    >
       <Header />
       {/* здесь передаем пропсы страниц для отрисовки, а пока БД пустая я сделал компонент пустышку для демонстрации */}
       <Container size="xl">

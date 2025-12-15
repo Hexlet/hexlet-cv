@@ -2,16 +2,46 @@ import { Group, Button, Divider, ThemeIcon, Text, Anchor } from '@mantine/core'
 import { Link } from '@inertiajs/react'
 
 const links = [
-  { link: '#', label: 'Коммерческий опыт' },
-  { link: '#', label: 'Аналитика' },
-  { link: '#', label: 'Обучение' },
-  { link: '#', label: 'Грейды' },
-  { link: '#', label: 'База знаний' },
-  { link: '#', label: 'Вебинары' },
-  { link: '#', label: 'Кейсы' },
-  { link: '#', label: 'Тарифы' },
-  { link: '#', label: 'Новости' },
-  { link: '#', label: 'Сообщество' },
+  {
+    link: '#',
+    label: 'Коммерческий опыт',
+  },
+  {
+    link: '#',
+    label: 'Аналитика',
+  },
+  {
+    link: '#',
+    label: 'Обучение',
+  },
+  {
+    link: '#',
+    label: 'Грейды',
+  },
+  {
+    link: '#',
+    label: 'База знаний',
+  },
+  {
+    link: '#',
+    label: 'Вебинары',
+  },
+  {
+    link: '#',
+    label: 'Кейсы',
+  },
+  {
+    link: '#',
+    label: 'Тарифы',
+  },
+  {
+    link: '#',
+    label: 'Новости',
+  },
+  {
+    link: '#',
+    label: 'Сообщество',
+  },
 ]
 
 export default function Header(): JSX.Element {

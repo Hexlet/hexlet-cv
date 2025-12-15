@@ -1,9 +1,10 @@
 import i18next from 'i18next'
 import { I18nextProvider } from 'react-i18next'
 import resources from './locales/index'
+import type { i18n } from 'i18next'
 
 const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const i18nextInstance = i18next.createInstance()
+  const i18nextInstance: i18n = i18next.createInstance()
   i18nextInstance.init({
     debug: false,
     lng: 'ru',
