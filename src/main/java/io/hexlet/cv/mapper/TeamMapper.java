@@ -4,7 +4,7 @@ package io.hexlet.cv.mapper;
 import io.hexlet.cv.dto.marketing.TeamCreateDTO;
 import io.hexlet.cv.dto.marketing.TeamDTO;
 import io.hexlet.cv.dto.marketing.TeamUpdateDTO;
-import io.hexlet.cv.model.marketing.Team;
+import io.hexlet.cv.model.admin.marketing.Team;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

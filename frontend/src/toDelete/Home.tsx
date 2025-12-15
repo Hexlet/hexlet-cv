@@ -1,11 +1,19 @@
+<<<<<<< HEAD:frontend/src/Pages/Home.tsx
 import { Link } from '@inertiajs/react'
 import { Container, Button, Group, Title, Text } from '@mantine/core'
+=======
+import { Link } from '@inertiajs/react';
+import { Container, Button, Group, Title } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+>>>>>>> upstream/main:frontend/src/toDelete/Home.tsx
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <Container size="sm" mt="xl" ta="center">
       <Title order={2} mb="xl">
-        Добро пожаловать!
+        {t('homePage.greetings')}
       </Title>
 
       <Group justify="center">
@@ -19,5 +27,5 @@ export default function Home() {
          <Text mt="xl" size="sm" c="dimmed">
       </Text>
     </Container>
-  )
+  );
 }
