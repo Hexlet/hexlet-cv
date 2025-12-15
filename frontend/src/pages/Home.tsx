@@ -26,11 +26,11 @@ type PageSection = {
 }
 
 type IndexProps = {
-  pageSections: PageSection[]
+  pageSections: Readonly<PageSection[]>
 }
 
 // Компонент-пустышка для демонстрации пропса pageSections (Потом УДАЛИТЬ!)
-const sample = (
+const sample: JSX.Element = (
   <SimpleGrid cols={2} spacing="xs" bg={alpha('#787878', 0.2)} p="xl" bdrs="lg" bd={'1px solid ' + alpha('#FFFFFF', 0.1)} my={20}>
     <Stack gap="md" align="strech">
       <Title order={1} c="white" fw={700}>
@@ -78,13 +78,13 @@ const sample = (
 )
 // Конец компонента-пустышки
 
-export default function Index({ pageSections }: IndexProps) {
+const Index: React.FC<IndexProps> = ({ pageSections }) => {
   const theme = useMantineTheme()
   console.log(`Page sections:`, pageSections)
 
   // Начало компонента-пустышки для демонстрации пропса pageSections (Потом удалить)
   const repeatCount = 5 // Колличество повторений примера inertia компонента
-  const repeatedSamples = []
+  const repeatedSamples: React.ReactNode[] = []
   for (let i = 0; i < repeatCount; i++) {
     repeatedSamples.push(
       <div key={i}>
@@ -113,3 +113,5 @@ export default function Index({ pageSections }: IndexProps) {
     </Stack>
   )
 }
+
+export default Index
