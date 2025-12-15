@@ -7,8 +7,8 @@ export default {
       reviews: "CV reviews",
       vacancies: "Find jobs",
       employment: "Employment",
-      signIn: "Sign In",
-      signUp: "Sing Up",
+      signInBtn: "Sign In",
+      signUpBtn: "Sing Up",
       en: "EN",
       ru: "RU",
       form: {

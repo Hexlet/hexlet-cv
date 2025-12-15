@@ -2,7 +2,10 @@ import logo from "../../../../shared/logo_Min.png"
 import { yupResolver } from "mantine-form-yup-resolver";
 import { useForm } from "@mantine/form"
 import { useTranslation } from "react-i18next";
+import { useDisclosure } from "@mantine/hooks";
+import { motion } from "motion/react"
 import {
+    Burger,
     Container,
     Button,
     Group,
@@ -12,9 +15,11 @@ import {
     PasswordInput,
     Menu,
     UnstyledButton,
+    List
 } from "@mantine/core";
 import { getRegistrationSchema } from "./getRegistrationSchema";
 import { useState, useMemo } from "react";
+import { animate } from "motion";
 
 const Demo = () => {
     const { t, i18n } = useTranslation()
@@ -47,9 +52,11 @@ const Demo = () => {
         const dataN = data.filter(item => item.label !== selectedItem.label)
         const items = dataN.map((item) => (
             <Menu.Item
-                className="flex items-center justify-center py-1 px-2 transition hover:bg-[var(--mantine-color-blue-filled-hover)]"
-                onClick={() => {
-                    i18n.changeLanguage(item.label.toLowerCase())
+                className="flex items-center w-full justify-center py-1 px-2 transition hover:bg-[var(--mantine-color-blue-filled-hover)]"
+                onClick={(e) => {
+                    e.stopPropagation()
+                    i18n.changeLanguage(item.label.toLowerCase()
+                )
                 }}
                 key={item.label}
             >
@@ -66,7 +73,7 @@ const Demo = () => {
                 withinPortal
             >
                 <Menu.Target>
-                    <UnstyledButton data-expanded={opened || undefined}>
+                    <UnstyledButton data-expanded={opened || undefined} className="w-full">
                         <Group gap="xs" className="bg-zinc-500 py-1.5 px-2 rounded-md transition hover:bg-[var(--mantine-color-blue-filled-hover)]">
                             <span>{selectedItem.label}</span>
                         </Group>
@@ -77,29 +84,66 @@ const Demo = () => {
         )
     }
 
+
+    const BurgerMenu = () => {
+        const [opened, { toggle }] = useDisclosure()
+        return (
+            <Menu position="bottom-end">
+                <Menu.Target>
+                    <Burger
+                        className="*:bg-zinc-400 *:before:bg-zinc-400 *:after:bg-zinc-400"
+                        opened={opened}
+                        onClick={toggle}
+                        aria-label="Toggle navigation"
+                    />
+                </Menu.Target>
+
+                <Menu.Dropdown className="mt-[3px] bg-[#1d1f21]">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        key="box">
+                        <Menu.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.reviews")}</Anchor></Menu.Item>
+                        <Menu.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.vacancies")}</Anchor></Menu.Item>
+                        <Menu.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.employment")}</Anchor></Menu.Item>
+                        <Menu.Item className="transition bg-zinc-500 w-full rotate-0 my-[2px]">{t("registerPage.signInBtn")}</Menu.Item>
+                        <Menu.Item disabled variant="filled" className="my-[2px] rotate-0 cursor-not-allow bg-[var(--mantine-color-blue-9)] transition text-zinc-100">{t("registerPage.signUpBtn")}</Menu.Item>
+                        <LanguagePicker />
+                    </motion.div>
+                </Menu.Dropdown>
+            </Menu>
+        )
+    }
+
     return (
         <div className="bg-[#181a1b] flex flex-col min-h-screen">
             <header className="bg-[#1d1f21]">
-                <Container className="p-0" size="xl">
+                <Container className="2xl:p-0 xl:px-6" size="xl">
                     <nav className="h-14 pt-2 pb-2 flex justify-between items-center">
-                        <Group gap="lg">
-                            <Image w={120} h={30} src={logo} alt="Logo" />
-                            <Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">Резюме</Anchor>
-                            <Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">Вакансии</Anchor>
-                            <Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">Трудоустройство</Anchor>
+                        <Image w={120} h={30} src={logo} alt="Logo" />
+                        <Group className="lg:hidden">
+                            <BurgerMenu />
                         </Group>
-                        <Group>
-                            <Button className="transition bg-zinc-500">Войти</Button>
-                            <Button disabled variant="filled" className="cursor-not-allowed bg-sky-700 transition text-zinc-100" >Регистрация</Button>
-                            <LanguagePicker />
+                        <Group gap="lg" className="justify-between w-full *:flex hidden lg:flex">
+                            <List className="xl:w-1/3 w-1/2 justify-around">
+                                <List.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.reviews")}</Anchor></List.Item>
+                                <List.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.vacancies")}</Anchor></List.Item>
+                                <List.Item><Anchor className="text-zinc-400 transition hover:text-zinc-100 hover:no-underline">{t("registerPage.employment")}</Anchor></List.Item>
+                            </List>
+                            <List className="*:ml-[14px]">
+                                <List.Item><Button className="transition bg-zinc-500">{t("registerPage.signInBtn")}</Button></List.Item>
+                                <List.Item><Button disabled variant="filled" className="cursor-not-allowed bg-sky-700 transition text-zinc-100">{t("registerPage.signUpBtn")}</Button></List.Item>
+                                <List.Item><LanguagePicker /></List.Item>
+                            </List>
                         </Group>
                     </nav>
                 </Container>
             </header>
-            <main className="grow flex items-center">
-                <Container className="py-4 px-6 bg-[#1d1f21] rounded-xl max-h-[90vh] overflow-y-auto">
+            <main className="grow block px-4 items-center min-[570px]:flex min-[570px]:px-0">
+                <Container className="py-4 px-6 bg-[#1d1f21] my-6 rounded-xl">
                     <h2 className="text-[26px] text-zinc-400">{t("registerPage.form.title")}</h2>
-                    <form className="min-w-[500px]" onSubmit={form.onSubmit((values) => console.log(values))}>
+                    <form className="min-[370px]:min-w-full min-[570px]:min-w-[500px]" onSubmit={form.onSubmit((values) => console.log(values))}>
                         <TextInput
                             className="mt-2 h-[66px]"
                             classNames={{
@@ -171,25 +215,25 @@ const Demo = () => {
                 </Container>
             </main>
             <footer className="bg-[#1d1f21] h-full">
-                <Container className="p-[24px] flex justify-around place-content-around grid-cols-3" size="xl">
-                    <Group className="block">
-                        <h2 className="text-[28px]">{t("registerPage.form.hexlet")}</h2>
+                <Container className="p-[24px] flex justify-between lg:justify-around place-content-around grid-cols-3 flex-wrap" size="xl">
+                    <Group className="block w-full min-[570px]:w-1/2 md:w-auto">
+                        <h2 className="text-[22px] lg:text-[28px]">{t("registerPage.form.hexlet")}</h2>
                         <ul className="*:mt-4 text-[16px] text-zinc-400">
                             <li><a target="_blank" href="">{t("registerPage.form.rating")}</a></li>
                             <li><a target="_blank" href="">{t("registerPage.form.about")}</a></li>
                             <li><a target="_blank" href="">{t("registerPage.form.sourceCode")}</a></li>
                         </ul>
                     </Group>
-                    <Group className="block">
-                        <h2 className="text-[28px]">{t("registerPage.form.help")}</h2>
+                    <Group className="block w-full mt-[20px] min-[570px]:w-1/2 md:w-auto md:mt-0">
+                        <h2 className="text-[22px] lg:text-[28px]">{t("registerPage.form.help")}</h2>
                         <ul className="*:mt-4 text-[16px] text-zinc-400">
                             <li><a target="_blank" href="https://ru.hexlet.io/blog/categories/success">{t("registerPage.form.successStories")}</a></li>
                             <li><a target="_blank" href="https://github.com/Hexlet/ru-test-assignments"></a>{t("registerPage.form.testAssignments")}</li>
                             <li><a target="_blank" href="https://ru.hexlet.io/courses/employment">{t("registerPage.form.employmentCourse")}</a></li>
                         </ul>
                     </Group>
-                    <Group className="block">
-                        <h2 className="text-[28px]">{t("registerPage.form.additionally")}</h2>
+                    <Group className="block w-full mt-[20px] min-[570px]:w-1/2 md:w-auto md:mt-0">
+                        <h2 className="text-[22px] lg:text-[28px]">{t("registerPage.form.additionally")}</h2>
                         <ul className="*:mt-4 text-[16px] text-zinc-400">
                             <li><a target="_blank" href="https://code-basics.com">{t("registerPage.form.codeBasics")}</a></li>
                             <li><a target="_blank" href="https://codebattle.hexlet.io">{t("registerPage.form.codeBattle")}</a></li>
