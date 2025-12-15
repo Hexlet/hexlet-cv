@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Dangerwind/hexlet-cv/issues"
   },
-  "homepage": "https://github.com/Dangerwind/hexlet-cv#readme"
+  "homepage": "https://github.com/Dangerwind/hexlet-cv#readme",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6"
+  }
 }
