@@ -3,5 +3,5 @@ export default {
     homePage: {
       greetings: 'Добро пожаловать!',
     },
-  }
-};
+  },
+}
