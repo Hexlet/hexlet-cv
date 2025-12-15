@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 export const WhoWeAre: React.FC = () => {
   const { t } = useTranslation();
 
-  // Получаем все фичи из локализации
   const features = [
     t('homePage.whoWeAre.features.resume'),
     t('homePage.whoWeAre.features.apply'),
