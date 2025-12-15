@@ -44,7 +44,7 @@ const links = [
   },
 ]
 
-export default function Header(): JSX.Element {
+export function Header(): JSX.Element {
   const items = links.map((link): JSX.Element => (
     <Anchor
       key={link.label}

@@ -11,8 +11,8 @@ import {
   Box,
   alpha
 } from '@mantine/core'
-import Footer from '@widgets/Footer.tsx'
-import Header from '@widgets/Header.tsx'
+import { Footer } from '@widgets/Footer'
+import { Header } from '@widgets/Header'
 
 type PageSection = {
   id: number

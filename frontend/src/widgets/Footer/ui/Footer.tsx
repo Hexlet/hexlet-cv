@@ -43,7 +43,7 @@ const links = [
   },
 ]
 
-export default function Footer(): JSX.Element {
+export function Footer(): JSX.Element {
   const items = links.map((link): JSX.Element => (
     <Anchor
       key={link.label}
