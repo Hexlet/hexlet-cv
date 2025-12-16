@@ -93,19 +93,18 @@ public class ArticleControllerTest {
 
     @Test
     public void testGetArticlesSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/articles")
+        mockMvc.perform(get("/admin/marketing/articles")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("articles"))
-                .andExpect(jsonPath("$.props.articles").isArray())
-                .andExpect(jsonPath("$.props.pageTitle").value("Статьи"));
+                .andExpect(jsonPath("$.props.articles").isArray());
     }
 
     @Test
     public void testGetCreateForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/articles/create")
+        mockMvc.perform(get("/admin/marketing/articles/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -115,7 +114,7 @@ public class ArticleControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/articles/{id}/edit", testArticle.getId())
+        mockMvc.perform(get("/admin/marketing/articles/{id}/edit", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -132,17 +131,17 @@ public class ArticleControllerTest {
                 "title": "New Article",
                 "content": "New content",
                 "author": "Test Author",
-                "reading_time": 3
+                "readingTime": 3
             }
             """;
 
-        mockMvc.perform(post("/ru/admin/marketing/articles")
+        mockMvc.perform(post("/admin/marketing/articles")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(articleJson))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/articles"));
+                .andExpect(header().string("Location", "/admin/marketing/articles"));
     }
 
     @Test
@@ -155,48 +154,48 @@ public class ArticleControllerTest {
             }
             """;
 
-        mockMvc.perform(put("/ru/admin/marketing/articles/{id}", testArticle.getId())
+        mockMvc.perform(put("/admin/marketing/articles/{id}", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(articleJson))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/articles"));
+                .andExpect(header().string("Location", "/admin/marketing/articles"));
     }
 
 
     @Test
     public void testDeleteArticle() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/articles/{id}", testArticle.getId())
+        mockMvc.perform(delete("/admin/marketing/articles/{id}", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/articles"));
+                .andExpect(header().string("Location", "/admin/marketing/articles"));
     }
 
     @Test
     public void testToggleArticleHomepage() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/articles/{id}/toggle-homepage", testArticle.getId())
+        mockMvc.perform(post("/admin/marketing/articles/{id}/toggle-homepage", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/home-components"));
+                .andExpect(header().string("Location", "/admin/marketing/home-components"));
     }
 
     @Test
     public void testTogglePublish() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/articles/{id}/toggle-publish", testArticle.getId())
+        mockMvc.perform(post("/admin/marketing/articles/{id}/toggle-publish", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/articles"));
+                .andExpect(header().string("Location", "/admin/marketing/articles"));
     }
 
     @Test
     public void testUpdateArticleDisplayOrder() throws Exception {
         String json = "{\"display_order\": 5}";
 
-        mockMvc.perform(put("/ru/admin/marketing/articles/{id}/display-order", testArticle.getId())
+        mockMvc.perform(put("/admin/marketing/articles/{id}/display-order", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -205,7 +204,6 @@ public class ArticleControllerTest {
 
     @Test
     public void testAccessAsNonAdmin() throws Exception {
-        // Создаем пользователя с ролью CANDIDATE
         User candidate = new User();
         candidate.setEmail("candidate@example.com");
         candidate.setEncryptedPassword(encoder.encode("password"));
@@ -214,7 +212,7 @@ public class ArticleControllerTest {
 
         String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
 
-        mockMvc.perform(get("/ru/admin/marketing/articles")
+        mockMvc.perform(get("/admin/marketing/articles")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());

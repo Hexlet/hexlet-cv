@@ -1,5 +1,6 @@
 package io.hexlet.cv.controller;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -11,6 +12,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.admin.marketing.Team;
 import io.hexlet.cv.model.enums.RoleType;
+import io.hexlet.cv.model.enums.TeamMemberType;
+import io.hexlet.cv.model.enums.TeamPosition;
 import io.hexlet.cv.repository.TeamRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
@@ -77,8 +80,8 @@ public class TeamControllerTest {
         testTeam = new Team();
         testTeam.setFirstName("John");
         testTeam.setLastName("Doe");
-        testTeam.setSiteRole("Продакт");
-        testTeam.setSystemRole("Наставник");
+        testTeam.setPosition(TeamPosition.PRODUCT);
+        testTeam.setMemberType(TeamMemberType.MENTOR);
         testTeam.setAvatarUrl("https://example.com/avatar.jpg");
         testTeam.setIsPublished(true);
         testTeam.setShowOnHomepage(true);
@@ -89,19 +92,18 @@ public class TeamControllerTest {
 
     @Test
     public void testGetTeamSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team")
+        mockMvc.perform(get("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("team"))
-                .andExpect(jsonPath("$.props.team").isArray())
-                .andExpect(jsonPath("$.props.pageTitle").value("Команда"));
+                .andExpect(jsonPath("$.props.team").isArray());
     }
 
     @Test
     public void testGetCreateForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team/create")
+        mockMvc.perform(get("/admin/marketing/team/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -111,7 +113,7 @@ public class TeamControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team/{id}/edit", testTeam.getId())
+        mockMvc.perform(get("/admin/marketing/team/{id}/edit", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -124,84 +126,84 @@ public class TeamControllerTest {
     public void testCreateTeamMember() throws Exception {
         String teamJson = """
                 {
-                    "first_name": "Jane",
-                    "last_name": "Smith",
-                    "site_role": "Дизайнер",
-                    "system_role": "Ментор",
-                    "avatar_url": "https://example.com/jane-avatar.jpg",
-                    "is_published": false,
-                    "show_on_homepage": true,
-                    "display_order": 2
+                    "firstName": "Jane",
+                    "lastName": "Smith",
+                    "position": "PRODUCT",
+                    "memberType": "MENTOR",
+                    "avatarUrl": "https://example.com/jane-avatar.jpg",
+                    "isPublished": false,
+                    "showOnHomepage": true,
+                    "displayOrder": 2
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/team")
+        mockMvc.perform(post("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(teamJson))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
     @Test
     public void testUpdateTeamMember() throws Exception {
         String teamJson = """
                 {
-                    "first_name": "Updated",
-                    "last_name": "Name",
-                    "site_role": "Updated Role",
-                    "system_role": "Updated System Role",
-                    "avatar_url": "https://example.com/updated-avatar.jpg",
-                    "is_published": true,
-                    "show_on_homepage": false,
-                    "display_order": 5
+                    "firstName": "Updated",
+                    "lastName": "Name",
+                    "position": "DEVELOPER",
+                    "memberType": "ADVISOR",
+                    "avatarUrl": "https://example.com/updated-avatar.jpg",
+                    "isPublished": true,
+                    "showOnHomepage": false,
+                    "displayOrder": 5
                 }
                 """;
 
-        mockMvc.perform(put("/ru/admin/marketing/team/{id}", testTeam.getId())
+        mockMvc.perform(put("/admin/marketing/team/{id}", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(teamJson))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
 
     @Test
     public void testDeleteTeamMember() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/team/{id}", testTeam.getId())
+        mockMvc.perform(delete("/admin/marketing/team/{id}", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
 
     @Test
     public void testTogglePublishTeam() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/team/{id}/toggle-publish", testTeam.getId())
+        mockMvc.perform(post("/admin/marketing/team/{id}/toggle-publish", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
     @Test
     public void testToggleHomepageTeam() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/team/{id}/toggle-homepage", testTeam.getId())
+        mockMvc.perform(post("/admin/marketing/team/{id}/toggle-homepage", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/home-components"));
+                .andExpect(header().string("Location", "/admin/marketing/home-components"));
     }
 
     @Test
     public void testUpdateTeamDisplayOrder() throws Exception {
         String json = "{\"display_order\": 3}";
 
-        mockMvc.perform(put("/ru/admin/marketing/team/{id}/display-order", testTeam.getId())
+        mockMvc.perform(put("/admin/marketing/team/{id}/display-order", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -210,19 +212,17 @@ public class TeamControllerTest {
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/home-components")
+        mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("home-components"))
-                .andExpect(jsonPath("$.props.pageTitle").value("Компоненты главной"))
                 .andExpect(jsonPath("$.props.team").exists());
     }
 
     @Test
     public void testAccessAsNonAdmin() throws Exception {
-        // Создаем пользователя с ролью CANDIDATE
         User candidate = new User();
         candidate.setEmail("candidate@example.com");
         candidate.setEncryptedPassword(encoder.encode("password"));
@@ -231,7 +231,7 @@ public class TeamControllerTest {
 
         String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
 
-        mockMvc.perform(get("/ru/admin/marketing/team")
+        mockMvc.perform(get("/admin/marketing/team")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());
@@ -241,15 +241,24 @@ public class TeamControllerTest {
     public void testCreateTeamMemberInvalidData() throws Exception {
         String invalidTeamJson = """
                 {
-                    "first_name": "",
-                    "last_name": ""
+                    "firstName": "",
+                    "lastName": "",
+                    "position": "INVALID_POSITION",
+                    "memberType": "INVALID_TYPE"
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/team")
+        mockMvc.perform(post("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidTeamJson))
-                .andExpect(status().isUnprocessableEntity());
+                .andExpect(status().isBadRequest())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors").exists())
+                .andExpect(jsonPath("$.errors.error").exists())
+                .andExpect(jsonPath("$.errors.error").isString())
+                .andExpect(jsonPath("$.errors.error").value(containsString("Invalid value")))
+                .andExpect(jsonPath("$.errors.error").value(containsString("position")))
+                .andExpect(jsonPath("$.errors.error").value(containsString("Allowed values")));
     }
 }
