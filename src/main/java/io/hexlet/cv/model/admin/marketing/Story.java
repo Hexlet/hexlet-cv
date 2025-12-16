@@ -20,6 +20,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "marketing_stories")
 @EntityListeners(AuditingEntityListener.class)
 public class Story {
+    public static final String FIELD_CREATED_AT = "createdAt";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,6 +46,6 @@ public class Story {
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
 }
