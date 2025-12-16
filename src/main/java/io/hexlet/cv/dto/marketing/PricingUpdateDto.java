@@ -1,10 +1,7 @@
 package io.hexlet.cv.dto.marketing;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,26 +9,19 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 @Setter
-public class PricingUpdateDTO {
+public class PricingUpdateDto {
 
-    @NotBlank(message = "Название тарифа обязательно")
-    @Size(max = 100, message = "Название тарифа не должно превышать 100 символов")
-    @JsonProperty("name")
+    @Size(max = 100, message = "Name must not exceed 100 characters")
     private JsonNullable<String> name;
 
-    @NotNull(message = "Цена обязательна")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Цена должна быть больше 0")
-    @JsonProperty("original_price")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private JsonNullable<Double> originalPrice;
 
-    @DecimalMin(value = "0.0", message = "Скидка не может быть отрицательной")
-    @DecimalMax(value = "100.0", message = "Скидка не может превышать 100%")
-    @JsonProperty("discount_percent")
+    @DecimalMin(value = "0.0", message = "Discount cannot be negative")
+    @DecimalMax(value = "100.0", message = "Discount cannot exceed 100%")
     private JsonNullable<Double> discountPercent;
 
-    @NotBlank(message = "Описание обязательно")
-    @Size(max = 1000, message = "Описание не должно превышать 1000 символов")
-    @JsonProperty("description")
+    @Size(max = 1000, message = "Description must not exceed 1000 characters")
     private JsonNullable<String> description;
 
 }

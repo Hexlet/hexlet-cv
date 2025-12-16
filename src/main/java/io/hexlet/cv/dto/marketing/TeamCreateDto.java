@@ -1,40 +1,22 @@
 package io.hexlet.cv.dto.marketing;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
+import io.hexlet.cv.model.enums.TeamMemberType;
+import io.hexlet.cv.model.enums.TeamPosition;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class TeamCreateDTO {
-    @NotBlank(message = "Имя обязательно")
-    @JsonProperty("first_name")
+public class TeamCreateDto {
     private String firstName;
-
-    @NotBlank(message = "Фамилия обязательно")
-    @JsonProperty("last_name")
     private String lastName;
-
-    @NotBlank(message = "Роль на сайте обязательна")
-    @JsonProperty("site_role")
-    private String siteRole;
-
-    @NotBlank(message = "Системная роль обязательна")
-    @JsonProperty("system_role")
-    private String systemRole;
-
-    @JsonProperty("avatar_url")
+    private TeamPosition position;
+    private TeamMemberType memberType;
     private String avatarUrl;
-
-    @JsonProperty("is_published")
     private Boolean isPublished = false;
 
     @NotNull
-    @JsonProperty("show_on_homepage")
     private Boolean showOnHomepage;
-
-    @JsonProperty("display_order")
     private Integer displayOrder = 0;
 }
