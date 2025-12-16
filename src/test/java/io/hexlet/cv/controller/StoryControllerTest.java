@@ -90,20 +90,19 @@ public class StoryControllerTest {
 
     @Test
     public void testGetStoriesSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/stories")
+        mockMvc.perform(get("/admin/marketing/stories")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("stories"))
-                .andExpect(jsonPath("$.props.stories").isArray())
-                .andExpect(jsonPath("$.props.pageTitle").value("Истории"));
+                .andExpect(jsonPath("$.props.stories").isArray());
     }
 
 
     @Test
     public void testGetCreateForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/stories/create")
+        mockMvc.perform(get("/admin/marketing/stories/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -113,7 +112,7 @@ public class StoryControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/stories/{id}/edit", testStory.getId())
+        mockMvc.perform(get("/admin/marketing/stories/{id}/edit", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -128,20 +127,20 @@ public class StoryControllerTest {
             {
                 "title": "New Story",
                 "content": "New story content",
-                "image_url": "https://example.com/image.jpg",
-                "is_published": false,
-                "show_on_homepage": true,
-                "display_order": 2
+                "imageUrl": "https://example.com/image.jpg",
+                "isPublished": false,
+                "showOnHomepage": true,
+                "displayOrder": 2
             }
             """;
 
-        mockMvc.perform(post("/ru/admin/marketing/stories")
+        mockMvc.perform(post("/admin/marketing/stories")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(storyJson))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/stories"));
+                .andExpect(header().string("Location", "/admin/marketing/stories"));
     }
 
     @Test
@@ -150,55 +149,55 @@ public class StoryControllerTest {
             {
                 "title": "Updated Story Title",
                 "content": "Updated story content",
-                "image_url": "https://example.com/updated-image.jpg",
-                "is_published": true,
-                "show_on_homepage": false,
-                "display_order": 5
+                "imageUrl": "https://example.com/updated-image.jpg",
+                "isPublished": true,
+                "showOnHomepage": false,
+                "displayOrder": 5
             }
             """;
 
-        mockMvc.perform(put("/ru/admin/marketing/stories/{id}", testStory.getId())
+        mockMvc.perform(put("/admin/marketing/stories/{id}", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(storyJson))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/stories"));
+                .andExpect(header().string("Location", "/admin/marketing/stories"));
     }
 
     @Test
     public void testDeleteStory() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/stories/{id}", testStory.getId())
+        mockMvc.perform(delete("/admin/marketing/stories/{id}", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/stories"));
+                .andExpect(header().string("Location", "/admin/marketing/stories"));
     }
 
     @Test
     public void testTogglePublishStory() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/stories/{id}/toggle-publish", testStory.getId())
+        mockMvc.perform(post("/admin/marketing/stories/{id}/toggle-publish", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/stories"));
+                .andExpect(header().string("Location", "/admin/marketing/stories"));
     }
 
 
     @Test
     public void testToggleStoryHomepage() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/stories/{id}/toggle-homepage", testStory.getId())
+        mockMvc.perform(post("/admin/marketing/stories/{id}/toggle-homepage", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/home-components"));
+                .andExpect(header().string("Location", "/admin/marketing/home-components"));
     }
 
     @Test
     public void testUpdateStoryDisplayOrder() throws Exception {
         String json = "{\"display_order\": 5}";
 
-        mockMvc.perform(put("/ru/admin/marketing/stories/{id}/display-order", testStory.getId())
+        mockMvc.perform(put("/admin/marketing/stories/{id}/display-order", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -207,13 +206,12 @@ public class StoryControllerTest {
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/home-components")
+        mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("home-components"))
-                .andExpect(jsonPath("$.props.pageTitle").value("Компоненты главной"))
                 .andExpect(jsonPath("$.props.stories").exists());
     }
 
@@ -227,7 +225,7 @@ public class StoryControllerTest {
 
         String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
 
-        mockMvc.perform(get("/ru/admin/marketing/stories")
+        mockMvc.perform(get("/admin/marketing/stories")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());
