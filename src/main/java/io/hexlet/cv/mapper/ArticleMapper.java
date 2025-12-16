@@ -1,8 +1,8 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.marketing.ArticleCreateDTO;
-import io.hexlet.cv.dto.marketing.ArticleDTO;
-import io.hexlet.cv.dto.marketing.ArticleUpdateDTO;
+import io.hexlet.cv.dto.marketing.ArticleCreateDto;
+import io.hexlet.cv.dto.marketing.ArticleDto;
+import io.hexlet.cv.dto.marketing.ArticleUpdateDto;
 import io.hexlet.cv.model.admin.marketing.Article;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,27 +23,19 @@ public abstract class ArticleMapper {
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract Article map(ArticleCreateDTO dto);
+    public abstract Article map(ArticleCreateDto dto);
 
-    @Mapping(source = "imageUrl", target = "imageUrl")
-    @Mapping(source = "readingTime", target = "readingTime")
-    @Mapping(source = "isPublished", target = "isPublished")
-    @Mapping(source = "homeComponentId", target = "homeComponentId")
-    @Mapping(source = "displayOrder", target = "displayOrder")
-    @Mapping(source = "publishedAt", target = "publishedAt")
-    @Mapping(source = "createdAt", target = "createdAt")
-    @Mapping(source = "updatedAt", target = "updatedAt")
-    public abstract ArticleDTO map(Article model);
+    public abstract ArticleDto map(Article model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract Article map(ArticleDTO model);
+    public abstract Article map(ArticleDto model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract void update(ArticleUpdateDTO dto, @MappingTarget Article model);
+    public abstract void update(ArticleUpdateDto dto, @MappingTarget Article model);
 }
