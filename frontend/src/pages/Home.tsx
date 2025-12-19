@@ -13,6 +13,7 @@ import {
 } from '@mantine/core'
 import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
+import { AboutUs } from '@widgets/about-us';
 
 type PageSection = {
   id: number
@@ -96,7 +97,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
 
   return (
     <Stack
-      mih="100vh"
+      // mih="100vh"
       bg={getGradient({
         deg: 135,
         from: 'black',
@@ -107,6 +108,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Header />
       {/* здесь передаем пропсы страниц для отрисовки, а пока БД пустая я сделал компонент пустышку для демонстрации */}
       <Container size="xl">
+      <AboutUs/> 
         {repeatedSamples}
       </Container>
       <Footer />
