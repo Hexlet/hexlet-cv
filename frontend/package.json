@@ -20,7 +20,7 @@
     "@mantine/core": "^8.2.1",
     "@mantine/form": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
-    "@types/node": "^24.10.0",
+    "@tabler/icons-react": "^3.36.0",
     "add": "^2.0.6",
     "i18next": "^25.6.3",
     "i18next-browser-languagedetector": "^8.2.0",
