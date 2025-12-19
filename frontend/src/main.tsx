@@ -1,3 +1,3 @@
-import { initInertia } from "@inertia/inertia.provider";
+import { initInertia } from '@inertia/inertia.provider.tsx'
 
-initInertia();
+initInertia()
