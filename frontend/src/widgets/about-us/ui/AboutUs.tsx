@@ -1,10 +1,4 @@
-import {
-  Container,
-  Text,
-  Card,
-  Grid,
-  Button,
-} from '@mantine/core';
+import { Container, Text, Card, Grid, Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
 export const AboutUs = () => {
@@ -13,8 +7,10 @@ export const AboutUs = () => {
   return (
     <Container size="lg" my="lg" py="xs">
       <Grid>
-        <Grid.Col span={{ base: 12,
-          md: 7 }}>
+        <Grid.Col span={{
+          base: 12,
+          md: 7
+        }}>
           <Container mr="lg" pl={0}>
             <Text fz="3.2rem" c="white" fw={700} lh={1}>
               {t('homePage.aboutUs.title')}
@@ -34,8 +30,10 @@ export const AboutUs = () => {
             </Button>
           </Container>
         </Grid.Col>
-        <Grid.Col span={{ base: 12,
-          md: 5 }}>
+        <Grid.Col span={{
+          base: 12,
+          md: 5
+        }}>
           <Card radius="lg" bg='dark.4' h={300}>
             {/* https://mantine.dev/dates/calendar/  ??? */}
           </Card>
