@@ -46,7 +46,7 @@ export const WhoWeAre: React.FC = () => {
                     }}>
                         <Group justify='center' align='center'>
                             <Avatar
-                              src='../public/HexletLogoHome.svg'
+                              src=''
                               size={250}
                               radius='50%'
                               alt='Логотип Хекслет'
