@@ -14,6 +14,7 @@ import {
 import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us';
+import { WhoWeAre } from '@widgets/who-we-are';
 
 type PageSection = {
   id: number
@@ -97,18 +98,19 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
 
   return (
     <Stack
-      // mih="100vh"
-      bg={getGradient({
-        deg: 135,
-        from: 'black',
-        to: '#00031a',
-      }, theme)}
-      justify="space-between"
+    // mih="100vh"
+    bg={getGradient({
+      deg: 135,
+      from: 'black',
+      to: '#00031a',
+    }, theme)}
+    justify="space-between"
     >
       <Header />
       {/* здесь передаем пропсы страниц для отрисовки, а пока БД пустая я сделал компонент пустышку для демонстрации */}
       <Container size="xl">
       <AboutUs/> 
+      <WhoWeAre/>
         {repeatedSamples}
       </Container>
       <Footer />
