@@ -1,5 +1,8 @@
 import { Group, Button, Divider, ThemeIcon, Text, Anchor } from '@mantine/core'
 import { Link } from '@inertiajs/react'
+import { useDisclosure } from '@mantine/hooks'
+import { ForgotPasswordModal } from '@features/auth'
+import { useTranslation } from 'react-i18next'
 
 const links = [
   {
@@ -45,6 +48,9 @@ const links = [
 ]
 
 export function Header(): JSX.Element {
+  const { t } = useTranslation()
+  const [opened, { open, close }] = useDisclosure(false)
+  
   const items = links.map((link): JSX.Element => (
     <Anchor
       key={link.label}
@@ -84,21 +90,42 @@ export function Header(): JSX.Element {
             </Text>
           </Group>
         </Anchor>
+        
         <nav>
           <Group gap="xl">
             {items}
           </Group>
         </nav>
-        {/* В данный момент переводит на авторизацию в dashboard */}
-        <Button variant="default" size="md" component={Link} href="/en/users/sign_in">
-          <Text size="md" lh={1.1}>
-            Попробывать
-            <br />
-            бесплатно
-          </Text>
-        </Button>
+        
+        {/* Кнопки авторизации */}
+        <Group gap="md">
+          {/* В данный момент переводит на авторизацию в dashboard */}
+          <Button variant="default" size="md" component={Link} href="/en/users/sign_in">
+            <Text size="md" lh={1.1}>
+              Попробывать
+              <br />
+              бесплатно
+            </Text>
+          </Button>
+          
+          {/* Кнопка "Забыли пароль?" открывает модалку */}
+          <Button
+            variant="subtle"
+            size="sm"
+            onClick={open}
+            style={{ padding: 0, height: 'auto' }}
+          >
+            <Text size="sm" c="white">
+              {t('auth.forgotPassword.forgotPassword')}
+            </Text>
+          </Button>
+        </Group>
       </Group>
+      
       <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+      
+      {/* Модалка восстановления пароля */}
+      <ForgotPasswordModal opened={opened} onClose={close} />
     </header>
   )
 }

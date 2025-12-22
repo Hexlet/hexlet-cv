@@ -24,5 +24,35 @@ export default {
         },
       },
     },
+    // ДОБАВЛЯЕМ ЭТО ↓
+    auth: {
+      email: 'Email',
+      password: 'Пароль',
+      confirmPassword: 'Подтвердите пароль',
+      enterNewPassword: 'Введите новый пароль',
+      confirmNewPassword: 'Подтвердите новый пароль',
+      
+      forgotPassword: {
+        title: 'Восстановление пароля',
+        description: 'Введите ваш email',
+        cancel: 'Отмена',
+        sendLink: 'Отправить ссылку',
+        successMessage: 'Ссылка для сброса пароля отправлена на вашу почту',
+        forgotPassword: 'Забыли пароль?',
+      },
+      
+      resetPassword: {
+        title: 'Смена пароля',
+        changePassword: 'Сменить пароль',
+        successMessage: 'Пароль успешно изменен!',
+        goToLogin: 'Войти',
+        passwordsNotMatch: 'Пароли не совпадают',
+        passwordMinLength: 'Пароль должен быть не менее 6 символов',
+        invalidToken: 'Неверная или просроченная ссылка',
+        expiredToken: 'Ссылка для сброса пароля устарела',
+        enterNewPasswordDescription: 'Введите новый пароль для вашей учетной записи',
+        invalidTokenDescription: 'Ссылка для сброса пароля недействительна',
+      },
+    },
   },
 };
