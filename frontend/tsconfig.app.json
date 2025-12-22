@@ -19,9 +19,23 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    // "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@config/*": ["src/app/config/*"],
+      "@providers/*": ["src/app/providers/*"],
+      "@inertia/*": ["src/app/providers/inertia/*"],
+      "@ui/*": ["src/app/providers/ui/*"],
+      "@i18n/*": ["src/app/providers/i18n/*"],
+      "@pages/*": ["src/pages/*"],
+      "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@widgets/*": ["src/widgets/*"],
+      "@features/*": ["src/features/*"]
+    },
   },
   "include": ["src"]
 }
