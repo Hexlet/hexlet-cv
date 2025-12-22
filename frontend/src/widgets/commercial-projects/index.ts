@@ -1,1 +1,1 @@
-export { CommercialProjects } from './CommercialProjects';
+export { CommercialProjects } from './ui/CommercialProjects';
