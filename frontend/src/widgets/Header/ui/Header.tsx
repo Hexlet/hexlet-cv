@@ -128,10 +128,10 @@ export function Header(): JSX.Element {
         </Button>
       </div>
 
+      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+
       {/* Модалка восстановления пароля */}
       <ForgotPasswordModal opened={opened} onClose={close} />
-      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
     </header>
-
   )
 }
