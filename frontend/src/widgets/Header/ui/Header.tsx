@@ -50,7 +50,7 @@ const links = [
 export function Header(): JSX.Element {
   const { t } = useTranslation()
   const [opened, { open, close }] = useDisclosure(false)
-  
+
   const items = links.map((link): JSX.Element => (
     <Anchor
       key={link.label}
@@ -90,40 +90,45 @@ export function Header(): JSX.Element {
             </Text>
           </Group>
         </Anchor>
-        
+
         <nav>
           <Group gap="xl">
             {items}
           </Group>
         </nav>
-        
-        {/* Кнопки авторизации */}
-        <Group gap="md">
-          {/* В данный момент переводит на авторизацию в dashboard */}
-          <Button variant="default" size="md" component={Link} href="/en/users/sign_in">
-            <Text size="md" lh={1.1}>
-              Попробывать
-              <br />
-              бесплатно
-            </Text>
-          </Button>
-          
-          {/* Кнопка "Забыли пароль?" открывает модалку */}
-          <Button
-            variant="subtle"
-            size="sm"
-            onClick={open}
-            style={{ padding: 0, height: 'auto' }}
-          >
-            <Text size="sm" c="white">
-              {t('auth.forgotPassword.forgotPassword')}
-            </Text>
-          </Button>
-        </Group>
+
+        {/* В данный момент переводит на авторизацию в dashboard */}
+        <Button variant="default" size="md" component={Link} href="/en/users/sign_in">
+          <Text size="md" lh={1.1}>
+            Попробывать
+            <br />
+            бесплатно
+          </Text>
+        </Button>
       </Group>
       
-      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
-      
+      {/* Кнопка "Забыли пароль?" под основной кнопкой */}
+      <div style={{ position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            textAlign: 'center',
+            
+            }}>
+        <Button
+          variant="subtle"
+          size="xs"
+          onClick={open}
+          style={{ padding: 0, height: 'auto' }}
+        >
+          <Text size="xl" c="white">
+            {t('auth.forgotPassword.forgotPassword')}
+          </Text>
+        </Button>
+      </div>
+
+       <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+
       {/* Модалка восстановления пароля */}
       <ForgotPasswordModal opened={opened} onClose={close} />
     </header>
