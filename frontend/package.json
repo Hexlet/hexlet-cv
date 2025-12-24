@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "main": "src/main.tsx",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

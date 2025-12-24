@@ -19,26 +19,26 @@ export const WhoWeAre: React.FC = () => {
             <Card radius='lg' p='xl' bg='dark.6'>
                 <Grid>
                     <Grid.Col span={{
-                      base: 12,
-                      md: 8,
+                        base: 12,
+                        md: 8,
                     }}>
                         <Stack gap={0}>
-                            <Text fz='h1' fw='bold' c='white'>
+                            <Text fz='h1' fw='bold'>
                                 {t('homePage.whoWeAre.title')}
                             </Text>
-                            <Text c='white' size='lg'>
+                            <Text size='lg'>
                                 {t('homePage.whoWeAre.subtitle')}
                             </Text>
                         </Stack>
                         <Group mt='lg' gap='xs' wrap='wrap'>
                             {features.map((feature: string, index: number) => (
-                                <Badge key={index} color='blue.6' size='lg' tt='none'>
-                                    <Text size='xs' c='white' fw='bold'>
+                                <Badge key={index} color="blue" size='lg' tt='none'>
+                                    <Text size='xs' fw='bold'>
                                         {feature}
                                     </Text>
                                 </Badge>
-                          ))}
-                        </Group>    
+                            ))}
+                        </Group>
                     </Grid.Col>
                     <Grid.Col span={{
                         base: 12,
@@ -46,10 +46,10 @@ export const WhoWeAre: React.FC = () => {
                     }}>
                         <Group justify='center' align='center'>
                             <Avatar
-                              src=''
-                              size={250}
-                              radius='50%'
-                              alt='Логотип Хекслет'
+                                src=''
+                                size={250}
+                                radius='50%'
+                                alt='Логотип Хекслет'
                             />
                         </Group>
                     </Grid.Col>

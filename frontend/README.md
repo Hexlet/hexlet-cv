@@ -1,19 +1,21 @@
-# Prerequisites
+# Get started
 
-1. Установите NodeJS 20.19 or above (https://nodejs.org/en/download)
+## Install
+
+1. Установить NodeJS 20.19 or above (https://nodejs.org/en/download)
 2. Проверьте версию Node.js `node -v`
+3. `npm ci`
+4. Сгенерировать файл сервис воркера для работы моков `npx msw init ./public --save`
+5. Создайть файл .env.local и прописать в нем `VITE_MSW=true`
 
-# Build
+## Build
 
 1. `npm run build`
 
-# Development
+## Development
 
-1. `npm ci`
-2. `npx msw init ./public --save`
-3. Создайте файл .env.local и пропишите в него `VITE_MSW=true`
-3. `npm run dev`
-4. Откройте http://localhost:5173/
+1. `npm run dev`
+2. Открыть http://localhost:5173/
 
 # React + TypeScript + Vite
 
