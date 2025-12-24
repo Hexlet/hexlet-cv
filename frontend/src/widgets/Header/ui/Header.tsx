@@ -106,15 +106,16 @@ export function Header(): JSX.Element {
           </Text>
         </Button>
       </Group>
-      
+
       {/* Кнопка "Забыли пароль?" под основной кнопкой */}
-      <div style={{ position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '100%',
-            textAlign: 'center',
-            
-            }}>
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        textAlign: 'center',
+
+      }}>
         <Button
           variant="subtle"
           size="xs"
@@ -127,10 +128,10 @@ export function Header(): JSX.Element {
         </Button>
       </div>
 
-       <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
-
       {/* Модалка восстановления пароля */}
       <ForgotPasswordModal opened={opened} onClose={close} />
+      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
     </header>
+
   )
 }
