@@ -122,9 +122,10 @@ export function Header(): JSX.Element {
           onClick={open}
           style={{ padding: 0, height: 'auto' }}
         >
-          <Text size="xl" c="white">
-            {t('auth.forgotPassword.forgotPassword')}
-          </Text>
+              <Text size="xl" c="dimmed">
+                {t('auth.forgotPassword.description')}
+              </Text>
+              
         </Button>
       </div>
 

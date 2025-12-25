@@ -1,4 +1,5 @@
 import { Modal, TextInput, Button, Text, Stack, Group } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,32 +10,55 @@ interface ForgotPasswordModalProps {
 
 export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened, onClose }) => {
   const { t } = useTranslation();
-  const [email, setEmail] = useState('');
+  
+  const form = useForm({
+    initialValues: {
+      email: '',
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : t('auth.forgotPassword.invalidEmail')),
+    },
+  });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (values: { email: string }) => {
     setLoading(true);
-    
-    // ЗАГЛУШКА: Имитация отправки запроса
-    setTimeout(() => {
-      console.log('Отправка ссылки на:', email);
-      setLoading(false);
+    setError(null);
+
+    try {
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('Отправка запроса на восстановление пароля для:', values.email);
+          resolve({ success: true });
+        }, 1000);
+      });
+
       setSuccess(true);
       
-      // Закрываем через 3 секунды
+      // Автоматическое закрытие через 3 секунды
       setTimeout(() => {
         onClose();
+        form.reset();
         setSuccess(false);
-        setEmail('');
       }, 3000);
-    }, 1000);
+    } catch (err: any) {
+      setError(
+        err?.errors?.email?.[0] || 
+        err?.message || 
+        t('auth.forgotPassword.genericError')
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
     onClose();
-    setEmail('');
+    form.reset();
+    setError(null);
     setSuccess(false);
   };
 
@@ -45,9 +69,9 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
       title={t('auth.forgotPassword.title')}
       centered
       size="sm"
-      radius="lg"       
+      radius="lg"
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack gap="md">
           {success ? (
             <Text c="green" size="sm">
@@ -62,23 +86,29 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
               <TextInput
                 placeholder="E-mail"
                 radius="md"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...form.getInputProps('email')}
                 required
                 type="email"
                 disabled={loading}
+                error={form.errors.email}
               />
               
+              {error && (
+                <Text c="red" size="sm">
+                  {error}
+                </Text>
+              )}
+
               <Group gap="sm" grow>
-                  <Button
+                <Button
                   radius="md"
                   type="submit"
                   loading={loading}
-                  disabled={!email || loading}
+                  disabled={!form.values.email || loading}
                 >
                   {t('auth.forgotPassword.sendLink')}
                 </Button>
-                 <Button
+                <Button
                   variant="default"
                   radius="md"
                   onClick={handleCancel}
