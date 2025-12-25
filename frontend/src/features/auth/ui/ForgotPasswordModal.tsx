@@ -10,7 +10,7 @@ interface ForgotPasswordModalProps {
 
 export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened, onClose }) => {
   const { t } = useTranslation();
-  
+
   const form = useForm({
     initialValues: {
       email: '',
@@ -22,44 +22,55 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleSubmit = async (values: { email: string }) => {
     setLoading(true);
-    setError(null);
+    setFormError(null);
 
-    try {
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          console.log('Отправка запроса на восстановление пароля для:', values.email);
-          resolve({ success: true });
-        }, 1000);
-      });
+    // Имитация form.post 
+    const mockFormPost = (url: string, options: any) => {
+      console.log(`Имитация POST запроса на ${url} с данными:`, values);
 
-      setSuccess(true);
-      
-      // Автоматическое закрытие через 3 секунды
       setTimeout(() => {
-        onClose();
-        form.reset();
-        setSuccess(false);
-      }, 3000);
-    } catch (err: any) {
-      setError(
-        err?.errors?.email?.[0] || 
-        err?.message || 
-        t('auth.forgotPassword.genericError')
-      );
-    } finally {
-      setLoading(false);
-    }
+        options.onSuccess();
+        options.onFinish();
+      }, 1000);
+    };
+
+    mockFormPost('/forgot-password', {
+      data: values,
+      onSuccess: () => {
+        setSuccess(true);
+
+        // Автоматическое закрытие через 3 секунды
+        setTimeout(() => {
+          onClose();
+          form.reset();
+          setSuccess(false);
+        }, 3000);
+      },
+      onError: (errors: any) => {
+        // Обработка ошибок от сервера
+        console.log('Ошибки формы:', errors);
+
+        if (errors?.email) {
+          form.setFieldError('email', errors.email);
+          setFormError(errors.email);
+        } else {
+          setFormError(t('auth.forgotPassword.genericError'));
+        }
+      },
+      onFinish: () => {
+        setLoading(false);
+      },
+    });
   };
 
   const handleCancel = () => {
     onClose();
     form.reset();
-    setError(null);
-    setSuccess(false);
+    setFormError(null);
   };
 
   return (
@@ -82,7 +93,6 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
               <Text size="sm" c="dimmed">
                 {t('auth.forgotPassword.description')}
               </Text>
-              
               <TextInput
                 placeholder="E-mail"
                 radius="md"
@@ -90,12 +100,11 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
                 required
                 type="email"
                 disabled={loading}
-                error={form.errors.email}
               />
-              
-              {error && (
+
+              {formError && (
                 <Text c="red" size="sm">
-                  {error}
+                  {formError}
                 </Text>
               )}
 
