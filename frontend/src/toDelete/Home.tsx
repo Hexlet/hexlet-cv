@@ -1,11 +1,6 @@
-<<<<<<< HEAD:frontend/src/Pages/Home.tsx
-import { Link } from '@inertiajs/react'
-import { Container, Button, Group, Title, Text } from '@mantine/core'
-=======
 import { Link } from '@inertiajs/react';
 import { Container, Button, Group, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
->>>>>>> upstream/main:frontend/src/toDelete/Home.tsx
 
 export default function Home() {
   const { t } = useTranslation();
@@ -24,8 +19,6 @@ export default function Home() {
           Регистрация
         </Button>
       </Group>
-         <Text mt="xl" size="sm" c="dimmed">
-      </Text>
     </Container>
   );
 }
