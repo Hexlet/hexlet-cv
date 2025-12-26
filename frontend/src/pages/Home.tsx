@@ -15,8 +15,10 @@ import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us'
 import { WhoWeAre } from '@widgets/who-we-are'
+import { CommercialProjects } from '@widgets/commercial-projects'
 import { TrainingPrograms } from '@widgets/training-programs'
 import { Communities } from '@widgets/communities'
+
 
 type PageSection = {
   id: number
@@ -117,6 +119,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Container size="xl">
         <AboutUs />
         <WhoWeAre />
+        <CommercialProjects />
         <TrainingPrograms />
         {repeatedSamples}
         <Communities />
