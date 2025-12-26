@@ -2,6 +2,12 @@ spring:
   profiles:
     active: dev  # "prod" если продакшен
 
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 100
+
   jackson:
     serialization:
       write-dates-as-timestamps: false
