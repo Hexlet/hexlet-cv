@@ -15,6 +15,7 @@ import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us'
 import { WhoWeAre } from '@widgets/who-we-are'
+import { Communities } from '@widgets/communities'
 
 type PageSection = {
   id: number
@@ -33,7 +34,15 @@ type IndexProps = {
 
 // Компонент-пустышка для демонстрации пропса pageSections (Потом УДАЛИТЬ!)
 const sample: JSX.Element = (
-  <SimpleGrid cols={2} spacing="xs" bg={alpha('#787878', 0.2)} p="xl" bdrs="lg" bd={'1px solid ' + alpha('#FFFFFF', 0.1)} my={20}>
+  <SimpleGrid
+    cols={2}
+    spacing="xs"
+    bg={alpha('#787878', 0.2)}
+    p="xl"
+    bdrs="lg"
+    bd={'1px solid ' + alpha('#FFFFFF', 0.1)}
+    my={20}
+  >
     <Stack gap="md" align="strech">
       <Title order={1} fw={700}>
         Привет, мы Хекслет
@@ -88,11 +97,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
   const repeatCount = 5 // Колличество повторений примера inertia компонента
   const repeatedSamples: React.ReactNode[] = []
   for (let i = 0; i < repeatCount; i++) {
-    repeatedSamples.push(
-      <div key={i}>
-        {sample}
-      </div>
-    )
+    repeatedSamples.push(<div key={i}>{sample}</div>)
   }
   // Конец компонента-пустышки
 
@@ -112,6 +117,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
         <AboutUs />
         <WhoWeAre />
         {repeatedSamples}
+        <Communities />
       </Container>
       <Footer />
     </Stack>
