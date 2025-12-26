@@ -3,7 +3,7 @@ import '@mantine/core/styles.css'
 
 export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="dark">
       { children }
     </MantineProvider>
   )
