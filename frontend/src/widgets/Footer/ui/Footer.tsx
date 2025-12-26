@@ -51,7 +51,6 @@ export function Footer(): JSX.Element {
       variant="transparent"
       underline="never"
       size="md"
-      c="white"
       fw={500}
     >
       {link.label}
@@ -60,7 +59,7 @@ export function Footer(): JSX.Element {
 
   return (
     <footer>
-      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+      <Divider size={2} />
       <Group py={10} justify="space-around" gap="xs" bg="black">
         <Group gap="xs">
           <ThemeIcon variant="white" size="lg" radius="md">
@@ -68,7 +67,7 @@ export function Footer(): JSX.Element {
               X
             </Text>
           </ThemeIcon>
-          <Text color="white" size="md">
+          <Text size="md">
             © 2025 Hexlet Карьера
           </Text>
         </Group>

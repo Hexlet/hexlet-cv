@@ -1,3 +1,10 @@
-import { initInertia } from '@inertia/inertia.provider.tsx'
+import { initInertia } from '@inertia/inertia.provider'
+import { enableMocking } from '@mocks/enableMocking'
 
-initInertia()
+async function bootstrap() {
+  await enableMocking()
+
+  initInertia()
+}
+
+bootstrap()
