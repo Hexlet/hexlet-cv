@@ -20,6 +20,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "marketing_reviews")
 @EntityListeners(AuditingEntityListener.class)
 public class Review {
+    public static final String FIELD_CREATED_AT = "createdAt";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

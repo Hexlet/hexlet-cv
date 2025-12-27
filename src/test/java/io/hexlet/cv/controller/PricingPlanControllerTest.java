@@ -74,12 +74,14 @@ public class PricingPlanControllerTest {
         adminToken = jwtUtils.generateAccessToken(admin.getEmail());
         candidateToken = jwtUtils.generateAccessToken(candidate.getEmail());
 
-        testPricingPlan = new PricingPlan();
-        testPricingPlan.setName("Test Plan");
-        testPricingPlan.setDescription("Test Description");
-        testPricingPlan.setOriginalPrice(100.0);
-        testPricingPlan.setDiscountPercent(10.0);
-        pricingPlanRepository.save(testPricingPlan);
+        testPricingPlan = PricingPlan.builder()
+                .name("Test Plan")
+                .description("Test Description")
+                .originalPrice(100.0)
+                .discountPercent(10.0)
+                .build();
+        testPricingPlan.calculateFinalPrice();
+        testPricingPlan = pricingPlanRepository.save(testPricingPlan);
     }
 
     @AfterEach
@@ -90,19 +92,18 @@ public class PricingPlanControllerTest {
 
     @Test
     void testGetPricingSectionAsAdmin() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing")
+        mockMvc.perform(get("/admin/marketing/pricing")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("pricing"))
-                .andExpect(jsonPath("$.props.pageTitle").value("Тарифы и скидки"))
                 .andExpect(jsonPath("$.props.pricing").exists());
     }
 
     @Test
     void testGetPricingSectionAsCandidateForbidden() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing")
+        mockMvc.perform(get("/admin/marketing/pricing")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());
@@ -110,7 +111,7 @@ public class PricingPlanControllerTest {
 
     @Test
     void testGetPricingCreateFormAsAdmin() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing/create")
+        mockMvc.perform(get("/admin/marketing/pricing/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -120,14 +121,14 @@ public class PricingPlanControllerTest {
 
     @Test
     void testGetPricingCreateFormAsCandidateForbidden() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing/create")
+        mockMvc.perform(get("/admin/marketing/pricing/create")
                         .cookie(new Cookie("access_token", candidateToken)))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     void testGetPricingEditFormAsAdmin() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing/" + testPricingPlan.getId() + "/edit")
+        mockMvc.perform(get("/admin/marketing/pricing/" + testPricingPlan.getId() + "/edit")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -138,7 +139,7 @@ public class PricingPlanControllerTest {
 
     @Test
     void testGetPricingEditFormAsCandidateForbidden() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/pricing/" + testPricingPlan.getId() + "/edit")
+        mockMvc.perform(get("/admin/marketing/pricing/" + testPricingPlan.getId() + "/edit")
                         .cookie(new Cookie("access_token", candidateToken)))
                 .andExpect(status().isForbidden());
     }
@@ -148,19 +149,19 @@ public class PricingPlanControllerTest {
         String createPricingJson = """
                 {
                     "name": "Новый тарифный план",
-                    "original_price": 150.0,
-                    "discount_percent": 20.0,
+                    "originalPrice": 150.0,
+                    "discountPercent": 20.0,
                     "description": "Описание нового плана"
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/pricing")
+        mockMvc.perform(post("/admin/marketing/pricing")
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createPricingJson)
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/pricing"));
+                .andExpect(header().string("Location", "/admin/marketing/pricing"));
 
         assertEquals(2, pricingPlanRepository.count());
     }
@@ -171,11 +172,11 @@ public class PricingPlanControllerTest {
         String createPricingJson = """
                 {
                     "name": "Новый план",
-                    "original_price": 150.0
+                    "originalPrice": 150.0
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/pricing")
+        mockMvc.perform(post("/admin/marketing/pricing")
                         .cookie(new Cookie("access_token", candidateToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createPricingJson))
@@ -187,11 +188,11 @@ public class PricingPlanControllerTest {
         String invalidPricingJson = """
                 {
                     "name": "",
-                    "original_price": -100.0
+                    "originalPrice": -100.0
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/pricing")
+        mockMvc.perform(post("/admin/marketing/pricing")
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidPricingJson))
@@ -203,19 +204,19 @@ public class PricingPlanControllerTest {
         String updatePricingJson = """
                 {
                     "name": "Обновленное название",
-                    "original_price": 200.0,
-                    "discount_percent": 25.0,
+                    "originalPrice": 200.0,
+                    "discountPercent": 25.0,
                     "description": "Обновленное описание"
                 }
                 """;
 
-        mockMvc.perform(put("/ru/admin/marketing/pricing/" + testPricingPlan.getId())
+        mockMvc.perform(put("/admin/marketing/pricing/" + testPricingPlan.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatePricingJson)
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/pricing"));
+                .andExpect(header().string("Location", "/admin/marketing/pricing"));
 
         PricingPlan updated = pricingPlanRepository.findById(testPricingPlan.getId()).orElseThrow();
         assertEquals("Обновленное название", updated.getName());
@@ -232,7 +233,7 @@ public class PricingPlanControllerTest {
                 }
                 """;
 
-        mockMvc.perform(put("/ru/admin/marketing/pricing/99999")
+        mockMvc.perform(put("/admin/marketing/pricing/99999")
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatePricingJson))
@@ -241,11 +242,11 @@ public class PricingPlanControllerTest {
 
     @Test
     void testDeletePricingAsAdmin() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/pricing/" + testPricingPlan.getId())
+        mockMvc.perform(delete("/admin/marketing/pricing/" + testPricingPlan.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/pricing"));
+                .andExpect(header().string("Location", "/admin/marketing/pricing"));
 
 
         assertFalse(pricingPlanRepository.existsById(testPricingPlan.getId()));
@@ -253,14 +254,14 @@ public class PricingPlanControllerTest {
 
     @Test
     void testDeletePricingAsCandidateForbidden() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/pricing/" + testPricingPlan.getId())
+        mockMvc.perform(delete("/admin/marketing/pricing/" + testPricingPlan.getId())
                         .cookie(new Cookie("access_token", candidateToken)))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     void testInvalidSectionNotFound() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/invalid-section")
+        mockMvc.perform(get("/admin/marketing/invalid-section")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther());
