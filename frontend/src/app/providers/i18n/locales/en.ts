@@ -53,6 +53,26 @@ export default {
           ]
         },
       },
+      trainingPrograms: {
+        title: 'Our training programs',
+        cards: {
+          jobSearch: {
+            title: 'How to search for a job',
+            description: 'Search strategy, positioning, resume, interviews.',
+            button: 'Learn more',
+          },
+          freelance: {
+            title: 'How to work as a freelancer',
+            description: 'Portfolio, brief, communications, pricing, agreements.',
+            button: 'Learn more',
+          },
+          foreignJobs: {
+            title: 'How to find work abroad',
+            description: 'Markets, platforms, preparing profiles and applications in English.',
+            button: 'Learn more',
+          },
+        },
+      },
     },
   },
 };
