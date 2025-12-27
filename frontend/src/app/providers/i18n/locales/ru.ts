@@ -53,6 +53,26 @@ export default {
           ]
         },
       },
+      performanceReview: {
+        title: 'Performance review и определение грейда',
+        cards: {
+          skillsTesting: {
+            title: 'Тестирование навыков',
+            description: 'Практические задачи, ревью кода и чек‑лист по soft-skills.',
+            button: 'Записаться'
+          },
+          performanceReview: {
+            title: 'Перформанс‑ревью',
+            description: 'Оценка по KPI и вкладу в проекты, плюс развёрнутая обратная связь от менторов.',
+            button: 'Записаться'
+          },
+          gradeMarket: {
+            title: 'Грейд и рынок',
+            description: 'Сопоставление с вилками и требованиями - прозрачный отчёт и шаги роста.',
+            button: 'Записаться'
+          },
+        },
+      },
     },
   },
 };
