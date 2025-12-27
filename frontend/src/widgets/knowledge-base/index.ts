@@ -1,0 +1,1 @@
+export { KnowledgeBase } from "./ui/KnowledgeBase";
