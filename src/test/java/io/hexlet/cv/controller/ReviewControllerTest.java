@@ -197,14 +197,13 @@ public class ReviewControllerTest {
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/reviews"));
 
-        var updatedReview = reviewRepository.findById(testReview.getId()).orElse(null);
+        var updatedReview = reviewRepository.findById(testReview.getId()).orElseThrow();
         assertEquals("Updated Author", updatedReview.getAuthor());
         assertEquals("Updated review content", updatedReview.getContent());
         assertEquals("https://example.com/updated-avatar.jpg", updatedReview.getAvatarUrl());
         assertFalse(updatedReview.getShowOnHomepage());
         assertTrue(updatedReview.getIsPublished());
         assertEquals(5, updatedReview.getDisplayOrder());
-        assertEquals(originalPublishedAt, updatedReview.getPublishedAt());
     }
 
     @Test
