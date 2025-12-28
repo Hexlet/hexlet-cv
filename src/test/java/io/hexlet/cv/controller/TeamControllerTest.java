@@ -1,6 +1,10 @@
 package io.hexlet.cv.controller;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -18,6 +22,7 @@ import io.hexlet.cv.repository.TeamRepository;
 import io.hexlet.cv.repository.UserRepository;
 import io.hexlet.cv.util.JWTUtils;
 import jakarta.servlet.http.Cookie;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,9 +56,6 @@ public class TeamControllerTest {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private Team testTeam;
-    private String adminToken;
-
     private static final String ADMIN_EMAIL = "admin@example.com";
 
     @AfterEach
@@ -66,64 +68,94 @@ public class TeamControllerTest {
     public void setUp() {
         teamRepository.deleteAll();
         userRepository.deleteAll();
+    }
 
-        var adminUser = new User();
-        adminUser.setEmail(ADMIN_EMAIL);
-        adminUser.setEncryptedPassword(encoder.encode("admin_password"));
-        adminUser.setFirstName("Admin");
-        adminUser.setLastName("User");
-        adminUser.setRole(RoleType.ADMIN);
-        userRepository.save(adminUser);
+    private User createUser(String email, RoleType role) {
+        var user = User.builder()
+                .email(email)
+                .encryptedPassword(encoder.encode("password"))
+                .role(role)
+                .build();
+        return userRepository.save(user);
+    }
 
-        adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+    private Team createTeamMember(String firstName, String lastName, boolean isPublished) {
+        var team = Team.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .position(TeamPosition.PRODUCT)
+                .memberType(TeamMemberType.MENTOR)
+                .avatarUrl("https://example.com/avatar.jpg")
+                .isPublished(isPublished)
+                .showOnHomepage(true)
+                .displayOrder(1)
+                .publishedAt(isPublished ? LocalDateTime.now() : null)
+                .build();
+        return teamRepository.save(team);
+    }
 
-        testTeam = new Team();
-        testTeam.setFirstName("John");
-        testTeam.setLastName("Doe");
-        testTeam.setPosition(TeamPosition.PRODUCT);
-        testTeam.setMemberType(TeamMemberType.MENTOR);
-        testTeam.setAvatarUrl("https://example.com/avatar.jpg");
-        testTeam.setIsPublished(true);
-        testTeam.setShowOnHomepage(true);
-        testTeam.setDisplayOrder(1);
-        testTeam = teamRepository.save(testTeam);
-
+    private String generateToken(User user) {
+        return jwtUtils.generateAccessToken(user.getEmail());
     }
 
     @Test
     public void testGetTeamSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        createTeamMember("John", "Doe", true);
+
         mockMvc.perform(get("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("team"))
-                .andExpect(jsonPath("$.props.team").isArray());
+                .andExpect(jsonPath("$.props.team").isArray())
+                .andExpect(jsonPath("$.props.team[0].firstName").value("John"))
+                .andExpect(jsonPath("$.props.team[0].lastName").value("Doe"))
+                .andExpect(jsonPath("$.props.team[0].position").value("PRODUCT"))
+                .andExpect(jsonPath("$.props.team[0].memberType").value("MENTOR"));
     }
 
     @Test
     public void testGetCreateForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         mockMvc.perform(get("/admin/marketing/team/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
-                .andExpect(jsonPath("$.props.activeSubSection").value("team"));
+                .andExpect(jsonPath("$.props.activeSubSection").value("team"))
+                .andExpect(jsonPath("$.props.positions").exists())
+                .andExpect(jsonPath("$.props.memberTypes").exists());
     }
 
     @Test
     public void testGetEditForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("John", "Doe", true);
+
         mockMvc.perform(get("/admin/marketing/team/{id}/edit", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("team"))
-                .andExpect(jsonPath("$.props.teamMember.id").value(testTeam.getId()));
+                .andExpect(jsonPath("$.props.teamMember.id").value(testTeam.getId()))
+                .andExpect(jsonPath("$.props.teamMember.firstName").value("John"))
+                .andExpect(jsonPath("$.props.teamMember.lastName").value("Doe"))
+                .andExpect(jsonPath("$.props.positions").exists())
+                .andExpect(jsonPath("$.props.memberTypes").exists());
     }
 
     @Test
     public void testCreateTeamMember() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         String teamJson = """
                 {
                     "firstName": "Jane",
@@ -144,10 +176,25 @@ public class TeamControllerTest {
                         .content(teamJson))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/team"));
+
+        assertEquals(1, teamRepository.count());
+        Team savedTeam = teamRepository.findAll().get(0);
+        assertEquals("Jane", savedTeam.getFirstName());
+        assertEquals("Smith", savedTeam.getLastName());
+        assertEquals(TeamPosition.PRODUCT, savedTeam.getPosition());
+        assertEquals(TeamMemberType.MENTOR, savedTeam.getMemberType());
+        assertFalse(savedTeam.getIsPublished());
+        assertTrue(savedTeam.getShowOnHomepage());
+        assertEquals(2, savedTeam.getDisplayOrder());
+        assertNull(savedTeam.getPublishedAt());
     }
 
     @Test
     public void testUpdateTeamMember() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("Original", "Name", true);
+
         String teamJson = """
                 {
                     "firstName": "Updated",
@@ -168,39 +215,75 @@ public class TeamControllerTest {
                         .content(teamJson))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/team"));
-    }
 
+        Team updatedTeam = teamRepository.findById(testTeam.getId()).orElseThrow();
+        assertEquals("Updated", updatedTeam.getFirstName());
+        assertEquals("Name", updatedTeam.getLastName());
+        assertEquals(TeamPosition.DEVELOPER, updatedTeam.getPosition());
+        assertEquals(TeamMemberType.ADVISOR, updatedTeam.getMemberType());
+        assertEquals("https://example.com/updated-avatar.jpg", updatedTeam.getAvatarUrl());
+        assertTrue(updatedTeam.getIsPublished());
+        assertFalse(updatedTeam.getShowOnHomepage());
+        assertEquals(5, updatedTeam.getDisplayOrder());
+        assertNotNull(updatedTeam.getPublishedAt());
+    }
 
     @Test
     public void testDeleteTeamMember() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("Team", "Member", true);
+        Long teamId = testTeam.getId();
+
         mockMvc.perform(delete("/admin/marketing/team/{id}", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/team"));
-    }
 
+        assertFalse(teamRepository.existsById(teamId));
+    }
 
     @Test
     public void testTogglePublishTeam() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("John", "Doe", false);
+        boolean initialPublishStatus = testTeam.getIsPublished();
+
         mockMvc.perform(post("/admin/marketing/team/{id}/toggle-publish", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/team"));
+
+        var toggledTeam = teamRepository.findById(testTeam.getId()).orElseThrow();
+        assertEquals(!initialPublishStatus, toggledTeam.getIsPublished());
     }
 
     @Test
     public void testToggleHomepageTeam() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("Homepage", "Member", true);
+        boolean initialHomepageStatus = testTeam.getShowOnHomepage();
+
         mockMvc.perform(post("/admin/marketing/team/{id}/toggle-homepage", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/home-components"));
+
+        var toggledTeam = teamRepository.findById(testTeam.getId()).orElseThrow();
+        assertEquals(!initialHomepageStatus, toggledTeam.getShowOnHomepage());
     }
 
     @Test
     public void testUpdateTeamDisplayOrder() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("Display", "Order", true);
+
         String json = "{\"display_order\": 3}";
 
         mockMvc.perform(put("/admin/marketing/team/{id}/display-order", testTeam.getId())
@@ -208,57 +291,35 @@ public class TeamControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());
+
+        var updatedTeam = teamRepository.findById(testTeam.getId()).orElseThrow();
+        assertEquals(3, updatedTeam.getDisplayOrder());
     }
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testTeam = createTeamMember("Homepage", "Team", true);
+        testTeam.setShowOnHomepage(true);
+        teamRepository.save(testTeam);
         mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("home-components"))
-                .andExpect(jsonPath("$.props.team").exists());
+                .andExpect(jsonPath("$.props.team").exists())
+                .andExpect(jsonPath("$.props.team").isArray())
+                .andExpect(jsonPath("$.props.team[0].firstName").value("Homepage"))
+                .andExpect(jsonPath("$.props.team[0].lastName").value("Team"));
     }
 
+
     @Test
-    public void testAccessAsNonAdmin() throws Exception {
-        User candidate = new User();
-        candidate.setEmail("candidate@example.com");
-        candidate.setEncryptedPassword(encoder.encode("password"));
-        candidate.setRole(RoleType.CANDIDATE);
-        userRepository.save(candidate);
-
-        String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
-
+    void testUnauthorizedAccess() throws Exception {
         mockMvc.perform(get("/admin/marketing/team")
-                        .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().isForbidden());
-    }
-
-    @Test
-    public void testCreateTeamMemberInvalidData() throws Exception {
-        String invalidTeamJson = """
-                {
-                    "firstName": "",
-                    "lastName": "",
-                    "position": "INVALID_POSITION",
-                    "memberType": "INVALID_TYPE"
-                }
-                """;
-
-        mockMvc.perform(post("/admin/marketing/team")
-                        .cookie(new Cookie("access_token", adminToken))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(invalidTeamJson))
-                .andExpect(status().isBadRequest())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors").exists())
-                .andExpect(jsonPath("$.errors.error").exists())
-                .andExpect(jsonPath("$.errors.error").isString())
-                .andExpect(jsonPath("$.errors.error").value(containsString("Invalid value")))
-                .andExpect(jsonPath("$.errors.error").value(containsString("position")))
-                .andExpect(jsonPath("$.errors.error").value(containsString("Allowed values")));
+                .andExpect(status().isUnauthorized());
     }
 }

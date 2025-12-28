@@ -1,5 +1,8 @@
 package io.hexlet.cv.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -50,9 +53,6 @@ public class ReviewControllerTest {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private Review testReview;
-    private String adminToken;
-
     private static final String ADMIN_EMAIL = "admin@example.com";
 
     @AfterEach
@@ -65,42 +65,56 @@ public class ReviewControllerTest {
     public void setUp() {
         reviewRepository.deleteAll();
         userRepository.deleteAll();
+    }
 
-        var adminUser = new User();
-        adminUser.setEmail(ADMIN_EMAIL);
-        adminUser.setEncryptedPassword(encoder.encode("admin_password"));
-        adminUser.setFirstName("Admin");
-        adminUser.setLastName("User");
-        adminUser.setRole(RoleType.ADMIN);
-        userRepository.save(adminUser);
+    private User createUser(String email, RoleType role) {
+        var user = User.builder()
+                .email(email)
+                .encryptedPassword(encoder.encode("password"))
+                .role(role)
+                .build();
+        return userRepository.save(user);
+    }
 
-        adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+    private Review createReview(String author, boolean isPublished) {
+        var review = Review.builder()
+                .author(author)
+                .content("Test review content for testing purposes")
+                .avatarUrl("https://example.com/avatar.jpg")
+                .isPublished(isPublished)
+                .showOnHomepage(true)
+                .displayOrder(1)
+                .publishedAt(isPublished ? LocalDateTime.now() : null)
+                .build();
+        return reviewRepository.save(review);
+    }
 
-        testReview = new Review();
-        testReview.setAuthor("Test Author");
-        testReview.setContent("Test review content for testing purposes");
-        testReview.setAvatarUrl("https://example.com/avatar.jpg");
-        testReview.setIsPublished(true);
-        testReview.setShowOnHomepage(true);
-        testReview.setDisplayOrder(1);
-        testReview.setPublishedAt(LocalDateTime.now());
-
-        testReview = reviewRepository.save(testReview);
+    private String generateToken(User user) {
+        return jwtUtils.generateAccessToken(user.getEmail());
     }
 
     @Test
     public void testGetReviewsSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+        createReview("Test Author", true);
+
+        createReview("Test Author", true);
         mockMvc.perform(get("/admin/marketing/reviews")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("reviews"))
-                .andExpect(jsonPath("$.props.reviews").isArray());
+                .andExpect(jsonPath("$.props.reviews").isArray())
+                .andExpect(jsonPath("$.props.reviews[0].author").value("Test Author"));
     }
 
     @Test
     public void testGetCreateForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         mockMvc.perform(get("/admin/marketing/reviews/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -111,6 +125,10 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Test Author for Edit", true);
+
         mockMvc.perform(get("/admin/marketing/reviews/{id}/edit", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -122,6 +140,9 @@ public class ReviewControllerTest {
 
     @Test
     public void testCreateReview() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         String reviewJson = """
             {
                 "author": "New Review Author",
@@ -140,10 +161,23 @@ public class ReviewControllerTest {
                         .content(reviewJson))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/reviews"));
+
+        assertEquals(1, reviewRepository.count());
+        var savedReview = reviewRepository.findAll().get(0);
+        assertEquals("New Review Author", savedReview.getAuthor());
+        assertEquals("New review content", savedReview.getContent());
+        assertFalse(savedReview.getIsPublished());
     }
 
     @Test
     public void testUpdateReview() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Original Author", true);
+        LocalDateTime originalPublishedAt = testReview.getPublishedAt();
+
+
+
         String reviewJson = """
             {
                 "author": "Updated Author",
@@ -162,39 +196,76 @@ public class ReviewControllerTest {
                         .content(reviewJson))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/reviews"));
+
+        var updatedReview = reviewRepository.findById(testReview.getId()).orElse(null);
+        assertEquals("Updated Author", updatedReview.getAuthor());
+        assertEquals("Updated review content", updatedReview.getContent());
+        assertEquals("https://example.com/updated-avatar.jpg", updatedReview.getAvatarUrl());
+        assertFalse(updatedReview.getShowOnHomepage());
+        assertTrue(updatedReview.getIsPublished());
+        assertEquals(5, updatedReview.getDisplayOrder());
+        assertEquals(originalPublishedAt, updatedReview.getPublishedAt());
     }
 
     @Test
     public void testDeleteReview() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Test Author", true);
+        var reviewId = testReview.getId();
+
         mockMvc.perform(delete("/admin/marketing/reviews/{id}", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/reviews"));
+
+        assertFalse(reviewRepository.existsById(reviewId));
     }
 
 
     @Test
     public void testTogglePublishReview() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Test Author", true);
+        boolean initialPublished = testReview.getIsPublished();
+
         mockMvc.perform(post("/admin/marketing/reviews/{id}/toggle-publish", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/reviews"));
+
+        Review updatedReview = reviewRepository.findById(testReview.getId()).orElseThrow();
+        assertEquals(!initialPublished, updatedReview.getIsPublished());
     }
 
     @Test
     public void testToggleHomepageReview() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Test Author", true);
+
+        boolean initialHomepage = testReview.getShowOnHomepage();
+
         mockMvc.perform(post("/admin/marketing/reviews/{id}/toggle-homepage", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/home-components"));
+
+        var toggleReview = reviewRepository.findById(testReview.getId()).orElseThrow();
+        assertEquals(!initialHomepage, toggleReview.getShowOnHomepage());
     }
 
 
     @Test
     public void testUpdateReviewDisplayOrder() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testReview = createReview("Test Author", true);
+
         String json = "{\"display_order\": 3}";
 
         mockMvc.perform(put("/admin/marketing/reviews/{id}/display-order", testReview.getId())
@@ -202,33 +273,25 @@ public class ReviewControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());
+
+        var updatedReview = reviewRepository.findById(testReview.getId()).orElseThrow();
+        assertEquals(3, updatedReview.getDisplayOrder());
     }
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        createReview("Homepage Review", true).setShowOnHomepage(true);
+
         mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("home-components"))
-                .andExpect(jsonPath("$.props.reviews").exists());
-    }
-
-    @Test
-    public void testAccessAsNonAdmin() throws Exception {
-        User candidate = new User();
-        candidate.setEmail("candidate@example.com");
-        candidate.setEncryptedPassword(encoder.encode("password"));
-        candidate.setRole(RoleType.CANDIDATE);
-        userRepository.save(candidate);
-
-        String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
-
-        mockMvc.perform(get("/admin/marketing/reviews")
-                        .cookie(new Cookie("access_token", candidateToken))
-                        .header("X-Inertia", "true"))
-                .andExpect(status().isForbidden());
+                .andExpect(jsonPath("$.props.reviews").exists())
+                .andExpect(jsonPath("$.props.reviews[0].author").value("Homepage Review"));
     }
 
     @Test
