@@ -1,8 +1,8 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.marketing.PricingCreateDTO;
-import io.hexlet.cv.dto.marketing.PricingDTO;
-import io.hexlet.cv.dto.marketing.PricingUpdateDTO;
+import io.hexlet.cv.dto.marketing.PricingCreateDto;
+import io.hexlet.cv.dto.marketing.PricingDto;
+import io.hexlet.cv.dto.marketing.PricingUpdateDto;
 import io.hexlet.cv.model.admin.marketing.PricingPlan;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,11 +20,11 @@ import org.mapstruct.ReportingPolicy;
 public abstract class PricingMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "finalPrice", ignore = true)
-    public abstract PricingPlan map(PricingCreateDTO dto);
+    public abstract PricingPlan map(PricingCreateDto dto);
 
-    public abstract PricingDTO map(PricingPlan model);
+    public abstract PricingDto map(PricingPlan model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "finalPrice", ignore = true)
-    public abstract void update(PricingUpdateDTO dto, @MappingTarget PricingPlan model);
+    public abstract void update(PricingUpdateDto dto, @MappingTarget PricingPlan model);
 }
