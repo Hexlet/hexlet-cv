@@ -1,9 +1,13 @@
 package io.hexlet.cv.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,9 +53,6 @@ public class StoryControllerTest {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private Story testStory;
-    private String adminToken;
-
     private static final String ADMIN_EMAIL = "admin@example.com";
 
     @AfterEach
@@ -64,44 +65,55 @@ public class StoryControllerTest {
     public void setUp() {
         storyRepository.deleteAll();
         userRepository.deleteAll();
+    }
 
-        var adminUser = new User();
-        adminUser.setEmail(ADMIN_EMAIL);
-        adminUser.setEncryptedPassword(encoder.encode("admin_password"));
-        adminUser.setFirstName("Admin");
-        adminUser.setLastName("User");
-        adminUser.setRole(RoleType.ADMIN);
-        userRepository.save(adminUser);
+    private User createUser(String email, RoleType role) {
+        var user = User.builder()
+                .email(email)
+                .encryptedPassword(encoder.encode("password"))
+                .role(role)
+                .build();
+        return userRepository.save(user);
+    }
 
-        adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+    private Story createStory(String title, boolean isPublished) {
+        var story = Story.builder()
+                .title(title)
+                .content("Test story content for testing purposes")
+                .imageUrl("https://example.com/story-image.jpg")
+                .isPublished(isPublished)
+                .showOnHomepage(true)
+                .displayOrder(1)
+                .publishedAt(isPublished ? LocalDateTime.now() : null)
+                .build();
+        return storyRepository.save(story);
+    }
 
-        testStory = new Story();
-        testStory.setTitle("Test Story title");
-        testStory.setContent("Test story content for testing purposes");
-        testStory.setImageUrl("https://example.com/story-image.jpg");
-        testStory.setIsPublished(true);
-        testStory.setShowOnHomepage(true);
-        testStory.setDisplayOrder(1);
-        testStory.setPublishedAt(LocalDateTime.now());
-
-        testStory = storyRepository.save(testStory);
-
+    private String generateToken(User user) {
+        return jwtUtils.generateAccessToken(user.getEmail());
     }
 
     @Test
     public void testGetStoriesSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        createStory("Test Story", true);
+
         mockMvc.perform(get("/admin/marketing/stories")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("stories"))
-                .andExpect(jsonPath("$.props.stories").isArray());
+                .andExpect(jsonPath("$.props.stories").isArray())
+                .andExpect(jsonPath("$.props.stories[0].title").value("Test Story"));
     }
-
 
     @Test
     public void testGetCreateForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         mockMvc.perform(get("/admin/marketing/stories/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -112,27 +124,35 @@ public class StoryControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Edit Test Story", true);
+
         mockMvc.perform(get("/admin/marketing/stories/{id}/edit", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("stories"))
-                .andExpect(jsonPath("$.props.story.id").value(testStory.getId()));
+                .andExpect(jsonPath("$.props.story.id").value(testStory.getId()))
+                .andExpect(jsonPath("$.props.story.title").value("Edit Test Story"));
     }
 
     @Test
     public void testCreateStory() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         String storyJson = """
-            {
-                "title": "New Story",
-                "content": "New story content",
-                "imageUrl": "https://example.com/image.jpg",
-                "isPublished": false,
-                "showOnHomepage": true,
-                "displayOrder": 2
-            }
-            """;
+                {
+                    "title": "New Story",
+                    "content": "New story content",
+                    "imageUrl": "https://example.com/image.jpg",
+                    "isPublished": false,
+                    "showOnHomepage": true,
+                    "displayOrder": 2
+                }
+                """;
 
         mockMvc.perform(post("/admin/marketing/stories")
                         .cookie(new Cookie("access_token", adminToken))
@@ -141,10 +161,23 @@ public class StoryControllerTest {
                         .content(storyJson))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/stories"));
+
+        assertEquals(1, storyRepository.count());
+        var savedStory = storyRepository.findAll().get(0);
+        assertEquals("New Story", savedStory.getTitle());
+        assertEquals("New story content", savedStory.getContent());
+        assertEquals("https://example.com/image.jpg", savedStory.getImageUrl());
+        assertFalse(savedStory.getIsPublished());
+        assertTrue(savedStory.getShowOnHomepage());
+        assertEquals(2, savedStory.getDisplayOrder());
     }
 
     @Test
     public void testUpdateStory() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Original Story", true);
+
         String storyJson = """
             {
                 "title": "Updated Story Title",
@@ -163,38 +196,72 @@ public class StoryControllerTest {
                         .content(storyJson))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/stories"));
+
+        var updatedStory = storyRepository.findById(testStory.getId()).orElseThrow();
+        assertEquals("Updated Story Title", updatedStory.getTitle());
+        assertEquals("Updated story content", updatedStory.getContent());
+        assertEquals("https://example.com/updated-image.jpg", updatedStory.getImageUrl());
+        assertTrue(updatedStory.getIsPublished());
+        assertFalse(updatedStory.getShowOnHomepage());
+        assertEquals(5, updatedStory.getDisplayOrder());
     }
 
     @Test
     public void testDeleteStory() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Delete Test Story", true);
+        var storyId = testStory.getId();
+
         mockMvc.perform(delete("/admin/marketing/stories/{id}", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
                 .andExpect(header().string("Location", "/admin/marketing/stories"));
+
+        assertFalse(storyRepository.existsById(storyId));
     }
 
     @Test
     public void testTogglePublishStory() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Delete Test Story", true);
+        boolean initialPublishStatus = testStory.getIsPublished();
+
         mockMvc.perform(post("/admin/marketing/stories/{id}/toggle-publish", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/stories"));
-    }
 
+        var toggledStory = storyRepository.findById(testStory.getId()).orElseThrow();
+        assertEquals(!initialPublishStatus, toggledStory.getIsPublished());
+    }
 
     @Test
     public void testToggleStoryHomepage() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Story for Homepage", true);
+        boolean initialHomepageStatus = testStory.getShowOnHomepage();
+
         mockMvc.perform(post("/admin/marketing/stories/{id}/toggle-homepage", testStory.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/home-components"));
+
+        var toggledStory = storyRepository.findById(testStory.getId()).orElseThrow();
+        assertEquals(!initialHomepageStatus, toggledStory.getShowOnHomepage());
     }
 
     @Test
     public void testUpdateStoryDisplayOrder() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testStory = createStory("Story for Display Order", true);
+
         String json = "{\"display_order\": 5}";
 
         mockMvc.perform(put("/admin/marketing/stories/{id}/display-order", testStory.getId())
@@ -202,10 +269,16 @@ public class StoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());
+
+        var updatedStory = storyRepository.findById(testStory.getId()).orElseThrow();
+        assertEquals(5, updatedStory.getDisplayOrder());
     }
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -216,18 +289,10 @@ public class StoryControllerTest {
     }
 
     @Test
-    public void testAccessAsNonAdmin() throws Exception {
-        User candidate = new User();
-        candidate.setEmail("candidate@example.com");
-        candidate.setEncryptedPassword(encoder.encode("password"));
-        candidate.setRole(RoleType.CANDIDATE);
-        userRepository.save(candidate);
-
-        String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
-
+    public void testUnauthorizedAccess() throws Exception {
         mockMvc.perform(get("/admin/marketing/stories")
-                        .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
-                .andExpect(status().isForbidden());
+                .andDo(print())
+                .andExpect(status().isUnauthorized());
     }
 }

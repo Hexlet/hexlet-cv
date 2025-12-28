@@ -1,5 +1,6 @@
 package io.hexlet.cv.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -49,9 +50,6 @@ public class ArticleControllerTest {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private Article testArticle;
-    private String adminToken;
-
     private static final String ADMIN_EMAIL = "admin@example.com";
 
     @AfterEach
@@ -64,46 +62,57 @@ public class ArticleControllerTest {
     public void setUp() {
         articleRepository.deleteAll();
         userRepository.deleteAll();
+    }
 
-        var adminUser = new User();
-        adminUser = new User();
-        adminUser.setEmail(ADMIN_EMAIL);
-        adminUser.setEncryptedPassword(encoder.encode("admin_password"));
-        adminUser.setFirstName("Admin");
-        adminUser.setLastName("User");
-        adminUser.setRole(RoleType.ADMIN);
-        userRepository.save(adminUser);
+    private User createUser(String email, RoleType role) {
+        var user = User.builder()
+                .email(email)
+                .encryptedPassword(encoder.encode("password"))
+                .role(role)
+                .build();
+        return userRepository.save(user);
+    }
 
-        adminToken = jwtUtils.generateAccessToken(ADMIN_EMAIL);
+    private Article createArticle(String title, boolean isPublished) {
+        var article = Article.builder()
+                .title(title)
+                .content("Test article content for testing purposes")
+                .author("Test Author")
+                .readingTime(5)
+                .isPublished(isPublished)
+                .showOnHomepage(true)
+                .homeComponentId("877")
+                .displayOrder(1)
+                .publishedAt(isPublished ? LocalDateTime.now() : null)
+                .build();
+        return articleRepository.save(article);
+    }
 
-        testArticle = new Article();
-        testArticle.setTitle("Test Article title");
-        testArticle.setContent("Test article content for testing purposes");
-        testArticle.setAuthor("Test Author");
-        testArticle.setReadingTime(5);
-        testArticle.setIsPublished(true);
-        testArticle.setShowOnHomepage(true);
-        testArticle.setHomeComponentId("877");
-        testArticle.setDisplayOrder(1);
-        testArticle.setPublishedAt(LocalDateTime.now());
-
-        testArticle = articleRepository.save(testArticle);
-
+    private String generateToken(User user) {
+        return jwtUtils.generateAccessToken(user.getEmail());
     }
 
     @Test
     public void testGetArticlesSection() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        createArticle("Test article", true);
+
         mockMvc.perform(get("/admin/marketing/articles")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.props.activeMainSection").value("marketing"))
                 .andExpect(jsonPath("$.props.activeSubSection").value("articles"))
-                .andExpect(jsonPath("$.props.articles").isArray());
+                .andExpect(jsonPath("$.props.articles").isArray())
+                .andExpect(jsonPath("$.props.articles[0].title").value("Test article"));
     }
 
     @Test
     public void testGetCreateForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         mockMvc.perform(get("/admin/marketing/articles/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -114,6 +123,10 @@ public class ArticleControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Test Article for Edit", true);
+
         mockMvc.perform(get("/admin/marketing/articles/{id}/edit", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -126,6 +139,9 @@ public class ArticleControllerTest {
 
     @Test
     public void testCreateArticle() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+
         String articleJson = """
             {
                 "title": "New Article",
@@ -146,6 +162,10 @@ public class ArticleControllerTest {
 
     @Test
     public void testUpdateArticle() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Update Test", true);
+
         String articleJson = """
             {
                 "title": "Updated Article",
@@ -166,6 +186,11 @@ public class ArticleControllerTest {
 
     @Test
     public void testDeleteArticle() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Delete Test", true);
+        var articleId = testArticle.getId();
+
         mockMvc.perform(delete("/admin/marketing/articles/{id}", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
@@ -175,24 +200,43 @@ public class ArticleControllerTest {
 
     @Test
     public void testToggleArticleHomepage() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Homepage Test", true);
+        boolean initialHomepage = testArticle.getShowOnHomepage();
+
         mockMvc.perform(post("/admin/marketing/articles/{id}/toggle-homepage", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/home-components"));
+
+        var toogledArticle = articleRepository.findById(testArticle.getId()).orElseThrow();
+        assertEquals(!initialHomepage, toogledArticle.getShowOnHomepage());
     }
 
     @Test
     public void testTogglePublish() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Publish Test", true);
+        boolean initialPublished = testArticle.getIsPublished();
+
         mockMvc.perform(post("/admin/marketing/articles/{id}/toggle-publish", testArticle.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "/admin/marketing/articles"));
+        var toggledArticle = articleRepository.findById(testArticle.getId()).orElseThrow();
+        assertEquals(!initialPublished, toggledArticle.getIsPublished());
     }
 
     @Test
     public void testUpdateArticleDisplayOrder() throws Exception {
+        var admin = createUser(ADMIN_EMAIL, RoleType.ADMIN);
+        String adminToken = generateToken(admin);
+        var testArticle = createArticle("Display Order Test", true);
+
         String json = "{\"display_order\": 5}";
 
         mockMvc.perform(put("/admin/marketing/articles/{id}/display-order", testArticle.getId())
@@ -200,11 +244,13 @@ public class ArticleControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());
+        var updatedArticle = articleRepository.findById(testArticle.getId()).orElseThrow();
+        assertEquals(5, updatedArticle.getDisplayOrder());
     }
 
     @Test
     public void testAccessAsNonAdmin() throws Exception {
-        User candidate = new User();
+        var candidate = new User();
         candidate.setEmail("candidate@example.com");
         candidate.setEncryptedPassword(encoder.encode("password"));
         candidate.setRole(RoleType.CANDIDATE);
