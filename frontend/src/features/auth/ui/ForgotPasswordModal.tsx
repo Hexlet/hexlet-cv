@@ -1,5 +1,5 @@
-import { Modal, TextInput, Button, Text, Stack, Group } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { Modal, TextInput, Button, Text, Stack, Group, Alert } from '@mantine/core';
+import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,59 +10,38 @@ interface ForgotPasswordModalProps {
 
 export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened, onClose }) => {
   const { t } = useTranslation();
-
-  const form = useForm({
-    initialValues: {
-      email: '',
-    },
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : t('auth.forgotPassword.invalidEmail')),
-    },
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = async (values: { email: string }) => {
-    setLoading(true);
+  const form = useForm({
+    email: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setFormError(null);
 
-    // Имитация form.post 
-    const mockFormPost = (url: string, options: any) => {
-      console.log(`Имитация POST запроса на ${url} с данными:`, values);
+    if (!/^\S+@\S+$/.test(form.data.email)) {
+      setFormError(t('auth.forgotPassword.invalidEmail'));
+      return;
+    }
 
-      setTimeout(() => {
-        options.onSuccess();
-        options.onFinish();
-      }, 1000);
-    };
-
-    mockFormPost('/forgot-password', {
-      data: values,
-      onSuccess: () => {
-        setSuccess(true);
-
-        // Автоматическое закрытие через 3 секунды
-        setTimeout(() => {
-          onClose();
-          form.reset();
-          setSuccess(false);
-        }, 3000);
-      },
-      onError: (errors: any) => {
-        // Обработка ошибок от сервера
-        console.log('Ошибки формы:', errors);
-
+    form.post('/forgot-password', {
+      onError: (errors) => {
+        console.error('Ошибка восстановления пароля:', errors);
+        
         if (errors?.email) {
-          form.setFieldError('email', errors.email);
           setFormError(errors.email);
+        } else if (errors?.message) {
+          setFormError(errors.message);
         } else {
           setFormError(t('auth.forgotPassword.genericError'));
         }
       },
-      onFinish: () => {
-        setLoading(false);
+      onSuccess: () => {
+        console.log('Запрос на восстановление пароля отправлен');
+        // Закрываем модальное окно сразу после успеха
+        onClose();
+        form.reset();
       },
     });
   };
@@ -76,58 +55,58 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ opened
   return (
     <Modal
       opened={opened}
-      onClose={onClose}
       title={t('auth.forgotPassword.title')}
       centered
       size="sm"
       radius="lg"
+      onClose={handleCancel}
     >
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+      <form onSubmit={handleSubmit}>
         <Stack gap="md">
-          {success ? (
-            <Text c="green" size="sm">
-              {t('auth.forgotPassword.successMessage')}
-            </Text>
-          ) : (
-            <>
-              <Text size="sm" c="dimmed">
-                {t('auth.forgotPassword.description')}
-              </Text>
-              <TextInput
-                placeholder="E-mail"
-                radius="md"
-                {...form.getInputProps('email')}
-                required
-                type="email"
-                disabled={loading}
-              />
+          <Text size="sm" c="dimmed">
+            {t('auth.forgotPassword.description')}
+          </Text>
+          
+          <TextInput
+            placeholder={t('auth.email')}
+            radius="md"
+            value={form.data.email}
+            onChange={(e) => form.setData('email', e.currentTarget.value)}
+            required
+            type="email"
+            disabled={form.processing}
+            error={form.errors.email}
+          />
 
-              {formError && (
-                <Text c="red" size="sm">
-                  {formError}
-                </Text>
-              )}
-
-              <Group gap="sm" grow>
-                <Button
-                  radius="md"
-                  type="submit"
-                  loading={loading}
-                  disabled={!form.values.email || loading}
-                >
-                  {t('auth.forgotPassword.sendLink')}
-                </Button>
-                <Button
-                  variant="default"
-                  radius="md"
-                  onClick={handleCancel}
-                  disabled={loading}
-                >
-                  {t('auth.forgotPassword.cancel')}
-                </Button>
-              </Group>
-            </>
+          {formError && (
+             <Alert 
+              variant="filled" 
+              color="red" 
+              radius="md"
+              title={formError}
+              withCloseButton
+              onClose={() => setFormError(null)}
+            />
           )}
+
+          <Group gap="sm" grow>
+            <Button
+              radius="md"
+              type="submit"
+              loading={form.processing}
+              disabled={form.processing}
+            >
+              {t('auth.forgotPassword.sendLink')}
+            </Button>
+            <Button
+              variant="default"
+              radius="md"
+              onClick={handleCancel}
+              disabled={form.processing}
+            >
+              {t('auth.forgotPassword.cancel')}
+            </Button>
+          </Group>
         </Stack>
       </form>
     </Modal>

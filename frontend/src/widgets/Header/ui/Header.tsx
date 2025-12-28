@@ -1,5 +1,8 @@
 import { Group, Button, Divider, ThemeIcon, Text, Anchor } from '@mantine/core'
 import { Link } from '@inertiajs/react'
+import { useDisclosure } from '@mantine/hooks'
+import { ForgotPasswordModal } from '@features/auth'
+import { useTranslation } from 'react-i18next'
 
 const links = [
   {
@@ -45,6 +48,8 @@ const links = [
 ]
 
 export function Header(): JSX.Element {
+  const { t } = useTranslation()
+  const [opened, { open, close }] = useDisclosure(false)
   const items = links.map((link): JSX.Element => (
     <Anchor
       key={link.label}
@@ -98,7 +103,33 @@ export function Header(): JSX.Element {
           </Text>
         </Button>
       </Group>
+
+      {/* Кнопка "Забыли пароль?" под основной кнопкой */}
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        textAlign: 'center',
+
+      }}>
+        <Button
+          variant="subtle"
+          size="xs"
+          onClick={open}
+          style={{ padding: 0, height: 'auto' }}
+        >
+          <Text size="xl" c="dimmed">
+            {t('auth.forgotPassword.description')}
+          </Text>
+
+        </Button>
+      </div>
+
       <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+
+      {/* Модалка восстановления пароля */}
+      <ForgotPasswordModal opened={opened} onClose={close} />
     </header>
   )
 }
