@@ -54,5 +54,36 @@ export default {
         },
       },
     },
+    auth: {
+      email: 'Email',
+      password: 'Password',
+      confirmPassword: 'Confirm Password',
+      enterNewPassword: 'Enter new password',
+      confirmNewPassword: 'Confirm new password',
+      
+      forgotPassword: {
+        title: 'Password Recovery',
+        description: 'Enter your email',
+        cancel: 'Cancel',
+        sendLink: 'Send Reset Link',
+        successMessage: 'Password reset link has been sent to your email',
+        forgotPassword: 'Forgot password?',
+        invalidEmail: 'Invalid email address',
+        genericError: 'An error occurred. Please try again later.',
+      },
+      
+      resetPassword: {
+        title: 'Reset Password',
+        changePassword: 'Change Password',
+        successMessage: 'Password has been successfully changed!',
+        goToLogin: 'Login',
+        passwordsNotMatch: 'Passwords do not match',
+        passwordMinLength: 'Password must be at least 6 characters',
+        invalidToken: 'Invalid or expired link',
+        expiredToken: 'Password reset link has expired',
+        enterNewPasswordDescription: 'Enter a new password for your account',
+        invalidTokenDescription: 'Password reset link is invalid',
+      },
+    },
   },
 };
