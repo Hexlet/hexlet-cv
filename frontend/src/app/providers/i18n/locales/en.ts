@@ -54,18 +54,6 @@ export default {
         },
       },
     },
-    communities: {
-      action_connect_to: 'Join the community',
-      anchor: 'Community',
-      description: 'We unite graduates and participants: communication, experience exchange, support and joint projects.',
-      link_bot_title: 'Career Bot',
-      link_bot_description: 'Auto-tests, hints for applications, search support.',
-      link_channel_hexlet_title: 'Hexlet Telegram Channel',
-      link_channel_hexlet_description: 'Announcements, insights, career and learning tips.',
-      link_channel_vacancies_title: 'Vacancies channel for beginners',
-      link_channel_vacancies_description: 'Fresh junior vacancies and internships every day.',
-      title: 'Our Community',
-    },
     auth: {
       email: 'Email',
       password: 'Password',
