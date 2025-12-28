@@ -12,7 +12,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,6 +24,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "marketing_team")
 @EntityListeners(AuditingEntityListener.class)
 public class Team {
@@ -48,11 +54,14 @@ public class Team {
     private String avatarUrl;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean showOnHomepage = false;
 
+    @Builder.Default
     private Integer displayOrder = 0;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean isPublished = false;
 
     private LocalDateTime publishedAt;
