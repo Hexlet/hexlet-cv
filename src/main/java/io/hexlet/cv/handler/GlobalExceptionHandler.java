@@ -50,12 +50,12 @@ public class GlobalExceptionHandler {
         String errorMessage = "Invalid JSON format";
 
         if (ex.getCause() instanceof InvalidFormatException) {
-            InvalidFormatException ife = (InvalidFormatException) ex.getCause();
-            if (ife.getTargetType().isEnum()) {
-                Class<? extends Enum> enumClass = (Class<? extends Enum>) ife.getTargetType();
-                String fieldName = ife.getPath().isEmpty() ? "unknown" : ife.getPath().get(0).getFieldName();
+            InvalidFormatException cause = (InvalidFormatException) ex.getCause();
+            if (cause.getTargetType().isEnum()) {
+                Class<? extends Enum> enumClass = (Class<? extends Enum>) cause.getTargetType();
+                String fieldName = cause.getPath().isEmpty() ? "unknown" : cause.getPath().get(0).getFieldName();
                 errorMessage = String.format("Invalid value '%s' for %s. Allowed values: %s",
-                        ife.getValue(),
+                        cause.getValue(),
                         fieldName,
                         Arrays.toString(enumClass.getEnumConstants()));
             }
