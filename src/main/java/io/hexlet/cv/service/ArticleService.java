@@ -7,6 +7,7 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.ArticleMapper;
 import io.hexlet.cv.model.admin.marketing.Article;
 import io.hexlet.cv.repository.ArticleRepository;
+import io.hexlet.cv.util.JsonNullableUtils;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -59,16 +60,16 @@ public class ArticleService {
         var article = articleRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("article.not.found"));
 
-        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
-            var newStatus = updateDTO.getIsPublished().get();
+        JsonNullableUtils.ifPresent(updateDTO.getIsPublished(), newStatus -> {
             article.setIsPublished(newStatus);
 
-            if (newStatus && article.getPublishedAt() == null) {
+            if (Boolean.TRUE.equals(newStatus) && article.getPublishedAt() == null) {
                 article.setPublishedAt(LocalDateTime.now(clock));
-            } else if (!newStatus) {
+            } else if (Boolean.FALSE.equals(newStatus)) {
                 article.setPublishedAt(null);
             }
-        }
+        });
+
         articleMapper.update(updateDTO, article);
         var savedArticle = articleRepository.save(article);
 

@@ -7,6 +7,7 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.StoryMapper;
 import io.hexlet.cv.model.admin.marketing.Story;
 import io.hexlet.cv.repository.StoryRepository;
+import io.hexlet.cv.util.JsonNullableUtils;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -59,16 +60,16 @@ public class StoryService {
         var story = storyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("story.not.found"));
 
-        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
-            var newStatus = updateDTO.getIsPublished().get();
+        JsonNullableUtils.ifPresent(updateDTO.getIsPublished(), newStatus -> {
             story.setIsPublished(newStatus);
 
-            if (newStatus && story.getPublishedAt() == null) {
+            if (Boolean.TRUE.equals(newStatus) && story.getPublishedAt() == null) {
                 story.setPublishedAt(LocalDateTime.now(clock));
-            } else if (!newStatus) {
+            } else if (Boolean.FALSE.equals(newStatus)) {
                 story.setPublishedAt(null);
             }
-        }
+        });
+
         storyMapper.update(updateDTO, story);
         var savedStory = storyRepository.save(story);
         return storyMapper.map(savedStory);

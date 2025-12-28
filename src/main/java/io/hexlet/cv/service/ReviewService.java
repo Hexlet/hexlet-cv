@@ -7,6 +7,7 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.ReviewMapper;
 import io.hexlet.cv.model.admin.marketing.Review;
 import io.hexlet.cv.repository.ReviewRepository;
+import io.hexlet.cv.util.JsonNullableUtils;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -59,16 +60,15 @@ public class ReviewService {
         var review = reviewRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
 
-        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
-            var newStatus = updateDTO.getIsPublished().get();
+        JsonNullableUtils.ifPresent(updateDTO.getIsPublished(), newStatus -> {
             review.setIsPublished(newStatus);
 
-            if (newStatus && review.getPublishedAt() == null) {
+            if (Boolean.TRUE.equals(newStatus) && review.getPublishedAt() == null) {
                 review.setPublishedAt(LocalDateTime.now(clock));
-            } else if (!newStatus) {
+            } else if (Boolean.FALSE.equals(newStatus)) {
                 review.setPublishedAt(null);
             }
-        }
+        });
 
         reviewMapper.update(updateDTO, review);
         var savedReview = reviewRepository.save(review);
