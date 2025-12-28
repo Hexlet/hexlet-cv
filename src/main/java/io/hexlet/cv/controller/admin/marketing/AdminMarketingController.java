@@ -2,19 +2,14 @@ package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.marketing.ArticleCreateDto;
-import io.hexlet.cv.dto.marketing.ArticleDto;
 import io.hexlet.cv.dto.marketing.ArticleUpdateDto;
 import io.hexlet.cv.dto.marketing.PricingCreateDto;
-import io.hexlet.cv.dto.marketing.PricingDto;
 import io.hexlet.cv.dto.marketing.PricingUpdateDto;
 import io.hexlet.cv.dto.marketing.ReviewCreateDto;
-import io.hexlet.cv.dto.marketing.ReviewDto;
 import io.hexlet.cv.dto.marketing.ReviewUpdateDto;
 import io.hexlet.cv.dto.marketing.StoryCreateDto;
-import io.hexlet.cv.dto.marketing.StoryDto;
 import io.hexlet.cv.dto.marketing.StoryUpdateDto;
 import io.hexlet.cv.dto.marketing.TeamCreateDto;
-import io.hexlet.cv.dto.marketing.TeamDto;
 import io.hexlet.cv.dto.marketing.TeamUpdateDto;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.model.enums.TeamMemberType;
@@ -29,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -66,8 +60,8 @@ public class AdminMarketingController {
 
         return switch (section) {
             case "articles" -> {
-                Page<ArticleDto> articlesPage = articleService.getAllArticles(pageable);
-                Map<String, Object> props = Map.of(
+                var articlesPage = articleService.getAllArticles(pageable);
+                var props = Map.of(
                         "articles", articlesPage.getContent(),
                         "pagination", Map.of(
                                 "currentPage", articlesPage.getNumber(),
@@ -83,8 +77,8 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Articles/Index", props);
             }
             case "stories" -> {
-                Page<StoryDto> storiesPage = storyService.getAllStories(pageable);
-                Map<String, Object> props = Map.of(
+                var storiesPage = storyService.getAllStories(pageable);
+                var props = Map.of(
                         "stories", storiesPage.getContent(),
                         "pagination", Map.of(
                                 "currentPage", storiesPage.getNumber(),
@@ -100,8 +94,8 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Stories/Index", props);
             }
             case "reviews" -> {
-                Page<ReviewDto> reviewsPage = reviewService.getAllReviews(pageable);
-                Map<String, Object> props = Map.of(
+                var reviewsPage = reviewService.getAllReviews(pageable);
+                var props = Map.of(
                         "reviews", reviewsPage.getContent(),
                         "pagination", Map.of(
                                 "currentPage", reviewsPage.getNumber(),
@@ -118,8 +112,8 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Reviews/Index", props);
             }
             case "team" -> {
-                Page<TeamDto> teamsPage = teamService.getAllTeamMembers(pageable);
-                Map<String, Object> props = Map.of(
+                var teamsPage = teamService.getAllTeamMembers(pageable);
+                var props = Map.of(
                         "team", teamsPage.getContent(),
                         "pagination", Map.of(
                                 "currentPage", teamsPage.getNumber(),
@@ -135,8 +129,8 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Team/Index", props);
             }
             case "pricing" -> {
-                Page<PricingDto> pricingPage = pricingPlanService.getAllPricing(pageable);
-                Map<String, Object> props = Map.of(
+                var pricingPage = pricingPlanService.getAllPricing(pageable);
+                var props = Map.of(
                         "pricing", pricingPage.getContent(),
                         "pagination", Map.of(
                                 "currentPage", pricingPage.getNumber(),
@@ -152,7 +146,7 @@ public class AdminMarketingController {
                 yield inertia.render("Admin/Marketing/Pricing/Index", props);
             }
             case "home-components" -> {
-                Map<String, Object> props = Map.of(
+                var props = Map.of(
                         "articles", articleService.getHomepageArticles(),
                         "stories", storyService.getHomepageStories(),
                         "reviews", reviewService.getHomepageReviews(),
@@ -200,7 +194,7 @@ public class AdminMarketingController {
     public ResponseEntity<String> editForm(@PathVariable String section, @PathVariable Long id) {
         log.debug("[MARKETING] Edit form for {} with id: {}", section, id);
 
-        Map<String, Object> baseProps = Map.of(
+        var baseProps = Map.of(
                 "activeMainSection", "marketing",
                 "activeSubSection", section
         );
@@ -208,25 +202,25 @@ public class AdminMarketingController {
         return switch (section) {
             case "articles" -> {
                 var article = articleService.getArticleById(id);
-                Map<String, Object> props = new HashMap<>(baseProps);
+                var props = new HashMap<String, Object>(baseProps);
                 props.put("article", article);
                 yield inertia.render("Admin/Marketing/Articles/Edit", props);
             }
             case "stories" -> {
                 var story = storyService.getStoryById(id);
-                Map<String, Object> props = new HashMap<>(baseProps);
+                var props = new HashMap<String, Object>(baseProps);
                 props.put("story", story);
                 yield inertia.render("Admin/Marketing/Stories/Edit", props);
             }
             case "reviews" -> {
                 var review = reviewService.getReviewById(id);
-                Map<String, Object> props = new HashMap<>(baseProps);
+                var props = new HashMap<String, Object>(baseProps);
                 props.put("review", review);
                 yield inertia.render("Admin/Marketing/Reviews/Edit", props);
             }
             case "team" -> {
                 var teamMember = teamService.getTeamMemberById(id);
-                Map<String, Object> props = new HashMap<>(baseProps);
+                var props = new HashMap<String, Object>(baseProps);
                 props.put("teamMember", teamMember);
                 props.put("positions", TeamPosition.values());
                 props.put("memberTypes", TeamMemberType.values());
@@ -234,7 +228,7 @@ public class AdminMarketingController {
             }
             case "pricing" -> {
                 var pricing = pricingPlanService.getPricingById(id);
-                Map<String, Object> props = new HashMap<>(baseProps);
+                var props = new HashMap<String, Object>(baseProps);
                 props.put("pricing", pricing);
                 yield inertia.render("Admin/Marketing/Pricing/Edit", props);
             }
