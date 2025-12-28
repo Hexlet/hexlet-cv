@@ -4,28 +4,23 @@ import lombok.Getter;
 
 @Getter
 public enum TeamMemberType {
-    FOUNDER("Основатель"),
-    CO_FOUNDER("Сооснователь"),
-    MENTOR("Наставник"),
-    ADVISOR("Консультант"),
-    EXPERT("Эксперт"),
-    PARTNER("Партнер"),
-    INVESTOR("Инвестор"),
-    AMBASSADOR("Амбассадор"),
-    EMPLOYEE("Сотрудник"),
-    INTERN("Стажер"),
-    VOLUNTEER("Волонтер"),
-    CONTRIBUTOR("Контрибьютор"),
-    ALUMNI("Выпускник"),
-    GUEST_SPEAKER("Приглашенный спикер");
+    FOUNDER,
+    CO_FOUNDER,
+    MENTOR,
+    ADVISOR,
+    EXPERT,
+    PARTNER,
+    INVESTOR,
+    AMBASSADOR,
+    EMPLOYEE,
+    INTERN,
+    VOLUNTEER,
+    CONTRIBUTOR,
+    ALUMNI,
+    GUEST_SPEAKER;
 
-    private final String displayName;
-
-    TeamMemberType(String displayName) {
-        this.displayName = displayName;
-    }
     @Override
     public String toString() {
-        return displayName;
+        return name().toLowerCase().replace("_", " ");
     }
 }
