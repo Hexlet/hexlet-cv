@@ -7,6 +7,7 @@ import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.TeamMapper;
 import io.hexlet.cv.model.admin.marketing.Team;
 import io.hexlet.cv.repository.TeamRepository;
+import io.hexlet.cv.util.JsonNullableUtils;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -60,25 +61,22 @@ public class TeamService {
         var team = teamRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("team.member.not.found"));
 
-        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
-            var newStatus = updateDTO.getIsPublished().get();
+        JsonNullableUtils.ifPresent(updateDTO.getIsPublished(), newStatus -> {
             team.setIsPublished(newStatus);
 
-            if (newStatus && team.getPublishedAt() == null) {
+            if (Boolean.TRUE.equals(newStatus) && team.getPublishedAt() == null) {
                 team.setPublishedAt(LocalDateTime.now(clock));
-            } else if (!newStatus) {
+            } else if (Boolean.FALSE.equals(newStatus)) {
                 team.setPublishedAt(null);
             }
-        }
+        });
 
         teamMapper.update(updateDTO, team);
 
-        if (updateDTO.getPosition() != null && updateDTO.getPosition().isPresent()) {
-            log.debug("Updated position to: {}", updateDTO.getPosition().get());
-        }
-        if (updateDTO.getMemberType() != null && updateDTO.getMemberType().isPresent()) {
-            log.debug("Updated memberType to: {}", updateDTO.getMemberType().get());
-        }
+        JsonNullableUtils.logIfChanged("position", updateDTO.getPosition(),
+                team.getPosition());
+        JsonNullableUtils.logIfChanged("memberType", updateDTO.getMemberType(),
+                team.getMemberType());
 
         var savedTeam = teamRepository.save(team);
         return teamMapper.map(savedTeam);
