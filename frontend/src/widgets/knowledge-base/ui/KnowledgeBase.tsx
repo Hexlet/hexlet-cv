@@ -2,18 +2,18 @@ import { Title, Table, Checkbox, Button, TextInput, Group, Container, Anchor } f
 import { useForm } from '@inertiajs/react'
 import { useTranslation } from 'react-i18next'
 
-type KBarticle = {
+type KnowledgeBaseEntry = {
     id: number
     title: string
     category: string
     isPublished: boolean
 }
 
-type KBprops = {
-    articles: KBarticle[]
+type TProps = {
+    articles: KnowledgeBaseEntry[]
 }
 
-export const KnowledgeBase: React.FC<KBprops> = (props): JSX.Element => {
+export const KnowledgeBase: React.FC<TProps> = (props): JSX.Element => {
     const { articles } = props
     const { t } = useTranslation()
 
@@ -24,7 +24,6 @@ export const KnowledgeBase: React.FC<KBprops> = (props): JSX.Element => {
         if (!form.data.title.trim()) {
             return
         }
-        console.log(e)
         // form.post('/ru/admin/knowledgebase')
         form.setData('title', '')
     }
