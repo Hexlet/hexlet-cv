@@ -34,7 +34,8 @@
       "@shared/*": ["src/shared/*"],
       "@entities/*": ["src/entities/*"],
       "@widgets/*": ["src/widgets/*"],
-      "@features/*": ["src/features/*"]
+      "@features/*": ["src/features/*"],
+      "@mocks/*": ["src/mocks/*"],
     },
   },
   "include": ["src"]

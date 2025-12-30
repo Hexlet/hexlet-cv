@@ -52,7 +52,6 @@ export function Header(): JSX.Element {
       variant="transparent"
       underline="never"
       size="md"
-      c="white"
       fw={500}
     >
       {link.label}
@@ -68,7 +67,6 @@ export function Header(): JSX.Element {
           variant="transparent"
           underline="never"
           size="md"
-          c="white"
           fw={500}
         >
           <Group gap="xs">
@@ -98,7 +96,7 @@ export function Header(): JSX.Element {
           </Text>
         </Button>
       </Group>
-      <Divider size={2} color="rgba(255, 255, 255, 0.1)" />
+      <Divider size={2} />
     </header>
   )
 }
