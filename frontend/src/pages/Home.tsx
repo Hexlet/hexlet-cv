@@ -1,21 +1,22 @@
 import {
-  Container,
-  getGradient,
-  useMantineTheme,
-  Stack,
-  Group,
-  Text,
-  SimpleGrid,
-  Title,
-  Pill,
-  Box,
-  alpha
+    Container,
+    getGradient,
+    useMantineTheme,
+    Stack,
+    Group,
+    Text,
+    SimpleGrid,
+    Title,
+    Pill,
+    Box,
+    alpha
 } from '@mantine/core'
 import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us'
 import { WhoWeAre } from '@widgets/who-we-are'
 import { CommercialProjects } from '@widgets/commercial-projects'
+import { MarketAnalytics } from '@widgets/market-analytics'
 import { Communities } from '@widgets/communities'
 
 
@@ -118,7 +119,8 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Container size="xl">
         <AboutUs />
         <WhoWeAre />
-        <CommercialProjects/>
+        <CommercialProjects />
+        <MarketAnalytics />
         {repeatedSamples}
         <Communities />
       </Container>
