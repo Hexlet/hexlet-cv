@@ -1,32 +1,32 @@
-import * as React from 'react';
-import classes from './Navbar.module.css';
-import { Burger, Drawer, Group, Stack } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { Link, usePage } from '@inertiajs/react';
-import { normalizePathname } from '../lib/normalizePathname';
+import * as React from 'react'
+import classes from './Navbar.module.css'
+import { Burger, Drawer, Group, Stack } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
+import { Link, usePage } from '@inertiajs/react'
+import { normalizePathname } from '../lib/normalizePathname'
 
 export interface MenuItem {
-  icon?: any;
-  label: string;
-  link?: string;
+  icon?: React.ElementType
+  label: string
+  link?: string
 }
 
 type TProps = {
-  data: MenuItem[];
-};
+  data: MenuItem[]
+}
 
 export const Navbar: React.FC<TProps> = (props) => {
-  const { data } = props;
+  const { data } = props
 
-  const { url } = usePage();
+  const { url } = usePage()
 
-  const ativeMenu = data?.find(({ link }) => normalizePathname(link) === normalizePathname(url));
+  const ativeMenu = data?.find(({ link }) => normalizePathname(link) === normalizePathname(url))
 
-  const [active, setActive] = React.useState(ativeMenu?.label || data?.[0]?.label || '');
-  const [opened, { toggle }] = useDisclosure(false);
+  const [active] = React.useState(ativeMenu?.label || data?.[0]?.label || '')
+  const [opened, { toggle }] = useDisclosure(false)
 
-  const links =
-    data?.map((item) => (
+  const links
+    = data?.map(item => (
       <Link
         className={classes.link}
         data-active={item.label === active || undefined}
@@ -36,7 +36,7 @@ export const Navbar: React.FC<TProps> = (props) => {
         {item.icon && <item.icon className={classes.linkIcon} stroke={1.5} />}
         <span>{item.label}</span>
       </Link>
-    )) || [];
+    )) || []
 
   return (
     <>
@@ -50,5 +50,5 @@ export const Navbar: React.FC<TProps> = (props) => {
         <Stack gap="md">{links}</Stack>
       </Drawer>
     </>
-  );
-};
+  )
+}

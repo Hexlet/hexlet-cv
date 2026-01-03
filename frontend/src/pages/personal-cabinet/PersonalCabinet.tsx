@@ -1,13 +1,13 @@
-import { Body } from './components/Body';
-import { Header } from './components/Header';
-import { MenuItem, Navbar } from './components/Navbar';
+import { Body } from './components/Body'
+import { Header } from './components/Header'
+import { type MenuItem, Navbar } from './components/Navbar'
 
 type TProps = {
-  data: MenuItem[];
-};
+  data: MenuItem[]
+}
 
 const PersonalCabinet: React.FC<TProps> = (props) => {
-  const { data } = props;
+  const { data } = props
 
   return (
     <>
@@ -16,7 +16,7 @@ const PersonalCabinet: React.FC<TProps> = (props) => {
       <Body />
       {/* TODO: Переиспользовать виджет Footer. */}
     </>
-  );
-};
+  )
+}
 
-export default PersonalCabinet;
+export default PersonalCabinet

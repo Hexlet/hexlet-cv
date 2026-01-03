@@ -1,6 +1,6 @@
-import { http, delay } from 'msw';
-import { inertiaJson } from '../inertia';
-import { MenuItem } from '@pages/personal-cabinet/components/Navbar';
+import { http, delay } from 'msw'
+import { inertiaJson } from '@mocks/inertia'
+import { type MenuItem } from '@pages/personal-cabinet/components/Navbar'
 
 const data: MenuItem[] = [
   {
@@ -26,13 +26,13 @@ const data: MenuItem[] = [
   {
     label: 'Программы обучения',
   },
-];
+]
 
 export const handlers = [
   http.get(/\/personal-cabinet(\?.*)?$/, async ({ request }) => {
-    console.log('MSW handler hit:', request.method, request.url);
+    console.log('MSW handler hit:', request.method, request.url)
 
-    await delay();
+    await delay()
 
     return inertiaJson({
       component: 'personal-cabinet/PersonalCabinet',
@@ -42,12 +42,12 @@ export const handlers = [
       },
       url: '/personal-cabinet',
       version: 'msw-dev',
-    });
+    })
   }),
   http.get(/\/personal-cabinet\/my-learning(\?.*)?$/, async ({ request }) => {
-    console.log('MSW handler hit:', request.method, request.url);
+    console.log('MSW handler hit:', request.method, request.url)
 
-    await delay();
+    await delay()
 
     return inertiaJson({
       component: 'personal-cabinet/PersonalCabinet',
@@ -57,12 +57,12 @@ export const handlers = [
       },
       url: '/personal-cabinet/my-learning',
       version: 'msw-dev',
-    });
+    })
   }),
   http.get(/\/personal-cabinet\/pay-and-subscriptions(\?.*)?$/, async ({ request }) => {
-    console.log('MSW handler hit:', request.method, request.url);
+    console.log('MSW handler hit:', request.method, request.url)
 
-    await delay();
+    await delay()
 
     return inertiaJson({
       component: 'personal-cabinet/PersonalCabinet',
@@ -72,6 +72,6 @@ export const handlers = [
       },
       url: '/personal-cabinet/pay-and-subscriptions',
       version: 'msw-dev',
-    });
+    })
   }),
-];
+]
