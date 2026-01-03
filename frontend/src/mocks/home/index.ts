@@ -1,5 +1,5 @@
 import { http, delay } from 'msw'
-import { inertiaJson } from '../inertia'
+import { inertiaJson } from '@mocks/inertia'
 
 export const handlers = [
   http.get(/\/(\?.*)?$/, async ({ request }) => {
