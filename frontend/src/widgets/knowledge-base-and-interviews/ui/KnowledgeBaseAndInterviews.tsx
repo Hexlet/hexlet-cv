@@ -28,7 +28,7 @@ export const KnowledgeBaseAndInterviews: React.FC = (): JSX.Element => {
 
     return (
         <Container size='lg' py='xl'>
-            <Title order={1} c='white' mb='md'>{t('homePage.knowledgeBaseAndInterview.title')}</Title>
+            <Title order={1} mb='md'>{t('homePage.knowledgeBaseAndInterview.title')}</Title>
             <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg" verticalSpacing="lg">
                 {cards.map((card, index) => (
                     <Card
