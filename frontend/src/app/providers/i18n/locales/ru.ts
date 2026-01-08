@@ -131,6 +131,24 @@ export default {
           receipt: 'Чек'
         },
       },
+      webinars: {
+        title: 'Вебинары с HR и экспертами',
+        cards: {
+          withHR: {
+            title: 'С HR о резюме',
+            description: 'Как рекруторы читают резюме и что важно.',
+          },
+          responses: {
+            title: 'Отклики, которые читают',
+            description: 'Как писать сопроводительные под JD.',
+          },
+          tests: {
+            title: 'Тестовые и live-coding',
+            description: 'Как готовиться к задачам и что проверяет.',
+          },
+          viewSchedule: 'Смотреть расписание',
+        },
+      },
     },
     emptyPlaceholders: {
       noPurchasesTitle: 'У вас еще нет подписок и заказов',

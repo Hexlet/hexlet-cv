@@ -130,6 +130,24 @@ export default {
           receipt: 'Receipt',
         },
       },
+      webinars: {
+        title: 'Webinars with HR and Experts',
+        cards: {
+          withHR: {
+            title: 'With HR About Resumes',
+            description: 'How recruiters read resumes and what matters.',
+          },
+          responses: {
+            title: 'Responses That Get Read',
+            description: 'How to write cover letters according to JD.',
+          },
+          tests: {
+            title: 'Tests and Live-Coding',
+            description: 'How to prepare for tasks and what they check.',
+          },
+          viewSchedule: 'View Schedule',
+        },
+      },
     },
     activityCards: {
       courses_in_process: 'Courses in Progress',
