@@ -53,6 +53,16 @@ export default {
           ]
         },
       },
+      knowledgeBaseAndInterview: {
+        title: 'База знаний и интервью',
+        knowledgeBaseTitle: 'База знаний',
+        knowledgeBaseDescription: 'Пошаговые гайды, чек-листы и шаблоны для поиска работы.',
+        interviewQuestionsTitle: 'Вопросы с собеседований',
+        interviewQuestionsDescription: 'Коллекция реальных вопросов и ответов по ролям и стеку.',
+        realInterviewVideosTitle: 'Записи реальных собесов',
+        realInterviewVideosDescription: 'Разбор интервью с комментариями экспертов и чек-листами.',
+        button: 'Получить доступ'
+      },
     },
   },
 };
