@@ -1,22 +1,28 @@
 import { Container, Title, SimpleGrid, Card, Text, Button, alpha } from '@mantine/core'
+import { Link } from '@inertiajs/react'
 import { useTranslation } from 'react-i18next'
+import { useMantineTheme } from '@mantine/core'
 
 export const KnowledgeBaseAndInterviews: React.FC = (): JSX.Element => {
     const { t } = useTranslation()
+    const theme = useMantineTheme()
 
     // Карточки для демонстрации
     const cards = [
         {
             title: t('homePage.knowledgeBaseAndInterview.knowledgeBaseTitle'),
             description: t('homePage.knowledgeBaseAndInterview.knowledgeBaseDescription'),
+            href: ''
         },
         {
             title: t('homePage.knowledgeBaseAndInterview.interviewQuestionsTitle'),
             description: t('homePage.knowledgeBaseAndInterview.interviewQuestionsDescription'),
+            href: ''
         },
         {
             title: t('homePage.knowledgeBaseAndInterview.realInterviewVideosTitle'),
             description: t('homePage.knowledgeBaseAndInterview.realInterviewVideosDescription'),
+            href: ''
       },
     ]
 
@@ -28,11 +34,13 @@ export const KnowledgeBaseAndInterviews: React.FC = (): JSX.Element => {
                     <Card
                         key={index}
                         radius='lg'
-                        bg={alpha('#787878', 0.2)}
-                        bd={'1px solid ' + alpha('#FFFFFF', 0.1)}
-                        >
-                        <Text fw={600} fz='xl' c='white' mb='sm'>{card.title}</Text>
-                        <Text fz='sm' c='white' mb='md'>{card.description}</Text>
+                        bg={alpha(theme.white, 0.08)}
+                        bd={`1px solid ${alpha(theme.white, 0.12)}`}
+                        component={Link}
+                        href={card.href}
+                    >
+                        <Text fw={600} fz='xl' mb='sm'>{card.title}</Text>
+                        <Text fz='sm' mb='md'>{card.description}</Text>
                         <Button 
                             variant='white'
                             color='black'
