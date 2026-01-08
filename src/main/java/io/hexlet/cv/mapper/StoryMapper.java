@@ -1,9 +1,8 @@
 package io.hexlet.cv.mapper;
 
-
-import io.hexlet.cv.dto.marketing.StoryCreateDTO;
-import io.hexlet.cv.dto.marketing.StoryDTO;
-import io.hexlet.cv.dto.marketing.StoryUpdateDTO;
+import io.hexlet.cv.dto.marketing.StoryCreateDto;
+import io.hexlet.cv.dto.marketing.StoryDto;
+import io.hexlet.cv.dto.marketing.StoryUpdateDto;
 import io.hexlet.cv.model.admin.marketing.Story;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,28 +22,20 @@ public abstract class StoryMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updateAt", ignore = true)
-    public abstract Story map(StoryCreateDTO dto);
+    @Mapping(target = "updatedAt", ignore = true)
+    public abstract Story map(StoryCreateDto dto);
 
-    @Mapping(source = "imageUrl", target = "imageUrl")
-    @Mapping(source = "isPublished", target = "isPublished")
-    @Mapping(source = "showOnHomepage", target = "showOnHomepage")
-    @Mapping(source = "displayOrder", target = "displayOrder")
-    @Mapping(source = "publishedAt", target = "publishedAt")
-    @Mapping(source = "createdAt", target = "createdAt")
-    @Mapping(source = "updateAt", target = "updatedAt")
-    public abstract StoryDTO map(Story model);
+    public abstract StoryDto map(Story model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updateAt", ignore = true)
-    public abstract Story map(StoryDTO model);
+    @Mapping(target = "updatedAt", ignore = true)
+    public abstract Story map(StoryDto model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updateAt", ignore = true)
-    public abstract void update(StoryUpdateDTO dto, @MappingTarget Story model);
-
+    @Mapping(target = "updatedAt", ignore = true)
+    public abstract void update(StoryUpdateDto dto, @MappingTarget Story model);
 }
