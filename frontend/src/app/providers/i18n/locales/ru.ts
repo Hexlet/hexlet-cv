@@ -109,8 +109,13 @@ export default {
         interviewQuestionsDescription: 'Коллекция реальных вопросов и ответов по ролям и стеку.',
         realInterviewVideosTitle: 'Записи реальных собесов',
         realInterviewVideosDescription: 'Разбор интервью с комментариями экспертов и чек-листами.',
-        button: 'Получить доступ'
+        button: 'Получить доступ',
       },
+      webinars: {
+        title: 'Вебинары с HR и экспертами',
+        viewSchedule: 'Смотреть расписание',
+      },
+
     },
     accountPage: {
       purchases: {
@@ -128,25 +133,7 @@ export default {
           purchase_date: 'Дата',
           price: 'Цена',
           status: 'Статус',
-          receipt: 'Чек'
-        },
-      },
-      webinars: {
-        title: 'Вебинары с HR и экспертами',
-        cards: {
-          withHR: {
-            title: 'С HR о резюме',
-            description: 'Как рекруторы читают резюме и что важно.',
-          },
-          responses: {
-            title: 'Отклики, которые читают',
-            description: 'Как писать сопроводительные под JD.',
-          },
-          tests: {
-            title: 'Тестовые и live-coding',
-            description: 'Как готовиться к задачам и что проверяет.',
-          },
-          viewSchedule: 'Смотреть расписание',
+          receipt: 'Чек',
         },
       },
     },

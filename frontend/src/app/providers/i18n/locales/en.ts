@@ -110,6 +110,11 @@ export default {
         realInterviewVideosDescription: 'Interviews analysis with expert comments and checklists.',
         button: 'Get access',
       },
+      webinars: {
+        title: 'Webinars with HR and Experts',
+        viewSchedule: 'View Schedule',
+      },
+
     },
     accountPage: {
       purchases: {
@@ -128,24 +133,6 @@ export default {
           price: 'Price',
           status: 'Status',
           receipt: 'Receipt',
-        },
-      },
-      webinars: {
-        title: 'Webinars with HR and Experts',
-        cards: {
-          withHR: {
-            title: 'With HR About Resumes',
-            description: 'How recruiters read resumes and what matters.',
-          },
-          responses: {
-            title: 'Responses That Get Read',
-            description: 'How to write cover letters according to JD.',
-          },
-          tests: {
-            title: 'Tests and Live-Coding',
-            description: 'How to prepare for tasks and what they check.',
-          },
-          viewSchedule: 'View Schedule',
         },
       },
     },
