@@ -1,5 +1,6 @@
 package io.hexlet.cv.controller.admin.marketing;
 
+import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.dto.marketing.ArticleCreateDto;
 import io.hexlet.cv.dto.marketing.ArticleUpdateDto;
 import io.hexlet.cv.dto.marketing.PricingCreateDto;
@@ -12,10 +13,12 @@ import io.hexlet.cv.dto.marketing.TeamCreateDto;
 import io.hexlet.cv.dto.marketing.TeamUpdateDto;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.service.ArticleService;
+import io.hexlet.cv.service.EnumService;
 import io.hexlet.cv.service.PricingPlanService;
 import io.hexlet.cv.service.ReviewService;
 import io.hexlet.cv.service.StoryService;
 import io.hexlet.cv.service.TeamService;
+import io.hexlet.cv.util.ControllerUtils;
 import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,13 +44,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @AllArgsConstructor
 @RequestMapping("/admin/marketing")
 @PreAuthorize("hasRole('ADMIN')")
-public class AdminMarketingController extends BaseMarketingController {
+public class AdminMarketingController {
 
+    private ControllerUtils controllerUtils;
+    private Inertia inertia;
+    private EnumService enumService;
     private ArticleService articleService;
     private StoryService storyService;
     private ReviewService reviewService;
     private TeamService teamService;
     private PricingPlanService pricingPlanService;
+
+    private Map<String, Object> createTeamFormProps(String subSection) {
+        Map<String, Object> props = new HashMap<>(controllerUtils.createMarketingProps(subSection));
+        props.putAll(enumService.getTeamEnums());
+        return props;
+    }
 
     @GetMapping("/{section}")
     public ResponseEntity<String> index(@PathVariable String section,
@@ -57,58 +69,57 @@ public class AdminMarketingController extends BaseMarketingController {
         return switch (section) {
             case "articles" -> {
                 var articlesPage = articleService.getAllArticles(pageable);
-                var props = new HashMap<>(createBaseProps("articles"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("articles"));
                 props.put("articles", articlesPage.getContent());
-                props.put("pagination", createPaginationMap(articlesPage, pageable));
+                props.put("pagination", controllerUtils.createPaginationMap(articlesPage, pageable));
                 log.debug("[MARKETING] Rendering articles page with {} items",
                         articlesPage.getContent().size());
-                yield getInertia().render("Admin/Marketing/Articles/Index", props);
+                yield inertia.render("Admin/Marketing/Articles/Index", props);
             }
             case "stories" -> {
                 var storiesPage = storyService.getAllStories(pageable);
-                var props = new HashMap<>(createBaseProps("stories"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("stories"));
                 props.put("stories", storiesPage.getContent());
-                props.put("pagination", createPaginationMap(storiesPage, pageable));
+                props.put("pagination", controllerUtils.createPaginationMap(storiesPage, pageable));
                 log.debug("[MARKETING] Rendering stories page with {} items",
                         storiesPage.getContent().size());
-                yield getInertia().render("Admin/Marketing/Stories/Index", props);
+                yield inertia.render("Admin/Marketing/Stories/Index", props);
             }
             case "reviews" -> {
                 var reviewsPage = reviewService.getAllReviews(pageable);
-                var props = new HashMap<>(createBaseProps("reviews"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("reviews"));
                 props.put("reviews", reviewsPage.getContent());
-                props.put("pagination", createPaginationMap(reviewsPage, pageable));
+                props.put("pagination", controllerUtils.createPaginationMap(reviewsPage, pageable));
                 log.debug("[MARKETING] Rendering reviews page with {} items",
                         reviewsPage.getContent().size());
-                yield getInertia().render("Admin/Marketing/Reviews/Index", props);
+                yield inertia.render("Admin/Marketing/Reviews/Index", props);
             }
             case "team" -> {
                 var teamsPage = teamService.getAllTeamMembers(pageable);
-                var props = new HashMap<>(createBaseProps("team"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("team"));
                 props.put("team", teamsPage.getContent());
-                props.put("pagination", createPaginationMap(teamsPage, pageable));
+                props.put("pagination", controllerUtils.createPaginationMap(teamsPage, pageable));
                 log.debug("[MARKETING] Rendering teams page with {} items",
                         teamsPage.getContent().size());
-                yield getInertia().render("Admin/Marketing/Team/Index", props);
+                yield inertia.render("Admin/Marketing/Team/Index", props);
             }
             case "pricing" -> {
                 var pricingPage = pricingPlanService.getAllPricing(pageable);
-                var props = new HashMap<>(createBaseProps("pricing"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("pricing"));
                 props.put("pricing", pricingPage.getContent());
-                props.put("pagination", createPaginationMap(pricingPage, pageable));
+                props.put("pagination", controllerUtils.createPaginationMap(pricingPage, pageable));
                 log.debug("[MARKETING] Rendering pricing page with {} items",
                         pricingPage.getContent().size());
-                yield getInertia().render("Admin/Marketing/Pricing/Index", props);
+                yield inertia.render("Admin/Marketing/Pricing/Index", props);
             }
             case "home-components" -> {
-                var props = new HashMap<>(createBaseProps("home-components"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("home-components"));
                 props.put("articles", articleService.getHomepageArticles());
                 props.put("stories", storyService.getHomepageStories());
                 props.put("reviews", reviewService.getHomepageReviews());
                 props.put("team", teamService.getHomepageTeamMembers());
-
                 log.debug("[MARKETING] Rendering home components page");
-                yield getInertia().render("Admin/Marketing/HomeComponents/Index", props);
+                yield inertia.render("Admin/Marketing/HomeComponents/Index", props);
             }
             default -> throw new ResourceNotFoundException("section.not.found");
         };
@@ -117,7 +128,7 @@ public class AdminMarketingController extends BaseMarketingController {
     @GetMapping("/")
     public ResponseEntity<String> defaultSection() {
         log.debug("[MARKETING] Redirect to default section");
-        return getInertia().redirect("/admin/marketing/articles");
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     @GetMapping("/{section}/create")
@@ -125,16 +136,16 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Create form for section: {}", section);
 
         return switch (section) {
-            case "articles" -> getInertia().render("Admin/Marketing/Articles/Create",
-                    createBaseProps("articles"));
-            case "stories" -> getInertia().render("Admin/Marketing/Stories/Create",
-                    createBaseProps("stories"));
-            case "reviews" -> getInertia().render("Admin/Marketing/Reviews/Create",
-                    createBaseProps("reviews"));
-            case "team" -> getInertia().render("Admin/Marketing/Team/Create",
+            case "articles" -> inertia.render("Admin/Marketing/Articles/Create",
+                    controllerUtils.createMarketingProps("articles"));
+            case "stories" -> inertia.render("Admin/Marketing/Stories/Create",
+                    controllerUtils.createMarketingProps("stories"));
+            case "reviews" -> inertia.render("Admin/Marketing/Reviews/Create",
+                    controllerUtils.createMarketingProps("reviews"));
+            case "team" -> inertia.render("Admin/Marketing/Team/Create",
                     createTeamFormProps("team"));
-            case "pricing" -> getInertia().render("Admin/Marketing/Pricing/Create",
-                    createBaseProps("pricing"));
+            case "pricing" -> inertia.render("Admin/Marketing/Pricing/Create",
+                    controllerUtils.createMarketingProps("pricing"));
             default -> throw new ResourceNotFoundException("Create form not found for section: " + section);
         };
     }
@@ -147,34 +158,33 @@ public class AdminMarketingController extends BaseMarketingController {
         return switch (section) {
             case "articles" -> {
                 var article = articleService.getArticleById(id);
-                var props = new HashMap<>(createBaseProps("articles"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("articles"));
                 props.put("article", article);
-                yield getInertia().render("Admin/Marketing/Articles/Edit", props);
+                yield inertia.render("Admin/Marketing/Articles/Edit", props);
             }
             case "stories" -> {
                 var story = storyService.getStoryById(id);
-                var props = new HashMap<>(createBaseProps("stories"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("stories"));
                 props.put("story", story);
-                yield getInertia().render("Admin/Marketing/Stories/Edit", props);
+                yield inertia.render("Admin/Marketing/Stories/Edit", props);
             }
             case "reviews" -> {
                 var review = reviewService.getReviewById(id);
-                var props = new HashMap<>(createBaseProps("reviews"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("reviews"));
                 props.put("review", review);
-                yield getInertia().render("Admin/Marketing/Reviews/Edit", props);
+                yield inertia.render("Admin/Marketing/Reviews/Edit", props);
             }
             case "team" -> {
                 var teamMember = teamService.getTeamMemberById(id);
-                var props = new HashMap<>(createBaseProps("team"));
+                var props = new HashMap<>(createTeamFormProps("team"));
                 props.put("teamMember", teamMember);
-                props.putAll(getEnumService().getTeamEnums());
-                yield getInertia().render("Admin/Marketing/Team/Edit", props);
+                yield inertia.render("Admin/Marketing/Team/Edit", props);
             }
             case "pricing" -> {
                 var pricing = pricingPlanService.getPricingById(id);
-                var props = new HashMap<>(createBaseProps("pricing"));
+                var props = new HashMap<>(controllerUtils.createMarketingProps("pricing"));
                 props.put("pricing", pricing);
-                yield getInertia().render("Admin/Marketing/Pricing/Edit", props);
+                yield inertia.render("Admin/Marketing/Pricing/Edit", props);
             }
             default -> throw new ResourceNotFoundException("Edit form not found for section: " + section);
         };
@@ -185,7 +195,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Creating article");
 
         articleService.createArticle(createDTO);
-        return getInertia().redirect("/admin/marketing/articles");
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     @PostMapping("/stories")
@@ -193,7 +203,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Creating story");
 
         storyService.createStory(createDTO);
-        return getInertia().redirect("/admin/marketing/stories");
+        return inertia.redirect("/admin/marketing/stories");
     }
 
     @PostMapping("/reviews")
@@ -201,7 +211,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Creating review");
 
         reviewService.createReview(createDTO);
-        return getInertia().redirect("/admin/marketing/reviews");
+        return inertia.redirect("/admin/marketing/reviews");
     }
 
     @PostMapping("/team")
@@ -209,7 +219,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Creating team member");
 
         teamService.createTeamMember(createDTO);
-        return getInertia().redirect("/admin/marketing/team");
+        return inertia.redirect("/admin/marketing/team");
     }
 
     @PostMapping("/pricing")
@@ -217,7 +227,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Creating pricing plan");
 
         pricingPlanService.createPricing(createDTO);
-        return getInertia().redirect("/admin/marketing/pricing");
+        return inertia.redirect("/admin/marketing/pricing");
     }
 
     @PutMapping("/articles/{id}")
@@ -226,7 +236,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Updating article id: {}", id);
 
         articleService.updateArticle(id, updateDTO);
-        return getInertia().redirect("/admin/marketing/articles");
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     @PutMapping("/stories/{id}")
@@ -235,7 +245,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Updating story id: {}", id);
 
         storyService.updateStory(id, updateDTO);
-        return getInertia().redirect("/admin/marketing/stories");
+        return inertia.redirect("/admin/marketing/stories");
     }
 
     @PutMapping("/reviews/{id}")
@@ -244,7 +254,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Updating review id: {}", id);
 
         reviewService.updateReview(id, updateDTO);
-        return getInertia().redirect("/admin/marketing/reviews");
+        return inertia.redirect("/admin/marketing/reviews");
     }
 
     @PutMapping("/team/{id}")
@@ -253,7 +263,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Updating team member id: {}", id);
 
         teamService.updateTeamMember(id, updateDTO);
-        return getInertia().redirect("/admin/marketing/team");
+        return inertia.redirect("/admin/marketing/team");
     }
 
     @PutMapping("/pricing/{id}")
@@ -262,7 +272,7 @@ public class AdminMarketingController extends BaseMarketingController {
         log.debug("[MARKETING] Updating pricing plan id: {}", id);
 
         pricingPlanService.updatePricing(id, updateDTO);
-        return getInertia().redirect("/admin/marketing/pricing");
+        return inertia.redirect("/admin/marketing/pricing");
     }
 
     @DeleteMapping("/{section}/{id}")
@@ -279,7 +289,7 @@ public class AdminMarketingController extends BaseMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return getInertia().redirect("/admin/marketing/" + section);
+        return inertia.redirect("/admin/marketing/" + section);
     }
 
     @PostMapping("/{section}/{id}/toggle-publish")
@@ -295,7 +305,7 @@ public class AdminMarketingController extends BaseMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return getInertia().redirect("/admin/marketing/" + section);
+        return inertia.redirect("/admin/marketing/" + section);
     }
 
     @PostMapping("/{section}/{id}/toggle-homepage")
@@ -311,14 +321,14 @@ public class AdminMarketingController extends BaseMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return getInertia().redirect("/admin/marketing/home-components");
+        return inertia.redirect("/admin/marketing/home-components");
     }
 
     @PutMapping("/{section}/{id}/display-order")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> updateDisplayOrder(@PathVariable String section,
-                                                     @PathVariable Long id,
-                                                     @RequestBody Map<String, Integer> request) {
+                                                   @PathVariable Long id,
+                                                   @RequestBody Map<String, Integer> request) {
         log.debug("[MARKETING] Updating display order for {} id: {}", section, id);
 
         Integer displayOrder = request.get("display_order");
