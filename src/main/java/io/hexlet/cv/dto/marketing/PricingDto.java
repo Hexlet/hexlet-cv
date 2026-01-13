@@ -1,27 +1,21 @@
 package io.hexlet.cv.dto.marketing;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PricingDTO {
-    @JsonProperty("id")
+@Builder
+public class PricingDto {
     private Long id;
-
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("original_price")
     private Double originalPrice;
-
-    @JsonProperty("discount_percent")
     private Double discountPercent;
-
-    @JsonProperty("final_price")
     private Double finalPrice;
-
-    @JsonProperty("description")
     private String description;
+    private Double discountAmount;
+    private Double savings;
+    private Boolean hasDiscount;
+    private Boolean isFree;
 }

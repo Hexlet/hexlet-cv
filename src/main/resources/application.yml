@@ -8,6 +8,13 @@ spring:
         default-page-size: 10
         max-page-size: 100
 
+  app:
+    pricing:
+      scale: 2
+      free-threshold: 0.01
+      max-discount: 100
+      min-price: 0
+
   jackson:
     serialization:
       write-dates-as-timestamps: false
