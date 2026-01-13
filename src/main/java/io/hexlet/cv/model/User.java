@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,7 +39,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 })
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -102,39 +107,43 @@ public class User implements UserDetails {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<CareerMember> careerMembers = new ArrayList<>();
 
-
-
-
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Resume> resumes = new ArrayList<>();
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswer> resumeAnswers = new ArrayList<>();
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswerLike> resumeAnswerLikes = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswerComment> resumeAnswerComments = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "creator", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Vacancy> vacancies = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Event> events = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Notification> notifications = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Impression> impressions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeComment> resumeComments = new ArrayList<>();
 

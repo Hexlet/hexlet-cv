@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class KnowledgeInterviewDto {
     @NotNull(message = "The interview ID cannot be empty")
     private Long id;
