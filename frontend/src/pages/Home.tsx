@@ -119,7 +119,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Container size="xl">
         <AboutUs />
         <WhoWeAre />
-        <CommercialProjects />
+        <CommercialProjects/>
         {repeatedSamples}
         <Pricing />
         <Communities />
