@@ -3,33 +3,21 @@ import classes from './Navbar.module.css'
 import { Burger, Drawer, Group, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, usePage } from '@inertiajs/react'
-import { normalizePathname } from '../lib/normalizePathname'
+import { normalizePathname } from '@shared/lib/normalizePathname'
 
-export interface MenuItem {
-  icon?: React.ElementType
-  label: string
-  link?: string
-}
+export const Navbar: React.FC = React.memo(() => {
+  const { props: pageProps, url } = usePage()
+  const { menu } = pageProps
 
-type TProps = {
-  data: MenuItem[]
-}
+  const ativeMenu = menu?.find(({ link }) => normalizePathname(link) === normalizePathname(url)) || menu[0]
 
-export const Navbar: React.FC<TProps> = (props) => {
-  const { data } = props
-
-  const { url } = usePage()
-
-  const ativeMenu = data?.find(({ link }) => normalizePathname(link) === normalizePathname(url))
-
-  const [active] = React.useState(ativeMenu?.label || data?.[0]?.label || '')
   const [opened, { toggle }] = useDisclosure(false)
 
   const links
-    = data?.map(item => (
+    = menu?.map(item => (
       <Link
         className={classes.link}
-        data-active={item.label === active || undefined}
+        data-active={item.label === ativeMenu?.label || undefined}
         href={item.link}
         key={item.label}
       >
@@ -51,4 +39,4 @@ export const Navbar: React.FC<TProps> = (props) => {
       </Drawer>
     </>
   )
-}
+})

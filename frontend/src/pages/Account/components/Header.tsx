@@ -1,6 +1,6 @@
-import { Autocomplete, Burger, Group } from '@mantine/core';
-import classes from './Header.module.css';
-import { IconSearch } from '@tabler/icons-react';
+import { Autocomplete, Group } from '@mantine/core'
+import classes from './Header.module.css'
+import { IconSearch } from '@tabler/icons-react'
 
 export const Header: React.FC = () => {
   return (
@@ -18,5 +18,5 @@ export const Header: React.FC = () => {
         </Group>
       </div>
     </header>
-  );
-};
+  )
+}
