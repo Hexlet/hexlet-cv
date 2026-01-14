@@ -53,6 +53,52 @@ export default {
           ]
         },
       },
+      pricing: {
+        title: 'Tariffs and discounts',
+        subtitle: 'Register, connect your HH-profile and try the service in action',
+        button: 'Try for free',
+        plans: {
+          month1: {
+            name: '1 month',
+            price: '4900 ₽/month',
+            features: [
+              'Everything from 1 month tariff',
+              'Priority search',
+              'Search and collection of relevant vacancies',
+              'Automated responses',
+              'Test analysis',
+              'Deep resume adaptation',
+            ]
+          },
+          month3: {
+            name: '3 months',
+            price: '3900 ₽/month',
+            features: [
+              'Everything from 1 month tariff',
+              'Priority search',
+              'Search and collection of relevant vacancies',
+              'Automated responses',
+              'Test analysis',
+              'Deep resume adaptation',
+              'Expert resume review',
+            ]
+          },
+          year1: {
+            name: '1 year',
+            price: '2400 ₽/month',
+            features: [
+              'Everything from 3 months',
+              'Priority search',
+              'Search and collection of relevant vacancies',
+              'Automated responses',
+              'Test analysis',
+              'Deep resume adaptation',
+              'Personal career plan',
+              'Support until offer',
+            ]
+          }
+        },
+      }
     },
   },
 };
