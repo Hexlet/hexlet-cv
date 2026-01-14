@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,12 +17,4 @@ public interface KnowledgeArticleRepository extends JpaRepository<KnowledgeArtic
     Optional<KnowledgeArticle> findByIdAndIsPublishedTrue(Long id);
 
     List<KnowledgeArticle> findByIsPublishedTrueOrderByPublishedAtDesc();
-
-    @Query("""
-            SELECT DISTINCT a.category
-            FROM KnowledgeArticle a
-            WHERE a.isPublished = true AND a.category IS NOT NULL AND a.category <> ''
-            ORDER BY a.category
-            """)
-    List<String> findDistinctCategories();
 }

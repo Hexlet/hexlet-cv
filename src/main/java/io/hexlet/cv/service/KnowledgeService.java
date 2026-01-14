@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -25,16 +26,17 @@ public class KnowledgeService {
 
     @Transactional
     public Page<KnowledgeArticleDto> getArticles(String category, Pageable pageable) {
-        if (category != null && !category.trim().isEmpty()) {
-            log.debug("Getting articles by category: {}, page: {}", category, pageable.getPageNumber());
-            return knowledgeArticleRepository.findByIsPublishedTrueAndCategoryOrderByPublishedAtDesc(
-                    category, pageable
-            ).map(knowledgeMapper::toArticleDTO);
-        } else {
-            log.debug("Getting all articles, page: {}", pageable.getPageNumber());
-            return knowledgeArticleRepository.findByIsPublishedTrueOrderByPublishedAtDesc(pageable)
-                    .map(knowledgeMapper::toArticleDTO);
-        }
+
+        var page = StringUtils.hasText(category)
+                ? knowledgeArticleRepository.findByIsPublishedTrueAndCategoryOrderByPublishedAtDesc(
+                category.trim(), pageable)
+                : knowledgeArticleRepository.findByIsPublishedTrueOrderByPublishedAtDesc(pageable);
+
+        log.debug("Getting articles, category: {}, page: {}",
+                StringUtils.hasText(category) ? category : "all",
+                pageable.getPageNumber());
+
+        return page.map(knowledgeMapper::toArticleDTO);
     }
 
     @Transactional
@@ -57,16 +59,16 @@ public class KnowledgeService {
 
     @Transactional
     public Page<KnowledgeInterviewDto> getInterviews(String category, Pageable pageable) {
-        if (category != null && !category.trim().isEmpty()) {
-            log.debug("Getting interviews by category: {}, page: {}", category, pageable.getPageNumber());
-            return knowledgeInterviewRepository.findByIsPublishedTrueAndCategoryOrderByPublishedAtDesc(
-                    category, pageable
-            ).map(knowledgeMapper::toInterviewDTO);
-        } else {
-            log.debug("Getting all interviews, page: {}", pageable.getPageNumber());
-            return knowledgeInterviewRepository.findByIsPublishedTrueOrderByPublishedAtDesc(pageable)
-                    .map(knowledgeMapper::toInterviewDTO);
-        }
+
+        var page = StringUtils.hasText(category)
+                ? knowledgeInterviewRepository.findByIsPublishedTrueAndCategoryOrderByPublishedAtDesc(
+                category.trim(), pageable)
+                : knowledgeInterviewRepository.findByIsPublishedTrueOrderByPublishedAtDesc(pageable);
+
+        log.debug("Getting interview, category: {}, page: {}",
+                StringUtils.hasText(category) ? category : "all", pageable.getPageNumber());
+
+        return page.map(knowledgeMapper::toInterviewDTO);
     }
 
     @Transactional

@@ -2,6 +2,8 @@ package io.hexlet.cv.controller;
 
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.service.KnowledgeService;
+import io.hexlet.cv.util.ControllerUtils;
+import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,7 @@ public class KnowledgeController {
 
     private final KnowledgeService knowledgeService;
     private final Inertia inertia;
+    private final ControllerUtils utils;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -33,12 +36,10 @@ public class KnowledgeController {
         var recentArticles = knowledgeService.getRecentArticles(RECENT_KNOWLEDGE_ITEMS_LIMIT);
         var recentInterviews = knowledgeService.getRecentInterviews(RECENT_KNOWLEDGE_ITEMS_LIMIT);
 
-        Map<String, Object> props = Map.of(
-                "recentArticles", recentArticles,
-                "recentInterviews", recentInterviews,
-                "activeMainSection", "account",
-                "activeSubSection", "knowledge"
-        );
+        var props = new HashMap<>(utils.createAccountProps("knowledge"));
+        props.put("recentArticles", recentArticles);
+        props.put("recentInterviews", recentInterviews);
+
         return inertia.render("Account/Knowledge/Index", props);
     }
 
@@ -51,18 +52,11 @@ public class KnowledgeController {
 
         var articlesPage = knowledgeService.getArticles(category, pageable);
 
-        Map<String, Object> props = Map.of(
-                "articles", articlesPage.getContent(),
-                "selectedCategory", category,
-                "activeMainSection", "account",
-                "activeSubSection", "knowledge-articles",
-                "pagination", Map.of(
-                        "currentPage", articlesPage.getNumber(),
-                        "totalPages", articlesPage.getTotalPages(),
-                        "totalElements", articlesPage.getTotalElements(),
-                        "pageSize", articlesPage.getSize()
-                )
-        );
+        var props = new HashMap<>(utils.createAccountProps("knowledge-articles"));
+        props.put("articles", articlesPage.getContent());
+        utils.addPropertyIfPresent(props, "selectedCategory", category);
+        props.put("pagination", utils.createPaginationMap(articlesPage, pageable));
+
         return inertia.render("Account/Knowledge/Articles/Index", props);
     }
 
@@ -73,11 +67,8 @@ public class KnowledgeController {
 
         var article = knowledgeService.getArticleById(id);
 
-        Map<String, Object> props = Map.of(
-                "article", article,
-                "activeMainSection", "account",
-                "activeSubSection", "knowledge-articles"
-        );
+        var props = new HashMap<>(utils.createAccountProps("knowledge-articles"));
+        props.put("article", article);
 
         return inertia.render("Account/Knowledge/Articles/Show", props);
     }
@@ -91,18 +82,10 @@ public class KnowledgeController {
 
         var interviewsPage = knowledgeService.getInterviews(category, pageable);
 
-        Map<String, Object> props = Map.of(
-                "interviews", interviewsPage.getContent(),
-                "selectedCategory", category,
-                "activeMainSection", "account",
-                "activeSubSection", "knowledge-interviews",
-                "pagination", Map.of(
-                        "currentPage", interviewsPage.getNumber(),
-                        "totalPages", interviewsPage.getTotalPages(),
-                        "totalElements", interviewsPage.getTotalElements(),
-                        "pageSize", interviewsPage.getSize()
-                )
-        );
+        Map<String, Object> props = new HashMap<>(utils.createAccountProps("knowledge-interviews"));
+        props.put("interviews", interviewsPage.getContent());
+        utils.addPropertyIfPresent(props, "selectedCategory", category);
+        props.put("pagination", utils.createPaginationMap(interviewsPage, pageable));
 
         return inertia.render("Account/Knowledge/Interviews/Index", props);
     }
@@ -114,11 +97,8 @@ public class KnowledgeController {
 
         var interview = knowledgeService.getInterviewById(id);
 
-        Map<String, Object> props = Map.of(
-                "interview", interview,
-                "activeMainSection", "account",
-                "activeSubSection", "knowledge-interviews"
-        );
+        var props = new HashMap<>(utils.createAccountProps("knowledge-interviews"));
+        props.put("interview", interview);
 
         return inertia.render("Account/Knowledge/Interviews/Show", props);
     }
