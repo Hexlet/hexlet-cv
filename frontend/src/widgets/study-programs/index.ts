@@ -1,0 +1,1 @@
+export { StudyPrograms } from "./ui/StudyPrograms";

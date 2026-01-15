@@ -54,5 +54,15 @@ export default {
         },
       },
     },
+    adminPage: {
+      studyPrograms: {
+        title: 'Study programs',
+        button: 'Add program',
+        programName: 'Name',
+        programDuration: 'Duration',
+        programLessons: 'Lessons',
+        programPublished: 'Published',
+      },
+    },
   },
 };
