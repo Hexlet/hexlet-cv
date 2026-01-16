@@ -18,7 +18,6 @@ import { WhoWeAre } from '@widgets/who-we-are'
 import { CommercialProjects } from '@widgets/commercial-projects'
 import { Communities } from '@widgets/communities'
 
-
 type PageSection = {
   id: number
   pageKey: string
@@ -118,9 +117,10 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Container size="xl">
         <AboutUs />
         <WhoWeAre />
-        <CommercialProjects/>
+        <CommercialProjects />
         {repeatedSamples}
         <Communities />
+        {/* <Link href="/account">Personal Cabinet</Link> */}
       </Container>
       <Footer />
     </Stack>
