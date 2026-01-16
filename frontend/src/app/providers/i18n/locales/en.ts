@@ -53,6 +53,26 @@ export default {
           ]
         },
       },
+      performanceReview: {
+        title: 'Performance review and grade determination',
+        cards: {
+          skillsTesting: {
+            title: 'Skills Testing',
+            description: 'Practical tasks, code review, and soft-skills checklist.',
+            button: 'Sign up'
+          },
+          performanceReview: {
+            title: 'Performance Review',
+            description: 'KPI and project contribution assessment, plus detailed feedback from mentors.',
+            button: 'Sign up'
+          },
+          gradeMarket: {
+            title: 'Grade and Market',
+            description: 'Market salary range comparison and requirements - transparent report and growth steps.',
+            button: 'Sign up'
+          },
+        },
+      },
     },
   },
 };

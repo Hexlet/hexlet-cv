@@ -16,6 +16,7 @@ import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us'
 import { WhoWeAre } from '@widgets/who-we-are'
 import { CommercialProjects } from '@widgets/commercial-projects'
+import { PerformanceReview } from '@widgets/performance-review'
 import { Communities } from '@widgets/communities'
 
 
@@ -118,7 +119,8 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
       <Container size="xl">
         <AboutUs />
         <WhoWeAre />
-        <CommercialProjects/>
+        <CommercialProjects />
+        <PerformanceReview />
         {repeatedSamples}
         <Communities />
       </Container>
