@@ -54,5 +54,15 @@ export default {
         },
       },
     },
+    adminPage: {
+      studyPrograms: {
+        title: 'Программы обучения',
+        button: 'Добавить программу',
+        programName: 'Название',
+        programDuration: 'Длительность',
+        programLessons: 'Уроков',
+        programPublished: 'Публикация',
+      },
+    },
   },
 };
