@@ -1,7 +1,6 @@
 import {
   Container,
   Title,
-  Text,
   SimpleGrid,
   Group,
   Stack,
@@ -42,10 +41,6 @@ export const OurTeam: React.FC = () => {
         <Stack gap="xs" align="center">
           <Badge fz="xs" fw="normal" size="lg" variant="light" color="teal" tt="none">
             {t('homePage.ourTeam.aboutBadge')}
-          </Badge>
-            <Text size="xs" c="lime" fw="bold">
-              {t('homePage.ourTeam.aboutBadge')}
-            </Text>
           </Badge>
           <Title order={1} fw={900} ta="center">
             {t('homePage.ourTeam.sectionTitle')}
