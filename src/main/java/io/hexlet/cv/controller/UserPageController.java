@@ -3,7 +3,7 @@ package io.hexlet.cv.controller;
 import io.github.inertia4j.spring.Inertia;
 import io.hexlet.cv.handler.exception.UserNotFoundException;
 import io.hexlet.cv.service.FlashPropsService;
-import io.hexlet.cv.service.UserPageSercive;
+import io.hexlet.cv.service.UserPageService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Locale;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class UserPageController {
 
     private final Inertia inertia;
     private final FlashPropsService flashPropsService;
-    private final UserPageSercive userPageService;
+    private final UserPageService userPageService;
 
     private final MessageSource messageSource;
 
