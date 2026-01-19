@@ -122,6 +122,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
         <KnowledgeBaseAndInterviews />
         {repeatedSamples}
         <Communities />
+        {/* <Link href="/account">Personal Cabinet</Link> */}
       </Container>
       <Footer />
     </Stack>
