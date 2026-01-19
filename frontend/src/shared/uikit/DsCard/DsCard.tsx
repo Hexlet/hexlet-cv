@@ -4,8 +4,6 @@ import { DsCardAction } from '../DsCardAction'
 
 type DsCardProps = CardProps & { 
   children: React.ReactNode
-  actionLabel?: string
-  onActionClick?: () => void
 }
 
 type DsCardFC = React.FC<DsCardProps> & {
@@ -14,7 +12,7 @@ type DsCardFC = React.FC<DsCardProps> & {
 }
 
 export const DsCard: DsCardFC = (props) => {
-  const { children, actionLabel, onActionClick, ...rest } = props
+  const { children, ...rest } = props
 
   return (
     <Card
@@ -29,12 +27,6 @@ export const DsCard: DsCardFC = (props) => {
     >
       <Stack gap="md" h="100%" justify="space-between">
         {children}
-        {actionLabel && (
-          <DsCardAction 
-            label={actionLabel} 
-            onClick={onActionClick}
-          />
-        )}
       </Stack>
     </Card>
   )
