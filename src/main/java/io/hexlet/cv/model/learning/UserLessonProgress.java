@@ -1,6 +1,5 @@
 package io.hexlet.cv.model.learning;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.User;
 import io.hexlet.cv.model.admin.programs.Lesson;
 import jakarta.persistence.Column;
@@ -47,7 +46,6 @@ public class UserLessonProgress {
     @Builder.Default
     private Integer timeSpentMinutes = 0;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
