@@ -89,5 +89,16 @@ export default {
         },
       },
     },
+    adminPage: {
+      interviews: {
+        title: 'Interviews',
+        input: 'Search: title/speaker',
+        button: 'Create',
+        interviewTitle: 'Title',
+        interviewSpeaker: 'Speaker',
+        interviewVideo: 'Video',
+        interviewPublished: 'Published',
+      },
+    },
   },
 }

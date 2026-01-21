@@ -1,0 +1,1 @@
+export { AdminInterviews } from "./ui/AdminInterviews";
