@@ -16,6 +16,7 @@ import { Header } from '@widgets/Header'
 import { AboutUs } from '@widgets/about-us'
 import { WhoWeAre } from '@widgets/who-we-are'
 import { CommercialProjects } from '@widgets/commercial-projects'
+import { MarketAnalytics } from '@widgets/market-analytics'
 import { Communities } from '@widgets/communities'
 
 type PageSection = {
@@ -118,6 +119,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
         <AboutUs />
         <WhoWeAre />
         <CommercialProjects />
+        <MarketAnalytics />
         {repeatedSamples}
         <Communities />
         {/* <Link href="/account">Personal Cabinet</Link> */}
