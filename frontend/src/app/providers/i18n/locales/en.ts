@@ -41,7 +41,7 @@ export default {
         description: 'Practice in real Hexlet products, commits to GitHub, team development experience and portfolio results',
         benefits: {
           title: 'What It Gives You',
-          description: 'Project roles, code review, tasks from real backlog, releases - everything like in a real company'
+          description: 'Project roles, code review, tasks from real backlog, releases - everything like in a real company',
         },
         projectsList: {
           title: 'Projects List',
@@ -49,30 +49,33 @@ export default {
             'Hexlet SICP - course progress tracker',
             'Hexlet Correction - service for marking errors and typos',
             'Run IT - environment for running and checking code',
-            'Hexlet Comparator - comparison of programming online schools'
-          ]
+            'Hexlet Comparator - comparison of programming online schools',
+          ],
         },
+      },
+      marketAnalytics: {
+        badge: 'Analytics',
+        title: 'Market and Job Analytics',
+        description: 'We aggregate job vacancies for free in a single window. Track salary trends, profession demand, and new opportunities',
+        cards: {
+          liveData: {
+            title: 'Live Data',
+            description: 'Daily updates on vacancies, salaries, and employer requirements',
+          },
+          unifiedWindow: {
+            title: 'Unified Window',
+            description: 'All vacancies in one place: filter, compare, and find suitable offers',
+          },
+        },
+      },
+      trainingPrograms: {
+        title: 'Our training programs',
+        button: 'Learn more',
       },
       performanceReview: {
         title: 'Performance review and grade determination',
-        cards: {
-          skillsTesting: {
-            title: 'Skills Testing',
-            description: 'Practical tasks, code review, and soft-skills checklist.',
-            button: 'Sign up'
-          },
-          performanceReview: {
-            title: 'Performance Review',
-            description: 'KPI and project contribution assessment, plus detailed feedback from mentors.',
-            button: 'Sign up'
-          },
-          gradeMarket: {
-            title: 'Grade and Market',
-            description: 'Market salary range comparison and requirements - transparent report and growth steps.',
-            button: 'Sign up'
-          },
-        },
+        button: 'Sign up',
       },
     },
   },
-};
+}
