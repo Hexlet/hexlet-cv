@@ -11,7 +11,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --host 0.0.0.0 --port $PORT"
   },
   "dependencies": {
     "@inertiajs/inertia": "^0.11.1",
@@ -20,6 +20,7 @@
     "@mantine/core": "^8.2.1",
     "@mantine/form": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
+    "@tabler/icons-react": "^3.36.1",
     "@types/node": "^24.10.0",
     "add": "^2.0.6",
     "i18next": "^25.6.3",

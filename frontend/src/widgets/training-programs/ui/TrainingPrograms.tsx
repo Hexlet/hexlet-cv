@@ -1,8 +1,36 @@
-import { Container, Card, Text, Group, Title, Grid, Button } from '@mantine/core'
+import { Container, Card, Text, Title, Grid, Button } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+
+interface TrainingCard {
+  key: string
+  title: string
+  description: string
+  buttonText: string
+}
 
 export const TrainingPrograms: React.FC = () => {
   const { t } = useTranslation()
+
+  const trainingCards: TrainingCard[] = [
+    {
+      key: 'jobSearch',
+      title: t('homePage.trainingPrograms.cards.jobSearch.title'),
+      description: t('homePage.trainingPrograms.cards.jobSearch.description'),
+      buttonText: t('homePage.trainingPrograms.cards.jobSearch.button'),
+    },
+    {
+      key: 'freelance',
+      title: t('homePage.trainingPrograms.cards.freelance.title'),
+      description: t('homePage.trainingPrograms.cards.freelance.description'),
+      buttonText: t('homePage.trainingPrograms.cards.freelance.button'),
+    },
+    {
+      key: 'foreignJobs',
+      title: t('homePage.trainingPrograms.cards.foreignJobs.title'),
+      description: t('homePage.trainingPrograms.cards.foreignJobs.description'),
+      buttonText: t('homePage.trainingPrograms.cards.foreignJobs.button'),
+    },
+  ]
 
   return (
     <Container size="lg" py="xs">
@@ -10,69 +38,29 @@ export const TrainingPrograms: React.FC = () => {
         {t('homePage.trainingPrograms.title')}
       </Title>
       <Grid>
-        <Grid.Col span={{
-          base: 12,
-          md: 4,
-        }}
-        >
-          <Card radius="lg" h="100%">
-            <Group gap="sm">
+        {trainingCards.map(card => (
+          <Grid.Col
+            key={card.key}
+            span={{
+              base: 12,
+              md: 4,
+            }}
+          >
+            <Card radius="lg" h="100%">
               <Text fz="h3">
-                {t('homePage.trainingPrograms.cards.jobSearch.title')}
+                {card.title}
               </Text>
-            </Group>
-            <Text size="sm" mb="lg" mt="xs">
-              {t('homePage.trainingPrograms.cards.jobSearch.description')}
-            </Text>
-            <Button radius="lg" w="fit-content">
-              <Text size="sm">
-                {t('homePage.trainingPrograms.cards.jobSearch.button')}
+              <Text size="sm" mb="lg" mt="xs">
+                {card.description}
               </Text>
-            </Button>
-          </Card>
-        </Grid.Col>
-        <Grid.Col span={{
-          base: 12,
-          md: 4,
-        }}
-        >
-          <Card radius="lg" h="100%">
-            <Group gap="sm">
-              <Text fz="h3">
-                {t('homePage.trainingPrograms.cards.freelance.title')}
-              </Text>
-            </Group>
-            <Text size="sm" mb="lg" mt="xs">
-              {t('homePage.trainingPrograms.cards.freelance.description')}
-            </Text>
-            <Button radius="lg" w="fit-content">
-              <Text size="sm">
-                {t('homePage.trainingPrograms.cards.freelance.button')}
-              </Text>
-            </Button>
-          </Card>
-        </Grid.Col>
-        <Grid.Col span={{
-          base: 12,
-          md: 4,
-        }}
-        >
-          <Card radius="lg" h="100%">
-            <Group gap="sm">
-              <Text fz="h3">
-                {t('homePage.trainingPrograms.cards.foreignJobs.title')}
-              </Text>
-            </Group>
-            <Text size="sm" mb="lg" mt="xs">
-              {t('homePage.trainingPrograms.cards.foreignJobs.description')}
-            </Text>
-            <Button radius="lg" w="fit-content">
-              <Text size="sm">
-                {t('homePage.trainingPrograms.cards.foreignJobs.button')}
-              </Text>
-            </Button>
-          </Card>
-        </Grid.Col>
+              <Button radius="lg" w="fit-content">
+                <Text size="sm">
+                  {card.buttonText}
+                </Text>
+              </Button>
+            </Card>
+          </Grid.Col>
+        ))}
       </Grid>
     </Container>
   )
