@@ -1,15 +1,15 @@
 import {
-    Container,
-    getGradient,
-    useMantineTheme,
-    Stack,
-    Group,
-    Text,
-    SimpleGrid,
-    Title,
-    Pill,
-    Box,
-    alpha
+  Container,
+  getGradient,
+  useMantineTheme,
+  Stack,
+  Group,
+  Text,
+  SimpleGrid,
+  Title,
+  Pill,
+  Box,
+  alpha
 } from '@mantine/core'
 import { Footer } from '@widgets/Footer'
 import { Header } from '@widgets/Header'
@@ -18,7 +18,6 @@ import { WhoWeAre } from '@widgets/who-we-are'
 import { CommercialProjects } from '@widgets/commercial-projects'
 import { MarketAnalytics } from '@widgets/market-analytics'
 import { Communities } from '@widgets/communities'
-
 
 type PageSection = {
   id: number
@@ -47,32 +46,32 @@ const sample: JSX.Element = (
     my={20}
   >
     <Stack gap="md" align="strech">
-      <Title order={1} c="white" fw={700}>
+      <Title order={1} fw={700}>
         Привет, мы Хекслет
       </Title>
-      <Text c="white" mb="sm">
+      <Text mb="sm">
         экосистема для старта и развития карьеры в IT:
       </Text>
       <Group gap="xs">
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Составлять резюме
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Откликаться
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Искать ванкансии и стажировки
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Переписываться с рекрутерами
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Писать сопроводительные
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Готовится к интервью
         </Pill>
-        <Pill bg="blue" c="white" radius="xl" size="md">
+        <Pill bg="blue" radius="xl" size="md">
           Получать комерческий опыт
         </Pill>
       </Group>
@@ -106,7 +105,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
 
   return (
     <Stack
-    // mih="100vh"
+      // mih="100vh"
       bg={getGradient({
         deg: 135,
         from: 'black',
@@ -123,6 +122,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
         <MarketAnalytics />
         {repeatedSamples}
         <Communities />
+        {/* <Link href="/account">Personal Cabinet</Link> */}
       </Container>
       <Footer />
     </Stack>
