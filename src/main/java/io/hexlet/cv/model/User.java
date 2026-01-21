@@ -8,6 +8,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
@@ -16,7 +17,9 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -106,16 +109,11 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<CareerMember> careerMembers = new ArrayList<>();
 
-
-
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Resume> resumes = new ArrayList<>();
 
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswer> resumeAnswers = new ArrayList<>();
-
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswerLike> resumeAnswerLikes = new ArrayList<>();
@@ -138,6 +136,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeComment> resumeComments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "speaker", fetch = FetchType.LAZY)
+    private Set<Interview> interviews = new HashSet<>();
+
     // @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     //private List<ResumeEducation> resumeEducations = new ArrayList<>();
 
@@ -147,6 +148,7 @@ public class User implements UserDetails {
 
     //-----  под авторизацию -----
 
+//-----  под авторизацию -----
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
