@@ -3,3 +3,19 @@ export type MenuItem = {
   label: string
   link?: string
 }
+
+export type ActivityCardsData = {
+  coursesCount: number
+  progress: string
+  lastResult: {
+    courseName: string
+    result: string
+  }
+  nearestEvent: {
+    eventName: string
+    date: {
+      day: string
+      time: string
+    }
+  }
+}
