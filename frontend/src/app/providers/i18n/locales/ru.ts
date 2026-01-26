@@ -89,5 +89,24 @@ export default {
         },
       },
     },
+  adminPage: {
+      webinars: {
+        title: 'Вебинары',
+        input: 'Поиск: название/дата/ссылка',
+        button: 'Создать',
+        webinarTitle: 'Название',
+        webinarDate: 'Дата',
+        webinarRegistration: 'Регистрация',
+        webinarRecording: 'Запись',
+        webinarFeatured: 'Фичер',
+        webinarPublished: 'Публикация',
+        registration: 'Регистрация',
+        recording: 'Запись',
+        noWebinars: 'Нет доступных вебинаров',
+        noResults: 'По запросу "{query}" ничего не найдено',
+        alertCreate: 'Открыть форму создания вебинара',
+        createFirst: "Создать первый вебинар" 
+      },
+    },
   },
 }
