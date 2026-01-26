@@ -1,16 +1,16 @@
 import { Container, Card, Text, Title, Grid, Button } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import type { TrainingCardDto } from '../types'
+import type { PerformanceCardDto } from '../types'
 
 type TProps = {
-  trainingPrograms: TrainingCardDto[]
+  performanceReview: PerformanceCardDto[]
 }
 
-export const TrainingPrograms: React.FC<TProps> = (props) => {
-  const { trainingPrograms } = props
+export const PerformanceReview: React.FC<TProps> = (props) => {
+  const { performanceReview } = props
   const { t } = useTranslation()
 
-  const renderItem = ({ title, description }: TrainingCardDto, index: number) => {
+  const renderItem = ({ title, description }: PerformanceCardDto, index: number) => {
     return (
       <Grid.Col
         key={index}
@@ -27,7 +27,7 @@ export const TrainingPrograms: React.FC<TProps> = (props) => {
             {description}
           </Text>
           <Button radius="lg" w="fit-content">
-            {t('homePage.trainingPrograms.button')}
+            {t('homePage.performanceReview.button')}
           </Button>
         </Card>
       </Grid.Col>
@@ -37,10 +37,10 @@ export const TrainingPrograms: React.FC<TProps> = (props) => {
   return (
     <Container size="lg" py="xs">
       <Title order={1} fw="bold" mb="md">
-        {t('homePage.trainingPrograms.title')}
+        {t('homePage.performanceReview.title')}
       </Title>
       <Grid>
-        {trainingPrograms.map(renderItem)}
+        {performanceReview.map(renderItem)}
       </Grid>
     </Container>
   )
