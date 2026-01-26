@@ -2,7 +2,6 @@ package io.hexlet.cv.model;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,16 +45,11 @@ public class Career {
     @Column(nullable = false)
     private String locale;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-
-
 
     @OneToMany(mappedBy = "career", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<CareerMember> members = new ArrayList<>();

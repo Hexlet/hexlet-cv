@@ -1,0 +1,1 @@
+export { TrainingPrograms } from './ui/TrainingPrograms';

@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "main": "src/main.tsx",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --host 0.0.0.0 --port $PORT"
   },
   "dependencies": {
     "@inertiajs/inertia": "^0.11.1",
@@ -17,6 +20,7 @@
     "@mantine/core": "^8.2.1",
     "@mantine/form": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
+    "@tabler/icons-react": "^3.36.1",
     "@types/node": "^24.10.0",
     "add": "^2.0.6",
     "i18next": "^25.6.3",
@@ -39,8 +43,14 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "msw": "^2.12.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

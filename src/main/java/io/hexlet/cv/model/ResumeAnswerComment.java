@@ -2,7 +2,6 @@ package io.hexlet.cv.model;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
@@ -47,18 +46,15 @@ public class ResumeAnswerComment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // автор ответа (копия id пользователя) сохранена для быстрого доступа
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "answer_user_id", nullable = false)
     private User answerUser;
 
     private String content;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 }

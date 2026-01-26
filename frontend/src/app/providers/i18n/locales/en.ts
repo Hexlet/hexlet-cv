@@ -41,7 +41,7 @@ export default {
         description: 'Practice in real Hexlet products, commits to GitHub, team development experience and portfolio results',
         benefits: {
           title: 'What It Gives You',
-          description: 'Project roles, code review, tasks from real backlog, releases - everything like in a real company'
+          description: 'Project roles, code review, tasks from real backlog, releases - everything like in a real company',
         },
         projectsList: {
           title: 'Projects List',
@@ -49,10 +49,45 @@ export default {
             'Hexlet SICP - course progress tracker',
             'Hexlet Correction - service for marking errors and typos',
             'Run IT - environment for running and checking code',
-            'Hexlet Comparator - comparison of programming online schools'
-          ]
+            'Hexlet Comparator - comparison of programming online schools',
+          ],
+        },
+      },
+      marketAnalytics: {
+        badge: 'Analytics',
+        title: 'Market and Job Analytics',
+        description: 'We aggregate job vacancies for free in a single window. Track salary trends, profession demand, and new opportunities',
+        cards: {
+          liveData: {
+            title: 'Live Data',
+            description: 'Daily updates on vacancies, salaries, and employer requirements',
+          },
+          unifiedWindow: {
+            title: 'Unified Window',
+            description: 'All vacancies in one place: filter, compare, and find suitable offers',
+          },
+        },
+      },
+      trainingPrograms: {
+        title: 'Our training programs',
+        cards: {
+          jobSearch: {
+            title: 'How to search for a job',
+            description: 'Search strategy, positioning, resume, interviews.',
+            button: 'Learn more',
+          },
+          freelance: {
+            title: 'How to work as a freelancer',
+            description: 'Portfolio, brief, communications, pricing, agreements.',
+            button: 'Learn more',
+          },
+          foreignJobs: {
+            title: 'How to find work abroad',
+            description: 'Markets, platforms, preparing profiles and applications in English.',
+            button: 'Learn more',
+          },
         },
       },
     },
   },
-};
+}
