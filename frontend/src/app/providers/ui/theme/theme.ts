@@ -1,4 +1,4 @@
-import { createTheme, Divider } from '@mantine/core'
+import { createTheme, Divider, Card } from '@mantine/core'
 
 export const theme = createTheme({
   components: {
@@ -8,6 +8,13 @@ export const theme = createTheme({
           '--divider-color': 'var(--ds-divider-color)',
         } as React.CSSProperties,
       },
+    }),
+    Card: Card.extend({
+      styles: () => ({
+        root: {
+          '--paper-bg': 'var(--ds-surface-card)',
+        },
+      }),
     }),
   },
 })
