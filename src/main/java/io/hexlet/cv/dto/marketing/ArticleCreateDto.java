@@ -1,6 +1,6 @@
 package io.hexlet.cv.dto.marketing;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -8,32 +8,25 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleCreateDTO {
-    @NotBlank(message = "Название статьи обязательно")
+public class ArticleCreateDto {
+    @NotBlank(message = "Title is required")
     private String title;
 
-    @NotBlank(message = "Содержание обязательно")
+    @NotBlank(message = "Title is required")
     private String content;
-
-    @JsonProperty("image_url")
     private String imageUrl;
-
     private String author;
 
-    @JsonProperty("reading_time")
+    @Min(value = 1, message = "Reading time must be at least 1 minute")
     private Integer readingTime;
 
-    @NotNull
-    @JsonProperty("is_published")
+    @NotNull(message = "Published status is required")
     private Boolean isPublished = false;
-
-    @JsonProperty("home_component_id")
     private String homeComponentId;
 
-    @NotNull
-    @JsonProperty("show_on_homepage")
+    @NotNull(message = "Homepage visibility is required")
     private Boolean showOnHomepage = false;
 
-    @JsonProperty("display_order")
+    @Min(value = 0, message = "Display order must be positive")
     private Integer displayOrder = 0;
 }
