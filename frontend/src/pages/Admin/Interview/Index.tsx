@@ -1,16 +1,5 @@
 import { AdminInterviews } from "@widgets/admin-interviews"
-
-type InterviewsEntry = {
-    id: number
-    title: string
-    speaker: string
-    videoUrl: string
-    isPublished: boolean
-}
-
-type TProps = {
-    interviews: InterviewsEntry[]
-}
+import type { TProps } from "@widgets/admin-interviews/ui/AdminInterviews"
 
 const Index = ({ interviews }: TProps) => {
     return <AdminInterviews interviews={interviews}/>

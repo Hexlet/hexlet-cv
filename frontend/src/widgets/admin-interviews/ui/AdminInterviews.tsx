@@ -1,8 +1,9 @@
 import { Anchor, Title, Table, Checkbox, Button, TextInput, Group, Container } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import { useForm } from '@inertiajs/react'
+import { useState } from 'react'
+import { Link } from '@inertiajs/react'
 
-type InterviewsEntry = {
+export type InterviewsEntry = {
     id: number
     title: string
     speaker: string
@@ -10,7 +11,7 @@ type InterviewsEntry = {
     isPublished: boolean
 }
 
-type TProps = {
+export type TProps = {
     interviews: InterviewsEntry[]
 }
 
@@ -18,33 +19,26 @@ export const AdminInterviews: React.FC<TProps> = (props): JSX.Element => {
     const { interviews } = props
     const { t } = useTranslation()
 
-    const form = useForm({ search: '' })
+    const [search, setSearch] = useState('')
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        if (!form.data.search.trim()) {
-            return
-        }
-        // form.post('/ru/admin/interview')
-        form.setData('search', '')
-    }
+    const filteredInterviews = interviews?.filter(interview => 
+        interview.title.toLowerCase().includes(search.toLowerCase()) || interview.speaker.toLowerCase().includes(search.toLowerCase())
+    )
 
     return (
         <Container size='xl' py='md'>
             <Title order={2} mb='md' fw={500}>
                 {t('adminPage.interviews.title')}
             </Title>
-            <form onSubmit={handleSubmit}>
-                <Group gap='xs' mb='md'>
-                    <TextInput
-                        placeholder={t('adminPage.interviews.input')}
-                        value={form.data.search}
-                        w={240}
-                        onChange={e => form.setData('search', e.target.value)}
-                    />
-                    <Button type='submit' variant='default'>{t('adminPage.interviews.button')}</Button>
-                </Group>
-            </form>
+            <Group gap='xs' mb='md'>
+                <TextInput
+                    placeholder={t('adminPage.interviews.input')}
+                    value={search}
+                    w={240}
+                    onChange={e => setSearch(e.currentTarget.value)}
+                />
+                <Button component={Link} href='' variant='default'>{t('adminPage.interviews.button')}</Button>
+            </Group>
             <Table withTableBorder verticalSpacing='md'>
                 <Table.Thead>
                     <Table.Tr>
@@ -55,10 +49,10 @@ export const AdminInterviews: React.FC<TProps> = (props): JSX.Element => {
                     </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                    {interviews?.map((interview) => (
+                    {filteredInterviews?.map((interview) => (
                         <Table.Tr key={interview.id}>
                             <Table.Td>
-                                <Anchor href='' underline='not-hover'>
+                                <Anchor underline='not-hover'>
                                     {interview.title}
                                 </Anchor>
                             </Table.Td>

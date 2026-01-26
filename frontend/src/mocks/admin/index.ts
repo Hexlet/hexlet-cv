@@ -1,7 +1,8 @@
 import { http, delay } from 'msw'
 import { inertiaJson } from '../inertia'
+import type { InterviewsEntry } from '@widgets/admin-interviews/ui/AdminInterviews'
 
-const mockInterviews = [
+const mockInterviews: InterviewsEntry[] = [
     { id: 1, title: 'Интервью с продактом', speaker: 'Алексей С.', videoUrl: '', isPublished: true },
     { id: 2, title: 'Интервью: редактор', speaker: 'Наталья О.', videoUrl: '', isPublished: false },
 ];
