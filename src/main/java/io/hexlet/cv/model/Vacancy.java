@@ -2,7 +2,6 @@ package io.hexlet.cv.model;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -92,11 +91,9 @@ public class Vacancy {
 
     private String cancelationReason;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
 }

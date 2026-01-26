@@ -1,6 +1,5 @@
 package io.hexlet.cv.dto.learning;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -23,10 +22,8 @@ public class UserLessonProgressDTO {
     private Boolean isCompleted;
 
     @NotNull(message = "The start time cannot be empty")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startedAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime completedAt;
 
     @PositiveOrZero(message = "The time spent cannot be negative")
