@@ -1,5 +1,4 @@
-import { AdminInterviews } from "@widgets/admin-interviews"
-import type { TProps } from "@widgets/admin-interviews/ui/AdminInterviews"
+import { AdminInterviews, type TProps } from "@widgets/admin-interviews"
 
 const Index = ({ interviews }: TProps) => {
     return <AdminInterviews interviews={interviews}/>
