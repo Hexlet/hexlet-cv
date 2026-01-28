@@ -89,5 +89,16 @@ export default {
         },
       },
     },
+    adminPage: {
+      interviews: {
+        title: 'Интервью',
+        input: 'Поиск: заголовок/спикер',
+        button: 'Создать',
+        interviewTitle: 'Заголовок',
+        interviewSpeaker: 'Спикер',
+        interviewVideo: 'Видео',
+        interviewPublished: 'Публикация',
+      },
+    },
   },
 }
