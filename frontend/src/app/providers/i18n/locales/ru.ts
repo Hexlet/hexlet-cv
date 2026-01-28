@@ -145,6 +145,14 @@ export default {
         interviewVideo: 'Видео',
         interviewPublished: 'Публикация',
       },
+      knowledgeBase: {
+        title: 'База знаний',
+        input: 'Поиск: заголовок/категория',
+        button: 'Создать',
+        articleTitle: 'Заголовок',
+        articlecategory: 'Категория',
+        articlePublished: 'Публикация',
+      },
     },
   },
 }

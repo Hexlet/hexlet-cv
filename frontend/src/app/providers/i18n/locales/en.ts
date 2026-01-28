@@ -145,6 +145,14 @@ export default {
         interviewVideo: 'Video',
         interviewPublished: 'Published',
       },
+      knowledgeBase: {
+        title: 'Knowledge base',
+        input: 'Search: title/category',
+        button: 'Create',
+        articleTitle: 'Title',
+        articlecategory: 'Category',
+        articlePublished: 'Published',
+      },
     },
   },
 }
