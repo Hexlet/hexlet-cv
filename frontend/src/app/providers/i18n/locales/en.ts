@@ -1,5 +1,12 @@
 export default {
   translation: {
+    articles: {
+      description: 'Articles, news, and tips about job searching',
+      readNextActionLabel: 'Next',
+      readingTime_one: '{{count}} minute',
+      readingTime_other: '{{count}} minutes',
+      title: 'News',
+    },
     communities: {
       action_connect_to: 'Присоединиться к сообществу',
       anchor: 'Сообщество',
