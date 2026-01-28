@@ -1,7 +1,6 @@
 package io.hexlet.cv.model;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.hexlet.cv.model.converter.RoleTypeConverter;
 import io.hexlet.cv.model.enums.RoleType;
 import jakarta.persistence.CascadeType;
@@ -47,36 +46,19 @@ public class User implements UserDetails {
     private String lastName;
     private String encryptedPassword;
     private String resetPasswordToken;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime resetPasswordSentAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime rememberCreatedAt;
-
     private Integer signInCount;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime currentSignInAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime lastSignInAt;
-
     private String currentSignInIp;
     private String lastSignInIp;
     private String confirmationToken;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime confirmedAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime confirmationSentAt;
-
     private String unconfirmedEmail;
     private Integer failedAttempts;
     private String unlockToken;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime lockedAt;
     private String provider;
     private String uid;
@@ -94,28 +76,20 @@ public class User implements UserDetails {
 
     private String locale;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<CareerMember> careerMembers = new ArrayList<>();
 
-
-
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Resume> resumes = new ArrayList<>();
 
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswer> resumeAnswers = new ArrayList<>();
-
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ResumeAnswerLike> resumeAnswerLikes = new ArrayList<>();
@@ -143,9 +117,6 @@ public class User implements UserDetails {
 
    // @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
    // private List<ResumeWork> resumeWorks = new ArrayList<>();
-
-
-    //-----  под авторизацию -----
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
