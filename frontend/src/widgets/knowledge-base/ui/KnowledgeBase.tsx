@@ -25,6 +25,7 @@ export const KnowledgeBase: React.FC<TProps> = (props): JSX.Element => {
             <Container size='xl' py='md'>
                 <Center h={200}>
                     <Loader color="blue" size="lg" />
+                    {/* Вместо Loader можно будет добавить Skeleton */}
                 </Center>
             </Container>
         )
