@@ -9,7 +9,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -22,9 +21,8 @@ public class LogoutController {
     private MessageSource messageSource;
     private final Inertia inertia;
 
-    @PostMapping("/{locale}/users/sign_out")
-    public ResponseEntity<?> logout(@PathVariable String locale,
-                                    HttpServletResponse response) {
+    @PostMapping("/users/sign_out")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
         // HttpSession session) {
 
         var expiredAccess = tokenCookieService.buildExpiredAccessCookie();
@@ -44,7 +42,7 @@ public class LogoutController {
         session.setAttribute("flash", Map.of("success", successMessage));
 */
 
-        return inertia.redirect("/" + locale);
+        return inertia.redirect("/");
 
         //  return ResponseEntity.status(HttpStatus.SEE_OTHER)
         //          .header(HttpHeaders.LOCATION, "/" + locale)

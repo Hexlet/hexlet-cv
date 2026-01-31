@@ -15,11 +15,11 @@ import java.util.Locale;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,18 +38,16 @@ public class RegistrationController {
 
     private MessageSource messageSource;
 
-    @GetMapping("/{locale}/users/sign_up")
-    public ResponseEntity<?> signUpForm(@PathVariable String locale,
-                                        HttpServletRequest request) {
+    @GetMapping("/users/sign_up")
+    public ResponseEntity<?> signUpForm(HttpServletRequest request) {
 
-        var props = flashPropsService.buildProps(locale, request);
+        var props = flashPropsService.buildProps(request);
 
         return inertia.render("Users/SignUp", props);
     }
 
-    @PostMapping(path = "/{locale}/users")
+    @PostMapping(path = "/users")
     public Object registration(@Valid @RequestBody RegistrationRequestDTO inputDTO,
-                               @PathVariable String locale,
                                HttpServletResponse response,
                                HttpSession session) {
 
@@ -74,15 +72,16 @@ public class RegistrationController {
                 .build();
         */
 
+        Locale loc = LocaleContextHolder.getLocale();
         String successMessage = messageSource.getMessage(
                 "registration.success",
                 null,
-                new Locale(locale)
+                loc
         );
 
         session.setAttribute("flash", Map.of("success", successMessage));
 
-        return inertia.redirect("/" + locale + "/dashboard");
+        return inertia.redirect("/dashboard");
 
 
 // ----------

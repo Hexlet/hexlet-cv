@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/{locale}/admin/marketing")
+@RequestMapping("/admin/marketing")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminMarketingController {
 
@@ -49,11 +49,9 @@ public class AdminMarketingController {
 
     @GetMapping("/{section}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> index(@PathVariable String locale,
-                                        @PathVariable String section) {
+    public ResponseEntity<String> index(@PathVariable String section) {
 
         Map<String, Object> baseProps = Map.of(
-                "locale", locale,
                 "activeMainSection", "marketing", // Для выделения "Маркетинг" в левом меню
                 "activeSubSection", section        // Для выделения подраздела
         );
@@ -125,16 +123,14 @@ public class AdminMarketingController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> defaultSection(@PathVariable String locale) {
-        return inertia.redirect("/" + locale + "/admin/marketing/articles");
+    public ResponseEntity<String> defaultSection() {
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     @GetMapping("/{section}/create")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> createForm(@PathVariable String locale,
-                                             @PathVariable String section) {
+    public ResponseEntity<String> createForm(@PathVariable String section) {
         Map<String, Object> props = Map.of(
-                "locale", locale,
                 "activeMainSection", "marketing",
                 "activeSubSection", section
         );
@@ -151,11 +147,9 @@ public class AdminMarketingController {
 
     @GetMapping("/{section}/{id}/edit")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> editForm(@PathVariable String locale,
-                                           @PathVariable String section,
+    public ResponseEntity<String> editForm(@PathVariable String section,
                                            @PathVariable Long id) {
         Map<String, Object> baseProps = Map.of(
-                "locale", locale,
                 "activeMainSection", "marketing",
                 "activeSubSection", section
         );
@@ -198,96 +192,85 @@ public class AdminMarketingController {
     // Создание статьи
     @PostMapping("/articles")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createArticle(@PathVariable String locale,
-                                                @Valid @RequestBody ArticleCreateDTO createDTO) {
+    public ResponseEntity<String> createArticle(@Valid @RequestBody ArticleCreateDTO createDTO) {
         articleService.createArticle(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/articles");
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     // Создание истории
     @PostMapping("/stories")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createStory(@PathVariable String locale,
-                                              @Valid @RequestBody StoryCreateDTO createDTO) {
+    public ResponseEntity<String> createStory(@Valid @RequestBody StoryCreateDTO createDTO) {
         storyService.createStory(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/stories");
+        return inertia.redirect("/admin/marketing/stories");
     }
 
     // Создание отзыва
     @PostMapping("/reviews")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createReview(@PathVariable String locale,
-                                               @Valid @RequestBody ReviewCreateDTO createDTO) {
+    public ResponseEntity<String> createReview(@Valid @RequestBody ReviewCreateDTO createDTO) {
         reviewService.createReview(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/reviews");
+        return inertia.redirect("/admin/marketing/reviews");
     }
 
     // Создание члена команды
     @PostMapping("/team")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createTeamMember(@PathVariable String locale,
-                                                   @Valid @RequestBody TeamCreateDTO createDTO) {
+    public ResponseEntity<String> createTeamMember(@Valid @RequestBody TeamCreateDTO createDTO) {
         teamService.createTeamMember(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/team");
+        return inertia.redirect("/admin/marketing/team");
     }
 
     @PostMapping("/pricing")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> createPricing(@PathVariable String locale,
-                                                @Valid @RequestBody PricingCreateDTO createDTO) {
+    public ResponseEntity<String> createPricing(@Valid @RequestBody PricingCreateDTO createDTO) {
         pricingPlanService.createPricing(createDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/pricing");
+        return inertia.redirect("/admin/marketing/pricing");
     }
 
     @PutMapping("/articles/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> updateArticle(@PathVariable String locale,
-                                                @PathVariable Long id,
+    public ResponseEntity<String> updateArticle(@PathVariable Long id,
                                                 @Valid @RequestBody ArticleUpdateDTO updateDTO) {
         articleService.updateArticle(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/articles");
+        return inertia.redirect("/admin/marketing/articles");
     }
 
     @PutMapping("/stories/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> updateStory(@PathVariable String locale,
-                                              @PathVariable Long id,
+    public ResponseEntity<String> updateStory(@PathVariable Long id,
                                               @Valid @RequestBody StoryUpdateDTO updateDTO) {
         storyService.updateStory(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/stories");
+        return inertia.redirect("/admin/marketing/stories");
     }
 
     @PutMapping("/reviews/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> updateReview(@PathVariable String locale,
-                                               @PathVariable Long id,
+    public ResponseEntity<String> updateReview(@PathVariable Long id,
                                                @Valid @RequestBody ReviewUpdateDTO updateDTO) {
         reviewService.updateReview(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/reviews");
+        return inertia.redirect("/admin/marketing/reviews");
     }
 
     @PutMapping("/team/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> updateTeamMember(@PathVariable String locale,
-                                                   @PathVariable Long id,
+    public ResponseEntity<String> updateTeamMember(@PathVariable Long id,
                                                    @Valid @RequestBody TeamUpdateDTO updateDTO) {
         teamService.updateTeamMember(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/team");
+        return inertia.redirect("/admin/marketing/team");
     }
 
     @PutMapping("/pricing/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> updatePricing(@PathVariable String locale,
-                                                @PathVariable Long id,
+    public ResponseEntity<String> updatePricing(@PathVariable Long id,
                                                 @Valid @RequestBody PricingUpdateDTO updateDTO) {
         pricingPlanService.updatePricing(id, updateDTO);
-        return inertia.redirect("/" + locale + "/admin/marketing/pricing");
+        return inertia.redirect("/admin/marketing/pricing");
     }
 
     @DeleteMapping("/{section}/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> delete(@PathVariable String locale,
-                                         @PathVariable String section,
+    public ResponseEntity<String> delete(@PathVariable String section,
                                          @PathVariable Long id) {
         switch (section) {
             case "articles" -> articleService.deleteArticle(id);
@@ -298,13 +281,12 @@ public class AdminMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return inertia.redirect("/" + locale + "/admin/marketing/" + section);
+        return inertia.redirect("/admin/marketing/" + section);
     }
 
     @PostMapping("/{section}/{id}/toggle-publish")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> togglePublish(@PathVariable String locale,
-                                                @PathVariable String section,
+    public ResponseEntity<String> togglePublish(@PathVariable String section,
                                                 @PathVariable Long id) {
         switch (section) {
             case "articles" -> articleService.togglePublish(id);
@@ -314,13 +296,12 @@ public class AdminMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return inertia.redirect("/" + locale + "/admin/marketing/" + section);
+        return inertia.redirect("/admin/marketing/" + section);
     }
 
     @PostMapping("/{section}/{id}/toggle-homepage")
     @ResponseStatus(HttpStatus.FOUND)
-    public ResponseEntity<String> toggleHomepage(@PathVariable String locale,
-                                                 @PathVariable String section,
+    public ResponseEntity<String> toggleHomepage(@PathVariable String section,
                                                  @PathVariable Long id) {
         switch (section) {
             case "articles" -> articleService.toggleArticleHomepageVisibility(id);
@@ -330,13 +311,12 @@ public class AdminMarketingController {
             default -> throw new ResourceNotFoundException("Section not found: " + section);
         }
 
-        return inertia.redirect("/" + locale + "/admin/marketing/home-components");
+        return inertia.redirect("/admin/marketing/home-components");
     }
 
     @PutMapping("/{section}/{id}/display-order")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> updateDisplayOrder(@PathVariable String locale,
-                                                     @PathVariable String section,
+    public ResponseEntity<String> updateDisplayOrder(@PathVariable String section,
                                                      @PathVariable Long id,
                                                      @RequestBody Map<String, Integer> request) {
         Integer displayOrder = request.get("display_order");
