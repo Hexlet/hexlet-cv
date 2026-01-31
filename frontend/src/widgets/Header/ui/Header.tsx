@@ -11,8 +11,8 @@ const links = [
     label: 'Аналитика',
   },
   {
-    link: '#',
-    label: 'Обучение',
+    link: '/account/purchase',
+    label: 'Обучение', //временная ссылка для проверки работы личного кабинета раздела заказы
   },
   {
     link: '#',
@@ -45,18 +45,21 @@ const links = [
 ]
 
 export function Header(): JSX.Element {
-  const items = links.map((link): JSX.Element => (
-    <Anchor
-      key={link.label}
-      href={link.link}
-      variant="transparent"
-      underline="never"
-      size="md"
-      fw={500}
-    >
-      {link.label}
-    </Anchor>
-  ))
+  const items = links.map(
+    (link): JSX.Element => (
+      <Anchor
+        key={link.label}
+        href={link.link}
+        variant="transparent"
+        underline="never"
+        component={Link}
+        size="md"
+        fw={500}
+      >
+        {link.label}
+      </Anchor>
+    ),
+  )
 
   return (
     <header>
@@ -83,12 +86,15 @@ export function Header(): JSX.Element {
           </Group>
         </Anchor>
         <nav>
-          <Group gap="xl">
-            {items}
-          </Group>
+          <Group gap="xl">{items}</Group>
         </nav>
         {/* В данный момент переводит на авторизацию в dashboard */}
-        <Button variant="default" size="md" component={Link} href="/en/users/sign_in">
+        <Button
+          variant="default"
+          size="md"
+          component={Link}
+          href="/en/users/sign_in"
+        >
           <Text size="md" lh={1.1}>
             Попробывать
             <br />
