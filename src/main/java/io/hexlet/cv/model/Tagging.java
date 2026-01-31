@@ -1,10 +1,7 @@
 package io.hexlet.cv.model;
 
-
-
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
@@ -43,7 +40,6 @@ public class Tagging {
     @JoinColumn(name = "tag_id")
     private Tag tag;
 
-    // тут полиморфная связь
     private String taggableType;
     private Long taggableId;
 
@@ -52,7 +48,6 @@ public class Tagging {
     private String context;
     private String tenant;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @CreatedDate
     private LocalDateTime createdAt;
 }
