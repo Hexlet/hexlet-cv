@@ -145,6 +145,14 @@ export default {
         interviewVideo: 'Video',
         interviewPublished: 'Published',
       },
+      studyPrograms: {
+        title: 'Study programs',
+        button: 'Add program',
+        programName: 'Name',
+        programDuration: 'Duration',
+        programLessons: 'Lessons',
+        programPublished: 'Published',
+      },
     },
   },
 }
