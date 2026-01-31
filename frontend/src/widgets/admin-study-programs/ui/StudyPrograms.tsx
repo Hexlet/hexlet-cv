@@ -1,7 +1,7 @@
 import { Title, Table, Checkbox, Button, TextInput, Group, Container, NumberInput } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-type StudyProgramsEntry = {
+export type StudyProgramsEntry = {
     id: number
     name: string
     duration: number
@@ -9,7 +9,7 @@ type StudyProgramsEntry = {
     isPublished: boolean
 }
 
-type TProps = {
+export type TProps = {
     programs: StudyProgramsEntry[]
 }
 
@@ -44,7 +44,8 @@ export const StudyPrograms: React.FC<TProps> = (props): JSX.Element => {
                                     readOnly
                                     size='xs'
                                     w={500}
-                                    />
+                                    style={{ pointerEvents: 'none' }}
+                                />
                             </Table.Td>
                             <Table.Td>
                                 <TextInput
@@ -52,7 +53,8 @@ export const StudyPrograms: React.FC<TProps> = (props): JSX.Element => {
                                     readOnly
                                     size='xs'
                                     w={150}
-                                    />
+                                    style={{ pointerEvents: 'none' }}
+                                />
                             </Table.Td>
                             <Table.Td align='center'>
                                 { /* Пока не знаю, как должны функционировать стрелочки */ }
@@ -61,7 +63,7 @@ export const StudyPrograms: React.FC<TProps> = (props): JSX.Element => {
                                     size='xs'
                                     w={100}
                                     allowNegative={false}
-                                    />
+                                />
                             </Table.Td>
                             <Table.Td ta='center'>
                                 { /* Пока не знаю, как должны функционировать чекбоксы и какую информацию они должны отправлять */ }
