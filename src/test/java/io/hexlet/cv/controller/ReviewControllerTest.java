@@ -90,7 +90,7 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetReviewsSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/reviews")
+        mockMvc.perform(get("/admin/marketing/reviews")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -102,7 +102,7 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetCreateForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/reviews/create")
+        mockMvc.perform(get("/admin/marketing/reviews/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -112,7 +112,7 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/reviews/{id}/edit", testReview.getId())
+        mockMvc.perform(get("/admin/marketing/reviews/{id}/edit", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -134,13 +134,13 @@ public class ReviewControllerTest {
             }
             """;
 
-        mockMvc.perform(post("/ru/admin/marketing/reviews")
+        mockMvc.perform(post("/admin/marketing/reviews")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(reviewJson))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/reviews"));
+                .andExpect(header().string("Location", "/admin/marketing/reviews"));
     }
 
     @Test
@@ -156,41 +156,41 @@ public class ReviewControllerTest {
             }
             """;
 
-        mockMvc.perform(put("/ru/admin/marketing/reviews/{id}", testReview.getId())
+        mockMvc.perform(put("/admin/marketing/reviews/{id}", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(reviewJson))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/reviews"));
+                .andExpect(header().string("Location", "/admin/marketing/reviews"));
     }
 
     @Test
     public void testDeleteReview() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/reviews/{id}", testReview.getId())
+        mockMvc.perform(delete("/admin/marketing/reviews/{id}", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/reviews"));
+                .andExpect(header().string("Location", "/admin/marketing/reviews"));
     }
 
 
     @Test
     public void testTogglePublishReview() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/reviews/{id}/toggle-publish", testReview.getId())
+        mockMvc.perform(post("/admin/marketing/reviews/{id}/toggle-publish", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/reviews"));
+                .andExpect(header().string("Location", "/admin/marketing/reviews"));
     }
 
     @Test
     public void testToggleHomepageReview() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/reviews/{id}/toggle-homepage", testReview.getId())
+        mockMvc.perform(post("/admin/marketing/reviews/{id}/toggle-homepage", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/home-components"));
+                .andExpect(header().string("Location", "/admin/marketing/home-components"));
     }
 
 
@@ -198,7 +198,7 @@ public class ReviewControllerTest {
     public void testUpdateReviewDisplayOrder() throws Exception {
         String json = "{\"display_order\": 3}";
 
-        mockMvc.perform(put("/ru/admin/marketing/reviews/{id}/display-order", testReview.getId())
+        mockMvc.perform(put("/admin/marketing/reviews/{id}/display-order", testReview.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -207,7 +207,7 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/home-components")
+        mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -228,7 +228,7 @@ public class ReviewControllerTest {
 
         String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
 
-        mockMvc.perform(get("/ru/admin/marketing/reviews")
+        mockMvc.perform(get("/admin/marketing/reviews")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());
@@ -237,7 +237,7 @@ public class ReviewControllerTest {
     @Test
     public void testUnauthorizedAccess() throws Exception {
         // Тест на неавторизованный доступ
-        mockMvc.perform(get("/ru/admin/marketing/reviews")
+        mockMvc.perform(get("/admin/marketing/reviews")
                         .header("X-Inertia", "true"))
                 .andDo(print())
                 .andExpect(status().isUnauthorized());

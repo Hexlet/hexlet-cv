@@ -89,7 +89,7 @@ public class TeamControllerTest {
 
     @Test
     public void testGetTeamSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team")
+        mockMvc.perform(get("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -101,7 +101,7 @@ public class TeamControllerTest {
 
     @Test
     public void testGetCreateForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team/create")
+        mockMvc.perform(get("/admin/marketing/team/create")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -111,7 +111,7 @@ public class TeamControllerTest {
 
     @Test
     public void testGetEditForm() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/team/{id}/edit", testTeam.getId())
+        mockMvc.perform(get("/admin/marketing/team/{id}/edit", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -135,13 +135,13 @@ public class TeamControllerTest {
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/team")
+        mockMvc.perform(post("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(teamJson))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
     @Test
@@ -159,49 +159,49 @@ public class TeamControllerTest {
                 }
                 """;
 
-        mockMvc.perform(put("/ru/admin/marketing/team/{id}", testTeam.getId())
+        mockMvc.perform(put("/admin/marketing/team/{id}", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(teamJson))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
 
     @Test
     public void testDeleteTeamMember() throws Exception {
-        mockMvc.perform(delete("/ru/admin/marketing/team/{id}", testTeam.getId())
+        mockMvc.perform(delete("/admin/marketing/team/{id}", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isSeeOther())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
 
     @Test
     public void testTogglePublishTeam() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/team/{id}/toggle-publish", testTeam.getId())
+        mockMvc.perform(post("/admin/marketing/team/{id}/toggle-publish", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/team"));
+                .andExpect(header().string("Location", "/admin/marketing/team"));
     }
 
     @Test
     public void testToggleHomepageTeam() throws Exception {
-        mockMvc.perform(post("/ru/admin/marketing/team/{id}/toggle-homepage", testTeam.getId())
+        mockMvc.perform(post("/admin/marketing/team/{id}/toggle-homepage", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isFound())
-                .andExpect(header().string("Location", "/ru/admin/marketing/home-components"));
+                .andExpect(header().string("Location", "/admin/marketing/home-components"));
     }
 
     @Test
     public void testUpdateTeamDisplayOrder() throws Exception {
         String json = "{\"display_order\": 3}";
 
-        mockMvc.perform(put("/ru/admin/marketing/team/{id}/display-order", testTeam.getId())
+        mockMvc.perform(put("/admin/marketing/team/{id}/display-order", testTeam.getId())
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
@@ -210,7 +210,7 @@ public class TeamControllerTest {
 
     @Test
     public void testGetHomeComponentsSection() throws Exception {
-        mockMvc.perform(get("/ru/admin/marketing/home-components")
+        mockMvc.perform(get("/admin/marketing/home-components")
                         .cookie(new Cookie("access_token", adminToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isOk())
@@ -231,7 +231,7 @@ public class TeamControllerTest {
 
         String candidateToken = jwtUtils.generateAccessToken("candidate@example.com");
 
-        mockMvc.perform(get("/ru/admin/marketing/team")
+        mockMvc.perform(get("/admin/marketing/team")
                         .cookie(new Cookie("access_token", candidateToken))
                         .header("X-Inertia", "true"))
                 .andExpect(status().isForbidden());
@@ -246,7 +246,7 @@ public class TeamControllerTest {
                 }
                 """;
 
-        mockMvc.perform(post("/ru/admin/marketing/team")
+        mockMvc.perform(post("/admin/marketing/team")
                         .cookie(new Cookie("access_token", adminToken))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidTeamJson))

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 @Service
 public class FlashPropsService {
 
-    public Map<String, Object> buildProps(String locale, HttpServletRequest request) {
+    public Map<String, Object> buildProps(HttpServletRequest request) {
         Map<String, Object> props = new HashMap<>();
 
         var flash = RequestContextUtils.getInputFlashMap(request);
@@ -17,8 +17,6 @@ public class FlashPropsService {
         if (flash != null && !flash.isEmpty()) {
             props.put("flash", flash);
         }
-
-        props.put("locale", locale);
 
         return props;
     }
