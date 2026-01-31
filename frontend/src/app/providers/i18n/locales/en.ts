@@ -121,7 +121,7 @@ export default {
         },
       },
     },
-activityCards: {
+    activityCards: {
       courses_in_process: 'Courses in Progress',
       week_progress: 'Weekly Progress',
       done_lessons: 'Lessons completed',
