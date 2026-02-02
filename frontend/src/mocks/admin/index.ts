@@ -2,6 +2,7 @@ import { http, delay } from 'msw'
 import { inertiaJson } from '../inertia'
 import type { InterviewsEntry } from '@widgets/admin-interviews/ui/AdminInterviews'
 import type { KnowledgeBaseEntry } from '@widgets/knowledge-base'
+import type { StudyProgramsEntry } from '@widgets/admin-study-programs'
 
 const mockInterviews: InterviewsEntry[] = [
     { id: 1, title: 'Интервью с продактом', speaker: 'Алексей С.', videoUrl: '', isPublished: true },
@@ -11,6 +12,11 @@ const mockInterviews: InterviewsEntry[] = [
 const mockArticles: KnowledgeBaseEntry[] = [
     { id: 1, title: 'FAQ по платформе', category: 'Общая', isPublished: true },
     { id: 2, title: 'Глоссарий терминов', category: 'Справка', isPublished: false }
+]
+
+const mockPrograms: StudyProgramsEntry[] = [
+    { id: 1, name: 'Frontend-разработчик', duration: 6, lessons: 48, isPublished: true },
+    { id: 2, name: 'QA-инженер', duration: 4, lessons: 32, isPublished: false }
 ]
 
 export const adminHandlers = [
@@ -28,7 +34,6 @@ export const adminHandlers = [
       version: 'msw-dev',
     })
   }),
-
   http.get('*/admin/knowledgebase', async ({ request }) => {
     console.log('MSW: handler hit', request.url)
 
@@ -38,6 +43,20 @@ export const adminHandlers = [
       component: 'Admin/Knowledgebase/Index',
       props: {
         articles: mockArticles,
+      },
+      url: new URL(request.url).pathname,
+      version: 'msw-dev',
+    })
+  }),
+  http.get('*/admin/programs', async ({ request }) => {
+    console.log('MSW: handler hit', request.url)
+
+    await delay()
+
+    return inertiaJson({
+      component: 'Admin/Programs/Index',
+      props: {
+        programs: mockPrograms,
       },
       url: new URL(request.url).pathname,
       version: 'msw-dev',

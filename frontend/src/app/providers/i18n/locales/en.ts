@@ -108,7 +108,7 @@ export default {
         interviewQuestionsDescription: 'Collection of real questions and answers about roles and stack.',
         realInterviewVideosTitle: 'Real interviews videos',
         realInterviewVideosDescription: 'Interviews analysis with expert comments and checklists.',
-        button: 'Получить доступ'
+        button: 'Get access',
       },
     },
     accountPage: {
@@ -164,6 +164,14 @@ export default {
         articlePublished: 'Published',
         baseIsEmpty: 'The knowledge base is empty',
         nothingFound: 'Nothing is found by request',
+      },
+      studyPrograms: {
+        title: 'Study programs',
+        button: 'Add program',
+        programName: 'Name',
+        programDuration: 'Duration',
+        programLessons: 'Lessons',
+        programPublished: 'Published',
       },
     },
   },

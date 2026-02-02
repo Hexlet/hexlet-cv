@@ -165,6 +165,14 @@ export default {
         baseIsEmpty: 'База знаний пока пуста',
         nothingFound: 'По запросу ничего не найдено',
       },
+      studyPrograms: {
+        title: 'Программы обучения',
+        button: 'Добавить программу',
+        programName: 'Название',
+        programDuration: 'Длительность',
+        programLessons: 'Уроков',
+        programPublished: 'Публикация',
+      },
     },
   },
 }
