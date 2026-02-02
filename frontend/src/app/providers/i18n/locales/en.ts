@@ -100,6 +100,16 @@ export default {
           },
         },
       },
+      knowledgeBaseAndInterview: {
+        title: 'Knowledge base and interviews',
+        knowledgeBaseTitle: 'Knowledge Base',
+        knowledgeBaseDescription: 'Step-by-step guides, checklists and templates for job search.',
+        interviewQuestionsTitle: 'Interview questions',
+        interviewQuestionsDescription: 'Collection of real questions and answers about roles and stack.',
+        realInterviewVideosTitle: 'Real interviews videos',
+        realInterviewVideosDescription: 'Interviews analysis with expert comments and checklists.',
+        button: 'Get access',
+      },
     },
     accountPage: {
       purchases: {
@@ -144,6 +154,16 @@ export default {
         interviewSpeaker: 'Speaker',
         interviewVideo: 'Video',
         interviewPublished: 'Published',
+      },
+      knowledgeBase: {
+        title: 'Knowledge base',
+        input: 'Search: title/category',
+        button: 'Create',
+        articleTitle: 'Title',
+        articlecategory: 'Category',
+        articlePublished: 'Published',
+        baseIsEmpty: 'The knowledge base is empty',
+        nothingFound: 'Nothing is found by request',
       },
       studyPrograms: {
         title: 'Study programs',

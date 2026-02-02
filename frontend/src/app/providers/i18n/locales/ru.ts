@@ -101,6 +101,16 @@ export default {
           },
         },
       },
+      knowledgeBaseAndInterview: {
+        title: 'База знаний и интервью',
+        knowledgeBaseTitle: 'База знаний',
+        knowledgeBaseDescription: 'Пошаговые гайды, чек-листы и шаблоны для поиска работы.',
+        interviewQuestionsTitle: 'Вопросы с собеседований',
+        interviewQuestionsDescription: 'Коллекция реальных вопросов и ответов по ролям и стеку.',
+        realInterviewVideosTitle: 'Записи реальных собесов',
+        realInterviewVideosDescription: 'Разбор интервью с комментариями экспертов и чек-листами.',
+        button: 'Получить доступ'
+      },
     },
     accountPage: {
       purchases: {
@@ -144,6 +154,16 @@ export default {
         interviewSpeaker: 'Спикер',
         interviewVideo: 'Видео',
         interviewPublished: 'Публикация',
+      },
+      knowledgeBase: {
+        title: 'База знаний',
+        input: 'Поиск: заголовок/категория',
+        button: 'Создать',
+        articleTitle: 'Заголовок',
+        articlecategory: 'Категория',
+        articlePublished: 'Публикация',
+        baseIsEmpty: 'База знаний пока пуста',
+        nothingFound: 'По запросу ничего не найдено',
       },
       studyPrograms: {
         title: 'Программы обучения',
