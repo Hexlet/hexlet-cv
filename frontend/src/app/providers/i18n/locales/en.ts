@@ -100,6 +100,16 @@ export default {
           },
         },
       },
+      knowledgeBaseAndInterview: {
+        title: 'Knowledge base and interviews',
+        knowledgeBaseTitle: 'Knowledge Base',
+        knowledgeBaseDescription: 'Step-by-step guides, checklists and templates for job search.',
+        interviewQuestionsTitle: 'Interview questions',
+        interviewQuestionsDescription: 'Collection of real questions and answers about roles and stack.',
+        realInterviewVideosTitle: 'Real interviews videos',
+        realInterviewVideosDescription: 'Interviews analysis with expert comments and checklists.',
+        button: 'Получить доступ'
+      },
     },
     accountPage: {
       purchases: {
