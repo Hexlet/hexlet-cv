@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,24 +26,23 @@ public class UserPageController {
 
     private final MessageSource messageSource;
 
-    @GetMapping("/{locale}/users/{user_id}")
+    @GetMapping("/users/{user_id}")
     public ResponseEntity<?> userPage(
-            @PathVariable("locale") String locale,
             @PathVariable("user_id") Long userId,
             HttpServletRequest request) {
 
         try {
 
-            Map<String, Object> props = flashPropsService.buildProps(locale, request);
+            Map<String, Object> props = flashPropsService.buildProps(request);
             Map<String, Object> userPageProps = userPageService.buildProps(userId);
 
             props.putAll(userPageProps);
             return inertia.render("Users/UserPage", props);
 
         } catch (UserNotFoundException ex) {
-            Map<String, Object> errorProps = flashPropsService.buildProps(locale, request);
+            Map<String, Object> errorProps = flashPropsService.buildProps(request);
 
-            Locale loc = Locale.forLanguageTag(locale);
+            Locale loc = LocaleContextHolder.getLocale();
 
             errorProps.put("status", 404);
             errorProps.put("message", messageSource.getMessage("user.notFound", null, loc));
@@ -52,7 +52,6 @@ public class UserPageController {
                     loc
             ));
             errorProps.put("userId", userId);
-            errorProps.put("locale", locale);
 
             ResponseEntity<?> inertiaResponse = inertia.render("Error/UserNotFound", errorProps);
 
