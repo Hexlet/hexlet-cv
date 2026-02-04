@@ -53,10 +53,10 @@ public class LearningProgressController {
                 "activeSubSection", "my-progress"
         );
 
-        log.debug("[CONTROLLER] Rendering Learning/MyProgress/Index with {} "
+        log.debug("[CONTROLLER] Rendering Account/Learning/MyProgress/Index with {} "
                         + "programs and pagination",
                 progressPage.getContent().size());
-        return inertia.render("Learning/MyProgress/Index", props);
+        return inertia.render("Account/Learning/MyProgress/Index", props);
     }
 
     @GetMapping("/program/{programProgressId}/lessons")
@@ -84,7 +84,7 @@ public class LearningProgressController {
 
         log.debug("[CONTROLLER] Rendering a Lessons page {} lessons snd pagination",
                 lessonsProgressPage.getContent().size());
-        return inertia.render("Learning/MyProgress/Lessons", props);
+        return inertia.render("Account/Learning/MyProgress/Lessons", props);
     }
 
     @PostMapping("/program/start")
