@@ -15,8 +15,8 @@ public class TeamDto {
         return firstName + " " + lastName;
     }
 
-    private String siteRole;
-    private String systemRole;
+    private String position;
+    private String memberType;
     private String avatarUrl;
     private Boolean isPublished;
     private Boolean showOnHomepage;
