@@ -1,50 +1,53 @@
 package io.hexlet.cv.service;
 
-import io.hexlet.cv.dto.marketing.ReviewCreateDTO;
-import io.hexlet.cv.dto.marketing.ReviewDTO;
-import io.hexlet.cv.dto.marketing.ReviewUpdateDTO;
+import io.hexlet.cv.dto.marketing.ReviewCreateDto;
+import io.hexlet.cv.dto.marketing.ReviewDto;
+import io.hexlet.cv.dto.marketing.ReviewUpdateDto;
 import io.hexlet.cv.handler.exception.ResourceNotFoundException;
 import io.hexlet.cv.mapper.ReviewMapper;
+import io.hexlet.cv.model.admin.marketing.Review;
 import io.hexlet.cv.repository.ReviewRepository;
+import io.hexlet.cv.util.JsonNullableUtils;
 import jakarta.transaction.Transactional;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final ReviewMapper reviewMapper;
+    private final Clock clock;
 
-    public List<ReviewDTO> getAllReviews() {
-        return reviewRepository.findAllByOrderByCreatedAtDesc()
-                .stream()
-                .map(reviewMapper::map)
-                .collect(Collectors.toList());
+    public Page<ReviewDto> getAllReviews(Pageable pageable) {
+        log.debug("Getting all reviews with pageable: {}", pageable);
+        return reviewRepository.findAllByOrderByCreatedAtDesc(pageable)
+                .map(reviewMapper::map);
     }
 
-    public ReviewDTO getReviewById(Long id) {
+    public ReviewDto getReviewById(Long id) {
         var review = reviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
-        return reviewMapper.map(review);
-    }
-
-    public ReviewDTO getPublishedReviewById(Long id) {
-        var review = reviewRepository.findByIdAndIsPublishedTrue(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Published review not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
         return reviewMapper.map(review);
     }
 
     @Transactional
-    public ReviewDTO createReview(ReviewCreateDTO createDTO) {
+    public ReviewDto createReview(ReviewCreateDto createDTO) {
+        log.debug("Creating review: {}", createDTO.getAuthor());
         var review = reviewMapper.map(createDTO);
 
         if (createDTO.getIsPublished()) {
-            review.setPublishedAt(LocalDateTime.now());
+            review.setPublishedAt(LocalDateTime.now(clock));
         }
 
         var savedReview = reviewRepository.save(review);
@@ -52,20 +55,20 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewDTO updateReview(Long id, ReviewUpdateDTO updateDTO) {
+    public ReviewDto updateReview(Long id, ReviewUpdateDto updateDTO) {
+        log.debug("Updating review id: {}", id);
         var review = reviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
 
-        if (updateDTO.getIsPublished() != null && updateDTO.getIsPublished().isPresent()) {
-            var newStatus = updateDTO.getIsPublished().get();
+        JsonNullableUtils.ifPresent(updateDTO.getIsPublished(), newStatus -> {
             review.setIsPublished(newStatus);
 
-            if (newStatus && review.getPublishedAt() == null) {
-                review.setPublishedAt(LocalDateTime.now());
-            } else if (!newStatus) {
+            if (Boolean.TRUE.equals(newStatus) && review.getPublishedAt() == null) {
+                review.setPublishedAt(LocalDateTime.now(clock));
+            } else if (Boolean.FALSE.equals(newStatus)) {
                 review.setPublishedAt(null);
             }
-        }
+        });
 
         reviewMapper.update(updateDTO, review);
         var savedReview = reviewRepository.save(review);
@@ -74,19 +77,21 @@ public class ReviewService {
 
     @Transactional
     public void deleteReview(Long id) {
+        log.debug("Deleting review id: {}", id);
         reviewRepository.deleteById(id);
     }
 
     @Transactional
-    public ReviewDTO togglePublish(Long id) {
+    public ReviewDto togglePublish(Long id) {
+        log.debug("Toggling publish for review id: {}", id);
         var review = reviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
 
         var newStatus = !review.getIsPublished();
         review.setIsPublished(newStatus);
 
         if (newStatus && review.getPublishedAt() == null) {
-            review.setPublishedAt(LocalDateTime.now());
+            review.setPublishedAt(LocalDateTime.now(clock));
         } else if (!newStatus) {
             review.setPublishedAt(null);
         }
@@ -95,8 +100,10 @@ public class ReviewService {
         return reviewMapper.map(savedReview);
     }
 
-    public List<ReviewDTO> getHomepageReviews() {
-        return reviewRepository.findByShowOnHomepageTrueOrderByDisplayOrderAsc()
+    public List<ReviewDto> getHomepageReviews() {
+        return reviewRepository.findByShowOnHomepageTrue(
+                Sort.by(Sort.Direction.DESC, Review.FIELD_CREATED_AT)
+                )
                 .stream()
                 .map(reviewMapper::map)
                 .collect(Collectors.toList());
@@ -104,16 +111,18 @@ public class ReviewService {
 
     @Transactional
     public void updateReviewDisplayOrder(Long id, Integer displayOrder) {
+        log.debug("Updating display order for review id: {} to {}", id, displayOrder);
         var review = reviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
         review.setDisplayOrder(displayOrder);
         reviewRepository.save(review);
     }
 
     @Transactional
     public void toggleReviewHomepageVisibility(Long id) {
+        log.debug("Toggling homepage visibility for review id: {}", id);
         var review = reviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("review.not.found"));
         review.setShowOnHomepage(!review.getShowOnHomepage());
         reviewRepository.save(review);
     }

@@ -1,8 +1,8 @@
 package io.hexlet.cv.mapper;
 
-import io.hexlet.cv.dto.marketing.ReviewCreateDTO;
-import io.hexlet.cv.dto.marketing.ReviewDTO;
-import io.hexlet.cv.dto.marketing.ReviewUpdateDTO;
+import io.hexlet.cv.dto.marketing.ReviewCreateDto;
+import io.hexlet.cv.dto.marketing.ReviewDto;
+import io.hexlet.cv.dto.marketing.ReviewUpdateDto;
 import io.hexlet.cv.model.admin.marketing.Review;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,28 +22,19 @@ public abstract class ReviewMapper {
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract Review map(ReviewCreateDTO dto);
+    public abstract Review map(ReviewCreateDto dto);
 
-    @Mapping(source = "author", target = "author")
-    @Mapping(source = "content", target = "content")
-    @Mapping(source = "avatarUrl", target = "avatarUrl")
-    @Mapping(source = "isPublished", target = "isPublished")
-    @Mapping(source = "showOnHomepage", target = "showOnHomepage")
-    @Mapping(source = "displayOrder", target = "displayOrder")
-    @Mapping(source = "publishedAt", target = "publishedAt")
-    @Mapping(source = "createdAt", target = "createdAt")
-    @Mapping(source = "updatedAt", target = "updatedAt")
-    public abstract ReviewDTO map(Review model);
+    public abstract ReviewDto map(Review model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract Review map(ReviewDTO model);
+    public abstract Review map(ReviewDto model);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "publishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    public abstract void update(ReviewUpdateDTO dto, @MappingTarget Review model);
+    public abstract void update(ReviewUpdateDto dto, @MappingTarget Review model);
 }

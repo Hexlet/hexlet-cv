@@ -1,30 +1,29 @@
 package io.hexlet.cv.dto.marketing;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.URL;
 
 @Getter
 @Setter
-public class ReviewCreateDTO {
-    @NotBlank(message = "Автор обязателен")
+public class ReviewCreateDto {
+    @NotBlank(message = "Author name is required")
     private String author;
 
-    @NotBlank(message = "Содержание обязательно")
+    @NotBlank(message = "Review content is required")
     private String content;
 
-    @JsonProperty("avatar_url")
+    @URL(message = "Avatar URL must be valid")
     private String avatarUrl;
 
-    @JsonProperty("is_published")
     private Boolean isPublished = false;
 
-    @NotNull
-    @JsonProperty("show_on_homepage")
+    @NotNull(message = "Homepage visibility is required")
     private Boolean showOnHomepage;
 
-    @JsonProperty("display_order")
+    @Min(value = 0, message = "Display order must be positive")
     private Integer displayOrder = 0;
 }

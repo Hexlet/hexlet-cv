@@ -38,8 +38,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
     @Id @GeneratedValue(strategy = IDENTITY)
