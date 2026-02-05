@@ -145,6 +145,22 @@ export default {
           receipt: 'Чек',
         },
       },
+      progress: {
+        title: 'Моё обучение',
+        dates: {
+          today: 'обновлено сегодня',
+          yesterday: 'обновлено вчера',
+          days_ago: 'обновлено {{count}} дн. назад',
+        },
+        status: {
+          done: 'Завершено',
+          inProgress: 'В процессе',
+        },
+        programBadge: {
+          newProgram: 'Новый',
+          completedProgram: 'Сертификат',
+        }
+      },
     },
     emptyPlaceholders: {
       noPurchasesTitle: 'У вас еще нет подписок и заказов',
@@ -158,6 +174,8 @@ export default {
     },
     buttonsLabels: {
       goToCatalog: 'В каталог',
+      open: 'Открыть',
+      continue: 'Продолжить'
     },
     adminPage: {
       header: {
