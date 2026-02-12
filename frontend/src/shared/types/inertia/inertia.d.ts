@@ -1,9 +1,9 @@
-import type { MenuItem } from '../inertiaSharedData/inertiaSharedProps'
-import { ActivityCardsData } from '../inertiaSharedData/inertiaSharedProps'
+import type { ActivityCardsData, AuthProps, MenuItem } from '../inertiaSharedData/inertiaSharedProps'
 
 declare module '@inertiajs/core' {
-  interface PageProps {
-    menu: MenuItem[]
-    activityCards: ActivityCardsData
+  interface PageProps extends AuthProps {
+    activityCards?: ActivityCardsData
+    locale?: string
+    menu?: MenuItem[]
   }
 }
