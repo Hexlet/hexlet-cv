@@ -109,8 +109,13 @@ export default {
         interviewQuestionsDescription: 'Коллекция реальных вопросов и ответов по ролям и стеку.',
         realInterviewVideosTitle: 'Записи реальных собесов',
         realInterviewVideosDescription: 'Разбор интервью с комментариями экспертов и чек-листами.',
-        button: 'Получить доступ'
+        button: 'Получить доступ',
       },
+      webinars: {
+        title: 'Вебинары с HR и экспертами',
+        viewSchedule: 'Смотреть расписание',
+      },
+
     },
     accountPage: {
       purchases: {
@@ -128,7 +133,7 @@ export default {
           purchase_date: 'Дата',
           price: 'Цена',
           status: 'Статус',
-          receipt: 'Чек'
+          receipt: 'Чек',
         },
       },
     },

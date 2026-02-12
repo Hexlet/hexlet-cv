@@ -20,6 +20,7 @@ import { MarketAnalytics } from '@widgets/market-analytics'
 import { TrainingPrograms } from '@widgets/training-programs'
 import { Communities } from '@widgets/communities'
 import { KnowledgeBaseAndInterviews } from '@widgets/knowledge-base-and-interviews'
+import { Webinars } from '@widgets/webinars'
 
 type PageSection = {
   id: number
@@ -124,6 +125,7 @@ const Index: React.FC<IndexProps> = ({ pageSections }) => {
         <MarketAnalytics />
         <TrainingPrograms />
         <KnowledgeBaseAndInterviews />
+        <Webinars />
         {repeatedSamples}
         <Communities />
         {/* <Link href="/account">Personal Cabinet</Link> */}

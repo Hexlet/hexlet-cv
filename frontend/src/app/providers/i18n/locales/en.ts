@@ -110,6 +110,11 @@ export default {
         realInterviewVideosDescription: 'Interviews analysis with expert comments and checklists.',
         button: 'Get access',
       },
+      webinars: {
+        title: 'Webinars with HR and Experts',
+        viewSchedule: 'View Schedule',
+      },
+
     },
     accountPage: {
       purchases: {
