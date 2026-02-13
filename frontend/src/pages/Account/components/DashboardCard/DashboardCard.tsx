@@ -1,4 +1,5 @@
 import { Card, Flex, Stack, Text, ThemeIcon } from '@mantine/core'
+import { memo } from 'react'
 
 type DashboardCardProps = {
   label: string
@@ -6,13 +7,13 @@ type DashboardCardProps = {
   description?: string
   icon: React.ElementType
 }
-export const DashboardCard = (props: DashboardCardProps) => {
+export const DashboardCard = memo((props: DashboardCardProps) => {
   const { label, value, description, icon: Icon } = props
 
   return (
     <Card shadow="sm" padding="md" radius="md" bg="dark.5" withBorder>
       <Flex
-        direction={{ base: 'row', sm: 'column', lg: 'row' }}
+        direction={{ base: 'row', lg: 'row' }}
         align={{ base: 'flex-start', sm: 'stretch', lg: 'flex-start' }}
         gap="md"
       >
@@ -26,29 +27,16 @@ export const DashboardCard = (props: DashboardCardProps) => {
         </ThemeIcon>
 
         <Stack gap={0} style={{ flex: 1 }}>
-          <Text
-            size="xs"
-            fw={500}
-            c="dimmed"
-            ta={{ base: 'left', sm: 'center', lg: 'left' }}
-          >
+          <Text size="xs" fw={500} c="dimmed" ta={{ base: 'left', lg: 'left' }}>
             {label}
           </Text>
 
-          <Text
-            size="xl"
-            fw={700}
-            ta={{ base: 'left', sm: 'center', lg: 'left' }}
-          >
+          <Text size="xl" fw={700} ta={{ base: 'left', lg: 'left' }}>
             {value}
           </Text>
 
           {description && (
-            <Text
-              size="xs"
-              c="dimmed"
-              ta={{ base: 'left', sm: 'center', lg: 'left' }}
-            >
+            <Text size="xs" c="dimmed" ta={{ base: 'left', lg: 'left' }}>
               {description}
             </Text>
           )}
@@ -56,4 +44,4 @@ export const DashboardCard = (props: DashboardCardProps) => {
       </Flex>
     </Card>
   )
-}
+})
