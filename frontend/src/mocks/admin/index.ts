@@ -3,9 +3,9 @@ import { inertiaJson } from '../inertia'
 import type { InterviewsEntry } from '@widgets/admin-interviews/ui/AdminInterviews'
 import type { KnowledgeBaseEntry } from '@widgets/knowledge-base'
 import type { StudyProgramsEntry } from '@widgets/admin-study-programs'
-import type { AdminNavbarEntry } from '@pages/Admin/components/AdminNavbar'
+import type { AdminMenuDTO } from '@pages/Admin/components/AdminNavbar'
 
-const mockMenu: AdminNavbarEntry[] = [
+const mockMenu: AdminMenuDTO[] = [
   {
     category: 'КОНТЕНТ',
     items: [
@@ -57,7 +57,7 @@ export const adminHandlers = [
       component: 'Admin/Interview/Index',
       props: {
         interviews: mockInterviews,
-        menu: mockMenu,
+        adminMenu: mockMenu,
       },
       url: new URL(request.url).pathname,
       version: 'msw-dev',
@@ -72,7 +72,7 @@ export const adminHandlers = [
       component: 'Admin/Knowledgebase/Index',
       props: {
         articles: mockArticles,
-        menu: mockMenu,
+        adminMenu: mockMenu,
       },
       url: new URL(request.url).pathname,
       version: 'msw-dev',
@@ -87,7 +87,7 @@ export const adminHandlers = [
       component: 'Admin/Programs/Index',
       props: {
         programs: mockPrograms,
-        menu: mockMenu,
+        adminMenu: mockMenu,
       },
       url: new URL(request.url).pathname,
       version: 'msw-dev',

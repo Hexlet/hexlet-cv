@@ -25,20 +25,20 @@ const iconsMap: any = {
   IconHelp: IconHelp,
 }
 
-export type Item = {
+export type AdminMenuItemDTO = {
   label: string
   link: string
   icon: string
 }
 
-export type AdminNavbarEntry = {
+export type AdminMenuDTO = {
     category: string
-    items: Item[]
+    items: AdminMenuItemDTO[]
 }
 
 export const AdminNavbar: React.FC = (): JSX.Element => {
-  const { url, props } = usePage<any>()
-  const menuData = props.menu as AdminNavbarEntry[]
+  const { url, props } = usePage()
+  const menuData = props.adminMenu as AdminMenuDTO[]
 
   return (
     <nav className={classes.navbar}>

@@ -16,8 +16,7 @@ export const AdminHeader = () => {
         component={Link} 
         href='' 
         leftSection={<IconOutbound size={20}/>}
-        variant='white'
-        c='black'
+        variant='default'
         radius='xs'
       >
         {t('adminPage.header.logoutButton')}
