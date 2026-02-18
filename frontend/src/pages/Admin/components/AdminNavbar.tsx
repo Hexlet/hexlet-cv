@@ -42,12 +42,12 @@ export const AdminNavbar: React.FC = (): JSX.Element => {
 
   return (
     <nav className={classes.navbar}>
-        {menuData.map(group => (
+        {menuData?.map(group => (
           <div className={classes.section} key={group.category}>
             <Text c='dimmed' size='xs' pl='sm'>
               {group.category}
             </Text>
-            {group.items.map(item => {
+            {group.items?.map(item => {
               const isActive = url.includes(item.link)
               const IconComponent = iconsMap[item.icon]
               return (
