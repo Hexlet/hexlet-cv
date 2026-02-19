@@ -160,6 +160,10 @@ export default {
       goToCatalog: 'В каталог',
     },
     adminPage: {
+      header: {
+        title: 'Admin Panel',
+        logoutButton: 'Выход',
+      },
       interviews: {
         title: 'Интервью',
         input: 'Поиск: заголовок/спикер',

@@ -158,6 +158,10 @@ export default {
       goToCatalog: 'Go to Catalog',
     },
     adminPage: {
+      header: {
+        title: 'Admin Panel',
+        logoutButton: 'Logout',
+      },
       interviews: {
         title: 'Interviews',
         input: 'Search: title/speaker',
