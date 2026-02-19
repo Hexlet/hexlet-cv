@@ -1,5 +1,14 @@
 export default {
   translation: {
+    articles: {
+      description: 'Статьи, новости и советы о поиске работы',
+      readNextActionLabel: 'Читать далее',
+      readingTime_one: '{{count}} минута',
+      readingTime_few: '{{count}} минуты',
+      readingTime_many: '{{count}} минут',
+      readingTime_other: '{{count}} минут',
+      title: 'Новости',
+    },
     communities: {
       action_connect_to: 'Присоединиться к сообществу',
       anchor: 'Сообщество',
